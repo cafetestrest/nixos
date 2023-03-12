@@ -11,13 +11,16 @@
 
   outputs = { self, nixpkgs, home-manager }:
     let
-      system = "x86_64-linux";
+      inherit (import ./variables.nix)
+      user
+      homeDirectory
+      systemArchitecture;
+      system = "${systemArchitecture}";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
-      user = "test";
     in {
       nixosConfigurations = {
         ${user} = lib.nixosSystem {
@@ -42,7 +45,7 @@
             {
               home = {
                 username = "${user}";
-                homeDirectory = "/home/${user}";
+                homeDirectory = "${homeDirectory}";
               };
             }
           ];

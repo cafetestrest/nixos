@@ -5,7 +5,14 @@
 { config, pkgs, ... }:
 
 let
-  user="test";
+  inherit (import ./variables.nix)
+  user
+  grubHardDrive
+  timezone
+  defaultLocale
+  consoleFont
+  initialPassword
+  nixExtraOptions;
 in
 {
   imports =
@@ -24,7 +31,7 @@ in
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
+  boot.loader.grub.device = "${grubHardDrive}"; # or "nodev" for efi only
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -32,16 +39,16 @@ in
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Europe/Belgrade";
+  time.timeZone = "${timezone}";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "${defaultLocale}";
   console = {
-    font = "Lat2-Terminus16";
+    font = "${consoleFont}";
     #keyMap = "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
@@ -78,7 +85,7 @@ in
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    initialPassword = "123456";
+    initialPassword = "${initialPassword}";
     packages = with pkgs; [
       firefox
       #thunderbird
@@ -109,6 +116,7 @@ in
     oh-my-fish
     docker
     docker-compose
+    killall
   ];
 
   programs.fish.enable = true;
@@ -148,7 +156,7 @@ in
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    extraOptions = "${nixExtraOptions}";
   };
 }
 

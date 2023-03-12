@@ -1,10 +1,16 @@
 { config, pkgs, ... }:
 
+let
+  inherit (import ./variables.nix)
+  user
+  username
+  homeDirectory;
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "test";
-  home.homeDirectory = "/home/test";
+  home.username = "${username}";
+  home.homeDirectory = "${homeDirectory}";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -20,8 +26,8 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    killall
-    btop
+    #killall
+    #btop
   ];
 
   home.file = {
