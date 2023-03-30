@@ -42,7 +42,6 @@
           inherit pkgs;
           modules = [
             ./home.nix
-            ./config/terminator.nix
             {
               home = {
                 username = "${user}";

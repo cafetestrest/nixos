@@ -95,15 +95,15 @@ function open_in_browser --description 'opens warden env url in browser'
         set traefik_url (echo $traefik_sub_domain.$traefik_domain)
       end
 
-      echo ''
+      echo ""
       set traefik_url (echo 'https://'$traefik_url)
 
       echo 'Website:' $traefik_url
-      echo ''
+      echo ""
 
       # print out warden env URLs
       warden_environment_urls $traefik_domain
-      echo ''
+      echo ""
 
       # print out warden svc URLs
       warden_services_urls

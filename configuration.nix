@@ -139,7 +139,7 @@ in
     docker
     docker-compose
     killall
-    #numlockx
+    numlockx
     gnome.gnome-themes-extra #for building orchid theme (with sassc)
     sassc
     peco
@@ -186,7 +186,7 @@ in
   };
 
   # Used to enable numpad on start of the session (unsure if needed)
-  #services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
+  services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
   #support ntfs hard drive 29-mar-2023
   boot.supportedFilesystems = [ "ntfs" ];
