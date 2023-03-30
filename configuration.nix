@@ -20,23 +20,18 @@ in
       ./hardware-configuration.nix
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    configurationLimit = 10;
-  };
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "${grubHardDrive}"; # or "nodev" for efi only
-
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "${timezone}";
@@ -56,18 +51,43 @@ in
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "${user}";
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
-  # Configure keymap in X11
+  # Configure keymap in X11 
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
   # };
+
+  # added 28-mar-2023
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -79,12 +99,13 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     initialPassword = "${initialPassword}";
     packages = with pkgs; [
       firefox
@@ -117,6 +138,9 @@ in
     docker
     docker-compose
     killall
+    numlockx
+    gnome.gnome-themes-extra
+    sassc
   ];
 
   programs.fish.enable = true;
@@ -158,5 +182,20 @@ in
     package = pkgs.nixFlakes;
     extraOptions = "${nixExtraOptions}";
   };
+
+  services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
+  #numpad on boot
+  #systemd.services.numlock = {
+  #  enable = true;
+  #  description = "Enable numlock";
+  #  serviceConfig = {
+  #    Type = "forking";
+  #    script = "setleds +num";
+  #  };
+  #  wantedBy = [ "multi-user.target" ];
+  #};
+
+  #support ntfs hard drive 29-mar-2023
+  boot.supportedFilesystems = [ "ntfs" ];
 }
 
