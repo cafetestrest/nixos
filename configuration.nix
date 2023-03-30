@@ -117,7 +117,7 @@ in
       xpad
       copyq
       albert
-      #oh-my-fish
+      oh-my-fish
       postman
       #jetbrains.phpstorm
       qbittorrent
@@ -135,13 +135,14 @@ in
     neofetch
     gnome.gnome-tweaks
     fish
-    oh-my-fish
+    #oh-my-fish
     docker
     docker-compose
     killall
     #numlockx
     gnome.gnome-themes-extra #for building orchid theme (with sassc)
     sassc
+    peco
   ];
 
   programs.fish.enable = true;
