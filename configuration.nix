@@ -54,6 +54,8 @@ in
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Used to get auto login (as I'm unable to enable num lock on boot)
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "${user}";
   systemd.services."getty@tty1".enable = false;
@@ -66,7 +68,6 @@ in
   #   "caps:escape" # map caps to escape.
   # };
 
-  # added 28-mar-2023
   services.xserver = {
     layout = "us";
     xkbVariant = "";
@@ -138,8 +139,8 @@ in
     docker
     docker-compose
     killall
-    numlockx
-    gnome.gnome-themes-extra
+    #numlockx
+    gnome.gnome-themes-extra #for building orchid theme (with sassc)
     sassc
   ];
 
@@ -183,17 +184,8 @@ in
     extraOptions = "${nixExtraOptions}";
   };
 
-  services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
-  #numpad on boot
-  #systemd.services.numlock = {
-  #  enable = true;
-  #  description = "Enable numlock";
-  #  serviceConfig = {
-  #    Type = "forking";
-  #    script = "setleds +num";
-  #  };
-  #  wantedBy = [ "multi-user.target" ];
-  #};
+  # Used to enable numpad on start of the session (unsure if needed)
+  #services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
   #support ntfs hard drive 29-mar-2023
   boot.supportedFilesystems = [ "ntfs" ];
