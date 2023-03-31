@@ -121,6 +121,7 @@ in
       postman
       #jetbrains.phpstorm
       qbittorrent
+      playerctl
     ];
   };
 
@@ -143,6 +144,7 @@ in
     gnome.gnome-themes-extra #for building orchid theme (with sassc)
     sassc
     peco
+    headsetcontrol
   ];
 
   programs.fish.enable = true;
@@ -180,13 +182,13 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
+  # Used to enable numpad on start of the session (unsure if needed)
+  services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = "${nixExtraOptions}";
   };
-
-  # Used to enable numpad on start of the session (unsure if needed)
-  services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
   #support ntfs hard drive 29-mar-2023
   boot.supportedFilesystems = [ "ntfs" ];
