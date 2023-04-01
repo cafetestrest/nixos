@@ -187,6 +187,9 @@ in
   # Used to enable numpad on start of the session (unsure if needed)
   services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
+  # dconf added 1-apr-2023
+  programs.dconf.enable = true;
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = "${nixExtraOptions}";
