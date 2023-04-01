@@ -146,6 +146,7 @@ in
     sassc
     peco
     headsetcontrol
+    gnome.dconf-editor
   ];
 
   programs.fish.enable = true;

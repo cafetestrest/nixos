@@ -43,6 +43,7 @@
           inherit pkgs;
           modules = [
             ./home.nix
+            ./home-manager/gnome/keyboard-shortcuts.nix
             {
               home = {
                 username = "${user}";
