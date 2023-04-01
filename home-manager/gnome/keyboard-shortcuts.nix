@@ -2,6 +2,14 @@
 
 {
   dconf.settings = {
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "terminator.desktop"
+        "chromium-browser.desktop"
+        "org.gnome.Nautilus.desktop"
+        "org.gnome.TextEditor.desktop"
+      ];
+    };
     "org/gnome/desktop/wm/keybindings" = {
       close = "['<Super>q','<Alt>F4']";
       move-to-workspace-up = "@as []";
