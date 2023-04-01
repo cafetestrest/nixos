@@ -9,8 +9,9 @@ in
 {
   imports =
     [
-      ./config/terminator.nix
-      ./config/fish.nix
+      ./home-manager/gnome/config/terminator.nix
+      ./home-manager/gnome/config/fish.nix
+      ./home-manager/gnome/keyboard-shortcuts.nix
     ];
 
   # Home Manager needs a bit of information about you and the
@@ -35,4 +36,5 @@ in
     #killall
     #btop
   ];
+
 }
