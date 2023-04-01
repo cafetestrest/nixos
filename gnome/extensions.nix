@@ -20,7 +20,6 @@ in
       gnomeExtensions.rounded-window-corners
       gnomeExtensions.super-key
       gnomeExtensions.useless-gaps
-      gnomeExtensions.volume-scroller
       gnomeExtensions.workspace-indicator
       gnomeExtensions.tray-icons-reloaded
     ];

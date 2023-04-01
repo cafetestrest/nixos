@@ -122,6 +122,7 @@ in
       #jetbrains.phpstorm
       qbittorrent
       playerctl
+      notify-desktop
     ];
   };
 
@@ -193,4 +194,3 @@ in
   #support ntfs hard drive 29-mar-2023
   boot.supportedFilesystems = [ "ntfs" ];
 }
-
