@@ -12,6 +12,7 @@ in
       ./home-manager/gnome/config/terminator.nix
       ./home-manager/gnome/config/fish.nix
       ./home-manager/gnome/keyboard-shortcuts.nix
+      ./home-manager/gnome/dconf-settings.nix
     ];
 
   # Home Manager needs a bit of information about you and the
