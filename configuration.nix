@@ -106,7 +106,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
     initialPassword = "${initialPassword}";
     packages = with pkgs; [
       firefox
@@ -145,8 +145,14 @@ in
     gnome.gnome-themes-extra #for building orchid theme (with sassc)
     sassc
     peco
-    headsetcontrol
     gnome.dconf-editor
+    virt-manager
+    virt-viewer
+    spice
+    spice-gtk
+    spice-protocol
+    #win-virtio
+    #win-spice
   ];
 
   programs.fish.enable = true;
@@ -187,7 +193,7 @@ in
   # Used to enable numpad on start of the session (unsure if needed)
   services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
-  # dconf added 1-apr-2023
+  # dconf (added 1-apr-2023)
   programs.dconf.enable = true;
 
   #required for gsconnect gnome extension to work properly (added 2-apr-2023)
@@ -199,6 +205,20 @@ in
     # KDE Connect
     { from = 1714; to = 1764; }
   ];
+
+  # Manage the virtualisation services (added 2-apr-2023)
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+    spiceUSBRedirection.enable = true;
+  };
+  services.spice-vdagentd.enable = true;
 
   nix = {
     package = pkgs.nixFlakes;
