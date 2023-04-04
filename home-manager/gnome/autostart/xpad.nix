@@ -2,7 +2,7 @@
 
 {
   home.file = {
-    ".config/autostart/albert.desktop".text = ''
+    ".config/autostart/xpad.desktop".text = ''
 [Desktop Entry]
 Version=1.0
 

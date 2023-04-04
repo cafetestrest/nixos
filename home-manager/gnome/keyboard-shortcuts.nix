@@ -3,7 +3,7 @@
 {
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
-      close = [ "<Super>q" ];
+      close = [ "<Super>q" "<Alt>F4" ];
       maximize = [ "<Super><Shift>Up" ];
       toggle-maximized = [ "<Super>Up" ];
       switch-input-source = [];
