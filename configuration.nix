@@ -206,6 +206,13 @@ in
     { from = 1714; to = 1764; }
   ];
 
+  #allow usage of unprivileged ports
+  #boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
+  #networking.extraHosts =
+  #''
+  #  127.0.0.1 magento2.test
+  #'';
+
   # Manage the virtualisation services (added 2-apr-2023)
   virtualisation = {
     libvirtd = {

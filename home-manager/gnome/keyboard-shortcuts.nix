@@ -3,13 +3,26 @@
 {
   dconf.settings = {
     "org/gnome/desktop/wm/keybindings" = {
-      close = "['<Super>q','<Alt>F4']";
-      move-to-workspace-up = "@as []";
-      move-to-workspace-down = "@as []";
+      close = [ "<Super>q" ];
+      maximize = [ "<Super><Shift>Up" ];
+      toggle-maximized = [ "<Super>Up" ];
+      switch-input-source = [];
+      switch-input-source-backward = [];
+      toggle-fullscreen = [ "<Super><Shift>F11" ];
+      move-to-workspace-up = [];
+      move-to-workspace-down = [];
+      move-to-workspace-left = [];
+      move-to-workspace-right = [];
+      switch-to-workspace-left = [];
+      switch-to-workspace-right = [];
+      begin-move = [ "<Super>backslash" ];
+      begin-resize = [ "<Super><Shift>backslash" ];
     };
+
     "org/gnome/shell/keybindings" = {
-      toggle-message-tray = "@as []";
+      toggle-message-tray = [];
     };
+
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
