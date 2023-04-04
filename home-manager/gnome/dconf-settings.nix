@@ -13,7 +13,7 @@
       disable-user-extensions = false;
       enabled-extensions = [
         "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com",
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "trayIconsReloaded@selfmade.pl"
         "rounded-window-corners@yilozt"
         "openweather-extension@jenslody.de"
