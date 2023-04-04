@@ -28,13 +28,14 @@
         "super-key@tommimon.github.com"
         #"pop-shell@system76.com"
       ];
-
-      "org/gnome/desktop/interface" = {
-        #monospace-font-name = "MesloLGS Nerd Font Mono 10";
-        clock-show-seconds = true;
-        clock-show-weekday = true;
-        color-scheme = "prefer-dark";
-      };
     };
+
+    "org/gnome/desktop/interface" = {
+      #monospace-font-name = "MesloLGS Nerd Font Mono 10";
+      clock-show-seconds = true;
+      clock-show-weekday = true;
+      color-scheme = "prefer-dark";
+    };
+
   };
 }
