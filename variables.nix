@@ -1,7 +1,10 @@
-{
-  user = "bajic";
+let
   username = "bajic";
-  homeDirectory = "/home/bajic";
+in
+{
+  user = "${username}";
+  username = "${username}";
+  homeDirectory = "/home/${username}";
   networkingHostName = "nixos";
   systemArchitecture = "x86_64-linux";
   nixpkgsURL = "github:nixos/nixpkgs/nixos-22.11";
@@ -12,5 +15,5 @@
   nixExtraOptions = "experimental-features = nix-command flakes";
   efiSysMountPoint = "/boot/efi";
   grubHardDriveForVM = "/dev/vda";
-  configurationLimit = "20";
+  configurationLimit = 20;
 }

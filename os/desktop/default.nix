@@ -10,5 +10,5 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "${efiSysMountPoint}";
-  boot.loader.systemd-boot.configurationLimit = "${configurationLimit}";
+  boot.loader.systemd-boot.configurationLimit = configurationLimit;
 }
