@@ -12,21 +12,17 @@ let
   defaultLocale
   consoleFont
   initialPassword
+  networkingHostName
   nixExtraOptions;
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./os/desktop
     ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader.systemd-boot.configurationLimit = 20;
-
-  networking.hostName = "nixos";
+  networking.hostName = "${networkingHostName}";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -154,6 +150,7 @@ in
     spice-protocol
     #win-virtio
     #win-spice
+    unzip
   ];
 
   programs.fish.enable = true;
