@@ -19,6 +19,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./packages.nix
       ./os/desktop
     ];
 
@@ -105,53 +106,7 @@ in
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
     initialPassword = "${initialPassword}";
-    packages = with pkgs; [
-      firefox
-      #thunderbird
-      shotwell
-      chromium
-      vscodium
-      xpad
-      copyq
-      albert
-      oh-my-fish
-      postman
-      #jetbrains.phpstorm
-      qbittorrent
-      playerctl
-      notify-desktop
-    ];
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    terminator
-    git
-    htop
-    neofetch
-    gnome.gnome-tweaks
-    fish
-    #oh-my-fish
-    docker
-    docker-compose
-    killall
-    numlockx
-    gnome.gnome-themes-extra #for building orchid theme (with sassc)
-    sassc
-    peco
-    gnome.dconf-editor
-    virt-manager
-    virt-viewer
-    spice
-    spice-gtk
-    spice-protocol
-    #win-virtio
-    #win-spice
-    unzip
-  ];
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
