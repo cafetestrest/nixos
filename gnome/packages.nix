@@ -5,9 +5,26 @@ let
   user;
 in
 {
+  # nixpkgs.overlays = [
+  #   (final: prev: { 
+  #     orchis-theme = (prev.orchis-theme.override {
+  #       border-radius = 3;
+  #       tweaks = [ "compact" ];
+  #     }).overrideAttrs (finalAttrs: {
+  #       src = final.fetchFromGitHub {
+  #         repo = "Orchis-theme";
+  #         owner = "vinceliuice";
+  #         rev = "2023-03-18";
+  #         hash = "sha256-ixVHQRJXoXuPEsrbWOVMC/qdF3szpxYzC/8kKe47Bs8=";
+  #       };
+  #     });
+  #   })
+  # ];
+
   users.users.${user} = {
     packages = with pkgs; [
       shotwell                #photo editor for gnome
+      #orchis-theme            #theme for gnome
     ];
   };
 
