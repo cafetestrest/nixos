@@ -20,6 +20,8 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./packages.nix
+      ./gnome/packages.nix
+      ./os/vm/packages.nix
       ./os/desktop
       #./os/vm/virt-manager.nix
     ];
