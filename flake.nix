@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }:
     let
       inherit (import ./variables.nix)
       user
