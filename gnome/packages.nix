@@ -5,6 +5,14 @@ let
   user;
 in
 {
+  #   # logic that allows to switch to unstable (use fcitx5 instead of deprecated fcitx-engines)
+  #   # #https://discourse.nixos.org/t/error-when-upgrading-nixos-related-to-fcitx-engines/26940/10
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     fcitx-engines = pkgs.fcitx5;
+  #   })
+  # ];
+
   # nixpkgs.overlays = [
   #   (final: prev: { 
   #     orchis-theme = (prev.orchis-theme.override {
