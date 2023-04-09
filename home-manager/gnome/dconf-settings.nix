@@ -26,6 +26,7 @@
         "caffeine@patapon.info"
         "blur-my-shell@aunetx"
         "super-key@tommimon.github.com"
+        "useless-gaps@pimsnel.com"
         #"pop-shell@system76.com"
       ];
     };

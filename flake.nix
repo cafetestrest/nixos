@@ -39,6 +39,7 @@
         ${user} = lib.nixosSystem {
           inherit system;
           modules = [
+            # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
             ./configuration.nix
             ./gnome/extensions.nix

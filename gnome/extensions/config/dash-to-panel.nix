@@ -19,6 +19,11 @@
       primary-monitor=0;
       scroll-panel-action="CHANGE_VOLUME";
       status-icon-padding=-1;
+      trans-dynamic-anim-target=1.0;
+      trans-panel-opacity=1.0;
+      trans-use-custom-bg=true;
+      trans-use-custom-opacity=true;
+      trans-use-dynamic-opacity=false;
       tray-padding=-1;
       window-preview-title-position="TOP";
     };

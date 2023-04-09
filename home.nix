@@ -25,6 +25,7 @@ in
       ./gnome/extensions/config/executor.nix
       ./gnome/extensions/config/gtile.nix
       ./gnome/extensions/config/super-key.nix
+      ./gnome/extensions/config/useless-gaps.nix
     ];
 
   # Home Manager needs a bit of information about you and the
