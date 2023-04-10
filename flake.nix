@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
 
     home-manager = {
       url = github:nix-community/home-manager;
@@ -11,7 +12,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nur, home-manager }:
     let
       inherit (import ./variables.nix)
       user
@@ -40,7 +41,7 @@
           inherit system;
           modules = [
             # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
             ./configuration.nix
             ./gnome/extensions.nix
             home-manager.nixosModules.home-manager {
