@@ -32,14 +32,25 @@
     };
 
     "org/gnome/desktop/interface" = {
-      #monospace-font-name = "MesloLGS Nerd Font Mono 10";
-      font-name = "":
+      #fonts
+      font-name = "Ubuntu 11";
+      document-font-name = "Ubuntu 11";
+
+      #clock in top bar
       clock-show-seconds = true;
       clock-show-weekday = true;
+
+      #dark theme
       color-scheme = "prefer-dark";
     };
 
-    "org.gnome.desktop.peripherals.keyboard" = {
+    "org/gnome/desktop/wm/preferences" = {
+      titlebar-font = "Ubuntu Bold 11";
+      button-layout = "close,minimize,maximize:appmenu";
+      action-double-click-titlebar = "none";
+    };
+
+    "org/gnome/desktop/peripherals/keyboard" = {
       numlock-state = true;
     };
 
