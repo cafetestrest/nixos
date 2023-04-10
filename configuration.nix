@@ -22,9 +22,12 @@ in
       ./packages.nix
       ./gnome/packages.nix
       ./gnome/fonts.nix
-      ./os/vm/packages.nix
-      ./os/desktop
-      #./os/vm/virt-manager.nix
+      ./os/vm/spice-virt-manager.nix  #tools for VM copy/paste clipboard
+
+      #./os/vm/virt-manager.nix       # Turn this on for VM only
+      ./os/vm/packages.nix            #on VM can disable this one
+      ./os/desktop                    #on VM can disable this one
+
     ];
 
   networking.hostName = "${networkingHostName}";
@@ -142,19 +145,7 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
-
+  # custom
   # Used to enable numpad on start of the session (unsure if needed)
   services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
@@ -199,4 +190,17 @@ in
 
   #support ntfs hard drive 29-mar-2023
   boot.supportedFilesystems = [ "ntfs" ];
+
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "22.11"; # Did you read the comment?
 }

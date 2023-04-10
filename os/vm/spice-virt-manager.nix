@@ -11,7 +11,10 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    virt-manager              #virtual manager
-    virt-viewer               #vm
+    spice                     #vm
+    spice-gtk                 #vm
+    spice-protocol            #vm
+    #win-virtio               #vm windows stuff
+    #win-spice                #vm windows stuff
   ];
 }
