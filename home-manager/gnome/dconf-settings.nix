@@ -38,5 +38,9 @@
       color-scheme = "prefer-dark";
     };
 
+    "org.gnome.desktop.peripherals.keyboard" = {
+      numlock-state = true;
+    };
+
   };
 }
