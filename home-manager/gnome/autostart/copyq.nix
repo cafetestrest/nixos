@@ -185,5 +185,9 @@ Comment[x-test]=xxA cut & paste history utilityxx
 Comment[zh_CN]=管理剪切和粘贴历史的工具
 Comment[zh_TW]=剪貼紀錄公用程式
     '';
+
+    ".config/copyq/copyq.conf" = {
+      source = ./copyq.conf;
+    };
   };
 }

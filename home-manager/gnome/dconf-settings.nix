@@ -33,6 +33,7 @@
 
     "org/gnome/desktop/interface" = {
       #monospace-font-name = "MesloLGS Nerd Font Mono 10";
+      font-name = "":
       clock-show-seconds = true;
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
