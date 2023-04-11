@@ -33,8 +33,11 @@
 
     "org/gnome/desktop/interface" = {
       #fonts
-      font-name = "Ubuntu 11";
-      document-font-name = "Ubuntu 11";
+      #font-name = "Ubuntu 11";
+      #document-font-name = "Ubuntu 11";
+
+      #cursor
+      cursor-theme = "macOS-Monterey";
 
       #clock in top bar
       clock-show-seconds = true;
