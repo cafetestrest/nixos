@@ -25,7 +25,7 @@
         "dash-to-panel@jderose9.github.com"
         "caffeine@patapon.info"
         "blur-my-shell@aunetx"
-        "super-key@tommimon.github.com"
+        #"super-key@tommimon.github.com"
         "useless-gaps@pimsnel.com"
         #"pop-shell@system76.com"
       ];
@@ -48,7 +48,7 @@
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      titlebar-font = "Ubuntu Bold 11";
+      #titlebar-font = "Ubuntu Bold 11";
       button-layout = "close,minimize,maximize:appmenu";
       action-double-click-titlebar = "none";
     };

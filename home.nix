@@ -24,7 +24,7 @@ in
       ./gnome/extensions/config/dash-to-panel.nix
       ./gnome/extensions/config/executor.nix
       ./gnome/extensions/config/gtile.nix
-      ./gnome/extensions/config/super-key.nix
+      #./gnome/extensions/config/super-key.nix
       ./gnome/extensions/config/useless-gaps.nix
     ];
 

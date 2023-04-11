@@ -18,7 +18,7 @@ in
       gnomeExtensions.no-overview
       gnomeExtensions.openweather
       gnomeExtensions.rounded-window-corners
-      gnomeExtensions.super-key
+      #gnomeExtensions.super-key
       gnomeExtensions.useless-gaps
       gnomeExtensions.workspace-indicator
       gnomeExtensions.tray-icons-reloaded

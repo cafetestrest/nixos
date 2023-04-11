@@ -7,7 +7,6 @@ in
   homeDirectory = "/home/${username}";
   networkingHostName = "nixos";
   systemArchitecture = "x86_64-linux";
-  nixpkgsURL = "github:nixos/nixpkgs/nixos-22.11";
   timezone = "Europe/Belgrade";
   defaultLocale = "en_US.UTF-8";
   consoleFont = "Lat2-Terminus16";

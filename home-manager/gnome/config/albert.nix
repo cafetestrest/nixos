@@ -5,7 +5,7 @@
     ".config/albert/albert.conf".text = ''
 [General]
 frontendId=org.albert.frontend.widgetboxmodel
-hotkey=Alt+]
+hotkey=Alt+Space
 showTray=true
 
 [org.albert.extension.applications]
