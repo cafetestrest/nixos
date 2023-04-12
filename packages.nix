@@ -42,5 +42,8 @@ in
     sassc                     #for building orchid theme
     peco                      #for oh-my-fish (along with omf plugin)
     unzip
+    #teamviewer
   ];
+  
+  #services.teamviewer.enable = true;
 }
