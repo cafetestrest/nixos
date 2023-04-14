@@ -59,7 +59,7 @@ omf theme default
 
 ```bash
 git clone https://github.com/vinceliuice/Orchis-theme.git
-cd $_
+cd Orchis-theme
 ./install.sh -c dark --tweaks compact submenu macos --shell 42 --round 5px -l
 ```
 
