@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ../variables.nix)
+  inherit (import ../../../variables.nix)
     user;
 in
 {
