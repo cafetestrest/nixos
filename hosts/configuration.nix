@@ -5,7 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ./variables.nix)
+  inherit (import ../variables.nix)
     user
     grubHardDrive
     timezone
@@ -21,8 +21,8 @@ in
       # Include the results of the hardware scan.
       ./desktop/hardware-configuration.nix
       ./packages.nix
-      ./gnome/packages.nix
-      ./gnome/fonts.nix
+      ../gnome/packages.nix
+      ../gnome/fonts.nix
       ./vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
 
       #./vm/virt-manager.nix       # Turn this on for VM only
