@@ -2,12 +2,12 @@
 
 let
   inherit (import ./variables.nix)
-  user;
+    user;
 in
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
-    packages = with pkgs; [
+    packages = with pkgs; [ 
       firefox             #firefox browser
       #thunderbird
       chromium            #chromium browser
@@ -43,7 +43,9 @@ in
     peco                      #for oh-my-fish (along with omf plugin)
     unzip
     #teamviewer
+    rnix-lsp
+    nixpkgs-fmt
   ];
-  
+
   #services.teamviewer.enable = true;
 }

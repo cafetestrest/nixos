@@ -2,7 +2,7 @@
 
 let
   inherit (import ../variables.nix)
-  user;
+    user;
 in
 {
   users.users.${user} = {
@@ -25,4 +25,3 @@ in
     ];
   };
 }
-

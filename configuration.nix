@@ -6,27 +6,28 @@
 
 let
   inherit (import ./variables.nix)
-  user
-  grubHardDrive
-  timezone
-  defaultLocale
-  consoleFont
-  initialPassword
-  networkingHostName
-  nixExtraOptions;
+    user
+    grubHardDrive
+    timezone
+    defaultLocale
+    consoleFont
+    initialPassword
+    networkingHostName
+    nixExtraOptions;
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./packages.nix
       ./gnome/packages.nix
       ./gnome/fonts.nix
-      ./os/vm/spice-virt-manager.nix  #tools for VM copy/paste clipboard
+      ./os/vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
 
       #./os/vm/virt-manager.nix       # Turn this on for VM only
-      ./os/vm/packages.nix            #on VM can disable this one
-      ./os/desktop                    #on VM can disable this one
+      ./os/vm/packages.nix #on VM can disable this one
+      ./os/desktop #on VM can disable this one
 
     ];
 
@@ -68,6 +69,9 @@ in
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
+
+  # Slows down boot (https://github.dev/Kranzes/nix-config)
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Configure keymap in X11 
   # services.xserver.layout = "us";

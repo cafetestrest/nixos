@@ -6,21 +6,21 @@
       close = [ "<Super>q" "<Alt>F4" ];
       maximize = [ "<Super><Shift>Up" ];
       toggle-maximized = [ "<Super>Up" ];
-      switch-input-source = [];
-      switch-input-source-backward = [];
+      switch-input-source = [ ];
+      switch-input-source-backward = [ ];
       toggle-fullscreen = [ "<Super><Shift>F11" ];
-      move-to-workspace-up = [];
-      move-to-workspace-down = [];
-      move-to-workspace-left = [];
-      move-to-workspace-right = [];
-      switch-to-workspace-left = [];
-      switch-to-workspace-right = [];
+      move-to-workspace-up = [ ];
+      move-to-workspace-down = [ ];
+      move-to-workspace-left = [ ];
+      move-to-workspace-right = [ ];
+      switch-to-workspace-left = [ ];
+      switch-to-workspace-right = [ ];
       begin-move = [ "<Super>backslash" ];
       begin-resize = [ "<Super><Shift>backslash" ];
     };
 
     "org/gnome/shell/keybindings" = {
-      toggle-message-tray = [];
+      toggle-message-tray = [ ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -69,14 +69,14 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
       binding = "<Super>Page_Up";
       command = ''
-      sh -c 'wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-desktop "Audio Output changed to HDMI"'
+        sh -c 'wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-desktop "Audio Output changed to HDMI"'
       '';
       name = "Audio HDMI (win + pgup)";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {
       binding = "<Super>Page_Down";
       command = ''
-      sh -c 'wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-desktop "Audio Output changed to Headset"'
+        sh -c 'wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-desktop "Audio Output changed to Headset"'
       '';
       name = "Audio HDMI (win + pgup)";
     };

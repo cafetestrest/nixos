@@ -2,8 +2,8 @@
 
 let
   inherit (import ../../variables.nix)
-  grubHardDriveForVM
-  configurationLimit;
+    grubHardDriveForVM
+    configurationLimit;
 in
 {
   # Bootloader for VM.

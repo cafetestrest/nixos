@@ -2,7 +2,7 @@
 
 let
   inherit (import ../variables.nix)
-  user;
+    user;
 in
 {
   #   # logic that allows to switch to unstable (use fcitx5 instead of deprecated fcitx-engines)

@@ -15,9 +15,9 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, nur, home-manager }:
     let
       inherit (import ./variables.nix)
-      user
-      homeDirectory
-      systemArchitecture;
+        user
+        homeDirectory
+        systemArchitecture;
 
       system = "${systemArchitecture}";
 
@@ -35,7 +35,8 @@
           config.allowUnfree = true;
         };
       };
-    in {
+    in
+    {
       nixosConfigurations = {
         ${user} = lib.nixosSystem {
           inherit system;
@@ -44,25 +45,12 @@
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
             ./configuration.nix
             ./gnome/extensions.nix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${user} = {
                 imports = [ ./home.nix ];
-              };
-            }
-          ];
-        };
-      };
-      hmConfig = {
-        ${user} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home.nix
-            {
-              home = {
-                username = "${user}";
-                homeDirectory = "${homeDirectory}";
               };
             }
           ];

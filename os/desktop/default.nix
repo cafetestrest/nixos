@@ -2,8 +2,8 @@
 
 let
   inherit (import ../../variables.nix)
-  efiSysMountPoint
-  configurationLimit;
+    efiSysMountPoint
+    configurationLimit;
 in
 {
   # Bootloader.

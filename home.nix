@@ -2,9 +2,9 @@
 
 let
   inherit (import ./variables.nix)
-  user
-  username
-  homeDirectory;
+    user
+    username
+    homeDirectory;
 in
 {
   imports =
@@ -47,8 +47,8 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    #killall
-    #btop
+    # killall
+    # btop
   ];
 
 }
