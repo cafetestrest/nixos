@@ -50,7 +50,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${user} = {
-                imports = [ ./home.nix ];
+                imports = [ ./modules/home.nix ];
               };
             }
           ];
