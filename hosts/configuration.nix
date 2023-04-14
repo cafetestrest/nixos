@@ -21,8 +21,8 @@ in
       # Include the results of the hardware scan.
       ./desktop/hardware-configuration.nix
       ./packages.nix
-      ../gnome/packages.nix
-      ../gnome/fonts.nix
+      ../modules/gnome/packages.nix
+      ../modules/gnome/fonts.nix
       ./vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
 
       #./vm/virt-manager.nix       # Turn this on for VM only

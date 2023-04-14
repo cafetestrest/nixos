@@ -44,7 +44,7 @@
             # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
             ./hosts/configuration.nix
-            ./gnome/extensions.nix
+            ./modules/gnome/extensions.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
