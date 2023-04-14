@@ -43,7 +43,24 @@
           modules = [
             # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
-            ./hosts/configuration.nix
+            ./hosts/desktop
+            ./modules/gnome/extensions.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${user} = {
+                imports = [ ./modules/home.nix ];
+              };
+            }
+          ];
+        };
+
+        vm = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
+            ./hosts/vm
             ./modules/gnome/extensions.nix
             home-manager.nixosModules.home-manager
             {
