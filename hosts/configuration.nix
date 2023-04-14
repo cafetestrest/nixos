@@ -19,15 +19,15 @@ in
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./desktop/hardware-configuration.nix
       ./packages.nix
       ./gnome/packages.nix
       ./gnome/fonts.nix
-      ./hosts/vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
+      ./vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
 
-      #./hosts/vm/virt-manager.nix       # Turn this on for VM only
-      ./hosts/vm/packages.nix #on VM can disable this one
-      ./hosts/desktop #on VM can disable this one
+      #./vm/virt-manager.nix       # Turn this on for VM only
+      ./vm/packages.nix #on VM can disable this one
+      ./desktop #on VM can disable this one
 
     ];
 
