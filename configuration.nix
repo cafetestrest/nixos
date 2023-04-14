@@ -23,11 +23,11 @@ in
       ./packages.nix
       ./gnome/packages.nix
       ./gnome/fonts.nix
-      ./os/vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
+      ./hosts/vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
 
-      #./os/vm/virt-manager.nix       # Turn this on for VM only
-      ./os/vm/packages.nix #on VM can disable this one
-      ./os/desktop #on VM can disable this one
+      #./hosts/vm/virt-manager.nix       # Turn this on for VM only
+      ./hosts/vm/packages.nix #on VM can disable this one
+      ./hosts/desktop #on VM can disable this one
 
     ];
 
