@@ -42,6 +42,12 @@ nano configuration.nix
 nano packages.nix
 ```
 
+4. install nixos
+```bash
+sudo nixos-rebuild switch --flake .#<host>
+reboot
+```
+
 # Post install:
 - To get omf installed (https://github.com/NixOS/nixpkgs/issues/212158):
 
