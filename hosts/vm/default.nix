@@ -7,13 +7,15 @@ let
 in
 {
   imports = [
-    ../configuration.nix
-    ../packages.nix
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ../../modules/gnome/packages.nix
-    ../../modules/gnome/fonts.nix
-    ../vm/spice-virt-manager.nix #tools for VM copy/paste clipboard
+    ../configuration.nix              # shared configuration
+    ../packages.nix                   # shared packages
+    
+    ./hardware-configuration.nix      # Include the results of the hardware scan. (generated from fresh install on virt-manager)
+
+    ../../modules/gnome/packages.nix  # gnome packages
+    ../../modules/gnome/fonts.nix     # fonts gnome
+
+    ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
   ];
 
   # Bootloader for VM.
