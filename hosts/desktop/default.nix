@@ -12,6 +12,9 @@ in
     
     ./hardware-configuration.nix      # Include the results of the hardware scan.
     ../../modules/gnome/packages.nix  # gnome packages
+
+    ../../modules/hyprland            # hyprland packages
+
     ../../modules/gnome/fonts.nix     # fonts gnome
 
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard

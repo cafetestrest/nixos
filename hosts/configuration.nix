@@ -108,6 +108,9 @@ in
   };
 
   programs.fish.enable = true;
+  programs.dconf.enable = true;           # dconf (added 1-apr-2023)
+  # programs.hyprland.enable = true;
+
   users.defaultUserShell = pkgs.fish;
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -137,9 +140,6 @@ in
   # custom
   # Used to enable numpad on start of the session (unsure if needed)
   services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
-
-  # dconf (added 1-apr-2023)
-  programs.dconf.enable = true;
 
   #required for gsconnect gnome extension to work properly (added 2-apr-2023)
   networking.firewall.allowedTCPPortRanges = [

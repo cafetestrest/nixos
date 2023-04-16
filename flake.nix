@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     home-manager = {
       url = github:nix-community/home-manager;
@@ -12,7 +13,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nur, home-manager }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nur, hyprland, home-manager }:
     let
       inherit (import ./variables.nix)
         user
@@ -43,6 +44,8 @@
           modules = [
             # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
+            hyprland.nixosModules.default
+            {programs.hyprland.enable = true;}
             ./hosts/desktop
             ./modules/gnome/extensions.nix
             home-manager.nixosModules.home-manager

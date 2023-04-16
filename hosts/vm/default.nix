@@ -15,6 +15,8 @@ in
     ../../modules/gnome/packages.nix  # gnome packages
     ../../modules/gnome/fonts.nix     # fonts gnome
 
+    ../../modules/hyprland            # hyprland packages
+
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
   ];
 
