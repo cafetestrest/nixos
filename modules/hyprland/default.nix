@@ -15,4 +15,8 @@ in
     kitty
     waybar
   ];
+
+  fonts.fonts = with pkgs; [
+    font-awesome              #for waybar icons
+  ];
 }
