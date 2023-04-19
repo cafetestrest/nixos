@@ -18,8 +18,6 @@ in
       ./home-manager/gnome/autostart/xpad.nix
       ./home-manager/gnome/autostart/copyq.nix
 
-      ./hyprland/config
-
       #gnome extensions dconf configuration
       ./gnome/extensions/config/blur-my-shell.nix
       ./gnome/extensions/config/caffeine.nix

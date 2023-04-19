@@ -6,7 +6,7 @@ let
 in
 {
   users.users.${user} = {
-    packages = with pkgs; [ 
+    packages = with pkgs; [
     ];
   };
 
@@ -14,9 +14,18 @@ in
     wofi
     kitty
     waybar
+    wlsunset
   ];
 
   fonts.fonts = with pkgs; [
     font-awesome              #for waybar icons
   ];
+
+  home-manager.users.${user} = {
+    home.file = {
+      ".config/hypr/hyprland.conf" = {
+        source = ./config/hyprland.conf;
+      };
+    };
+  };
 }
