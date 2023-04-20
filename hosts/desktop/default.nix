@@ -14,7 +14,7 @@ in
     ../../modules/gnome/packages.nix  # gnome packages
 
     ../../modules/hyprland            # hyprland packages
-    # ../../modules/waybar              # waybar packages
+    ../../modules/waybar              # waybar packages
 
     ../../modules/gnome/fonts.nix     # fonts gnome
 

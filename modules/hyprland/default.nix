@@ -13,12 +13,7 @@ in
   environment.systemPackages = with pkgs; [
     wofi
     kitty
-    waybar
     wlsunset
-  ];
-
-  fonts.fonts = with pkgs; [
-    font-awesome              #for waybar icons
   ];
 
   home-manager.users.${user} = {

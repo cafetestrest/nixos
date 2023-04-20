@@ -4,7 +4,10 @@
   fonts.fonts = with pkgs; [
     #$pkgs.nur.repos.sagikazarmark.sf-pro #SF Pro font (NUR): https://github.dev/sagikazarmark/nix-config
     ubuntu_font_family
-    material-symbols      # icon fonts
+    font-awesome                    #for waybar icons
+    unstable.material-symbols       # waybar icon fonts
+    noto-fonts-emoji
+    nerdfonts
     roboto
   ];
 }

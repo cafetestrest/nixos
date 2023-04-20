@@ -7,6 +7,11 @@ in
 {
   environment.systemPackages = with pkgs; [
     waybar
+    # pavucontrol
+    # python3Minimal
+    jq
+    pamixer
+    font-manager
   ];
 
   home-manager.users.${user} = {
