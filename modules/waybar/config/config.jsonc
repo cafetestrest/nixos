@@ -67,7 +67,7 @@
         "format": " {}",
     },
     "custom/off": {
-        "on-click": "~/.config/waybar/scripts/power.sh",
+        "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
         "format": " {}",
     },
     "custom/nightlight": {
