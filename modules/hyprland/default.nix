@@ -12,6 +12,8 @@ in
 
   environment.systemPackages = with pkgs; [
     wofi
+    rofi-wayland
+    rofi-power-menu
     kitty
     wlsunset
   ];

@@ -11,14 +11,20 @@ in
     # python3Minimal
     jq
     pamixer
-    font-manager
+    # font-manager
   ];
 
   home-manager.users.${user} = {
-    # home.file = {
-    #   ".config/waybar/config" = {
-    #     source = ./config/config;
-    #   };
-    # };
+    home.file = {
+      #waybar config
+      ".config/waybar/config.jsonc" = {
+        source = ./config/config.jsonc;
+      };
+
+      #waybar style
+      ".config/waybar/style.css" = {
+        source = ./config/style.css;
+      };
+    };
   };
 }
