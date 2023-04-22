@@ -38,6 +38,12 @@ in
         source = ./config/scripts/battery.sh;
         executable = true;
       };
+
+      #waybar script - note.sh
+      ".config/waybar/scripts/note.sh" = {
+        source = ./config/scripts/note.sh;
+        executable = true;
+      };
     };
   };
 }

@@ -25,6 +25,7 @@
         "custom/battery",
         "cpu",
         "memory",
+        "custom/note",
         "custom/nightlight",
         // "tray",
         "pulseaudio",
@@ -111,9 +112,15 @@
         "format" : "{}",
         "interval" : 3600,
         // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-        // "on-click" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-        "exec" : "~/.config/waybar/scripts/weather.sh",
         // "exec": "~/.config/waybar/waybar-wttr.py",
+        "return-type" : "json"
+    },
+    "custom/note": {
+        "format": "  ",
+        "on-click": "~/.config/waybar/scripts/note.sh",
+        "on-click-right": "codium ~/Documents/note",
+        "exec": "~/.config/waybar/scripts/note.sh",
+        "interval" : 15,
         "return-type" : "json"
     },
     "tray": {
