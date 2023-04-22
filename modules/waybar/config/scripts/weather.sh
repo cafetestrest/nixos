@@ -7,7 +7,14 @@ do
     if [[ $? == 0 ]]
     then
         text=$(echo "$text" | sed -E "s/\s+/ /g")
+
+        if [[ $text && $text == *0.0mm ]]
+        then
+            text=${text::-6}
+        fi
+
         tooltip=$(curl -s "https://wttr.in/$1?format=4")
+
         if [[ $? == 0 ]]
         then
             tooltip=$(echo "$tooltip" | sed -E "s/\s+/ /g")
