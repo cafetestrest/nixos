@@ -30,11 +30,13 @@ in
       #waybar script - weather.sh
       ".config/waybar/scripts/weather.sh" = {
         source = ./config/scripts/weather.sh;
+        executable = true;
       };
 
       #waybar script - battery.sh
       ".config/waybar/scripts/battery.sh" = {
         source = ./config/scripts/battery.sh;
+        executable = true;
       };
     };
   };
