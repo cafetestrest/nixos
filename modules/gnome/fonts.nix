@@ -9,6 +9,7 @@
     unstable.material-symbols       # waybar icon fonts
     noto-fonts-emoji
     nerdfonts
+    jetbrains-mono
     roboto
   ];
 }

@@ -12,6 +12,7 @@ in
     jq
     pamixer
     # font-manager
+    eww-wayland
   ];
 
   home-manager.users.${user} = {
@@ -24,6 +25,11 @@ in
       #waybar style
       ".config/waybar/style.css" = {
         source = ./config/style.css;
+      };
+
+      #waybar script - weather.sh
+      ".config/waybar/scripts/weather.sh" = {
+        source = ./config/scripts/weather.sh;
       };
     };
   };

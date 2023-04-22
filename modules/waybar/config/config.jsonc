@@ -6,6 +6,9 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 0,
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
     "modules-left": [
         "custom/menu",
         "custom/hostname",
@@ -21,7 +24,7 @@
         "cpu",
         "memory",
         "custom/nightlight",
-        "tray",
+        // "tray",
         "pulseaudio",
         "pulseaudio#microphone",
         "custom/off"
@@ -33,7 +36,7 @@
     },
     "memory": {
         "interval": 30,
-        "format": "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}GB/{total:0.1f}GB",
+        "format": "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}GB",
         "tooltip": false
     },
     "hyprland/window": {
@@ -61,13 +64,14 @@
         // "return-type": "json",
         "text": "Applications",
         // "tooltip": "echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d \"' -f2)",
-        // "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
-        "on-click": "rofi -show drun -location 1 -show-icons",
+        "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
+        // "on-click": "rofi -show drun -location 1 -show-icons",
         // "exec": "echo menu",
-        "format": " {}",
+        "format": "  "
     },
     "custom/off": {
-        "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
+        // "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
+        "on-click": "case $(echo -e '⏾ Suspend\n⭮ Reboot\n⏻ Shutdown'|wofi --dmenu --cache-file /dev/null | awk '{print tolower($2)}') in suspend) exec systemctl suspend;; reboot) exec systemctl reboot;; shutdown) exec systemctl poweroff -i;; esac",
         "format": " {}",
     },
     "custom/nightlight": {
@@ -85,17 +89,20 @@
         "tooltip" : true,
         "format" : "{}",
         "interval" : 3600,
-        // "exec" : "~/.config/waybar/scripts/openweather.sh",
-        "exec" : "curl \"wttr.in/pdx?format=\"%C+%c%t+%p\"\"",
-        // "return-type" : "json"
+        // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
+        "on-click" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
+        "exec" : "~/.config/waybar/weather.sh",
+        // "exec": "~/.config/waybar/waybar-wttr.py",
+        "return-type" : "json"
     },
     "tray": {
         "icon-size": 13,
         "spacing": 10
     },
     "clock": {
-        "format": "{:%a %d %b  %R}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "{:%a %d %b  %R:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1
     },
     "backlight": {
         "device": "intel_backlight",
@@ -122,9 +129,10 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5,
+        "on-scroll-up": "pamixer -i 1",
+        "on-scroll-down": "pamixer -d 1",
+        "scroll-step": 1,
+        // "on-click": "pavucontrol",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
