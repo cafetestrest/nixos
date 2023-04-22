@@ -23,6 +23,7 @@ in
       qbittorrent         #torrent application
       playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
       notify-desktop      #notifications from terminal
+      unstable.headsetcontrol
     ];
   };
 

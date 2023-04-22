@@ -15,12 +15,14 @@
         "clock",
         // "wlr/taskbar",
         "custom/weather",
-        "wlr/workspaces"
+        "wlr/workspaces",
+        "custom/media",
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/window",
     ],
     "modules-right": [
+        "custom/battery",
         "cpu",
         "memory",
         "custom/nightlight",
@@ -80,6 +82,25 @@
         "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
         "format": " {}",
     },
+    "custom/battery": {
+        "text": "Battery indicator",
+        "exec": "~/.config/waybar/scripts/battery.sh",
+        "on-click": "~/.config/waybar/scripts/battery.sh",
+        "format": "{}",
+        "return-type" : "json",
+        "interval" : 30,
+    },
+    "custom/media": {
+        "format": "{icon}{}",
+        "return-type": "json",
+        "format-icons": {
+            "Playing": " ",
+            "Paused": " ",
+        },
+        "max-length":70,
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "on-click": "playerctl play-pause",
+    },
     "custom/hostname": {
         // "exec": "echo $USER@$(hostname)",
         "format": " {}",
@@ -90,8 +111,8 @@
         "format" : "{}",
         "interval" : 3600,
         // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-        "on-click" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-        "exec" : "~/.config/waybar/weather.sh",
+        // "on-click" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
+        "exec" : "~/.config/waybar/scripts/weather.sh",
         // "exec": "~/.config/waybar/waybar-wttr.py",
         "return-type" : "json"
     },

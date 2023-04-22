@@ -265,9 +265,10 @@ label:focus {
 }
 
 #custom-media {
-    background-color: #8c977d;
-    color: #8c977d;
-    min-width: 100px;
+    margin-left: 15px;
+    /* background-color: #8c977d; */
+    /* color: #8c977d; */
+    /* min-width: 100px; */
 }
 
 #custom-media.custom-spotify {
