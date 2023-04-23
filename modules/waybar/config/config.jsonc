@@ -61,11 +61,9 @@
     "custom/weather": {
         "tooltip": true,
         "format": "{}",
-        "interval": 1800,
-        // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-        "on-click": "xdg-open https://wttr.in/44.31,20.35",
-        "on-click-right": "~/.config/waybar/scripts/weather.sh 44.31,20.35",
-        "exec": "~/.config/waybar/scripts/weather.sh 44.31,20.35",
+        "interval": 600,
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "on-click": "~/.config/waybar/scripts/weather.sh",
         "return-type": "json"
     },
     "wlr/workspaces": {

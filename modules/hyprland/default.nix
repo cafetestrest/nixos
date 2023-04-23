@@ -21,6 +21,7 @@ in
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
     swaynotificationcenter              #notifications
+    bc
   ];
 
   home-manager.users.${user} = {

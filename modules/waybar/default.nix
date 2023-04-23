@@ -32,6 +32,10 @@ in
         source = ./config/scripts/weather.sh;
         executable = true;
       };
+      #waybar script - weather.sh secrets - update
+      ".config/waybar/scripts/weather_sh.rc" = {
+        source = ./config/scripts/weather_sh.rc;
+      };
 
       #waybar script - battery.sh
       ".config/waybar/scripts/battery.sh" = {
