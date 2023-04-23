@@ -225,7 +225,7 @@ label:focus {
 }
 
 #cpu {
-    color: @accent1;
+    /* color: @accent1; */
 }
 
 #memory {
