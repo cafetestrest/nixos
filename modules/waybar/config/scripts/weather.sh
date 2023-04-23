@@ -17,7 +17,7 @@ UseIcons="True"
 colors="False"
 CityID="True"
 
-ConfigFile="$HOME/.config/weather_sh.rc"
+ConfigFile="$HOME/.config/waybar/scripts/weather_sh.rc"
 
 if [ "$1" == "-r" ];then
     shift
