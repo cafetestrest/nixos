@@ -1,10 +1,13 @@
 {
     "layer": "top",
     "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "passthrough": false,
-    "gtk-layer-shell": true,
+    // "mode": "dock",
+    // "height": 45, // Waybar height (to be removed for auto height)
+    // "width": 2560, // Waybar width
+    "spacing": 0, // Gaps between modules (0px) Adjusted in the css
+    // "exclusive": true,
+    // "passthrough": false,#https://github.com/Alexays/Waybar/wiki/Configuration
+    // "gtk-layer-shell": true,
     "height": 0,
     "margin-top": 5,
     "margin-left": 10,
@@ -16,18 +19,21 @@
         // "wlr/taskbar",
         "custom/weather",
         "wlr/workspaces",
-        "custom/media",
     ],
     "modules-center": [
         "hyprland/window",
     ],
     "modules-right": [
+        "custom/media",
         "custom/battery",
         "cpu",
         "memory",
+        "idle_inhibitor",
         "custom/note",
         "custom/nightlight",
         "custom/clipboard",
+        "custom/screenshot",
+        "custom/notifications",
         // "tray",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -52,57 +58,59 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "interval": 1
     },
-    "custom/weather" : {
-         "tooltip" : true,
-         "format" : "{}",
-         "interval" : 1800,
-         // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-         "on-click-right" : "xdg-open https://wttr.in/",
-         "on-click" : "~/.config/waybar/scripts/weather.sh",
-         "exec" : "~/.config/waybar/scripts/weather.sh",
-         // "exec": "~/.config/waybar/waybar-wttr.py",
-         "return-type" : "json"
-     },
-     "wlr/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "on-click": "activate",
-         //"format": "{icon}",
-         "persistent_workspaces": {
-             "1": [],
-             "2": [],
-             "3": [],
-             "4": [],
-             "5": [],
-             "6": [],
-             "7": [],
-             "8": [],
-             "9": [],
-             "10": []
-         }
-     },
-     "custom/media": {
-         "format": "{icon}{}",
-         "return-type": "json",
-         "format-icons": {
-             "Playing": " ",
-             "Paused": " ",
-         },
-         "max-length":70,
-         "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-         "on-click": "playerctl play-pause",
-     },
-     "hyprland/window": {
-         "format": "{}"
-     },
-     "custom/battery": {
-         "text": "Battery indicator",
-         "exec": "~/.config/waybar/scripts/battery.sh",
-         "on-click": "~/.config/waybar/scripts/battery.sh",
-         "format": "{}",
-         "return-type" : "json",
-         "interval" : 30,
-     },
+    "custom/weather": {
+        "tooltip": true,
+        "format": "{}",
+        "interval": 1800,
+        // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
+
+        "return-type": "json"
+    },
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        //"format": "{icon}",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+    "custom/media": {
+        "format": "{icon}{}",
+        "return-type": "json",
+        "format-icons": {
+            //  "Playing": " ",
+            "Playing": "",
+            "Paused": " ",
+        },
+        "max-length": 50,
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next",
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "custom/battery": {
+        "text": "Battery indicator",
+        "exec": "~/.config/waybar/scripts/battery.sh",
+        "on-click": "~/.config/waybar/scripts/battery.sh",
+        "format": "{}",
+        "return-type": "json",
+        "interval": 30,
+    },
     "cpu": {
         "interval": 15,
         "format": "︁ {}%",
@@ -114,12 +122,13 @@
         "tooltip": false
     },
     "custom/note": {
+        "text": "Notes",
         "format": "  ",
         "on-click": "~/.config/waybar/scripts/note.sh",
         "on-click-right": "codium ~/Documents/note",
         "exec": "~/.config/waybar/scripts/note.sh",
-        "interval" : 15,
-        "return-type" : "json"
+        "interval": 15,
+        "return-type": "json"
     },
     "custom/nightlight": {
         "text": "Toggle Night Light",
@@ -128,8 +137,38 @@
         "format": " {}",
     },
     "custom/clipboard": {
+        "text": "Clipboard",
         "format": "  ",
         "on-click": "copyq menu",
+    },
+    "custom/screenshot": {
+        "text": "Screenshot",
+        "format": "  ",
+        "on-click": "~/.config/waybar/scripts/screenshot.sh",
+        "on-click-right": "~/.config/waybar/scripts/screenshot.sh",
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "custom/notifications": {
+        "tooltip": false,
+        "format": " {icon}  ",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -147,7 +186,11 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         }
     },
     "pulseaudio#microphone": {
@@ -171,7 +214,11 @@
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
+        "format-icons": [
+            "",
+            "",
+            ""
+        ],
         "on-scroll-up": "brightnessctl set 1%+",
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
@@ -186,6 +233,44 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "network": {
+        "format": "↕{bandwidthTotalBytes}",
+        "format-disconnected": "{icon} No Internet",
+        "format-linked": " {ifname} (No IP)",
+        "format-alt": "↕{bandwidthUpBytes} | ↕{bandwidthDownBytes}",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}  {gwaddr}",
+        "tooltip-format-wifi": "{icon} {essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{icon} {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "{icon} Disconnected",
+        "on-click-right": "nm-connection-editor",
+        "format-icons": {
+            "ethernet": "",
+            "disconnected": "⚠",
+            "wifi": [
+                "睊",
+                "直"
+            ]
+        },
+        "interval": 2
+    },
+    "disk": {
+        "format": " {percentage_used}% ({free})",
+        "tooltip": true,
+        "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
+        "interval": 2
     },
 }

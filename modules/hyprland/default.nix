@@ -11,11 +11,16 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    wofi
-    rofi-wayland
-    rofi-power-menu
-    kitty
-    wlsunset
+    wofi                                #apps/power menu
+    # rofi-wayland
+    # rofi-power-menu
+    kitty                               #terminal - can be deleted and used terminator
+    wlsunset                            #night light for wayland
+    wlogout                             #logout for wayland - can be deleted and used wofi
+    grim                                #screenshot tool
+    slurp                               #select a screenshot region
+    swaybg                              #wallpaper
+    swaynotificationcenter              #notifications
   ];
 
   home-manager.users.${user} = {

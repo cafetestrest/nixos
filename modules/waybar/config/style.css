@@ -123,7 +123,7 @@ window#waybar.chromium {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    /* background: rgba(0, 0, 0, 0.2); */
     /* box-shadow: inset 0 -3px #ffffff; */
 }
 
@@ -155,6 +155,7 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor,
 #custom-power,
+#custom-notifications,
 #custom-pacman,
 #custom-menu,
 #custom-hostname,
@@ -162,6 +163,8 @@ window#waybar.chromium {
 #custom-nightlight,
 #custom-note,
 #custom-clipboard,
+#custom-screenshot,
+#idle_inhibitor,
 #custom-off,
 #mpd,
 #language {
