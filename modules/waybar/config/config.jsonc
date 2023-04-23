@@ -27,11 +27,82 @@
         "memory",
         "custom/note",
         "custom/nightlight",
+        "custom/clipboard",
         // "tray",
         "pulseaudio",
         "pulseaudio#microphone",
         "custom/off"
     ],
+    "custom/menu": {
+        // "return-type": "json",
+        "text": "Applications",
+        // "tooltip": "echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d \"' -f2)",
+        "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
+        // "on-click": "rofi -show drun -location 1 -show-icons",
+        // "exec": "echo menu",
+        "format": "  "
+    },
+    "custom/hostname": {
+        // "exec": "echo $USER@$(hostname)",
+        "format": " {}",
+        "on-click": "terminator",
+    },
+    "clock": {
+        "format": "{:%a %d %b  %R:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1
+    },
+    "custom/weather" : {
+         "tooltip" : true,
+         "format" : "{}",
+         "interval" : 1800,
+         // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
+         "on-click-right" : "xdg-open https://wttr.in/",
+         "on-click" : "~/.config/waybar/scripts/weather.sh",
+         "exec" : "~/.config/waybar/scripts/weather.sh",
+         // "exec": "~/.config/waybar/waybar-wttr.py",
+         "return-type" : "json"
+     },
+     "wlr/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "on-click": "activate",
+         //"format": "{icon}",
+         "persistent_workspaces": {
+             "1": [],
+             "2": [],
+             "3": [],
+             "4": [],
+             "5": [],
+             "6": [],
+             "7": [],
+             "8": [],
+             "9": [],
+             "10": []
+         }
+     },
+     "custom/media": {
+         "format": "{icon}{}",
+         "return-type": "json",
+         "format-icons": {
+             "Playing": " ",
+             "Paused": " ",
+         },
+         "max-length":70,
+         "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+         "on-click": "playerctl play-pause",
+     },
+     "hyprland/window": {
+         "format": "{}"
+     },
+     "custom/battery": {
+         "text": "Battery indicator",
+         "exec": "~/.config/waybar/scripts/battery.sh",
+         "on-click": "~/.config/waybar/scripts/battery.sh",
+         "format": "{}",
+         "return-type" : "json",
+         "interval" : 30,
+     },
     "cpu": {
         "interval": 15,
         "format": "︁ {}%",
@@ -42,79 +113,6 @@
         "format": "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}GB",
         "tooltip": false
     },
-    "hyprland/window": {
-        "format": "{}"
-    },
-    "wlr/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        //"format": "{icon}",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
-    },
-    "custom/menu": {
-        // "return-type": "json",
-        "text": "Applications",
-        // "tooltip": "echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d \"' -f2)",
-        "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
-        // "on-click": "rofi -show drun -location 1 -show-icons",
-        // "exec": "echo menu",
-        "format": "  "
-    },
-    "custom/off": {
-        // "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
-        "on-click": "case $(echo -e '⏾ Suspend\n⭮ Reboot\n⏻ Shutdown'|wofi --dmenu --cache-file /dev/null | awk '{print tolower($2)}') in suspend) exec systemctl suspend;; reboot) exec systemctl reboot;; shutdown) exec systemctl poweroff -i;; esac",
-        "format": " {}",
-    },
-    "custom/nightlight": {
-        "text": "Toggle Night Light",
-        // "on-click": "~/.config/waybar/scripts/nightlight.sh",
-        "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
-        "format": " {}",
-    },
-    "custom/battery": {
-        "text": "Battery indicator",
-        "exec": "~/.config/waybar/scripts/battery.sh",
-        "on-click": "~/.config/waybar/scripts/battery.sh",
-        "format": "{}",
-        "return-type" : "json",
-        "interval" : 30,
-    },
-    "custom/media": {
-        "format": "{icon}{}",
-        "return-type": "json",
-        "format-icons": {
-            "Playing": " ",
-            "Paused": " ",
-        },
-        "max-length":70,
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-        "on-click": "playerctl play-pause",
-    },
-    "custom/hostname": {
-        // "exec": "echo $USER@$(hostname)",
-        "format": " {}",
-        "on-click": "terminator",
-    },
-   "custom/weather" : {
-        "tooltip" : true,
-        "format" : "{}",
-        "interval" : 3600,
-        // "exec" : "curl -s \"wttr.in/?format=\"%C+%c%t+%p\"\"",
-        // "exec": "~/.config/waybar/waybar-wttr.py",
-        "return-type" : "json"
-    },
     "custom/note": {
         "format": "  ",
         "on-click": "~/.config/waybar/scripts/note.sh",
@@ -123,34 +121,15 @@
         "interval" : 15,
         "return-type" : "json"
     },
-    "tray": {
-        "icon-size": 13,
-        "spacing": 10
+    "custom/nightlight": {
+        "text": "Toggle Night Light",
+        // "on-click": "~/.config/waybar/scripts/nightlight.sh",
+        "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
+        "format": " {}",
     },
-    "clock": {
-        "format": "{:%a %d %b  %R:%S}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "interval": 1
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+    "custom/clipboard": {
+        "format": "  ",
+        "on-click": "copyq menu",
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -179,5 +158,34 @@
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
-    }
+    },
+    "custom/off": {
+        // "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
+        "on-click": "case $(echo -e '⏾ Suspend\n⭮ Reboot\n⏻ Shutdown'|wofi --dmenu --cache-file /dev/null | awk '{print tolower($2)}') in suspend) exec systemctl suspend;; reboot) exec systemctl reboot;; shutdown) exec systemctl poweroff -i;; esac",
+        "format": " {}",
+    },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", ""],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "min-length": 6
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+    },
 }
