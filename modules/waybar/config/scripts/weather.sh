@@ -171,7 +171,13 @@ while true; do
         if  [ "$degreeCharacter" = "f" ]; then
             temperature=$(echo "scale=2; 32+1.8*$tempinc" | bc| awk '{$1=$1};1' )
         fi
-        
+
+        #round to only 1 decimal - custom
+        if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
+        then
+            temperature=$(printf "%.1f" $temperature)
+        fi
+
         ####################################################################
         # Parse Wind Info
         ####################################################################
