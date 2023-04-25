@@ -9,7 +9,7 @@
     // "passthrough": false,#https://github.com/Alexays/Waybar/wiki/Configuration
     // "gtk-layer-shell": true,
     "height": 0,
-    "margin-top": 5,
+    "margin-top": 0, //was 5 previously when separated
     "margin-left": 10,
     "margin-right": 10,
     "modules-left": [
@@ -108,7 +108,9 @@
         "on-scroll-down": "playerctl next",
     },
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "max-length": 75,
+        // "separate-outputs": true
     },
     "custom/battery": {
         "text": "Battery indicator",
@@ -141,6 +143,7 @@
         "text": "Toggle Night Light",
         // "on-click": "~/.config/waybar/scripts/nightlight.sh",
         "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
+        "on-click-right": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 06:00 -s 06:01; fi",
         "format": " {}",
     },
     "custom/clipboard": {
@@ -182,10 +185,10 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 1",
-        "on-scroll-down": "pamixer -d 1",
-        "scroll-step": 1,
-        // "on-click": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        // "scroll-step": 1,
+        // "on-click-right": "pavucontrol",
         "format-icons": {
             "headphone": "",
             "hands-free": "",

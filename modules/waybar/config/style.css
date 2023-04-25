@@ -41,7 +41,6 @@
 
 * {
     border: none;
-    border-radius: 10px;
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: "JetBrainsMono Nerd Font", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
     /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
@@ -73,7 +72,12 @@ window#waybar {
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
-    border-radius: 15px;
+
+    /* use this one for top bar with 2 bottom cornsers with radius */
+    border-radius: 0 0 15px 15px;
+
+    /* use this one for floating bar */
+    /* border-radius: 15px; */
 }
 
 window#waybar.hidden {
