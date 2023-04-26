@@ -48,6 +48,12 @@ in
         source = ./config/scripts/note.sh;
         executable = true;
       };
+
+      #waybar script - screenshot.sh
+      ".config/waybar/scripts/screenshot.sh" = {
+        source = ./config/scripts/screenshot.sh;
+        executable = true;
+      };
     };
   };
 }
