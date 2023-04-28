@@ -172,12 +172,6 @@ while true; do
             temperature=$(echo "scale=2; 32+1.8*$tempinc" | bc| awk '{$1=$1};1' )
         fi
 
-        #round to only 1 decimal - custom
-        if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
-        then
-            temperature=$(printf "%.1f" $temperature)
-        fi
-
         ####################################################################
         # Parse Wind Info
         ####################################################################
@@ -298,13 +292,20 @@ while true; do
         fi
     fi
     if [ "$Conky" = "True" ]; then
+
+        #round to only 1 decimal - custom
+        if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
+        then
+            bobTemperature=$(printf "%.1f" $temperature)
+        fi
+
         if [ "$colors" = "True" ]; then
-            bob=$(echo "$ShortWeather $temperature°${degreeCharacter^^}")
+            bob=$(echo "$ShortWeather $bobTemperature°${degreeCharacter^^}")
             if [ "$FeelsLike" = "1" ];then
                 bob=$(echo "$bob/$FeelsLikeTemp°${degreeCharacter^^}")
             fi
         else
-            bob=$(echo "$ShortWeather $temperature°${degreeCharacter^^}")
+            bob=$(echo "$ShortWeather $bobTemperature°${degreeCharacter^^}")
             if [ "$FeelsLike" = "1" ];then
                 bob=$(echo "$bob/$FeelsLikeTemp°${degreeCharacter^^}")
             fi
