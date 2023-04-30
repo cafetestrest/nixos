@@ -12,7 +12,6 @@ in
     jq
     pamixer
     # font-manager
-    eww-wayland
   ];
 
   home-manager.users.${user} = {
