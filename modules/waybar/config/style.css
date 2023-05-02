@@ -42,10 +42,10 @@
 * {
     border: none;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "JetBrainsMono Nerd Font", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+    font-family: "Ubuntu", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
     /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
-    font-weight: bold;
-    font-size: 16px;
+    /* font-weight: bold; */
+    /* font-size: 16px; */
     min-height: 0;
 }
 
@@ -53,17 +53,15 @@
     background-color: @bgcolor;
 }
 
-/* icon sizes */
-#custom-menu,
-#custom-off,
-#custom-nightlight,
-#custom-hostname {
-    font-size: 18px;
+#pulseaudio {
+    /* font-size: 16px; */
 }
 
-#pulseaudio {
-    font-size: 16px;
-}
+/* #custom-media,
+#custom-nightlight {
+    margin-left: 15px;
+    margin-left: 15px;
+} */
 
 window#waybar {
     /* background-color: rgba(50, 50, 50, 0.9); */
@@ -146,37 +144,62 @@ window#waybar.chromium {
     border-bottom: 3px solid #ffffff;
 }
 
-#clock,
-#battery,
+#pulseaudio {
+    color: @pulse;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+    padding: 1px 6px 0px 6px;
+    margin: 4px 3px 5px 3px;
+    /* color: @white; */
+}
+
 #cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#custom-power,
-#custom-notifications,
-#custom-pacman,
+#memory {
+    padding: 1px 6px 0px 6px;
+    margin: 4px 3px 5px 3px;
+    color: @white;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+}
+
 #custom-menu,
+#custom-off,
+#custom-nightlight,
 #custom-hostname,
 #custom-weather,
 #custom-nightlight,
 #custom-note,
 #custom-clipboard,
 #custom-screenshot,
+#custom-notification,
+#idle_inhibitor
+{
+    /* top/right/bottom/left */
+    padding: 1px 10px 0px 10px;
+    margin: 4px 3px 5px 3px;
+    color: @white;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+    /* font-weight: bold; */
+    /* font-size: 18px; */
+}
+
+#clock,
+#battery,
+#temperature,
+#backlight,
+#network,
+#custom-media,
+#tray,
+#mode,
 #idle_inhibitor,
-#custom-off,
+#custom-power,
+#custom-pacman,
+/* #custom-battery, */
 #mpd,
 #language {
     padding: 1px 6px 0px 6px;
     margin: 4px 3px 5px 3px;
     color: @white;
     /* background-color: #bbccdd; */
-    background-color: transparent;
+    /* background-color: transparent; */
 }
 
 #window,
@@ -240,16 +263,13 @@ label:focus {
     color: @accent2;
 }
 
+#custom-pacman,
 #network {
     color: @accent3;
 }
 
 #network.disconnected {
     color: @alert;
-}
-
-#pulseaudio {
-    color: @pulse;
 }
 
 #pulseaudio.microphone {
@@ -266,17 +286,6 @@ label:focus {
 
 #custom-waylandvsxorg {
     color: @accent5;
-}
-
-#custom-pacman {
-    color: @accent2;
-}
-
-#custom-media {
-    margin-left: 15px;
-    /* background-color: #8c977d; */
-    /* color: #8c977d; */
-    /* min-width: 100px; */
 }
 
 #custom-media.custom-spotify {
@@ -355,6 +364,12 @@ label:focus {
     /* font-size: 20px; */
 }
 
-#custom-nightlight {
-    margin-left: 15px;
+#custom-notification {
+    /* font-family: "NotoSansMono Nerd Font"; */
+}
+
+#custom-media {
+    /* background-color: #8c977d; */
+    /* color: #8c977d; */
+    /* min-width: 100px; */
 }

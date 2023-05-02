@@ -37,4 +37,17 @@ mb=$(setBatteryParams "$mouseBat" $colorLow $colorMedium $normalColor "🖱 ")
 kb=$(setBatteryParams "$kbBat" $colorLow $colorMedium $normalColor "⌨️ ")
 hb=$(setBatteryParams "$headsetBat" $colorLow $colorMedium $normalColor "🎧 ")
 
+#spacing
+if [ ! -z "$kb" ] && [ ! -z "$mb" ]; then
+    kb="   $kb  ";
+fi
+
+if [ ! -z "$kb" ] && [ ! -z "$hb" ]; then
+    hb="   $hb  ";
+else
+    if [ ! -z "$hb" ] && [ ! -z "$mb" ]; then
+        hb="   $hb  ";
+    fi
+fi
+
 echo "{\"text\":\"$mb$kb$hb\", \"tooltip\":\"$mb\r$kb\r$hb\"}"

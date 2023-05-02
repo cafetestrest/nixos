@@ -293,19 +293,13 @@ while true; do
     fi
     if [ "$Conky" = "True" ]; then
 
-        #round to only 1 decimal - custom
-        if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
-        then
-            bobTemperature=$(printf "%.1f" $temperature)
-        fi
-
         if [ "$colors" = "True" ]; then
-            bob=$(echo "$ShortWeather $bobTemperature°${degreeCharacter^^}")
+            bob=$(echo "$ShortWeather $temperature°${degreeCharacter^^}")
             if [ "$FeelsLike" = "1" ];then
                 bob=$(echo "$bob/$FeelsLikeTemp°${degreeCharacter^^}")
             fi
         else
-            bob=$(echo "$ShortWeather $bobTemperature°${degreeCharacter^^}")
+            bob=$(echo "$ShortWeather $temperature°${degreeCharacter^^}")
             if [ "$FeelsLike" = "1" ];then
                 bob=$(echo "$bob/$FeelsLikeTemp°${degreeCharacter^^}")
             fi
@@ -356,7 +350,7 @@ txt1=$(echo "Station: $Station, $Country $Lat / $Long")
 txt2=$(echo "As Of: ${YELLOW}$AsOf ${RESTORE}")
 txt3=$(echo "Right Now: ${CYAN}$icon $LongWeather${RESTORE}")
 txt4=$(echo "Temp: ${CYAN}$temperature°${degreeCharacter^^}${RESTORE}")
-txt5=$(echo "Feels Like: ${RED}$FeelsLikeTemp°${degreeCharacter^^}${RESTORE}")
+# txt5=$(echo "Feels Like: ${RED}$FeelsLikeTemp°${degreeCharacter^^}${RESTORE}")
 txt6=$(echo "Pressure: ${GREEN}$pressure$pressureunit${RESTORE}")
 # if [ "$UseIcons" = "True" ];then
 # else
@@ -366,6 +360,13 @@ txt7=$(echo -e \\u$winddir "${MAGENTA}$WindSpeed$windunit${RESTORE} Gusts: ${MAG
 txt8=$(echo "Humidity: ${GREEN}$Humidity%${RESTORE}")
 txt9=$(echo "Cloud Cover: ${GREEN}$CloudCover%${RESTORE}")
 
-longbob=$(echo "$icon $LongWeather $temperature°${degreeCharacter^^}")
+#round to only 1 decimal - custom
+if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
+then
+    bobTemperature=$(printf "%.1f" $temperature)
+fi
 
-echo "{\"text\":\"$bob\", \"tooltip\":\"$txt1\r$txt2\r$txt3\r$txt4\r$txt5\r$txt6\r$txt7\r$txt8\r$txt9\"}"
+# longbob=$(echo "$icon $LongWeather $bobTemperature°${degreeCharacter^^}")
+longbob=$(echo "$icon $bobTemperature°${degreeCharacter^^}")
+
+echo "{\"text\":\"$longbob\", \"tooltip\":\"$txt1\r$txt2\r$txt3\r$txt4\r$txt6\r$txt7\r$txt8\r$txt9\"}"
