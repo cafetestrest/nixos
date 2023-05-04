@@ -11,8 +11,13 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    wofi                                #apps/power menu
-    # rofi-wayland
+    # unstable.wofi                                #apps/power menu
+    rofi-wayland
+    rofimoji
+    # tofi
+    # unstable.fuzzel
+    # dmenu-wayland
+    # bemenu
     # rofi-power-menu
     kitty                               #terminal - can be deleted and used terminator
     wlsunset                            #night light for wayland
@@ -21,13 +26,21 @@ in
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
     swaynotificationcenter              #notifications
-    bc
+    # dunst
+    bc                                  #command line calculator (for weather widget on waybar) 
+    # eww-wayland
   ];
 
   home-manager.users.${user} = {
     home.file = {
       ".config/hypr/hyprland.conf" = {
         source = ./config/hyprland.conf;
+      };
+
+      #power menu script - hyprland bindings and waybar
+      ".config/hypr/scripts/power-menu.sh" = {
+        source = ./config/power-menu.sh;
+        executable = true;
       };
     };
   };
