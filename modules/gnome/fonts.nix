@@ -11,5 +11,6 @@
     nerdfonts
     jetbrains-mono
     roboto
+    montserrat                      #for rofi
   ];
 }
