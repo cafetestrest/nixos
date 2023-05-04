@@ -57,8 +57,8 @@
         // "return-type": "json",
         "text": "Applications",
         // "tooltip": "echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d \"' -f2)",
-        "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
-        // "on-click": "rofi -show drun -location 1 -show-icons",
+        // "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
+        "on-click": "rofi -show drun -config ~/.config/rofi/spotlight.rasi",
         // "exec": "echo menu",
         "format": ""
     },
