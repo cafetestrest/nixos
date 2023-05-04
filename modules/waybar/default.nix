@@ -53,6 +53,12 @@ in
         source = ./config/scripts/screenshot.sh;
         executable = true;
       };
+
+      #power menu script - hyprland bindings and waybar
+      ".config/waybar/scripts/powermenu.sh" = {
+        source = ./config/scripts/powermenu.sh;
+        executable = true;
+      };
     };
   };
 }

@@ -36,12 +36,6 @@ in
       ".config/hypr/hyprland.conf" = {
         source = ./config/hyprland.conf;
       };
-
-      #power menu script - hyprland bindings and waybar
-      ".config/hypr/scripts/power-menu.sh" = {
-        source = ./config/power-menu.sh;
-        executable = true;
-      };
     };
   };
 }
