@@ -18,7 +18,7 @@ fi
 
 lock=" Lock"
 logout=" Logout"
-shutdown="襤 Shutdown"
+shutdown=" Shutdown"
 reboot=" Reboot"
 sleep=" Sleep"
  
