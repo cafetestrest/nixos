@@ -42,7 +42,8 @@ then
   loginctl reboot
 elif [ "$selected_option" == "$sleep" ]
 then
-  loginctl suspend
+  # loginctl suspend
+  exec systemctl suspend
 else
   echo "No match"
 fi
