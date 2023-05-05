@@ -36,10 +36,12 @@ then
   loginctl terminate-user `whoami`
 elif [ "$selected_option" == "$shutdown" ]
 then
-  loginctl poweroff
+  # loginctl poweroff
+  exec systemctl poweroff -i
 elif [ "$selected_option" == "$reboot" ]
 then
-  loginctl reboot
+  # loginctl reboot
+  exec systemctl reboot
 elif [ "$selected_option" == "$sleep" ]
 then
   # loginctl suspend

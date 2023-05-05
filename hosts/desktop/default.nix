@@ -15,6 +15,7 @@ in
 
     ../../modules/hyprland            # hyprland packages
     ../../modules/waybar              # waybar packages
+    ../../modules/rofi                # rofi packages
 
     ../../modules/gnome/fonts.nix     # fonts gnome
 

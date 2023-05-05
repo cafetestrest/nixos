@@ -1,0 +1,21 @@
+configuration {
+  /* Search icon */
+  display-drun:               "";
+  /* Run icon */
+  display-run:               "";
+  drun-display-format:        "{name}";
+  show-icons:                 true;
+  modi: "run,drun,calc";
+  /* icon-theme: "Papirus"; */
+  /* display-window: "Windows:"; */
+  /* font: "JetBrainsMono Nerd Font Medium 10"; */
+}
+
+/* @theme "/dev/null" */
+@theme "~/.config/rofi/themes/spotlight-dark.rasi"
+
+/* Determines if it hides tofi results or the search stay same height */
+/* false = hide, 0 = stay same height */
+listview {
+  fixed-height:   false;
+}

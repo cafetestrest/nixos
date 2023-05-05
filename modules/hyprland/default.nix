@@ -11,14 +11,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    # unstable.wofi                                #apps/power menu
-    rofi-wayland
-    rofimoji
-    # tofi
-    # unstable.fuzzel
-    # dmenu-wayland
-    # bemenu
-    # rofi-power-menu
     kitty                               #terminal - can be deleted and used terminator
     wlsunset                            #night light for wayland
     wlogout                             #logout for wayland - can be deleted and used wofi
