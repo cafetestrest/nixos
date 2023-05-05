@@ -364,6 +364,14 @@ txt9=$(echo "Cloud Cover: ${GREEN}$CloudCover%${RESTORE}")
 if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
 then
     bobTemperature=$(printf "%.1f" $temperature)
+
+    #check if digit ends with .0, if so remove .0 to display round digit
+    if [[ $bobTemperature == *.0 ]]
+    then
+        bobTemperature=${bobTemperature::-2}
+    fi
+else
+    bobTemperature=$temperature
 fi
 
 # longbob=$(echo "$icon $LongWeather $bobTemperature°${degreeCharacter^^}")
