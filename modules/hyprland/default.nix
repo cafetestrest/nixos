@@ -30,4 +30,6 @@ in
       };
     };
   };
+
+  # todo: https://jagotekno.com/cara-install-hyprland-nixos/
 }

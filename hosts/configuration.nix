@@ -114,7 +114,6 @@ in
 
   programs.fish.enable = true;
   programs.dconf.enable = true;           # dconf (added 1-apr-2023)
-  # programs.hyprland.enable = true;
 
   users.defaultUserShell = pkgs.fish;
 

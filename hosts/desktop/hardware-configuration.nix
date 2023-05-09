@@ -44,7 +44,7 @@
   # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  # high-resolution display
+  # high-resolution display - requested to disable when switching to unstable from 21.11
   hardware.video.hidpi.enable = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = "performance";
