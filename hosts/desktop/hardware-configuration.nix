@@ -45,7 +45,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # high-resolution display - requested to disable when switching to unstable from 21.11
-  hardware.video.hidpi.enable = lib.mkDefault true;
+  # hardware.video.hidpi.enable = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = "performance";
 
