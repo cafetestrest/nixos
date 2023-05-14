@@ -37,8 +37,6 @@ in
     htop
     neofetch
     fish
-    docker
-    docker-compose
     killall
     sassc                     #for building orchid theme
     peco                      #for oh-my-fish (along with omf plugin)

@@ -21,6 +21,8 @@ in
 
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
+
+    ../../modules/docker              # docker, docker-compose and /etc/hosts
   ];
 
   # Bootloader.
