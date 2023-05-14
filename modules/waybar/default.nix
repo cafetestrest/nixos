@@ -11,6 +11,7 @@ in
     # python3Minimal
     jq
     pamixer
+    bc                                  #command line calculator (for weather widget on waybar)
     # font-manager
   ];
 
