@@ -177,6 +177,8 @@ in
     extraOptions = "${nixExtraOptions}";
   };
 
+  nix.settings.auto-optimise-store = true;
+
   #support ntfs hard drive 29-mar-2023
   boot.supportedFilesystems = [ "ntfs" ];
 
