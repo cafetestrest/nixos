@@ -19,7 +19,7 @@ in
       albert              #keybinding for albert toggle to get programs search
       oh-my-fish          #fish extensions (plugins: z, peco, vcs) (themes: default)
       postman             #postman for API calls
-      #jetbrains.phpstorm #phpstorm PHP editor
+      jetbrains.phpstorm  #phpstorm PHP editor
       qbittorrent         #torrent application
       playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
       notify-desktop      #notifications from terminal
