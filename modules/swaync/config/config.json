@@ -71,20 +71,16 @@
         "position": "right",
         "actions": [
           {
-            "label": "   Reboot",
-            "command": "systemctl reboot"
-          },
-          {
             "label": "   Sleep",
             "command": "systemctl suspend"
           },
           {
-            "label": "   Lock",
-            "command": "swaylock.sh"
-          },
-          {
             "label": "   Logout",
             "command": "loginctl terminate-session ${XDG_SESSION_ID-}"
+          },
+          {
+            "label": "   Reboot",
+            "command": "systemctl reboot"
           },
           {
             "label": "   Shut down",
