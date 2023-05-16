@@ -16,10 +16,10 @@ if pidof rofi; then
     killall -9 rofi;
 fi
 
-lock=" Lock"
-logout=" Logout"
+lock=" Lock"
+logout=" Logout"
 shutdown=" Shutdown"
-reboot=" Reboot"
+reboot=" Reboot"
 sleep=" Sleep"
  
 selected_option=$(echo "$sleep

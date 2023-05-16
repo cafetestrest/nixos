@@ -5,6 +5,17 @@ let
     user;
 in
 {
+  imports = [
+    ../waybar                   # waybar packages
+    ../rofi                     # rofi packages
+    ../swaync                   # swaync packages
+  ];
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
+
   users.users.${user} = {
     packages = with pkgs; [
     ];
@@ -17,9 +28,7 @@ in
     grim                                #screenshot tool
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
-    swaynotificationcenter              #notifications
     # dunst
-    bc                                  #command line calculator (for weather widget on waybar) 
     # eww-wayland
   ];
 
@@ -32,4 +41,5 @@ in
   };
 
   # todo: https://jagotekno.com/cara-install-hyprland-nixos/
+  # https://github.dev/ryan4yin/nix-config/tree/main
 }

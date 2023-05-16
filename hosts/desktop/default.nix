@@ -14,8 +14,6 @@ in
     ../../modules/gnome/packages.nix  # gnome packages
 
     ../../modules/hyprland            # hyprland packages
-    ../../modules/waybar              # waybar packages
-    ../../modules/rofi                # rofi packages
 
     ../../modules/gnome/fonts.nix     # fonts gnome
 
