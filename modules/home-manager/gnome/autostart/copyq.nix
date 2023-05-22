@@ -5,7 +5,7 @@
     ".config/autostart/com.github.hluk.copyq.desktop".text = ''
 [Desktop Entry]
 Name=CopyQ
-Exec=/nix/store/jd009dng0nvp2mfihy3y92m7r48c5a30-CopyQ-6.3.2/bin/copyq --start-server
+Exec=copyq --start-server
 Icon=copyq
 GenericName=Clipboard Manager
 # Workaround / fix for issue #1526 that prevents a proper autostart of the tray icon in GNOME

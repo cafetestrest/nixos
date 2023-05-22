@@ -41,10 +41,11 @@ in
     sassc                     #for building orchid theme
     peco                      #for oh-my-fish (along with omf plugin)
     unzip
-    #teamviewer
+    # teamviewer
+    # anydesk
     rnix-lsp
     nixpkgs-fmt
   ];
 
-  #services.teamviewer.enable = true;
+  # services.teamviewer.enable = true;
 }
