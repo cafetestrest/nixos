@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nur, hyprland, home-manager }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nur, hyprland, home-manager }@inputs:
     let
       inherit (import ./variables.nix)
         user
@@ -52,6 +52,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {inherit inputs;};
               home-manager.users.${user} = {
                 imports = [ ./modules/home.nix ];
               };
