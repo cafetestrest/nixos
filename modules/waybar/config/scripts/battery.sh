@@ -29,7 +29,7 @@ setBatteryParams() {
             batColor=$2;
         fi
 
-        echo " <span color='$batColor'><b>$5${batLvlPerc}</b></span>"
+        echo " <span color='$batColor'>$5 ${batLvlPerc}</span>"
     fi
 }
 
