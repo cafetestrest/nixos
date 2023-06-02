@@ -6,7 +6,7 @@
     ubuntu_font_family
     font-awesome                    #for waybar icons
     font-awesome_5
-    unstable.material-symbols       # waybar icon fonts
+    material-symbols       # waybar icon fonts
     noto-fonts-emoji
     nerdfonts
     jetbrains-mono

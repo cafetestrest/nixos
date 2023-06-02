@@ -72,7 +72,7 @@ window#waybar {
     transition-duration: .5s;
 
     /* use this one for top bar with 2 bottom cornsers with radius */
-    border-radius: 0 0 15px 15px;
+    /* border-radius: 0 0 15px 15px; */
 
     /* use this one for floating bar */
     /* border-radius: 15px; */

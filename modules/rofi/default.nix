@@ -11,7 +11,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    unstable.rofi-wayland
+    rofi-wayland
     rofimoji
     rofi-calc
   ];

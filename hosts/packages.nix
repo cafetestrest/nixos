@@ -11,7 +11,7 @@ in
       firefox             #firefox browser
       #thunderbird
       chromium            #chromium browser
-      vscodium            #vscode alternative
+      stable.vscodium            #vscode alternative
       xpad                #sticky notes
       copyq               #copy/paste things
       #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
@@ -23,7 +23,7 @@ in
       qbittorrent         #torrent application
       playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
       notify-desktop      #notifications from terminal
-      unstable.headsetcontrol
+      headsetcontrol
     ];
   };
 

@@ -42,6 +42,6 @@ in
     gnome.dconf-editor        #gnome dconf editor app
 
     numlockx                  #get numlock enabled on login (need to find how to enable it on gdm)
-    unstable.apple-cursor
+    apple-cursor
   ];
 }

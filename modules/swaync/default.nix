@@ -6,7 +6,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    unstable.swaynotificationcenter     #notifications
+    swaynotificationcenter     #notifications
   ];
 
   home-manager.users.${user} = {

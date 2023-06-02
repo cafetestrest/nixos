@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
@@ -17,7 +18,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nur, hyprland, home-manager }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nur, hyprland, home-manager }@inputs:
     let
       inherit (import ./variables.nix)
         user
@@ -40,6 +41,13 @@
           config.allowUnfree = true;
         };
       };
+
+      overlay-stable = final: prev: {
+        stable = import nixpkgs-stable {
+          system = "${prev.system}";
+          config.allowUnfree = true;
+        };
+      };
     in
     {
       nixosConfigurations = {
@@ -47,7 +55,7 @@
           inherit system;
           modules = [
             # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
+            ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-stable nur.overlay ]; })
             hyprland.nixosModules.default
             {programs.hyprland.enable = true;}
             ./hosts/desktop
