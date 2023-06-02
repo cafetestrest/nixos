@@ -44,3 +44,6 @@ in
   # todo: https://jagotekno.com/cara-install-hyprland-nixos/
   # https://github.dev/ryan4yin/nix-config/tree/main
 }
+
+#in case there is a problem with some apps being slow, run the following line on terminal without root:
+#systemctl --user mask xdg-desktop-portal-gnome
