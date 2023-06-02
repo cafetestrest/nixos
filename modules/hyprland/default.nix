@@ -29,6 +29,7 @@ in
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
     # dunst
+    # xdg-desktop-portal-hyprland
     # eww-wayland
   ];
 
