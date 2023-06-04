@@ -160,7 +160,7 @@
             "Playing": "",
             "Paused": "",
         },
-        "exec": "~/.config/waybar/scripts/night-light-icon.sh",
+        "exec": "~/.config/waybar/scripts/nightlighticon.sh",
         "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
         "on-click-right": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 06:00 -s 06:01; fi",
         "interval": 3,
