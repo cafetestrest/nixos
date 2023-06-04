@@ -17,7 +17,6 @@
         "custom/hostname",
         "wlr/taskbar",
         "wlr/workspaces",
-        "custom/media",
     ],
     "modules-center": [
         "clock",
@@ -25,6 +24,7 @@
         // "hyprland/window",
     ],
     "modules-right": [
+        "custom/media",
         "custom/battery",
         "cpu",
         "memory",
@@ -115,8 +115,8 @@
             "Playing": "",
             "Paused": " ",
         },
-        "max-length": 50,
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "max-length": 42,
+        "exec": "playerctl -a metadata --format '{\"text\": \" {{artist}}: {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl previous",
         "on-scroll-down": "playerctl next",
@@ -154,11 +154,16 @@
         "return-type": "json"
     },
     "custom/nightlight": {
-        "text": "Toggle Night Light",
-        // "on-click": "~/.config/waybar/scripts/nightlight.sh",
+        "format": "{icon}",
+        "return-type": "json",
+        "format-icons": {
+            "Playing": "",
+            "Paused": "",
+        },
+        "exec": "~/.config/waybar/scripts/night-light-icon.sh",
         "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
         "on-click-right": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 06:00 -s 06:01; fi",
-        "format": "",
+        "interval": 3,
     },
     "custom/clipboard": {
         "text": "Clipboard",
