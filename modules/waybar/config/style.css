@@ -153,7 +153,8 @@ window#waybar.chromium {
 }
 
 #cpu,
-#memory {
+#memory,
+#custom-memory {
     padding: 1px 6px 0px 6px;
     margin: 4px 3px 5px 3px;
     color: @white;

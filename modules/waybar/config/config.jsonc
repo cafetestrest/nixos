@@ -27,7 +27,8 @@
         "custom/media",
         "custom/battery",
         "cpu",
-        "memory",
+        // "memory",
+        "custom/memory",
         // "idle_inhibitor",
         "custom/note",
         "custom/nightlight",
@@ -142,6 +143,11 @@
     "memory": {
         "interval": 30,
         "format": "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}GB",
+        "tooltip": false
+    },
+    "custom/memory": {
+        "interval": 30,
+        "exec": "echo \"<span font='Font Awesome 5 Free 9'>︁</span>\" $(free --giga -h | grep 'Mem' | awk '{print $3}')",
         "tooltip": false
     },
     "custom/note": {
