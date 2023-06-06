@@ -8,7 +8,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     packages = with pkgs; [ 
-      firefox             #firefox browser
+      # firefox             #firefox browser
       #thunderbird
       chromium            #chromium browser
       stable.vscodium            #vscode alternative
@@ -24,6 +24,7 @@ in
       playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
       notify-desktop      #notifications from terminal
       headsetcontrol
+      librewolf           #firefox browser
     ];
   };
 
