@@ -26,7 +26,8 @@
     "modules-right": [
         "custom/media",
         "custom/battery",
-        "cpu",
+        "custom/cpu",
+        // "cpu",
         // "memory",
         "custom/memory",
         // "idle_inhibitor",
@@ -134,6 +135,11 @@
         "format": "{}",
         "return-type": "json",
         "interval": 30,
+    },
+    "custom/cpu": {
+        "interval": 30,
+        "exec": "sleep 2 && echo ︁ $(top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}')",
+        "tooltip": false
     },
     "cpu": {
         "interval": 15,
