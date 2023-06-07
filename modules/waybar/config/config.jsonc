@@ -37,6 +37,7 @@
         "custom/screenshot",
         "custom/notification",
         // "tray",
+        // "custom/audio-cycle",
         "pulseaudio",
         "pulseaudio#microphone",
         "custom/off"
@@ -138,7 +139,8 @@
     },
     "custom/cpu": {
         "interval": 30,
-        "exec": "sleep 2 && echo ︁ $(top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}')",
+        "exec": "echo ︁ $(top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}')",
+        "exec-if": "sleep 2",
         "tooltip": false
     },
     "cpu": {
@@ -154,6 +156,7 @@
     "custom/memory": {
         "interval": 30,
         "exec": "echo \"<span font='Font Awesome 5 Free 9'>︁</span>\" $(free --giga -h | grep 'Mem' | awk '{print $3}')",
+        "exec-if": "sleep 2",
         "tooltip": false
     },
     "custom/note": {
@@ -173,7 +176,7 @@
             "Paused": "",
         },
         "exec": "~/.config/waybar/scripts/nightlighticon.sh",
-        "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 07:00 -s 19:00; fi",
+        "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -l -l 51.5 -L 0.1; fi",
         "on-click-right": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 06:00 -s 06:01; fi",
         "interval": 3,
     },
@@ -215,6 +218,14 @@
         "on-click": "sleep 0.1; swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "custom/audio-cycle": {
+        "return-type": "json",
+        "exec-on-event": true,
+        "interval": "5s",
+        "exec": "pactl --format=json list sinks | jq -cM --unbuffered \"map(select(.name == \\\"$(pactl get-default-sink)\\\"))[0].properties | [.\\\"media.name\\\",.\\\"alsa.name\\\",.\\\"node.nick\\\",.\\\"alsa.long_card_name\\\"] | map(select(length>0))[0] | {text:.}\"",
+        "exec-if": "sleep 0.1", // Give enough time for `pactl get-default-sink` to update
+        "on-click": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
