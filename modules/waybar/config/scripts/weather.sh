@@ -17,9 +17,6 @@ UseIcons="True"
 colors="False"
 CityID="True"
 
-#custom (waybar)
-widget="True"
-
 ConfigFile="$HOME/.config/waybar/scripts/weather_sh.rc"
 
 if [ "$1" == "-r" ];then
@@ -90,11 +87,6 @@ else
 fi
 
 if [ -z $apiKey ];then
-    if [ "$widget" == "True" ];then 
-        errormsg="No API Key specified in rc, script, or command line."
-        echo "{\"text\":\"$errormsg\", \"tooltip\":\"$errormsg\"}"
-        exit
-    fi
     echo "No API Key specified in rc, script, or command line."
     exit
 fi
@@ -114,7 +106,6 @@ then
     else
         data=$(curl "http://api.openweathermap.org/data/2.5/weather?q=$defaultLocation&units=metric&appid=$apiKey" -s )
     fi
-
     echo $data > $dataPath
 else
     data=$(cat $dataPath)
@@ -129,27 +120,11 @@ while true; do
         else
             data=$(curl "http://api.openweathermap.org/data/2.5/weather?q=$defaultLocation&units=metric&appid=$apiKey" -s )
         fi
-
         echo $data > $dataPath
     else
         if [ "$Conky" != "True" ];then 
-            if [ "$widget" != "True" ];then 
-                echo "Cache age: $(($(date +%s)-$lastfileupdate)) seconds."
-            fi
+            echo "Cache age: $(($(date +%s)-$lastfileupdate)) seconds."
         fi
-    fi
-
-    hasError=$(echo "$data" | grep -c -e '"cod":401,')
-    if [ "$hasError" -eq 1 ];then
-        errormsg='Error 401.'
-
-        hasInvalidKey=$(echo "$data" | grep -c -e 'Invalid API key.')
-        if [ "$hasInvalidKey" -eq 1 ];then
-            errormsg='Invalid API key.'
-        fi
-
-        echo "{\"text\":\"$errormsg\", \"tooltip\":\"$errormsg\"}"
-        exit 99
     fi
 
     check=$(echo "$data" | grep -c -e '"cod":"40')
