@@ -247,6 +247,7 @@
         "format-source": " {volume}%",
         "format-source-muted": " Muted",
         "on-click": "pamixer --default-source -t",
+        "on-click-right": "~/.config/waybar/scripts/changemicrophoneoutput.sh",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
