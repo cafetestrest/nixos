@@ -37,7 +37,6 @@
         "custom/screenshot",
         "custom/notification",
         // "tray",
-        // "custom/audio-cycle",
         "pulseaudio",
         "pulseaudio#microphone",
         "custom/off"
@@ -219,19 +218,12 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true
     },
-    "custom/audio-cycle": {
-        "return-type": "json",
-        "exec-on-event": true,
-        "interval": "5s",
-        "exec": "pactl --format=json list sinks | jq -cM --unbuffered \"map(select(.name == \\\"$(pactl get-default-sink)\\\"))[0].properties | [.\\\"media.name\\\",.\\\"alsa.name\\\",.\\\"node.nick\\\",.\\\"alsa.long_card_name\\\"] | map(select(length>0))[0] | {text:.}\"",
-        "exec-if": "sleep 0.1", // Give enough time for `pactl get-default-sink` to update
-        "on-click": "pactl --format=json list sinks short | jq -cM --unbuffered \"[.[].name] | .[((index(\\\"$(pactl get-default-sink)\\\")+1)%length)]\" | xargs pactl set-default-sink"
-    },
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pamixer -t",
+        "on-click-right": "~/.config/waybar/scripts/changeaudiooutput.sh",
         // "on-scroll-up": "pamixer -i 1",
         // "on-scroll-down": "pamixer -d 1",
         "scroll-step": 3.0,
