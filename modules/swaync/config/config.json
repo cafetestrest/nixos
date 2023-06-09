@@ -79,7 +79,7 @@
             "command": "loginctl terminate-session ${XDG_SESSION_ID-}"
           },
           {
-            "label": "   Reboot",
+            "label": "   Reboot",
             "command": "systemctl reboot"
           },
           {
@@ -89,24 +89,20 @@
         ]
       },
       "menu#screenshot": {
-        "label": "",
+        "label": "",
         "position": "left",
         "actions": [
           {
-            "label": "   Entire screen",
-            "command": "swaync-client -cp && sleep 1 && hyprshot -m output"
+            "label": "󰹑   Entire screen",
+            "command": "sleep 2 && ~/.config/waybar/scripts/screenshot.sh"
           },
           {
-            "label": "   Select a region",
-            "command": "swaync-client -cp && sleep 1 && hyprshot -m region"
+            "label": "󰲎   Select a region",
+            "command": "sleep 2 && ~/.config/waybar/scripts/screenshot.sh 1"
           },
           {
-            "label": "   Open screenshot menu",
-            "command": "swaync-client -cp && rofi-screenshot"
-          },
-          {
-            "label": "   Open screenshot folder",
-            "command": "exo-open $HYPRSHOT_DIR"
+            "label": "󰉏   Open screenshot folder",
+            "command": "nautilus ~/Pictures/Screenshots/ &"
           }
         ]
       }
@@ -138,12 +134,12 @@
           "command": "orage"
         },
         {
-          "label": "",
-          "command": "pamac-manager"
+          "label": "",
+          "command": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -l -l 51.5 -L 0.1; fi"
         },
         {
-          "label": "",
-          "command": "firefox"
+          "label": "",
+          "command": "codium ~/Documents/note"
         }
       ]
     }

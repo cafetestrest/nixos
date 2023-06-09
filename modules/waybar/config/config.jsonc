@@ -188,7 +188,7 @@
         "text": "Screenshot",
         "format": "",
         "on-click": "~/.config/waybar/scripts/screenshot.sh",
-        "on-click-right": "~/.config/waybar/scripts/screenshot.sh",
+        "on-click-right": "~/.config/waybar/scripts/screenshot.sh 1",
     },
     "idle_inhibitor": {
         "format": "{icon}",
