@@ -115,9 +115,7 @@ then
         data=$(curl "http://api.openweathermap.org/data/2.5/weather?q=$defaultLocation&units=metric&appid=$apiKey" -s )
     fi
 
-    if [ "$widget" != "True" ];then 
-        echo $data > $dataPath
-    fi
+    echo $data > $dataPath
 else
     data=$(cat $dataPath)
 fi
