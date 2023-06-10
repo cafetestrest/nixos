@@ -175,8 +175,8 @@
             "Paused": "",
         },
         "exec": "~/.config/waybar/scripts/nightlighticon.sh",
-        "on-click": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -l -l 51.5 -L 0.1; fi",
-        "on-click-right": "if pidof wlsunset; then killall -9 wlsunset; else wlsunset -t 3500 -S 06:00 -s 06:01; fi",
+        "on-click": "~/.config/waybar/scripts/nightlight.sh auto",
+        "on-click-right": "~/.config/waybar/scripts/nightlight.sh enable",
         "interval": 3,
     },
     "custom/clipboard": {

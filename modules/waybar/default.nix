@@ -61,9 +61,27 @@ in
         executable = true;
       };
 
+      #night light config script
+      ".config/waybar/scripts/nightlight.sh" = {
+        source = ./config/scripts/nightlight.sh;
+        executable = true;
+      };
+
       #nighlight icon script - icon changes on/off for nightlight
       ".config/waybar/scripts/nightlighticon.sh" = {
         source = ./config/scripts/nightlighticon.sh;
+        executable = true;
+      };
+
+      #change audio output script
+      ".config/waybar/scripts/changeaudiooutput.sh" = {
+        source = ./config/scripts/changeaudiooutput.sh;
+        executable = true;
+      };
+
+      #change mic output script
+      ".config/waybar/scripts/changemicrophoneoutput.sh" = {
+        source = ./config/scripts/changemicrophoneoutput.sh;
         executable = true;
       };
     };
