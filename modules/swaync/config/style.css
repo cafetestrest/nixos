@@ -5,13 +5,18 @@
 /* original bg color */
 @define-color cc-bg rgba(36, 39, 58, 1.0);
 /* background color */
-@define-color cc-bg rgba(0, 0, 0, 0.9);
+/* @define-color cc-bg rgba(0, 0, 0, 0.9); */
+@define-color cc-bg rgba(0, 0, 0, 1);
+
+/* gnome accent for power menu */
+/* @define-color cc-bg rgba(53, 53, 53, 1); */
+/* @define-color cc-bg rgba(32, 32, 32, 1); */
+
 
 
 /* background color of items in the grid */
 @define-color mpris-bg rgb(30, 32, 48);
 @define-color mpris-bg #1D1D1D;
-
 
 
 @define-color noti-border-color rgba(255, 255, 255, 0);
@@ -28,9 +33,10 @@
 @define-color noti-close-bg-hover rgb(73, 77, 100);
 @define-color text rgb(202, 211, 245);
 
+
 @define-color bg-selected rgb(138, 173, 244);
 
-@define-color scale-trough rgb(244, 219, 214);
+@define-color scale-trough rgba(207, 207, 207, 1);
 
 * {
     color: @text;
@@ -48,7 +54,7 @@
     padding: 0;
 }
 
-scale {
+/* scale {
     padding-left: 21px;
     padding-right: 18px;
     box-shadow: none;
@@ -61,7 +67,7 @@ scale trough {
 scale trough highlight {
     background-color: @bg-selected;
     background-image: none;
-}
+} */
 
 scale trough slider {
     /* background-color: @bg-selected; */
@@ -195,7 +201,11 @@ scale trough slider {
 
 .control-center {
     background: @cc-bg;
-    border-radius: 20px;
+    /* roundness to the whole nc center */
+    border-radius: 32px;
+    /* border-top-left-radius: 12px; */
+    /* border-top-right-radius: 12px; */
+    /* border-bottom-left-radius: 12px; */
     /* border: 5px solid rgb(125, 196, 228); */
 }
 
@@ -220,10 +230,15 @@ scale trough slider {
 
 /* Title widget */
 .widget-title {
-    margin: 12px;
+    margin: 0 12px 0 12px;
     font-size: 1.5rem;
+    background-color: @noti-bg;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 14px;
 }
 
+/* close all button */
 .widget-title>button {
     font-size: initial;
     color: @text;
@@ -244,8 +259,13 @@ scale trough slider {
 
 /* DND widget */
 .widget-dnd {
-    margin: 12px;
+    /* margin: 12px; */
+    margin: 0 12px 0 12px;
     font-size: 1.1rem;
+    background: @noti-bg;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 14px;
 }
 
 .widget-dnd>switch {
@@ -281,7 +301,9 @@ scale trough slider {
 
 .widget-mpris-player {
     padding: 14px;
-    margin: 14px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 14px;
     margin-top: 0;
     background-color: @mpris-bg;
     border-radius: 12px;
@@ -318,43 +340,132 @@ scale trough slider {
     background: @noti-bg-hover;
 }
 
-/* Menubar widget */
+/* menubar */
 .widget-menubar {
     /* padding: 14px; */
-    /* margin: 14px 14px 0 14px; */
+    /* margin: 14px 20px 0 20px; */
     /* border-radius: 12px; */
     /* background-color: @mpris-bg; */
+    /* border: 1px solid red; */
 }
-  
+
+.menu-button-bar>button:nth-last-child(2) {
+    /* border: 1px solid red; */
+    /* padding: 7px; */
+}
+
+.menu-button-bar>button:last-child {
+    /* border: 1px solid blue; */
+    margin-right: 20px;
+    margin-left: 14px;
+}
+
+.menu-button-bar>button:first-child {
+    /* border: 1px solid green; */
+    margin-right: 14px;
+    margin-left: 20px;
+}
+
+/* .widget-menubar>box>.menu-button-bar>button {
+    border: 1px solid red;
+} */
+
 .menu-button-bar>button{
-    /* background: @noti-bg; */
-    /* border-radius: 50%; */
-    /* padding: 14px; */
-    font-size: 24px;
+    /* margin: 0; */
+    /* away from the edges */
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 0;
+    margin-right: 0;
+    /* margin-right: 14px; */
+
+    /* width/height od the icon */
+    padding: 6px;
+    /* padding-left: 0; */
+    /* padding-right: 0; */
+    /* padding-top: 14px; */
+    /* padding-bottom: 14px; */
+
+    /* border-right: 23px solid @mpris-bg; */
+    /* border-left: 20px solid @mpris-bg; */
+
+    border: none;
+    /* border-radius: 12px; */
+    border-radius: 50%;
+
+    /* font-size: 30px; */
+    font-size: 20px;
+
     box-shadow: none;
-    /* margin: 14px; */
+    background-color: @mpris-bg;
 }
 
 .menu-button-bar>button:last-child {
     /* border: 1px solid red; */
 }
 
-/* .AnyName { Name defined in config after #
-   background-color: @noti-bg;
-   padding: 12px;
-   margin: 12px;
-   border-radius: 10px;
+.screenshot,
+.nightlight,
+.power,
+.bluetooth {
+    /* border: 1px solid green; */
+    background-color: rgba(71, 71, 71, 1);
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    margin-bottom: 14px;
 }
- 
-.AnyName>button {
-   background: none;
-   border: none;
-}
- 
-.AnyName>button:hover {
-   background-color: @noti-bg-hover;
+
+/* .menu-button-bar>button:active {
+    background-color: red;
 } */
 
+.menu-button-bar>button:hover {
+    background-color: gray;
+}
+
+/* .menu-button-bar>button:focus {
+    background-color: #3783E3;
+} */
+
+/* .menu-button-bar>button:focus:first-child {
+    background-color: @mpris-bg;
+} */
+
+.screenshot>button:hover,
+.nightlight>button:hover,
+.power>button:hover,
+.bluetooth>button:hover {
+    background-color: rgba(55, 131, 227, 1);
+}
+
+.screenshot>button:last-child,
+.nightlight>button:last-child,
+.power>button:last-child,
+.bluetooth>button:last-child {
+    /* border: 1px solid red; */
+    border-bottom: none;
+}
+
+.screenshot>button:hover:first-child,
+.nightlight>button:hover:first-child,
+.power>button:hover:first-child,
+.bluetooth>button:hover:first-child {
+    /* border-radius: 20px; */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.screenshot>button:hover:last-child,
+.nightlight>button:hover:last-child,
+.power>button:hover:last-child,
+.bluetooth>button:hover:last-child {
+    /* border-radius: 20px; */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* topbar */
 .topbar-buttons>button {
     /* Name defined in config after # */
     border: none;
@@ -366,22 +477,70 @@ scale trough slider {
 .widget-volume {
     background-color: @mpris-bg;
     padding: 14px;
-    margin: 0 14px 14px 14px;
+    margin: 0 20px 14px 20px;
     border-radius: 12px;
-    font-size: 30px;
+    font-size: 20px;
+}
+
+/* volume knob */
+.widget-volume slider {
+    /* knob color */
+    /* background: transparent; */
+    /* background-color: transparent; */
+    background-color: white;
+    background: white;
+
+    /* change knob size */
+    /* background-size: 100px 100px; */
+
+    /* unsure */
+    /* min-width: 100px;*/
+    /* min-height: 100px;*/
+
+    color: transparent;
+    box-shadow: -1px 0 @mpris-bg;
+}
+
+/* volume know once clicked and moving */
+.widget-volume slider:active {
+    background-color: white;
+    background: white;
+
+}
+
+/* where is volume located */
+.widget-volume scale {
+    padding: 0;
+    margin: 0;
+    border: none;
+    /* border: 1px solid green; */
+}
+
+/* volume range (size) */
+.widget-volume scale trough {
+    /* background-color: @scale-trough; */
+    padding: 15px;
+    margin-left: 14px;
+    border-radius: 20px;
+}
+
+/* highlight line that shows where is volume slider */
+.widget-volume scale trough highlight {
+    background-color: transparent;
+    background-image: none;
 }
 
 /* Backlight widget */
 .widget-backlight {
     background-color: @noti-bg;
     padding: 14px;
-    margin: 14px;
+    margin: 14px 20px 14px 20px;
     border-radius: 12px;
 }
 
 /* Title widget */
 .widget-inhibitors {
-    margin: 14px;
+    margin: 14px 20px 14px 20px;
     font-size: 1.5rem;
 }
 

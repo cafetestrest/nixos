@@ -85,6 +85,7 @@
         "tooltip": true,
         "format": "{}",
         "interval": 600,
+        "exec-if": "sleep 2",
         "exec": "~/.config/waybar/scripts/weather.sh",
         "on-click": "~/.config/waybar/scripts/weather.sh",
         "return-type": "json"

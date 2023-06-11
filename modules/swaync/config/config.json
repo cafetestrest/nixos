@@ -3,13 +3,13 @@
   "positionY": "top",
   "control-center-positionX": "none",
   "control-center-positionY": "top",
-  "control-center-margin-top": 8,
-  "control-center-margin-bottom": 8,
-  "control-center-margin-right": 10,
-  "control-center-margin-left": 8,
-  "control-center-width": 500,
-  "control-center-height": 900,
-  "fit-to-screen": true,
+  "control-center-margin-top": 4,
+  "control-center-margin-bottom": 4,
+  "control-center-margin-right": 4,
+  "control-center-margin-left": 4,
+  "control-center-width": 400,
+  "control-center-height": 800,
+  "fit-to-screen": false,
 
   "layer": "overlay",
   "cssPriority": "user",
@@ -31,7 +31,6 @@
   "notification-visibility": {},
   "widgets": [
     "menubar",
-    "buttons-grid",
     "volume",
     "mpris",
     "inhibitors",
@@ -59,15 +58,56 @@
     },
     "volume": {
       "label": "",
-      "icon-size": 58
+      "show-per-app": true
     },
     "mpris": {
       "image-size": 96,
       "image-radius": 12
     },
     "menubar": {
+      "menu#screenshot": {
+        "label": "",
+        "position": "left",
+        "animation-duration": 1000,
+        "actions": [
+          {
+            "label": "󰹑   Entire screen",
+            "command": "sleep 2 && ~/.config/waybar/scripts/screenshot.sh"
+          },
+          {
+            "label": "󰲎   Select a region",
+            "command": "sleep 2 && ~/.config/waybar/scripts/screenshot.sh 1"
+          },
+          {
+            "label": "󰉏   Open screenshot folder",
+            "command": "nautilus ~/Pictures/Screenshots/ &"
+          }
+        ]
+      },
+      "menu#nightlight": {
+        "label": "",
+        "position": "left",
+        "actions": [
+          {
+            "label": "󱠁   Automatic",
+            "command": "~/.config/waybar/scripts/nightlight.sh auto"
+          },
+          {
+            "label": "󰌵   Enable",
+            "command": "~/.config/waybar/scripts/nightlight.sh enable"
+          },
+          {
+            "label": "󰹐   Disable",
+            "command": "~/.config/waybar/scripts/nightlight.sh disable"
+          },
+          {
+            "label": "󱩍   Toggle",
+            "command": "~/.config/waybar/scripts/nightlight.sh toggle"
+          }
+        ]
+      },
       "menu#power": {
-        "label": "",
+        "label": "",
         "position": "right",
         "actions": [
           {
@@ -88,21 +128,25 @@
           }
         ]
       },
-      "menu#screenshot": {
-        "label": "",
-        "position": "left",
+      "menu#bluetooth": {
+        "label": "󰂯",
+        "position": "right",
         "actions": [
           {
-            "label": "󰹑   Entire screen",
-            "command": "sleep 2 && ~/.config/waybar/scripts/screenshot.sh"
+            "label": "󰦋   Automatic",
+            "command": "~/.config/waybar/111.sh auto"
           },
           {
-            "label": "󰲎   Select a region",
-            "command": "sleep 2 && ~/.config/waybar/scripts/screenshot.sh 1"
+            "label": "󰥰   Enable",
+            "command": "~/.config/waybar/111.sh enable"
           },
           {
-            "label": "󰉏   Open screenshot folder",
-            "command": "nautilus ~/Pictures/Screenshots/ &"
+            "label": "󰂲   Disable",
+            "command": "~/.config/waybar/111.sh disable"
+          },
+          {
+            "label": "󰂰   Toggle",
+            "command": "~/.config/waybar/111.sh toggle"
           }
         ]
       }
