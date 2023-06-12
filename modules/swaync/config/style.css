@@ -235,7 +235,8 @@ scale trough slider {
     background-color: @noti-bg;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    padding: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
 }
 
 /* close all button */
@@ -265,8 +266,9 @@ scale trough slider {
     background: @noti-bg;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding: 14px;
-
+    padding-top: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
 }
 
 .widget-dnd>switch {
@@ -319,13 +321,16 @@ scale trough slider {
 }
 
 .widget-mpris-player {
-    padding: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 14px;
+    margin-bottom: 0px;
     margin-top: 0;
     background-color: @mpris-bg;
-    border-radius: 12px;
+    border-radius: 20px;
+
+    /* border: 1px solid red; */
 }
 
 .widget-mpris-title {
@@ -455,7 +460,8 @@ scale trough slider {
 .nightlight>button:hover,
 .power>button:hover,
 .bluetooth>button:hover {
-    background-color: rgba(55, 131, 227, 1);
+    /* background-color: rgba(55, 131, 227, 1); */
+    background-color: rgba(10 ,133, 255, 1)
 }
 
 .screenshot>button:last-child,
@@ -497,7 +503,7 @@ scale trough slider {
     background-color: @mpris-bg;
     padding: 14px;
     margin: 0 20px 14px 20px;
-    border-radius: 12px;
+    border-radius: 20px;
     font-size: 20px;
 }
 
@@ -559,7 +565,7 @@ scale trough slider {
 
 /* Title widget */
 .widget-inhibitors {
-    margin: 14px 20px 14px 20px;
+    margin: 0 20px 0 20px;
     font-size: 1.5rem;
 }
 
