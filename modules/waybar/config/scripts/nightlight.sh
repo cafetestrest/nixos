@@ -9,7 +9,7 @@ enable() {
 }
 
 automatic() {
-    wlsunset -t 3500 -l 51.5 -L 0.1
+    wlsunset -t 3500 -l 39.07 -L 21.82
 }
 
 toggle() {

@@ -177,7 +177,7 @@
         },
         "exec": "~/.config/waybar/scripts/nightlighticon.sh",
         "on-click": "~/.config/waybar/scripts/nightlight.sh auto",
-        "on-click-right": "~/.config/waybar/scripts/nightlight.sh enable",
+        "on-click-right": "~/.config/waybar/scripts/nightlight.sh toggle",
         "interval": 3,
     },
     "custom/clipboard": {
