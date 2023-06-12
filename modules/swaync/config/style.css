@@ -23,7 +23,10 @@
 
 /* notification color */
 @define-color noti-bg rgb(54, 58, 79);
-@define-color noti-bg rgba(0, 0, 0, 0.9);
+@define-color noti-bg #1D1D1D;
+/* @define-color noti-bg rgba(0, 0, 0, 0.9); */
+
+@define-color widget-noti-bg rgba(0, 0, 0, 0.9);
 
 @define-color noti-bg-hover rgb(73, 77, 100);
 @define-color noti-bg-hover #1D1D1D;
@@ -38,6 +41,7 @@
 
 @define-color scale-trough rgba(207, 207, 207, 1);
 
+
 * {
     color: @text;
 }
@@ -49,8 +53,11 @@
 
 .notification {
     border-radius: 10px;
-    margin: 12px 12px;
-    box-shadow: none;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* box-shadow: none; */
     padding: 0;
 }
 
@@ -128,8 +135,12 @@ scale trough slider {
     margin: 0;
     box-shadow: none;
     background: @noti-bg;
-    border: 1px solid @noti-border-color;
+    /* border: 1px solid @noti-border-color; */
+    border: none;
+
     color: @text;
+
+    /* box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.7); */
 }
 
 .notification-default-action:hover,
@@ -166,7 +177,7 @@ scale trough slider {
 
 .notification-action:last-child {
     border-bottom-right-radius: 10px;
-    border-right: 1px solid @noti-border-color;
+    /* border-right: 1px solid @noti-border-color; */
 }
 
 .body-image {
@@ -232,7 +243,7 @@ scale trough slider {
 .widget-title {
     margin: 0 12px 0 12px;
     font-size: 1.5rem;
-    background-color: @noti-bg;
+    background-color: @widget-noti-bg;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     padding-left: 14px;
@@ -244,18 +255,18 @@ scale trough slider {
     font-size: initial;
     color: @text;
     text-shadow: none;
-    background: @noti-bg;
+    background: @widget-noti-bg;
     border: 1px solid @noti-border-color;
     box-shadow: none;
     border-radius: 10px;
 }
 
 .widget-title>button:hover {
-    background: @noti-bg-hover;
+    background: @widget-noti-bg-hover;
 }
 
 .widget-title>button:active {
-    background: @noti-bg;
+    background: @widget-noti-bg;
 }
 
 /* DND widget */
@@ -263,7 +274,7 @@ scale trough slider {
     /* margin: 12px; */
     margin: 0 12px 0 12px;
     font-size: 1.1rem;
-    background: @noti-bg;
+    background: @widget-noti-bg;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     padding-top: 14px;
@@ -274,7 +285,7 @@ scale trough slider {
 .widget-dnd>switch {
     font-size: initial;
     border-radius: 10px;
-    /* background: @noti-bg; */
+    /* background: @widget-noti-bg; */
     background: rgba(71, 71, 71, 1);
     border: 1px solid @noti-border-color;
     box-shadow: none;
@@ -283,7 +294,6 @@ scale trough slider {
     padding-bottom: 3px;
     padding-left: 2px;
     padding-right: 2px;
-
 }
 
 .widget-dnd>switch:checked {
@@ -296,7 +306,7 @@ scale trough slider {
 }
 
 .widget-dnd>switch slider {
-    background: @noti-bg-hover;
+    background: @widget-noti-bg-hover;
     background: white;
     border-radius: 10px;
 
@@ -331,6 +341,12 @@ scale trough slider {
     border-radius: 20px;
 
     /* border: 1px solid red; */
+    /* box-shadow: 1px 1px 10px red; */
+
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    /* box-shadow: inset -10px -10px 15px rgba(0, 0, 0, 0.5), 
+           inset 10px 10px 15px rgba(0, 0, 0, 0.5); */
+    /* box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5); */
 }
 
 .widget-mpris-title {
@@ -361,7 +377,7 @@ scale trough slider {
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-    background: @noti-bg-hover;
+    background: @widget-noti-bg-hover;
 }
 
 /* menubar */
@@ -422,6 +438,11 @@ scale trough slider {
 
     box-shadow: none;
     background-color: @mpris-bg;
+
+    box-shadow: inset -10px -10px 15px rgba(0, 0, 0, 0.5), 
+           inset 10px 10px 15px rgba(0, 0, 0, 0.12);
+    /* box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5); */
+    
 }
 
 .menu-button-bar>button:last-child {
@@ -438,6 +459,9 @@ scale trough slider {
     margin-right: 20px;
     border-radius: 20px;
     margin-bottom: 14px;
+
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+
 }
 
 /* .menu-button-bar>button:active {
@@ -505,6 +529,8 @@ scale trough slider {
     margin: 0 20px 14px 20px;
     border-radius: 20px;
     font-size: 20px;
+
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 /* volume knob */
@@ -557,7 +583,7 @@ scale trough slider {
 
 /* Backlight widget */
 .widget-backlight {
-    background-color: @noti-bg;
+    background-color: @widget-noti-bg;
     padding: 14px;
     margin: 14px 20px 14px 20px;
     border-radius: 12px;
