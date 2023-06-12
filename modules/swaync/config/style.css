@@ -24,6 +24,7 @@
 /* notification color */
 @define-color noti-bg rgb(54, 58, 79);
 @define-color noti-bg #1D1D1D;
+@define-color noti-bg rgba(40, 40, 42, 0.9);
 /* @define-color noti-bg rgba(0, 0, 0, 0.9); */
 
 @define-color widget-noti-bg rgba(0, 0, 0, 0.9);
@@ -52,12 +53,13 @@
 }
 
 .notification {
-    border-radius: 10px;
+    border-radius: 20px;
     /* margin-top: 14px; */
     /* margin-bottom: 14px; */
     margin-left: 20px;
     margin-right: 20px;
     box-shadow: none;
+    /* border-radius: 20px; */
     padding: 0;
 }
 
@@ -103,9 +105,8 @@ scale trough highlight {
  */
 
 .notification-content {
-    background: none;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .close-button {
@@ -140,13 +141,10 @@ scale trough highlight {
 
     color: @text;
 
-    /* todo */
+    border-radius: 20px;
+    border: 1px solid rgba(74, 74, 76, 0.9);
+
     /* box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.7); */
-}
-
-
-.notification-action:first-child {
-    border: 1px solid red;
 }
 
 .notification-default-action:hover,
@@ -161,7 +159,7 @@ scale trough highlight {
 }
 
 .notification-default-action {
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 
@@ -179,11 +177,11 @@ scale trough highlight {
 
 /* add bottom border radius to eliminate clipping */
 .notification-action:first-child {
-    border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 20px;
 }
 
 .notification-action:last-child {
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 20px;
     /* border-right: 1px solid @noti-border-color; */
 }
 
