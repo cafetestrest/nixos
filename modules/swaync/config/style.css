@@ -53,11 +53,11 @@
 
 .notification {
     border-radius: 10px;
-    margin-top: 14px;
-    margin-bottom: 14px;
+    /* margin-top: 14px; */
+    /* margin-bottom: 14px; */
     margin-left: 20px;
     margin-right: 20px;
-    /* box-shadow: none; */
+    box-shadow: none;
     padding: 0;
 }
 
@@ -76,11 +76,11 @@ scale trough highlight {
     background-image: none;
 } */
 
-scale trough slider {
-    /* background-color: @bg-selected; */
-    /* border: 2px solid @bg-selected; */
-    /* box-shadow: none; */
-}
+/* scale trough slider {
+    background-color: @bg-selected;
+    border: 2px solid @bg-selected;
+    box-shadow: none;
+} */
 
 /* Uncomment to enable specific urgency colors
 .low {
@@ -140,7 +140,13 @@ scale trough slider {
 
     color: @text;
 
+    /* todo */
     /* box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.7); */
+}
+
+
+.notification-action:first-child {
+    border: 1px solid red;
 }
 
 .notification-default-action:hover,
@@ -157,6 +163,7 @@ scale trough slider {
 .notification-default-action {
     border-radius: 10px;
 }
+
 
 /* When alternative actions are visible */
 .notification-default-action:not(:only-child) {
