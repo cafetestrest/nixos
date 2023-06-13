@@ -62,6 +62,10 @@ in
 
   # Slows down boot (https://github.dev/Kranzes/nix-config)
   systemd.services.NetworkManager-wait-online.enable = false;
+  # For faster reboot https://unix.stackexchange.com/questions/448268/change-systemd-stop-job-timeout-in-nixos-configuration
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+  '';
 
   # Configure keymap in X11 
   # services.xserver.layout = "us";
