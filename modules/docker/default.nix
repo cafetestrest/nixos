@@ -8,16 +8,33 @@ in
   environment.systemPackages = with pkgs; [
     docker
     docker-compose
+    openssl         #warden for svc up
+    envsubst        #warden for env up (commands/env-init.cmd)
   ];
 
   users.users.${user} = {
     extraGroups = [ "docker" ];
   };
 
+  programs.ssh.extraConfig =
+  ''
+    ## WARDEN START ##
+    Host tunnel.warden.test
+    HostName 127.0.0.1
+    User user
+    Port 2222
+    IdentityFile ~/.warden/tunnel/ssh_key
+    ## WARDEN END ##
+  '';
+
   networking.extraHosts =
   ''
-   127.0.0.1 ::1 magento.test
-   172.17.0.1 host.docker.internal
+    127.0.0.1 ::1 magento.test
+    172.17.0.1 host.docker.internal
+    127.0.0.1 ::1 app.exampleproject.test
+    127.0.0.1 ::1 rabbitmq.exampleproject.test
+    127.0.0.1 ::1 elasticsearch.warden.test
+    127.0.0.1 ::1 dnsmasq.warden.test
   '';
 
   # xdebug ports
