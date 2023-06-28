@@ -46,6 +46,7 @@ in
     # anydesk
     rnix-lsp
     nixpkgs-fmt
+    tldr
   ];
 
   # services.teamviewer.enable = true;
