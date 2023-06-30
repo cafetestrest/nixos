@@ -375,3 +375,9 @@ label:focus {
     /* color: #8c977d; */
     /* min-width: 100px; */
 }
+
+tooltip {
+    border-radius: 12px;
+    /* background-color: #bd93f9; */
+    /* padding: 100px; */
+}
