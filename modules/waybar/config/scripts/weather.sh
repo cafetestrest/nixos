@@ -112,6 +112,10 @@ else
 fi
 lastUpdateTime=$(($(date +%s) -600))
 
+# echo $data
+# echo data
+# exit 1
+
 while true; do
     lastfileupdate=$(date -r $dataPath +%s)
     if [ $(($(date +%s)-$lastfileupdate)) -ge 600 ];then
@@ -147,7 +151,8 @@ while true; do
             icons=$(echo $data | jq -r .weather[].icon | tr '\n' ' ')
             iconval=${icons%?}
             case $iconval in
-                01d) icon="☼";;
+                # 01d) icon="☼";; # looks like a snowflake
+                01d) icon="☀️";;
                 01n) icon="☾";;
                 02d) icon="⛅";;
                 02n) icon="☁";;
