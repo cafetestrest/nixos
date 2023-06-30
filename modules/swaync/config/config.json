@@ -133,20 +133,12 @@
         "position": "right",
         "actions": [
           {
-            "label": "󰦋   Automatic",
-            "command": "~/.config/waybar/111.sh auto"
-          },
-          {
-            "label": "󰥰   Enable",
-            "command": "~/.config/waybar/111.sh enable"
+            "label": "󰂰   Enable",
+            "command": "bluetoothctl power on"
           },
           {
             "label": "󰂲   Disable",
-            "command": "~/.config/waybar/111.sh disable"
-          },
-          {
-            "label": "󰂰   Toggle",
-            "command": "~/.config/waybar/111.sh toggle"
+            "command": "bluetoothctl power off"
           }
         ]
       }
