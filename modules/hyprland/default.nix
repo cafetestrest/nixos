@@ -47,3 +47,4 @@ in
 
 #in case there is a problem with some apps being slow, run the following line on terminal without root:
 #systemctl --user mask xdg-desktop-portal-gnome
+#systemctl --user mask xdg-desktop-portal-gtk
