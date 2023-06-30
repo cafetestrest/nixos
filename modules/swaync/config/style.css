@@ -450,6 +450,10 @@ scale trough highlight {
     
 }
 
+.menu-button-bar>button:focus {
+    /* background-color: rgba(10 ,133, 255, 1) */
+}
+
 .menu-button-bar>button:last-child {
     /* border: 1px solid red; */
 }
@@ -493,12 +497,37 @@ scale trough highlight {
     background-color: rgba(10 ,133, 255, 1)
 }
 
+.screenshot>button:focus,
+.nightlight>button:focus,
+.power>button:focus,
+.bluetooth>button:focus {
+    /* background-color: rgba(55, 131, 227, 1); */
+    /* background-color: rgba(10 ,133, 255, 1); */
+    background-color: rgb(10, 100, 200);
+}
+
 .screenshot>button:last-child,
 .nightlight>button:last-child,
 .power>button:last-child,
 .bluetooth>button:last-child {
     /* border: 1px solid red; */
     border-bottom: none;
+}
+
+.screenshot>button:focus:first-child,
+.nightlight>button:focus:first-child,
+.power>button:focus:first-child,
+.bluetooth>button:focus:first-child {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.screenshot>button:focus:last-child,
+.nightlight>button:focus:last-child,
+.power>button:focus:last-child,
+.bluetooth>button:focus:last-child {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .screenshot>button:hover:first-child,
