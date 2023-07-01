@@ -35,6 +35,7 @@
         "custom/nightlight",
         "custom/clipboard",
         "custom/screenshot",
+        // "bluetooth",
         // "tray",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -204,6 +205,50 @@
         "format": "",
         "on-click": "~/.config/waybar/scripts/screenshot.sh",
         "on-click-right": "~/.config/waybar/scripts/screenshot.sh 1",
+    },
+    "network#wifi": {
+        "interface": "wlp*",
+        "format-wifi": "",
+        "format-linked": "",
+        "format-disconnected": "",
+        "tooltip-format": "{ifname} {essid} ({signalStrength}%)",
+        "tooltip-format-disconnected": "Airplane mode",
+        // "on-click": "bash ~/.config/waybar/helpers/toggle_wifi.sh; pkill -SIGRTMIN+8 waybar",
+        "interval": 5
+    },
+    "network#wired": {
+        "interface": "enp*",
+        "format-ethernet": "",
+        "format-linked": "",
+        "format-disconnected": "",
+        "format-disabled": "",
+	    "tooltip-format": "{ifname}"
+    },
+    "network#VPN": {
+        "interface": "tun*",
+        "format-ethernet": "",
+        "format-linked": "",
+        "format-disconnected": "",
+        "tooltip-format": "{ifname} {ipaddr}",
+        "tooltip-format-disconnected": "Disconnected",
+        // "on-click": "bash ~/.config/waybar/helpers/toggle_vpn.sh; pkill -SIGRTMIN+8 waybar", // https://github.com/FilippoBonazziSUSE/dotfiles/blob/master/private_dot_config/waybar/config
+        "interval": 5
+    },
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "",
+        "format-off": "",
+        "format-connected": " {num_connections}",
+        // "format-connected": " {device_alias}",
+        "tooltip-format": "{controller_address} {status}\n\n{num_connections} connected",
+        "tooltip-format-disabled": "{status}",
+        "tooltip-format-connected": "{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+        "on-click": "bluetooth toggle; pkill -SIGRTMIN+8 waybar",
+        "on-click-right": "exec terminator -e sh -c 'bluetoothctl'"
     },
     "idle_inhibitor": {
         "format": "{icon}",
