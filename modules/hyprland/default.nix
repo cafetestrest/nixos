@@ -28,9 +28,7 @@ in
     grim                                #screenshot tool
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
-    # dunst
-    # xdg-desktop-portal-hyprland
-    # eww-wayland
+    swayidle
   ];
 
   home-manager.users.${user} = {
