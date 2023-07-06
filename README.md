@@ -29,17 +29,17 @@ cd nixos
 
 2. copy installed hardware configuration to the repo folder locally
 ```bash
-cp /etc/nixos/hardware-configuration.nix ~/nixos/hardware-configuration.nix
+cp /etc/nixos/hardware-configuration.nix ~/nixos/hosts/desktop/hardware-configuration.nix
 ```
 
 3. update your username and other variables under variables.nix,
 configurations under configuration.nix and packages to be installed under packages.nix
 ```bash
-nano variables.nix
+nano ~/nixos/variables.nix
 
-nano configuration.nix
+nano ~/nixos/hosts/configuration.nix
 
-nano packages.nix
+nano ~/nixos/hosts/packages.nix
 ```
 
 4. install nixos
@@ -61,7 +61,7 @@ omf install default
 omf theme default
 ```
 
-- To get theme (https://github.com/vinceliuice/Orchis-theme):
+- To get theme for Gnome (https://github.com/vinceliuice/Orchis-theme):
 
 ```bash
 git clone https://github.com/vinceliuice/Orchis-theme.git
