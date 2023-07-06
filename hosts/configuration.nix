@@ -52,6 +52,7 @@ in
   # services.xserver.displayManager.gdm.settings = {
   # };
   services.xserver.desktopManager.gnome.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
 
   # Used to get auto login (as I'm unable to enable num lock on boot)
   # Enable automatic login for the user.
