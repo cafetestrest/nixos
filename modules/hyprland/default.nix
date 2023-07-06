@@ -6,9 +6,10 @@ let
 in
 {
   imports = [
-    ../waybar                   # waybar packages
-    ../rofi                     # rofi packages
-    ../swaync                   # swaync packages
+    ../waybar                   # top bar
+    ../rofi                     # search bar
+    ../swaync                   # notification panel
+    ../gtklock                  # lockscreen
   ];
 
   nix.settings = {
@@ -28,7 +29,7 @@ in
     grim                                #screenshot tool
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
-    swayidle
+    swayidle                            #idle manager for sway/hyprland
   ];
 
   home-manager.users.${user} = {

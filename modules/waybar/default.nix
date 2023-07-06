@@ -8,11 +8,11 @@ in
   environment.systemPackages = with pkgs; [
     waybar
     # pavucontrol
-    # python3Minimal
     jq
     pamixer
     bc                                  #command line calculator (for weather widget on waybar)
-    # font-manager
+    hyprpicker                          #pipette - color hex picker
+    wl-clipboard                        #copy to clipboard (for hyprpicker)
   ];
 
   home-manager.users.${user} = {

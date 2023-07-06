@@ -172,6 +172,7 @@ window#waybar.chromium {
 #custom-clipboard,
 #custom-screenshot,
 #custom-notification,
+#custom-colorpicker,
 #idle_inhibitor
 {
     /* top/right/bottom/left */
@@ -191,7 +192,6 @@ window#waybar.chromium {
 #custom-media,
 #tray,
 #mode,
-#idle_inhibitor,
 #custom-power,
 #custom-pacman,
 /* #custom-battery, */
@@ -309,15 +309,6 @@ label:focus {
 
 #tray {
     /* background-color: #505050; */
-}
-
-#idle_inhibitor {
-    background-color: #424242;
-}
-
-#idle_inhibitor.activated {
-    background-color: #e8e3e3;
-    color: #424242;
 }
 
 #mpd {
