@@ -39,7 +39,6 @@ in
     neofetch
     fish
     killall
-    sassc                     #for building orchid theme
     peco                      #for oh-my-fish (along with omf plugin)
     unzip
     # teamviewer

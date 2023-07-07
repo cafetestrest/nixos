@@ -38,7 +38,7 @@ in
 
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks        #gnome tweaks app
-    gnome.gnome-themes-extra  #for building orchid theme (with sassc)
+    gnome.gnome-themes-extra  #for building orchis theme (with sassc)
     gnome.dconf-editor        #gnome dconf editor app
 
     numlockx                  #get numlock enabled on login (need to find how to enable it on gdm)
