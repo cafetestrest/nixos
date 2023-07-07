@@ -25,6 +25,7 @@ in
       notify-desktop      #notifications from terminal
       headsetcontrol
       librewolf           #firefox browser
+      baobab
     ];
   };
 
