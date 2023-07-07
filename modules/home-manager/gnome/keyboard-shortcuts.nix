@@ -80,10 +80,10 @@
       '';
       name = "Audio HDMI (win + pgup)";
     };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8" = {
-      binding = "<Super>space";
-      command = "albert toggle";
-      name = "albert toggle (win + space)";
-    };
+    # "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8" = {
+    #   binding = "<Super>space";
+    #   command = "albert toggle";
+    #   name = "albert toggle (win + space)";
+    # };
   };
 }
