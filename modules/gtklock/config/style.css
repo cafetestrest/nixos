@@ -19,7 +19,7 @@
 window {
   /* background-color: @bg; */
   /* background-image: url("/home/bajic/Public/wall/wall.png"); */
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../Public/wall/wall.png");
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../Public/wall/lockscreen.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
