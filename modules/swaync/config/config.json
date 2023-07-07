@@ -111,6 +111,10 @@
         "position": "right",
         "actions": [
           {
+            "label": "   Lock",
+            "command": "gtklock -d"
+          },
+          {
             "label": "   Sleep",
             "command": "systemctl suspend"
           },

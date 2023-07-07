@@ -22,7 +22,8 @@ shutdown="   Shutdown"
 reboot="   Reboot"
 sleep="   Sleep"
  
-selected_option=$(echo "$sleep
+selected_option=$(echo "$lock
+$sleep
 $logout
 $reboot
 $shutdown" | rofi -dmenu -i -p "Powermenu" \
@@ -30,7 +31,7 @@ $shutdown" | rofi -dmenu -i -p "Powermenu" \
 
 if [ "$selected_option" == "$lock" ]
 then
-  swaylock
+  gtklock -d
 elif [ "$selected_option" == "$logout" ]
 then
   loginctl terminate-user `whoami`

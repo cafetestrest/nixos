@@ -144,6 +144,18 @@ while true; do
         Long=$(echo $data | jq -r .coord.lon)
         Country=$(echo $data | jq -r .sys.country)
 
+        SunsetTime=$(echo $data | jq -r .sys.sunset)
+        SunriseTime=$(echo $data | jq -r .sys.sunrise)
+        CurrentTime=$(date +%s)
+
+        function get_weather_icon() {
+            if [[ $CurrentTime -ge $SunsetTime || $CurrentTime -le $SunriseTime ]]; then
+                icon="☾"
+            else
+                icon=$1
+            fi
+        }
+
         ####################################################################
         # Current conditions (and icon)
         ####################################################################
@@ -170,15 +182,15 @@ while true; do
                 # 13n) icon="❄";;
                 # 50d) icon="⛆";;
                 # 50n) icon="⛆";;
-                01*) icon="☀️";;
-                02*) icon="🌤";;
-                03*) icon="🌥";;
-                04*) icon="☁";;
-                09*) icon="🌧";;
-                10*) icon="🌦";;
-                11*) icon="🌩";;
-                13*) icon="🌨";;
-                50*) icon="🌫";;
+                01*) get_weather_icon "☀️";;
+                02*) get_weather_icon "🌤";;
+                03*) get_weather_icon "🌥";;
+                04*) get_weather_icon "☁";;
+                09*) get_weather_icon "🌧";;
+                10*) get_weather_icon "🌦";;
+                11*) get_weather_icon "🌩";;
+                13*) get_weather_icon "🌨";;
+                50*) get_weather_icon "🌫";;
             esac
         else
             icon=""
