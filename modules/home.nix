@@ -11,10 +11,10 @@ in
     [
       ./home-manager/gnome/config/terminator.nix
       ./home-manager/gnome/config/fish.nix
-      ./home-manager/gnome/config/albert.nix
+      # ./home-manager/gnome/config/albert.nix
       ./home-manager/gnome/keyboard-shortcuts.nix
       ./home-manager/gnome/dconf-settings.nix
-      ./home-manager/gnome/autostart/albert.nix
+      # ./home-manager/gnome/autostart/albert.nix
       ./home-manager/gnome/autostart/xpad.nix
       ./home-manager/gnome/autostart/copyq.nix
 
