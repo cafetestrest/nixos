@@ -37,6 +37,12 @@ in
       ".config/hypr/hyprland.conf" = {
         source = ./config/hyprland.conf;
       };
+
+      #startup script
+      ".config/hypr/scripts/startup.sh" = {
+        source = ./config/scripts/startup.sh;
+        executable = true;
+      };
     };
   };
 
