@@ -68,6 +68,9 @@
               home-manager.users.${user} = {
                 imports = [ ./modules/home.nix ];
               };
+              home-manager.users.gdm = { lib, ... }: {
+                imports = [ ./modules/gdm/home.nix ];
+              };
             }
           ];
         };
