@@ -148,9 +148,7 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # custom
-  # Used to enable numpad on start of the session (unsure if needed)
-  services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
+  # services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 
   #required for gsconnect gnome extension to work properly (added 2-apr-2023)
   networking.firewall.allowedTCPPortRanges = [
