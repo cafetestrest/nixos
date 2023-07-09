@@ -21,6 +21,7 @@
 
     "org/gnome/shell/keybindings" = {
       toggle-message-tray = [ ];
+      toggle-overview = [ "<Super>space" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -33,7 +34,7 @@
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/"
+        # "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
