@@ -5,6 +5,18 @@ let
     user;
 in
 {
+  imports =
+    [
+      #gnome extensions dconf configuration
+      ./gnome/extensions/config/blur-my-shell.nix
+      ./gnome/extensions/config/caffeine.nix
+      ./gnome/extensions/config/dash-to-panel.nix
+      ./gnome/extensions/config/executor.nix
+      ./gnome/extensions/config/gtile.nix
+      #./gnome/extensions/config/super-key.nix
+      ./gnome/extensions/config/useless-gaps.nix
+    ];
+
   users.users.${user} = {
     packages = with pkgs; [
       gnomeExtensions.user-themes

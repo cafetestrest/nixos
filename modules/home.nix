@@ -9,23 +9,14 @@ in
 {
   imports =
     [
-      ./home-manager/gnome/config/terminator.nix
-      ./home-manager/gnome/config/fish.nix
-      # ./home-manager/gnome/config/albert.nix
-      ./home-manager/gnome/keyboard-shortcuts.nix
-      ./home-manager/gnome/dconf-settings.nix
-      # ./home-manager/gnome/autostart/albert.nix
-      ./home-manager/gnome/autostart/xpad.nix
-      ./home-manager/gnome/autostart/copyq.nix
-
-      #gnome extensions dconf configuration
-      ./gnome/extensions/config/blur-my-shell.nix
-      ./gnome/extensions/config/caffeine.nix
-      ./gnome/extensions/config/dash-to-panel.nix
-      ./gnome/extensions/config/executor.nix
-      ./gnome/extensions/config/gtile.nix
-      #./gnome/extensions/config/super-key.nix
-      ./gnome/extensions/config/useless-gaps.nix
+      ./gnome/config/terminator.nix
+      ./gnome/config/fish.nix
+      # ./gnome/config/albert.nix
+      ./gnome/keyboard-shortcuts.nix
+      ./gnome/dconf-settings.nix
+      # ./gnome/autostart/albert.nix
+      ./gnome/autostart/xpad.nix
+      ./gnome/autostart/copyq.nix
     ];
 
   # Home Manager needs a bit of information about you and the
