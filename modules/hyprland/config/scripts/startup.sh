@@ -22,9 +22,9 @@ function open_apps() {
 
 function is_playing_media()
 {
-    max_duration=20  # Maximum duration to check (in seconds)
-    interval=1     # Interval between checks (in seconds)
-    elapsed=0        # Elapsed time counter
+    max_duration=10     # Maximum duration to check - seconds / 2 (10 is 5 seconds)
+    interval=1          # Interval between checks
+    elapsed=0           # Elapsed time counter
 
     while [ $elapsed -lt $max_duration ]; do
         status=$(playerctl status)
