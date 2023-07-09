@@ -7,7 +7,7 @@ function open_apps() {
 
     hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
 
-    sleep 0.9
+    sleep 1.2
 
     hyprctl dispatch movefocus r
 
