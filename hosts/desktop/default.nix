@@ -15,7 +15,7 @@ in
 
     ../../modules/hyprland            # hyprland packages
 
-    ../../modules/gnome/fonts.nix     # fonts gnome
+    ../../modules/fonts               # fonts gnome
 
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
