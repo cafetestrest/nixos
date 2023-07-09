@@ -119,11 +119,6 @@ in
     initialHashedPassword = "${initialPassword}";
   };
 
-  programs.fish.enable = true;
-  programs.dconf.enable = true;           # dconf (added 1-apr-2023)
-
-  users.defaultUserShell = pkgs.fish;
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -148,8 +143,6 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
-
   #required for gsconnect gnome extension to work properly (added 2-apr-2023)
   networking.firewall.allowedTCPPortRanges = [
     # KDE Connect
@@ -161,21 +154,7 @@ in
   ];
 
   #allow usage of unprivileged ports
-  #boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
-
-  # Manage the virtualisation services (added 2-apr-2023)
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
-    spiceUSBRedirection.enable = true;
-  };
-  services.spice-vdagentd.enable = true;
+  #boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0
 
   nix = {
     package = pkgs.nixFlakes;

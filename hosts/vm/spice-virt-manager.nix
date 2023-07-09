@@ -17,4 +17,6 @@ in
     #win-virtio               # vm windows stuff
     #win-spice                # vm windows stuff
   ];
+
+  services.spice-vdagentd.enable = true;
 }

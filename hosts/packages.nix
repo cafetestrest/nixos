@@ -48,5 +48,8 @@ in
     tldr
   ];
 
+  programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
+
   # services.teamviewer.enable = true;
 }

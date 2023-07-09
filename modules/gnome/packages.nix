@@ -44,4 +44,8 @@ in
     # numlockx                  #get numlock enabled on login (need to find how to enable it on gdm)
     apple-cursor
   ];
+
+  programs.dconf.enable = true;           # dconf (added 1-apr-2023)
+
+  # services.xserver.displayManager.setupCommands = "/run/current-system/sw/bin/numlockx on\n";
 }
