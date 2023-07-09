@@ -2,16 +2,22 @@
 
 function open_apps() {
     hyprctl dispatch exec "[workspace 1]" chromium
+
+    sleep 0.2
+
     hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
 
-    sleep 1
+    sleep 0.9
 
     hyprctl dispatch movefocus r
+
+    sleep 0.2
+
     hyprctl dispatch exec "[workspace 1]" "codium ~/nixos/"
 
-    sleep 0.7
+    sleep 0.9
 
-    hyprctl dispatch swapnext
+    hyprctl dispatch movewindow d
 }
 
 function is_playing_media()
