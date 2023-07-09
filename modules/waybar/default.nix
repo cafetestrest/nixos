@@ -5,6 +5,10 @@ let
     user;
 in
 {
+  nixpkgs.overlays = [
+   (import ../overlays/waybar.nix)
+  ];
+
   environment.systemPackages = with pkgs; [
     waybar
     # pavucontrol
