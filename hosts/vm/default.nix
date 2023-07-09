@@ -13,7 +13,9 @@ in
     ./hardware-configuration.nix      # Include the results of the hardware scan. (generated from fresh install on virt-manager)
 
     ../../modules/gnome/packages.nix  # gnome packages
-    ../../modules/modules/fonts       # fonts gnome
+    ../../modules/modules/fonts       # fonts
+
+    ../../modules/gnome/extensions.nix# gnome extensions
 
     ../../modules/hyprland            # hyprland packages
 

@@ -59,7 +59,6 @@
             hyprland.nixosModules.default
             {programs.hyprland.enable = true;}
             ./hosts/desktop
-            ./modules/gnome/extensions.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -80,7 +79,6 @@
           modules = [
             ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable nur.overlay ]; })
             ./hosts/vm
-            ./modules/gnome/extensions.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
