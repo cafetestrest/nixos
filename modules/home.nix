@@ -15,7 +15,7 @@ in
       ./gnome/keyboard-shortcuts.nix
       ./gnome/dconf-settings.nix
       # ./gnome/autostart/albert.nix
-      ./gnome/autostart/xpad.nix
+      # ./gnome/autostart/xpad.nix
       ./gnome/autostart/copyq.nix
     ];
 
