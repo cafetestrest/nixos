@@ -24,66 +24,50 @@ in
   networking.hostName = "${networkingHostName}";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "${timezone}";
+  time.timeZone = "${timezone}";  # Set your time zone.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "${defaultLocale}";
+  i18n.defaultLocale = "${defaultLocale}";  # Select internationalisation properties.
   console = {
     font = "${consoleFont}";
     #keyMap = "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = true; # Enable the X11 windowing system.
 
-  # Enable the GNOME Desktop Environment.
+  services.xserver.desktopManager.gnome.enable = true;  # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.settings = {
   # };
-  services.xserver.desktopManager.gnome.enable = true;
-  #services.xserver.displayManager.lightdm.enable = true;
 
-  # Used to get auto login (as I'm unable to enable num lock on boot)
-  # Enable automatic login for the user.
-  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.enable = true;  # Enable automatic login for the user.
   # services.xserver.displayManager.autoLogin.user = "${user}";
 
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  # systemd.services."getty@tty1".enable = false;
+  # systemd.services."getty@tty1".enable = false; # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."autovt@tty1".enable = false;
 
-  # Slows down boot (https://github.dev/Kranzes/nix-config)
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false; # Slows down boot (https://github.dev/Kranzes/nix-config)
   # For faster reboot https://unix.stackexchange.com/questions/448268/change-systemd-stop-job-timeout-in-nixos-configuration
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
   '';
 
-  # Configure keymap in X11 
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-
-  services.xserver = {
+  services.xserver = {  # Configure keymap in X11 
     layout = "us";
     xkbVariant = "";
+    # xkbVariant = {
+    #   "eurosign:e";
+    #   "caps:escape" # map caps to escape.
+    # };
   };
 
-  # Enable sound with pipewire.
-  sound.enable = true;
+  sound.enable = true;  # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -102,15 +86,10 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;  # Allow unfree packages
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
@@ -142,16 +121,6 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  #required for gsconnect gnome extension to work properly (added 2-apr-2023)
-  networking.firewall.allowedTCPPortRanges = [
-    # KDE Connect
-    { from = 1714; to = 1764; }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    # KDE Connect
-    { from = 1714; to = 1764; }
-  ];
 
   #allow usage of unprivileged ports
   #boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0
