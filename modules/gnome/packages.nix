@@ -41,7 +41,7 @@ in
     gnome.gnome-themes-extra  #for building orchis theme (with sassc)
     gnome.dconf-editor        #gnome dconf editor app
 
-    numlockx                  #get numlock enabled on login (need to find how to enable it on gdm)
+    # numlockx                  #get numlock enabled on login (need to find how to enable it on gdm)
     apple-cursor
   ];
 }

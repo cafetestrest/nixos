@@ -23,7 +23,7 @@ in
       qbittorrent         #torrent application
       playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
       notify-desktop      #notifications from terminal
-      headsetcontrol
+      # headsetcontrol      #used to retrieve battery percentage from headset
       librewolf           #firefox browser
       baobab
     ];
@@ -44,8 +44,8 @@ in
     unzip
     # teamviewer
     # anydesk
-    rnix-lsp
-    nixpkgs-fmt
+    # rnix-lsp
+    nixpkgs-fmt               #Nix code formatter for nixpkgs
     tldr
   ];
 
