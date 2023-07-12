@@ -152,6 +152,13 @@ window#waybar.chromium {
     /* color: @white; */
 }
 
+#disk {
+    padding: 1px 0 0px 0;
+    margin: 4px 3px 5px 3px;
+    color: @white;
+    font-family: "JetBrainsMono Nerd Font", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+}
+
 #cpu,
 #custom-cpu,
 #memory,
@@ -372,3 +379,4 @@ tooltip {
     /* background-color: #bd93f9; */
     /* padding: 100px; */
 }
+/* top/right/bottom/left */

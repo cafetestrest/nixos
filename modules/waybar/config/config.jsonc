@@ -30,6 +30,7 @@
         // "cpu",
         // "memory",
         "custom/memory",
+        "disk",
         "custom/note",
         "custom/nightlight",
         "custom/clipboard",
@@ -173,6 +174,13 @@
         "exec": "echo \"<span font='Font Awesome 5 Free 9'>︁</span>\" $(free --giga -h | grep 'Mem' | awk '{print $3}')",
         "exec-if": "sleep 2",
         "tooltip": false
+    },
+    "disk": {
+        "format": " {percentage_used}%",
+        // "format": " {percentage_used}% ({free})",
+        "tooltip": true,
+        "on-click-right": "terminator",
+        "interval": 2
     },
     "custom/note": {
         "text": "Notes",
@@ -381,12 +389,6 @@
                 "直"
             ]
         },
-        "interval": 2
-    },
-    "disk": {
-        "format": " {percentage_used}% ({free})",
-        "tooltip": true,
-        "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
         "interval": 2
     },
 }
