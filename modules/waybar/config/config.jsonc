@@ -14,7 +14,7 @@
     // "margin-right": 10,
     "modules-left": [
         "custom/menu",
-        "custom/hostname",
+        // "custom/hostname",
         "wlr/taskbar",
         "wlr/workspaces",
     ],
@@ -176,8 +176,8 @@
         "tooltip": false
     },
     "disk": {
-        "format": " {percentage_used}%",
         // "format": " {percentage_used}% ({free})",
+        "format": " {percentage_used}%",
         "tooltip": true,
         "on-click-right": "terminator",
         "interval": 2
