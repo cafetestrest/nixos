@@ -206,7 +206,7 @@
     "custom/clipboard": {
         "text": "Clipboard",
         "format": "",
-        "on-click": "copyq menu",
+        "on-click": "hyprctl dispatch movecursor 3550 260 && hyprctl dispatch exec copyq menu",
     },
     "custom/screenshot": {
         "text": "Screenshot",
