@@ -64,6 +64,7 @@
         // "tooltip": "echo $(cat /etc/os-release | grep PRETTY_NAME | cut -d \"' -f2)",
         // "on-click": "wofi -S drun -x 10 -y 10 -W 25% -H 60%",
         "on-click": "rofi -show drun -config ~/.config/rofi/spotlight.rasi",
+        "tooltip": false,
         // "exec": "echo menu",
         "format": ""
     },
@@ -151,6 +152,7 @@
         "on-click": "~/.config/waybar/scripts/battery.sh",
         "format": "{}",
         "return-type": "json",
+        "tooltip": false,
         "interval": 30,
     },
     "custom/cpu": {
@@ -206,16 +208,19 @@
     "custom/clipboard": {
         "text": "Clipboard",
         "format": "",
+        "tooltip": false,
         "on-click": "hyprctl dispatch movecursor 3550 260 && hyprctl dispatch exec copyq menu",
     },
     "custom/screenshot": {
         "text": "Screenshot",
         "format": "",
+        "tooltip": false,
         "on-click": "~/.config/waybar/scripts/screenshot.sh",
         "on-click-right": "~/.config/waybar/scripts/screenshot.sh 1",
     },
     "custom/colorpicker": {
         "format": "󰈊",
+        "tooltip": false,
         "on-click": "hyprpicker -a -n",
         "on-click-right": "hyprpicker -a",
     },
