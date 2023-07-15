@@ -29,7 +29,8 @@
 
     "org/gnome/desktop/wm/preferences" = {
       #titlebar-font = "Ubuntu Bold 11";
-      button-layout = "close,minimize,maximize:appmenu";
+      # button-layout = "close,minimize,maximize:appmenu";
+      button-layout = "close,minimize:appmenu";
       action-double-click-titlebar = "none";
     };
 
