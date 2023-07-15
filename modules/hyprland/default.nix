@@ -45,6 +45,12 @@ in
         source = ./config/scripts/startup.sh;
         executable = true;
       };
+
+      #swayidle script
+      ".config/hypr/scripts/idle.sh" = {
+        source = ./config/scripts/idle.sh;
+        executable = true;
+      };
     };
   };
 
