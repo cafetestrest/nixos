@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 
-# Check if media is playing
-status=$(playerctl status 2> /dev/null)
+function idle_action() {
+    # Check if media is playing
+    status=$(playerctl status 2> /dev/null)
 
-function sespend() {
-    systemctl suspend
-}
+    function sespend() {
+        systemctl suspend
+    }
 
-function lock() {
-    gtklock -d
-}
+    function lock() {
+        gtklock -d
+    }
 
-if [ "$status" != "Playing" ]; then
+    if [ "$status" != "Playing" ]; then
 
-    if [ "$#" -eq  "0" ]
-    then
-        lock
-    else
-        sespend
+        if pgrep -x "gtklock" >/dev/null; then
+            sespend
+        else
+            lock
+        fi
     fi
-fi
+}
+
+idle_action
