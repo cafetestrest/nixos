@@ -33,8 +33,9 @@ setBatteryParams() {
     fi
 }
 
+# old kb symbol: ⌨️
 mb=$(setBatteryParams "$mouseBat" $colorLow $colorMedium $normalColor "🖱 ")
-kb=$(setBatteryParams "$kbBat" $colorLow $colorMedium $normalColor "⌨️ ")
+kb=$(setBatteryParams "$kbBat" $colorLow $colorMedium $normalColor " ")
 hb=$(setBatteryParams "$headsetBat" $colorLow $colorMedium $normalColor "🎧 ")
 
 #spacing
