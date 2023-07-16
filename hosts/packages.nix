@@ -46,6 +46,7 @@ in
     # rnix-lsp
     nixpkgs-fmt               #Nix code formatter for nixpkgs
     tldr
+    distrobox
   ];
 
   programs.fish.enable = true;
