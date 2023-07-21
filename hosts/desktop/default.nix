@@ -7,6 +7,8 @@ let
 in
 {
   imports = [
+    ./amd-gpu.nix                     # configuration for AMD GPU
+
     ../configuration.nix              # shared configuration
     ../packages.nix                   # shared packages
     
