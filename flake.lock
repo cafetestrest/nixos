@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "dongsu8142-nur": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1690037953,
+        "narHash": "sha256-PMjpEtJf75ot3Zg7nBlqpUZnTcc6D70Qkpogn0etBBY=",
+        "owner": "dongsu8142",
+        "repo": "nur",
+        "rev": "d5a988ca09afe67f2209cd1008b075c2553b40db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dongsu8142",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -67,16 +85,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1688177999,
-        "narHash": "sha256-JZ5nk90Ym79b4J593xYb0mI79QxU0efJLuCU3sXDalQ=",
-        "owner": "nixos",
+        "lastModified": 1689995782,
+        "narHash": "sha256-QIAbzRIsRRB69LShQ/z4BVFbIjH8Z8sJ0qOBd9kPHHo=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0de86059128947b2438995450f2c2ca08cc783d5",
+        "rev": "0b411c1e040870e89a3e598437e708979137b665",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.05",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -113,6 +131,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1688177999,
+        "narHash": "sha256-JZ5nk90Ym79b4J593xYb0mI79QxU0efJLuCU3sXDalQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0de86059128947b2438995450f2c2ca08cc783d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
         "lastModified": 1688397006,
@@ -130,9 +164,10 @@
     },
     "root": {
       "inputs": {
+        "dongsu8142-nur": "dongsu8142-nur",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"

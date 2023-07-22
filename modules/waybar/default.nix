@@ -6,7 +6,7 @@ let
 in
 {
   nixpkgs.overlays = [
-   (import ../overlays/waybar.nix)
+    (import ../overlays/waybar.nix)
   ];
 
   environment.systemPackages = with pkgs; [
