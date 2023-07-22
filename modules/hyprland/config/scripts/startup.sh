@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
-function open_apps() {
-    hyprctl dispatch exec "[workspace 1]" chromium
-
-    sleep 0.2
-
-    hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
-
+function swap_around() {
     sleep 1.2
 
     hyprctl dispatch movefocus r
@@ -18,6 +12,16 @@ function open_apps() {
     sleep 0.9
 
     hyprctl dispatch movewindow d
+}
+
+function open_apps() {
+    hyprctl dispatch exec "[workspace 1]" chromium
+
+    sleep 0.2
+
+    hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
+
+    # swap_around
 }
 
 function is_playing_media()
