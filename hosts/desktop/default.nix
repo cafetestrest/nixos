@@ -19,7 +19,6 @@ in
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../modules/docker              # docker, docker-compose and /etc/hosts
     ../../modules/neovim              # neovim and plugins for it
-    ../../modules/ags                 # https://github.com/Aylur/ags
   ];
 
   # Bootloader.

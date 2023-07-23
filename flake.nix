@@ -6,7 +6,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    dongsu8142-nur.url = "github:dongsu8142/nur";
+    ags.url = "github:Aylur/ags";
 
     hyprland = {
       url = github:hyprwm/Hyprland;
@@ -19,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nur, hyprland, home-manager, dongsu8142-nur }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nur, hyprland, home-manager, ags }@inputs:
     let
     inherit (import ./variables.nix)
     user
@@ -54,9 +54,9 @@
       nur = import nur {
         nurpkgs = prev;
         pkgs = prev;
-        repoOverrides = {
-          dongsu8142 = dongsu8142-nur.packages.${prev.system};
-        };
+        # repoOverrides = {
+        #   dongsu8142 = dongsu8142-nur.packages.${prev.system};
+        # };
       };
     };
   in
@@ -64,6 +64,7 @@
     nixosConfigurations = {
       ${user} = lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-stable overlay-nur ]; }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./hosts/desktop

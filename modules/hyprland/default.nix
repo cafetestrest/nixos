@@ -8,8 +8,9 @@ in
   imports = [
     ../waybar                   # top bar
     ../rofi                     # search bar
-    ../swaync                   # notification panel
+    # ../swaync                   # notification panel
     ../gtklock                  # lockscreen
+    ../ags                      # https://github.com/Aylur/ags
   ];
 
   programs.hyprland.enable = true;

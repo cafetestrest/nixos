@@ -11,15 +11,15 @@ in
 
   home-manager.users.${user} = {
     home.file = {
-      # #swaync config
-      # ".config/swaync/config.json" = {
-      #   source = ./config/config.json;
-      # };
+      #swaync config
+      ".config/swaync/config.json" = {
+        source = ./config/config.json;
+      };
 
-      # #swaync style
-      # ".config/swaync/style.css" = {
-      #   source = ./config/style.css;
-      # };
+      #swaync style
+      ".config/swaync/style.css" = {
+        source = ./config/style.css;
+      };
     };
   };
 }

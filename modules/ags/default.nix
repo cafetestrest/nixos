@@ -1,21 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   inherit (import ../../variables.nix)
     user;
 in
 {
-  nixpkgs.overlays = [
-    (final: prev:
-      {
-        ags = prev.callPackage ../overlays/ags { };
-      }
-    )
-  ];
-
   environment.systemPackages = with pkgs; [
-    ags
+    inputs.ags.packages.${pkgs.system}.default      #ags flake
     socat
+    sassc
   ];
 
   home-manager.users.${user} = {
