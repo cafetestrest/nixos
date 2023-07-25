@@ -11,7 +11,7 @@ function toggle {
 		pkill swayidle
 		notify-desktop -r 5556 -u normal "  Swayidle Inactive"
 	else
-        run_swayidle
+        run_swayidle &
 		notify-desktop -r 5556 -u normal "  Swayidle Active"
 	fi
 }
