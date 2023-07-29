@@ -88,6 +88,18 @@ in
         source = ./config/scripts/changemicrophoneoutput.sh;
         executable = true;
       };
+
+      #cpu usage percentage script
+      ".config/waybar/scripts/usagecpu.sh" = {
+        source = ./config/scripts/usagecpu.sh;
+        executable = true;
+      };
+
+      #ram memory usage gb script
+      ".config/waybar/scripts/usagememory.sh" = {
+        source = ./config/scripts/usagememory.sh;
+        executable = true;
+      };
     };
   };
 }
