@@ -26,7 +26,7 @@ window {
 
     location:       center;
     width:          640;
-    border-radius:  8;
+    border-radius:  18;
     border:         1 1 1;
     border-color:   @bg1;
 }
@@ -101,5 +101,5 @@ prompt {
 }
 
 textbox-prompt-colon {
-    background-color: red;
+    /* background-color: red; */
 }
