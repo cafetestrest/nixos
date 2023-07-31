@@ -13,7 +13,7 @@ stdenv.mkDerivation {
       owner = "Aylur";
       repo = "ags";
       rev = "refs/heads/main";
-      sha256 = "sha256-WY4e2q5fThYLFOC/+efM/gOQgLBzuDz61GGFbzKibns=";
+      sha256 = "sha256-IXMF3UXZi0NnyFc7PmhFjmZXZLRwcb2xSboTDFqbu3M=";
       fetchSubmodules = true;
     };
 
