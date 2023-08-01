@@ -16,6 +16,7 @@ dynamicUpdates=0
 UseIcons="True"
 colors="False"
 CityID="True"
+Ags=0
 
 ConfigFile="$HOME/.config/waybar/scripts/weather_sh.rc"
 
@@ -48,6 +49,9 @@ while [ $# -gt 0 ]; do
 option="$1"
     case $option
     in
+    -a) Ags=1
+    shift
+    shift ;;
     -k) apiKey="$2"
     shift
     shift ;;
@@ -150,7 +154,13 @@ while true; do
 
         function get_weather_icon() {
             if [[ $CurrentTime -ge $SunsetTime || $CurrentTime -le $SunriseTime ]]; then
-                icon="☾"
+                icon=$1
+                case $1 in
+                    "☀️") icon="☾" ;;
+                    "🌤") icon="☾" ;;
+                    "🌥") icon="" ;;
+                    "☁") icon="" ;;
+                esac
             else
                 icon=$1
             fi
@@ -637,3 +647,7 @@ tooltip() {
 tooltip
 
 echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
+
+if [ "$Ags" = "1" ];then
+    ags run-js "ags.Service.Weather.setTemperatureWeather(\"$longbob\")"
+fi
