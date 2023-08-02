@@ -6,8 +6,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    # ags.url = "github:Aylur/ags";
-    dongsu8142-nur.url = "github:dongsu8142/nur";
+    ags.url = "github:Aylur/ags";
 
     hyprland = {
       url = github:hyprwm/Hyprland;
@@ -20,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nur, hyprland, home-manager, dongsu8142-nur }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-stable, nur, hyprland, home-manager, ags }@inputs:
     let
     inherit (import ./variables.nix)
     user
@@ -55,9 +54,9 @@
       nur = import nur {
         nurpkgs = prev;
         pkgs = prev;
-        repoOverrides = {
-          dongsu8142 = dongsu8142-nur.packages.${prev.system};
-        };
+        # repoOverrides = {
+        #   test = test-nur.packages.${prev.system};
+        # };
       };
     };
   in

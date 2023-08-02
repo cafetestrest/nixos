@@ -5,17 +5,8 @@ let
     user;
 in
 {
-  nixpkgs.overlays = [
-    (final: prev:
-      {
-        ags = prev.callPackage ../overlays/ags { };
-      }
-    )
-  ];
-
   environment.systemPackages = with pkgs; [
-    # inputs.ags.packages.${pkgs.system}.default      #ags flake
-    ags
+    inputs.ags.packages.${pkgs.system}.default      #ags flake
     socat
     sassc
   ];
