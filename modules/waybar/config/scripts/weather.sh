@@ -649,6 +649,6 @@ tooltip
 echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
 
 if [ "$Ags" = "1" ];then
-    ags run-js "ags.Service.Weather.setTemperatureWeather(\"$longbob\")"
     ags run-js "ags.Service.Weather.setTooltip(\"$weatherDataToPrint\")"
+    ags run-js "ags.Service.Weather.setTemperatureWeather(\"$longbob\")"
 fi
