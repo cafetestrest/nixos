@@ -156,10 +156,11 @@ while true; do
             if [[ $CurrentTime -ge $SunsetTime || $CurrentTime -le $SunriseTime ]]; then
                 icon=$1
                 case $1 in
-                    "☀️") icon="☾" ;;
-                    "🌤") icon="☾" ;;
+                    "☀️") icon="🌑" ;;
+                    "🌤") icon="🌕" ;;
                     "🌥") icon="" ;;
                     "☁") icon="" ;;
+                    "🌦") icon="" ;;
                 esac
             else
                 icon=$1
@@ -194,10 +195,10 @@ while true; do
                 # 50n) icon="⛆";;
                 01*) get_weather_icon "☀️";;
                 02*) get_weather_icon "🌤";;
-                03*) get_weather_icon "🌥";;
+                03*) get_weather_icon "⛅";;
                 04*) get_weather_icon "☁";;
-                09*) get_weather_icon "🌧";;
-                10*) get_weather_icon "🌦";;
+                09*) get_weather_icon "🌦";;
+                10*) get_weather_icon "🌧️";;
                 11*) get_weather_icon "🌩";;
                 13*) get_weather_icon "🌨";;
                 50*) get_weather_icon "🌫";;
