@@ -100,6 +100,17 @@ in
         source = ./config/scripts/usagememory.sh;
         executable = true;
       };
+
+      #ags reset bt status
+      ".config/waybar/scripts/ags-bt-reset.sh" = {
+        source = ./config/scripts/ags-bt-reset.sh;
+        executable = true;
+      };
+
+      #ags reset bt status - js file
+      ".config/waybar/scripts/ags-bt-reset.js" = {
+        source = ./config/scripts/ags-bt-reset.js;
+      };
     };
   };
 }
