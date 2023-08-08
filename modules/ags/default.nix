@@ -9,6 +9,7 @@ in
     inputs.ags.packages.${pkgs.system}.default      #ags flake
     socat
     sassc
+    imagemagick
   ];
 
   home-manager.users.${user} = {
