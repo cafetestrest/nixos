@@ -1,0 +1,14 @@
+diff --git a/makefile b/makefile
+--- a/makefile	
++++ b/makefile	(date 1691852855665)
+@@ -4,8 +4,8 @@
+ # Makefile
+ 
+ NAME := gtklock
+-MAJOR_VERSION := 3
+-MINOR_VERSION := 0
++MAJOR_VERSION := 2
++MINOR_VERSION := 1
+ MICRO_VERSION := 0
+ 
+ PREFIX = /usr/local

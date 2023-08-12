@@ -16,6 +16,10 @@ in
           rev = "refs/heads/main";
           sha256 = "sha256-b9wB7cCvFfHWxNSJJDQceSjHMivdXwAghM8/BKLQOQk=";
         };
+
+        patches = [
+          ./config/patch.patch
+        ];
       });
     })
   ];
@@ -35,12 +39,12 @@ in
         source = ./config/gtklock/gtklock.ui;
       };
 
-# ; modules=/run/current-system/sw/lib/gtklock/powerbar-module.so;/run/current-system/sw/lib/gtklock/userinfo-module.so
 # ; time-format=%a %b %-d  %R:%S
     ".config/gtklock/config.ini".text = ''
 [main]
+modules=/run/current-system/sw/lib/gtklock/powerbar-module.so;/run/current-system/sw/lib/gtklock/userinfo-module.so
 time-format=%R
-layout=${homeDirectory}/.config/gtklock/gtklock.ui
+layout=/home/bajic/.config/gtklock/gtklock.ui
 
 [userinfo]
 under-clock=true

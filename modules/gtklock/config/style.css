@@ -40,5 +40,29 @@ window {
   border-radius: 18px;
   padding: 2px;
 
-  margin: 45rem 0;
+  margin-bottom: 45rem;
+}
+
+#user-image {
+  margin-top: 35rem;
+}
+
+#powerbar-box {
+  padding-bottom: 3em;
+}
+
+#poweroff-button {
+  margin: 20px;
+}
+
+#reboot-button {
+  margin: 20px;
+}
+
+#suspend-button {
+  margin: 20px;
+}
+
+#logout-button {
+  margin: 20px;
 }
