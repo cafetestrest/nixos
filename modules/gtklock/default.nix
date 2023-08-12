@@ -27,6 +27,7 @@ in
 
   home-manager.users.${user} = {
     home.file = {
+      ## todo remove hardcoded path
       ".config/gtklock/config.ini" = {
         source = ./config/gtklock/config.ini;
       };
