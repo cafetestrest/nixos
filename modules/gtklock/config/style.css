@@ -1,120 +1,44 @@
-@define-color color0 #33333f;
-@define-color color1 #ff568e;
-@define-color color2 #64de83;
-@define-color color3 #efff73;
-@define-color color4 #73a9ff;
-@define-color color5 #946ff7;
-@define-color color6 #62c6da;
-@define-color color7 #dedeef;
-
-@define-color bg #101017;
-@define-color bg-alt #1f222e;
-@define-color fg #bdc3c7;
-
-* {
-  all: unset;
-  font-family: "Ubuntu", "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+window {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../Public/wall/lockscreen.png");
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  /* background-position: center; */
 }
 
-window {
-  /* background-color: @bg; */
-  /* background-image: url("/home/bajic/Public/wall/wall.png"); */
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../Public/wall/lockscreen.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+.background {
+  background-color: alpha(#000000, 0.5);
 }
 
 #window-box {
-  /* background-color: alpha(@bg, 0.96); */
-  /* border: 1px solid @color0; */
-  /* box-shadow: 10px 10px 0px @bg; */
-  padding: 0 3em;
+  padding: 40px 64px;
 }
 
 #clock-label {
-  min-width: 320px;
-  /* background-color: alpha(@color4, 0.1); */
-  /* color: @color4; */
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 18pt;
-  padding: 10px 30px;
-  margin-bottom: 10px;
-  /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
-
-  /* text-shadow:
-  -1px -1px 0 #000,
-   0   -1px 0 #000,
-   1px -1px 0 #000,
-   1px  0   0 #000,
-   1px  1px 0 #000,
-   0    1px 0 #000,
-  -1px  1px 0 #000,
-  -1px  0   0 #000; */
-
-  /* border-radius: 0 0 10px 10px;
-  border: 1px solid alpha(@color4, 0.5);
-  border-top: 0; */
+  font-size: 240px;
+  font-weight: bold;
 }
 
-/* hide "Password:" label */
 #input-label {
   font-size: 0;
 }
 
-#user-name {
-  font-size: 16pt;
+#unlock-button {
+  border-radius: 50%;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.4);
 }
 
 #input-field {
-  border-radius: 12px;
-  padding: 15px 15px;
-  border: 1px solid @color0;
-  background-color: alpha(gray, 0.7);
+  box-shadow: none;  
 }
 
-#warning-label,
-#error-label,
-#unlock-button {
-  margin-top: 12px;
-  padding: 10px 2rem;
-  margin-bottom: 20px;
-}
+#window-pw-box {
+  border: 2px solid alpha(#a7a8a8, 0.9);
+  background-color: alpha(#a7a8a8, 0.9);
+  border-radius: 18px;
+  padding: 2px;
 
-#unlock-button {
-  border-radius: 12px;
-  background-color: alpha(@color4, 0.1);
-  color: @color4;
-  /* border-radius: 25px; */
-  border: 1px solid alpha(@color4, 0.5);
-}
-
-#input-label {
-  /* border: 1px solid red; */
-}
-
-#clock-label {
-  /* border: 1px solid red; */
-}
-
-#powerbar-box {
-  /* border: 1px solid red; */
-  padding-bottom: 3em;
-}
-
-#poweroff-button {
-  margin: 20px;
-}
-
-#reboot-button {
-  margin: 20px;
-}
-
-#suspend-button {
-  margin: 20px;
-}
-
-#logout-button {
-  margin: 20px;
+  margin: 45rem 0;
 }
