@@ -2,7 +2,8 @@
 
 let
   inherit (import ../../variables.nix)
-    user;
+    user
+    homeDirectory;
 in
 {
   nixpkgs.overlays = [
@@ -27,16 +28,30 @@ in
 
   home-manager.users.${user} = {
     home.file = {
-      ## todo remove hardcoded path
-      ".config/gtklock/config.ini" = {
-        source = ./config/gtklock/config.ini;
-      };
       ".config/gtklock/style.css" = {
         source = ./config/gtklock/style.css;
       };
       ".config/gtklock/gtklock.ui" = {
         source = ./config/gtklock/gtklock.ui;
       };
+
+# ; modules=/run/current-system/sw/lib/gtklock/powerbar-module.so;/run/current-system/sw/lib/gtklock/userinfo-module.so
+# ; time-format=%a %b %-d  %R:%S
+    ".config/gtklock/config.ini".text = ''
+[main]
+time-format=%R
+layout=${homeDirectory}/.config/gtklock/gtklock.ui
+
+[userinfo]
+under-clock=true
+image-size=128
+no-round-image=false
+horizontal-layout=false
+
+[powerbar]
+show-labels=false
+linked-buttons=false
+    '';
     };
   };
 
