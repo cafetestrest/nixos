@@ -17,4 +17,10 @@ done < $documentsDir/$noteFile
 
 note=${note::-2}
 
-echo "{\"text\":\"\", \"tooltip\":\"${note}\"}"
+firstArg="$(echo "$1")"
+
+if [[ $firstArg == "ags" ]]; then
+    ags run-js "ags.Service.Note.setNote('${note}')"
+else
+    echo "{\"text\":\"\", \"tooltip\":\"${note}\"}"
+fi
