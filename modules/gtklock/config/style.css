@@ -39,12 +39,14 @@ window {
   background-color: alpha(#a7a8a8, 0.9);
   border-radius: 18px;
   padding: 2px;
-
-  margin-bottom: 45rem;
 }
 
 #user-image {
   margin-top: 35rem;
+}
+
+#error-label {
+  margin-bottom: 45rem;
 }
 
 #powerbar-box {

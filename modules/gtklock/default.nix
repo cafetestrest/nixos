@@ -44,7 +44,7 @@ in
 [main]
 modules=/run/current-system/sw/lib/gtklock/powerbar-module.so;/run/current-system/sw/lib/gtklock/userinfo-module.so
 time-format=%R
-layout=./gtklock.ui
+layout=${homeDirectory}/.config/gtklock/gtklock.ui
 
 [userinfo]
 under-clock=true
