@@ -9,10 +9,10 @@ function toggle {
 	if pgrep "swayidle" > /dev/null
 	then
 		pkill swayidle
-		notify-desktop -r 5556 -u normal "  Swayidle Inactive"
+		notify-send -r 5556 -u normal "  Swayidle Inactive"
 	else
         run_swayidle &
-		notify-desktop -r 5556 -u normal "  Swayidle Active"
+		notify-send -r 5556 -u normal "  Swayidle Active"
 	fi
 }
 

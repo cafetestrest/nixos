@@ -21,7 +21,7 @@ in
       jetbrains.phpstorm  #phpstorm PHP editor
       qbittorrent         #torrent application
       playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
-      notify-desktop      #notifications from terminal
+      libnotify           #notifications from terminal
       # headsetcontrol      #used to retrieve battery percentage from headset
       librewolf           #firefox browser
       baobab

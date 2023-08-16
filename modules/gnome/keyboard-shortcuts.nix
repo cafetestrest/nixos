@@ -70,14 +70,14 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
       binding = "<Super>Page_Up";
       command = ''
-        sh -c 'wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-desktop "Audio Output changed to HDMI"'
+        sh -c 'wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"'
       '';
       name = "Audio HDMI (win + pgup)";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {
       binding = "<Super>Page_Down";
       command = ''
-        sh -c 'wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-desktop "Audio Output changed to Headset"'
+        sh -c 'wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"'
       '';
       name = "Audio HDMI (win + pgup)";
     };
