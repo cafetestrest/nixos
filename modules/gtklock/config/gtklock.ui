@@ -46,6 +46,7 @@
 										<property name="placeholder-text">Enter Password</property>
 										<property name="width-request">200</property>
 										<property name="visibility">0</property>
+										<property name="has-focus">1</property>
 										<property name="caps-lock-warning">0</property>
 										<property name="input-purpose">password</property>
 										<property name="secondary-icon-name">view-reveal-symbolic</property>
