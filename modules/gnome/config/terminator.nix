@@ -17,8 +17,9 @@
   help = <Primary>F1
 [profiles]
   [[default]]
+    font = JetBrains Mono Regular 10
     show_titlebar = False
-    use_theme_colors = True
+    use_system_font = False
     copy_on_selection = True
 [layouts]
   [[default]]
