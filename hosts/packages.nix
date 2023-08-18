@@ -11,7 +11,7 @@ in
       # firefox             #firefox browser
       #thunderbird
       chromium            #chromium browser
-      vscodium            #vscode alternative
+      stable.vscodium            #vscode alternative
       copyq               #copy/paste things
       #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
       #wl-clipboard - maybe as well?
