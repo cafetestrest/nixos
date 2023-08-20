@@ -116,10 +116,6 @@ else
 fi
 lastUpdateTime=$(($(date +%s) -600))
 
-# echo $data
-# echo data
-# exit 1
-
 while true; do
     lastfileupdate=$(date -r $dataPath +%s)
     if [ $(($(date +%s)-$lastfileupdate)) -ge 600 ];then
@@ -175,25 +171,6 @@ while true; do
             icons=$(echo $data | jq -r .weather[].icon | tr '\n' ' ')
             iconval=${icons%?}
             case $iconval in
-                # 01d) icon="☼";; # looks like a snowflake
-                # 01d) icon="☀️";;
-                # 01n) icon="☾";;
-                # 02d) icon="⛅";;
-                # 02n) icon="☁";;
-                # 03d) icon="☁";;
-                # 03n) icon="☁";;
-                # 04d) icon="☁";;
-                # 04n) icon="☁";;
-                # 09d) icon="☔";;
-                # 09n) icon="☔";;
-                # 10d) icon="☂";;
-                # 10n) icon="☂";;
-                # 11d) icon="⚡";;
-                # 11n) icon="⚡";;
-                # 13d) icon="❄";;
-                # 13n) icon="❄";;
-                # 50d) icon="⛆";;
-                # 50n) icon="⛆";;
                 01*) get_weather_icon "☀️";;
                 02*) get_weather_icon "🌤";;
                 03*) get_weather_icon "⛅";;
@@ -298,47 +275,7 @@ while true; do
         fi
     fi
     AsOf=$(date +"%Y-%m-%d %R" -d @$lastfileupdate) 
-    if [ "$OpenBox" = "False" ];then
-        if [ "$HTML" = "False" ];then
-            if [ "$Conky" = "False" ];then
-                Terminal="True"
-            fi
-        fi
-    fi
-    if [ "$Terminal" = "True" ];then
-    # if [ "$Terminal" = "True" ];then
-        if [ "$colors" = "True" ]; then
-            echo "Station: $Station, $Country $Lat / $Long"
-            echo "As Of: ${YELLOW}$AsOf ${RESTORE}"  
-            echo "Right Now: ${CYAN}$icon $LongWeather${RESTORE}"
-            #echo "$icon $ShortWeather"
-            echo "Temp: ${CYAN}$temperature°${degreeCharacter^^}${RESTORE}"
-            if [ "$FeelsLike" = "1" ];then
-                echo "Feels Like: ${RED}$FeelsLikeTemp°${degreeCharacter^^}${RESTORE}"
-            fi
-            echo "Pressure: ${GREEN}$pressure$pressureunit${RESTORE}"
-            if [ "$UseIcons" = "True" ];then
-                echo -e \\u$winddir "${MAGENTA}$WindSpeed$windunit${RESTORE} Gusts: ${MAGENTA}$WindGusts$windunit${RESTORE}"
-            else
-                echo "Wind: ${MAGENTA}$WindSpeed$windunit${RESTORE} Gusts: ${MAGENTA}$WindGusts$windunit${RESTORE}"
-            fi
-            echo "Humidity: ${GREEN}$Humidity%${RESTORE}"
-            echo "Cloud Cover: ${GREEN}$CloudCover%${RESTORE}"        
-        else
-            echo "Station: $Station, $Country $Lat / $Long"
-            echo "As Of: $AsOf "  
-            echo "Right Now: $icon $LongWeather"
-            #echo "$icon $ShortWeather"
-            echo "Temp: $temperature°${degreeCharacter^^}"
-            if [ "$FeelsLike" = "1" ];then
-                echo "Feels Like: $FeelsLikeTemp°${degreeCharacter^^}"
-            fi
-            echo "Pressure: $pressure$pressureunit"
-            echo -e \\u$winddir "$WindSpeed$windunit Gusts: $WindGusts$windunit"
-            echo "Humidity: $Humidity%"
-            echo "Cloud Cover: $CloudCover%"
-        fi
-    fi
+
     if [ "$Conky" = "True" ]; then
 
         if [ "$colors" = "True" ]; then
@@ -353,62 +290,14 @@ while true; do
             fi
 
         fi
-        # echo "$bob"
     fi
 
-    if [ "$OpenBox" = "True" ]; then
-        echo '<openbox_pipe_menu>' 
-        echo '<separator label="Weather" />' 
-        printf '<item label="Station: %s, %s" />\n' "$Station" "$Country"  
-        printf '<item label="As of %s" />\n' "$AsOf" 
-        printf '<item label="Now: %s %s" />\n' "$icon" "$LongWeather" 
-        printf '<item label="Temp: %s%s" />\n' "$temperature" "°${degreeCharacter^^}" 
-        if [ "$FeelsLike" = "1" ];then
-            printf '<item label="Feels Like: %s%s" />\n' "$FeelsLikeTemp" "°${degreeCharacter^^}" 
-        fi
-        printf '<item label="Pressure: %s%s" />\n' "$pressure" "$pressureunit" 
-        printf '<item label="Wind: %s%s Gusts: %s%s" />\n'  "$WindSpeed" "$windunit" "$WindGusts" "$windunit" 
-        printf '<item label="Humidity: %s%%" />\n' "$Humidity" 
-        printf '<item label="Cloud Cover: %s%%" />\n' "$CloudCover" 
-        echo '</openbox_pipe_menu>' 
-    fi
-    if [ "$HTML" = "True" ];then
-        echo "Station: $Station, $Country $Lat / $Long <br  />"  
-        echo "As Of: $AsOf <br  />"  
-        echo "Current Conditions: $icon $LongWeather <br  />" 
-        #echo "$icon $ShortWeather" 
-        echo "Temp: $temperature °${degreeCharacter^^} <br  />" 
-        if [ "$FeelsLike" = "1" ];then
-            echo "Feels Like: $FeelsLikeTemp °${degreeCharacter^^} <br  />"
-        fi
-        echo "Pressure: $pressure $pressureunit <br  />" 
-        echo -e \\u$winddir "$WindSpeed$windunit Gusts: $WindGusts$windunit <br  />" 
-        echo "Humidity: $Humidity% <br  />" 
-        echo "Cloud Cover: $CloudCover% <br  />"     
-    fi
     if [ $dynamicUpdates -eq 0 ];then
         break
-    fi    
-
-
+    fi
 done
-# echo "$temperature°${degreeCharacter^^} $icon"
 
-txt1=$(echo "Station: $Station, $Country $Lat / $Long")
-txt2=$(echo "As Of: ${YELLOW}$AsOf ${RESTORE}")
-txt3=$(echo "Right Now: ${CYAN}$icon $LongWeather${RESTORE}")
-txt4=$(echo "Temp: ${CYAN}$temperature°${degreeCharacter^^}${RESTORE}")
-# txt5=$(echo "Feels Like: ${RED}$FeelsLikeTemp°${degreeCharacter^^}${RESTORE}")
-txt6=$(echo "Pressure: ${GREEN}$pressure$pressureunit${RESTORE}")
-# if [ "$UseIcons" = "True" ];then
-# else
-# echo "Wind: ${MAGENTA}$WindSpeed$windunit${RESTORE} Gusts: ${MAGENTA}$WindGusts$windunit${RESTORE}321"
-# fi
-txt7=$(echo -e \\u$winddir "${MAGENTA}$WindSpeed$windunit${RESTORE} Gusts: ${MAGENTA}$WindGusts$windunit${RESTORE}")
-txt8=$(echo "Humidity: ${GREEN}$Humidity%${RESTORE}")
-txt9=$(echo "Cloud Cover: ${GREEN}$CloudCover%${RESTORE}")
-
-#round to only 1 decimal - custom
+#round to only 1 decimal
 if ! [[ "$temperature" =~ ^(-)?[0-9]+$ ]]
 then
     bobTemperature=$(printf "%.1f" $temperature)
@@ -422,14 +311,30 @@ else
     bobTemperature=$temperature
 fi
 
-# longbob=$(echo "$icon $LongWeather $bobTemperature°${degreeCharacter^^}")
 longbob=$(echo "$icon $bobTemperature°${degreeCharacter^^}")
+
+function get_weather_icon() {
+    weatherHour=$(date +"%-H" -d @${NixDate[$i]})
+
+    if [[ $weatherHour -ge $SunsetHour || $weatherHour -le $SunriseHour ]]; then
+        case $1 in
+            "☀️") icon="🌑" ;;
+            "🌤") icon="🌕" ;;
+            "⛅") icon="🌑" ;;
+            "🌥") icon="" ;;
+            "☁") icon="" ;;
+            "🌦") icon="" ;;
+        esac
+    else
+        icon=$1
+    fi
+}
 
 tooltip() {
     if [ -z "${CachePath}" ];then 
-        dataPath="/tmp/fore2-$defaultLocation.json"
+        dataPath="/tmp/ags-$defaultLocation.json"
     else
-        dataPath="${CachePath}/fore2-$defaultLocation.json"
+        dataPath="${CachePath}/ags-$defaultLocation.json"
     fi
 
     if [ ! -e $dataPath ];then
@@ -463,15 +368,10 @@ tooltip() {
                 data=$(curl -s "http://api.openweathermap.org/data/2.5/forecast?q=$defaultLocation&units=metric&appid=$apiKey")
             fi
             echo $data > $dataPath
-        # else
-        #     if [ "$Conky" != "True" ];then 
-        #         echo "Cache age: $(($(date +%s)-$lastfileupdate)) seconds."
-        #     fi
         fi
 
         if [ $(($(date +%s)-$lastUpdateTime)) -ge 600 ]; then
             lastUpdateTime=$(date +%s)
-            
 
             ########################################################################
             # Location Data
@@ -481,6 +381,15 @@ tooltip() {
             #Long=$(echo $data | jq -r .coord.lon)
             #Country=$(echo $data | jq -r .sys.country)
             NumEntries=$(echo $data |jq -r .cnt)
+
+            #sunset calculation
+            SunsetTime=$(echo $data | jq -r .city.sunset)
+            SunriseTime=$(echo $data | jq -r .city.sunrise)
+            SunsetHour=$(date +"%-H" -d @$SunsetTime)
+            SunriseHour=$(date +"%-H" -d @$SunriseTime)
+            CurrentTime=$(date +%s)
+            Tomorrow=""
+            isTomorrow="False"
             let i=0
         
             while [ $i -lt $NumEntries ]; do 
@@ -493,19 +402,21 @@ tooltip() {
                     icons[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .icon | tr '\n' ' ')
                     iconval=${icons[$i]%?}
                     case $iconval in
-                        01*) icon[$i]="☀️";;
-                        02*) icon[$i]="🌤";;
-                        03*) icon[$i]="🌥";;
-                        04*) icon[$i]="☁";;
-                        09*) icon[$i]="🌧";;
-                        10*) icon[$i]="🌦";;
-                        11*) icon[$i]="🌩";;
-                        13*) icon[$i]="🌨";;
-                        50*) icon[$i]="🌫";;
+                        01*) get_weather_icon "☀️";;
+                        02*) get_weather_icon "🌤";;
+                        03*) get_weather_icon "⛅";;
+                        04*) get_weather_icon "☁";;
+                        09*) get_weather_icon "🌦";;
+                        10*) get_weather_icon "🌧️";;
+                        11*) get_weather_icon "🌩";;
+                        13*) get_weather_icon "🌨";;
+                        50*) get_weather_icon "🌫";;
                     esac
                 else
-                    icon[$i]=""
+                    icon=""
                 fi
+                icon[$i]=$icon
+
                 ShortWeather[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .main | tr '\n' ' '| awk '{$1=$1};1' )
                 LongWeather[$i]=$(echo $data | jq -r .list[$i].weather[] | jq -r .description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
                 Humidity[$i]=$(echo $data | jq -r .list[$i].main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
@@ -534,6 +445,8 @@ tooltip() {
                 #     temperature[$i]=$(echo "scale=2; 32+1.8*${tempinc[$i]}" | bc)
                 # fi
                 tempTemperature=$(echo $data | jq -r .list[$i].main.temp | tr '\n' ' ')
+                minTemperature=$(echo $data | jq -r .list[$i].main.temp_min | tr '\n' ' ')
+                maxTemperature=$(echo $data | jq -r .list[$i].main.temp_max | tr '\n' ' ')
 
                 #round to only 1 decimal - custom
                 if ! [[ "$tempTemperature" =~ ^(-)?[0-9]+$ ]]
@@ -550,107 +463,81 @@ tooltip() {
                 fi
 
                 temperature[$i]=$tempTemperature2
+                minTemp[$i]=$(printf '%.*f\n' 0 $minTemperature)
+                maxTemp[$i]=$(printf '%.*f\n' 0 $maxTemperature)
 
                 i=$((i + 1))
             done
         fi
-
 
         AsOf=$(date +"%Y-%m-%d %R" -d @$lastfileupdate) 
         TomorrowDate=$(date -d '+1 day' +"%s")
         NowHour=$(date +"%-H")
+        NowDayOfWeek=$(date +"%A")
         NowLow=$((NowHour + 1))
         NowHigh=$((NowHour - 1))
-        if [ "$OpenBox" = "False" ];then
-            if [ "$HTML" = "False" ];then
-                if [ "$Conky" = "False" ];then
-                    Terminal="True"
+        weatherData='';
+
+        let i=0
+        while [ $i -lt 40 ]; do
+            ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
+            hourFromDate=$(date +"%Hh" -d @${NixDate[$i]})
+            justDayOfTheWeek=$(date +"%A" -d @${NixDate[$i]})
+            dayOfWeek=$justDayOfTheWeek
+            weatherTime=$(date +%s -d @${NixDate[$i]})
+            if [[ $justDayOfTheWeek == $NowDayOfWeek ]]
+            then
+                justDayOfTheWeek='Today'
+            else
+                if [[ $isTomorrow == 'False' ]]
+                then
+                    isTomorrow='True'
+                    Tomorrow=$justDayOfTheWeek
                 fi
             fi
-        fi
-    
-        previousDayFromDate='-1';
 
-        if [ "$Conky" = "True" ];then
-            # if [ "$colors" = "True" ]; then
-            #     echo "Forecast for $Station as of: ${YELLOW}$AsOf${RESTORE} "
-            # else
-            #     echo "Forecast for $Station as of: $AsOf "  
-            # fi
-            let i=0
-            while [ $i -lt 40 ]; do
-
-                CastDate=$(date +"%s" -d @${NixDate[$i]})
-                if [ $CastDate -le $TomorrowDate ]; then
-                    ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                    hourFromDate=$(date +"%Hh" -d @${NixDate[$i]})
-                    dayAndMonth=$(date +"%A %e %B" -d @${NixDate[$i]})
-
-                    if [ "$previousDayFromDate" != "$dayAndMonth" ]; then
-                        if [ $i -eq 0 ]; then
-                            weatherDataToPrint+="$dayAndMonth\n"
-                        else
-                            weatherDataToPrint+="\n$dayAndMonth\n"
-                        fi
-                    fi
-
-                    if [ "$colors" = "True" ]; then
-                        weatherDataToPrint+=$(printf "${YELLOW}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Wind:${MAGENTA}%-6s${RESTORE} Humidity:${GREEN}%-4s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$hourFromDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${WindSpeed[$i]}$windunit" "${Humidity[$i]}%" "${CloudCover[$i]}%")
-                    else
-                        weatherDataToPrint+=$(printf "%-5s %-2s%-6s %-14s %-14s %-14s %-1s\n" "$hourFromDate:" "${temperature[$i]}°${degreeCharacter^^} " "${icon[$i]}" "${LongWeather[$i]}" "Wind:${WindSpeed[$i]}$windunit" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%\n")
-                    fi
-                else
-                    CastHour=$(date +"%-H" -d @${NixDate[$i]})
-                    if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
-                        ShortDate=$(date +"%m/%d@%R" -d @${NixDate[$i]})
-                        hourFromDate=$(date +"%Hh" -d @${NixDate[$i]})
-                        dayAndMonth=$(date +"%A %e %B" -d @${NixDate[$i]})
-
-                        if [ "$previousDayFromDate" != "$dayAndMonth" ]; then
-                            if [ $i -eq 0 ]; then
-                                weatherDataToPrint+="$dayAndMonth\n"
-                            else
-                                weatherDataToPrint+="\n$dayAndMonth\n"
-                            fi
-                        fi
-
-                        if [ "$colors" = "True" ]; then
-                            weatherDataToPrint+=$(printf "${RED}%-11s${RESTORE}: ${CYAN}%-2s%-16s${RESTORE} Temp:${CYAN}%-6s${RESTORE} Wind:${MAGENTA}%-6s${RESTORE} Humidity:${GREEN}%-4s${RESTORE} Clouds:${GREEN}%-4s${RESTORE}\n" "$hourFromDate" "${icon[$i]} " "${LongWeather[$i]}" "${temperature[$i]}°${degreeCharacter^^}" "${WindSpeed[$i]}$windunit" "${Humidity[$i]}%" "${CloudCover[$i]}%")
-                        else
-                            weatherDataToPrint+=$(printf "%-5s %-2s%-6s %-14s %-14s %-14s %-1s\n" "$hourFromDate:" "${temperature[$i]}°${degreeCharacter^^} " "${icon[$i]}" "${LongWeather[$i]}" "Wind:${WindSpeed[$i]}$windunit" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%\n")
-                        fi
-                    fi
-                fi            
-
-                # echo "previousDayFromDate: $previousDayFromDate"
-                # echo "dayAndMonth: $dayAndMonth"
-                # echo "ShortDate: $ShortDate"
-                # echo "CastDate: $CastDate"
-
-                if [ $i -eq 0 ]; then
-                    firstWeatherDataToPrint=$weatherDataToPrint
-                fi
-
-                previousDayFromDate=$dayAndMonth
-
-                i=$((i + 1))
-            done
+            if [[ $justDayOfTheWeek == $Tomorrow ]]
+            then
+                justDayOfTheWeek='Tomorrow'
             fi
+            
+            CastDate=$(date +"%s" -d @${NixDate[$i]})
+            if [ $CastDate -le $TomorrowDate ]; then
+                weatherDataToPrint+=$(printf "%-5s %-2s%-6s %-14s %-14s %-14s %-1s\n" "$hourFromDate:" "${temperature[$i]}°${degreeCharacter^^} " "${icon[$i]}" "${LongWeather[$i]}" "Wind:${WindSpeed[$i]}$windunit" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%\n")
+                weatherData+="{\"dayOfWeek\":\"$dayOfWeek\",\"justDayOfTheWeek\":\"$justDayOfTheWeek\",\"hourFromDate\":\"$hourFromDate\",\"temperature\":\"${temperature[$i]}°${degreeCharacter^^}\",\"icon\":\"${icon[$i]}\",\"Wind\":\"${WindSpeed[$i]}$windunit\",\"Cloud\":\"${CloudCover[$i]}%\",\"minTemp\":\"${minTemp[$i]}°${degreeCharacter^^}\",\"maxTemp\":\"${maxTemp[$i]}°${degreeCharacter^^}\"},"
+            else
+                CastHour=$(date +"%-H" -d @${NixDate[$i]})
+                if [ "$CastHour" -ge "$NowHigh" ] && [ "$CastHour" -le "$NowLow" ]; then
+                    weatherDataToPrint+=$(printf "%-5s %-2s%-6s %-14s %-14s %-14s %-1s\n" "$hourFromDate:" "${temperature[$i]}°${degreeCharacter^^} " "${icon[$i]}" "${LongWeather[$i]}" "Wind:${WindSpeed[$i]}$windunit" "Humidity:${Humidity[$i]}%" "Cloud Cover:${CloudCover[$i]}%\n")
+                    weatherData+="{\"dayOfWeek\":\"$dayOfWeek\",\"justDayOfTheWeek\":\"$justDayOfTheWeek\",\"hourFromDate\":\"$hourFromDate\",\"temperature\":\"${temperature[$i]}°${degreeCharacter^^}\",\"icon\":\"${icon[$i]}\",\"Wind\":\"${WindSpeed[$i]}$windunit\",\"Cloud\":\"${CloudCover[$i]}%\",\"minTemp\":\"${minTemp[$i]}°${degreeCharacter^^}\",\"maxTemp\":\"${maxTemp[$i]}°${degreeCharacter^^}\"},"
+                fi
+            fi            
+
+            i=$((i + 1))
+        done
 
         if [ $dynamicUpdates -eq 0 ];then
             break
         fi    
     done
-
-    # echo $weatherDataToPrint
-    # echo "{\"text\":\"test weather data\", \"tooltip\":\"$weatherDataToPrint\"}"
 }
 
 tooltip
 
-echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
+if [ ! -n "$weatherData" ]; then
+    echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
+    exit
+fi
 
-if [ "$Ags" = "1" ];then
-    ags run-js "ags.Service.Weather.setTooltip(\"$weatherDataToPrint\")"
+if [ "${weatherData: -1}" = "," ]; then
+    weatherData="${weatherData%,}"
+fi
+
+weatherData="[$weatherData]"
+
+if [ "$Ags" = "1" ]; then
+    ags run-js "ags.Service.Weather.setTooltip($weatherData)"
     ags run-js "ags.Service.Weather.setTemperatureWeather(\"$longbob\")"
+else
+    echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
 fi
