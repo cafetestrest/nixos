@@ -5,11 +5,13 @@ disable() {
 }
 
 enable() {
-    wlsunset -t 3500 -S 06:00 -s 06:01
+    disable
+    wlsunset -t 3500 -S 06:00 -s 06:00
 }
 
 automatic() {
-    wlsunset -t 3500 -l 39.07 -L 21.82
+    disable
+    nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
 }
 
 toggle() {
