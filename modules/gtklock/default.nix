@@ -13,8 +13,8 @@ in
         src = final.fetchFromGitHub {
           owner = "jovanlanik";
           repo = "gtklock";
-          rev = "refs/heads/main";
-          sha256 = "sha256-b9wB7cCvFfHWxNSJJDQceSjHMivdXwAghM8/BKLQOQk=";
+          rev = "refs/heads/master";
+          sha256 = "sha256-nIm7ivrZPBKMs4e6iRVNpmCxwGZIyf2YWSHbSM5xKnk=";
         };
 
         patches = [
