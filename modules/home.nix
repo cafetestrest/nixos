@@ -10,7 +10,6 @@ in
   imports =
     [
       ./gnome/config/terminator.nix
-      ./gnome/config/fish.nix
       # ./gnome/config/albert.nix
       ./gnome/keyboard-shortcuts.nix
       ./gnome/dconf-settings.nix

@@ -1,8 +1,3 @@
-{ config, pkgs, ... }:
-
-{
-  home.file = {
-    ".config/fish/config.fish".text = ''
 if status is-interactive
     # Commands to run in interactive sessions can go here (bottom 3 commands are custom by bajic)
     set -g theme_powerline_fonts yes
@@ -324,6 +319,3 @@ set PATH "/opt/warden/bin:$PATH"
 
 #testing
 # alias testing='open_in_browser'
-    '';
-  };
-}

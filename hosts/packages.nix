@@ -16,7 +16,6 @@ in
       #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
       #wl-clipboard - maybe as well?
       # albert              #keybinding for albert toggle to get programs search
-      oh-my-fish          #fish extensions (plugins: z, peco, vcs) (themes: default)
       postman             #postman for API calls
       jetbrains.phpstorm  #phpstorm PHP editor
       qbittorrent         #torrent application
@@ -37,9 +36,7 @@ in
     git
     htop
     neofetch
-    fish
     killall
-    peco                      #for oh-my-fish (along with omf plugin)
     unzip
     # teamviewer
     # anydesk
@@ -48,9 +45,6 @@ in
     tldr
     distrobox
   ];
-
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
 
   # services.teamviewer.enable = true;
 }
