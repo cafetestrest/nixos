@@ -14,6 +14,7 @@ in
     ../../modules/gnome/packages.nix  # gnome packages
     # ../../modules/gnome/extensions.nix# gnome extensions
     ../../modules/fish                # fish and its extensions
+    ../../modules/scripts             # scripts, place to store all common scripts
     ../../modules/hyprland            # hyprland packages
     ../../modules/fonts               # fonts
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
