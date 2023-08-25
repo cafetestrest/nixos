@@ -117,7 +117,7 @@ function weather_info() {
     icon12=$weather_icon
 
     if [ "$nowTemperature" == "" ]; then
-        nowTemperature="${icon1}${temperature}°C"
+        nowTemperature="${icon1} ${temperature}°C"
     fi
 
     if [ "$debug" == "0" ]; then
