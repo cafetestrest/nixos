@@ -47,27 +47,9 @@ in
         executable = true;
       };
 
-      #waybar script - note.sh
-      ".config/waybar/scripts/note.sh" = {
-        source = ./config/scripts/note.sh;
-        executable = true;
-      };
-
-      #waybar script - screenshot.sh
-      ".config/waybar/scripts/screenshot.sh" = {
-        source = ./config/scripts/screenshot.sh;
-        executable = true;
-      };
-
       #power menu script - hyprland bindings and waybar
       ".config/waybar/scripts/powermenu.sh" = {
         source = ./config/scripts/powermenu.sh;
-        executable = true;
-      };
-
-      #night light config script
-      ".config/waybar/scripts/nightlight.sh" = {
-        source = ./config/scripts/nightlight.sh;
         executable = true;
       };
 
@@ -99,17 +81,6 @@ in
       ".config/waybar/scripts/usagememory.sh" = {
         source = ./config/scripts/usagememory.sh;
         executable = true;
-      };
-
-      #ags reset bt status
-      ".config/waybar/scripts/ags-bt-reset.sh" = {
-        source = ./config/scripts/ags-bt-reset.sh;
-        executable = true;
-      };
-
-      #ags reset bt status - js file
-      ".config/waybar/scripts/ags-bt-reset.js" = {
-        source = ./config/scripts/ags-bt-reset.js;
       };
     };
   };

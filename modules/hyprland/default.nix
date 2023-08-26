@@ -52,12 +52,6 @@ in
         source = ./config/scripts/idle.sh;
         executable = true;
       };
-
-      #swayidle toggle/startup/icon script
-      ".config/hypr/scripts/swayidle.sh" = {
-        source = ./config/scripts/swayidle.sh;
-        executable = true;
-      };
     };
   };
 
