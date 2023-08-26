@@ -31,11 +31,9 @@ $shutdown" | rofi -dmenu -i -p "Powermenu" \
 
 if [ "$selected_option" == "$lock" ]
 then
-  hyprctl dispatch movecursor 1920 1220
   gtklock -d
 elif [ "$selected_option" == "$logout" ]
 then
-  hyprctl dispatch movecursor 1920 1220
   loginctl terminate-user `whoami`
 elif [ "$selected_option" == "$shutdown" ]
 then
