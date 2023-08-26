@@ -2,7 +2,7 @@
 
 function run_swayidle {
     # swayidle timeout 300 'swaylock -F -i ~/.cache/wallpaper --effect-blur 10x5 --clock --indicator' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' &
-    swayidle -w timeout 300 'exec ~/.config/hypr/scripts/idle.sh' timeout 600 'exec ~/.config/hypr/scripts/idle.sh' before-sleep  'gtklock -d'
+    swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh' timeout 600 'exec ~/.config/scripts/idle.sh' before-sleep  'gtklock -d'
 }
 
 function toggle {

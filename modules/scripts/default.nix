@@ -36,6 +36,18 @@ in
         source = ./screenshot.sh;
         executable = true;
       };
+
+      #startup script (hyprland) - checks if media is playing and stops it
+      ".config/scripts/startup.sh" = {
+        source = ./startup.sh;
+        executable = true;
+      };
+
+      #checks if media is playing before it can put to idle (hyprland)
+      ".config/scripts/idle.sh" = {
+        source = ./idle.sh;
+        executable = true;
+      };
     };
   };
 }

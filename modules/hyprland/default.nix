@@ -40,18 +40,6 @@ in
       ".config/hypr/hyprland.conf" = {
         source = ./config/hyprland.conf;
       };
-
-      #startup script
-      ".config/hypr/scripts/startup.sh" = {
-        source = ./config/scripts/startup.sh;
-        executable = true;
-      };
-
-      #checks if media is playing before it can put to idle
-      ".config/hypr/scripts/idle.sh" = {
-        source = ./config/scripts/idle.sh;
-        executable = true;
-      };
     };
   };
 
