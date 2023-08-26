@@ -30,33 +30,20 @@ in
     gtklock-userinfo-module
     gtklock-powerbar-module
   ];
-
+  
   home-manager.users.${user} = {
+    imports =
+      [
+        ./config/config.nix
+      ];
+
     home.file = {
       ".config/gtklock/style.css" = {
-        source = ./config/gtklock/style.css;
+        source = ./config/style.css;
       };
       ".config/gtklock/gtklock.ui" = {
-        source = ./config/gtklock/gtklock.ui;
+        source = ./config/gtklock.ui;
       };
-
-# ; time-format=%a %b %-d  %R:%S
-    ".config/gtklock/config.ini".text = ''
-[main]
-modules=/run/current-system/sw/lib/gtklock/powerbar-module.so;/run/current-system/sw/lib/gtklock/userinfo-module.so
-time-format=%R
-layout=${homeDirectory}/.config/gtklock/gtklock.ui
-
-[userinfo]
-under-clock=true
-image-size=128
-no-round-image=false
-horizontal-layout=false
-
-[powerbar]
-show-labels=false
-linked-buttons=false
-    '';
     };
   };
 
