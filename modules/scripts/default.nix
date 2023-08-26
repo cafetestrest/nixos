@@ -38,8 +38,8 @@ in
       };
 
       #startup script (hyprland) - checks if media is playing and stops it
-      ".config/scripts/startup.sh" = {
-        source = ./startup.sh;
+      ".config/scripts/playerstartup" = {
+        source = ./playerstartup;
         executable = true;
       };
 
