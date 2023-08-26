@@ -22,6 +22,7 @@ toggle() {
     fi
 }
 
+#checks the first letter of the argument provided to the script
 firstArgLetter="$(echo "$1" | head -c 1)"
 
 if [ -z $firstArgLetter ]; then
