@@ -335,7 +335,7 @@
     },
     "custom/off": {
         // "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
-        "on-click": "~/.config/waybar/scripts/powermenu.sh",
+        "on-click": "~/.config/scripts/powermenu.sh",
         "format": " {}",
     },
     "tray": {

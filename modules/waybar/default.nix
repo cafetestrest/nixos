@@ -47,12 +47,6 @@ in
         executable = true;
       };
 
-      #power menu script - hyprland bindings and waybar
-      ".config/waybar/scripts/powermenu.sh" = {
-        source = ./config/scripts/powermenu.sh;
-        executable = true;
-      };
-
       #nighlight icon script - icon changes on/off for nightlight
       ".config/waybar/scripts/nightlighticon.sh" = {
         source = ./config/scripts/nightlighticon.sh;

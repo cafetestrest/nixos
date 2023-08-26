@@ -48,6 +48,12 @@ in
         source = ./idle.sh;
         executable = true;
       };
+
+      #power menu script - hyprland bindings and waybar
+      ".config/scripts/powermenu.sh" = {
+        source = ./powermenu.sh;
+        executable = true;
+      };
     };
   };
 }
