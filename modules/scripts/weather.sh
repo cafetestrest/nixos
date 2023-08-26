@@ -69,10 +69,21 @@ fi
 
 # weather icon used like so: get_weather_icon $weather_icon1
 function get_weather_icon() {
+    nightIcon="🌑"
+    if [ "$1" == "clearsky_night" ]; then
+        # Generate a random number between 1 and 5
+        random_number=$(( RANDOM % 5 + 1 ))
+
+        # Check the random number and provide different outputs
+        if [ $random_number -eq 1 ]; then
+            nightIcon="🌕"
+        fi
+    fi
+
     weather_icon=$1
     case $1 in
         "clearsky_day") weather_icon="☀️";;
-        "clearsky_night") weather_icon="🌑";;
+        "clearsky_night") weather_icon=$nightIcon;;
         "cloudy_day") weather_icon="☁️";;
         "cloudy_night") weather_icon="";;
         "fog_day") weather_icon="";;
