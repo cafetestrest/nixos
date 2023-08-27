@@ -67,6 +67,10 @@ else
     echo "$response" > "$CacheFile"
 fi
 
+if [ "$debug" = "1" ]; then
+    echo $response
+fi
+
 # weather icon used like so: get_weather_icon $weather_icon1
 function get_weather_icon() {
     nightIcon="🌑"
@@ -104,19 +108,11 @@ function get_weather_icon() {
     esac
 }
 
-# weather data information
-function weather_info() {
-    relative_humidity=$(echo "$weather_data" | jq -r '.relative_humidity')
-    wind_speed=$(echo "$weather_data" | jq -r '.wind_speed')
-    rain_amount=$(echo "$entry" | jq -r '.data.next_1_hours.details.precipitation_amount')
-    rain_amount6=$(echo "$entry" | jq -r '.data.next_6_hours.details.precipitation_amount')
-    rain_amount12=$(echo "$entry" | jq -r '.data.next_12_hours.details.precipitation_amount')
+# retrieve icon from the API, if not for the next 1 hour, try for 6, 12 or use a previous one that is defined
+function get_weather_icon_to_display() {
     weather_icon1=$(echo "$entry" | jq -r '.data.next_1_hours.summary.symbol_code')
     weather_icon6=$(echo "$entry" | jq -r '.data.next_6_hours.summary.symbol_code')
     weather_icon12=$(echo "$entry" | jq -r '.data.next_12_hours.summary.symbol_code')
-    # Round to no decimals
-    max_temp=$(printf '%.*f\n' 0 $max_temp)
-    min_temp=$(printf '%.*f\n' 0 $min_temp)
 
     get_weather_icon $weather_icon1
     icon1=$weather_icon
@@ -127,12 +123,76 @@ function weather_info() {
     get_weather_icon $weather_icon12
     icon12=$weather_icon
 
+    iconToDisplay=""
+    if [ $icon1 ]; then
+        iconToDisplay=$icon1
+    fi
+    if [[ ! $iconToDisplay && $icon6 ]]; then
+        iconToDisplay=$icon6
+    fi
+    if [[ ! $iconToDisplay && $icon12 ]]; then
+        iconToDisplay=$icon12
+    fi
+    if [ ! $iconToDisplay ]; then
+        iconToDisplay=$previousIcon
+    fi
+
+    if [ $iconToDisplay ]; then
+        previousIcon=$iconToDisplay
+    fi
+
+    if [ "$debug" = "1" ]; then
+        echo "$human_date / icon = $iconToDisplay / icon1 $icon1 / icon6 $icon6 / icon12 $icon12"
+    fi
+}
+
+# retrieve rain amount from the API, if not for the next 1 hour, try for 6, 12 or use a previous one that is defined
+function get_rain_amount_to_display() {
+    rain_amount=$(echo "$entry" | jq -r '.data.next_1_hours.details.precipitation_amount')
+    rain_amount6=$(echo "$entry" | jq -r '.data.next_6_hours.details.precipitation_amount')
+    rain_amount12=$(echo "$entry" | jq -r '.data.next_12_hours.details.precipitation_amount')
+
+    rainAmountToDisplay=""
+    if [[ $rain_amount != 'null' ]]; then
+        rainAmountToDisplay=$rain_amount
+    fi
+    if [[ ! $rainAmountToDisplay && $rain_amount6 != 'null' ]]; then
+        rainAmountToDisplay=$rain_amount6
+    fi
+    if [[ ! $rainAmountToDisplay && $rain_amount12 != 'null' ]]; then
+        rainAmountToDisplay=$rain_amount12
+    fi
+    if [[ ! $rainAmountToDisplay ]]; then
+        rainAmountToDisplay=$previousRainAmount
+    fi
+
+    if [ $rainAmountToDisplay ]; then
+        previousRainAmount=$rainAmountToDisplay
+    fi
+
+    if [ "$debug" = "1" ]; then
+        echo "$human_date / rain = $rainAmountToDisplay / rain1 $rain_amount / rain6 $rain_amount6 / rain12 $rain_amount12"
+    fi
+}
+
+# weather data information
+function weather_info() {
+    relative_humidity=$(echo "$weather_data" | jq -r '.relative_humidity')
+    wind_speed=$(echo "$weather_data" | jq -r '.wind_speed')
+    # Round to no decimals
+    max_temp=$(printf '%.*f\n' 0 $max_temp)
+    min_temp=$(printf '%.*f\n' 0 $min_temp)
+
+    get_weather_icon_to_display
+
+    get_rain_amount_to_display
+
     if [ "$nowTemperature" == "" ]; then
         nowTemperature="${icon1} ${temperature}°C"
     fi
 
     if [ "$debug" == "0" ]; then
-        output+="{\"dayOfWeek\":\"$dayOfWeek\",\"hourFromDate\":\"$hourFromDate\",\"temperature\":\"${temperature}°C\",\"icon\":\"$icon1\",\"icon6\":\"$icon6\",\"icon12\":\"$icon12\",\"wind\":\"$wind_speed$wind_speed_unit\",\"rain\":\"${rain_amount} ${precipitation_amount_unit}\",\"rain6\":\"${rain_amount6} ${precipitation_amount_unit}\",\"rain12\":\"${rain_amount12} ${precipitation_amount_unit}\",\"humidity\":\"${relative_humidity}${relative_humidity_unit}\",\"minTemp\":\"${min_temp}°C\",\"maxTemp\":\"${max_temp}°C\"},"
+        output+="{\"dayOfWeek\":\"$dayOfWeek\",\"hourFromDate\":\"$hourFromDate\",\"temperature\":\"${temperature}°C\",\"icon\":\"$iconToDisplay\",\"wind\":\"$wind_speed$wind_speed_unit\",\"rain\":\"${rainAmountToDisplay} ${precipitation_amount_unit}\",\"humidity\":\"${relative_humidity}${relative_humidity_unit}\",\"minTemp\":\"${min_temp}°C\",\"maxTemp\":\"${max_temp}°C\"},"
     else
         echo "Date: $human_date, Time: $hour:00"
         echo "Temperature: $temperature°C"
@@ -157,6 +217,8 @@ five_days_later=$(date -d "+5 days" +%Y-%m-%d)
 previous_date=""
 output=""
 nowTemperature=""
+previousIcon=""
+previousRainAmount="null"
 numberOfWeatherHourSteps=7
 
 # Initialize variables to store min/max temperature data
@@ -226,8 +288,6 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
 
     # For the defined numberOfWeatherHourSteps, print every 2nd hour
     if [ "$numberOfWeatherHourSteps" -gt 0 ]; then
-        
-
         if (( $hour % 2 == 0 )); then
             weather_info
             numberOfWeatherHourSteps=$((numberOfWeatherHourSteps - 1))
