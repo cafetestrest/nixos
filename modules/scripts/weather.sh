@@ -177,20 +177,6 @@ function get_rain_amount_to_display() {
 
 # weather data information
 function weather_info() {
-    relative_humidity=$(echo "$weather_data" | jq -r '.relative_humidity')
-    wind_speed=$(echo "$weather_data" | jq -r '.wind_speed')
-    # Round to no decimals
-    max_temp=$(printf '%.*f\n' 0 $max_temp)
-    min_temp=$(printf '%.*f\n' 0 $min_temp)
-
-    get_weather_icon_to_display
-
-    get_rain_amount_to_display
-
-    if [ "$nowTemperature" == "" ]; then
-        nowTemperature="${icon1} ${temperature}°C"
-    fi
-
     if [ "$debug" == "0" ]; then
         output+="{\"dayOfWeek\":\"$dayOfWeek\",\"hourFromDate\":\"$hourFromDate\",\"temperature\":\"${temperature}°C\",\"icon\":\"$iconToDisplay\",\"wind\":\"$wind_speed$wind_speed_unit\",\"rain\":\"${rainAmountToDisplay} ${precipitation_amount_unit}\",\"humidity\":\"${relative_humidity}${relative_humidity_unit}\",\"minTemp\":\"${min_temp}°C\",\"maxTemp\":\"${max_temp}°C\"},"
     else
@@ -250,10 +236,19 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
     hourFromDate=$(date +"%Hh" -d "${iso_date}")
     hour=$(date -d "$iso_date" +%k)
 
-    # # Check if date changed to identify a new day
-    # if [[ "$human_date" != "$previous_date" ]]; then
-    #     dayChanged=$dayOfWeek
-    # fi
+    relative_humidity=$(echo "$weather_data" | jq -r '.relative_humidity')
+    wind_speed=$(echo "$weather_data" | jq -r '.wind_speed')
+    # Round to no decimals
+    max_temp=$(printf '%.*f\n' 0 $max_temp)
+    min_temp=$(printf '%.*f\n' 0 $min_temp)
+
+    get_weather_icon_to_display
+
+    get_rain_amount_to_display
+
+    if [ "$nowTemperature" == "" ]; then
+        nowTemperature="${iconToDisplay} ${temperature}°C"
+    fi
 
     # Check if a new day has started
     day=$(date -d "$iso_date" +"%Y-%m-%d")
