@@ -133,7 +133,7 @@ function get_weather_icon_to_display() {
     if [[ ! $iconToDisplay && $icon12 ]]; then
         iconToDisplay=$icon12
     fi
-    if [ ! $iconToDisplay ]; then
+    if [[ $iconToDisplay == "" ]]; then
         iconToDisplay=$previousIcon
     fi
 
@@ -162,7 +162,7 @@ function get_rain_amount_to_display() {
     if [[ ! $rainAmountToDisplay && $rain_amount12 != 'null' ]]; then
         rainAmountToDisplay=$rain_amount12
     fi
-    if [[ ! $rainAmountToDisplay ]]; then
+    if [[ $rainAmountToDisplay == "" ]]; then
         rainAmountToDisplay=$previousRainAmount
     fi
 
@@ -245,6 +245,13 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
     get_weather_icon_to_display
 
     get_rain_amount_to_display
+
+    if [[ $iconToDisplay == "" ]]; then
+        if [ "$debug" = "1" ]; then
+            echo "$human_date / No Icon = $iconToDisplay / icon1 $icon1 / icon6 $icon6 / icon12 $icon12"
+        fi
+        continue
+    fi
 
     if [[ "$nowTemperature" == "" && $iconToDisplay ]]; then
         nowTemperature="${iconToDisplay} ${temperature}°C"
