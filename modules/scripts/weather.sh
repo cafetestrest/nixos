@@ -246,7 +246,7 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
 
     get_rain_amount_to_display
 
-    if [ "$nowTemperature" == "" ]; then
+    if [[ "$nowTemperature" == "" && $iconToDisplay ]]; then
         nowTemperature="${iconToDisplay} ${temperature}°C"
     fi
 
