@@ -33,6 +33,12 @@ in
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
     swayidle                            #idle manager for sway/hyprland
+    gnome.nautilus                      #file manager
+    gnome-text-editor
+    gnome.gnome-calculator
+    gnome.gnome-font-viewer
+    gnome.gnome-disk-utility
+    gnome.gnome-characters              #check all characters, can be copied
   ];
 
   home-manager.users.${user} = {
