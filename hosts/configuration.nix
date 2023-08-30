@@ -36,7 +36,7 @@ in
 
   services.xserver.enable = true; # Enable the X11 windowing system.
 
-  services.xserver.desktopManager.gnome.enable = true;  # Enable the GNOME Desktop Environment.
+  services.xserver.desktopManager.gnome.enable = false;  # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.settings = {
   # };
@@ -84,6 +84,10 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   nixpkgs.config.allowUnfree = true;  # Allow unfree packages
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -119,6 +123,9 @@ in
 
   #allow usage of unprivileged ports
   #boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0
+
+  #Linux Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix = {
     package = pkgs.nixFlakes;
