@@ -46,7 +46,7 @@ in
     font.name = "Cantarell 11";
 
     theme = {
-      name = "Orchis-Dark-Compact";
+      name = "Orchis-Dark";
       # package = pkgs.themename;
     };
 
