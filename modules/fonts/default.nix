@@ -12,5 +12,6 @@
     jetbrains-mono
     roboto
     montserrat                      # for rofi
+    cantarell-fonts                 # default font on ubuntu, used on gtklock
   ];
 }
