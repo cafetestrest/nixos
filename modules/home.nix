@@ -41,4 +41,23 @@ in
     # btop
   ];
 
+  gtk = {
+    enable = true;
+    font.name = "Cantarell 11";
+
+    theme = {
+      name = "Orchis-Dark-Compact";
+      # package = pkgs.themename;
+    };
+
+    cursorTheme = {
+      name = "macOS-Monterey";
+      # package = pkgs.cursorname;
+    };
+
+    # iconTheme = {
+      # name = "Adwaita";
+      # package = pkgs-iconname;
+    # };
+  };
 }
