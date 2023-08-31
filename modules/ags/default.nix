@@ -10,6 +10,7 @@ in
     socat
     sassc
     imagemagick
+    pavucontrol
   ];
 
   home-manager.users.${user} = {
