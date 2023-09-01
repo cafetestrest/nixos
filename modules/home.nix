@@ -50,10 +50,10 @@ in
       # package = pkgs.themename;
     };
 
-    cursorTheme = {
-      name = "macOS-Monterey";
+    # cursorTheme = {
+      # name = "macOS-Monterey";1
       # package = pkgs.cursorname;
-    };
+    # };
 
     # iconTheme = {
       # name = "Adwaita";
