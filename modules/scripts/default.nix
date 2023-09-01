@@ -13,6 +13,12 @@ in
         executable = true;
       };
 
+      #openweathermap script used for ags
+      ".config/scripts/openweathermap.sh" = {
+        source = ./openweathermap.sh;
+        executable = true;
+      };
+
       #swayidle used to fine crontrol swayidle -> toggle/startup/icon script
       ".config/scripts/swayidle.sh" = {
         source = ./swayidle.sh;
