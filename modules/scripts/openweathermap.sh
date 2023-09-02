@@ -342,7 +342,7 @@ function weather_data() {
         nowTemperature="$icon $Temperature$DegreeCharacter"
     fi
 
-    output+="{\"Date\":\"$FormattedDate\",\"Hour\":\"$WeatherHour\",\"temperature\":\"${Temperature}°C\",\"icon\":\"$icon\",\"wind\":\"$WindSpeed$WindSpeedUnit\",\"rain\":\"$Rain$RainUnit\",\"humidity\":\"$Humidity$HumidityUnit\",\"minTemp\":\"$MinTemp$DegreeCharacter\",\"maxTemp\":\"$MaxTemp$DegreeCharacter\"},"
+    output+="{\"date\":\"$FormattedDate\",\"hour\":\"$WeatherHour\",\"temperature\":\"${Temperature}°C\",\"icon\":\"$icon\",\"wind\":\"$WindSpeed$WindSpeedUnit\",\"rain\":\"$Rain$RainUnit\",\"humidity\":\"$Humidity$HumidityUnit\",\"minTemp\":\"$MinTemp$DegreeCharacter\",\"maxTemp\":\"$MaxTemp$DegreeCharacter\"},"
 }
 
 function get_weather_forecast_data() {

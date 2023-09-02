@@ -178,7 +178,7 @@ function get_rain_amount_to_display() {
 # weather data information
 function weather_info() {
     if [ "$debug" == "0" ]; then
-        output+="{\"dayOfWeek\":\"$dayOfWeek\",\"hourFromDate\":\"$hourFromDate\",\"temperature\":\"${temperature}°C\",\"icon\":\"$iconToDisplay\",\"wind\":\"$wind_speed$wind_speed_unit\",\"rain\":\"${rainAmountToDisplay} ${precipitation_amount_unit}\",\"humidity\":\"${relative_humidity}${relative_humidity_unit}\",\"minTemp\":\"${min_temp}°C\",\"maxTemp\":\"${max_temp}°C\"},"
+        output+="{\"date\":\"$dayOfWeek\",\"hour\":\"$hourFromDate\",\"temperature\":\"${temperature}°C\",\"icon\":\"$iconToDisplay\",\"wind\":\"$wind_speed$wind_speed_unit\",\"rain\":\"${rainAmountToDisplay} ${precipitation_amount_unit}\",\"humidity\":\"${relative_humidity}${relative_humidity_unit}\",\"minTemp\":\"${min_temp}°C\",\"maxTemp\":\"${max_temp}°C\"},"
     else
         echo "Date: $human_date, Time: $hour:00"
         echo "Temperature: $temperature°C"
