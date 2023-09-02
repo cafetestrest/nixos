@@ -134,16 +134,7 @@ function print_weather_output() {
     fi
 }
 
-#sunset information from the response
-function get_current_sunset_and_sunrise_hours() {
-    SunsetTime=$(echo $response | jq -r .city.sunset)
-    SunriseTime=$(echo $response | jq -r .city.sunrise)
-    SunsetHour=$(date +"%-H" -d @$SunsetTime)
-    SunriseHour=$(date +"%-H" -d @$SunriseTime)
-
-    #current time
-    CurrentTime=$(date +%s)
-
+function get_debug_info_sunset_and_sunrise_hours() {
     if [ "$Debug" = "1" ]; then
         echo "Now: $CurrentTime"
         CurrentHour=$(date +"%-H" -d @$CurrentTime)
@@ -155,7 +146,33 @@ function get_current_sunset_and_sunrise_hours() {
     fi
 }
 
-#todo update get weather icon with night icons and pretty ones
+#sunset information from the Current weather response
+function get_current_sunset_and_sunrise_hours() {
+    SunsetTime=$(echo $response | jq -r .sys.sunset)
+    SunriseTime=$(echo $response | jq -r .sys.sunrise)
+    SunsetHour=$(date +"%-H" -d @$SunsetTime)
+    SunriseHour=$(date +"%-H" -d @$SunriseTime)
+
+    #current time
+    CurrentTime=$(date +%s)
+
+    get_debug_info_sunset_and_sunrise_hours
+}
+
+#sunset information from the weather Forecast response
+function get_forecast_sunset_and_sunrise_hours() {
+    SunsetTime=$(echo $response | jq -r .city.sunset)
+    SunriseTime=$(echo $response | jq -r .city.sunrise)
+    SunsetHour=$(date +"%-H" -d @$SunsetTime)
+    SunriseHour=$(date +"%-H" -d @$SunriseTime)
+
+    #current time
+    CurrentTime=$(date +%s)
+
+    get_debug_info_sunset_and_sunrise_hours
+}
+
+#Updates provided weather icon with night icons and sunset/sunrise icons
 function get_weather_icon() {
     icon=$1
 
@@ -265,7 +282,7 @@ function weather_data() {
         Temperature=$(echo $response | jq -r .main.temp | tr '\n' ' ')
         Temperature=$(printf '%.*f\n' 0 $Temperature)
         # ShortWeather=$(echo $response | jq -r .weather[0].main | tr '\n' ' '| awk '{$1=$1};1' )
-        # LongWeather=$(echo $response | jq -r .weather[0].description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
+        LongWeather=$(echo $response | jq -r .weather[0].description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
 
         Humidity=$(echo $response | jq -r .main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
         CloudCover=$(echo $response | jq -r .clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
@@ -368,7 +385,9 @@ function call_weather_current_api() {
     CacheFile="/tmp/weather_cache_${defaultLocation}_current.json"
 
     get_response
+    # get_api_response_from_cache_file
 
+    get_current_sunset_and_sunrise_hours
     weather_data "c"
 }
 
@@ -383,7 +402,7 @@ function call_weather_forecast_api() {
     # get_api_response_from_cache_file
 
     #used to retrieve forecast data
-    get_current_sunset_and_sunrise_hours
+    get_forecast_sunset_and_sunrise_hours
     get_weather_forecast_data
 }
 
