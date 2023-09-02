@@ -176,19 +176,19 @@ function get_forecast_sunset_and_sunrise_hours() {
 function get_weather_icon() {
     icon=$1
 
-    dontCheck=0
+    checkNewIcon="True"
 
     if [[ $WeatherHour -eq $SunriseHour ]]; then
-        dontCheck=1
+        checkNewIcon="False"
         icon="🌄"
     fi
 
-    if [[ "$dontCheck" == 0 && $WeatherHour -eq $SunsetHour ]]; then
-        dontCheck=1
+    if [[ $checkNewIcon == "True" && $WeatherHour -eq $SunsetHour ]]; then
+        checkNewIcon="False"
         icon="🌇"
     fi
 
-    if [[ "$dontCheck" == 0 && $WeatherHour -ge $SunsetHour || $WeatherHour -le $SunriseHour ]]; then
+    if [[ $checkNewIcon == "True" && ($WeatherHour -ge $SunsetHour || $WeatherHour -le $SunriseHour) ]]; then
         case $1 in
             "☀️") icon="🌑" ;;
             "🌤") icon="🌑" ;;
