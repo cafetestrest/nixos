@@ -63,7 +63,7 @@ function check_api_status() {
 
 function get_api_response() {
     if [ "$Debug" = "1" ]; then
-        echo 'API REQUEST TO GET DATA'
+        echo "API REQUEST TO GET DATA. URL: $URL"
     fi
 
     # Make the API request using curl
@@ -381,7 +381,7 @@ function get_weather_forecast_data() {
 
 function call_weather_current_api() {
     # API endpoint URL Current Weather
-    URL="http://api.openweathermap.org/data/2.5/weather?q=$defaultLocation&units=metric&appid=$apiKey"
+    URL="http://api.openweathermap.org/data/2.5/weather?id=$defaultLocation&units=metric&appid=$apiKey"
 
     # Current Weather API cache file path based on defaultLocation
     CacheFile="/tmp/weather_cache_${defaultLocation}_current.json"
