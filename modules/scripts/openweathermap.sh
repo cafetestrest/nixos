@@ -41,7 +41,7 @@ function get_config_file_data() {
     fi
 
     if [ "$Debug" = "1" ]; then
-        echo "apiKey: $apiKey"
+        # echo "apiKey: $apiKey"
         echo "defaultLocation: $defaultLocation"
         debug_break
     fi
