@@ -268,6 +268,7 @@ function weather_data() {
         Humidity=$(echo $response | jq -r .list[$i].main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
         CloudCover=$(echo $response | jq -r .list[$i].clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
         WindSpeed=$(echo $response | jq -r .list[$i].wind.speed | tr '\n' ' ' | awk '{$1=$1};1' )
+        WindSpeed=$(printf '%.*f\n' 1 $WindSpeed)
 
         Rain1h=$(echo $response | jq -r .list[$i] | jq -r '.rain."1h"')
         Rain3h=$(echo $response | jq -r .list[$i] | jq -r '.rain."3h"')
@@ -287,6 +288,7 @@ function weather_data() {
         Humidity=$(echo $response | jq -r .main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
         CloudCover=$(echo $response | jq -r .clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
         WindSpeed=$(echo $response | jq -r .wind.speed | tr '\n' ' ' | awk '{$1=$1};1' )
+        WindSpeed=$(printf '%.*f\n' 1 $WindSpeed)
 
         Rain1h=$(echo $response | jq -r '.rain."1h"')
         Rain3h=$(echo $response | jq -r '.rain."3h"')
