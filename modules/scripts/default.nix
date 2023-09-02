@@ -7,9 +7,9 @@ in
 {
   home-manager.users.${user} = {
     home.file = {
-      #weather script used for ags
-      ".config/scripts/weather.sh" = {
-        source = ./weather.sh;
+      #yr-weather script used for ags
+      ".config/scripts/yrweather.sh" = {
+        source = ./yrweather.sh;
         executable = true;
       };
 
