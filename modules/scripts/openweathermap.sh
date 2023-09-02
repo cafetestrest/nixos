@@ -178,14 +178,16 @@ function get_weather_icon() {
 
     checkNewIcon="True"
 
-    if [[ $WeatherHour -eq $SunriseHour ]]; then
-        checkNewIcon="False"
-        icon="🌄"
-    fi
+    if [[ "$icon" == "☀️" || "$icon" == "🌤" || "$icon" == "⛅" ]]; then
+        if [[ $WeatherHour -eq $SunriseHour ]]; then
+            checkNewIcon="False"
+            icon="🌄"
+        fi
 
-    if [[ $checkNewIcon == "True" && $WeatherHour -eq $SunsetHour ]]; then
-        checkNewIcon="False"
-        icon="🌇"
+        if [[ $checkNewIcon == "True" && $WeatherHour -eq $SunsetHour ]]; then
+            checkNewIcon="False"
+            icon="🌇"
+        fi
     fi
 
     if [[ $checkNewIcon == "True" && ($WeatherHour -ge $SunsetHour || $WeatherHour -le $SunriseHour) ]]; then
