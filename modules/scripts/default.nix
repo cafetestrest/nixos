@@ -7,6 +7,12 @@ in
 {
   home-manager.users.${user} = {
     home.file = {
+      #startup script used only to run other scripts on hyprland startup
+      ".config/scripts/startup.sh" = {
+        source = ./startup.sh;
+        executable = true;
+      };
+
       #yr-weather script used for ags
       ".config/scripts/yrweather.sh" = {
         source = ./yrweather.sh;

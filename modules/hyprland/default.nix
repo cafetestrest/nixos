@@ -26,7 +26,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    # kitty                               #terminal - can be deleted and used terminator
     wlsunset                            #night light for wayland
     wlogout                             #logout for wayland - can be deleted and used wofi
     grim                                #screenshot tool
