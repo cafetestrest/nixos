@@ -41,11 +41,11 @@ in
   ];
 
   home-manager.users.${user} = {
-    home.file = {
-      ".config/hypr/hyprland.conf" = {
-        source = ./config/hyprland.conf;
-      };
-    };
+    # home.file = {
+    #   ".config/hypr/hyprland.conf" = {
+    #     source = ./config/hyprland.conf;
+    #   };
+    # };
   };
 
   # todo: https://jagotekno.com/cara-install-hyprland-nixos/
