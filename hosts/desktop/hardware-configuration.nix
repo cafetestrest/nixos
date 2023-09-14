@@ -5,8 +5,7 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
@@ -15,26 +14,25 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/e9d246f1-d50c-421d-8381-ac6894bc3872";
+    { device = "/dev/disk/by-uuid/8e0a0c6b-1120-4f42-8a1a-9d790ce7382f";
       fsType = "ext4";
     };
 
-  fileSystems."/boot/efi" =
-    {
-      device = "/dev/disk/by-uuid/7CF1-4BBD";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/67E3-6294";
       fsType = "vfat";
     };
 
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/98c1a945-881c-4997-849d-0fcdaa8ba32b"; }
+    ];
+
   fileSystems."/mnt/hdd" =
     {
-      device = "/dev/disk/by-uuid/EE18BC2218BBE82B";
+      device = "/dev/sda1";
       fsType = "auto";
       options = [ "nosuid" "nodev" "nofail" "x-gvfs-show" ];
     };
-
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/19ed36cd-999f-4147-8d92-e1f653d0b655"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -44,8 +42,6 @@
   # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  # high-resolution display - requested to disable when switching to unstable from 21.11
-  # hardware.video.hidpi.enable = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = "performance";
 
@@ -53,6 +49,6 @@
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 }
