@@ -75,3 +75,7 @@ Might be able to get similar results by editing nix overlay and overriding attri
 
 Rotated 180 degrees horizontally and vertically (to get purple to the bottom right)
 Upscaled to 3840x2160
+
+
+- To resolve the issue with command not found - pasting sql:
+sudo nix-channel --update
