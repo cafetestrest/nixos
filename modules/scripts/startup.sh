@@ -1,48 +1,62 @@
 #!/usr/bin/env bash
 
-function swap_around() {
-    sleep 1.2
-
-    hyprctl dispatch movefocus r
-
-    sleep 0.2
-
-    hyprctl dispatch exec "[workspace 1]" "codium ~/nixos/"
-
-    sleep 0.9
-
-    hyprctl dispatch movewindow d
+#night light
+function run_wlsunset() {
+    echo 'running wlsunset'
+    nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
 }
 
-function open_apps() {
-    hyprctl dispatch exec "[workspace 1]" chromium
-
-    sleep 0.2
-
-    hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
-
-    # swap_around
+function set_swaybg_wallpaper() {
+    echo 'setting wallpaper'
+    swaybg -i ~/Public/wall/wall.png --mode fill &
 }
 
-function is_playing_media()
-{
-    max_duration=10     # Maximum duration to check - seconds / 2 (10 is 5 seconds)
-    interval=1          # Interval between checks
-    elapsed=0           # Elapsed time counter
-
-    while [ $elapsed -lt $max_duration ]; do
-        status=$(playerctl status)
-
-        if [ "$status" = "Playing" ]; then
-            playerctl pause
-            break
-        fi
-
-        sleep 0.5
-        elapsed=$(bc <<< "$elapsed + $interval")
-    done
+#top bar - ags
+function run_ags() {
+    echo 'running ags'
+    ags &
 }
 
-open_apps
-is_playing_media
-copyq --start-server
+#idle check
+function run_swayidle() {
+    echo 'running swayidle'
+    # swayidle -w timeout 300 'gtklock -d' timeout 600 'exec systemctl suspend' before-sleep  'gtklock -d'
+    swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh' timeout 600 'exec ~/.config/scripts/idle.sh' before-sleep 'gtklock -d' &
+}
+
+function check_if_media_is_playing_and_stop_it() {
+    echo 'checking if the media is playing'
+    source ~/.config/scripts/playerstartup.sh
+}
+
+#clipboard
+function run_copyq() {
+    echo 'running copyq'
+    copyq --start-server
+}
+
+#top bar - waybar
+function run_waybar() {
+    echo 'running waybar'
+    waybar &
+}
+
+#notifications in top bar - waybar
+function run_swaync() {
+    echo 'running swaync'
+    swaync &
+}
+
+run_wlsunset
+
+set_swaybg_wallpaper
+
+run_swayidle
+
+# run_ags
+
+check_if_media_is_playing_and_stop_it
+
+run_copyq
+
+echo 'done'
