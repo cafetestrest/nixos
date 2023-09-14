@@ -88,6 +88,9 @@ in
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  # usb automount
+  services.gvfs.enable = true;
+
   nixpkgs.config.allowUnfree = true;  # Allow unfree packages
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
