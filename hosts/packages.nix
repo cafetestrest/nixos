@@ -44,6 +44,7 @@ in
     nixpkgs-fmt               #Nix code formatter for nixpkgs
     tldr
     distrobox
+    inotify-tools
   ];
 
   # services.teamviewer.enable = true;
