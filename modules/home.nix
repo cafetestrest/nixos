@@ -10,12 +10,17 @@ in
   imports =
     [
       ./gnome/config/terminator.nix
+      ./gdm/dconf-settings.nix
+
+      #gnome
+      # ./gnome/keyboard-shortcuts.nix
+      # ./gnome/autostart/copyq.nix
+
+      #unused
+      # ./gnome/dconf-settings.nix
       # ./gnome/config/albert.nix
-      ./gnome/keyboard-shortcuts.nix
-      ./gnome/dconf-settings.nix
       # ./gnome/autostart/albert.nix
       # ./gnome/autostart/xpad.nix
-      ./gnome/autostart/copyq.nix
     ];
 
   # Home Manager needs a bit of information about you and the
@@ -41,23 +46,22 @@ in
     # btop
   ];
 
-  gtk = {
-    enable = true;
-    font.name = "Cantarell 11";
-
-    theme = {
-      name = "Orchis-Dark";
-      # package = pkgs.themename;
-    };
-
-    # cursorTheme = {
-      # name = "macOS-Monterey";1
-      # package = pkgs.cursorname;
-    # };
-
-    # iconTheme = {
-      # name = "Adwaita";
-      # package = pkgs-iconname;
-    # };
-  };
+  # gtk = {
+  #   enable = true;
+  #   font = {
+  #     name = "Cantarell 11";
+  #   };
+  #   theme = {
+  #     name = "Adwaita-Dark";
+  #     # package = pkgs.themename;
+  #   };
+  #   cursorTheme = {
+  #     name = "macOS-Monterey";
+  #     package = pkgs.apple-cursor;
+  #   };
+  #   # iconTheme = {
+  #     # name = "Adwaita";
+  #     # package = pkgs-iconname;
+  #   # };
+  # };
 }

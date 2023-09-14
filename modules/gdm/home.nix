@@ -1,14 +1,10 @@
 { lib, ... }:
 
 {
-  dconf.settings = {
-    # "org/gnome/settings-daemon/peripherals/keyboard" = {
-    #   numlock-state = "on";
-    # };
-    "org/gnome/desktop/peripherals/keyboard" = {
-      numlock-state = true;
-    };
-  };
+  imports =
+    [
+      ./dconf-settings.nix
+    ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

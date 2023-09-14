@@ -2,15 +2,6 @@
 
 {
   dconf.settings = {
-    "org/gnome/shell" = {
-      favorite-apps = [
-        "terminator.desktop"
-        "chromium-browser.desktop"
-        "org.gnome.Nautilus.desktop"
-        "org.gnome.TextEditor.desktop"
-      ];
-    };
-
     "org/gnome/desktop/interface" = {
       #theme
       gtk-theme = "Orchis-Dark";
@@ -35,8 +26,6 @@
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      #titlebar-font = "Ubuntu Bold 11";
-      # button-layout = "close,minimize,maximize:appmenu";
       button-layout = "close,minimize:appmenu";
       action-double-click-titlebar = "none";
     };
@@ -45,6 +34,5 @@
       numlock-state = true;
       remember-numlock-state = true;
     };
-
   };
 }
