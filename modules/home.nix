@@ -55,7 +55,7 @@ in
     };
     iconTheme = {
       name = "Adwaita";
-      # package = pkgs.papirus-icon-theme;
+      package = pkgs.gnome.adwaita-icon-theme;
     };
 
     gtk3.extraConfig = {
