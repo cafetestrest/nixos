@@ -3,11 +3,14 @@
 {
     gtk = {
         enable = true;
+
         font.name = "Cantarell 11";
+
         theme = {
             name = "Orchis-Dark";
             # package = pkgs.juno-theme;
         };
+
         iconTheme = {
             name = "Adwaita";
             package = pkgs.gnome.adwaita-icon-theme;
