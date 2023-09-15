@@ -4,6 +4,7 @@
   imports =
     [
       ./dconf-settings.nix
+      ./gtk.nix
     ];
 
   # This value determines the Home Manager release that your
