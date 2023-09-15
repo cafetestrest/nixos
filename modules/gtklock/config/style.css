@@ -1,5 +1,5 @@
 window {
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../../Public/wall/lockscreen.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../Public/wall/lockscreen.png");
   /* background-size: cover; */
   /* background-repeat: no-repeat; */
   /* background-position: center; */
@@ -25,20 +25,21 @@ window {
 #unlock-button {
   border-radius: 50%;
   padding: 0;
+  margin: 2px 2px 2px 0;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.4);
 }
 
 #input-field {
-  box-shadow: none;  
+  box-shadow: none;
 }
 
 #window-pw-box {
   border: 2px solid alpha(#a7a8a8, 0.9);
   background-color: alpha(#a7a8a8, 0.9);
   border-radius: 18px;
-  padding: 2px;
+  /* padding: 2px; */
 }
 
 #user-image {
