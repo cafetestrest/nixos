@@ -20,11 +20,6 @@ in
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  users.users.${user} = {
-    packages = with pkgs; [
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
     wlsunset                            #night light for wayland
     wlogout                             #logout for wayland - can be deleted and used wofi
