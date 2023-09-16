@@ -27,6 +27,7 @@ in
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
     swayidle                            #idle manager for sway/hyprland
+    hyprpicker                          #pipette - color hex picker
     gnome.nautilus                      #file manager
     gnome-text-editor
     gnome.gnome-calculator

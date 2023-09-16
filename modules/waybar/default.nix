@@ -11,11 +11,6 @@ in
 
   environment.systemPackages = with pkgs; [
     waybar
-    # pavucontrol
-    jq
-    pamixer
-    bc                                  #command line calculator (for weather widget on waybar)
-    hyprpicker                          #pipette - color hex picker
     #wl-clipboard                        #copy to clipboard (for hyprpicker)
   ];
 

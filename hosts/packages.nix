@@ -16,7 +16,7 @@ in
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    terminator                #terminal
+    terminator            #terminal
     git
     htop
     neofetch
@@ -25,25 +25,27 @@ in
     # teamviewer
     # anydesk
     # rnix-lsp
-    # nixpkgs-fmt               #Nix code formatter for nixpkgs
+    nixpkgs-format        #Nix code formatter for nixpkgs
     # tldr
     distrobox
     inotify-tools
-
+    jq
+    pamixer
+    bc                    #command line calculator
     # firefox             #firefox browser
     #thunderbird
-    chromium            #chromium browser
-    vscodium            #vscode alternative
-    copyq               #copy/paste things
+    chromium              #chromium browser
+    vscodium              #vscode alternative
+    copyq                 #copy/paste things
     libsForQt5.qt5ct
     #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
     #wl-clipboard - maybe as well?
     # albert              #keybinding for albert toggle to get programs search
     # postman             #postman for API calls
-    jetbrains.phpstorm  #phpstorm PHP editor
+    jetbrains.phpstorm    #phpstorm PHP editor
     # qbittorrent         #torrent application
-    playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
-    libnotify           #notifications from terminal
+    playerctl             #keyboard shortcuts for play/pause/previous/next track/volume control
+    libnotify             #notifications from terminal
     # headsetcontrol      #used to retrieve battery percentage from headset
     # librewolf           #firefox browser
     # baobab
