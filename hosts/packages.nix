@@ -11,8 +11,9 @@ in
       # firefox             #firefox browser
       #thunderbird
       chromium            #chromium browser
-      stable.vscodium            #vscode alternative
+      vscodium            #vscode alternative
       copyq               #copy/paste things
+      libsForQt5.qt5ct
       #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
       #wl-clipboard - maybe as well?
       # albert              #keybinding for albert toggle to get programs search
