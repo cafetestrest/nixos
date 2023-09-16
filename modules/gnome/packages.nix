@@ -29,18 +29,13 @@ in
   #   })
   # ];
 
-  users.users.${user} = {
-    packages = with pkgs; [
-      shotwell                #photo editor for gnome
-      #orchis-theme            #theme for gnome
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks        #gnome tweaks app
     gnome.gnome-themes-extra  #for building orchis theme (with sassc)
     gnome.dconf-editor        #gnome dconf editor app
     # xpad                      #sticky notes
+    shotwell                #photo editor for gnome
+    #orchis-theme            #theme for gnome
   ];
 
   programs.dconf.enable = true;           # dconf (added 1-apr-2023)

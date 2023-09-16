@@ -8,23 +8,6 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     packages = with pkgs; [ 
-      # firefox             #firefox browser
-      #thunderbird
-      chromium            #chromium browser
-      vscodium            #vscode alternative
-      copyq               #copy/paste things
-      libsForQt5.qt5ct
-      #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
-      #wl-clipboard - maybe as well?
-      # albert              #keybinding for albert toggle to get programs search
-      postman             #postman for API calls
-      jetbrains.phpstorm  #phpstorm PHP editor
-      qbittorrent         #torrent application
-      playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
-      libnotify           #notifications from terminal
-      # headsetcontrol      #used to retrieve battery percentage from headset
-      librewolf           #firefox browser
-      baobab
     ];
   };
 
@@ -42,10 +25,28 @@ in
     # teamviewer
     # anydesk
     # rnix-lsp
-    nixpkgs-fmt               #Nix code formatter for nixpkgs
-    tldr
+    # nixpkgs-fmt               #Nix code formatter for nixpkgs
+    # tldr
     distrobox
     inotify-tools
+
+    # firefox             #firefox browser
+    #thunderbird
+    chromium            #chromium browser
+    vscodium            #vscode alternative
+    copyq               #copy/paste things
+    libsForQt5.qt5ct
+    #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
+    #wl-clipboard - maybe as well?
+    # albert              #keybinding for albert toggle to get programs search
+    # postman             #postman for API calls
+    jetbrains.phpstorm  #phpstorm PHP editor
+    # qbittorrent         #torrent application
+    playerctl           #keyboard shortcuts for play/pause/previous/next track/volume control
+    libnotify           #notifications from terminal
+    # headsetcontrol      #used to retrieve battery percentage from headset
+    # librewolf           #firefox browser
+    # baobab
   ];
 
   # services.teamviewer.enable = true;
