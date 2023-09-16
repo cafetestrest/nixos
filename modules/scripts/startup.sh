@@ -53,7 +53,7 @@ set_swaybg_wallpaper
 
 run_swayidle
 
-# run_ags
+run_ags
 
 check_if_media_is_playing_and_stop_it
 
