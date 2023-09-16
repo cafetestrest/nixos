@@ -24,22 +24,19 @@ in
     unzip
     # teamviewer
     # anydesk
-    # rnix-lsp
-    nixpkgs-format        #Nix code formatter for nixpkgs
+    # nixpkgs-fmt        #Nix code formatter for nixpkgs
     # tldr
-    distrobox
+    distrobox             #distibutions in docker container
     inotify-tools
-    jq
-    pamixer
+    jq                    #json
+    pamixer               #audio terminal commands
     bc                    #command line calculator
     # firefox             #firefox browser
-    #thunderbird
     chromium              #chromium browser
     vscodium              #vscode alternative
     copyq                 #copy/paste things
     libsForQt5.qt5ct
-    #greenclip - maybe as an alternative (research: https://github.dev/sagikazarmark/nix-config/blob/main/flake.nix)
-    #wl-clipboard - maybe as well?
+    #wl-clipboard
     # albert              #keybinding for albert toggle to get programs search
     # postman             #postman for API calls
     jetbrains.phpstorm    #phpstorm PHP editor
