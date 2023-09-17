@@ -31,7 +31,7 @@ $shutdown" | rofi -dmenu -i -p "Powermenu" \
 
 if [ "$selected_option" == "$lock" ]
 then
-  gtklock -d
+  ~/.config/scripts/idle.sh l
 elif [ "$selected_option" == "$logout" ]
 then
   loginctl terminate-user `whoami`
@@ -46,7 +46,7 @@ then
 elif [ "$selected_option" == "$sleep" ]
 then
   # loginctl suspend
-  exec systemctl suspend
+  ~/.config/scripts/idle.sh s
 else
   echo "No match"
 fi
