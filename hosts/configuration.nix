@@ -41,6 +41,17 @@ in
   # services.xserver.displayManager.gdm.settings = {
   # };
 
+  programs.dconf.profiles = {
+    gdm.databases = [{
+      settings = {
+        "org/gnome/desktop/peripherals/keyboard" = {
+          numlock-state = true;
+          remember-numlock-state = true;
+        };
+      };
+    }];
+  };
+
   # services.xserver.displayManager.autoLogin.enable = true;  # Enable automatic login for the user.
   # services.xserver.displayManager.autoLogin.user = "${user}";
 
