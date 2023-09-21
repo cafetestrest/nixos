@@ -14,7 +14,7 @@ in
           owner = "jovanlanik";
           repo = "gtklock";
           rev = "refs/heads/master";
-          sha256 = "sha256-nIm7ivrZPBKMs4e6iRVNpmCxwGZIyf2YWSHbSM5xKnk=";
+          sha256 = "sha256-hcp222L9lEkL8LBiqYhjS1vG9CQ1wKByfWfJcl+6g3w=";
         };
 
 # nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/jovanlanik/gtklock --quiet --rev refs/heads/master | jq -r '.sha256')"
