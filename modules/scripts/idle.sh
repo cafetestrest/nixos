@@ -5,8 +5,8 @@ function lock() {
 }
 
 function sespend() {
-    # lock
-    # sleep 1
+    lock
+    sleep 1
     systemctl suspend
 }
 
