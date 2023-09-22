@@ -46,6 +46,7 @@ in
     # headsetcontrol      #used to retrieve battery percentage from headset
     # librewolf           #firefox browser
     # baobab
+    apple-cursor
   ];
 
   # services.teamviewer.enable = true;

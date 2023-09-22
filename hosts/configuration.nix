@@ -48,6 +48,9 @@ in
           numlock-state = true;
           remember-numlock-state = true;
         };
+        "org/gnome/desktop/interface" = {
+          cursor-theme = "macOS-Monterey";
+        };
       };
     }];
   };
