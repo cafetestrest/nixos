@@ -7,7 +7,7 @@ in
 {
   imports = [
     ../waybar                   # top bar
-    ../rofi                     # search bar
+    # ../rofi                     # search bar
     # ../swaync                   # notification panel
     ../gtklock                  # lockscreen
     ../ags                      # https://github.com/Aylur/ags
