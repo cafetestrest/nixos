@@ -59,4 +59,4 @@ check_if_media_is_playing_and_stop_it
 
 run_copyq
 
-echo 'done'
+# echo 'done'

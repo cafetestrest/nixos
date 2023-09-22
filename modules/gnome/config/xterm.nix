@@ -3,7 +3,7 @@
 {
   home.file = {
     ".Xresources".text = ''
-URxvt.font:                 xft:Dejavu Sans Mono for Powerline:size=11
+URxvt.font:                 xft:JetBrains Mono Regular:size=11
 XTerm*faceName:             xft:JetBrains Mono Regular:size=11
 XTerm*utf8:                 2
 URxvt.letterSpace:          0
@@ -56,7 +56,6 @@ XTerm*saveLines:            32767
 URxvt.colorUL:              #AED210
 URxvt.perl-ext:             default,url-select
 URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.url-select.launcher:  /usr/bin/firefox -new-tab
 URxvt.url-select.underline: true
 Xft*dpi:                    96
 Xft*antialias:              true
