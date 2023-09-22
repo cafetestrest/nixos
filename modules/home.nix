@@ -10,6 +10,7 @@ in
   imports =
     [
       ./gnome/config/terminator.nix
+      ./gnome/config/xterm.nix
       ./gdm/dconf-settings.nix
       ./gdm/gtk.nix
 

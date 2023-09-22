@@ -1,16 +1,53 @@
 #!/usr/bin/env bash
-#https://github.com/Madic-/Sway-DE/blob/master/bin/dmenupower.sh
 
-# case $(echo -e '⏾ Suspend\n Reboot\n⏻ Shutdown' | rofi -dmenu -config ~/.config/rofi/spotlight-hidden-search.rasi | awk '{print tolower($2)}') in
-#     suspend)
-#         exec systemctl suspend;;
-#     reboot)
-#         exec systemctl reboot;;
-#     shutdown)
-#     exec systemctl poweroff -i;;
-# esac
+firstArgLetter="$(echo "$1" | head -c 1)"
 
-#https://github.com/lauroro/hyprland-dotfiles/blob/master/.config/rofi/powermenu.sh
+function terminal() {
+  # PS3="Select an option (enter the number): "; options=("Lock" "Sleep" "Logout" "Reboot" "Shutdown" "Exit"); select option in "${options[@]}"; do case $REPLY in 1) echo "Locking..."; ~/.config/scripts/idle.sh l;; 2) echo "Going to sleep..."; ~/.config/scripts/idle.sh s;; 3) echo "Logout..."; loginctl terminate-user `whoami`;; 4) echo "Restarting the system..."; exec systemctl reboot;; 5) echo "Shutting down the system..."; exec systemctl poweroff -i;; 6) echo "Exiting the power menu."; exit 0;; *) echo "Invalid option. Please select a valid option.";; esac; done
+
+  PS3="Select an option (enter the number): "
+  options=("Lock" "Sleep" "Logout" "Reboot" "Shutdown" "Exit")
+
+  select option in "${options[@]}"
+  do
+      case $REPLY in
+          1)
+              echo "Locking..."
+              ~/.config/scripts/idle.sh l
+              ;;
+          2)
+              echo "Going to sleep..."
+              ~/.config/scripts/idle.sh s
+              ;;
+          3)
+              echo "Logout..."
+              loginctl terminate-user `whoami`
+              ;;
+          4)
+              echo "Restarting the system..."
+              exec systemctl reboot
+              ;;
+          5)
+              echo "Shutting down the system..."
+              exec systemctl poweroff -i
+              ;;
+          6)
+              echo "Exiting the power menu."
+              exit 0
+              ;;
+          *)
+              echo "Invalid option. Please select a valid option."
+              ;;
+      esac
+  done
+
+  exit 0
+}
+
+if [[ $firstArgLetter == "t" ]]; then
+    terminal
+    exit 0
+fi
 
 if pidof rofi; then
     killall -9 rofi;
