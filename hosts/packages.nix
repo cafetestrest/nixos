@@ -47,7 +47,6 @@ in
     # librewolf           #firefox browser
     # baobab
     apple-cursor
-    (mpv.override { scripts = [mpvScripts.mpris]; })
   ];
 
   # services.teamviewer.enable = true;
