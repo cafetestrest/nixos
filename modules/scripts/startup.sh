@@ -20,8 +20,8 @@ function run_ags() {
 #idle check
 function run_swayidle() {
     echo 'running swayidle'
-    # swayidle -w timeout 300 'gtklock -d' timeout 600 'exec systemctl suspend' before-sleep  'gtklock -d'
-    swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh' timeout 600 'exec ~/.config/scripts/idle.sh' before-sleep 'gtklock -d' &
+    # swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh l' timeout 600 'exec ~/.config/scripts/idle.sh s' before-sleep 'gtklock -d' &
+    ~/.config/scripts/swayidle.sh --startup
 }
 
 function check_if_media_is_playing_and_stop_it() {
