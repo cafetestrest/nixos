@@ -10,9 +10,10 @@ in
   ];
 
   home-manager.users.${user} = {
-    home.file.".config/mpv" = {
-      source = ./config;
-      recursive = true;
+    home.file = {
+      ".config/mpv" = {
+        source = ./config;
+      };
     };
   };
 }
