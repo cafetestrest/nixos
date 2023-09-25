@@ -15,11 +15,11 @@ function swap_around() {
 }
 
 function open_apps() {
-    hyprctl dispatch exec "[workspace 1]" chromium
+    hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
 
     sleep 0.2
 
-    hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
+    hyprctl dispatch exec "[workspace 1]" chromium
 
     # swap_around
 }
