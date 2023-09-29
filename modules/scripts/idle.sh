@@ -10,6 +10,22 @@ function sespend() {
     systemctl suspend
 }
 
+function checkIfMediaIsPlayingAndLock() {
+    status=$(playerctl status 2> /dev/null)
+
+    if [ "$status" != "Playing" ]; then
+        lock
+    fi
+}
+
+function checkIfMediaIsPlayingAndSespend() {
+    status=$(playerctl status 2> /dev/null)
+
+    if [ "$status" != "Playing" ]; then
+        sespend
+    fi
+}
+
 function pauseMedia() {
     playerctl pause
 }
@@ -28,7 +44,7 @@ function idle_action() {
     fi
 }
 
-firstArgLetter="$(echo "$1" | head -c 1)"
+firstArgLetter="$(echo "$1")"
 if [ -z $firstArgLetter ]; then
     idle_action
 else
@@ -38,6 +54,10 @@ else
     elif [[ $firstArgLetter == "s" ]]; then
         pauseMedia
         sespend
+    elif [[ $firstArgLetter == "g" ]]; then
+        checkIfMediaIsPlayingAndLock
+    elif [[ $firstArgLetter == "z" ]]; then
+        checkIfMediaIsPlayingAndSespend
     else
         echo 'Unknown command'
         exit 1
