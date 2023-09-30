@@ -6,7 +6,7 @@ function lock() {
 
 function sespend() {
     lock
-    sleep 1
+    sleep 0.1
     systemctl suspend
 }
 

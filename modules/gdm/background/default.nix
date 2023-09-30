@@ -24,7 +24,7 @@ in
                  /* Login Dialog */
                  .login-dialog {
                    background-color: $_gdm_bg;
-                +  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('file:///etc/nixos/lockscreen.jpg');
+                +  background-image: url('file:///etc/nixos/lockscreen.jpg');
                  }
               '')
             ];
