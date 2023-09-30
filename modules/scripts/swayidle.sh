@@ -2,7 +2,7 @@
 
 function run_swayidle {
     # swayidle timeout 300 'swaylock -F -i ~/.cache/wallpaper --effect-blur 10x5 --clock --indicator' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' &
-    swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh g' timeout 600 'exec ~/.config/scripts/idle.sh z' before-sleep 'gtklock -d'
+    swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh g' timeout 600 'exec ~/.config/scripts/idle.sh z' before-sleep 'gtklock -d' &
 }
 
 function toggle {
@@ -11,7 +11,7 @@ function toggle {
 		pkill swayidle
 		# notify-send -r 5556 -u normal "  Swayidle Inactive"
 	else
-        run_swayidle &
+        run_swayidle
 		# notify-send -r 5556 -u normal "  Swayidle Active"
 	fi
 }
@@ -21,7 +21,7 @@ case $1 in
 		toggle
 		;;
 	startup)
-		run_swayidle &
+		run_swayidle
 		;;
 	*)
 		if pgrep "swayidle" > /dev/null
