@@ -1,0 +1,16 @@
+diff --git a/data/theme/gnome-shell-sass/widgets/_screen-shield.scss b/data/theme/gnome-shell-sass/widgets/_screen-shield.scss
+index 00c549a53..b5c0be683 100644
+--- a/data/theme/gnome-shell-sass/widgets/_screen-shield.scss
++++ b/data/theme/gnome-shell-sass/widgets/_screen-shield.scss
+@@ -66,7 +66,10 @@
+ }
+
+ #lockDialogGroup {
+-  background-color: lighten(#2e3436, 8%);
++  background: @backgroundColour@ url(file:///etc/nixos/background.jpg);
++  background-repeat: no-repeat;
++  background-size: cover;
++  background-position: center;
+ }
+
+ #unlockDialogNotifications {

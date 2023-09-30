@@ -13,6 +13,7 @@ in
           gnome-shell = superg.gnome-shell.overrideAttrs (old: {
             patches = (old.patches or []) ++ [
               (pkgs.substituteAll {
+                backgroundColour = "#d94360";
                 src = ./gnome-shell.patch;
               })
             ];
