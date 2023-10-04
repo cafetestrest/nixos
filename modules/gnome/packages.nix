@@ -33,6 +33,7 @@ in
     gnome.gnome-tweaks        #gnome tweaks app
     gnome.gnome-themes-extra  #for building orchis theme (with sassc)
     gnome.dconf-editor        #gnome dconf editor app
+    gnome.eog
     # xpad                      #sticky notes
     shotwell                #photo editor for gnome
     #orchis-theme            #theme for gnome
