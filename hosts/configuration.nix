@@ -99,7 +99,10 @@ in
   # services.xserver.libinput.enable = true;
 
   # Enable bluetooth
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings.General.Experimental = true;
+  };
   services.blueman.enable = true;
 
   # usb automount
