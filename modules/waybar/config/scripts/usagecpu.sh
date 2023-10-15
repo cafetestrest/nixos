@@ -7,7 +7,7 @@ usage=$(top -bn1 | grep "Cpu(s)" | \
 firstArg="$(echo "$1")"
 
 if [[ $firstArg == "ags" ]]; then
-    ags run-js "ags.Service.Usage.setCpuUsage('${usage}')"
+    ags run-js "usage.setCpuUsage('${usage}')"
 else
     echo ${usage}
 fi

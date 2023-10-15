@@ -536,8 +536,8 @@ fi
 weatherData="[$weatherData]"
 
 if [ "$Ags" = "1" ]; then
-    ags run-js "ags.Service.Weather.setTooltip($weatherData)"
-    ags run-js "ags.Service.Weather.setTemperatureWeather(\"$longbob\")"
+    ags run-js "weather.setTooltip($weatherData)"
+    ags run-js "weather.setTemperatureWeather(\"$longbob\")"
 else
     echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
 fi

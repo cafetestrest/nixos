@@ -45,7 +45,7 @@ fi
 output="[$output]"
 
 if [ "$Ags" == "1" ]; then
-    ags run-js "ags.Service.BtDeviceInfo.setData($output)"
+    ags run-js "btdevice.setData($output)"
 else
     echo $output
 fi

@@ -314,8 +314,8 @@ fi
 output="[$output]"
 
 if [ "$Ags" == "1" ]; then
-    ags run-js "ags.Service.Weather.setTooltip($output)"
-    ags run-js "ags.Service.Weather.setTemperatureWeather(\"$nowTemperature\")"
+    ags run-js "weather.setTooltip($output)"
+    ags run-js "weather.setTemperatureWeather(\"$nowTemperature\")"
 else
     echo $output
 fi

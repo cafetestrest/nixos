@@ -20,7 +20,7 @@ note=${note::-2}
 firstArg="$(echo "$1")"
 
 if [[ $firstArg == "ags" ]]; then
-    ags run-js "ags.Service.Note.setNote(\"$note\")"
+    ags run-js "note.setNote(\"$note\")"
 else
     echo "{\"text\":\"\", \"tooltip\":\"${note}\"}"
 fi
