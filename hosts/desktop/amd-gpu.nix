@@ -11,10 +11,10 @@ in
   #XServer
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  #HIP
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
-  ];
+  #HIP (removed due error: "error: 'hip' has been removed in favor of 'rocmPackages.clr'")
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+  # ];
 
   #OpenCL
   hardware.opengl.extraPackages = with pkgs; [

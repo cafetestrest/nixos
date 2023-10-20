@@ -8,7 +8,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix      # Include the results of the hardware scan.
-    ./amd-gpu.nix                     # configuration for AMD GPU
+    # ./amd-gpu.nix                     # configuration for AMD GPU
     ../configuration.nix              # shared configuration
     ../packages.nix                   # shared packages
     ../../modules/gnome/packages.nix  # gnome packages
