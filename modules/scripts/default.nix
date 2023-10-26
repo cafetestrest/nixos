@@ -72,6 +72,12 @@ in
         source = ./powermenu.sh;
         executable = true;
       };
+
+      #script that runs when the swayidle resumes from sleep
+      ".config/scripts/wakefromsleep.sh" = {
+        source = ./wakefromsleep.sh;
+        executable = true;
+      };
     };
   };
 }
