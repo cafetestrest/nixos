@@ -5,6 +5,10 @@ let
     user;
 in
 {
+  imports = [
+    ./warden.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     docker
     docker-compose
