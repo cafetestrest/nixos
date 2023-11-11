@@ -78,6 +78,12 @@ in
         source = ./wakefromsleep.sh;
         executable = true;
       };
+
+      #script that start ngrok for warden env
+      ".config/scripts/ngrokwarden.sh" = {
+        source = ./ngrokwarden.sh;
+        executable = true;
+      };
     };
   };
 }
