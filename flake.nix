@@ -13,13 +13,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+
     home-manager = {
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-old, nixpkgs-stable, nur, hyprland, home-manager, ags }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-old, nixpkgs-stable, nur, hyprland, home-manager, ags, ... }@inputs:
     let
     inherit (import ./variables.nix)
     user
@@ -68,7 +70,7 @@
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-nur ]; }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./hosts/desktop
-          hyprland.nixosModules.default
+          # hyprland.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
