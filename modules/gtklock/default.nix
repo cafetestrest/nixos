@@ -6,24 +6,34 @@ let
     homeDirectory;
 in
 {
-  nixpkgs.overlays = [
-    (final: prev: { 
-      gtklock = (prev.gtklock.override {
-      }).overrideAttrs (finalAttrs: {
-        src = final.fetchFromGitHub {
-          owner = "jovanlanik";
-          repo = "gtklock";
-          rev = "refs/heads/master";
-          sha256 = "sha256-hcp222L9lEkL8LBiqYhjS1vG9CQ1wKByfWfJcl+6g3w=";
-        };
+#   nixpkgs.overlays = [
+#     (final: prev: { 
+#       gtklock = (prev.gtklock.override {
+#       }).overrideAttrs (finalAttrs: {
+#         src = final.fetchFromGitHub {
+#           owner = "jovanlanik";
+#           repo = "gtklock";
+#           rev = "refs/heads/master";
+#           sha256 = "sha256-cu9JXPvyO//aOkN0JtaBKmDcBkt/1OxztRSVAaaXN1I=";
+#         };
 
-# nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/jovanlanik/gtklock --quiet --rev refs/heads/master | jq -r '.sha256')"
-        patches = [
-          ./config/patch.patch
-        ];
-      });
-    })
-  ];
+# # nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/jovanlanik/gtklock --quiet --rev refs/heads/master | jq -r '.sha256')"
+#         patches = [
+#           ./config/gtklockui.patch
+#         ];
+#       });
+#     })
+#   ];
+
+nixpkgs.overlays = [
+  (final: prev: {
+    gtklock = prev.gtklock.overrideAttrs (o: {
+      patches = (o.patches or [ ]) ++ [
+        ./config/gtklockui.patch
+      ];
+    });
+  })
+];
 
   environment.systemPackages = with pkgs; [
     gtklock
@@ -41,9 +51,9 @@ in
       ".config/gtklock/style.css" = {
         source = ./config/style.css;
       };
-      ".config/gtklock/gtklock.ui" = {
-        source = ./config/gtklock.ui;
-      };
+      # ".config/gtklock/gtklock.ui" = {
+      #   source = ./config/gtklock.ui;
+      # };
     };
   };
 
