@@ -343,7 +343,7 @@ function weather_data() {
     fi
 
     if [ "$forecast" != "f" ]; then
-        nowTemperature="$icon $Temperature$DegreeCharacter"
+        nowTemperature="$icon   $Temperature$DegreeCharacter"
     fi
 
     output+="{\"date\":\"$FormattedDate\",\"hour\":\"$WeatherHour\",\"temperature\":\"${Temperature}°C\",\"icon\":\"$icon\",\"wind\":\"$WindSpeed$WindSpeedUnit\",\"rain\":\"$Rain$RainUnit\",\"humidity\":\"$Humidity$HumidityUnit\",\"minTemp\":\"$MinTemp$DegreeCharacter\",\"maxTemp\":\"$MaxTemp$DegreeCharacter\"},"
