@@ -188,7 +188,7 @@
         "text": "Notes",
         "format": "",
         "on-click": "~/.config/scripts/note.sh",
-        "on-click-right": "codium ~/Documents/note",
+        "on-click-right": "codium ~/Documents/note.md",
         "exec": "~/.config/scripts/note.sh",
         "interval": 15,
         "return-type": "json"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 documentsDir=~/Documents
-noteFile=note
+noteFile=note.md
 
 if [ ! -f $documentsDir/$noteFile ]; then
     touch $documentsDir/$noteFile

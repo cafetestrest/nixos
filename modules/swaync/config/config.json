@@ -179,7 +179,7 @@
         },
         {
           "label": "",
-          "command": "codium ~/Documents/note"
+          "command": "codium ~/Documents/note.md"
         }
       ]
     }
