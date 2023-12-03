@@ -351,6 +351,7 @@ function weather_data() {
 
 function get_weather_forecast_data() {
     CurrentDay=""
+    PreviousDay=""
     TomorrowDate=$(date -d '+1 day' +"%s")
 
     clear_defaults
@@ -373,9 +374,13 @@ function get_weather_forecast_data() {
             weather_data "f"
         else
             if [ "$WeatherHour" -ge "17" ] && [ "$WeatherHour" -le "18" ] ||
-                [ "$WeatherHour" -ge "16" ] && [ "$WeatherHour" -le "17" ] ||
                 [ "$WeatherHour" -ge "18" ] && [ "$WeatherHour" -le "19" ]; then
-                weather_data "f"
+
+                # if [[ "$CurrentDay" != "$PreviousDay" ]]; then
+                    weather_data "f"
+                # fi
+
+                PreviousDay=$CurrentDay
             fi
         fi
 
