@@ -372,7 +372,9 @@ function get_weather_forecast_data() {
         if [ $CastDate -le $TomorrowDate ]; then
             weather_data "f"
         else
-            if [ "$WeatherHour" -ge "17" ] && [ "$WeatherHour" -le "18" ]; then
+            if [ "$WeatherHour" -ge "17" ] && [ "$WeatherHour" -le "18" ] ||
+                [ "$WeatherHour" -ge "16" ] && [ "$WeatherHour" -le "17" ] ||
+                [ "$WeatherHour" -ge "18" ] && [ "$WeatherHour" -le "19" ]; then
                 weather_data "f"
             fi
         fi
