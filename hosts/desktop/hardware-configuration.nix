@@ -27,12 +27,12 @@
     [ { device = "/dev/disk/by-uuid/98c1a945-881c-4997-849d-0fcdaa8ba32b"; }
     ];
 
-  fileSystems."/mnt/hdd" =
-    {
-      device = "/dev/sda1";
-      fsType = "auto";
-      options = [ "nosuid" "nodev" "nofail" "x-gvfs-show" ];
-    };
+  # fileSystems."/mnt/hdd" =
+  #   {
+  #     device = "/dev/sda1";
+  #     fsType = "auto";
+  #     options = [ "nosuid" "nodev" "nofail" "x-gvfs-show" ];
+  #   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
