@@ -17,7 +17,7 @@ automatic() {
 automatic_winter() {
     # echo "Winter time"
     disable
-    nohup wlsunset -t 3500 -l 55.16 -L 10.45 > /dev/null 2>&1 &
+    nohup wlsunset -t 3500 -l 44.81 -L 23.46 > /dev/null 2>&1 &
 }
 
 toggle() {
