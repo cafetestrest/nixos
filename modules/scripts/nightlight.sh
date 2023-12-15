@@ -14,6 +14,12 @@ automatic() {
     nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
 }
 
+automatic_winter() {
+    # echo "Winter time"
+    disable
+    nohup wlsunset -t 3500 -l 55.16 -L 10.45 > /dev/null 2>&1 &
+}
+
 toggle() {
     if pidof wlsunset; then
         disable
@@ -22,11 +28,25 @@ toggle() {
     fi
 }
 
+monthlyAuto() {
+    # Get the current month in two-digit format (01 for January, 02 for February, etc.)
+    current_month=$(date +'%m')
+
+    # Display the current month
+    # echo "Current Month: $current_month"
+
+    # Case statement to perform actions based on the current month
+    case $current_month in
+        12|01|02) automatic_winter;;
+        *) automatic;;
+    esac
+}
+
 #checks the first letter of the argument provided to the script
 firstArgLetter="$(echo "$1" | head -c 1)"
 
 if [ -z $firstArgLetter ]; then
-    automatic
+    monthlyAuto
 else
     if [[ $firstArgLetter == "d" ]]; then
         disable
@@ -35,8 +55,8 @@ else
     elif [[ $firstArgLetter == "t" ]]; then
         toggle
     elif [[ $firstArgLetter == "a" ]]; then
-        automatic
+        monthlyAuto
     else
-        automatic
+        monthlyAuto
     fi
 fi
