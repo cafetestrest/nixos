@@ -45,7 +45,9 @@ function run_docker () {
 
     echo "network_name:$network_name, nginx_name:$nginx_name";
 
-    docker run --rm -it --link $nginx_name --net $network_name wernight/ngrok ngrok http $nginx_name:80 --authtoken $auth_token
+    docker run --rm -it -p 4040:4040 --link $nginx_name --net $network_name wernight/ngrok ngrok http $nginx_name:80 --authtoken $auth_token
+
+    # https://github.com/orgs/wardenenv/discussions/563 #ngrok + xdebug
 }
 
 function warden_ngrok () {
