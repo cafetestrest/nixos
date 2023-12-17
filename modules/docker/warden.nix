@@ -7,21 +7,27 @@
       installPhase = ''
         mkdir -p $out/bin
         cp $src/bin/warden $out/bin/warden
-        cp -r $src/commands $out/
         cp -r $src/config $out/
         cp -r $src/docker $out/
         cp -r $src/environments $out/
         cp -r $src/utils $out/
         cp $src/version $out/
+
+        mkdir -p $out/commands
+        cp -r commands/ $out/
       '';
 
       src = fetchFromGitHub {
         owner = "wardenenv";
         repo = "warden";
         rev = "main";
-        sha256 = "sha256-YZN0JDPp8nvfnPPzdvLfEFufR+S/IuPL8P5FtSFQH4A=";
+        sha256 = "sha256-GK27z72n3jTU5BQN79MITi5qtICDWfO1tYg5gVcOz+4=";
       };
+
+      patches = [ ./patch/warden-svc-up-detach.patch ];
     };
   in
-  [ warden ];
+  [
+    warden
+  ];
 }

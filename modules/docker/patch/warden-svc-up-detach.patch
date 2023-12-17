@@ -1,0 +1,14 @@
+diff --git a/commands/svc.cmd b/commands/svc.cmd
+--- a/commands/svc.cmd	(revision 51502ef1e4a1ddbb560680b9906512b705995775)
++++ b/commands/svc.cmd	(date 1702827358474)
+@@ -59,7 +59,9 @@
+ 
+     ## copy configuration files into location where they'll be mounted into containers from
+     mkdir -p "${WARDEN_HOME_DIR}/etc/traefik"
+-    cp "${WARDEN_DIR}/config/traefik/traefik.yml" "${WARDEN_HOME_DIR}/etc/traefik/traefik.yml"
++    if (containsElement "-d" "$@" || containsElement "--detach" "$@"); then
++        cp "${WARDEN_DIR}/config/traefik/traefik.yml" "${WARDEN_HOME_DIR}/etc/traefik/traefik.yml"
++    fi
+ 
+     ## generate dynamic traefik ssl termination configuration
+     cat > "${WARDEN_HOME_DIR}/etc/traefik/dynamic.yml" <<-EOT
