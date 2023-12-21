@@ -1,0 +1,48 @@
+diff --git a/commands/env-init.cmd b/commands/env-init.cmd
+--- a/commands/env-init.cmd	(revision 51502ef1e4a1ddbb560680b9906512b705995775)
++++ b/commands/env-init.cmd	(date 1703179552494)
+@@ -50,4 +50,42 @@
+   export WARDEN_ENV_NAME
+   export GENERATED_APP_KEY="base64:$(dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64)"
+   envsubst '$WARDEN_ENV_NAME:$GENERATED_APP_KEY' < "${ENV_INIT_FILE}" >> "${WARDEN_ENV_PATH}/.env"
+-fi
+\ No newline at end of file
++fi
++
++if [ ! -d ./.warden ]; then
++  # Remove "init.env" at the end
++  dot_warden_folder_path="${ENV_INIT_FILE%init.env}.warden"
++
++  copy_files() {
++    local source_dir="$1"
++    local dest_dir="$2"
++
++    # Create destination directory if it doesn't exist
++    mkdir -p "$dest_dir"
++
++    # Iterate through files and directories in the source directory
++    for item in "$source_dir"/* "$source_dir"/.*; do
++      # Extract item name
++      item_name=$(basename "$item")
++
++      # Exclude special entries '.' and '..'
++      if [[ "$item_name" == "." || "$item_name" == ".." ]]; then
++        continue
++      fi
++
++      # Check if the item is a file
++      if [ -f "$item" ]; then
++        # Create or truncate file in the destination directory
++        > "$dest_dir/$item_name"
++
++        # Append content to the destination file using >>
++        cat "$item" >> "$dest_dir/$item_name"
++      elif [ -d "$item" ]; then
++        # Recursively copy files in subdirectory
++        copy_files "$item" "$dest_dir/$item_name"
++      fi
++    done
++  }
++
++  copy_files $dot_warden_folder_path ./.warden
++fi
