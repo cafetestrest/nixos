@@ -9,6 +9,8 @@ in
 {
   imports =
     [
+      ../home-manager/ags.nix # https://github.com/Aylur/ags
+
       ./gnome/config/terminator.nix
       ./gnome/config/xterm.nix
       ./gdm/dconf-settings.nix

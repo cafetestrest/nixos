@@ -1,0 +1,333 @@
+$buttonMinHeight: $spacing * 6.2;
+$buttonMinWidth: $spacing * 21;
+// min height of the volume slider
+$sliderVolumeMinHeight: $spacing * 4;
+// min width of the volume (to not become invisible)
+$sliderTroughMinWidth: $spacing * 4;
+
+window#quicksettings .window-content {
+    @include floating-widget;
+    @include spacing;
+
+    // adds padding around whole panel
+    padding: 0.8em;
+
+    .avatar {
+        @include widget;
+        opacity: 0.9;
+    }
+
+    .header {
+        @include spacing($rec: true);
+
+        button, .uptime, .battery {
+            @include button;
+            padding: $padding;
+            font-weight: bold;
+            min-height: 20px;
+            min-width: 20px;
+
+            image {
+                font-size: 1.2em;
+            }
+        }
+
+        .battery {
+            @include spacing($multiplier: 0.5);
+        }
+
+    }
+
+    .system-info {
+        .system-info-spacing {
+            margin: 0 0.3em;
+            // border: 11px solid red;
+            // @include spacing;
+        }
+    }
+
+    .battery-progress {
+        label {
+            color: $accent-fg;
+            font-weight: bold;
+        }
+
+        &.charging label {
+            font-size: $padding*2;
+        }
+
+        &.half label { color: $fg-color; }
+
+        progressbar {
+            @include slider($width: $padding*3.6);
+        }
+
+        &.low progressbar {
+            @include slider($width: $padding*3.6, $gradient: linear-gradient(to right, $red, $red));
+        }
+    }
+
+    .sliders-box {
+        @include widget;
+        @include spacing($rec: true);
+        @include spacing(0);
+        padding: $padding;
+
+        button {
+            @include button($flat: true);
+            padding: $padding / 2;
+        }
+
+        scale {
+            @include slider;
+            margin-left: $spacing * -0.5;
+        }
+
+        .menu {
+            margin: $spacing 0;
+            background-color: $bg-color;
+            border: $border-width solid $popover-border-color;
+            border-radius: $radii;
+        }
+    }
+
+    .mixer-item {
+        scale { @include slider($width: 7px); }
+        image { font-size: 1.2em; }
+    }
+
+    .row {
+        @include spacing($rec: true);
+    }
+
+    .menu {
+        @include unset;
+        @include widget;
+        @include spacing($rec: true);
+        padding: $padding;
+        margin-top: $spacing;
+
+        .title {
+            @include spacing(.5);
+        }
+
+        separator {
+            margin: 0 $radii / 2;
+        }
+
+        button {
+            @include button($flat: true);
+            padding: $padding / 2;
+        }
+
+        switch {
+            // @include switch;
+        }
+
+        slider {
+            // margin: 0;
+        }
+    }
+
+    .button-spacing{
+        // margin-right: $spacing;
+    }
+
+    .simple-toggle {
+        @include button;
+
+        // padding: $padding;
+
+        // text spacing
+        label {
+            margin-left: $spacing/2;
+            font-weight: bold;
+        }
+
+        // icon spacing
+        box {
+            margin-left: $spacing;
+        }
+    }
+
+    // button shadow on focus by keyboard - tab
+    .toggle-button.simple-toggle:focus {
+        box-shadow: inset 0 0 0 $border_width $border_color,
+        inset 0 0 0 99px $hover;
+    }
+
+    .toggle-button {
+        @include button;
+        font-weight: bold;
+
+        min-height: $buttonMinHeight;
+        min-width: $buttonMinWidth;
+        border-radius: $radii * 1.5;
+        // margin-bottom: $spacing;
+
+        //   label {
+        //    margin-left: $spacing/2;
+        //   }
+        .label-box {
+            //spacing label on some toggles
+            @include spacing(.5);
+        }
+
+        button {
+            @include button($flat: true);
+            padding: $padding;
+
+            &:first-child {
+                border-radius: $radii * 1.5;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            &:last-child {
+                border-radius: $radii * 1.5;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        &.active {
+            background-color: $accent;
+
+            label, image {
+                color: $accent-fg;
+            }
+        }
+
+        //button border radius
+        &:focus,
+        &:hover{
+            border-radius: $radii * 1.5;
+        }
+
+        &:active, &.on, &.active, &:checked {
+            border-radius: $radii * 1.5;
+
+            &:hover {
+                border-radius: $radii * 1.5;
+            }
+        }
+    }
+
+    //.simple-toggle {
+    //  @include button;
+    //  padding: $padding $padding * 1.1;
+    //}
+
+    .media {
+        margin: 0;
+        // @include spacing;
+
+        .player {
+            margin-top: $padding;
+            margin-bottom: $padding / 2;
+            @include media;
+        }
+    }
+
+    .qsvolume {
+        padding-top: $padding / 2;
+        // separate from buttons
+        // margin: $spacing;
+
+        .menu {
+            // margin-top: $spacing;
+            // margin-bottom: 0;
+
+            .sinkitem {
+                margin: $spacing 0;
+
+                &:first-child {
+                    margin: 0;
+                }
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+
+        button, .icon {
+            @include button($flat: false);
+            padding: $spacing;
+        }
+
+        .volumeslider {
+            margin: 0 0.5em;
+            padding: 0;
+
+            slider {
+                all: unset;
+            }
+
+            trough{
+                min-height: $sliderVolumeMinHeight;
+                border-radius: $radii;
+                background-color: $widget_bg;
+
+                highlight,
+                progress {
+                    border-radius: $radii;
+                    min-width: $sliderTroughMinWidth;
+                    background: $active_gradient;
+                }
+
+                // different shade when hover/focus - same as in common file - &:hover
+                highlight:hover,
+                highlight:focus {
+                    box-shadow: inset 0 0 0 $border_width $border_color,
+                    inset 0 0 0 99px $hover;
+                }
+            }
+        }
+    }
+
+    .bluetooth-devices {
+        margin-bottom: 0.8em;
+    }
+
+    .bluetooth-devices:last-child {
+        margin-bottom: 0;
+    }
+
+    .app-mixer,
+    .sink-selector {
+        .sinkitem box {
+            margin: 0 $spacing;
+        }
+
+        button {
+            background-color: transparentize($color: $bg_color, $amount: 0.4);
+            padding: $spacing / 1.3;
+        }
+
+        .arrow-button {
+            box {
+                margin: 0 $spacing;
+            }
+
+            button:last-child {
+                margin-left: $spacing;
+                padding: $spacing;
+            }
+        }
+    }
+
+    //fixes spacing of label after icons so it looks unified
+    .theme-toggle-icon {
+        padding-right: $spacing;
+    }
+
+    //fixes spacing of label after icons so it looks unified
+    .screen-record-toggle-label {
+        padding-left: $spacing / 2;
+    }
+
+    // adds spacing to the quicksettings theme toggles menu - top label - title
+    .theme-menu-title {
+        padding-left: $spacing / 2;
+    }
+}

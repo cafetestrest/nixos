@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1703934913,
-        "narHash": "sha256-ICPSBWQBPVthW1uXxFizOfuNU3SEf+rf/tfJD89mWRk=",
+        "lastModified": 1704651999,
+        "narHash": "sha256-ckI4yL61gWYerpjw5wD33VhV8Xvk9uQBLrqwF0blqLw=",
         "owner": "Aylur",
         "repo": "ags",
-        "rev": "6a892994287b52ee3014dedfb41cec9fb675875b",
+        "rev": "0b5bf82d0696456c698f26132b38adf456b9264f",
         "type": "github"
       },
       "original": {

@@ -10,7 +10,6 @@ in
     # ../rofi                     # search bar
     # ../swaync                   # notification panel
     ../gtklock                  # lockscreen
-    ../ags                      # https://github.com/Aylur/ags
   ];
 
   programs.hyprland.enable = true;
