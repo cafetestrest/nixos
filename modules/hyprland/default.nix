@@ -12,12 +12,12 @@ in
     ../gtklock                  # lockscreen
   ];
 
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
 
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
+  # nix.settings = {
+  #   substituters = ["https://hyprland.cachix.org"];
+  #   trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  # };
 
   environment.systemPackages = with pkgs; [
     wlsunset                            #night light for wayland
@@ -35,13 +35,13 @@ in
     gnome.gnome-characters              #check all characters, can be copied
   ];
 
-  home-manager.users.${user} = {
-    home.file = {
-      ".config/hypr/hyprland.conf" = {
-        source = ./config/hyprland.conf;
-      };
-    };
-  };
+  # home-manager.users.${user} = {
+  #   home.file = {
+  #     ".config/hypr/hyprland.conf" = {
+  #       source = ./config/hyprland.conf;
+  #     };
+  #   };
+  # };
 }
 
 #in case there is a problem with some apps being slow, run the following line on terminal without root:

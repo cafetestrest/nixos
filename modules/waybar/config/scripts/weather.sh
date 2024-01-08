@@ -536,8 +536,8 @@ fi
 weatherData="[$weatherData]"
 
 if [ "$Ags" = "1" ]; then
-    ags run-js "weather.setTooltip($weatherData)"
-    ags run-js "weather.setTemperatureWeather(\"$longbob\")"
+    ags -b hypr -r "weather.setTooltip($weatherData)"
+    ags -b hypr -r "weather.setTemperatureWeather(\"$longbob\")"
 else
     echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
 fi

@@ -127,8 +127,8 @@ function print_weather_output() {
     output="[$output]"
 
     if [ "$Ags" == "1" ]; then
-        ags run-js "weather.setTooltip($output)"
-        ags run-js "weather.setTemperatureWeather(\"$nowTemperature\")"
+        ags -b hypr -r "weather.setTooltip($output)"
+        ags -b hypr -r "weather.setTemperatureWeather(\"$nowTemperature\")"
     else
         echo $output
     fi

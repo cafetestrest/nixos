@@ -22,7 +22,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, hyprland, home-manager, ags, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, home-manager, ... }@inputs:
     let
     inherit (import ./variables.nix)
     user

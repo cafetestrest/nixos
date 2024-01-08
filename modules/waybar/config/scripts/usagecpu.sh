@@ -7,7 +7,7 @@ usage=$(top -bn1 | grep "Cpu(s)" | \
 firstArg="$(echo "$1")"
 
 if [[ $firstArg == "ags" ]]; then
-    ags run-js "usage.setCpuUsage('${usage}')"
+    ags -b hypr -r "usage.setCpuUsage('${usage}')"
 else
     echo ${usage}
 fi

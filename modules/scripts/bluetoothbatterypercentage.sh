@@ -45,7 +45,7 @@ fi
 output="[$output]"
 
 if [ "$Ags" == "1" ]; then
-    ags run-js "btdevice.setData($output)"
+    ags -b hypr -r "btdevice.setData($output)"
 else
     echo $output
 fi
