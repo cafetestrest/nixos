@@ -16,9 +16,8 @@ in
     ../../nixos/swaylock.nix          # lockscreen packages
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
-    ../../modules/docker              # docker, docker-compose and /etc/hosts
+    ../../nixos/docker                # docker, docker-compose and /etc/hosts
     ../../modules/neovim              # neovim and plugins for it
-    ../../modules/mpv                 # mpv video player and its config
     ../../nixos/gdm/background.nix    # background for gdm
   ];
 
