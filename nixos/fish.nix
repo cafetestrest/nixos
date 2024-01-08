@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ../../variables.nix)
+  inherit (import ../variables.nix)
     user;
 in
 {
@@ -14,7 +14,7 @@ in
   home-manager.users.${user} = {
     home.file = {
       ".config/fish/config.fish" = {
-        source = ./config/config.fish;
+        source = ../config/fish/config.fish;
       };
     };
   };
