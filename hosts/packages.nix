@@ -9,5 +9,6 @@
     git
     htop
     unzip
+    apple-cursor
   ];
 }

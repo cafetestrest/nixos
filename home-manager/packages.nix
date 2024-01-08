@@ -28,7 +28,6 @@
     libnotify             #notifications from terminal
     # headsetcontrol      #used to retrieve battery percentage from headset
     # librewolf           #firefox browser
-    apple-cursor
   ];
 
   # services.teamviewer.enable = true;
