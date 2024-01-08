@@ -2,7 +2,7 @@
 
 function lock() {
     # gtklock -d
-    swaylock \
+    swaylock -f \
         --screenshots \
         --clock \
         --indicator \
@@ -20,8 +20,8 @@ function lock() {
 }
 
 function sespend() {
-    lock
-    sleep 0.1
+    # lock
+    # sleep 0.1
     systemctl suspend
 }
 
