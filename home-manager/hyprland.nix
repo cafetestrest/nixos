@@ -17,14 +17,14 @@ in
     launcher
   ];
 
-#   xdg.desktopEntries."org.gnome.Settings" = {
-#     name = "Settings";
-#     comment = "Gnome Control Center";
-#     icon = "org.gnome.Settings";
-#     exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
-#     categories = [ "X-Preferences" ];
-#     terminal = false;
-#   };
+  xdg.desktopEntries."org.gnome.Settings" = {
+    name = "Settings";
+    comment = "Gnome Control Center";
+    icon = "org.gnome.Settings";
+    exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
+    categories = [ "X-Preferences" ];
+    terminal = false;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -59,7 +59,7 @@ in
       };
 
       misc = {
-        layers_hog_keyboard_focus = false;#todo check?
+        # layers_hog_keyboard_focus = false;#If true, will make keyboard-interactive layers keep their focus on mouse move (e.g. wofi, bemenu)
         disable_splash_rendering = true;
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
@@ -75,7 +75,7 @@ in
           drag_lock = true;
         };
         sensitivity = 0;
-        float_switch_override_focus = 2; #todo ?
+        # float_switch_override_focus = 2; #If enabled (1 or 2), focus will change to the window under the cursor when changing from tiled-to-floating and vice versa. If 2, focus will also follow mouse on float-to-float switches.
       };
 
       binds = {
