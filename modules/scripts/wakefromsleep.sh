@@ -21,7 +21,7 @@ elapsed=0           # Elapsed time counter
 sleep $interval
 
 while [ $elapsed -lt $max_duration ]; do
-    if ! pgrep gtklock; then
+    if ! pgrep swaylock; then
         # commands to run if unlocked
         refresh_ags_bluetooth_connected_devices
 

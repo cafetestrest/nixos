@@ -13,7 +13,9 @@ let
   '';
 in
 {
-  home.packages = [ launcher ];
+  home.packages = [
+    launcher
+  ];
 
 #   xdg.desktopEntries."org.gnome.Settings" = {
 #     name = "Settings";

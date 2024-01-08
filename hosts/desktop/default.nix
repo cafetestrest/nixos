@@ -15,8 +15,8 @@ in
     # ../../modules/gnome/extensions.nix# gnome extensions
     ../../modules/fish                # fish and its extensions
     ../../modules/scripts             # scripts, place to store all common scripts
-    ../../modules/hyprland            # hyprland packages TODO remove and move to nixos folder/hyprland.nix
     ../../nixos/hyprland.nix          # hyprland packages
+    ../../nixos/swaylock.nix          # lockscreen packages
     ../../modules/fonts               # fonts
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
