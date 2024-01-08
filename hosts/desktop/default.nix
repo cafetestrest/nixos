@@ -12,7 +12,6 @@ in
     ../configuration.nix              # shared configuration
     ../packages.nix                   # shared packages
     ../../nixos/fish.nix              # fish and its extensions
-    ../../modules/scripts             # scripts, place to store all common scripts
     ../../nixos/hyprland.nix          # hyprland packages
     ../../nixos/swaylock.nix          # lockscreen packages
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard

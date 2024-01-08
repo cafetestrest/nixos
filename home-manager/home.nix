@@ -18,6 +18,7 @@ in
       ./gdm/dconf-settings.nix
       ./gdm/gtk.nix
       ./gnome/packages.nix
+      ./scripts.nix # scripts, place to store all common scripts
 
       #gnome
       # ./gnome/keyboard-shortcuts.nix
