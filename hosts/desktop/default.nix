@@ -15,7 +15,6 @@ in
     ../../modules/scripts             # scripts, place to store all common scripts
     ../../nixos/hyprland.nix          # hyprland packages
     ../../nixos/swaylock.nix          # lockscreen packages
-    ../../modules/fonts               # fonts
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../modules/docker              # docker, docker-compose and /etc/hosts

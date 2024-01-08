@@ -1,7 +1,17 @@
 { pkgs, ... }:
 
+let
+  nerdfonts = (pkgs.nerdfonts.override { fonts = [
+    "Ubuntu"
+    "UbuntuMono"
+    "CascadiaCode"
+    "FantasqueSansMono"
+    "FiraCode"
+    "Mononoki"
+  ]; });
+in
 {
-  fonts.packages = with pkgs; [
+  home.packages = with pkgs; [
     #$pkgs.nur.repos.sagikazarmark.sf-pro #SF Pro font (NUR): https://github.dev/sagikazarmark/nix-config
     ubuntu_font_family
     font-awesome                    # for waybar icons

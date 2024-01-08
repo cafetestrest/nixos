@@ -9,6 +9,7 @@ in
 {
   imports =
     [
+      ./fonts.nix
       ./ags.nix # https://github.com/Aylur/ags
       ./hyprland.nix # https://github.com/Aylur/ags
       ../config/terminator.nix

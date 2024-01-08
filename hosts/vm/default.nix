@@ -12,8 +12,6 @@ in
     
     ./hardware-configuration.nix      # Include the results of the hardware scan. (generated from fresh install on virt-manager)
 
-    ../../modules/fonts       # fonts
-
     # ../../nixos/hyprland.nix            # hyprland packages
     # ../../nixos/swaylock.nix          # lockscreen packages
 
