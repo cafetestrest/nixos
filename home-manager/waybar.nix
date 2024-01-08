@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import ../overlays/waybar.nix)
-  ];
-
   home.packages = with pkgs; [
     waybar
     #wl-clipboard                        #copy to clipboard (for hyprpicker)

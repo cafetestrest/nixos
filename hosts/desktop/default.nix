@@ -14,10 +14,12 @@ in
     ../../nixos/fish.nix              # fish and its extensions
     ../../nixos/hyprland.nix          # hyprland packages
     ../../nixos/swaylock.nix          # lockscreen packages
+    ../../nixos/gtklock.nix           # lockscreen packages
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../nixos/docker                # docker, docker-compose and /etc/hosts
     ../../nixos/gdm/background.nix    # background for gdm
+    # ../../nixos/waybar.nix
   ];
 
   # Bootloader.

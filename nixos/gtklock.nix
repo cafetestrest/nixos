@@ -1,12 +1,7 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    user
-    homeDirectory;
-in
 {
-#   nixpkgs.overlays = [
+  #   nixpkgs.overlays = [
 #     (final: prev: { 
 #       gtklock = (prev.gtklock.override {
 #       }).overrideAttrs (finalAttrs: {
@@ -25,37 +20,21 @@ in
 #     })
 #   ];
 
-nixpkgs.overlays = [
-  (final: prev: {
-    gtklock = prev.gtklock.overrideAttrs (o: {
-      patches = (o.patches or [ ]) ++ [
-        ./config/gtklockui.patch
-      ];
-    });
-  })
-];
+  nixpkgs.overlays = [
+    (final: prev: {
+      gtklock = prev.gtklock.overrideAttrs (o: {
+        patches = (o.patches or [ ]) ++ [
+          ../config/gtklock/gtklockui.patch
+        ];
+      });
+    })
+  ];
 
   environment.systemPackages = with pkgs; [
     gtklock
     gtklock-userinfo-module
     gtklock-powerbar-module
   ];
-  
-  home-manager.users.${user} = {
-    imports =
-      [
-        ./config/config.nix
-      ];
-
-    home.file = {
-      ".config/gtklock/style.css" = {
-        source = ./config/style.css;
-      };
-      # ".config/gtklock/gtklock.ui" = {
-      #   source = ./config/gtklock.ui;
-      # };
-    };
-  };
 
   security.pam.services.gtklock = {
     text = ''

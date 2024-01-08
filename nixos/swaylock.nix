@@ -10,4 +10,10 @@
      auth include login
     '';
   };
+
+  security.pam.services.gtklock = {
+    text = ''
+     auth include login
+    '';
+  };
 }
