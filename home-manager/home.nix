@@ -13,8 +13,8 @@ in
       ./fonts.nix
       ./ags.nix # https://github.com/Aylur/ags
       ./hyprland.nix # https://github.com/Aylur/ags
-      ../config/terminator.nix
-      ../config/xterm.nix
+      ./terminator.nix
+      ./xterm.nix
       ./gdm/dconf-settings.nix
       ./gdm/gtk.nix
       ./gnome/packages.nix
