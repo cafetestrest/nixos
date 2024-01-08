@@ -9,10 +9,8 @@ in
 {
   imports =
     [
-      ./gnome/config/terminator.nix
-      ./gnome/config/xterm.nix
-      ./gdm/dconf-settings.nix
-      ./gdm/gtk.nix
+      # ./gdm/dconf-settings.nix
+      # ./gdm/gtk.nix
 
       #gnome
       # ./gnome/keyboard-shortcuts.nix
@@ -47,12 +45,4 @@ in
     # killall
     # btop
   ];
-
-  #KDE Connect
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
 }
