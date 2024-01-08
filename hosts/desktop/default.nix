@@ -17,7 +17,6 @@ in
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../nixos/docker                # docker, docker-compose and /etc/hosts
-    ../../modules/neovim              # neovim and plugins for it
     ../../nixos/gdm/background.nix    # background for gdm
   ];
 
