@@ -14,8 +14,6 @@ in
 
     ../../modules/fonts       # fonts
 
-    # ../../home-manager/gnome/extensions.nix#gnome extensions
-
     # ../../nixos/hyprland.nix            # hyprland packages
     # ../../nixos/swaylock.nix          # lockscreen packages
 
