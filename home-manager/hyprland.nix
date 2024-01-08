@@ -136,10 +136,9 @@ in
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
         mvfocus = binding "SUPER" "movefocus";
         ws = binding "SUPER" "workspace";
-        resizeactive = binding "SUPER SHIFT CTRL" "resizeactive";
-        resizeactivectrl = binding "SUPER SHIFT CTRL" "resizeactive";
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
+        mvwin = binding "SUPER SHIFT" "movewindow";
         e = "exec, ags -b hypr";
         arr = [1 2 3 4 5 6 7 8 9];
         yt = pkgs.writeShellScriptBin "yt" ''
@@ -178,10 +177,6 @@ in
         # youtube
         # ", XF86Launch1,  exec, ${yt}/bin/yt"
 
-        "SUPER, Tab, cyclenext"
-        "ALT, Tab, cyclenext"
-        "SUPER SHIFT, Tab, cyclenext, prev"
-        "ALT SHIFT, Tab, cyclenext, prev"
         # "ALT, Tab, focuscurrentorlast"
         "CTRL ALT, BackSpace, exit"
         "SUPER SHIFT, L, exit"
@@ -190,31 +185,29 @@ in
         "SUPER, F, togglefloating"
         "SUPER, M, fullscreen"
         "SUPER SHIFT, M, fakefullscreen"
-        "SUPER, P, togglesplit"
+        "SUPER, J, togglesplit"
         "SUPER, P, pseudo"
         "SUPER SHIFT, P, workspaceopt, allpseudo"
         "SUPER SHIFT, F, workspaceopt, allfloat"
+        "SUPER, 0, workspace, 10"
+        "SUPER SHIFT, 0, movetoworkspace, 10"
 
         (mvfocus "up" "u")
         (mvfocus "down" "d")
         (mvfocus "right" "r")
         (mvfocus "left" "l")
-        (ws "left" "e-1")
-        (ws "right" "e+1")
-        (mvtows "left" "e-1")
-        (mvtows "right" "e+1")
-        (resizeactive "right" "100 0")
-        (resizeactive "left" "-100 0")
-        (resizeactive "up" "0 -100")
-        (resizeactive "down" "0 100")
-        (resizeactivectrl "right" "10 0")
-        (resizeactivectrl "left" "-10 0")
-        (resizeactivectrl "up" "0 -10")
-        (resizeactivectrl "down" "0 10")
-        (mvactive "right" "-20 0")
-        (mvactive "left" "20 0")
-        (mvactive "up" "0 20")
-        (mvactive "down" "0 -20")
+        (ws "mouse_up" "e-1")
+        (ws "mouse_down" "e+1")
+        # (mvtows "left" "e-1")
+        # (mvtows "right" "e+1")
+        (mvactive "left" "-20 0")
+        (mvactive "right" "20 0")
+        (mvactive "down" "0 20")
+        (mvactive "up" "0 -20")
+        (mvwin "up" "u")
+        (mvwin "down" "d")
+        (mvwin "right" "r")
+        (mvwin "left" "l")
       ]
       ++ (map (i: ws (toString i) (toString i)) arr)
       ++ (map (i: mvtows (toString i) (toString i)) arr);
@@ -229,6 +222,25 @@ in
         ",XF86AudioLowerVolume, exec, pamixer -d 1"
         ",XF86AudioRaiseVolume, exec, pamixer -i 1"
         ",XF86AudioMute, exec, pamixer -t"
+        "SUPER, Tab, cyclenext"
+        "ALT, Tab, cyclenext"
+        "SUPER SHIFT, Tab, cyclenext, prev"
+        "ALT SHIFT, Tab, cyclenext, prev"
+      ];
+
+      binde = let
+        binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
+        resizeactive = binding "SUPER CTRL" "resizeactive";
+        resizeactivectrl = binding "SUPER SHIFT CTRL" "resizeactive";
+      in [
+        (resizeactive "right" "100 0")
+        (resizeactive "left" "-100 0")
+        (resizeactive "up" "0 -100")
+        (resizeactive "down" "0 100")
+        (resizeactivectrl "right" "10 0")
+        (resizeactivectrl "left" "-10 0")
+        (resizeactivectrl "up" "0 -10")
+        (resizeactivectrl "down" "0 10")
       ];
 
       bindl = let e = "exec, ags -b hypr -r"; in [
@@ -242,7 +254,7 @@ in
         ",XF86AudioStop, exec, playerctl stop"
         ",XF86AudioPause, exec, playerctl pause"
         ",XF86AudioPrev, exec, playerctl previous"
-        ",XF86AudioNext, exec, playerctl stop"
+        ",XF86AudioNext, exec, playerctl next"
       ];
 
       bindm = [
