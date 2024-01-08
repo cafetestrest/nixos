@@ -11,7 +11,7 @@ in
     # ./amd-gpu.nix                     # configuration for AMD GPU
     ../configuration.nix              # shared configuration
     ../packages.nix                   # shared packages
-    # ../../modules/gnome/extensions.nix# gnome extensions
+    # ../../home-manager/gnome/extensions.nix#gnome extensions
     ../../modules/fish                # fish and its extensions
     ../../modules/scripts             # scripts, place to store all common scripts
     ../../nixos/hyprland.nix          # hyprland packages
