@@ -37,7 +37,7 @@ const windows = () => [
     QuickSettings(),
     // Verification(),
     // About(),
-    Weather(), //todo check double ags call
+    Weather(),
     QSNotifications(),
 ];
 

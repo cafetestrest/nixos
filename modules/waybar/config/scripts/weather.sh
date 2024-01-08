@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: Add in sunrise/sunset calcuations
-
 apiKey=""
 defaultLocation=""
 Conky="True"

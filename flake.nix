@@ -85,7 +85,10 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.${user} = {
-              imports = [ ./modules/home.nix ];
+              imports = [
+                ./modules/home.nix
+                ./home-manager/home.nix
+              ];
             };
           }
         ];
