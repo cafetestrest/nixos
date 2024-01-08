@@ -27,24 +27,24 @@
     };
   };
 
-  programs.rofi = {
-    enable = true;
-    # font = "FiraCode NF 12";
-    theme = "spotlight-dark";
-    plugins = [
-      pkgs.rofimoji
-      pkgs.rofi-calc
-      # pkgs.rofi-power-menu
-    ];
+  # programs.rofi = {
+  #   enable = true;
+  #   # font = "FiraCode NF 12";
+  #   theme = "spotlight-dark";
+  #   plugins = [
+  #     pkgs.rofimoji
+  #     pkgs.rofi-calc
+  #     # pkgs.rofi-power-menu
+  #   ];
 
-    extraConfig = {
-      modi = "drun,run,calc";
-      show-icons = true;
-      sort = true;
-      matching = "fuzzy";
-      display-drun = "";
-      display-run = "";
-      drun-display-format = "{name}";
-    };
-  };
+  #   extraConfig = {
+  #     modi = "drun,run,calc";
+  #     show-icons = true;
+  #     sort = true;
+  #     matching = "fuzzy";
+  #     display-drun = "";
+  #     display-run = "";
+  #     drun-display-format = "{name}";
+  #   };
+  # };
 }

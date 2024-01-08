@@ -103,7 +103,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${user} = {
-              imports = [ ./modules/home.nix ];
+              imports = [
+                ./home-manager/home-vm.nix
+              ];
             };
           }
         ];
