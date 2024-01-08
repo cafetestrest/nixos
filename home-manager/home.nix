@@ -21,7 +21,7 @@ in
       ./scripts.nix # scripts, place to store all common scripts
       ./mpv.nix # mpv video player and its config
       ./fish.nix
-      ./waybar.nix
+      ./swaync.nix
 
       #gnome
       # ./gnome/keyboard-shortcuts.nix
