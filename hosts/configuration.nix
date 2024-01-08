@@ -108,6 +108,9 @@ in
   # usb automount
   services.gvfs.enable = true;
 
+  # dconf
+  programs.dconf.enable = true;
+
   nixpkgs.config.allowUnfree = true;  # Allow unfree packages
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

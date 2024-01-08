@@ -29,7 +29,7 @@ in
   #   })
   # ];
 
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     gnome.gnome-tweaks        #gnome tweaks app
     gnome.gnome-themes-extra  #for building orchis theme (with sassc)
     gnome.dconf-editor        #gnome dconf editor app
@@ -38,6 +38,4 @@ in
     shotwell                #photo editor for gnome
     #orchis-theme            #theme for gnome
   ];
-
-  programs.dconf.enable = true;           # dconf (added 1-apr-2023)
 }

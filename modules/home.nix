@@ -9,18 +9,6 @@ in
 {
   imports =
     [
-      # ./gdm/dconf-settings.nix
-      # ./gdm/gtk.nix
-
-      #gnome
-      # ./gnome/keyboard-shortcuts.nix
-      # ./gnome/autostart/copyq.nix
-
-      #unused
-      # ./gnome/dconf-settings.nix
-      # ./gnome/config/albert.nix
-      # ./gnome/autostart/albert.nix
-      # ./gnome/autostart/xpad.nix
     ];
 
   # Home Manager needs a bit of information about you and the
