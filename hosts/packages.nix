@@ -1,16 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../variables.nix)
-    user;
-in
 {
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
-    packages = with pkgs; [ 
-    ];
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

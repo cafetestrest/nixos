@@ -1,10 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../../../variables.nix)
-    homeDirectory
-    user;
-in
 {
   nixpkgs = {
     overlays = [

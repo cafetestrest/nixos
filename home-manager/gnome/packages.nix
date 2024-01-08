@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    user;
-in
 {
   #   # logic that allows to switch to unstable (use fcitx5 instead of deprecated fcitx-engines)
   #   # #https://discourse.nixos.org/t/error-when-upgrading-nixos-related-to-fcitx-engines/26940/10

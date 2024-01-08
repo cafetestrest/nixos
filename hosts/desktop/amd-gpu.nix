@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../variables.nix)
-    user;
-in
 {
   #https://nixos.wiki/wiki/AMD_GPU
   boot.initrd.kernelModules = [ "amdgpu" ];

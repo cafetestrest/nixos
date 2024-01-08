@@ -1,10 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../../../variables.nix)
-    user
-    homeDirectory;
-in
 {
   home.file = {
     ".config/gtklock/config.ini".text = ''

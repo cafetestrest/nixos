@@ -1,4 +1,5 @@
 { inputs, pkgs, ... }:
+
 {
   services.xserver = {
     displayManager.startx.enable = true;

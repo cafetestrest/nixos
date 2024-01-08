@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    user;
-in
 {
   environment.systemPackages = with pkgs; [
     spice                     # vm
