@@ -23,7 +23,7 @@ in
     ../../modules/docker              # docker, docker-compose and /etc/hosts
     ../../modules/neovim              # neovim and plugins for it
     ../../modules/mpv                 # mpv video player and its config
-    ../../modules/gdm/background      # background for gdm
+    ../../nixos/gdm/background.nix    # background for gdm
   ];
 
   # Bootloader.

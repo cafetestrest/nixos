@@ -20,9 +20,13 @@ function lock() {
 }
 
 function sespend() {
-    # lock
-    # sleep 0.1
-    systemctl suspend
+    if pgrep -x "swaylock" >/dev/null; then
+        systemctl suspend
+    else
+        lock
+        sleep 0.1
+        systemctl suspend
+    fi
 }
 
 function checkIfMediaIsPlayingAndLock() {
