@@ -14,7 +14,7 @@ function set_swaybg_wallpaper() {
 #top bar - ags
 function run_ags() {
     echo 'running ags'
-    ags &
+    ags -b hypr &
 }
 
 #idle check
