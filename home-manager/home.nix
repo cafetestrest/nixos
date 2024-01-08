@@ -20,6 +20,7 @@ in
       ./gnome/packages.nix
       ./scripts.nix # scripts, place to store all common scripts
       ./mpv.nix # mpv video player and its config
+      ./fish.nix
 
       #gnome
       # ./gnome/keyboard-shortcuts.nix
