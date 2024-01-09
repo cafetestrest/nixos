@@ -28,6 +28,7 @@
     libnotify             #notifications from terminal
     # headsetcontrol      #used to retrieve battery percentage from headset
     # librewolf           #firefox browser
+    icon-library          #library of icons
   ];
 
   # services.teamviewer.enable = true;

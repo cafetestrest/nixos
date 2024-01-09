@@ -1,12 +1,16 @@
 { inputs, pkgs, ... }:
 let
+  inherit (import ../variables.nix)
+    username
+    homeDirectory;
+
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
   launcher = pkgs.writeShellScriptBin "hypr" ''
     #!/${pkgs.bash}/bin/bash
 
-    export WLR_NO_HARDWARE_CURSORS=1
+    #export WLR_NO_HARDWARE_CURSORS=1
     export _JAVA_AWT_WM_NONREPARENTING=1
 
     exec ${hyprland}/bin/Hyprland
@@ -23,6 +27,46 @@ in
     icon = "org.gnome.Settings";
     exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
     categories = [ "X-Preferences" ];
+    terminal = false;
+  };
+
+  xdg.desktopEntries."shutdown" = {
+    name = "Shutdown";
+    comment = "Power Off";
+    icon = "system-shutdown-symbolic";
+    exec = "shutdown now";
+    terminal = false;
+  };
+
+  xdg.desktopEntries."restart" = {
+    name = "Restart";
+    comment = "Reboot";
+    icon = "system-reboot-symbolic";
+    exec = "systemctl reboot";
+    terminal = false;
+  };
+
+  xdg.desktopEntries."logout" = {
+    name = "Log Out";
+    comment = "Sign Out";
+    icon = "system-log-out-symbolic";
+    exec = "loginctl terminate-user ${username}";
+    terminal = false;
+  };
+
+  xdg.desktopEntries."lock" = {
+    name = "Lock";
+    comment = "Locks PC";
+    icon = "system-lock-screen-symbolic";
+    exec = "${homeDirectory}/.config/scripts/idle.sh l";
+    terminal = false;
+  };
+
+  xdg.desktopEntries."sleep" = {
+    name = "Sleep";
+    comment = "Put PC to Sleep";
+    icon = "weather-clear-night-symbolic";
+    exec = "${homeDirectory}/.config/scripts/idle.sh s";
     terminal = false;
   };
 
