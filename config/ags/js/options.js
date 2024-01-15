@@ -157,6 +157,7 @@ export default {
     applauncher: {
         width: Option(500),
         height: Option(500),
+        anchor: Option(['center']),
         icon_size: Option(24),
     },
 

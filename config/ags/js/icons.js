@@ -92,6 +92,7 @@ export default {
         previcon: 'go-previous-symbolic',
     },
     ui: {
+        colorpicker: 'color-select-symbolic',
         close: 'window-close-symbolic',
         info: 'dialog-information-symbolic',
         menu: 'open-menu-symbolic',
