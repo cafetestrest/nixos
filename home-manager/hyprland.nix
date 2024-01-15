@@ -80,7 +80,7 @@ in
     settings = {
       exec-once = [
         # "ags -b hypr"
-        "~/.config/scripts/startup.sh"  #open on startup
+        "~/.config/scripts/startup.sh" #open on startup
         "xrdb -load ~/.Xresources"
         # "hyprctl setcursor Qogir 24"
         # "transmission-gtk"
@@ -188,8 +188,8 @@ in
         e = "exec, ags -b hypr";
         arr = [1 2 3 4 5 6 7 8 9];
         yt = pkgs.writeShellScriptBin "yt" ''
-            notify-send "Opening video" "$(wl-paste)"
-            mpv "$(wl-paste)"
+          notify-send "Opening video" "$(wl-paste)"
+          mpv "$(wl-paste)"
         '';
         browser = "chromium";
         fileExplorer = "nautilus";
@@ -203,17 +203,17 @@ in
         "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
 
         "SUPER SHIFT, R, ${e} quit; ags -b hypr"
-        "SUPER, space,   ${e} -t applauncher"
-        "ALT, space,   ${e} -t applauncher"
+        "SUPER, space, ${e} -t applauncher"
+        "ALT, space, ${e} -t applauncher"
         # ", XF86PowerOff, ${e} -t powermenu"
-        # "SUPER, Tab,     ${e} -t overview"
-        # ", XF86Launch4,  ${e} -r 'recorder.start()'"
-        ",Print,         ${e} -r 'recorder.screenshot()'"
-        "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
+        # "SUPER, Tab, ${e} -t overview"
+        # ", XF86Launch4, ${e} -r 'recorder.start()'"
+        ",Print, ${e} -r 'recorder.screenshot()'"
+        "SHIFT,Print, ${e} -r 'recorder.screenshot(true)'"
         # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
-        "SUPER, L,   ${e} -t powermenu"
-        "SUPER, N,   ${e} -t weather"
-        "SUPER, S,   ${e} -t quicksettings"
+        "SUPER, L, ${e} -t powermenu"
+        "SUPER, N, ${e} -t weather"
+        "SUPER, S, ${e} -t quicksettings"
         "CTRL ALT, Delete, exec, xterm -e ~/.config/scripts/powermenu.sh t"
         "SUPER SHIFT, Delete, exec, xterm -e ~/.config/scripts/powermenu.sh t"
         ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
@@ -221,7 +221,7 @@ in
         "SUPER SHIFT, escape, exec, playerctl --all-players stop"
 
         # youtube
-        # ", XF86Launch1,  exec, ${yt}/bin/yt"
+        # ", XF86Launch1, exec, ${yt}/bin/yt"
 
         # "ALT, Tab, focuscurrentorlast"
         "CTRL ALT, BackSpace, exit"
@@ -259,12 +259,12 @@ in
       ++ (map (i: mvtows (toString i) (toString i)) arr);
 
       bindle = let e = "exec, ags -b hypr -r"; in [
-        # ",XF86MonBrightnessUp,   ${e} 'brightness.screen += 0.05; indicator.display()'"
+        # ",XF86MonBrightnessUp, ${e} 'brightness.screen += 0.05; indicator.display()'"
         # ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
-        ",XF86KbdBrightnessUp,   ${e} 'brightness.kbd++; indicator.kbd()'"
+        ",XF86KbdBrightnessUp, ${e} 'brightness.kbd++; indicator.kbd()'"
         ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
-        # ",XF86AudioRaiseVolume,  ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
-        # ",XF86AudioLowerVolume,  ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
+        # ",XF86AudioRaiseVolume, ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
+        # ",XF86AudioLowerVolume, ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
         ",XF86AudioLowerVolume, exec, pamixer -d 1"
         ",XF86AudioRaiseVolume, exec, pamixer -i 1"
         ",XF86AudioMute, exec, pamixer -t"
@@ -290,11 +290,11 @@ in
       ];
 
       bindl = let e = "exec, ags -b hypr -r"; in [
-        # ",XF86AudioPlay,    ${e} 'mpris?.playPause()'"
-        # ",XF86AudioStop,    ${e} 'mpris?.stop()'"
-        # ",XF86AudioPause,   ${e} 'mpris?.pause()'"
-        # ",XF86AudioPrev,    ${e} 'mpris?.previous()'"
-        # ",XF86AudioNext,    ${e} 'mpris?.next()'"
+        # ",XF86AudioPlay, ${e} 'mpris?.playPause()'"
+        # ",XF86AudioStop, ${e} 'mpris?.stop()'"
+        # ",XF86AudioPause, ${e} 'mpris?.pause()'"
+        # ",XF86AudioPrev, ${e} 'mpris?.previous()'"
+        # ",XF86AudioNext, ${e} 'mpris?.next()'"
         ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioStop, exec, playerctl stop"
