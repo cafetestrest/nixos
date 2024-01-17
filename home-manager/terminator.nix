@@ -11,7 +11,7 @@ let
       new_tab = "<Primary>t";
       cycle_next = "<Primary>Page_Up";
       cycle_prev = "<Primary>Page_Down";
-      close_term = "<Primary>w";
+      close_term = "<Primary><Shift>w";
       next_tab = "<Primary>Tab";
       prev_tab = "<Primary><Shift>Tab";
       preferences = "F1";

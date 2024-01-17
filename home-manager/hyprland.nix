@@ -159,6 +159,7 @@ in
 		(f "transmission-gtk")
 		(f "com.github.Aylur.ags")
 		(f "com.github.hluk.copyq")
+		(f "jetbrains-phpstorm")
 		"float,Rofi"
 		# "workspace 7, title:Spotify"
 		"opacity 0.85,terminator"
@@ -170,6 +171,7 @@ in
       in [
 		(f "com.github.hluk.copyq")
 		(f "Rofi")
+		(f "jetbrains-phpstorm")
       ];
 
       layerrule = let
