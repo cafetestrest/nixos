@@ -202,13 +202,9 @@ install_magento() {
 
     ## elasticsearch
     if [[ ${WARDEN_OPENSEARCH} != 1 && ${WARDEN_ELASTICSEARCH} == 1 ]]; then
-        DOCKER_RUNNING_ES_VERSION=$(docker ps --filter name=elastic --format '{{.Image}}' | sed 's/wardenenv\/elasticsearch://' | sed 's/\([0-9]\)\.\([0-9]\)/elasticsearch\1/');
-
-        if [[ ${DOCKER_RUNNING_ES_VERSION} != "" ]]; then
-            INSTALL_FLAGS="${INSTALL_FLAGS} --search-engine=${DOCKER_RUNNING_ES_VERSION}
-            --elasticsearch-host=elasticsearch
-            --elasticsearch-port=9200"
-        fi
+        INSTALL_FLAGS="${INSTALL_FLAGS} --search-engine=${DOCKER_RUNNING_ES_VERSION}
+        --elasticsearch-host=elasticsearch
+        --elasticsearch-port=9200"
     fi
 
     INSTALL_FLAGS="${INSTALL_FLAGS} \
@@ -340,6 +336,29 @@ retrieve_url_info() {
     URL_ADMIN="${HTTP_PROTOCOL}://${FULL_DOMAIN}/${ADMIN_PATH}/"
 }
 
+verify_warden_has_search() {
+    HAS_SEARCH=0
+
+    ## opensearch
+    if [[ ${WARDEN_OPENSEARCH} == 1 ]]; then
+        HAS_SEARCH=1
+    fi
+
+    ## elasticsearch
+    if [[ ${WARDEN_OPENSEARCH} != 1 && ${WARDEN_ELASTICSEARCH} == 1 ]]; then
+        DOCKER_RUNNING_ES_VERSION=$(docker ps --filter name=elastic --format '{{.Image}}' | sed 's/wardenenv\/elasticsearch://' | sed 's/\([0-9]\)\.\([0-9]\)/elasticsearch\1/');
+
+        if [[ ${DOCKER_RUNNING_ES_VERSION} != "" ]]; then
+            HAS_SEARCH=1
+        fi
+    fi
+
+    if [[ ${HAS_SEARCH} == 0 ]]; then
+        :: "Warden .env file has search missing. Please enable either WARDEN_OPENSEARCH or WARDEN_ELASTICSEARCH."
+        exit 1
+    fi
+}
+
 function print_install_info {
     :: Initialization complete
 
@@ -353,6 +372,7 @@ function print_install_info {
         WARDEN_URL_DOMAIN=".warden.test"
         RABBITMQ_URL="${HTTP_PROTOCOL}://rabbitmq.${TRAEFIK_DOMAIN}/"
         ELASTICSEARCH_URL="${HTTP_PROTOCOL}://elasticsearch.${TRAEFIK_DOMAIN}/"
+        OPENSEARCH_URL="${HTTP_PROTOCOL}://opensearch.${TRAEFIK_DOMAIN}/"
         TRAEFIK_URL="${HTTP_PROTOCOL}://traefik${WARDEN_URL_DOMAIN}/"
         PORTAINER_URL="${HTTP_PROTOCOL}://portainer${WARDEN_URL_DOMAIN}/"
         DNSMASQ_URL="${HTTP_PROTOCOL}://dnsmasq${WARDEN_URL_DOMAIN}/"
@@ -390,6 +410,11 @@ function print_install_info {
 
         if [[ ${WARDEN_ELASTICSEARCH} == 1 ]]; then
             printf "+ %-*s + %-*s + \n" $C1_LEN Elasticsearch $C2_LEN "$ELASTICSEARCH_URL"
+            printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+        fi
+
+        if [[ ${WARDEN_OPENSEARCH} == 1 ]]; then
+            printf "+ %-*s + %-*s + \n" $C1_LEN Elasticsearch $C2_LEN "$OPENSEARCH_URL"
             printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
         fi
 
@@ -453,11 +478,12 @@ source .env
 get_magento_web_root_location
 retrieve_url_info
 
-
 stop_running_warden
 start_warden
 
 check_if_project_already_installed
+
+verify_warden_has_search
 
 initialize
 
