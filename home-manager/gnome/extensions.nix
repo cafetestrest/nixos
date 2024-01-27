@@ -4,13 +4,13 @@
   imports =
     [
       #gnome extensions dconf configuration
-      ./gnome/extensions/config/blur-my-shell.nix
-      ./gnome/extensions/config/caffeine.nix
-      ./gnome/extensions/config/dash-to-panel.nix
-      ./gnome/extensions/config/executor.nix
-      ./gnome/extensions/config/gtile.nix
-      #./gnome/extensions/config/super-key.nix
-      ./gnome/extensions/config/useless-gaps.nix
+      ./extensions/config/blur-my-shell.nix
+      ./extensions/config/caffeine.nix
+      ./extensions/config/dash-to-panel.nix
+      ./extensions/config/executor.nix
+      ./extensions/config/gtile.nix
+      #./extensions/config/super-key.nix
+      ./extensions/config/useless-gaps.nix
     ];
 
   home.packages = with pkgs; [
@@ -23,10 +23,10 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.gtile
     gnomeExtensions.no-overview
-    gnomeExtensions.openweather
-    gnomeExtensions.rounded-window-corners
+    # gnomeExtensions.openweather
+    # gnomeExtensions.rounded-window-corners
     #gnomeExtensions.super-key
-    gnomeExtensions.useless-gaps
+    # gnomeExtensions.useless-gaps
     gnomeExtensions.workspace-indicator
     gnomeExtensions.tray-icons-reloaded
   ];
@@ -38,8 +38,8 @@
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "trayIconsReloaded@selfmade.pl"
-        "rounded-window-corners@yilozt"
-        "openweather-extension@jenslody.de"
+        # "rounded-window-corners@yilozt"
+        # "openweather-extension@jenslody.de"
         "no-overview@fthx"
         "gTile@vibou"
         "gsconnect@andyholmes.github.io"
@@ -49,7 +49,7 @@
         "caffeine@patapon.info"
         "blur-my-shell@aunetx"
         #"super-key@tommimon.github.com"
-        "useless-gaps@pimsnel.com"
+        # "useless-gaps@pimsnel.com"
         #"pop-shell@system76.com"
       ];
     };

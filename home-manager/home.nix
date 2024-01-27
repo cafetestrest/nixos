@@ -15,7 +15,6 @@ in
       ./hyprland.nix # https://github.com/Aylur/ags
       ./terminator.nix
       ./xterm.nix
-      ./gdm/dconf-settings.nix
       ./gdm/gtk.nix
       ./gnome/packages.nix
       ./scripts.nix # scripts, place to store all common scripts
@@ -24,11 +23,12 @@ in
       ./swaylock.nix
 
       #gnome
-      # ./gnome/keyboard-shortcuts.nix
-      # ./gnome/autostart/copyq.nix
+      ./gnome/dconf-settings.nix
+      ./gnome/keyboard-shortcuts.nix
+      ./gnome/autostart/copyq.nix
+      ./gnome/extensions.nix
 
       #unused
-      # ./gnome/dconf-settings.nix
       # ../config/albert.nix
       # ./gnome/autostart/albert.nix
       # ./gnome/autostart/xpad.nix

@@ -9,5 +9,5 @@
     #win-spice                # vm windows stuff
   ];
 
-  services.spice-vdagentd.enable = true;
+  services.spice-vdagentd.enable = false;
 }

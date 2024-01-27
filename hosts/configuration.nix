@@ -36,7 +36,7 @@ in
 
   services.xserver.enable = true; # Enable the X11 windowing system.
 
-  services.xserver.desktopManager.gnome.enable = false;  # Enable the GNOME Desktop Environment.
+  services.xserver.desktopManager.gnome.enable = true;  # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.settings = {
   # };
@@ -50,6 +50,22 @@ in
         };
         "org/gnome/desktop/interface" = {
           cursor-theme = "macOS-Monterey";
+
+          document-font-name = "Cantarell 11";
+          monospace-font-name = "Source Code Pro 10";
+
+          #clock in top bar
+          clock-show-seconds = true;
+          clock-show-weekday = true;
+
+          #dark theme
+          color-scheme = "prefer-dark";
+        };
+
+        "org/gnome/settings-daemon/plugins/color" = {
+          night-light-enabled = true;
+          night-light-schedule-automatic = true;
+          night-light-temperature = "2700";
         };
       };
     }];

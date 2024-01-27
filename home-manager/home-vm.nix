@@ -15,7 +15,6 @@ in
       # ./hyprland.nix # https://github.com/Aylur/ags
       # ./terminator.nix
       # ./xterm.nix
-      # ./gdm/dconf-settings.nix
       # ./gdm/gtk.nix
       # ./gnome/packages.nix
       # ./scripts.nix # scripts, place to store all common scripts
@@ -23,6 +22,7 @@ in
       # ./fish.nix
 
       #gnome
+      # ./gnome/dconf-settings.nix
       # ./gnome/keyboard-shortcuts.nix
       # ./gnome/autostart/copyq.nix
 
