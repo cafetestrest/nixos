@@ -171,7 +171,6 @@ in
       in [
 		(f "com.github.hluk.copyq")
 		(f "Rofi")
-		(f "jetbrains-phpstorm")
       ];
 
       layerrule = let

@@ -200,6 +200,17 @@ install_magento() {
         --opensearch-timeout=15 "
     fi
 
+    ## elasticsearch
+    if [[ ${WARDEN_OPENSEARCH} != 1 && ${WARDEN_ELASTICSEARCH} == 1 ]]; then
+        DOCKER_RUNNING_ES_VERSION=$(docker ps --filter name=elastic --format '{{.Image}}' | sed 's/wardenenv\/elasticsearch://' | sed 's/\([0-9]\)\.\([0-9]\)/elasticsearch\1/');
+
+        if [[ ${DOCKER_RUNNING_ES_VERSION} != "" ]]; then
+            INSTALL_FLAGS="${INSTALL_FLAGS} --search-engine=${DOCKER_RUNNING_ES_VERSION}
+            --elasticsearch-host=elasticsearch
+            --elasticsearch-port=9200"
+        fi
+    fi
+
     INSTALL_FLAGS="${INSTALL_FLAGS} \
         --backend-frontname="${ADMIN_PATH}" \
         --db-host=db \

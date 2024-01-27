@@ -110,116 +110,116 @@ end
 #   end
 # end
 
-# function get_warden_services_urls --description 'Prints warden services URLs'
-#   if test -e ./.env
-#     echo ""
-#     echo "==> [$(date +%H:%M:%S)] Started warden"
-#     echo ""
-#     set FILL (string repeat -n 128 -)
-#     set LONGEST_STRING_FOR_C1 AdminURL
-#     set PRINT_MORE_VERBOSE_URLS 1
-#     set PRINT_ADMIN_INFO 0
-#     set HTTP_PROTOCOL https
-#     set ADMIN_PATH admin
-#     set ADMIN_USER admin
-#     set ADMIN_PASS Test1234
-#     set TRAEFIK_DOMAIN (grep -w TRAEFIK_DOMAIN ./.env | cut -d "=" -f2)
-#     set TRAEFIK_SUBDOMAIN (grep -w TRAEFIK_SUBDOMAIN ./.env | cut -d "=" -f2)
-#     set WARDEN_RABBITMQ (grep -w WARDEN_RABBITMQ ./.env | cut -d "=" -f2)
-#     set WARDEN_ELASTICSEARCH (grep -w WARDEN_ELASTICSEARCH ./.env | cut -d "=" -f2)
+function get_warden_services_urls --description 'Prints warden services URLs'
+  if test -e ./.env
+    echo ""
+    echo "==> [$(date +%H:%M:%S)] Started warden"
+    echo ""
+    set FILL (string repeat -n 128 -)
+    set LONGEST_STRING_FOR_C1 AdminURL
+    set PRINT_MORE_VERBOSE_URLS 1
+    set PRINT_ADMIN_INFO 0
+    set HTTP_PROTOCOL https
+    set ADMIN_PATH admin
+    set ADMIN_USER admin
+    set ADMIN_PASS Test1234
+    set TRAEFIK_DOMAIN (grep -w TRAEFIK_DOMAIN ./.env | cut -d "=" -f2)
+    set TRAEFIK_SUBDOMAIN (grep -w TRAEFIK_SUBDOMAIN ./.env | cut -d "=" -f2)
+    set WARDEN_RABBITMQ (grep -w WARDEN_RABBITMQ ./.env | cut -d "=" -f2)
+    set WARDEN_ELASTICSEARCH (grep -w WARDEN_ELASTICSEARCH ./.env | cut -d "=" -f2)
 
-#     if test -n "$TRAEFIK_SUBDOMAIN"
-#       set FULL_DOMAIN "$TRAEFIK_SUBDOMAIN.$TRAEFIK_DOMAIN"
-#     else
-#       set FULL_DOMAIN "$TRAEFIK_DOMAIN"
-#     end
+    if test -n "$TRAEFIK_SUBDOMAIN"
+      set FULL_DOMAIN "$TRAEFIK_SUBDOMAIN.$TRAEFIK_DOMAIN"
+    else
+      set FULL_DOMAIN "$TRAEFIK_DOMAIN"
+    end
 
-#     set URL_FRONT "$HTTP_PROTOCOL://$FULL_DOMAIN/"
-#     set URL_ADMIN "$HTTP_PROTOCOL://$FULL_DOMAIN/$ADMIN_PATH/"
+    set URL_FRONT "$HTTP_PROTOCOL://$FULL_DOMAIN/"
+    set URL_ADMIN "$HTTP_PROTOCOL://$FULL_DOMAIN/$ADMIN_PATH/"
     
-#     if test (string length $URL_ADMIN) -gt (string length $ADMIN_PASS)
-#       set C2_LEN (string length "$URL_ADMIN")
-#     else
-#       set C2_LEN (string length "$ADMIN_PASS")
-#     end
+    if test (string length $URL_ADMIN) -gt (string length $ADMIN_PASS)
+      set C2_LEN (string length "$URL_ADMIN")
+    else
+      set C2_LEN (string length "$ADMIN_PASS")
+    end
 
-#     if test $PRINT_MORE_VERBOSE_URLS -eq 1
-#       set WARDEN_URL_DOMAIN ".warden.test"
-#       set RABBITMQ_URL "$HTTP_PROTOCOL://rabbitmq.$TRAEFIK_DOMAIN/"
-#       set ELASTICSEARCH_URL "$HTTP_PROTOCOL://elasticsearch.$TRAEFIK_DOMAIN/"
-#       set TRAEFIK_URL "$HTTP_PROTOCOL://traefik$WARDEN_URL_DOMAIN/"
-#       set PORTAINER_URL "$HTTP_PROTOCOL://portainer$WARDEN_URL_DOMAIN/"
-#       set DNSMASQ_URL "$HTTP_PROTOCOL://dnsmasq$WARDEN_URL_DOMAIN/"
-#       set MAILHOG_URL "$HTTP_PROTOCOL://mailhog$WARDEN_URL_DOMAIN/"
+    if test $PRINT_MORE_VERBOSE_URLS -eq 1
+      set WARDEN_URL_DOMAIN ".warden.test"
+      set RABBITMQ_URL "$HTTP_PROTOCOL://rabbitmq.$TRAEFIK_DOMAIN/"
+      set ELASTICSEARCH_URL "$HTTP_PROTOCOL://elasticsearch.$TRAEFIK_DOMAIN/"
+      set TRAEFIK_URL "$HTTP_PROTOCOL://traefik$WARDEN_URL_DOMAIN/"
+      set PORTAINER_URL "$HTTP_PROTOCOL://portainer$WARDEN_URL_DOMAIN/"
+      set DNSMASQ_URL "$HTTP_PROTOCOL://dnsmasq$WARDEN_URL_DOMAIN/"
+      set MAILHOG_URL "$HTTP_PROTOCOL://mailhog$WARDEN_URL_DOMAIN/"
 
-#       if test $WARDEN_ELASTICSEARCH -eq 1
-#         set LONGEST_STRING_FOR_C1 Elasticsearch
-#       else
-#         set LONGEST_STRING_FOR_C1 Portainer
-#       end
+      if test $WARDEN_ELASTICSEARCH -eq 1
+        set LONGEST_STRING_FOR_C1 Elasticsearch
+      else
+        set LONGEST_STRING_FOR_C1 Portainer
+      end
 
-#       if test (string length $C2_LEN) -lt (string length $ELASTICSEARCH_URL)
-#         set C2_LEN (string length "$ELASTICSEARCH_URL")
-#       end
-#     end
+      if test (string length $C2_LEN) -lt (string length $ELASTICSEARCH_URL)
+        set C2_LEN (string length "$ELASTICSEARCH_URL")
+      end
+    end
 
-#     set C1_LEN (string length $LONGEST_STRING_FOR_C1)
+    set C1_LEN (string length $LONGEST_STRING_FOR_C1)
 
-#     printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#     printf "+ %-*s + %-*s + \n" $C1_LEN FrontURL $C2_LEN "$URL_FRONT"
-#     printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#     printf "+ %-*s + %-*s + \n" $C1_LEN AdminURL $C2_LEN "$URL_ADMIN"
-#     printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+    printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+    printf "+ %-*s + %-*s + \n" $C1_LEN FrontURL $C2_LEN "$URL_FRONT"
+    printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+    printf "+ %-*s + %-*s + \n" $C1_LEN AdminURL $C2_LEN "$URL_ADMIN"
+    printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
 
-#     if test $PRINT_MORE_VERBOSE_URLS -eq 1
-#       if test $PRINT_ADMIN_INFO -eq 1
-#         printf "+ %-*s + %-*s + \n" $C1_LEN Username $C2_LEN "$ADMIN_USER"
-#         printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#         printf "+ %-*s + %-*s + \n" $C1_LEN Password $C2_LEN "$ADMIN_PASS"
-#         printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#       end
+    if test $PRINT_MORE_VERBOSE_URLS -eq 1
+      if test $PRINT_ADMIN_INFO -eq 1
+        printf "+ %-*s + %-*s + \n" $C1_LEN Username $C2_LEN "$ADMIN_USER"
+        printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+        printf "+ %-*s + %-*s + \n" $C1_LEN Password $C2_LEN "$ADMIN_PASS"
+        printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+      end
 
-#       if test $WARDEN_RABBITMQ -eq 1
-#         printf "+ %-*s + %-*s + \n" $C1_LEN RabbitMQ $C2_LEN "$RABBITMQ_URL"
-#         printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#       end
+      if test $WARDEN_RABBITMQ -eq 1
+        printf "+ %-*s + %-*s + \n" $C1_LEN RabbitMQ $C2_LEN "$RABBITMQ_URL"
+        printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+      end
 
-#       if test $WARDEN_ELASTICSEARCH -eq 1
-#         printf "+ %-*s + %-*s + \n" $C1_LEN Elasticsearch $C2_LEN "$ELASTICSEARCH_URL"
-#         printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#       end
+      if test $WARDEN_ELASTICSEARCH -eq 1
+        printf "+ %-*s + %-*s + \n" $C1_LEN Elasticsearch $C2_LEN "$ELASTICSEARCH_URL"
+        printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+      end
 
-#       printf "+ %-*s + %-*s + \n" $C1_LEN Traefik $C2_LEN "$TRAEFIK_URL"
-#       printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#       printf "+ %-*s + %-*s + \n" $C1_LEN Portainer $C2_LEN "$PORTAINER_URL"
-#       printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#       printf "+ %-*s + %-*s + \n" $C1_LEN Dnsmasq $C2_LEN "$DNSMASQ_URL"
-#       printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#       printf "+ %-*s + %-*s + \n" $C1_LEN MailHog $C2_LEN "$MAILHOG_URL"
-#       printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
-#     end
-#   end
-# end
+      printf "+ %-*s + %-*s + \n" $C1_LEN Traefik $C2_LEN "$TRAEFIK_URL"
+      printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+      printf "+ %-*s + %-*s + \n" $C1_LEN Portainer $C2_LEN "$PORTAINER_URL"
+      printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+      printf "+ %-*s + %-*s + \n" $C1_LEN Dnsmasq $C2_LEN "$DNSMASQ_URL"
+      printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+      printf "+ %-*s + %-*s + \n" $C1_LEN MailHog $C2_LEN "$MAILHOG_URL"
+      printf "+ %*.*s + %*.*s + \n" 0 $C1_LEN $FILL 0 $C2_LEN $FILL
+    end
+  end
+end
 
 function dockerkill --description 'Stops and removed all running docker containers'
   docker stop (docker ps -a -q)
   docker rm (docker ps -a -q)
 end
 
-# function wardenstart --description 'Starts all warden environments and services in folder, prints out urls'
-#   warden svc up
-#   warden env up
-#   get_warden_services_urls
-# end
+function wardenstart --description 'Starts all warden environments and services in folder, prints out urls'
+  warden svc up
+  warden env up
+  get_warden_services_urls
+end
 
-# function wardendown -a arg --description 'Puts down all warden environments and services in folder'
-#   warden svc down
-#   if test -n "$arg"
-#     warden env down $arg
-#   else
-#     warden env down
-#   end
-# end
+function wardendown -a arg --description 'Puts down all warden environments and services in folder'
+  warden svc down
+  if test -n "$arg"
+    warden env down $arg
+  else
+    warden env down
+  end
+end
 
 function create -a arg --description 'Creates file along with all directories specified before it'
   mkdir -p (dirname "$arg")
@@ -254,29 +254,29 @@ alias getetchostsfromurl='get_etc_hosts_domains_from_url $argv'
 # alias printwardenoutput='get_warden_services_urls'
 
 # #aliases for development
-# alias b='warden shell'
+alias b='warden shell'
 # alias wenv='warden env up'
 # alias wsvc='warden svc up'
-# alias start='wardenstart'
+alias start='wardenstart'
 # alias wsvcdown='warden svc down'
 # alias wenvdown='warden env down'
-# alias down='wardendown'
+alias down='wardendown'
 
 # #aliases for m2 warden
-# alias app='warden shell -c "$argv"'
-# alias php='app php $argv'
-# alias cg='app rm -rf /var/www/html/generated/code/ /var/www/html/generated/metadata/'
-# alias composer='warden shell -c "COMPOSER_MEMORY_LIMIT=-1 composer $argv"'
-# alias cud='composer update'
-# alias cu='cud --no-dev'
-# alias cid='COMPOSER_MEMORY_LIMIT=-1 composer install'
-# alias ci='cid --no-dev'
-# alias grunt='warden shell -c "grunt $argv"'
-# alias gw='grunt watch'
-# alias node='warden shell -c "node $argv"'
-# alias yarn='warden shell -c "yarn $argv"'
-# alias npx='warden shell -c "npx $argv"'
-#alias gccomposer='app git checkout composer.lock'
+alias app='warden shell -c "$argv"'
+alias php='app php $argv'
+alias cg='app rm -rf /var/www/html/generated/code/ /var/www/html/generated/metadata/'
+alias composer='warden shell -c "COMPOSER_MEMORY_LIMIT=-1 composer $argv"'
+alias cud='composer update'
+alias cu='cud --no-dev'
+alias cid='COMPOSER_MEMORY_LIMIT=-1 composer install'
+alias ci='cid --no-dev'
+alias grunt='warden shell -c "grunt $argv"'
+alias gw='grunt watch'
+alias node='warden shell -c "node $argv"'
+alias yarn='warden shell -c "yarn $argv"'
+alias npx='warden shell -c "npx $argv"'
+# alias gccomposer='app git checkout composer.lock'
 #alias gcconfig='app git checkout app/etc/config.php'
 # alias vsb='app varnish-static-ban'
 # alias vsba='vsb "\.*"'
@@ -284,25 +284,26 @@ alias getetchostsfromurl='get_etc_hosts_domains_from_url $argv'
 # alias vsbh='vsb "\.*\.html"'
 # alias vsbj='vsb "\.*\.js"'
 
-# alias m2='warden shell -c "php -dmemory_limit=-1 bin/magento $argv"'
-# alias magento='m2'
-# alias msu='m2 setup:upgrade'
-# alias sup='msu'
-# alias cc='m2 cache:clean $argv'
-# alias cf='m2 cache:flush'
-# alias ccc='m2 cache:clean config full_page'
-# alias ccfe='m2 cache:clean block_html layout full_page'
-# alias dc='m2 setup:di:compile'
-# alias scd='m2 setup:static-content:deploy -f --jobs 6'
-# alias scd1='m2 setup:static-content:deploy -f'
-# alias rebuild='msu && cf'
-# alias rebuild1='msu && dc && scd1 && cf'
-# alias rebuild6='msu && dc && scd && cf'
-# alias rebuildprod='rebuild6'
-# alias rebuildprod1='rebuild1'
-# alias rei='m2 indexer:reindex'
-# alias res='m2 indexer:reset'
-# alias rebuildfull='msu && dc && scd && res && rei && cf'
+alias m2='warden shell -c "php -dmemory_limit=-1 bin/magento $argv"'
+alias magento='m2'
+alias msu='m2 setup:upgrade'
+alias sup='msu'
+alias cc='m2 cache:clean $argv'
+alias cf='m2 cache:flush'
+alias ccc='m2 cache:clean config full_page'
+alias ccfe='m2 cache:clean block_html layout full_page'
+alias dc='m2 setup:di:compile'
+alias scd='m2 setup:static-content:deploy -f --jobs 6'
+alias static='scd'
+alias scd1='m2 setup:static-content:deploy -f'
+alias rebuild='msu && cf'
+alias rebuild1='msu && dc && scd1 && cf'
+alias rebuild6='msu && dc && scd && cf'
+alias rebuildprod='rebuild6'
+alias rebuildprod1='rebuild1'
+alias rei='m2 indexer:reindex'
+alias res='m2 indexer:reset'
+alias rebuildfull='msu && dc && scd && res && rei && cf'
 
 #warden path expose that enables warden to run
 # set PATH "/opt/warden/bin:$PATH"
