@@ -38,7 +38,7 @@ in
     127.0.0.1 ::1 app.exampleproject.test
     127.0.0.1 ::1 rabbitmq.exampleproject.test
     127.0.0.1 ::1 opensearch.exampleproject.test
-    127.0.0.1 ::1 elasticsearch.warden.test
+    127.0.0.1 ::1 elasticsearch.exampleproject.test
     127.0.0.1 ::1 dnsmasq.warden.test
     127.0.0.1 ::1 traefik.warden.test
     127.0.0.1 ::1 portainer.warden.test

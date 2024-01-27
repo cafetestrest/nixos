@@ -22,7 +22,7 @@
         owner = "wardenenv";
         repo = "warden";
         rev = "main";
-        sha256 = "sha256-GK27z72n3jTU5BQN79MITi5qtICDWfO1tYg5gVcOz+4=";
+        sha256 = "sha256-CH/pklnxm1nz7miFlRsC7VFQ9n7xDrVYCmqqh0IHA3o=";
       };
 
       patches = [
