@@ -19,6 +19,7 @@ in
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../nixos/docker                # docker, docker-compose and /etc/hosts
     ../../nixos/gdm/background.nix    # background for gdm
+    ../../nixos/headsetcontrol.nix    # used to retrieve battery percentage from headset
     # ../../nixos/waybar.nix
   ];
 
