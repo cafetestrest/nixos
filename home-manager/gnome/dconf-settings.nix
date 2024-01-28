@@ -49,5 +49,12 @@
       night-light-schedule-automatic = true;
       night-light-temperature = "2700";
     };
+
+    "org/blueman/general" = {
+      plugin-list=[
+        "!ConnectionNotifier"
+        "!StatusNotifierItem"
+      ];
+    };
   };
 }

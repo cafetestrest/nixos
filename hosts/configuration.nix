@@ -119,7 +119,7 @@ in
     enable = true;
     settings.General.Experimental = true;
   };
-  services.blueman.enable = true;
+  services.blueman.enable = false;
 
   # usb automount
   services.gvfs.enable = true;
