@@ -11,11 +11,11 @@
       ./extensions/config/gtile.nix
       #./extensions/config/super-key.nix
       ./extensions/config/useless-gaps.nix
+      ./extensions/config/mediacontrols.nix
     ];
 
   home.packages = with pkgs; [
     gnomeExtensions.user-themes
-    gnomeExtensions.workspace-indicator
     gnomeExtensions.no-overview
     gnomeExtensions.gtile
     gnomeExtensions.gsconnect
@@ -25,6 +25,8 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-panel
     gnomeExtensions.appindicator
+    gnomeExtensions.media-controls
+    # gnomeExtensions.workspace-indicator
     # gnomeExtensions.openweather               #using this, not yet on nix: https://extensions.gnome.org/extension/6655/openweather/
     # gnomeExtensions.rounded-window-corners    #missing in gnome 45
     # gnomeExtensions.super-key                 #not using
@@ -37,7 +39,6 @@
       disable-user-extensions = false;
       enabled-extensions = [
         "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "no-overview@fthx"
         "gTile@vibou"
         "gsconnect@andyholmes.github.io"
@@ -48,6 +49,8 @@
         "dash-to-panel@jderose9.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "openweather-extension@penguin-teal.github.io"
+        "mediacontrols@cliffniff.github.com"
+        # "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         # "trayIconsReloaded@selfmade.pl"
         # "rounded-window-corners@yilozt"
         # "openweather-extension@jenslody.de"
