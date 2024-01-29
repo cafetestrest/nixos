@@ -9,22 +9,24 @@ in
 {
   imports =
     [
-      # ./packages.nix
-      # ./fonts.nix
+      ./packages.nix
+      ./fonts.nix
       # ./ags.nix # https://github.com/Aylur/ags
       # ./hyprland.nix # https://github.com/Aylur/ags
-      # ./terminator.nix
-      # ./xterm.nix
-      # ./gdm/gtk.nix
-      # ./gnome/packages.nix
-      # ./scripts.nix # scripts, place to store all common scripts
-      # ./mpv.nix # mpv video player and its config
-      # ./fish.nix
+      ./terminator.nix
+      ./xterm.nix
+      ./gdm/gtk.nix
+      ./gnome/packages.nix
+      ./scripts.nix # scripts, place to store all common scripts
+      ./mpv.nix # mpv video player and its config
+      ./fish.nix
+      # ./swaylock.nix
 
       #gnome
-      # ./gnome/dconf-settings.nix
-      # ./gnome/keyboard-shortcuts.nix
-      # ./gnome/autostart/copyq.nix
+      ./gnome/dconf-settings.nix
+      ./gnome/keyboard-shortcuts.nix
+      ./gnome/autostart/copyq.nix
+      ./gnome/extensions.nix
 
       #unused
       # ./gnome/dconf-settings.nix
