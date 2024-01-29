@@ -6,18 +6,18 @@ disable() {
 
 enable() {
     disable
-    wlsunset -t 3500 -S 06:00 -s 06:00
+    wlsunset -t 2700 -S 06:00 -s 06:00
 }
 
 automatic() {
     disable
-    nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
+    nohup wlsunset -t 2700 -l 39.07 -L 21.82 > /dev/null 2>&1 &
 }
 
 automatic_winter() {
     # echo "Winter time"
     disable
-    nohup wlsunset -t 3500 -l 44.81 -L 23.46 > /dev/null 2>&1 &
+    nohup wlsunset -t 2700 -l 44.81 -L 23.46 > /dev/null 2>&1 &
 }
 
 toggle() {
@@ -26,6 +26,11 @@ toggle() {
     else
         enable
     fi
+}
+
+manual() {
+    disable
+    wlsunset -t $1 -T $2 -S $3 -s $4 -d $5 > /dev/null 2>&1 &
 }
 
 monthlyAuto() {
@@ -42,11 +47,31 @@ monthlyAuto() {
     esac
 }
 
+monthlyManual() {
+    current_month=$(date +'%m')
+
+    case $current_month in
+        01) manual 2700 6500 07:50 16:30 1800;;
+        02) manual 2700 6500 07:20 17:00 1800;;
+        03) manual 2700 6500 06:50 18:00 1800;;
+        04) manual 2700 6500 06:20 19:30 1800;;
+        05) manual 2700 6500 05:50 20:00 1800;;
+        06|07) manual 2700 6500 05:30 20:30 1800;;
+        08) manual 2700 6500 05:50 20:00 1800;;
+        09) manual 2700 6500 06:20 19:00 1800;;
+        10) manual 2700 6500 06:50 18:00 1800;;
+        11) manual 2700 6500 07:20 16:30 1800;;
+        12) manual 2700 6500 07:40 16:00 1800;;
+        *) automatic;;
+    esac
+}
+
 #checks the first letter of the argument provided to the script
 firstArgLetter="$(echo "$1" | head -c 1)"
 
 if [ -z $firstArgLetter ]; then
-    monthlyAuto
+    # monthlyAuto
+    monthlyManual
 else
     if [[ $firstArgLetter == "d" ]]; then
         disable
@@ -54,9 +79,11 @@ else
         enable
     elif [[ $firstArgLetter == "t" ]]; then
         toggle
+    elif [[ $firstArgLetter == "m" ]]; then
+        monthlyAuto
     elif [[ $firstArgLetter == "a" ]]; then
-        monthlyAuto
+        monthlyManual
     else
-        monthlyAuto
+        monthlyManual
     fi
 fi
