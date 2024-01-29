@@ -3,7 +3,8 @@
 #night light
 function run_wlsunset() {
     echo 'running wlsunset'
-    nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
+    # nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
+    ~/.config/scripts/nightlight.sh
 }
 
 function set_swaybg_wallpaper() {
