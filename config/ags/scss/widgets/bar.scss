@@ -306,3 +306,9 @@ $bar-spacing: 0px;
     box-shadow: none;
     background-color: transparent;
 }
+
+.headset-indicator.panel-button {
+    .headset-battery-icon {
+        margin-right: $padding;
+    }
+}

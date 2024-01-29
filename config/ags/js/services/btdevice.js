@@ -7,6 +7,7 @@ class BtDeviceInfo extends Service {
     constructor() {
         super();
         this._data = null;
+        this._headsetdata = null;
         // this.call();
     }
 
@@ -18,13 +19,25 @@ class BtDeviceInfo extends Service {
         }
     }
 
+    callHeadset() {
+        Utils.execAsync(['bash', '-c', "~/.config/scripts/headset.sh ags"]).catch(console.error);
+    }
+
     get callBtDeviceInfoScript() {
         this.call()
         return this._data;
     }
 
+    get callHeadsetBatteryScript() {
+        this.callHeadset()
+        return this._data;
+    }
+
     get data() { return this._data; }
     setData(text) { this._data = text }
+
+    get headsetdata() { return this._headsetdata; }
+    setHeadsetData(text) { this._headsetdata = text }
 }
 
 export default new BtDeviceInfo();

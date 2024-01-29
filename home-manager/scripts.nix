@@ -79,5 +79,11 @@
       source = ../config/scripts/ngrokwarden.sh;
       executable = true;
     };
+
+    #headset battery % and chatmix
+    ".config/scripts/headset.sh" = {
+      source = ../config/scripts/headset.sh;
+      executable = true;
+    };
   };
 }

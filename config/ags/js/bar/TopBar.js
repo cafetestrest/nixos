@@ -30,6 +30,7 @@ import Note from './buttons/Note.js';
 import BluetoothDevice from './buttons/BluetoothDevice.js';
 import BluetoothDevices from './buttons/BluetoothDevices.js';
 import { TemperatureIndicator } from './buttons/Weather.js';
+import Headset from './buttons/Headset.js';
 
 const submenuItems = Variable(1);
 SystemTray.connect('changed', () => {
@@ -100,6 +101,7 @@ const End = () => Widget.Box({
         UsageDisk(),
         // BluetoothDevice(),
         BluetoothDevices(),
+        Headset(),
         SeparatorDot(),
         SysTray(),
         ColorPicker(),
