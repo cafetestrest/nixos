@@ -223,7 +223,7 @@ export const WeatherInfo = (weatherData) => Widget.Box({
         Widget.Label({ label: weatherData.icon, class_name: 'weather-icon', }),
         Widget.Label({ label: weatherData.temperature, class_name: 'weather-temperature' }),
         Widget.Box({ vexpand: true }),
-        weatherData.rain !== '0 mm' ? Widget.Label({ label: "☔ " + weatherData.rain, }) : null,
+        weatherData.rain !== '0 mm' ? Widget.Label({ label: weatherData.rain, }) : null,
         // Widget.Label({ label: " " + weatherData.wind, }),
         // Widget.Label({ label: weatherData.humidity, }),
         Widget.Label({ label: '↑ ' + weatherData.maxTemp, class_name: 'weather-max', }),
@@ -292,8 +292,8 @@ export const WeatherMainWidget = (widgetIcon, widgetDate, rain, temperatureDataP
             class_name: 'qs-weather-box-main',
             children: [
                 Widget.Label({ label: widgetIcon, class_name: 'weather-icon', }),
+                rain != 0 ? Widget.Label({ label: rain + 'mm', class_name: 'weather-rain', }): null,
                 Widget.Box({ hexpand: true }),
-                rain != 0 ? Widget.Label({ label: "☔ " + rain + 'mm', class_name: 'weather-rain', }): null,
                 Widget.Label({ label: '↑ ' + temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].maxTemp + '  ', class_name: 'weather-max', }),
                 Widget.Label({ label: '↓ ' + temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].minTemp + '  ', class_name: 'weather-min', }),
                 Widget.Label({ label: widgetDate.substring(0, 3).toUpperCase(), class_name: 'weather-hour', }),
