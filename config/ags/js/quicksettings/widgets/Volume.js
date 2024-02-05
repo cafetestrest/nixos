@@ -10,16 +10,13 @@ import { Menu } from '../ToggleButton.js';
 /** @param {'speaker' | 'microphone'=} type */
 export const VolumeIndicator = (type = 'speaker') => Widget.Button({
     on_clicked: () => Audio[type].is_muted = !Audio[type].is_muted,
-    child: Widget.Icon().hook(Audio, icon => {
-        if (!Audio[type])
-            return;
-
+    child: Widget.Icon().hook(Audio[type], icon => {
         icon.icon = type === 'speaker'
             ? getAudioTypeIcon(Audio[type].icon_name || '')
             : icons.audio.mic.high;
 
         icon.tooltip_text = `Volume ${Math.floor(Audio[type].volume * 100)}%`;
-    }, `${type}-changed`),
+    }),
 });
 
 export const PercentLabel = () => Widget.Label({
@@ -35,9 +32,9 @@ const VolumeSlider = (type = 'speaker') => Widget.Slider({
     class_name: 'volumeslider',
     draw_value: false,
     on_change: ({ value }) => Audio[type].volume = value,
-    setup: self => self.hook(Audio, () => {
-        self.value = Audio[type]?.volume || 0;
-    }, `${type}-changed`),
+    setup: self => self.hook(Audio[type], () => {
+        self.value = Audio[type].volume || 0;
+    }),
 });
 
 export const Volume = () => Widget.Box({
@@ -127,7 +124,7 @@ const SinkItem = stream => Widget.Button({
                 icon: icons.ui.tick,
                 hexpand: true,
                 hpack: 'end',
-                visible: Audio.bind('speaker').transform(s => s === stream),
+                visible: Audio.speaker.bind('stream').transform(s => s === stream.stream),
             }),
         ],
     }),

@@ -21,6 +21,7 @@ in
     [
       ./ags.nix # https://github.com/Aylur/ags
       ./swaylock.nix
+      # ./stm.nix
     ];
 
   home.packages = [
