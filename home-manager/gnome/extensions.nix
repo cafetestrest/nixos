@@ -12,12 +12,13 @@
       #./extensions/config/super-key.nix
       ./extensions/config/useless-gaps.nix
       ./extensions/config/mediacontrols.nix
+      ./extensions/config/tiling-assistant.nix
     ];
 
   home.packages = with pkgs; [
     gnomeExtensions.user-themes
     gnomeExtensions.no-overview
-    gnomeExtensions.gtile
+    # gnomeExtensions.gtile
     gnomeExtensions.gsconnect
     gnomeExtensions.fuzzy-app-search
     gnomeExtensions.executor
@@ -26,6 +27,7 @@
     gnomeExtensions.dash-to-panel
     gnomeExtensions.appindicator
     gnomeExtensions.media-controls
+    gnomeExtensions.tiling-assistant
     # gnomeExtensions.workspace-indicator
     # gnomeExtensions.openweather               #using this, not yet on nix: https://extensions.gnome.org/extension/6655/openweather/
     # gnomeExtensions.rounded-window-corners    #missing in gnome 45
@@ -40,7 +42,7 @@
       enabled-extensions = [
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "no-overview@fthx"
-        "gTile@vibou"
+        # "gTile@vibou"
         "gsconnect@andyholmes.github.io"
         "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
         "executor@raujonas.github.io"
@@ -50,6 +52,7 @@
         "appindicatorsupport@rgcjonas.gmail.com"
         "openweather-extension@penguin-teal.github.io"
         "mediacontrols@cliffniff.github.com"
+        "tiling-assistant@leleat-on-github"
         # "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         # "trayIconsReloaded@selfmade.pl"
         # "rounded-window-corners@yilozt"
