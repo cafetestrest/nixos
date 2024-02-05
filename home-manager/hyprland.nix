@@ -17,6 +17,12 @@ let
   '';
 in
 {
+  imports =
+    [
+      ./ags.nix # https://github.com/Aylur/ags
+      ./swaylock.nix
+    ];
+
   home.packages = [
     launcher
   ];

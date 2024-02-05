@@ -87,6 +87,9 @@
             home-manager.users.${user} = {
               imports = [
                 ./home-manager/home.nix
+                ./home-manager/hyprland.nix
+                ./home-manager/gnome/home.nix
+                ./home-manager/gnome/extensions.nix
               ];
             };
           }
@@ -104,7 +107,9 @@
             home-manager.useUserPackages = true;
             home-manager.users.${user} = {
               imports = [
-                ./home-manager/home-vm.nix
+                ./home-manager/home.nix
+                ./home-manager/gnome/home.nix
+                ./home-manager/gnome/extensions.nix
               ];
             };
           }
