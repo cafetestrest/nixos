@@ -1,8 +1,5 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, ... }:
 
-let
-  ags = inputs.ags.packages.${pkgs.system}.ags;
-in
 {
   services.xserver.displayManager.startx.enable = true;
 
@@ -17,10 +14,10 @@ in
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
 
-  security = {
-    polkit.enable = true;
-    pam.services.ags = {};
-  };
+  # security = {
+  #   polkit.enable = true;
+  #   pam.services.ags = {};
+  # };
 
   # nix.settings = {
   #   substituters = ["https://hyprland.cachix.org"];
@@ -28,7 +25,7 @@ in
   # };
 
   environment.systemPackages = with pkgs; [
-    ags
+    # ags
     wlsunset                            #night light for wayland
     # wlogout                             #logout for wayland - can be deleted and used wofi
     grim                                #screenshot tool
