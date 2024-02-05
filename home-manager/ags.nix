@@ -14,6 +14,7 @@
     swappy #screen recorder
     wl-gammactl
     brightnessctl
+    gjs
   ];
 
   programs.ags = {
