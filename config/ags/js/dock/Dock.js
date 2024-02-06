@@ -39,27 +39,15 @@ const AppButton = ({ icon, pinned = false, ...rest }) => {
 export const Taskbar = () => Widget.Box({
     class_name: 'taskbar',
     children: Hyprland.bind('clients').transform(c => c.map(client => {
-        const iconNames = {
-            'jetbrains-phpstorm': 'phpstorm',
-            // 'Rofi': 'rofi',
-        };
-
         for (const appName of options.desktop.dock.pinned_apps.value) {
             if (client.class.toLowerCase().includes(appName.toLowerCase()))
                 return null;
         }
         for (const app of Applications.list) {
             if (client.title && app.match(client.title) ||
-                client.class && app.match(client.class) ||
-                iconNames.hasOwnProperty(client.class)) {
-                let newIcon = false;
-
-                if (iconNames.hasOwnProperty(client.class)) {
-                    newIcon = iconNames[client.class]
-                }
-
+                client.class && app.match(client.class)) {
                 return AppButton({
-                    icon: newIcon === false ? app.icon_name || '' : newIcon,
+                    icon: app.icon_name || '',
                     tooltip_text: app.name,
                     on_primary_click: () => focus(client),
                     on_middle_click: () => launchApp(app),
