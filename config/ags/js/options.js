@@ -294,9 +294,9 @@ export default {
             ['gnome-disks', 'org.gnome.DiskUtility'],
             ['gcm-viewer', 'gnome-color-manager'],
             ['gnome-system-monitor', 'org.gnome.SystemMonitor'],
-            ['pavucontrol', 'audio-volume-high'],
-            ['XTerm', 'utilities-terminal-symbolic'],
-            ['remote-viewer', 'preferences-desktop-remote-desktop-symbolic'],
+            ['pavucontrol', 'multimedia-volume-control'],
+            ['XTerm', 'xterm-color_48x48'],
+            ['remote-viewer', 'virt-viewer'],
         ],
         titles: [
             ['com.github.Aylur.ags', 'AGS'],
