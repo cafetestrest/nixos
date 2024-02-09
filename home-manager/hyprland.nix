@@ -10,7 +10,7 @@ let
   launcher = pkgs.writeShellScriptBin "hypr" ''
     #!/${pkgs.bash}/bin/bash
 
-    #export WLR_NO_HARDWARE_CURSORS=1
+    export WLR_NO_HARDWARE_CURSORS=1
     export _JAVA_AWT_WM_NONREPARENTING=1
 
     exec ${hyprland}/bin/Hyprland
