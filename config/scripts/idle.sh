@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 function lock() {
-    sleep 0.2
     # gtklock -d
     swaylock -f
 }
@@ -11,7 +10,7 @@ function sespend() {
         systemctl suspend
     else
         lock
-        sleep 2
+        sleep 0.2
         systemctl suspend
     fi
 }

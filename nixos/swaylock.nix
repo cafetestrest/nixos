@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    swaylock-effects
+    unstable.swaylock-effects
   ];
 
   security.pam.services.swaylock = {
