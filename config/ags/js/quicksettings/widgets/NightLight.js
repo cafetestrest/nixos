@@ -4,9 +4,9 @@ import icons from '../../icons.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const NightlightIndicator = () => Widget.Icon({
-    connections: [[Nightlight, icon => {
-        icon.icon = icons.nightlight[Nightlight.mode];
-    }]],
+    setup: self => self.hook(Nightlight, () => {
+        self.icon = icons.nightlight[Nightlight.mode];
+    }),
 });
 
 export const NightlightToggle = () => SimpleToggleButton({
@@ -14,7 +14,7 @@ export const NightlightToggle = () => SimpleToggleButton({
         children: [
             NightlightIndicator(),
             Widget.Label({
-                connections: [[Nightlight, label => {
+                setup: self => self.hook(Nightlight, () => {
                     let mode = Nightlight.mode;
                     let text;
                     if (mode === 'auto') {
@@ -24,8 +24,8 @@ export const NightlightToggle = () => SimpleToggleButton({
                     } else {
                         text = 'Disabled';
                     }
-                    label.label = text;
-                }]],
+                    self.label = text;
+                }),
             }),
         ]
     }),

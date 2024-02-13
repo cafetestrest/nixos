@@ -4,9 +4,9 @@ import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 
 export default () => Widget.Box({
     class_name: 'hyprworkspaces panel-button',
-    connections: [[Hyprland, box => {
+    setup: self => self.hook(Hyprland, () => {
         // remove every children
-        box.get_children().forEach(ch => ch.destroy());
+        self.get_children().forEach(ch => ch.destroy());
 
         // add a button for each workspace
         const numberOfWorkspaces = 10;
@@ -21,13 +21,13 @@ export default () => Widget.Box({
                 wsnum = 0;
             }
 
-            box.add(Widget.Box({
+            self.add(Widget.Box({
                 class_name: 'box-around-workspaces',
                 children: [
                     Widget.Button({
-                        on_clicked: () => Utils.execAsync(`hyprctl dispatch workspace ${i}`).catch(print),
-                        onScrollUp: () => Utils.execAsync(`hyprctl dispatch workspace +1`).catch(print),
-                        onScrollDown: () => Utils.execAsync(`hyprctl dispatch workspace -1`).catch(print),
+                        on_clicked: () => Utils.execAsync(`hyprctl dispatch workspace ${i}`).catch(console.error),
+                        onScrollUp: () => Utils.execAsync(`hyprctl dispatch workspace +1`).catch(console.error),
+                        onScrollDown: () => Utils.execAsync(`hyprctl dispatch workspace -1`).catch(console.error),
                         child: Widget.Label(`${wsnum.toString()}`),
                         class_name: Hyprland.active.workspace.id == i ? 'focused' : '',
                     })
@@ -36,6 +36,6 @@ export default () => Widget.Box({
         }
 
         // make the box render it
-        box.show_all();
-    }]],
+        self.show_all();
+    }),
 });

@@ -5,29 +5,31 @@ import Btdevice from '../../services/btdevice.js';
 // used just as the Bluetooth service does not display battery percentage without gnome
 export default () => Widget.Box({
     class_name: 'bluetooth-indicator panel-button',
-    connections: [[10000, box => {
-        let data = Btdevice.data;
+    setup: self => {
+        self.poll(10000, (self) => {
+            let data = Btdevice.data;
 
-        if (data) {
-            box.get_children().forEach(ch => ch.destroy());
-
-            data.forEach(({ iconName, batteryPercentage }) => 
-                box.add(Widget.Box({
-                    class_name: 'btdevice',
-                    children: [
-                        Widget.Icon({
-                            class_name: 'btdevice-icon',
-                            icon: iconName + '-symbolic',
-                        }),
-                        Widget.Label({
-                            class_name: 'btdevice-label',
-                            label: batteryPercentage !== "" ? batteryPercentage.toString() + "%" : "",
-                        }),
-                    ],
-                }))
-            );
-        }
-
-        Btdevice.callBtDeviceInfoScript
-    }]],
+            if (data) {
+                self.get_children().forEach(ch => ch.destroy());
+    
+                data.forEach(({ iconName, batteryPercentage }) => 
+                    self.add(Widget.Box({
+                        class_name: 'btdevice',
+                        children: [
+                            Widget.Icon({
+                                class_name: 'btdevice-icon',
+                                icon: iconName + '-symbolic',
+                            }),
+                            Widget.Label({
+                                class_name: 'btdevice-label',
+                                label: batteryPercentage !== "" ? batteryPercentage.toString() + "%" : "",
+                            }),
+                        ],
+                    }))
+                );
+            }
+    
+            Btdevice.callBtDeviceInfoScript
+        });
+    },
 });

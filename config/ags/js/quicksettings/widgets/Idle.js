@@ -4,11 +4,11 @@ import icons from '../../icons.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 export const IdleIndicator = () => Widget.Icon({
-    connections: [[Idle, icon => {
-        icon.icon = Idle.mode == 'on'
+    setup: self => self.hook(Idle, () => {
+        self.icon = Idle.mode == 'on'
             ? icons.idle.on
             : icons.idle.off;
-    }]],
+    }),
 });
 
 export const IdleToggle = () => SimpleToggleButton({
@@ -16,9 +16,9 @@ export const IdleToggle = () => SimpleToggleButton({
         children: [
             IdleIndicator(),
             Widget.Label({
-                connections: [[Idle, label => {
-                    label.label = Idle.mode == 'on' ? 'Timeout' : 'Always On';
-                }]],
+                setup: self => self.hook(Idle, () => {
+                    self.label = Idle.mode == 'on' ? 'Timeout' : 'Always On';
+                }),
             }),
         ]
     }),

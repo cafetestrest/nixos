@@ -5,18 +5,17 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 
 const UsagePercentageLabel = (type, title, unit) => Widget.Label({
     class_name: `label ${type}`,
-    connections: [[vars[type], label => {
+    setup: self => self.hook(vars[type], () => {
         const percentage = Math.floor(vars[type].value * 100);
-
-        label.label = `${title}${percentage}${unit}`;
-    }]],
+        self.label = `${title}${percentage}${unit}`;
+    }),
 });
 
 const UsageLabel = (type, title, unit) => Widget.Label({
     class_name: `label ${type}`,
-    connections: [[vars[type], label => {
-        label.label = `${title}${vars[type].value}${unit}`;
-    }]],
+    setup: self => self.hook(vars[type], () => {
+        self.label = `${title}${vars[type].value}${unit}`;
+    }),
 });
 
 export const UsageCPU = () => Widget.Box({

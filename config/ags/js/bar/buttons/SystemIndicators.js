@@ -85,12 +85,12 @@ const SpeakerIndicator = () => Widget.Box({
         Widget.Label({ label: ' ' }),
         PercentLabel(),
     ],
-    connections: [[Audio, box => {
+    setup: self => self.hook(Audio, () => {
         let alreadyCreated = false;
         let isHeadsetSelected = Audio.speaker?.iconName === 'audio-headset-analog-usb';
         let classnameToDisplay = 'headset-icon';
 
-        box.get_children().forEach(ch => {
+        self.get_children().forEach(ch => {
             if (ch.class_name == classnameToDisplay) {
                 if (isHeadsetSelected) {
                     ch.visible = true;
@@ -107,17 +107,16 @@ const SpeakerIndicator = () => Widget.Box({
         }
 
         if (isHeadsetSelected) {
-            box.add(Widget.Box({
+            self.add(Widget.Box({
                 class_name: classnameToDisplay,
                 children: [
                     Widget.Label({ label: ' ', }),
                     VolumeIndicator('speaker')
                 ]
             }))
-            box.show_all()
+            self.show_all()
         }
-    }
-    ]],
+    }),
 });
 
 export default () => PanelButton({

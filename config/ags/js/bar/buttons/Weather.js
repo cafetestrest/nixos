@@ -2,22 +2,14 @@ import Weather from '../../services/weather.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import App from 'resource:///com/github/Aylur/ags/app.js';
 
-export const TemperatureIndicator = ({
-    disabled = null,
-    enabled = PannelButton(),
-    ...rest
-} = {}) => Widget.Stack({
-    ...rest,
-    items: [
-        ['disabled', disabled],
-        ['enabled', enabled],
-    ],
-    connections: [[Weather, stack => {
-        if (Weather.temperatureWeather) {
-            return stack.shown = 'enabled';
-        }
-        return stack.shown = 'disabled';
-    }]],
+export const TemperatureIndicator = () => Widget.Stack({
+    children: {
+        true: PannelButton(),
+        false: Widget.Label(),
+    },
+    setup: self => self.hook(Weather, () => {
+        self.shown = Weather.temperatureWeather ? true : false;
+    }),
 });
 
 export const PannelButton = props => Widget.Button({
@@ -26,18 +18,19 @@ export const PannelButton = props => Widget.Button({
     child: Temperature(),
     on_clicked: () => App.toggleWindow('weather'),
     on_secondary_click: () => Weather.weatherData,
-    connections: [[App, (btn, win, visible) => {
-        btn.toggleClassName('active', win === 'weather' && visible);
-    }]],
+    setup: self => self
+        .hook(App, (_, win, visible) => {
+            self.toggleClassName('active', win === 'weather' && visible);
+        }),
 });
 
 export const Temperature = props => Widget.Label({
     ...props,
-    connections: [[Weather, label => {
-        if (Weather.temperatureWeather && label.label !== Weather.temperatureWeather) {
-            label.label = Weather.temperatureWeather.toString()
+    setup: self => self.hook(Weather, () => {
+        if (Weather.temperatureWeather && self.label !== Weather.temperatureWeather) {
+            self.label = Weather.temperatureWeather.toString()
         }
-    }]],
+    }),
 });
 
 function weatherBackgroundStyle(icon, box) {
@@ -229,9 +222,9 @@ export const WeatherInfo = (weatherData) => Widget.Box({
         Widget.Label({ label: '↑ ' + weatherData.maxTemp, class_name: 'weather-max', }),
         Widget.Label({ label: '↓ ' + weatherData.minTemp, class_name: 'weather-min', }),
     ],
-    connections: [[Weather, box => {
-        weatherBackgroundStyle(weatherData.icon, box)
-    }]],
+    setup: self => self.hook(Weather, () => {
+        weatherBackgroundStyle(weatherData.icon, self)
+    }),
 });
 
 function getMostCommon(arr){
@@ -258,16 +251,14 @@ export const WeatherBoxChild = (w) => Widget.Box({
 export const WeatherBoxChildWrapper = (w, temperatureDataPerDay, totalWeatherForecastDataArray) => Widget.Box({
     class_name: 'qs-weather-box-child-wrapper',
     hexpand: true,
-    children: [
-    ],
-    connections: [[Weather, box => {
+    setup: self => self.hook(Weather, () => {
         let useTotalInstead = false;
 
         if (totalWeatherForecastDataArray.length) {
             useTotalInstead = true;
 
             totalWeatherForecastDataArray.forEach(totalEl => {
-                box.add(
+                self.add(
                     WeatherBoxChild(totalEl),
                 )
             })
@@ -275,12 +266,12 @@ export const WeatherBoxChildWrapper = (w, temperatureDataPerDay, totalWeatherFor
 
         if (false === useTotalInstead && w && temperatureDataPerDay && temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.length) {
             temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.forEach(el => {
-                box.add(
+                self.add(
                     WeatherBoxChild(el),
                 )
             })            
         }
-    }]]
+    }),
 });
 
 export const WeatherMainWidget = (widgetIcon, widgetDate, rain, temperatureDataPerDay, w, totalWeatherForecastDataArray = []) => Widget.Box({
@@ -302,17 +293,17 @@ export const WeatherMainWidget = (widgetIcon, widgetDate, rain, temperatureDataP
         WeatherBoxChildWrapper(w, temperatureDataPerDay, totalWeatherForecastDataArray)
 
     ],
-    connections: [[Weather, box => {
-        weatherBackgroundStyle(widgetIcon, box);
-    }]]
+    setup: self => self.hook(Weather, () => {
+        weatherBackgroundStyle(widgetIcon, self);
+    }),
 });
 
 export const Tooltip = (total = null) => Widget.Box({
-    connections: [[Weather, box => {
+    setup: self => self.hook(Weather, () => {
         let tooltip = Weather.tooltip;
 
         if (tooltip) {
-            box.get_children().forEach(ch => ch.destroy());
+            self.get_children().forEach(ch => ch.destroy());
 
             let prevDayName = null;
             let temperatureDataPerDay = {};
@@ -396,7 +387,7 @@ export const Tooltip = (total = null) => Widget.Box({
 
                     const rain = temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].rain;
 
-                    box.add(
+                    self.add(
                         WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, totalWeatherForecastDataArray)
                     );
                     break;
@@ -405,7 +396,7 @@ export const Tooltip = (total = null) => Widget.Box({
                 // if provided date differs to previous day name, by default prevDayName is null
                 if (w.date !== prevDayName && i > 0) {
                     // adds spacing to the widgets
-                    box.add(
+                    self.add(
                         Widget.Box({
                             children: [
                                 Widget.Label({ label: ' ', class_name: 'weather-spacing' }),
@@ -418,7 +409,7 @@ export const Tooltip = (total = null) => Widget.Box({
                 if (temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].widgetsNumber === 1) {
                     prevDayName = w.date;
 
-                    box.add(WeatherInfo(w));
+                    self.add(WeatherInfo(w));
                     continue;
                 }
 
@@ -434,7 +425,7 @@ export const Tooltip = (total = null) => Widget.Box({
 
                     widgetIcon = icon;
 
-                    box.add(
+                    self.add(
                         WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w)
                     );
                 }
@@ -442,14 +433,16 @@ export const Tooltip = (total = null) => Widget.Box({
                 prevDayName = w.date;
             };
         }
-    }]],
+    }),
 });
 
 export const ResetTimer = props => Widget.Label({
     ...props,
-    connections: [[600000, label => {
-        Weather.weatherData
-    }]],
+    setup: self => {
+        self.poll(600000, (self) => {
+            Weather.weatherData
+        });
+    },
 });
 
 export const Forecast = () => Widget.Box({

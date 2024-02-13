@@ -19,12 +19,10 @@ export const VolumeIndicator = (type = 'speaker') => Widget.Button({
     }),
 });
 
-export const PercentLabel = () => Widget.Label({
-    connections: [[Audio, label => {
-        if (Audio.speaker)
-            label.label = `${Math.floor(Audio.speaker.volume * 100)}%`;
-    }, 'speaker-changed']],
-});
+export const PercentLabel = () => Widget.Label().hook(Audio, self => {
+    if (Audio.speaker)
+        self.label = `${Math.floor(Audio.speaker.volume * 100)}%`;
+}, 'speaker-changed');
 
 /** @param {'speaker' | 'microphone'=} type */
 const VolumeSlider = (type = 'speaker') => Widget.Slider({
@@ -175,9 +173,9 @@ export const SinkSelector = () => Menu({
         Widget.Box({
             class_name: 'arrow-button',
             children: [SettingsButton(), Arrow('app-mixer')],
-            connections: [[Audio, box => {
-                box.visible = Array.from(Audio.apps).length > 0;
-            }]],
+            setup: self => self.hook(Audio, () => {
+                self.visible = Array.from(Audio.apps).length > 0;
+            }),
         }),
     ],
 });

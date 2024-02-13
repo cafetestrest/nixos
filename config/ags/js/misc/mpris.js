@@ -143,7 +143,12 @@ export const Slash = player => Widget.Label({
  * @param {any} o.cantValue
  */
 const PlayerButton = ({ player, children, onClick, prop, canProp, cantValue }) => Widget.Button({
-    child: Widget.Stack({ children }).bind('shown', player, prop, p => `${p}`),
+    child: Widget.Stack({ children }).bind('shown', player, prop, p => {
+        if (p) {
+            return `${p}`
+        }
+        return false;            
+    }),
     on_clicked: () => player[onClick](),
     visible: player.bind(canProp).transform(c => c !== cantValue),
 });

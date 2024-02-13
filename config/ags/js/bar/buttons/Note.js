@@ -18,17 +18,4 @@ export default () => PanelButton({
     on_secondary_click: () => {
         Utils.execAsync(['bash', '-c', "codium ~/Documents/note.md"]).catch(print);
     },
-    // connections: [[60000, button => {
-    //     if (!first) {
-    //         first = true;
-    //     } else {
-    //         Note.callNote
-    //     }
-
-    //     let tooltip = Note.note;
-
-    //     if (tooltip) {
-    //         button.set_tooltip_text(tooltip);
-    //     }
-    // }]],
 });
