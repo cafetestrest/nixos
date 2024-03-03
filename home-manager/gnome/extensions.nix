@@ -28,6 +28,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.media-controls
     gnomeExtensions.tiling-assistant
+    gnomeExtensions.pop-shell
     # gnomeExtensions.workspace-indicator
     # gnomeExtensions.openweather               #using this, not yet on nix: https://extensions.gnome.org/extension/6655/openweather/
     # gnomeExtensions.rounded-window-corners    #missing in gnome 45
