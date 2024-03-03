@@ -12,7 +12,7 @@ function sendBatch(batch) {
         .map(x => `keyword ${x}`)
         .join('; ');
 
-    Hyprland.sendMessage(`[[BATCH]]/${cmd}`);
+    Hyprland.messageAsync(`[[BATCH]]/${cmd}`);
 }
 
 /** @param {string} scss */
@@ -51,7 +51,7 @@ export async function setupHyprland() {
 
     const batch = [];
 
-    JSON.parse(await Hyprland.sendMessage('j/monitors')).forEach(({ name }) => {
+    JSON.parse(await Hyprland.messageAsync('j/monitors')).forEach(({ name }) => {
         const v = bar_pos === 'top' ? `-${wm_gaps},0,0,0` : `0,-${wm_gaps},0,0`;
         if (bar_style !== 'normal')
             batch.push(`monitor ${name},addreserved,${v}`);

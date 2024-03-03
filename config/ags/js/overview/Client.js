@@ -11,7 +11,7 @@ const SCALE = 0.08;
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
 
 /** @param {string} args */
-const dispatch = args => Hyprland.sendMessage(`dispatch ${args}`);
+const dispatch = args => Hyprland.messageAsync(`dispatch ${args}`);
 
 /** @param {string} str */
 const icon = str => {

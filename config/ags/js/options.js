@@ -273,6 +273,8 @@ export default {
             ['transmission-gtk', 'transmission'],
             ['blueberry.py', 'bluetooth'],
             ['Caprine', 'facebook-messenger'],
+            ['', 'preferences-desktop-apps'],
+            ['com.github.Aylur.ags', 'preferences-desktop-apps'],
             ['Chromium-browser', 'chromium'],
             ['VSCodium', 'vscodium'],
             ['jetbrains-phpstorm', 'phpstorm'],

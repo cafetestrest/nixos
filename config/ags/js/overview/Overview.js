@@ -26,7 +26,7 @@ const update = box => {
     if (!box.get_parent()?.visible)
         return;
 
-    Hyprland.sendMessage('j/clients')
+    Hyprland.messageAsync('j/clients')
         .then(clients => {
             box.children.forEach(ws => {
                 ws.attribute(JSON.parse(clients));

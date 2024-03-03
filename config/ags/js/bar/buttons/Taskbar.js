@@ -8,7 +8,7 @@ import icons from '../../icons.js';
 import options from '../../options.js';
 import { substitute } from '../../utils.js';
 
-const focus = ({ address }) => Hyprland.sendMessage(`dispatch focuswindow address:${address}`);
+const focus = ({ address }) => Hyprland.messageAsync(`dispatch focuswindow address:${address}`);
 
 /** @param {import('types/widgets/box').default} box */
 const setChildren = box => box.children = Hyprland.clients.map(client => {

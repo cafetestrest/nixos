@@ -6,7 +6,7 @@ import icons from '../icons.js';
 import options from '../options.js';
 import { launchApp, range } from '../utils.js';
 
-const focus = ({ address }) => Hyprland.sendMessage(`dispatch focuswindow address:${address}`);
+const focus = ({ address }) => Hyprland.messageAsync(`dispatch focuswindow address:${address}`);
 
 /** @param {import('types/widgets/button').ButtonProps & { icon: string, pinned?: boolean }} o */
 const AppButton = ({ icon, pinned = false, ...rest }) => {
