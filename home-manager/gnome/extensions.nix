@@ -13,6 +13,7 @@
       ./extensions/config/useless-gaps.nix
       ./extensions/config/mediacontrols.nix
       ./extensions/config/tiling-assistant.nix
+      ./extensions/config/pop-shell.nix
     ];
 
   home.packages = with pkgs; [
@@ -60,7 +61,8 @@
         # "openweather-extension@jenslody.de"
         #"super-key@tommimon.github.com"
         # "useless-gaps@pimsnel.com"
-        #"pop-shell@system76.com"
+        "pop-shell@system76.com"
+        "sound-percentage@maestroschan.fr"
       ];
     };
   };
