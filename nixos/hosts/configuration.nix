@@ -5,7 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ../variables.nix)
+  inherit (import ../../variables.nix)
     user
     grubHardDrive
     timezone
@@ -35,15 +35,6 @@ in
   };
 
   services.xserver.enable = true; # Enable the X11 windowing system.
-
-  #cosmic
-  services.xserver.desktopManager.cosmic.enable = false;
-  # services.xserver.displayManager.cosmic-greeter.enable = true;
-  # environment.cosmic.excludePackages = with pkgs; [
-  #   cosmic-edit
-  #   cosmic-files
-  #   cosmic-term
-  # ];
 
   systemd.services.NetworkManager-wait-online.enable = false; # Slows down boot (https://github.dev/Kranzes/nix-config)
   # For faster reboot https://unix.stackexchange.com/questions/448268/change-systemd-stop-job-timeout-in-nixos-configuration

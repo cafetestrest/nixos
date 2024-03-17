@@ -86,7 +86,7 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          ./hosts/desktop
+          ./nixos/hosts/desktop
           ./nixos/gnome
           ./nixos/gdm
           # ./nixos/cosmic
@@ -112,7 +112,7 @@
         inherit system;
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; })
-          ./hosts/vm
+          ./nixos/hosts/vm
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

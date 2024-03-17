@@ -1,7 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 let
-  inherit (import ../../variables.nix)
+  inherit (import ../../../variables.nix)
     grubHardDriveForVM
     configurationLimit;
 in
@@ -12,8 +12,8 @@ in
     
     ./hardware-configuration.nix      # Include the results of the hardware scan. (generated from fresh install on virt-manager)
 
-    # ../../nixos/hyprland.nix            # hyprland packages
-    # ../../nixos/swaylock.nix          # lockscreen packages
+    # ../../hyprland.nix            # hyprland packages
+    # ../../swaylock.nix          # lockscreen packages
 
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
   ];
