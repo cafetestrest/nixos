@@ -2,12 +2,18 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-old.url = "github:nixos/nixpkgs/nixos-22.11";
     nur.url = "github:nix-community/NUR";
     ags.url = "github:Aylur/ags";
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     hyprland = {
       url = github:hyprwm/Hyprland;
@@ -17,12 +23,13 @@
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
 
     home-manager = {
-      url = github:nix-community/home-manager/release-23.11;
+      # url = github:nix-community/home-manager/release-23.11;
+      url = github:nix-community/home-manager/master;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, home-manager, nixos-cosmic, ... }@inputs:
     let
     inherit (import ./variables.nix)
     user
@@ -76,9 +83,19 @@
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ]; }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
+
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+
+          }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./hosts/desktop
+          nixos-cosmic.nixosModules.default
           # hyprland.nixosModules.default
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

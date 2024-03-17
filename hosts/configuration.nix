@@ -41,6 +41,15 @@ in
   # services.xserver.displayManager.gdm.settings = {
   # };
 
+  #cosmic
+  services.xserver.desktopManager.cosmic.enable = false;
+  # services.xserver.displayManager.cosmic-greeter.enable = true;
+  # environment.cosmic.excludePackages = with pkgs; [
+  #   cosmic-edit
+  #   cosmic-files
+  #   cosmic-term
+  # ];
+
   programs.dconf.profiles = {
     gdm.databases = [{
       settings = {
@@ -83,7 +92,7 @@ in
     DefaultTimeoutStopSec=10s
   '';
 
-  services.xserver = {  # Configure keymap in X11 
+  services.xserver.xkb = {  # Configure keymap in X11 
     layout = "us";
     xkbVariant = "";
     # xkbVariant = {
