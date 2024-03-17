@@ -87,8 +87,9 @@
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./hosts/desktop
-          ./nixos/gnome/configuration.nix
-          ./nixos/cosmic
+          ./nixos/gnome
+          ./nixos/gdm
+          # ./nixos/cosmic
 
           home-manager.nixosModules.home-manager
           {
