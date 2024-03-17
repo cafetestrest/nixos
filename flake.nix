@@ -85,17 +85,10 @@
         modules = [
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
-
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./hosts/desktop
           ./nixos/gnome/configuration.nix
-          nixos-cosmic.nixosModules.default
-          # hyprland.nixosModules.default
+          ./nixos/cosmic
 
           home-manager.nixosModules.home-manager
           {
