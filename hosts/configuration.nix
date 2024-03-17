@@ -94,7 +94,7 @@ in
 
   services.xserver.xkb = {  # Configure keymap in X11 
     layout = "us";
-    xkbVariant = "";
+    variant = "";
     # xkbVariant = {
     #   "eurosign:e";
     #   "caps:escape" # map caps to escape.
