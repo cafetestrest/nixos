@@ -93,6 +93,7 @@
 
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./hosts/desktop
+          ./nixos/gnome/configuration.nix
           nixos-cosmic.nixosModules.default
           # hyprland.nixosModules.default
 
