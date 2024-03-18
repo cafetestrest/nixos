@@ -11,7 +11,7 @@ function sespend() {
     else
         # lock
         # sleep 0.2
-        swaylock -f && systemctl suspend
+        systemctl suspend
     fi
 }
 
