@@ -308,6 +308,7 @@ in
         ",XF86AudioPause, exec, playerctl pause"
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86AudioNext, exec, playerctl next"
+        "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
       ];
 
       bindm = [
