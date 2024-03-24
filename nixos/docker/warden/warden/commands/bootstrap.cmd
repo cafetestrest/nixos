@@ -80,6 +80,14 @@ stop_running_warden() {
 
     :: "Stopping already running services using: warden env down"
     warden env down
+
+    # Check if there are any running Docker containers
+    if [ -n "$(docker ps -q)" ]; then
+        echo "Stopping all running Docker containers..."
+        # Stop all running Docker containers
+        docker stop $(docker ps -q)
+        echo "All running Docker containers stopped."
+    fi
 }
 
 start_warden() {
