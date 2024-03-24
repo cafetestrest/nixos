@@ -29,6 +29,7 @@ diff --git a/environments/magento2/init.env b/environments/magento2/init.env
 +META_VERSION=
 +INSTALL_SAMPLE_DATA=1
 +USE_TFA=0
++DB_DUMP=""
 +
 +#admin
 +ADMIN_PASS="Test1234"
