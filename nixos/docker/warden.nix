@@ -15,7 +15,7 @@
         cp version $out/
 
         mkdir -p $out/environments/magento2/.warden
-        cp -r ${./warden/.warden}/* $out/environments/magento2/.warden
+        cp -r ${./warden/warden}/* $out/environments/magento2/.warden
       '';
 
       src = fetchFromGitHub {

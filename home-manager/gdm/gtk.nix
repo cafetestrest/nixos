@@ -35,7 +35,10 @@ in
     };
 
     home = {
-        sessionVariables.XCURSOR_THEME = cursor-theme;
+        sessionVariables = {
+            XCURSOR_THEME = cursor-theme;
+            XCURSOR_SIZE = 24;
+        };
 
         pointerCursor = {
             size = 24;
