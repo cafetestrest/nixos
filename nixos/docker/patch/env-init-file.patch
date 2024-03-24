@@ -1,10 +1,29 @@
 diff --git a/environments/magento2/init.env b/environments/magento2/init.env
---- a/environments/magento2/init.env	(revision 51502ef1e4a1ddbb560680b9906512b705995775)
-+++ b/environments/magento2/init.env	(date 1703181321312)
-@@ -35,3 +35,23 @@
+--- a/environments/magento2/init.env	(revision 39d472934585b7a656033f52c5ae4150470912bd)
++++ b/environments/magento2/init.env	(date 1711305357676)
+@@ -8,11 +8,12 @@
+ WARDEN_REDIS=1
+ 
+ OPENSEARCH_VERSION=2.5
++ELASTICSEARCH_VERSION=7.17
+ MYSQL_DISTRIBUTION=mariadb
+ MYSQL_DISTRIBUTION_VERSION=10.6
+-NODE_VERSION=12
++NODE_VERSION=18
+ COMPOSER_VERSION=2.2
+-PHP_VERSION=8.1
++PHP_VERSION=8.2
+ PHP_XDEBUG_3=1
+ RABBITMQ_VERSION=3.9
+ REDIS_VERSION=7.0
+@@ -35,3 +36,27 @@
  BLACKFIRE_SERVER_ID=
  BLACKFIRE_SERVER_TOKEN=
  
++MYSQL_USER=magento
++MYSQL_PASSWORD=magento
++MYSQL_DATABASE=magento
++
 +#magento
 +META_PACKAGE=magento/project-community-edition
 +META_VERSION=
@@ -12,12 +31,12 @@ diff --git a/environments/magento2/init.env b/environments/magento2/init.env
 +USE_TFA=0
 +
 +#admin
-+ADMIN_PASS=Test1234
++ADMIN_PASS="Test1234"
 +ADMIN_USER=admin
-+ADMIN_PATH=admin
++ADMIN_PATH="admin"
 +
 +#http/https
-+HTTP_PROTOCOL=https
++HTTP_PROTOCOL="https"
 +
 +#show URL's on install
 +PRINT_MORE_VERBOSE_ON_INSTALL=1
