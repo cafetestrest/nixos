@@ -161,7 +161,8 @@ install_magento() {
 
     ## rabbitmq
     if [[ ${WARDEN_RABBITMQ} == 1 ]]; then
-        INSTALL_FLAGS="${INSTALL_FLAGS} --amqp-host=rabbitmq
+        INSTALL_FLAGS="${INSTALL_FLAGS}
+        --amqp-host=rabbitmq
         --amqp-port=5672
         --amqp-user=guest 
         --amqp-password=guest 
@@ -170,7 +171,8 @@ install_magento() {
 
     ## redis
     if [[ ${WARDEN_REDIS} == 1 ]]; then
-        INSTALL_FLAGS="${INSTALL_FLAGS} --session-save=redis
+        INSTALL_FLAGS="${INSTALL_FLAGS}
+        --session-save=redis
         --session-save-redis-host=redis
         --session-save-redis-port=6379
         --session-save-redis-db=2
@@ -187,12 +189,14 @@ install_magento() {
 
     ## varnish
     if [[ ${WARDEN_VARNISH} == 1 ]]; then
-        INSTALL_FLAGS="${INSTALL_FLAGS} --http-cache-hosts=varnish:80 "
+        INSTALL_FLAGS="${INSTALL_FLAGS}
+        --http-cache-hosts=varnish:80 "
     fi
 
     ## opensearch
     if [[ ${WARDEN_OPENSEARCH} == 1 ]]; then
-        INSTALL_FLAGS="${INSTALL_FLAGS} --search-engine=opensearch
+        INSTALL_FLAGS="${INSTALL_FLAGS}
+        --search-engine=opensearch
         --opensearch-host=opensearch
         --opensearch-port=9200
         --opensearch-index-prefix=magento2
@@ -200,29 +204,34 @@ install_magento() {
         --opensearch-timeout=15 "
     fi
 
-    # elasticsearch
+    ## elasticsearch
     if [[ ${WARDEN_OPENSEARCH} != 1 && ${WARDEN_ELASTICSEARCH} == 1 ]]; then
-        INSTALL_FLAGS="${INSTALL_FLAGS} --search-engine=${DOCKER_RUNNING_ES_VERSION}
+        INSTALL_FLAGS="${INSTALL_FLAGS}
+        --search-engine=${DOCKER_RUNNING_ES_VERSION}
         --elasticsearch-host=elasticsearch
         --elasticsearch-port=9200"
     fi
 
-    if [[ ${MYSQL_DATABASE} != "" && ${MYSQL_DATABASE} != "magento" ]]; then
-        INSTALL_FLAGS="${INSTALL_FLAGS} \
-        --backend-frontname="${ADMIN_PATH}" \
-        --db-host=db \
-        --db-name="${MYSQL_DATABASE}" \
-        --db-user=magento \
-        --db-password=magento"
-    else
-        INSTALL_FLAGS="${INSTALL_FLAGS} \
-        --backend-frontname="${ADMIN_PATH}" \
-        --db-host=db \
-        --db-name=magento \
-        --db-user=magento \
-        --db-password=magento"
+    if [[ ${MYSQL_USER} == "" ]]; then
+        MYSQL_USER="magento"
     fi
 
+    if [[ ${MYSQL_DATABASE} == "" ]]; then
+        MYSQL_DATABASE="magento"
+    fi
+
+    if [[ ${MYSQL_PASSWORD} == "" ]]; then
+        MYSQL_PASSWORD="magento"
+    fi
+
+    INSTALL_FLAGS="${INSTALL_FLAGS}
+    --backend-frontname="${ADMIN_PATH}"
+    --db-host=db
+    --db-name="${MYSQL_DATABASE}"
+    --db-user="${MYSQL_USER}"
+    --db-password="${MYSQL_PASSWORD}""
+
+    echo "Install Flags: $INSTALL_FLAGS"
     warden env exec -- -T php-fpm bin/magento setup:install $(echo ${INSTALL_FLAGS})
 }
 
