@@ -31,19 +31,28 @@ in
     ## WARDEN END ##
   '';
 
-  networking.extraHosts =
-  ''
-    127.0.0.1 ::1 magento.test
-    172.17.0.1 host.docker.internal
-    127.0.0.1 ::1 app.exampleproject.test
-    127.0.0.1 ::1 rabbitmq.exampleproject.test
-    127.0.0.1 ::1 opensearch.exampleproject.test
-    127.0.0.1 ::1 elasticsearch.exampleproject.test
-    127.0.0.1 ::1 dnsmasq.warden.test
-    127.0.0.1 ::1 traefik.warden.test
-    127.0.0.1 ::1 portainer.warden.test
-    127.0.0.1 ::1 mailhog.warden.test
-  '';
+  # networking.extraHosts =
+  # ''
+  #   127.0.0.1 ::1 magento.test
+  #   172.17.0.1 host.docker.internal
+  #   127.0.0.1 ::1 app.exampleproject.test
+  #   127.0.0.1 ::1 rabbitmq.exampleproject.test
+  #   127.0.0.1 ::1 opensearch.exampleproject.test
+  #   127.0.0.1 ::1 elasticsearch.exampleproject.test
+  #   127.0.0.1 ::1 dnsmasq.warden.test
+  #   127.0.0.1 ::1 traefik.warden.test
+  #   127.0.0.1 ::1 portainer.warden.test
+  #   127.0.0.1 ::1 mailhog.warden.test
+  # '';
+
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNS=127.0.0.1
+      Domains=~test
+
+    '';
+  };
 
   # xdebug ports
   networking.firewall.allowedTCPPortRanges = [
