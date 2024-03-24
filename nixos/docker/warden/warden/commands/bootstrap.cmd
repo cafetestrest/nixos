@@ -50,10 +50,8 @@ locate_auth_json_file() {
 
     if [[ ${INIT_ERROR} ]]; then
         if [ ! -f "$HOME/.warden/secrets/auth.json" ]; then
-            if [[ ${INIT_ERROR} ]]; then
-                :: "No auth.json file found, please create it and fill in your composer credentials."
-                exit 1
-            fi
+            :: "No auth.json file found, please create it and fill in your composer credentials."
+            exit 1
         fi
 
         :: "No auth.json file found in the project, defaulting to the: $HOME/.warden/secrets/auth.json"
@@ -149,17 +147,55 @@ wait_database() {
     echo "Database connection established."
 }
 
+check_db_dump_required_files() {
+    eval filepath="$DB_DUMP"
+
+    if [ -e ${filepath} ]; then
+        full_path=$(realpath ${filepath})
+    else
+        echo "File $filepath does NOT exist."
+        exit -1
+    fi
+
+    if [[ ! -d "${MAGENTO_WEB_ROOT}/app/etc" ]]; then
+        :: Creating app/etc folder
+        mkdir -p "${MAGENTO_WEB_ROOT}/app/etc"
+    fi
+
+    if [ ! -f "${MAGENTO_WEB_ROOT}/app/etc/env.php" ]; then
+        echo "No env.php file found, please move existing one under path: ${MAGENTO_WEB_ROOT}/app/etc/env.php."
+        exit -1
+    fi
+
+    if [ ! -f "${MAGENTO_WEB_ROOT}/composer.json" ]; then
+        echo "No composer.json file found, please move existing one under path: ${MAGENTO_WEB_ROOT}/composer.json."
+        exit -1
+    fi
+}
+
 initialize() {
     wait_database
     
     wait_composer
 
-    :: "Initialize project source files using composer create-project and then move them into place"
+    if [[ ${DB_DUMP} ]]; then
+        check_db_dump_required_files
 
-    warden env exec -T php-fpm rm -rf /tmp/exampleproject/
-    warden env exec -T php-fpm composer create-project --repository-url=https://repo.magento.com/ "${META_PACKAGE}" /tmp/create-project "${META_VERSION}"
-    warden env exec -T php-fpm rsync -a /tmp/create-project/ /var/www/html/
-    warden env exec -T php-fpm rm -rf /tmp/exampleproject/
+        :: Importing database from: $full_path, could take a bit, please wait.
+        if [[ $DB_DUMP == *.gz ]]; then
+            cat ${full_path} | gunzip -c | warden db import
+        else
+            cat ${full_path} | warden db import
+        fi
+        :: Database import done.
+    else
+        :: "Initialize project source files using composer create-project and then move them into place"
+
+        warden env exec -T php-fpm rm -rf /tmp/exampleproject/
+        warden env exec -T php-fpm composer create-project --repository-url=https://repo.magento.com/ "${META_PACKAGE}" /tmp/create-project "${META_VERSION}"
+        warden env exec -T php-fpm rsync -a /tmp/create-project/ /var/www/html/
+        warden env exec -T php-fpm rm -rf /tmp/exampleproject/
+    fi
 }
 
 install_magento() {
@@ -494,6 +530,38 @@ create_app_code_to_indicate_installed() {
     fi
 }
 
+install_magento_from_db_dump() {
+    check_db_dump_required_files
+
+    :: Installing dependencies
+    warden env exec -T php-fpm composer install
+
+    :: Configuring application
+    countdown 5
+
+    warden env exec -T php-fpm bin/magento module:enable --all
+    warden env exec -T php-fpm bin/magento cache:flush -q
+    warden env exec -T php-fpm bin/magento app:config:import
+
+    :: bin/magento setup:db-schema:upgrade
+    warden env exec -T php-fpm php -d memory_limit=-1 bin/magento setup:db-schema:upgrade
+
+    :: bin/magento setup:db-data:upgrade
+    warden env exec -T php-fpm php -d memory_limit=-1 bin/magento setup:db-data:upgrade
+
+    :: bin/magento setup:db-data:upgrade
+    warden env exec -T php-fpm php -d memory_limit=-1 bin/magento setup:db-data:upgrade
+
+    #:: Rebuilding Magento
+    #warden env exec -T php-fpm bin/magento setup:upgrade
+    #warden env exec -T php-fpm bin/magento setup:di:compile
+    #warden env exec -T php-fpm bin/magento setup:static-content:deploy -f
+
+    :: Flushing cache
+    warden env exec -T php-fpm bin/magento cache:flush
+    #warden env exec -T php-fpm bin/magento cache:disable block_html full_page
+}
+
 #app starts here:
 
 locate_env_file
@@ -514,10 +582,15 @@ verify_warden_has_search
 
 initialize
 
-install_magento
-configure_application
+if [[ ${DB_DUMP} ]]; then
+    install_magento_from_db_dump
+else
+    install_magento
 
-create_admin_user
+    configure_application
+
+    create_admin_user
+fi
 
 open_url_in_browser
 
