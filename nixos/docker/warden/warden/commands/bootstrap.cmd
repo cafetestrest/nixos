@@ -30,7 +30,7 @@ function :: {
 
 locate_env_file() {
     ## locates .env file (.env file needs to be present)
-    if [ ! -f ".env" ]; then
+    if [[ ! -f ".env" ]]; then
         :: "No .env file found, please run where exampleproject is the project name:"
         echo "warden env-init exampleproject magento2"
         echo ""
@@ -40,25 +40,39 @@ locate_env_file() {
     fi
 }
 
+no_auth_json_file_prompt_for_creds() {
+    # If neither global nor local exists, prompt for creds
+    read -p "No existing composer credentials were found.  Would you like to configure them? [y/N] " willManuallyInputCreds
+    if [[ "$willManuallyInputCreds" =~ ^([yY][eE][sS]|[yY1])$ ]]; then
+        read -p "Public Key: " composerPublicKey
+        read -p "Private Key: " composerPrivateKey
+
+        hadToCreateComposerJson=0
+        if [[ ! -f "composer.json" ]]; then
+            hadToCreateComposerJson=1
+            # Temporary workaround for auth requiring composer.json file
+            echo "{}" > "composer.json"
+        fi
+    fi
+}
+
 locate_auth_json_file() {
     INIT_ERROR=
 
     ## locates auth.json file inside project
-    if [ ! -f "auth.json" ]; then
+    if [[ ! -f "${WARDEN_WEB_ROOT}/auth.json" ]]; then
         INIT_ERROR=1
     fi
 
     if [[ ${INIT_ERROR} ]]; then
         if [ ! -f "$HOME/.warden/secrets/auth.json" ]; then
-            :: "No auth.json file found, please create it and fill in your composer credentials."
-            exit 1
+            no_auth_json_file_prompt_for_creds
+        else
+            :: "No auth.json file found in the project, defaulting to the: $HOME/.warden/secrets/auth.json"
+            cp $HOME/.warden/secrets/auth.json ./auth.json
+            INIT_ERROR=
         fi
-
-        :: "No auth.json file found in the project, defaulting to the: $HOME/.warden/secrets/auth.json"
-        cp $HOME/.warden/secrets/auth.json ./auth.json
-        INIT_ERROR=
     fi
-
 }
 
 countdown() {
@@ -137,6 +151,14 @@ wait_composer() {
     fi
 
     echo "Composer is runnning."
+
+    if [[ ${hadToCreateComposerJson} == 1 ]]; then
+        warden env exec -T php-fpm composer config http-basic.repo.magento.com "$composerPublicKey" "$composerPrivateKey"
+
+        rm ${WARDEN_WEB_ROOT}/composer.json
+        :: Credentials Sync to Composer
+        countdown 5
+    fi
 }
 
 wait_database() {
