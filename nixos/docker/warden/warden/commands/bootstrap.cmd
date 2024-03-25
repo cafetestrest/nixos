@@ -87,11 +87,11 @@ countdown() {
 }
 
 stop_running_warden() {
-    :: "Stopping already running services using: warden svc down"
-    warden svc down
+    :: "Stopping already running services using: warden svc down --remove-orphans"
+    warden svc down --remove-orphans
 
-    :: "Stopping already running services using: warden env down"
-    warden env down
+    :: "Stopping already running services using: warden env down --remove-orphans"
+    warden env down --remove-orphans
 
     # Check if there are any running Docker containers
     if [ -n "$(docker ps -q)" ]; then
