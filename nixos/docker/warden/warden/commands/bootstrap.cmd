@@ -229,8 +229,14 @@ initialize() {
     else
         :: "Initialize project source files using composer create-project and then move them into place"
 
+        if [ "$META_PACKAGE" == "mage-os/project-community-edition" ]; then
+            REPO_URL=https://repo.mage-os.org/
+        else
+            REPO_URL=https://repo.magento.com/
+        fi
+
         warden env exec -T php-fpm rm -rf /tmp/exampleproject/
-        warden env exec -T php-fpm composer create-project --repository-url=https://repo.magento.com/ "${META_PACKAGE}" /tmp/create-project "${META_VERSION}"
+        warden env exec -T php-fpm composer create-project --repository-url=$REPO_URL "${META_PACKAGE}" /tmp/create-project "${META_VERSION}"
         warden env exec -T php-fpm rsync -a /tmp/create-project/ /var/www/html/
         warden env exec -T php-fpm rm -rf /tmp/exampleproject/
     fi
@@ -317,47 +323,10 @@ install_magento() {
     warden env exec -- -T php-fpm bin/magento setup:install $(echo ${INSTALL_FLAGS})
 }
 
-check_two_factor_auth_and_configure_modules() {
-    # Function to compare Magento versions
-    compare_versions() {
-        version1=$1
-        version2=$2
-
-        IFS='.' read -ra v1 <<< "$version1"
-        IFS='.' read -ra v2 <<< "$version2"
-
-        for ((i = 0; i < ${#v1[@]}; i++)); do
-            if ((10#${v1[i]} < 10#${v2[i]})); then
-                return 1
-            elif ((10#${v1[i]} > 10#${v2[i]})); then
-                return 0
-            fi
-        done
-
-        return 0
-    }
-
-    # Function to check if Magento version is greater than or equal to 2.4.6
-    check_magento_version() {
-        MAGENTO_VERSION=$(warden env exec -T php-fpm bin/magento --version | awk '{print $3}')
-
-        compare_versions "$MAGENTO_VERSION" "2.4.6"
-
-        if [ $? -eq 0 ]; then
-            echo "Magento version is greater than or equal to 2.4.6"
-
-            :: Disabling Two Factor Auth and Admin Adobe Ims Two Factor Auth
-            warden env exec -T php-fpm bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth Magento_TwoFactorAuth
-        else
-            # echo "Magento version is less than 2.4.6"
-            :: Disabling Two Factor Auth
-            warden env exec -T php-fpm bin/magento module:disable Magento_TwoFactorAuth
-        fi
-    }
-
-    ## check if two factor authentication is disabled, so it means that tfa module can be disabled as well
+disable_two_factor_auth() {
     if [[ ${USE_TFA} == 0 ]]; then
-        check_magento_version
+        :: Disabling Two Factor Auth
+        warden env exec -T php-fpm bin/magento module:status | grep TwoFactorAuth | while read -r line; do bin/magento module:disable $line; done
     fi
 }
 
@@ -387,14 +356,14 @@ configure_application() {
     warden env exec -T php-fpm bin/magento deploy:mode:set -s developer
 
     ## check if two factor authentication is disabled, so it means that tfa module can be disabled as well
-    check_two_factor_auth_and_configure_modules
+    disable_two_factor_auth
 
     #sampledata install
     install_sample_data
 
     warden env exec -T php-fpm bin/magento indexer:reindex
     warden env exec -T php-fpm bin/magento cache:flush
-    warden env exec -T php-fpm bin/magento cache:disable block_html full_page
+    #warden env exec -T php-fpm bin/magento cache:disable block_html full_page
 }
 
 create_admin_user() {
