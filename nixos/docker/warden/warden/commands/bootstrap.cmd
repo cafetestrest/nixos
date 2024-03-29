@@ -326,7 +326,7 @@ install_magento() {
 disable_two_factor_auth() {
     if [[ ${USE_TFA} == 0 ]]; then
         :: Disabling Two Factor Auth
-        warden env exec -T php-fpm bin/magento module:status | grep TwoFactorAuth | while read -r line; do bin/magento module:disable $line; done
+        warden env exec -T php-fpm bin/magento module:status | grep TwoFactorAuth | while read -r line; do warden env exec -T php-fpm bin/magento module:disable $line; done
     fi
 }
 
