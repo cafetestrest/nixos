@@ -161,11 +161,27 @@ wait_composer() {
     fi
 }
 
+check_docker_database_exists() {
+    echo "Dry run to the database: ${MYSQL_DATABASE}"
+    DB_ID=$(docker ps --filter name=db --format '{{.ID}}')
+    docker exec "${DB_ID}" mysql -u"${MYSQL_USER}" -p"${MYSQL_PASSWORD}" --database="${MYSQL_DATABASE}"
+}
+
+create_docker_database() {
+    docker exec "${DB_ID}" mysql -u root -p"${MYSQL_PASSWORD}" -e "CREATE DATABASE ${MYSQL_DATABASE}; GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}'; FLUSH PRIVILEGES;"
+    :: "Creating database: $MYSQL_DATABASE"
+    countdown 10
+    check_docker_database_exists
+}
+
 wait_database() {
     :: "Waiting for mariadb to start listening for connections..."
     countdown 10
     echo "Connecting to the database..."
     warden shell -c "while ! nc -z db 3306 </dev/null; do sleep 2; done"
+
+    check_docker_database_exists || create_docker_database
+
     echo "Database connection established."
 }
 

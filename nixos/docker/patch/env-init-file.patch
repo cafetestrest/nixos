@@ -22,7 +22,7 @@ diff --git a/environments/magento2/init.env b/environments/magento2/init.env
  
 +MYSQL_USER=magento
 +MYSQL_PASSWORD=magento
-+MYSQL_DATABASE=magento
++MYSQL_DATABASE=${WARDEN_ENV_NAME}
 +
 +#magento
 +META_PACKAGE=magento/project-community-edition
