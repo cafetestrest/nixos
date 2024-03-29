@@ -2,30 +2,20 @@
 
 [[ ! ${WARDEN_DIR} ]] && >&2 echo -e "\033[31mThis script is not intended to be run directly!\033[0m" && exit 1
 
-#magento
-META_PACKAGE=magento/project-community-edition
-META_VERSION=
-INSTALL_SAMPLE_DATA=0
-USE_TFA=0
-
-#admin
-ADMIN_PASS=""
-ADMIN_USER=admin
-ADMIN_PATH="admin"
-
-#http/https
-HTTP_PROTOCOL="https"
-
-#show URL's on install
-PRINT_MORE_VERBOSE_ON_INSTALL=1
-PRINT_ADMIN_CREDENTIALS=
-
-## if magento store url should be opened on install (2 = xdg-open, 1 = sensible-browser, 0 = off -> $traefik_url &>/dev/null)
-OPEN_IN_BROWSER=2
-
 function :: {
   echo
   echo "==> [$(date +%H:%M:%S)] $@"
+}
+
+check_warden_version() {
+    ## verify warden version constraint
+    WARDEN_VERSION=$(warden version 2>/dev/null) || true
+    WARDEN_REQUIRE=0.6.0
+
+    if [[ "$WARDEN_VERSION" != "in-dev" ]] && ! test $(version ${WARDEN_VERSION}) -ge $(version ${WARDEN_REQUIRE}); then
+        error "Warden ${WARDEN_REQUIRE} or greater is required (version ${WARDEN_VERSION} is installed)"
+        exit 1
+    fi
 }
 
 locate_env_file() {
@@ -38,6 +28,12 @@ locate_env_file() {
         echo "warden sign-certificate exampleproject.test"
         exit 1
     fi
+
+    ## load configuration needed for setup
+    WARDEN_ENV_PATH="$(locateEnvPath)" || exit $?
+    loadEnvConfig "${WARDEN_ENV_PATH}" || exit $?
+
+    assertDockerRunning
 }
 
 no_auth_json_file_prompt_for_creds() {
@@ -60,7 +56,7 @@ locate_auth_json_file() {
     INIT_ERROR=
 
     ## locates auth.json file inside project
-    if [[ ! -f "auth.json" ]]; then
+    if [[ ! -f "${WARDEN_WEB_ROOT}/auth.json" ]]; then
         INIT_ERROR=1
     fi
 
@@ -116,33 +112,33 @@ start_warden() {
     warden env up
 }
 
-wait_composer() {
-    INIT_ERROR=1
-
+check_composer_running() {
     :: "Waiting for composer..."
-    countdown 10
-    echo "Checking if composer is runnning..."
+    countdown 5
 
+    echo "Checking if composer is runnning..."
     COMPOSER=$(warden shell -c "composer -V")
 
     if [[ ${COMPOSER} == "Composer version"* ]]; then
         INIT_ERROR=
     fi
+}
 
-    COMPOSER1=$(warden shell -c "composer -V")
-    if [[ ${INIT_ERROR} && ${COMPOSER1} == "Composer version"* ]]; then
-        INIT_ERROR=
+wait_composer() {
+    INIT_ERROR=1
+
+    check_composer_running
+
+    if [[ ${INIT_ERROR} ]]; then
+        check_composer_running
     fi
 
     if [[ ${INIT_ERROR} ]]; then
-        :: "Waiting to load composer 2nd time - 10 sec"
-        countdown 10
-        echo "Checking if composer is runnning 2nd time..."
+        check_composer_running
     fi
 
-    COMPOSER2=$(warden env exec -T php-fpm composer -V)
-    if [[ ${INIT_ERROR} && ${COMPOSER2} == "Composer version"* ]]; then
-        INIT_ERROR=
+    if [[ ${INIT_ERROR} ]]; then
+        check_composer_running
     fi
 
     if [[ ${INIT_ERROR} ]]; then
@@ -170,13 +166,13 @@ check_docker_database_exists() {
 create_docker_database() {
     docker exec "${DB_ID}" mysql -u root -p"${MYSQL_PASSWORD}" -e "CREATE DATABASE ${MYSQL_DATABASE}; GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}'; FLUSH PRIVILEGES;"
     :: "Creating database: $MYSQL_DATABASE"
-    countdown 10
+    countdown 5
     check_docker_database_exists
 }
 
 wait_database() {
     :: "Waiting for mariadb to start listening for connections..."
-    countdown 10
+    countdown 5
     echo "Connecting to the database..."
     warden shell -c "while ! nc -z db 3306 </dev/null; do sleep 2; done"
 
@@ -571,6 +567,7 @@ install_magento_from_db_dump() {
 
 #app starts here:
 
+check_warden_version
 locate_env_file
 locate_auth_json_file
 
