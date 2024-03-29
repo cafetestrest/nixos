@@ -60,7 +60,7 @@ locate_auth_json_file() {
     INIT_ERROR=
 
     ## locates auth.json file inside project
-    if [[ ! -f "${WARDEN_WEB_ROOT}/auth.json" ]]; then
+    if [[ ! -f "auth.json" ]]; then
         INIT_ERROR=1
     fi
 
