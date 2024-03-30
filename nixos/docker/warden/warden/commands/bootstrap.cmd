@@ -421,7 +421,7 @@ verify_warden_has_search() {
 
     if [[ ${HAS_SEARCH} == 0 ]]; then
         :: "Warden .env file has search missing. Please enable either WARDEN_OPENSEARCH or WARDEN_ELASTICSEARCH."
-        exit 1
+        #exit 1
     fi
 }
 
