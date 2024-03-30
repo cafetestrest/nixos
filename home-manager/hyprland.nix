@@ -93,14 +93,14 @@ in
       ];
 
       env = [
-        "HYPRCURSOR_THEME,macOS-Monterey"
-        "HYPRCURSOR_SIZE,24"
+        "GDK_SCALE,1"
+        "XCURSOR_SIZE,24"
       ];
 
       monitor = [
         # "eDP-1, 1920x1080, 0x0, 1"
         # "HDMI-A-1, 2560x1440, 1920x0, 1"
-        ",preferred,auto,1"
+        ",highres,auto,1"
       ];
 
       general = {
