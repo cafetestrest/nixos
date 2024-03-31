@@ -8,8 +8,13 @@ function run_wlsunset() {
 }
 
 function set_swaybg_wallpaper() {
-    echo 'setting wallpaper'
+    echo 'setting swaybg wallpaper'
     swaybg -i ~/Public/wall/wall.png --mode fill &
+}
+
+function set_hyprpaper_wallpaper() {
+    echo 'setting hyprpaper wallpaper'
+    hyprpaper &
 }
 
 #top bar - ags
@@ -21,7 +26,6 @@ function run_ags() {
 #idle check
 function run_swayidle() {
     echo 'running swayidle'
-    # swayidle -w timeout 300 'exec ~/.config/scripts/idle.sh l' timeout 600 'exec ~/.config/scripts/idle.sh s' before-sleep 'gtklock -d' &
     ~/.config/scripts/swayidle.sh startup
 }
 
@@ -50,7 +54,7 @@ function run_swaync() {
 
 run_wlsunset
 
-set_swaybg_wallpaper
+set_hyprpaper_wallpaper
 
 run_swayidle
 

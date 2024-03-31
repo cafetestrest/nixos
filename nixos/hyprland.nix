@@ -31,7 +31,7 @@
     grim                                #screenshot tool
     slurp                               #select a screenshot region
     swaybg                              #wallpaper
-    swayidle                            #idle manager for sway/hyprland
+    # swayidle                            #idle manager for sway/hyprland
     hyprpicker                          #pipette - color hex picker
     loupe                               #image viewer
     gnome.nautilus                      #file manager

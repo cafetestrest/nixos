@@ -23,6 +23,7 @@ in
       # ./swaylock.nix
       ./hyprlock.nix
       ./hypridle.nix
+      ./hyprpaper.nix
     ];
 
   home.packages = [

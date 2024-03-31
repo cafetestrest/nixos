@@ -6,11 +6,6 @@ function run_swayidle {
 	# after-resume 'hyprctl dispatch dpms on && exec ~/.config/scripts/wakefromsleep.sh' \
 	# before-sleep 'exec ~/.config/scripts/idle.sh l && hyprctl dispatch dpms off' & disown
 
-	# swayidle -w timeout 600 'if pgrep hyprlock; then exec ~/.config/scripts/idle.sh z; else exec ~/.config/scripts/idle.sh g; fi' \
-	# timeout 900 'if pgrep hyprlock; then exec ~/.config/scripts/idle.sh z; else exec ~/.config/scripts/idle.sh g; fi' \
-	# after-resume 'hyprctl dispatch dpms on && exec ~/.config/scripts/wakefromsleep.sh' \
-	# before-sleep 'exec ~/.config/scripts/idle.sh l && hyprctl dispatch dpms off' & disown
-
 	hypridle & disown
 }
 
