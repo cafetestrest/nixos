@@ -116,43 +116,4 @@ label {
     #   }
     # ];
   # };
-
-  # services.hypridle = {
-  #   enable = true;
-  #   lockCmd = "${lib.getExe pkgs.hyprlock}";
-  #   beforeSleepCmd = "${lib.getExe pkgs.hyprlock}";
-  #   listeners = [
-  #     {
-  #       timeout = 300;
-  #       onTimeout = "${lib.getExe pkgs.hyprlock}";
-  #     }
-  #     {
-  #       timeout = 305;
-  #       onTimeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-  #       onResume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-  #     }
-  #   ];
-  # };
-
-  #   home.packages = with pkgs; [ hypridle ];
-
-  # xdg.configFile."hypr/hypridle.conf".text = ''
-  #   general {
-  #       ignore_dbus_inhibit = false
-  #   }
-
-  #   # Screenlock
-  #   listener {
-  #       timeout = 600
-  #       on-timeout = ${pkgs.hyprlock}/bin/hyprlock
-  #       on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back ${config.home.username}!"
-  #   }
-
-  #   # Suspend
-  #   listener {
-  #       timeout = 660
-  #       on-timeout = systemctl suspend
-  #       # on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back to your desktop!"
-  #   }
-  # '';
 }

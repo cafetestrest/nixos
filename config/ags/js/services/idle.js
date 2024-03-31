@@ -17,7 +17,7 @@ class Idle extends Service {
 
     constructor() {
         super();
-        this._mode = Utils.exec('pidof swayidle') ? 'on' : 'off';
+        this._mode = Utils.exec('pidof hypridle') ? 'on' : 'off';
     }
 }
 

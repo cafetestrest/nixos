@@ -22,6 +22,7 @@ in
       ./ags.nix # https://github.com/Aylur/ags
       # ./swaylock.nix
       ./hyprlock.nix
+      ./hypridle.nix
     ];
 
   home.packages = [
