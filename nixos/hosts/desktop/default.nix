@@ -13,8 +13,8 @@ in
     ../packages.nix                   # shared packages
     ../../fish.nix                    # fish and its extensions
     ../../hyprland.nix                # hyprland packages
-    ../../swaylock.nix                # lockscreen packages
-    ../../gtklock.nix                 # lockscreen packages
+    # ../../swaylock.nix                # lockscreen packages
+    # ../../gtklock.nix                 # lockscreen packages
     ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
     ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../docker                      # docker, docker-compose and /etc/hosts

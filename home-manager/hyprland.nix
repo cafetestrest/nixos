@@ -20,7 +20,8 @@ in
   imports =
     [
       ./ags.nix # https://github.com/Aylur/ags
-      ./swaylock.nix
+      # ./swaylock.nix
+      ./hyprlock.nix
     ];
 
   home.packages = [
@@ -214,7 +215,7 @@ in
         "SUPER, Print, exec, ~/.config/scripts/screenshot.sh"
         "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
 
-        "SUPER SHIFT, R, ${e} quit; ags -b hypr"
+        "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags -b hypr"
         "SUPER, space, ${e} -t applauncher"
         "ALT, space, ${e} -t applauncher"
         # ", XF86PowerOff, ${e} -t powermenu"
@@ -313,7 +314,8 @@ in
         ",XF86AudioPause, exec, playerctl pause"
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86AudioNext, exec, playerctl next"
-        "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
+        # "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
+        "SUPER, BackSpace, exec, pkill -SIGUSR1 hyprlock && hyprlock --immediate"
       ];
 
       bindm = [

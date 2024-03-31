@@ -2,7 +2,8 @@
 
 function lock() {
     # gtklock -d
-    swaylock -f
+    # swaylock -f
+    hyprlock
 }
 
 function sespend() {
@@ -35,7 +36,7 @@ function idle_action() {
 
     if [ "$status" != "Playing" ]; then
 
-        if pgrep -x "swaylock" >/dev/null; then
+        if pgrep -x "hyprlock" >/dev/null; then
             sespend
         else
             lock
