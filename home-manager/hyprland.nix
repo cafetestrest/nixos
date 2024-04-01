@@ -91,6 +91,7 @@ in
         # "ags -b hypr"
         "~/.config/scripts/startup.sh" #open on startup
         "xrdb -load ~/.Xresources"
+        "hyprpaper"
         # "hyprctl setcursor Qogir 24"
         # "transmission-gtk"
       ];

@@ -54,11 +54,12 @@ function run_swaync() {
 
 run_wlsunset
 
-set_hyprpaper_wallpaper
-
 run_swayidle
 
 run_ags
+
+# set_swaybg_wallpaper
+# set_hyprpaper_wallpaper
 
 check_if_media_is_playing_and_stop_it
 

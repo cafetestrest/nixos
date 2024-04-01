@@ -20,7 +20,7 @@ wallpaper = ,~/Public/wall/wall.png
 # .. more monitors
 
 #enable splash text rendering over the wallpaper
-splash = true
+splash = false
 
 #fully disable ipc
 # ipc = off
