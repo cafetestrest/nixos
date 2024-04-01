@@ -89,7 +89,12 @@ in
     settings = {
       exec-once = [
         # "ags -b hypr"
-        "~/.config/scripts/startup.sh" #open on startup
+        # "~/.config/scripts/startup.sh" #open on startup
+        "~/.config/scripts/nightlight.sh"
+        "~/.config/scripts/swayidle.sh startup"
+        "copyq --start-server"
+        "source ~/.config/scripts/playerstartup.sh"
+        "AGS_SKIP_V_CHECK=true ags -b hypr"
         "xrdb -load ~/.Xresources"
         "hyprpaper"
         # "hyprctl setcursor Qogir 24"
