@@ -6,15 +6,6 @@ let
 
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
-
-  launcher = pkgs.writeShellScriptBin "hypr" ''
-    #!/${pkgs.bash}/bin/bash
-
-    export WLR_NO_HARDWARE_CURSORS=1
-    export _JAVA_AWT_WM_NONREPARENTING=1
-
-    exec ${hyprland}/bin/Hyprland
-  '';
 in
 {
   imports =
@@ -25,10 +16,6 @@ in
       ./hypridle.nix
       ./hyprpaper.nix
     ];
-
-  home.packages = [
-    launcher
-  ];
 
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
@@ -96,7 +83,8 @@ in
         "source ~/.config/scripts/playerstartup.sh"
         "AGS_SKIP_V_CHECK=true ags -b hypr"
         "xrdb -load ~/.Xresources"
-        "hyprpaper"
+        # "hyprpaper"
+        "swaybg -i ~/Public/wall/wall.png --mode fill"
         # "hyprctl setcursor Qogir 24"
         # "transmission-gtk"
       ];
