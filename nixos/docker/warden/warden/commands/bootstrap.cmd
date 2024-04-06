@@ -530,6 +530,7 @@ check_if_project_already_installed() {
     if [[ -d "${MAGENTO_WEB_ROOT}/app/code" ]]; then
         printf "You already have Magento2 instance installed.\n"
         open_url_in_browser
+        print_install_info
         exit 1
     fi
 }
