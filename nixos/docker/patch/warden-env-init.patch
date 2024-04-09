@@ -1,6 +1,6 @@
 diff --git a/commands/env-init.cmd b/commands/env-init.cmd
---- a/commands/env-init.cmd	(revision 51502ef1e4a1ddbb560680b9906512b705995775)
-+++ b/commands/env-init.cmd	(date 1703179552494)
+--- a/commands/env-init.cmd	(revision 39d472934585b7a656033f52c5ae4150470912bd)
++++ b/commands/env-init.cmd	(date 1712693513617)
 @@ -50,4 +50,42 @@
    export WARDEN_ENV_NAME
    export GENERATED_APP_KEY="base64:$(dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64)"
@@ -9,7 +9,7 @@ diff --git a/commands/env-init.cmd b/commands/env-init.cmd
 \ No newline at end of file
 +fi
 +
-+if [ ! -d ./.warden ]; then
++if [[ ${WARDEN_ENV_TYPE} == "magento2" && ! -d ./.warden ]]; then
 +  # Remove "init.env" at the end
 +  dot_warden_folder_path="${ENV_INIT_FILE%init.env}.warden"
 +
