@@ -231,10 +231,10 @@ initialize() {
             REPO_URL=https://repo.magento.com/
         fi
 
-        warden env exec -T php-fpm rm -rf /tmp/exampleproject/
+        warden env exec -T php-fpm rm -rf /tmp/create-project/
         warden env exec -T php-fpm composer create-project --repository-url=$REPO_URL "${META_PACKAGE}" /tmp/create-project "${META_VERSION}"
         warden env exec -T php-fpm rsync -a /tmp/create-project/ /var/www/html/
-        warden env exec -T php-fpm rm -rf /tmp/exampleproject/
+        warden env exec -T php-fpm rm -rf /tmp/create-project/
     fi
 }
 
