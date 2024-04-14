@@ -1,4 +1,9 @@
 { config, lib, pkgs, ... }:
+
+let
+  inherit (import ../../variables.nix)
+    wardenSha256Hash;
+in
 {
   environment.systemPackages = let
     warden = with pkgs; stdenv.mkDerivation rec {
@@ -22,7 +27,7 @@
         owner = "wardenenv";
         repo = "warden";
         rev = "main";
-        sha256 = "sha256-CH/pklnxm1nz7miFlRsC7VFQ9n7xDrVYCmqqh0IHA3o=";
+        sha256 = "${wardenSha256Hash}";
       };
 
       patches = [

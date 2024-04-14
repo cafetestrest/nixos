@@ -15,4 +15,5 @@ in
   efiSysMountPoint = "/boot/efi";
   grubHardDriveForVM = "/dev/vda";
   configurationLimit = 20;
+  wardenSha256Hash = "sha256-CH/pklnxm1nz7miFlRsC7VFQ9n7xDrVYCmqqh0IHA3o="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"
 }
