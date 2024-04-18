@@ -27,7 +27,17 @@ window#applauncher .window-content {
         background-color: $hover;
     }
 
-    .math-result,
+    .math-result:first-child {
+        color: transparentize($fg-color, 0.5);
+        font-size: 1em;
+    }
+
+    .math-result {
+        margin-top: $spacing * 2;
+        color: $fg_color;
+        font-size: 1.7em;
+    }
+
     .placeholder {
         margin-top: $spacing * 2;
         color: $fg_color;

@@ -76,7 +76,12 @@ const Applauncher = () => {
             if (containsMathOperation(text) && mathResult) {
                 list.add(Widget.Label({
                     className: 'math-result',
-                    label: 'Result: ' + text + ' = ' + mathResult,
+                    label: text + '',
+                }));
+
+                list.add(Widget.Label({
+                    className: 'math-result',
+                    label: '' + mathResult,
                 }));
 
                 // logic to go over all items in the list, if it contains class math-result it should be visible
