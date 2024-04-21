@@ -5,7 +5,7 @@
 
   home.packages = with pkgs; [
     sassc
-    (python311.withPackages (p: [ p.python-pam ]))
+    # (python311.withPackages (p: [ p.python-pam ]))
     socat
     imagemagick
     pavucontrol #audio

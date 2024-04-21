@@ -43,15 +43,7 @@ class Asusctl extends Service {
 
     constructor() {
         super();
-
-        if (Utils.exec('which asusctl')) {
-            this.available = true;
-            this.#profile = Utils.exec('asusctl profile -p').split(' ')[3];
-            Utils.execAsync('supergfxctl -g').then(mode => this.#mode = mode);
-        }
-        else {
-            this.available = false;
-        }
+        this.available = false;
     }
 
     get profile() { return this.#profile; }
