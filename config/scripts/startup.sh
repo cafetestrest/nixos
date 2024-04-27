@@ -52,17 +52,19 @@ function run_swaync() {
     swaync &
 }
 
-run_wlsunset
+# run_wlsunset
 
-run_swayidle
+# run_swayidle
 
-run_ags
+# run_ags
 
 # set_swaybg_wallpaper
 # set_hyprpaper_wallpaper
 
-check_if_media_is_playing_and_stop_it
+# check_if_media_is_playing_and_stop_it
 
-run_copyq
+# run_copyq
+
+set_swaybg_wallpaper
 
 # echo 'done'

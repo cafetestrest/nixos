@@ -76,15 +76,16 @@ in
     settings = {
       exec-once = [
         # "ags -b hypr"
-        # "~/.config/scripts/startup.sh" #open on startup
         "~/.config/scripts/nightlight.sh"
         "~/.config/scripts/swayidle.sh startup"
         "copyq --start-server"
         "source ~/.config/scripts/playerstartup.sh"
         "AGS_SKIP_V_CHECK=true ags -b hypr"
         "xrdb -load ~/.Xresources"
+        "sleep 1 && hyprpaper"
+        # "~/.config/scripts/startup.sh" #open on startup
         # "hyprpaper"
-        "swaybg -i ~/Public/wall/wall.png --mode fill"
+        # "swaybg -i ~/Public/wall/wall.png --mode fill"
         # "hyprctl setcursor Qogir 24"
         # "transmission-gtk"
       ];

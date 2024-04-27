@@ -28,6 +28,8 @@
     libnotify             #notifications from terminal
     # librewolf           #firefox browser
     icon-library          #library of icons
+    unstable.zed-editor
+    unstable.ollama
   ];
 
   # services.teamviewer.enable = true;
