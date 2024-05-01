@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     terminator            #terminal
-    neofetch
+    fastfetch
     killall
     # teamviewer
     # anydesk

@@ -11,9 +11,9 @@ function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
 end
 
-#neofetch instead of default greeting
+#fastfetch instead of default greeting
 function fish_greeting
-  neofetch
+  fastfetch
 end
 
 #vscode run from console as code path
