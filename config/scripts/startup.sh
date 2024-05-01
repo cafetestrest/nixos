@@ -65,6 +65,6 @@ function run_swaync() {
 
 # run_copyq
 
-set_swaybg_wallpaper
+# set_swaybg_wallpaper
 
 # echo 'done'

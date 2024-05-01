@@ -30,7 +30,7 @@
     # wlogout                             #logout for wayland - can be deleted and used wofi
     grim                                #screenshot tool
     slurp                               #select a screenshot region
-    swaybg                              #wallpaper
+    # swaybg                              #wallpaper
     # swayidle                            #idle manager for sway/hyprland
     hyprpicker                          #pipette - color hex picker
     loupe                               #image viewer

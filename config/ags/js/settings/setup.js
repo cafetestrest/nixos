@@ -23,7 +23,7 @@ export function init() {
     reloadScss();
     // hyprlandInit();
     // setupHyprland();
-    // wallpaper();
+    wallpaper();
     // showAbout();
 
     Audio.maxStreamVolume = 1.05;

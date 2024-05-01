@@ -18,7 +18,7 @@
     chromium              #chromium browser
     vscodium              #vscode alternative
     copyq                 #copy/paste things
-    libsForQt5.qt5ct
+    # libsForQt5.qt5ct
     #wl-clipboard
     # albert              #keybinding for albert toggle to get programs search
     # postman             #postman for API calls
@@ -28,8 +28,8 @@
     libnotify             #notifications from terminal
     # librewolf           #firefox browser
     icon-library          #library of icons
-    unstable.zed-editor
-    unstable.ollama
+    # unstable.zed-editor
+    unstable.gpt4all
   ];
 
   # services.teamviewer.enable = true;

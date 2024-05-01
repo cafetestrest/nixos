@@ -14,7 +14,7 @@ in
       # ./swaylock.nix
       ./hyprlock.nix
       ./hypridle.nix
-      ./hyprpaper.nix
+      # ./hyprpaper.nix
     ];
 
   xdg.desktopEntries."org.gnome.Settings" = {
@@ -82,7 +82,6 @@ in
         "source ~/.config/scripts/playerstartup.sh"
         "AGS_SKIP_V_CHECK=true ags -b hypr"
         "xrdb -load ~/.Xresources"
-        "sleep 1 && hyprpaper"
         # "~/.config/scripts/startup.sh" #open on startup
         # "hyprpaper"
         # "swaybg -i ~/Public/wall/wall.png --mode fill"
