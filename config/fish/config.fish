@@ -16,6 +16,8 @@ function fish_greeting
   fastfetch
 end
 
+alias neofetch='fastfetch'
+
 #vscode run from console as code path
 function code --description 'Visual Studio Code'
   #flatpak run com.visualstudio.code $argv;

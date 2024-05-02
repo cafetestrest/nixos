@@ -12,19 +12,25 @@
   #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
   # ];
 
-  #OpenCL
-  hardware.opengl.extraPackages = with pkgs; [
-    rocm-opencl-icd
-    rocm-opencl-runtime
-  ];
+  #OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
-  #Vulkan
-  hardware.opengl.driSupport = true;
-  # For 32 bit applications
-  hardware.opengl.driSupport32Bit = true;
+  # hardware.opengl.extraPackages = with pkgs; [
+  #   rocm-opencl-icd
+  #   rocm-opencl-runtime
+  # ];
 
-  # For 32 bit applications 
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  # #Vulkan
+  # hardware.opengl.driSupport = true;
+  # # For 32 bit applications
+  # hardware.opengl.driSupport32Bit = true;
+
+  # # For 32 bit applications 
+  # hardware.opengl.extraPackages32 = with pkgs; [
+  #   driversi686Linux.amdvlk
+  # ];
 }
