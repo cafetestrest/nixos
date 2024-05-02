@@ -15,8 +15,8 @@ in
     ../../hyprland.nix                # hyprland packages
     # ../../swaylock.nix                # lockscreen packages
     # ../../gtklock.nix                 # lockscreen packages
-    ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
-    ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
+    # ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
+    # ../vm/packages.nix                # virtual manager packages (virt-manager and virt-viewer)
     ../../docker                      # docker, docker-compose and /etc/hosts
     ../../gdm/background.nix          # background for gdm
     ../../headsetcontrol.nix          # used to retrieve battery percentage from headset
