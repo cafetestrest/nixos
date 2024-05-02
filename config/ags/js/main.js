@@ -20,7 +20,7 @@ import options from './options.js';
 import QSNotifications from './dashboard/Notifications.js';
 import Weather from './dashboard/Weather.js';
 
-initWallpaper();
+// initWallpaper();
 
 const windows = () => [
     // forMonitors(Desktop),

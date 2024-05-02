@@ -114,7 +114,7 @@ in
         # layers_hog_keyboard_focus = false;#If true, will make keyboard-interactive layers keep their focus on mouse move (e.g. wofi, bemenu)
         disable_splash_rendering = true;
         force_default_wallpaper = 0;
-        disable_hyprland_logo = true;
+        disable_hyprland_logo = false;
       };
 
       input = {
