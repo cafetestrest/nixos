@@ -21,6 +21,7 @@ in
     ../../gdm/background.nix          # background for gdm
     ../../headsetcontrol.nix          # used to retrieve battery percentage from headset
     # ../../waybar.nix
+    # ../../devenv.nix                  #required for https://github.com/run-as-root/rooter
   ];
 
   # Bootloader.

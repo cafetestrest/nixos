@@ -17,6 +17,7 @@ in
       ./scripts.nix # scripts, place to store all common scripts
       ./mpv.nix # mpv video player and its config
       ./fish.nix
+      # ./rooter.nix  #https://github.com/run-as-root/rooter
     ];
 
   home = {

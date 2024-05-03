@@ -266,9 +266,9 @@ alias down='wardendown'
 
 # #aliases for m2 warden
 alias app='warden shell -c "$argv"'
-alias php='app php $argv'
+# alias php='app php $argv'
 alias cg='app rm -rf /var/www/html/generated/code/ /var/www/html/generated/metadata/'
-alias composer='warden shell -c "COMPOSER_MEMORY_LIMIT=-1 composer $argv"'
+# alias composer='warden shell -c "COMPOSER_MEMORY_LIMIT=-1 composer $argv"'
 alias cud='composer update'
 alias cu='cud --no-dev'
 alias cid='COMPOSER_MEMORY_LIMIT=-1 composer install'
@@ -322,3 +322,5 @@ alias rebuildfull='msu && dc && scd && res && rei && cf'
 
 #testing
 # alias testing='open_in_browser'
+
+direnv hook fish | source

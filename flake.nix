@@ -10,6 +10,11 @@
     nur.url = "github:nix-community/NUR";
     ags.url = "github:Aylur/ags";
 
+    rooter = {
+      url = "github:run-as-root/rooter";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

@@ -129,7 +129,7 @@ in
   };
 
   #allow usage of unprivileged ports
-  #boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0
+  # boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
 
   #Linux Kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
