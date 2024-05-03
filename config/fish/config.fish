@@ -323,4 +323,4 @@ alias rebuildfull='msu && dc && scd && res && rei && cf'
 #testing
 # alias testing='open_in_browser'
 
-direnv hook fish | source
+# direnv hook fish | source
