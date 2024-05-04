@@ -50,7 +50,6 @@ in
     extraConfig = ''
       DNS=127.0.0.1
       Domains=~test
-
     '';
   };
 
