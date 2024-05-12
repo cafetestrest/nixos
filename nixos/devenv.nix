@@ -22,5 +22,7 @@ in
   networking.extraHosts =
   ''
     127.0.0.1 ::1 magento2.rooter.test
+    127.0.0.1 ::1 test.rooter.test
+    127.0.0.1 ::1 rooter.rooter.test
   '';
 }
