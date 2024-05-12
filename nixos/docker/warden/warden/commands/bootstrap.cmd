@@ -103,7 +103,7 @@ start_warden() {
     warden svc up
 
     if [[ ! -f ~/.warden/ssl/certs/${TRAEFIK_DOMAIN}.crt.pem ]]; then
-        warden sign-certificate ${TRAEFIK_DOMAIN}
+        sudo warden sign-certificate ${TRAEFIK_DOMAIN}
     fi
 
     warden env build
