@@ -17,12 +17,13 @@ in
   };
 
   # required for port 80, traefik stopping otherwise
-  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
+  # boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
 
   networking.extraHosts =
   ''
     127.0.0.1 ::1 magento2.rooter.test
     127.0.0.1 ::1 test.rooter.test
     127.0.0.1 ::1 rooter.rooter.test
+    127.0.0.1 ::1 magento2.test
   '';
 }
