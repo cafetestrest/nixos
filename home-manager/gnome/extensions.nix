@@ -52,7 +52,7 @@
         "blur-my-shell@aunetx"
         "dash-to-panel@jderose9.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "openweather-extension@penguin-teal.github.io"
+        # "openweather-extension@penguin-teal.github.io"
         "mediacontrols@cliffniff.github.com"
         "tiling-assistant@leleat-on-github"
         # "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
