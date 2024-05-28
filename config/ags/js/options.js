@@ -275,7 +275,7 @@ export default {
             ['Caprine', 'facebook-messenger'],
             ['', 'preferences-desktop-apps'],
             ['com.github.Aylur.ags', 'preferences-desktop-apps'],
-            ['Chromium-browser', 'chromium'],
+            ['chromium-browser', 'chromium'],
             ['VSCodium', 'vscodium'],
             ['jetbrains-phpstorm', 'phpstorm'],
             ['org.kde.kdeconnect.app', 'kdeconnect'],

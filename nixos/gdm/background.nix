@@ -4,7 +4,7 @@
   nixpkgs = {
     overlays = [
       (self: super: {
-        gnome = super.gnome.overrideScope' (selfg: superg: {
+        gnome = super.gnome.overrideScope (selfg: superg: {
           gnome-shell = superg.gnome-shell.overrideAttrs (old: {
             patches = (old.patches or []) ++ [
               (let
