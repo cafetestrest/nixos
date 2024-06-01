@@ -120,6 +120,7 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.${user} = {
               imports = [
+                #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
                 ./home-manager/hyprland.nix
                 ./home-manager/gnome/home.nix
