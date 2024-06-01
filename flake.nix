@@ -93,10 +93,25 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          ./nixos/hosts/desktop
+          ./nixos/hosts/desktop   #Boot and Bootloader config
+          ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
+          ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
+          ./nixos/hosts/configuration.nix                       # shared configuration
+          ./nixos/hosts/packages.nix                            # shared packages
+          ./nixos/fish.nix                                      # fish and its extensions
+          ./nixos/hyprland.nix                                  # hyprland packages
           ./nixos/gnome
-          ./nixos/gdm
           # ./nixos/cosmic
+          ./nixos/gdm
+          ./nixos/gdm/background.nix                            # background for gdm
+          # ./nixos/swaylock.nix                                  # lockscreen packages
+          # ./nixos/gtklock.nix                                   # lockscreen packages
+          ./nixos/docker                                        # docker, docker-compose and /etc/hosts
+          ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
+          # ./nixos/waybar.nix
+          # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
+          ./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
+          ./nixos/hosts/vm/spice-virt-manager.nix
 
           home-manager.nixosModules.home-manager
           {
