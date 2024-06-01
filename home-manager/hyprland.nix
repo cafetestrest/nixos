@@ -78,10 +78,11 @@ in
         # "ags -b hypr"
         "~/.config/scripts/nightlight.sh"
         "~/.config/scripts/swayidle.sh startup"
-        "copyq --start-server"
+        "env QT_QPA_PLATFORM=xcb copyq --start-server"
         "source ~/.config/scripts/playerstartup.sh"
-        "AGS_SKIP_V_CHECK=true ags -b hypr"
         "xrdb -load ~/.Xresources"
+        # "xterm -e ~/.config/scripts/journal.sh"
+        "AGS_SKIP_V_CHECK=true ags -b hypr"
         # "~/.config/scripts/startup.sh" #open on startup
         # "hyprpaper"
         # "swaybg -i ~/Public/wall/wall.png --mode fill"
@@ -167,17 +168,20 @@ in
 		(f "transmission-gtk")
 		(f "com.github.Aylur.ags")
 		(f "com.github.hluk.copyq")
+		(f "copyq")
 		(f "jetbrains-phpstorm")
 		"float,Rofi"
 		# "workspace 7, title:Spotify"
 		"opacity 0.85,terminator"
 		"move cursor -50% -20%,^(com.github.hluk.copyq)$"
+		"move cursor -50% -20%,^(copyq)$"
       ];
 
       windowrulev2 = let
         f = regex: "stayfocused,class:${regex}";
       in [
 		(f "com.github.hluk.copyq")
+		(f "copyq")
 		(f "Rofi")
       ];
 
@@ -207,7 +211,7 @@ in
         "SUPER SHIFT, I, exec, ${browser} --incognito"
         "SUPER, T, exec, terminator"
         "SUPER, E, exec, ${fileExplorer}"
-        "SUPER, V, exec, copyq menu"
+        "SUPER, V, exec, env QT_QPA_PLATFORM=xcb copyq menu"
         "SUPER, Print, exec, ~/.config/scripts/screenshot.sh"
         "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
 

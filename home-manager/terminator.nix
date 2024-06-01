@@ -33,7 +33,6 @@ let
         window0 = {
           type = "Window";
           parent = "";
-          size = "700,420";
         };
 
         child1 = {

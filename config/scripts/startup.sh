@@ -37,7 +37,7 @@ function check_if_media_is_playing_and_stop_it() {
 #clipboard
 function run_copyq() {
     echo 'running copyq'
-    copyq --start-server
+    env QT_QPA_PLATFORM=xcb copyq --start-server
 }
 
 #top bar - waybar

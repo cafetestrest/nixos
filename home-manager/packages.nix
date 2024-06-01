@@ -5,7 +5,6 @@
     terminator            #terminal
     fastfetch
     killall
-    # teamviewer
     # anydesk
     # nixpkgs-fmt        #Nix code formatter for nixpkgs
     # tldr
@@ -29,8 +28,6 @@
     # librewolf           #firefox browser
     icon-library          #library of icons
     # unstable.zed-editor
-    unstable.gpt4all
+    # unstable.gpt4all
   ];
-
-  # services.teamviewer.enable = true;
 }
