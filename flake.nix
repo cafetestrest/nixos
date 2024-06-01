@@ -111,7 +111,7 @@
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
           ./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
-          ./nixos/hosts/vm/spice-virt-manager.nix
+          ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
 
           home-manager.nixosModules.home-manager
           {
@@ -135,6 +135,11 @@
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; })
           ./nixos/hosts/vm
+          ./nixos/hosts/configuration.nix                       # shared configuration
+          ./nixos/hosts/packages.nix                            # shared packages
+          ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
+          /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure 
+  
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

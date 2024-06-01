@@ -6,18 +6,6 @@ let
     configurationLimit;
 in
 {
-  imports = [
-    ../configuration.nix              # shared configuration
-    ../packages.nix                   # shared packages
-    
-    ./hardware-configuration.nix      # Include the results of the hardware scan. (generated from fresh install on virt-manager)
-
-    # ../../hyprland.nix            # hyprland packages
-    # ../../swaylock.nix          # lockscreen packages
-
-    ../vm/spice-virt-manager.nix      # tools for VM copy/paste clipboard
-  ];
-
   # Bootloader for VM.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "${grubHardDriveForVM}";
