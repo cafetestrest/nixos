@@ -7,6 +7,7 @@ function lock() {
 }
 
 function sespend() {
+    hyprctl dispatch dpms off
     systemctl suspend
 }
 
