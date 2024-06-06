@@ -85,5 +85,11 @@
       source = ../config/scripts/headset.sh;
       executable = true;
     };
+  
+    #monitor control using ddcutil
+    ".config/scripts/monitor.sh" = {
+      source = ../config/scripts/monitor.sh;
+      executable = true;
+    };
   };
 }
