@@ -11,7 +11,7 @@ enable() {
 
 automatic() {
     disable
-    nohup wlsunset -t 2700 -l 39.07 -L 21.82 > /dev/null 2>&1 &
+    nohup wlsunset -t 2700 -l 39.07 -L 21.82 &
 }
 
 automatic_winter() {
@@ -30,7 +30,7 @@ toggle() {
 
 manual() {
     disable
-    wlsunset -t $1 -T $2 -S $3 -s $4 -d $5 > /dev/null 2>&1 &
+    wlsunset -t $1 -T $2 -S $3 -s $4 -d $5 &
 }
 
 monthlyAuto() {

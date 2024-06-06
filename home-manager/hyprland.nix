@@ -78,11 +78,11 @@ in
         # "ags -b hypr"
         "~/.config/scripts/nightlight.sh"
         "~/.config/scripts/swayidle.sh startup"
-        "env QT_QPA_PLATFORM=xcb copyq --start-server"
-        "source ~/.config/scripts/playerstartup.sh"
-        "xrdb -load ~/.Xresources"
+        "copyq --start-server"
+        "~/.config/scripts/playerstartup.sh"
+        # "xrdb -load ~/.Xresources"
         # "xterm -e ~/.config/scripts/journal.sh"
-        "AGS_SKIP_V_CHECK=true ags -b hypr"
+        "sleep 1 && AGS_SKIP_V_CHECK=true ags -b hypr"
         # "~/.config/scripts/startup.sh" #open on startup
         # "hyprpaper"
         # "swaybg -i ~/Public/wall/wall.png --mode fill"
@@ -138,7 +138,6 @@ in
       dwindle = {
         pseudotile = "yes";
         preserve_split = "yes";
-        # force_split = 0; #todo maybe?
         # no_gaps_when_only = "yes";
       };
 
@@ -211,7 +210,7 @@ in
         "SUPER SHIFT, I, exec, ${browser} --incognito"
         "SUPER, T, exec, terminator"
         "SUPER, E, exec, ${fileExplorer}"
-        "SUPER, V, exec, env QT_QPA_PLATFORM=xcb copyq menu"
+        "SUPER, V, exec, copyq menu"
         "SUPER, Print, exec, ~/.config/scripts/screenshot.sh"
         "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
 
