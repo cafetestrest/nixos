@@ -36,6 +36,7 @@ const Homogeneous = toggles => Widget.Box({
 
 export default () => PopupWindow({
     name: 'quicksettings',
+    exclusivity: "exclusive",
     setup: self => self.hook(options.bar.position, () => {
         self.anchor = ['right', options.bar.position.value];
         if (options.bar.position.value === 'top')
