@@ -18,6 +18,8 @@ function mismatch() {
     return {};
 }
 
-export default v.ags === v.expected || !v.check
-    ? (await import('./js/main.js')).default
-    : mismatch();
+// export default v.ags === v.expected || !v.check
+//     ? (await import('./js/main.js')).default
+//     : mismatch();
+
+export default (await import('./js/main.js')).default;
