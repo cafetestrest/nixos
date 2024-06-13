@@ -86,7 +86,12 @@ in
   # dconf
   programs.dconf.enable = true;
 
-  nixpkgs.config.allowUnfree = true;  # Allow unfree packages
+  nixpkgs.config = {
+    allowUnfree = true;  # Allow unfree packages
+    chromium = {
+      enableWideVine = true;
+      };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
