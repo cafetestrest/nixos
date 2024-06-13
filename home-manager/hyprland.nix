@@ -13,7 +13,7 @@ in
       ./ags.nix # https://github.com/Aylur/ags
       # ./swaylock.nix
       ./hyprlock.nix
-      ./hypridle.nix
+      # ./hypridle.nix
       # ./hyprpaper.nix
     ];
 
@@ -75,14 +75,15 @@ in
 
     settings = {
       exec-once = [
-        # "ags -b hypr"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "copyq --start-server"
         "~/.config/scripts/nightlight.sh"
         "~/.config/scripts/swayidle.sh startup"
-        "copyq --start-server"
+        # "xterm -e 'AGS_SKIP_V_CHECK=true ags -b hypr'"
         "~/.config/scripts/playerstartup.sh"
+        # "ags -b hypr"
         # "xrdb -load ~/.Xresources"
         # "xterm -e ~/.config/scripts/journal.sh"
-        "sleep 1 && AGS_SKIP_V_CHECK=true ags -b hypr"
         # "~/.config/scripts/startup.sh" #open on startup
         # "hyprpaper"
         # "swaybg -i ~/Public/wall/wall.png --mode fill"
@@ -90,9 +91,37 @@ in
         # "transmission-gtk"
       ];
 
+      exec = [
+        # Swww - a Solution to all your Wayland Wallpaper Woes
+        # "swww img $FLAKE/.theme/current_wallpaper"
+        # Ags - Aylur's GTK Shell
+        "WAYLAND_DISPLAY=wayland-1 AGS_SKIP_V_CHECK=true ags -b hypr"
+      ];
+
+      # env = [
+      #   "GDK_SCALE,1"
+      #   "XCURSOR_SIZE,24"
+      # ];
+
       env = [
-        "GDK_SCALE,1"
-        "XCURSOR_SIZE,24"
+        # log WLR stuff
+        #"HYPRLAND_LOG_WLR,1"
+
+        # Hyprcursor
+        # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
+        "HYPRCURSOR_SIZE, 24"
+
+        "QT_QPA_PLATFORM, wayland;xcb"
+        "QT_QPA_PLATFORMTHEME, qt5ct"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+        "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
+
+        "GDK_BACKEND, wayland,x11"
+        "SDL_VIDEODRIVER, wayland"
+        "CLUTTER_BACKEND, wayland"
+        "EGL_PLATFORM, wayland"
+
+        "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
       monitor = [
