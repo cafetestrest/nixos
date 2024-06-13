@@ -137,13 +137,7 @@ check_apps_running() {
     return 0
 }
 
-open_startup_apps
-
-# Main loop to retry for 10 seconds
-is_media_paused=
-end=$((SECONDS+10))
-while [ $SECONDS -lt $end ]; do
-
+pause_playing_media() {
     if [[ -z "$is_media_paused" ]]; then
         status=$(playerctl status)
         # echo "media status: $status"
@@ -154,6 +148,16 @@ while [ $SECONDS -lt $end ]; do
             echo "paused playing media"
         fi
     fi
+}
+
+open_startup_apps
+
+# Main loop to retry for 10 seconds
+is_media_paused=
+end=$((SECONDS+10))
+while [ $SECONDS -lt $end ]; do
+
+    pause_playing_media
 
     # Gets the hyprland clients (apps) running
     output=$(hyprctl clients)
@@ -162,6 +166,8 @@ while [ $SECONDS -lt $end ]; do
     # check_apps_running (left)          (right-upper)   (right-lower)
     # if check_apps_running "Chromium-browser" "terminator"; then
     if check_apps_running "Chromium-browser" "codium-url-handler" "terminator"; then
+        pause_playing_media
+
         echo "Apps moved successfully, exiting"
         exit 0
     fi
