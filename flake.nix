@@ -101,7 +101,7 @@
           ./nixos/fish.nix                                      # fish and its extensions
           ./nixos/hyprland.nix                                  # hyprland packages
           ./nixos/gnome
-          ./nixos/cosmic
+          # ./nixos/cosmic
           ./nixos/gdm
           ./nixos/gdm/background.nix                            # background for gdm
           # ./nixos/swaylock.nix                                  # lockscreen packages
