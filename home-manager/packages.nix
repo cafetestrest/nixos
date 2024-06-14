@@ -15,7 +15,6 @@
     bc                    #command line calculator
     # firefox             #firefox browser
     chromium              #chromium browser
-    vscodium              #vscode alternative
     copyq                 #copy/paste things
     # libsForQt5.qt5ct
     #wl-clipboard

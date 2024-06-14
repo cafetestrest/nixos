@@ -18,6 +18,7 @@ in
       ./mpv.nix # mpv video player and its config
       ./fish.nix
       ./fastfetch.nix
+      ./vscode.nix
       # ./rooter.nix  #https://github.com/run-as-root/rooter
     ];
 
