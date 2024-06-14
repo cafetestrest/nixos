@@ -3,10 +3,10 @@
 # apps to open on startup
 function open_startup_apps() {
     hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
-    hyprctl dispatch exec "[workspace 1]" "codium ~/nixos/"
+    hyprctl dispatch exec "[workspace 1]" "codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland ~/nixos/"
     hyprctl dispatch exec "[workspace 1]" chromium
     # hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/.config/scripts"
-    # hyprctl dispatch exec "[workspace 1]" "codium ~/.config/scripts"
+    # hyprctl dispatch exec "[workspace 1]" "codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland ~/.config/scripts"
 
     # startup_app_class_names (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
     # startup_app_class_names (left)          (right-upper)   (right-lower)
@@ -98,7 +98,8 @@ class_name_substitutes() {
 # Function to check the windows and focus history ID
 check_apps_running() {
     count_app_classes=${#startup_app_class_names[@]}
-    if [[ -z $count_app_classes || $count_app_classes -le 1 ]]; then
+    # echo "count: $count_app_classes"
+    if [[ -z $count_app_classes || $count_app_classes -le 1 || $count_app_classes -ge 4 ]]; then
         echo "Add 2-3 apps, currently you have defined only startup_app_class_names: $count_app_classes"
         return 0
     fi
@@ -121,7 +122,7 @@ check_apps_running() {
         hyprctl dispatch focuswindow $class_name
         sleep_time
 
-        class_at=$(echo "$classWindowInfo" | grep "at:" | awk '{print $2}')
+        class_at=$(echo "$classWindowInfo" | grep "at:" | awk '{print $2}' | head -1)
         class_x=$(echo "$class_at" | cut -d, -f1)
         class_y=$(echo "$class_at" | cut -d, -f2)
 
@@ -145,6 +146,7 @@ check_apps_running() {
     done
 
     # echo "count: $count, arg eq= $#"
+    echo "Apps moved successfully, exiting"
 
     return 0
 }
@@ -154,7 +156,7 @@ pause_playing_media() {
         status=$(playerctl status)
         # echo "media status: $status"
 
-        if [ "$status" = "Playing" ]; then
+        if [ "$status" == "Playing" ]; then
             playerctl pause
             is_media_paused=1
             echo "paused playing media"
@@ -171,8 +173,10 @@ while [ $SECONDS -lt $end ]; do
     # Gets the hyprland clients (apps) running
     output=$(hyprctl clients)
 
+    pause_playing_media
+
     if check_apps_running; then
-        echo "Apps moved successfully, exiting"
+        pause_playing_media
         exit 0
     fi
     sleep 0.5

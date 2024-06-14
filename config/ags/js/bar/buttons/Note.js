@@ -13,9 +13,9 @@ export default () => PanelButton({
         icon: icons.note,
     }),
     on_clicked: () => {
-        Utils.execAsync(['bash', '-c', "codium ~/Documents/note.md"]).catch(print);
+        Utils.execAsync(['bash', '-c', "codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland ~/Documents/note.md"]).catch(print);
     },
     on_secondary_click: () => {
-        Utils.execAsync(['bash', '-c', "codium ~/Documents/note.md"]).catch(print);
+        Utils.execAsync(['bash', '-c', "codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland ~/Documents/note.md"]).catch(print);
     },
 });
