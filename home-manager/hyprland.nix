@@ -109,8 +109,8 @@ in
 
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
+        "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE, 24"
-
         "QT_QPA_PLATFORM, wayland;xcb"
         "QT_QPA_PLATFORMTHEME, qt5ct"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
