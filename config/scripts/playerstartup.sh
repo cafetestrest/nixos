@@ -3,10 +3,10 @@
 # apps to open on startup
 function open_startup_apps() {
     hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
-    hyprctl dispatch exec "[workspace 1]" "NIXOS_OZONE_WL=1 codium ~/nixos/"
+    hyprctl dispatch exec "[workspace 1]" "codium ~/nixos/"
     hyprctl dispatch exec "[workspace 1]" chromium
     # hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/.config/scripts"
-    # hyprctl dispatch exec "[workspace 1]" "NIXOS_OZONE_WL=1 codium ~/.config/scripts"
+    # hyprctl dispatch exec "[workspace 1]" "codium ~/.config/scripts"
 
     # startup_app_class_names (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
     # startup_app_class_names (left)          (right-upper)   (right-lower)

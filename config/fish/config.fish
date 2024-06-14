@@ -21,7 +21,7 @@ alias neofetch='fastfetch'
 #vscode run from console as code path
 function code --description 'Visual Studio Code'
   #flatpak run com.visualstudio.code $argv;
-  NIXOS_OZONE_WL=1 codium $argv;
+  codium $argv;
 end
 
 # #phpstorm run from console as code path

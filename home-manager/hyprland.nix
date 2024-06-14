@@ -6,6 +6,7 @@ let
 
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+  copyq = "QT_QPA_PLATFORM=wayland copyq";
 in
 {
   imports =
@@ -76,7 +77,7 @@ in
     settings = {
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "copyq --start-server"
+        "${copyq} --start-server"
         "~/.config/scripts/nightlight.sh"
         "~/.config/scripts/swayidle.sh startup"
         # "xterm -e 'AGS_SKIP_V_CHECK=true ags -b hypr'"
@@ -111,8 +112,8 @@ in
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE, 24"
-        "QT_QPA_PLATFORM, wayland;xcb"
-        "QT_QPA_PLATFORMTHEME, qt5ct"
+        # "QT_QPA_PLATFORM, wayland;xcb"
+        # "QT_QPA_PLATFORMTHEME, qt5ct"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
         "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
 
@@ -239,7 +240,7 @@ in
         "SUPER SHIFT, I, exec, ${browser} --incognito"
         "SUPER, T, exec, terminator"
         "SUPER, E, exec, ${fileExplorer}"
-        "SUPER, V, exec, copyq menu"
+        "SUPER, V, exec, ${copyq} menu clipboard"
         "SUPER, Print, exec, ~/.config/scripts/screenshot.sh"
         "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
 
