@@ -110,8 +110,8 @@
           ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
-          ./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
-          ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
+          #./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
+          #./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
 
           home-manager.nixosModules.home-manager
           {

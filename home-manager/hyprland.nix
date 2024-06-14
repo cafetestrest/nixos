@@ -76,13 +76,13 @@ in
 
     settings = {
       exec-once = [
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "${copyq} --start-server"
         "~/.config/scripts/nightlight.sh"
         "~/.config/scripts/swayidle.sh startup"
         # "xterm -e 'AGS_SKIP_V_CHECK=true ags -b hypr'"
         "~/.config/scripts/playerstartup.sh"
-        # "ags -b hypr"
+        "ags -b hypr"
         # "xrdb -load ~/.Xresources"
         # "xterm -e ~/.config/scripts/journal.sh"
         # "~/.config/scripts/startup.sh" #open on startup
@@ -90,13 +90,6 @@ in
         # "swaybg -i ~/Public/wall/wall.png --mode fill"
         # "hyprctl setcursor Qogir 24"
         # "transmission-gtk"
-      ];
-
-      exec = [
-        # Swww - a Solution to all your Wayland Wallpaper Woes
-        # "swww img $FLAKE/.theme/current_wallpaper"
-        # Ags - Aylur's GTK Shell
-        "WAYLAND_DISPLAY=wayland-1 AGS_SKIP_V_CHECK=true ags -b hypr"
       ];
 
       # env = [
