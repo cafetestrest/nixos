@@ -7,6 +7,11 @@ function open_startup_apps() {
     hyprctl dispatch exec "[workspace 1]" chromium
     # hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/.config/scripts"
     # hyprctl dispatch exec "[workspace 1]" "codium ~/.config/scripts"
+
+    # startup_app_class_names (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
+    # startup_app_class_names (left)          (right-upper)   (right-lower)
+    startup_app_class_names=("Chromium-browser" "codium-url-handler" "terminator")
+    # startup_app_class_names=("Chromium-browser" "terminator")
     sleep 1
 }
 
@@ -78,31 +83,34 @@ two_apps_moving() {
     fi
 }
 
+class_name_substitutes() {
+    if [[ -z $classWindowInfo && "$class_name" == "codium-url-handler" ]]; then
+        class_name="VSCodium"
+        classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
+    fi
+
+    if [[ -z $classWindowInfo && "$class_name" == "Chromium-browser" ]]; then
+        class_name="chromium-browser"
+        classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
+    fi
+}
+
 # Function to check the windows and focus history ID
 check_apps_running() {
-    # if [[ $# -le 1 || $# -ge 4 ]]; then
-    #     echo "check_apps_running (1st class) (2nd class) (3rd class) -> hyprctl clients (class: ***) up to 3 running apps"
-    #     return 1
-    # fi
+    count_app_classes=${#startup_app_class_names[@]}
+    if [[ -z $count_app_classes || $count_app_classes -le 1 ]]; then
+        echo "Add 2-3 apps, currently you have defined only startup_app_class_names: $count_app_classes"
+        return 0
+    fi
 
     monitorBreakingPoint=100
     count=0
-    for class_name in "$@"
+    for class_name in "${startup_app_class_names[@]}"
     do
         classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
-        # classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' 'tolower($0) ~ tolower("class: '"$class_name"'") {print}')
-
         # echo "c: $classWindowInfo"
 
-        if [[ -z $classWindowInfo && "$class_name" == "codium-url-handler" ]]; then
-            class_name="VSCodium"
-            classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
-        fi
-
-        if [[ -z $classWindowInfo && "$class_name" == "Chromium-browser" ]]; then
-            class_name="chromium-browser"
-            classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
-        fi
+        class_name_substitutes
 
         if [[ -z $classWindowInfo ]]; then
             echo "Not running app with class: $class_name"
@@ -121,13 +129,17 @@ check_apps_running() {
         # echo "$class_name y: $class_y"
         # echo "$class_name at: $class_at"
 
-        if [[ $# -eq 3 ]]; then
+        # echo "$count_app_classes, this one is: $class_name"
+
+        if [[ $count_app_classes -eq 3 ]]; then
             three_apps_moving
         fi
 
-        if [[ $# -eq 2 ]]; then
+        if [[ $count_app_classes -eq 2 ]]; then
             two_apps_moving
         fi
+
+        pause_playing_media
 
         count=$((count+1))
     done
@@ -156,18 +168,10 @@ open_startup_apps
 is_media_paused=
 end=$((SECONDS+10))
 while [ $SECONDS -lt $end ]; do
-
-    pause_playing_media
-
     # Gets the hyprland clients (apps) running
     output=$(hyprctl clients)
 
-    # check_apps_running (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
-    # check_apps_running (left)          (right-upper)   (right-lower)
-    # if check_apps_running "Chromium-browser" "terminator"; then
-    if check_apps_running "Chromium-browser" "codium-url-handler" "terminator"; then
-        pause_playing_media
-
+    if check_apps_running; then
         echo "Apps moved successfully, exiting"
         exit 0
     fi
