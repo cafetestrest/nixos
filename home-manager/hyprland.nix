@@ -76,15 +76,16 @@ in
 
     settings = {
       exec-once = [
+        "~/.config/scripts/startup.sh"
         # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "${copyq} --start-server"
-        "~/.config/scripts/nightlight.sh"
-        "~/.config/scripts/swayidle.sh startup"
-        # "xterm -e 'AGS_SKIP_V_CHECK=true ags -b hypr'"
-        "~/.config/scripts/playerstartup.sh"
-        "ags -b hypr"
+        # "${copyq} --start-server"
+        # "~/.config/scripts/nightlight.sh"
+        # "~/.config/scripts/swayidle.sh startup"
+        # "xterm -e 'AGS_SKIP_V_CHECK=true ags'"
+        # "ags &"
         # "xrdb -load ~/.Xresources"
         # "xterm -e ~/.config/scripts/journal.sh"
+        # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
         # "~/.config/scripts/startup.sh" #open on startup
         # "hyprpaper"
         # "swaybg -i ~/Public/wall/wall.png --mode fill"
@@ -220,7 +221,7 @@ in
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         mvwin = binding "SUPER SHIFT" "movewindow";
-        e = "exec, ags -b hypr";
+        e = "exec, ags";
         arr = [1 2 3 4 5 6 7 8 9];
         yt = pkgs.writeShellScriptBin "yt" ''
           notify-send "Opening video" "$(wl-paste)"
@@ -237,7 +238,7 @@ in
         "SUPER, Print, exec, ~/.config/scripts/screenshot.sh"
         "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
 
-        "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags -b hypr"
+        "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags"
         "SUPER, space, ${e} -t applauncher"
         "ALT, space, ${e} -t applauncher"
         # ", XF86PowerOff, ${e} -t powermenu"
@@ -293,7 +294,7 @@ in
       ++ (map (i: ws (toString i) (toString i)) arr)
       ++ (map (i: mvtows (toString i) (toString i)) arr);
 
-      bindle = let e = "exec, ags -b hypr -r"; in [
+      bindle = let e = "exec, ags -r"; in [
         # ",XF86MonBrightnessUp, ${e} 'brightness.screen += 0.05; indicator.display()'"
         # ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
         ",XF86KbdBrightnessUp, ${e} 'brightness.kbd++; indicator.kbd()'"
@@ -324,7 +325,7 @@ in
         (resizeactivectrl "down" "0 10")
       ];
 
-      bindl = let e = "exec, ags -b hypr -r"; in [
+      bindl = let e = "exec, ags -r"; in [
         # ",XF86AudioPlay, ${e} 'mpris?.playPause()'"
         # ",XF86AudioStop, ${e} 'mpris?.stop()'"
         # ",XF86AudioPause, ${e} 'mpris?.pause()'"

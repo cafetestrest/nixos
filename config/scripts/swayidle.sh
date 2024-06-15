@@ -20,20 +20,34 @@ function toggle {
 	fi
 }
 
-case $1 in
-	toggle)
-		toggle
-		;;
-	startup)
-		run_swayidle
-		;;
-	*)
-		if pgrep "swayidle" > /dev/null
-		then
-			icon=""
-		else
-			icon=""
-		fi
-		printf "%s" "$icon "
-		;;
-esac
+# case $1 in
+# 	toggle)
+# 		toggle
+# 		;;
+# 	startup)
+# 		run_swayidle
+# 		;;
+# 	*)
+# 		if pgrep "swayidle" > /dev/null
+# 		then
+# 			icon=""
+# 		else
+# 			icon=""
+# 		fi
+# 		printf "%s" "$icon "
+# 		;;
+# esac
+
+#checks the first letter of the argument provided to the script
+firstArgLetter="$(echo "$1" | head -c 1)"
+
+if [ -z $firstArgLetter ]; then
+    run_swayidle
+else
+    if [[ $firstArgLetter == "t" ]]; then
+        toggle
+    else
+        run_swayidle
+    fi
+fi
+

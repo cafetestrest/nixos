@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 #night light
-function run_wlsunset() {
-    echo 'running wlsunset'
+function run_nightligh() {
+    echo 'running nightlight - wlsunset'
     # nohup wlsunset -t 3500 -l 39.07 -L 21.82 > /dev/null 2>&1 &
     ~/.config/scripts/nightlight.sh
 }
@@ -20,7 +20,7 @@ function set_hyprpaper_wallpaper() {
 #top bar - ags
 function run_ags() {
     echo 'running ags'
-    AGS_SKIP_V_CHECK=true ags -b hypr &
+    ags &
 }
 
 #idle check
@@ -52,7 +52,17 @@ function run_swaync() {
     swaync &
 }
 
-# run_wlsunset
+#clipboard management, copyq
+function run_clipboard() {
+    echo 'running clipboard management - copyq'
+    copyq --start-server
+}
+
+sleep_time() {
+    sleep 0.2
+}
+
+# run_nightligh
 
 # run_swayidle
 
@@ -68,3 +78,58 @@ function run_swaync() {
 # set_swaybg_wallpaper
 
 # echo 'done'
+
+
+
+
+# Function to start a program and wait for it to run
+start_program() {
+    local program=$1
+
+    if pgrep $program; then
+        echo "$program already running, before initialization"
+        return 0
+    fi
+
+    if [[ -z $COMMAND ]]; then
+        # Start the program
+        echo "running: $program"
+        $program > /dev/null 2>&1 &
+    else
+        # Start the script
+        echo "running: $COMMAND"
+        $COMMAND &
+    fi
+
+    # Main loop to retry for 10 seconds
+    is_media_paused=
+    end=$((SECONDS+5))
+    while [ $SECONDS -lt $end ]; do
+        if pgrep $program; then
+            echo "$program already running"
+            COMMAND=
+            return 0
+        fi
+
+        sleep 0.5
+    done
+
+    echo "something failed"
+    exit 1
+}
+
+# Start programs in order with a check
+# start_program "xterm" "xterm -e journalctl -xef"
+COMMAND=~/.config/scripts/nightlight.sh
+start_program "wlsunset" ~/.config/scripts/nightlight.sh
+
+COMMAND=~/.config/scripts/swayidle.sh
+start_program "swayidle"
+
+COMMAND=ags
+start_program "ags"
+
+COMMAND=QT_QPA_PLATFORM=wayland copyq --start-server
+start_program "copyq"
+
+source ~/.config/scripts/playerstartup.sh

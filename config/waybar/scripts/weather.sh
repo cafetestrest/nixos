@@ -534,8 +534,8 @@ fi
 weatherData="[$weatherData]"
 
 if [ "$Ags" = "1" ]; then
-    ags -b hypr -r "weather.setTooltip($weatherData)"
-    ags -b hypr -r "weather.setTemperatureWeather(\"$longbob\")"
+    ags -r "weather.setTooltip($weatherData)"
+    ags -r "weather.setTemperatureWeather(\"$longbob\")"
 else
     echo "{\"text\":\"$longbob\", \"tooltip\":\"$weatherDataToPrint\"}"
 fi

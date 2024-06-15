@@ -2,7 +2,7 @@
 
 function refresh_ags_bluetooth_connected_devices() {
     if pgrep ags; then
-        ags -b hypr -r "$(cat ~/.config/scripts/resetbluetoothags.js)"
+        ags -r "$(cat ~/.config/scripts/resetbluetoothags.js)"
     fi
 }
 

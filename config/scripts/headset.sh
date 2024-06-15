@@ -23,7 +23,7 @@ if [[ "0" != "$batteryPercent" ]]; then
 fi
 
 if [ "$Ags" == "1" ]; then
-    ags -b hypr -r "btdevice.setHeadsetData('$output')"
+    ags -r "btdevice.setHeadsetData('$output')"
 else
     echo $output
 fi

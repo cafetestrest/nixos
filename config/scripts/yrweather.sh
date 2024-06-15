@@ -314,8 +314,8 @@ fi
 output="[$output]"
 
 if [ "$Ags" == "1" ]; then
-    ags -b hypr -r "weather.setTooltip($output)"
-    ags -b hypr -r "weather.setTemperatureWeather(\"$nowTemperature\")"
+    ags -r "weather.setTooltip($output)"
+    ags -r "weather.setTemperatureWeather(\"$nowTemperature\")"
 else
     echo $output
 fi

@@ -1,12 +1,12 @@
 { inputs, pkgs, ... }:
 
 {
-  services.xserver.displayManager.startx.enable = true;
+  # services.xserver.displayManager.startx.enable = true;
 
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    xwayland.enable = true;
+    # xwayland.enable = true;
   };
 
   xdg.portal = {
