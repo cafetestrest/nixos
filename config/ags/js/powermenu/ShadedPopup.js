@@ -21,7 +21,7 @@ export default ({ name, child, ...rest }) => Widget.Window({
     class_names: ['popup-window', name],
     name,
     visible: false,
-    popup: true,
+    // popup: true,
     keymode: 'on-demand',
     setup() {
         child.toggleClassName('window-content');

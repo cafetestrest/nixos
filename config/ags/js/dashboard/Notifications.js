@@ -6,6 +6,7 @@ import options from '../options.js';
 
 export default () => PopupWindow({
     name: 'notification',
+    anchor: ['top'],
     setup: self => self.hook(options.bar.position, () => {
         self.anchor = [options.bar.position.value];
         if (options.bar.position.value === 'top')

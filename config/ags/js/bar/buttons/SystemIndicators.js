@@ -121,7 +121,10 @@ const SpeakerIndicator = () => Widget.Box({
 
 export default () => PanelButton({
     class_name: 'quicksettings panel-button',
-    on_clicked: () => App.toggleWindow('quicksettings'),
+    on_clicked: () => {
+        App.closeWindow('quicksettings')
+        App.toggleWindow('quicksettings')
+    },
     setup: self => self
         .hook(App, (_, win, visible) => {
             self.toggleClassName('active', win === 'quicksettings' && visible);

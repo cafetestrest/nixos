@@ -25,7 +25,7 @@ import Weather from './dashboard/Weather.js';
 const windows = () => [
     // forMonitors(Desktop),
     // forMonitors(FloatingDock),
-    forMonitors(Lockscreen),
+    // forMonitors(Lockscreen),
     forMonitors(Notifications),
     forMonitors(OSD),
     // forMonitors(ScreenCorners),
@@ -41,11 +41,20 @@ const windows = () => [
     QSNotifications(),
 ];
 
-export default {
+// export default {
+//     onConfigParsed: init,
+//     windows: windows().flat(1),
+//     closeWindowDelay: {
+//         'quicksettings': options.transition.value,
+//         'dashboard': options.transition.value,
+//     },
+// };
+
+App.config({
     onConfigParsed: init,
     windows: windows().flat(1),
     closeWindowDelay: {
         'quicksettings': options.transition.value,
         'dashboard': options.transition.value,
     },
-};
+})

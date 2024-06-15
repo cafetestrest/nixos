@@ -6,7 +6,7 @@ import GObject from 'gi://GObject';
 
 const keyGrabber = Widget.Window({
     name: 'key-grabber',
-    popup: true,
+    // popup: true,
     anchor: ['top', 'left', 'right', 'bottom'],
     css: 'background-color: transparent;',
     visible: false,
@@ -34,10 +34,11 @@ export class PopupWindow extends AgsWindow {
         super({
             ...rest,
             name,
-            popup: true,
+            // popup: true,
             keymode: 'exclusive',
             layer: 'overlay',
             class_names: ['popup-window', name],
+            setup: w => w.keybind("Escape", () => App.closeWindow(name)),
         });
 
         child.toggleClassName('window-content');

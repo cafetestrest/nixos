@@ -7,6 +7,10 @@ import icons from '../icons.js';
 /** name of the currently opened menu  */
 export const opened = Variable('');
 App.connect('window-toggled', (_, name, visible) => {
+    if (name === 'quicksettings' && !visible) {
+        // App.closeWindow('quicksettings')
+    }
+
     if (name === 'quicksettings' && !visible)
         Utils.timeout(500, () => opened.value = '');
 });
