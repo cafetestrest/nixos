@@ -120,6 +120,7 @@ start_program() {
 
 # Start programs in order with a check
 # start_program "xterm" "xterm -e journalctl -xef"
+
 COMMAND=~/.config/scripts/nightlight.sh
 start_program "wlsunset" ~/.config/scripts/nightlight.sh
 
@@ -132,4 +133,5 @@ start_program "ags"
 COMMAND=QT_QPA_PLATFORM=wayland copyq --start-server
 start_program "copyq"
 
+sleep 1
 source ~/.config/scripts/playerstartup.sh
