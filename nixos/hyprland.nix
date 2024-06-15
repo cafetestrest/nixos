@@ -1,12 +1,12 @@
 { inputs, pkgs, ... }:
 
 {
-  # services.xserver.displayManager.startx.enable = true;
+  services.xserver.displayManager.startx.enable = true;
 
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    # xwayland.enable = true;
+    xwayland.enable = true;
   };
 
   xdg.portal = {
@@ -14,10 +14,10 @@
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # security = {
-  #   polkit.enable = true;
-  #   pam.services.ags = {};
-  # };
+  security = {
+    polkit.enable = true;
+    pam.services.ags = {};
+  };
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -53,34 +53,34 @@
     gnome.gnome-software # for flatpak
   ];
 
-  # systemd = {
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = [ "graphical-session.target" ];
-  #     wants = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
-  # services = {
-  #   gvfs.enable = true;
-  #   devmon.enable = true;
-  #   udisks2.enable = true;
-  #   upower.enable = true;
-  #   power-profiles-daemon.enable = true;
-  #   accounts-daemon.enable = true;
-  #   gnome = {
-  #     evolution-data-server.enable = true;
-  #     glib-networking.enable = true;
-  #     gnome-keyring.enable = true;
-  #     gnome-online-accounts.enable = true;
-  #   };
-  # };
+  services = {
+    gvfs.enable = true; #allows applications to access various types of file systems (local, remote, etc.)
+    devmon.enable = true; #(Device Monitor) automates the mounting and unmounting of removable devices like USB drives
+    udisks2.enable = true;  #tools, and a library to handle storage devices and disk management
+    # upower.enable = true; #provides power management support, primarily for battery-powered devices
+    # power-profiles-daemon.enable = true;  #manages and applies power profiles (like power saving or performance)
+    # accounts-daemon.enable = true;  #provides user account information to applications login details and user-specific
+    gnome = {
+      evolution-data-server.enable = true;  # applications that manage contacts, calendars, tasks, and notes
+      glib-networking.enable = true;  #support for secure connections using TLS/SSL
+      gnome-keyring.enable = true;  #stores and manages security credentials like passwords and encryption keys
+      # gnome-online-accounts.enable = true;  #GNOME Online Accounts integrates online services (like Google, Facebook)
+    };
+  };
 }
