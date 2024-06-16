@@ -3,7 +3,8 @@
 function lock() {
     # gtklock -d
     # swaylock -f
-    hyprlock
+    # hyprlock
+    loginctl lock-session
 }
 
 function sespend() {

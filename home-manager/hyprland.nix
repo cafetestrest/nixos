@@ -13,7 +13,7 @@ in
       ./ags.nix # https://github.com/Aylur/ags
       # ./swaylock.nix
       ./hyprlock.nix
-      # ./hypridle.nix
+      ./hypridle.nix
       # ./hyprpaper.nix
     ];
 

@@ -125,7 +125,7 @@ COMMAND=~/.config/scripts/nightlight.sh
 start_program "wlsunset" ~/.config/scripts/nightlight.sh
 
 COMMAND=~/.config/scripts/swayidle.sh
-start_program "swayidle"
+start_program "hypridle"
 
 COMMAND=ags
 start_program "ags"
