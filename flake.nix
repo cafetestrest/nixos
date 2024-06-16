@@ -112,6 +112,7 @@
           # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
           #./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
           #./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
+          ./nixos/localsend.nix                                 #used for file sharing with other PC/mobile devices
 
           home-manager.nixosModules.home-manager
           {
