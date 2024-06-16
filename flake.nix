@@ -115,6 +115,7 @@
           ./nixos/localsend.nix                                 #used for file sharing with other PC/mobile devices
           ./nixos/chromesettings.nix                            #chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
+          ./nixos/ydotool.nix                                   #for clipboard copy (copyq)
 
           home-manager.nixosModules.home-manager
           {
