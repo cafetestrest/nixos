@@ -88,10 +88,6 @@ in
 
   nixpkgs.config = {
     allowUnfree = true;  # Allow unfree packages
-    chromium = {
-      enableWideVine = true;
-      commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

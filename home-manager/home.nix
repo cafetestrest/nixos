@@ -11,6 +11,7 @@ in
     [
       ./packages.nix
       ./fonts.nix
+      ./chrome.nix
       ./terminator.nix
       ./xterm.nix
       ./gdm/gtk.nix

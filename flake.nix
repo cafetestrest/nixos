@@ -113,6 +113,8 @@
           #./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
           #./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           ./nixos/localsend.nix                                 #used for file sharing with other PC/mobile devices
+          ./nixos/chromesettings.nix                            #chrome settings -> enables WideVine
+          # ./nixos/teamviewer.nix
 
           home-manager.nixosModules.home-manager
           {
