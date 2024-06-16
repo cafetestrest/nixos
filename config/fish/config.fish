@@ -24,6 +24,10 @@ function code --description 'Visual Studio Code'
   codium $argv;
 end
 
+function . --description 'Visual Studio Code'
+  codium $argv;
+end
+
 # #phpstorm run from console as code path
 # function pstorm --description 'PHPStorm'
 #   flatpak run com.jetbrains.PhpStorm $argv; 
@@ -237,7 +241,6 @@ function xkill -a arg --description 'Kills specified program'
 end
 
 #aliases for shell
-alias .='code .'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -311,11 +314,11 @@ alias rebuildfull='msu && dc && scd && res && rei && cf'
 # set PATH "/opt/warden/bin:$PATH"
 
 #git alias
-function gc
+function gco
     git commit -m "$argv"
 end
 
-alias gp='git pull --all'
+alias gpl='git pull --all'
 alias pull='git pull --all'
 alias push='git push'
 alias gs='git status'
@@ -324,6 +327,12 @@ alias gall='git add .'
 alias gr='git reset'
 alias grall='git reset .'
 alias gd='git diff'
+alias gcl='git clone'
+alias clone='git clone'
+alias gch='git checkout'
+alias checkout='git checkout'
+alias gchall='git checkout .'
+alias checkoutall='git checkout .'
 
 #nixos aliases
 alias rebuild="sudo nixos-rebuild switch --flake $HOME/nixos/#$USER"
