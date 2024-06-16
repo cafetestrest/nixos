@@ -310,6 +310,27 @@ alias rebuildfull='msu && dc && scd && res && rei && cf'
 #warden path expose that enables warden to run
 # set PATH "/opt/warden/bin:$PATH"
 
+#git alias
+function gc
+    git commit -m "$argv"
+end
+
+alias gp='git pull --all'
+alias pull='git pull --all'
+alias gs='git status'
+alias ga='git add'
+alias gall='git add .'
+alias gr='git reset'
+alias grall='git reset .'
+alias gd='git diff'
+
+#nixos aliases
+alias rebuild="sudo nixos-rebuild switch --flake $HOME/nixos/#$USER"
+alias reb="rebuild"
+alias rebuildnocache="rebuild --option eval-cache false"
+alias rebuildcache="rebuildnocache"
+alias upgrade="rebuild --upgrade"
+
 #set the default theme to the apps that might not support it in Gnome 43 (nautilus primarly did not support theming somewhy on arch so I try to set some workaroung)
 #set GTK_THEME WhiteSur-Dark-alt
 # set GTK_THEME Tokyonight-Dark-B
