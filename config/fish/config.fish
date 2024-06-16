@@ -317,6 +317,7 @@ end
 
 alias gp='git pull --all'
 alias pull='git pull --all'
+alias push='git push'
 alias gs='git status'
 alias ga='git add'
 alias gall='git add .'
