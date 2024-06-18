@@ -21,11 +21,15 @@ alias neofetch='fastfetch'
 #vscode run from console as code path
 function code --description 'Visual Studio Code'
   #flatpak run com.visualstudio.code $argv;
-  codium $argv;
+  codium $argv
 end
 
 function . --description 'Visual Studio Code'
-  codium $argv;
+    if count $argv > /dev/null
+        codium $argv
+    else
+        codium .
+    end
 end
 
 # #phpstorm run from console as code path
