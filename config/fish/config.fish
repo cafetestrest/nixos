@@ -14,6 +14,10 @@ end
 #fastfetch instead of default greeting
 function fish_greeting
   fastfetch
+
+  if not pidof copyq > /dev/null
+      env QT_QPA_PLATFORM=wayland copyq --start-server &
+  end
 end
 
 alias neofetch='fastfetch'
@@ -343,8 +347,7 @@ alias gchall='git checkout .'
 alias checkoutall='git checkout .'
 
 #nixos aliases
-alias rebuild="sudo nixos-rebuild switch --flake $HOME/nixos/#$USER"
-alias reb="rebuild"
+alias reb="sudo nixos-rebuild switch --flake $HOME/nixos/#$USER"
 alias rebuildnocache="rebuild --option eval-cache false"
 alias rebuildcache="rebuildnocache"
 alias upgrade="rebuild --upgrade"

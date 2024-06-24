@@ -95,7 +95,7 @@
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./nixos/hosts/desktop   #Boot and Bootloader config
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
-          ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
+          # ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/fish.nix                                      # fish and its extensions

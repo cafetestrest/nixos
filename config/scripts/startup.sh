@@ -130,8 +130,15 @@ start_program "hypridle"
 COMMAND=ags
 start_program "ags"
 
-COMMAND=QT_QPA_PLATFORM=wayland copyq --start-server
-start_program "copyq"
+if pgrep "ydotool"; then
+    echo "$program already running, before initialization"
+else
+    sleep 2
+fi
 
-sleep 1
+# env QT_QPA_PLATFORM=wayland copyq --start-server &
+# echo "Copyq started"
+
+sleep 1.2
+
 source ~/.config/scripts/playerstartup.sh
