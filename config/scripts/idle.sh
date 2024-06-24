@@ -46,8 +46,8 @@ function idle_action() {
     fi
 }
 
-firstArgLetter="$(echo "$1")"
-if [ -z $firstArgLetter ]; then
+firstArgLetter="$(echo "$1" | head -c 1)"
+if [ -z "$firstArgLetter" ]; then
     idle_action
 else
     if [[ $firstArgLetter == "l" ]]; then

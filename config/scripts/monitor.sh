@@ -51,15 +51,15 @@ if [[ $# -le 1 ]]; then
     help_usage
 fi
 
-if [[ $(echo "$1" | sed 's/^--*//') == "brightness" ]]; then
-    ddcutil --bus=$bus setvcp $brightness "$2" &
+if [[ "${1##--}" == "brightness" ]]; then
+    ddcutil --bus="$bus" setvcp $brightness "$2" &
     wait
     echo "changed brightness successfully to: $2"
     success=1
 fi
 
-if [[ $(echo "$1" | sed 's/^--*//') == "contrast" ]]; then
-    ddcutil --bus=$bus setvcp $contrast "$2" &
+if [[ "${1##--}" == "contrast" ]]; then
+    ddcutil --bus="$bus" setvcp $contrast "$2" &
     wait
     echo "changed contrast successfully to: $2"
     success=1
@@ -86,42 +86,42 @@ input_source_logic() {
         exit 1
     fi
 
-    ddcutil --bus=$bus setvcp $input_source $input_val &
+    ddcutil --bus="$bus" setvcp "$input_source" "$input_val" &
     wait
     echo "changed input source successfully to: $input_val ($2)"
     success=1
 }
 
-if [[ $(echo "$1" | sed 's/^--*//') == "source" || $(echo "$1" | sed 's/^--*//') == "input" ]]; then
-    input_source_logic $1 $2
+if [[ "${1##--}" == "source" || "${1##--}" == "input" ]]; then
+    input_source_logic "$1" "$2"
 fi
 
-if [[ $(echo "$1" | sed 's/^--*//') == "input-source" || $(echo "$1" | sed 's/^--*//') == "input_source" ]]; then
-    input_source_logic $1 $2
+if [[ "${1##--}" == "input-source" || "${1##--}" == "input_source" ]]; then
+    input_source_logic "$1" "$2"
 fi
 
-power_mode_logic() {
-    if [[ $2 == "on" || $2 == "1" ]]; then
-        input_val="1"
-    fi
+# power_mode_logic() {
+#     if [[ $2 == "on" || $2 == "1" ]]; then
+#         input_val="1"
+#     fi
 
-    if [[ $2 == "off" || $2 == "0"|| $2 == "4" ]]; then
-        input_val="4"
-    fi
+#     if [[ $2 == "off" || $2 == "0"|| $2 == "4" ]]; then
+#         input_val="4"
+#     fi
 
-    if [[ ! $input_val ]]; then
-        echo "Following power modes are available:"
-        echo "on, off"
-        echo "command is valid like either one of:"
-        echo "monitor.sh (power | powermode | power-mode | power_mode) (on | off)"
-        exit 1
-    fi
+#     if [[ ! $input_val ]]; then
+#         echo "Following power modes are available:"
+#         echo "on, off"
+#         echo "command is valid like either one of:"
+#         echo "monitor.sh (power | powermode | power-mode | power_mode) (on | off)"
+#         exit 1
+#     fi
 
-    ddcutil --bus=$bus setvcp $power_mode $input_val &
-    wait
-    echo "changed power mode successfully to: $input_val ($2)"
-    success=1
-}
+#     ddcutil --bus="$bus" setvcp "$power_mode" "$input_val" &
+#     wait
+#     echo "changed power mode successfully to: $input_val ($2)"
+#     success=1
+# }
 
 # if [[ $(echo "$1" | sed 's/^--*//') == "power" || $(echo "$1" | sed 's/^--*//') == "powermode" ]]; then
 #     power_mode_logic $1 $2
@@ -132,21 +132,21 @@ power_mode_logic() {
 # fi
 
 audio_speaker_volume_logic() {
-    ddcutil --bus=$bus setvcp $audio_speaker_volume "$2" &
+    ddcutil --bus="$bus" setvcp $audio_speaker_volume "$2" &
     wait
     echo "changed audio speaker volume successfully to: $2"
     success=1
 }
 
-if [[ $(echo "$1" | sed 's/^--*//') == "audio" || $(echo "$1" | sed 's/^--*//') == "speaker" ]]; then
-    audio_speaker_volume_logic $1 $2
+if [[ "${1##--}" == "audio" || "${1##--}" == "speaker" ]]; then
+    audio_speaker_volume_logic "$1" "$2"
 fi
 
-if [[ $(echo "$1" | sed 's/^--*//') == "volume" || $(echo "$1" | sed 's/^--*//') == "audio_speaker_volume" ]]; then
-    audio_speaker_volume_logic $1 $2
+if [[ "${1##--}" == "volume" || "${1##--}" == "audio_speaker_volume" ]]; then
+    audio_speaker_volume_logic "$1" "$2"
 fi
 
-if [[ $(echo "$1" | sed 's/^--*//') == "mute" || $(echo "$1" | sed 's/^--*//') == "audio_mute" ]]; then
+if [[ "${1##--}" == "mute" || "${1##--}" == "audio_mute" ]]; then
     if [[ $2 == "on" || $2 == "1" ]]; then
         input_val="1"
     fi
@@ -159,7 +159,7 @@ if [[ $(echo "$1" | sed 's/^--*//') == "mute" || $(echo "$1" | sed 's/^--*//') =
         input_val="2"
     fi
 
-    ddcutil --bus=$bus setvcp $audio_mute $input_val &
+    ddcutil --bus="$bus" setvcp $audio_mute "$input_val" &
     wait
     echo "changed audio mute successfully to: $2"
     success=1

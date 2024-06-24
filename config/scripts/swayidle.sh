@@ -41,10 +41,10 @@ function toggle {
 #checks the first letter of the argument provided to the script
 firstArgLetter="$(echo "$1" | head -c 1)"
 
-if [ -z $firstArgLetter ]; then
+if [ -z "$firstArgLetter" ]; then
     run_swayidle
 else
-    if [[ $firstArgLetter == "t" ]]; then
+    if [[ "$firstArgLetter" == "t" ]]; then
         toggle
     else
         run_swayidle

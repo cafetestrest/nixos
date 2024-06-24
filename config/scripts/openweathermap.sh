@@ -53,9 +53,9 @@ function get_config_file_data() {
 }
 
 function check_api_status() {
-    check=$(echo "$data" | grep -c -e '"cod":"40')
-    check2=$(echo "$data" | grep -c -e '"cod":"30')
-    sum=$(( $check + $check2 ))
+    check=$(echo "$response" | grep -c -e '"cod":"40')
+    check2=$(echo "$response" | grep -c -e '"cod":"30')
+    sum=$(( check + check2 ))
     if [ $sum -gt 0 ];then
         exit 99
     fi
@@ -67,10 +67,8 @@ function get_api_response() {
     fi
 
     # Make the API request using curl
-    response=$(curl -s "$URL")
-
     # Check if the request was successful
-    if [ $? -ne 0 ]; then
+    if ! response=$(curl -s "$URL"); then
         echo "Error making API request"
         exit 1
     fi
@@ -79,7 +77,7 @@ function get_api_response() {
     echo "$response" > "$CacheFile"
 
     if [ "$Debug" = "1" ]; then
-        echo $response
+        echo "$response"
         debug_break
     fi
 
@@ -94,7 +92,7 @@ function get_api_response_from_cache_file() {
     response=$(cat "$CacheFile")
 
     if [ "$Debug" = "1" ]; then
-        echo $response
+        echo "$response"
         debug_break
     fi
 
@@ -115,7 +113,7 @@ function print_weather_output() {
         echo "NOW: $nowTemperature"
     fi
 
-    if [ ! -n "$output" ]; then
+    if [ -z "$output" ]; then
         echo "No weather data to output."
         exit 1
     fi
@@ -130,14 +128,14 @@ function print_weather_output() {
         ags -r "weather.setTooltip($output)"
         ags -r "weather.setTemperatureWeather(\"$nowTemperature\")"
     else
-        echo $output
+        echo "$output"
     fi
 }
 
 function get_debug_info_sunset_and_sunrise_hours() {
     if [ "$Debug" = "1" ]; then
         echo "Now: $CurrentTime"
-        CurrentHour=$(date +"%-H" -d @$CurrentTime)
+        CurrentHour=$(date +"%-H" -d @"$CurrentTime")
         echo "Current: $CurrentHour"
 
         echo "SunsetHour: $SunsetHour"
@@ -148,10 +146,10 @@ function get_debug_info_sunset_and_sunrise_hours() {
 
 #sunset information from the Current weather response
 function get_current_sunset_and_sunrise_hours() {
-    SunsetTime=$(echo $response | jq -r .sys.sunset)
-    SunriseTime=$(echo $response | jq -r .sys.sunrise)
-    SunsetHour=$(date +"%-H" -d @$SunsetTime)
-    SunriseHour=$(date +"%-H" -d @$SunriseTime)
+    SunsetTime=$(echo "$response" | jq -r .sys.sunset)
+    SunriseTime=$(echo "$response" | jq -r .sys.sunrise)
+    SunsetHour=$(date +"%-H" -d @"$SunsetTime")
+    SunriseHour=$(date +"%-H" -d @"$SunriseTime")
 
     #current time
     CurrentTime=$(date +%s)
@@ -161,10 +159,10 @@ function get_current_sunset_and_sunrise_hours() {
 
 #sunset information from the weather Forecast response
 function get_forecast_sunset_and_sunrise_hours() {
-    SunsetTime=$(echo $response | jq -r .city.sunset)
-    SunriseTime=$(echo $response | jq -r .city.sunrise)
-    SunsetHour=$(date +"%-H" -d @$SunsetTime)
-    SunriseHour=$(date +"%-H" -d @$SunriseTime)
+    SunsetTime=$(echo "$response" | jq -r .city.sunset)
+    SunriseTime=$(echo "$response" | jq -r .city.sunrise)
+    SunsetHour=$(date +"%-H" -d @"$SunsetTime")
+    SunriseHour=$(date +"%-H" -d @"$SunriseTime")
 
     #current time
     CurrentTime=$(date +%s)
@@ -215,11 +213,11 @@ function get_weather_icon() {
 }
 
 function get_min_and_max_weather() {
-    # MinTemperature=$(echo $response | jq -r .list[$i].main.temp_min | tr '\n' ' ')
-    # MaxTemperature=$(echo $response | jq -r .list[$i].main.temp_max | tr '\n' ' ')
+    # MinTemperature=$(echo "$response" | jq -r .list["$i"].main.temp_min | tr '\n' ' ')
+    # MaxTemperature=$(echo "$response" | jq -r .list["$i"].main.temp_max | tr '\n' ' ')
 
     # Check if a new day has started
-    Day=$(date +"%Y-%m-%d" -d @${WeatherDate})
+    Day=$(date +"%Y-%m-%d" -d @"${WeatherDate}")
     if [[ "$Day" != "$CurrentDay" ]]; then
         # Reset variables for the new day
         CurrentDay="$Day"
@@ -236,8 +234,8 @@ function get_min_and_max_weather() {
         MaxTemperature="$Temperature"
     fi
 
-    MinTemp=$(printf '%.*f\n' 0 $MinTemperature)
-    MaxTemp=$(printf '%.*f\n' 0 $MaxTemperature)
+    MinTemp=$(printf '%.*f\n' 0 "$MinTemperature")
+    MaxTemp=$(printf '%.*f\n' 0 "$MaxTemperature")
 }
 
 function clear_defaults() {
@@ -246,7 +244,7 @@ function clear_defaults() {
     FormattedDate=""
     Temperature=""
     Temperature=""
-    ShortWeather=""
+    # ShortWeather=""
     LongWeather=""
     Humidity=""
     CloudCover=""
@@ -264,43 +262,43 @@ function weather_data() {
     forecast=$1
 
     if [ "$forecast" = "f" ]; then
-        FormattedDate=$(date -d @${WeatherDate} +"%A, %B %d, %Y")
-        # ShortWeather=$(echo $response | jq -r .list[$i].weather[] | jq -r .main | tr '\n' ' '| awk '{$1=$1};1' )
-        LongWeather=$(echo $response | jq -r .list[$i].weather[] | jq -r .description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
-        Humidity=$(echo $response | jq -r .list[$i].main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
-        CloudCover=$(echo $response | jq -r .list[$i].clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
-        WindSpeed=$(echo $response | jq -r .list[$i].wind.speed | tr '\n' ' ' | awk '{$1=$1};1' )
-        WindSpeed=$(printf '%.*f\n' 1 $WindSpeed)
+        FormattedDate=$(date -d @"${WeatherDate}" +"%A, %B %d, %Y")
+        # ShortWeather=$(echo "$response" | jq -r .list["$i"].weather[] | jq -r .main | tr '\n' ' '| awk '{$1=$1};1' )
+        LongWeather=$(echo "$response" | jq -r .list["$i"].weather[] | jq -r .description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
+        Humidity=$(echo "$response" | jq -r .list["$i"].main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
+        CloudCover=$(echo "$response" | jq -r .list["$i"].clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
+        WindSpeed=$(echo "$response" | jq -r .list["$i"].wind.speed | tr '\n' ' ' | awk '{$1=$1};1' )
+        WindSpeed=$(printf '%.*f\n' 1 "$WindSpeed")
 
-        Rain1h=$(echo $response | jq -r .list[$i] | jq -r '.rain."1h"')
-        Rain3h=$(echo $response | jq -r .list[$i] | jq -r '.rain."3h"')
+        Rain1h=$(echo "$response" | jq -r .list["$i"] | jq -r '.rain."1h"')
+        Rain3h=$(echo "$response" | jq -r .list["$i"] | jq -r '.rain."3h"')
 
-        icons=$(echo $response | jq -r .list[$i].weather[] | jq -r .icon | tr '\n' ' ' )
+        icons=$(echo "$response" | jq -r .list["$i"].weather[] | jq -r .icon | tr '\n' ' ' )
     else
         #current weather
-        WeatherDate=$(echo $response | jq -r  .dt  | tr '\n' ' ')
-        WeatherHour=$(date +"%-H" -d @${WeatherDate})
-        FormattedDate=$(date -d @${WeatherDate} +"%A, %B %d, %Y")
+        WeatherDate=$(echo "$response" | jq -r  .dt  | tr '\n' ' ')
+        # openweathermaWeatherHour=$(date +"%-H" -d @"${WeatherDate}")p
+        FormattedDate=$(date -d @"${WeatherDate}" +"%A, %B %d, %Y")
 
-        Temperature=$(echo $response | jq -r .main.temp | tr '\n' ' ')
-        Temperature=$(printf '%.*f\n' 0 $Temperature)
-        # ShortWeather=$(echo $response | jq -r .weather[0].main | tr '\n' ' '| awk '{$1=$1};1' )
-        LongWeather=$(echo $response | jq -r .weather[0].description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
+        Temperature=$(echo "$response" | jq -r .main.temp | tr '\n' ' ')
+        Temperature=$(printf '%.*f\n' 0 "$Temperature")
+        # ShortWeather=$(echo "$response" | jq -r .weather[0].main | tr '\n' ' '| awk '{$1=$1};1' )
+        LongWeather=$(echo "$response" | jq -r .weather[0].description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
 
-        Humidity=$(echo $response | jq -r .main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
-        CloudCover=$(echo $response | jq -r .clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
-        WindSpeed=$(echo $response | jq -r .wind.speed | tr '\n' ' ' | awk '{$1=$1};1' )
-        WindSpeed=$(printf '%.*f\n' 1 $WindSpeed)
+        Humidity=$(echo "$response" | jq -r .main.humidity | tr '\n' ' '| awk '{$1=$1};1' )
+        CloudCover=$(echo "$response" | jq -r .clouds.all | tr '\n' ' '| awk '{$1=$1};1' )
+        WindSpeed=$(echo "$response" | jq -r .wind.speed | tr '\n' ' ' | awk '{$1=$1};1' )
+        WindSpeed=$(printf '%.*f\n' 1 "$WindSpeed")
 
-        Rain1h=$(echo $response | jq -r '.rain."1h"')
-        Rain3h=$(echo $response | jq -r '.rain."3h"')
+        Rain1h=$(echo "$response" | jq -r '.rain."1h"')
+        Rain3h=$(echo "$response" | jq -r '.rain."3h"')
 
-        MinTemperature=$(echo $response | jq -r .main.temp_min | tr '\n' ' ')
-        MaxTemperature=$(echo $response | jq -r .main.temp_max | tr '\n' ' ')
-        MinTemp=$(printf '%.*f\n' 0 $MinTemperature)
-        MaxTemp=$(printf '%.*f\n' 0 $MaxTemperature)
+        MinTemperature=$(echo "$response" | jq -r .main.temp_min | tr '\n' ' ')
+        MaxTemperature=$(echo "$response" | jq -r .main.temp_max | tr '\n' ' ')
+        MinTemp=$(printf '%.*f\n' 0 "$MinTemperature")
+        MaxTemp=$(printf '%.*f\n' 0 "$MaxTemperature")
 
-        icons=$(echo $response | jq -r .weather[0].icon | tr '\n' ' ')
+        icons=$(echo "$response" | jq -r .weather[0].icon | tr '\n' ' ')
     fi
 
     Rain="0"
@@ -351,26 +349,26 @@ function weather_data() {
 
 function get_weather_forecast_data() {
     CurrentDay=""
-    PreviousDay=""
+    # PreviousDay=""
     TomorrowDate=$(date -d '+1 day' +"%s")
 
     clear_defaults
 
-    let i=0
-    # NumEntries=$(echo $response |jq -r .cnt)
+    (( i = 0 ))
+    # NumEntries=$(echo "$response" |jq -r .cnt)
     # while [ $i -lt $NumEntries ]; do
     while [ $i -lt 40 ]; do
-        WeatherDate=$(echo $response | jq -r  .list[$i].dt  | tr '\n' ' ')
-        WeatherHour=$(date +"%-H" -d @${WeatherDate})
-        CastDate=$(date +"%s" -d @${WeatherDate})
+        WeatherDate=$(echo "$response" | jq -r  .list[$i].dt  | tr '\n' ' ')
+        # openweathermaWeatherHour=$(date +"%-H" -d @"${WeatherDate}")p
+        CastDate=$(date +"%s" -d @"${WeatherDate}")
 
-        Temperature=$(echo $response | jq -r .list[$i].main.temp | tr '\n' ' ')
-        Temperature=$(printf '%.*f\n' 0 $Temperature)
+        Temperature=$(echo "$response" | jq -r .list[$i].main.temp | tr '\n' ' ')
+        Temperature=$(printf '%.*f\n' 0 "$Temperature")
 
         get_min_and_max_weather
 
         #show the weather forecast hourly until it reaches tomorrow date, then only 1 hour
-        if [ $CastDate -le $TomorrowDate ]; then
+        if [ "$CastDate" -le "$TomorrowDate" ]; then
             weather_data "f"
         else
             if [ "$WeatherHour" -ge "17" ] && [ "$WeatherHour" -le "18" ] ||
@@ -380,7 +378,7 @@ function get_weather_forecast_data() {
                     weather_data "f"
                 # fi
 
-                PreviousDay=$CurrentDay
+                # PreviousDay=$CurrentDay
             fi
         fi
 
@@ -418,7 +416,7 @@ function call_weather_forecast_api() {
 }
 
 #get this scripts arguments => (ags, debug or none)
-firstArg="$(echo "$1")"
+firstArg="$1"
 get_script_argument_options
 
 #call to get config file data => (apiKey and defaultLocation)

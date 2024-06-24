@@ -5,7 +5,7 @@ noteFile=note.md
 
 if [ ! -f $documentsDir/$noteFile ]; then
     touch $documentsDir/$noteFile
-    echo "test\n" >> $documentsDir/$noteFile
+    printf 'test\n' >> "$documentsDir/$noteFile"
 fi
 
 note=''
@@ -17,7 +17,7 @@ done < $documentsDir/$noteFile
 
 note=${note::-2}
 
-firstArg="$(echo "$1")"
+firstArg="$1"
 
 if [[ $firstArg == "ags" ]]; then
     ags -r "note.setNote(\"$note\")"

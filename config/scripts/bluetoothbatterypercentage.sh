@@ -4,7 +4,7 @@ connectedDevices=$(bluetoothctl devices Connected)
 output=""
 Ags=0
 
-firstArg="$(echo "$1")"
+firstArg="$1"
 
 if [[ $firstArg == "ags" ]]; then
     Ags=1
@@ -17,7 +17,7 @@ fi
 # Check if any devices are connected
 if [[ -n "$connectedDevices" ]]; then
     # Extract the device IDs
-    deviceIds=($(echo "$connectedDevices" | grep "Device" | awk '{print $2}'))
+    mapfile -t deviceIds < <(echo "$connectedDevices" | grep "Device" | awk '{print $2}')
 
     # Loop through the device IDs and retrieve device info
     for device_id in "${deviceIds[@]}"; do
@@ -34,7 +34,7 @@ if [[ -n "$connectedDevices" ]]; then
     done
 fi
 
-if [ ! -n "$output" ]; then
+if [ -z "$output" ]; then
     exit 1
 fi
 
@@ -47,5 +47,5 @@ output="[$output]"
 if [ "$Ags" == "1" ]; then
     ags -r "btdevice.setData($output)"
 else
-    echo $output
+    echo "$output"
 fi

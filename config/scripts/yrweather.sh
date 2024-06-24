@@ -25,7 +25,7 @@ if [[ "$Latitude" == "" || "$Longitude" == "" ]]; then
     exit 1
 fi
 
-firstArg="$(echo "$1")"
+firstArg="$1"
 
 if [[ $firstArg == "ags" ]]; then
     Ags=1
@@ -55,10 +55,7 @@ else
 
     # Make the API request using curl
     # response=$(curl -s -H "User-Agent: YourApp/1.0 (your@email.com)" -H "Authorization: Bearer $API_KEY" "$URL")
-    response=$(curl -s "$URL")
-
-    # Check if the request was successful
-    if [ $? -ne 0 ]; then
+    if ! response=$(curl -s "$URL"); then
         echo "Error making API request"
         exit 1
     fi
@@ -68,7 +65,7 @@ else
 fi
 
 if [ "$debug" = "1" ]; then
-    echo $response
+    echo "$response"
 fi
 
 # weather icon used like so: get_weather_icon $weather_icon1
@@ -114,13 +111,13 @@ function get_weather_icon_to_display() {
     weather_icon6=$(echo "$entry" | jq -r '.data.next_6_hours.summary.symbol_code')
     weather_icon12=$(echo "$entry" | jq -r '.data.next_12_hours.summary.symbol_code')
 
-    get_weather_icon $weather_icon1
+    get_weather_icon "$weather_icon1"
     icon1=$weather_icon
 
-    get_weather_icon $weather_icon6
+    get_weather_icon "$weather_icon6"
     icon6=$weather_icon
 
-    get_weather_icon $weather_icon12
+    get_weather_icon "$weather_icon12"
     icon12=$weather_icon
 
     iconToDisplay=""
@@ -166,7 +163,7 @@ function get_rain_amount_to_display() {
         rainAmountToDisplay=$previousRainAmount
     fi
 
-    if [ $rainAmountToDisplay ]; then
+    if [ "$rainAmountToDisplay" ]; then
         previousRainAmount=$rainAmountToDisplay
     fi
 
@@ -198,7 +195,7 @@ function weather_info() {
 
 # default variables used to control flow of for loop
 today="true"
-current_date=""
+# current_date=""
 five_days_later=$(date -d "+5 days" +%Y-%m-%d)
 previous_date=""
 output=""
@@ -239,8 +236,8 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
     relative_humidity=$(echo "$weather_data" | jq -r '.relative_humidity')
     wind_speed=$(echo "$weather_data" | jq -r '.wind_speed')
     # Round to no decimals
-    max_temp=$(printf '%.*f\n' 0 $max_temp)
-    min_temp=$(printf '%.*f\n' 0 $min_temp)
+    max_temp=$(printf '%.*f\n' 0 "$max_temp")
+    min_temp=$(printf '%.*f\n' 0 "$min_temp")
 
     get_weather_icon_to_display
 
@@ -275,7 +272,7 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
     fi
 
     # Check if there isn't left over numberOfWeatherHourSteps hours to show && Check if date changed to identify a new day
-    if [ "$numberOfWeatherHourSteps" -le 0 ] && [ "$human_date" != "$previous_date" ] && [ $hour -gt 17 ]; then
+    if [ "$numberOfWeatherHourSteps" -le 0 ] && [ "$human_date" != "$previous_date" ] && [ "$hour" -gt 17 ]; then
         # formatted_date=$(date -d "$iso_date" +"%A, %B %d, %Y %I:%M %p")
 
         weather_info
@@ -283,14 +280,14 @@ for entry in $(echo "$response" | jq -c '.properties.timeseries[]'); do
         previous_date="$human_date"
 
         if [[ "$today" == 'true' ]]; then
-            current_date="$human_date"
+            # current_date="$human_date"
             today='false'
         fi
     fi
 
     # For the defined numberOfWeatherHourSteps, print every 2nd hour
     if [ "$numberOfWeatherHourSteps" -gt 0 ]; then
-        if (( $hour % 2 == 0 )); then
+        if (( hour % 2 == 0 )); then
             weather_info
             numberOfWeatherHourSteps=$((numberOfWeatherHourSteps - 1))
         fi
@@ -302,7 +299,7 @@ if [ "$debug" = "1" ]; then
     exit 0
 fi
 
-if [ ! -n "$output" ]; then
+if [ -z "$output" ]; then
     echo "No weather data to output."
     exit 1
 fi
@@ -317,5 +314,5 @@ if [ "$Ags" == "1" ]; then
     ags -r "weather.setTooltip($output)"
     ags -r "weather.setTemperatureWeather(\"$nowTemperature\")"
 else
-    echo $output
+    echo "$output"
 fi

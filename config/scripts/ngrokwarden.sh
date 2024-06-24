@@ -7,7 +7,7 @@ nginx_name=""
 
 function get_auth_token() {
     if [ -f "$auth_token_src" ]; then
-        auth_token=$(cat $auth_token_src);
+        auth_token=$(cat "$auth_token_src");
     fi
 
     if [ ! "$auth_token" ]; then
@@ -17,7 +17,7 @@ function get_auth_token() {
 }
 
 function get_network_name() {
-    network_name=$(docker network ls --filter name=$1 --format '{{.Name}}');
+    network_name=$(docker network ls --filter name="$1" --format '{{.Name}}');
 }
 
 function get_network_name_auto() {
@@ -29,7 +29,7 @@ function get_nginx_name_auto() {
 }
 
 function get_nginx_name() {
-    nginx_name=$(docker ps --filter name=$1-nginx --format '{{.Names}}');
+    nginx_name=$(docker ps --filter name="$1"-nginx --format '{{.Names}}');
 }
 
 function run_docker () {
@@ -45,15 +45,15 @@ function run_docker () {
 
     echo "network_name:$network_name, nginx_name:$nginx_name";
 
-    docker run --rm -it -p 4040:4040 --link $nginx_name --net $network_name wernight/ngrok ngrok http $nginx_name:80 --authtoken $auth_token
+    docker run --rm -it -p 4040:4040 --link "$nginx_name" --net "$network_name" wernight/ngrok ngrok http "$nginx_name":80 --authtoken "$auth_token"
 
     # https://github.com/orgs/wardenenv/discussions/563 #ngrok + xdebug
 }
 
 function warden_ngrok () {
     get_auth_token
-    get_network_name $1
-    get_nginx_name $1
+    get_network_name "$1"
+    get_nginx_name "$1"
 }
 
 function warden_ngrok_auto () {
@@ -66,7 +66,7 @@ function warden_ngrok_auto () {
 if [ ! "$1" ]; then
     warden_ngrok_auto
 else
-    warden_ngrok $1
+    warden_ngrok "$1"
 fi
 
 run_docker

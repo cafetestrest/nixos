@@ -20,7 +20,7 @@ elapsed=0           # Elapsed time counter
 
 sleep $interval
 
-while [ $elapsed -lt $max_duration ]; do
+while [ "$elapsed" -lt "$max_duration" ]; do
     if ! pgrep hyprlock; then
         # commands to run if unlocked
         refresh_ags_bluetooth_connected_devices

@@ -3,7 +3,7 @@
 firstArgLetter="$(echo "$1" | head -c 1)"
 
 function terminal() {
-  # PS3="Select an option (enter the number): "; options=("Lock" "Sleep" "Logout" "Reboot" "Shutdown" "Exit"); select option in "${options[@]}"; do case $REPLY in 1) echo "Locking..."; ~/.config/scripts/idle.sh l;; 2) echo "Going to sleep..."; ~/.config/scripts/idle.sh s;; 3) echo "Logout..."; loginctl terminate-user `whoami`;; 4) echo "Restarting the system..."; exec systemctl reboot;; 5) echo "Shutting down the system..."; exec systemctl poweroff -i;; 6) echo "Exiting the power menu."; exit 0;; *) echo "Invalid option. Please select a valid option.";; esac; done
+  # PS3="Select an option (enter the number): "; options=("Lock" "Sleep" "Logout" "Reboot" "Shutdown" "Exit"); select option in "${options[@]}"; do case $REPLY in 1) echo "Locking..."; ~/.config/scripts/idle.sh l;; 2) echo "Going to sleep..."; ~/.config/scripts/idle.sh s;; 3) echo "Logout..."; loginctl terminate-user "$(whoami)";; 4) echo "Restarting the system..."; exec systemctl reboot;; 5) echo "Shutting down the system..."; exec systemctl poweroff -i;; 6) echo "Exiting the power menu."; exit 0;; *) echo "Invalid option. Please select a valid option.";; esac; done
 
   PS3="Select an option (enter the number): "
   options=("Lock" "Sleep" "Logout" "Reboot" "Shutdown" "Exit")
@@ -21,7 +21,7 @@ function terminal() {
               ;;
           3)
               echo "Logout..."
-              loginctl terminate-user `whoami`
+              loginctl terminate-user "$(whoami)"
               ;;
           4)
               echo "Restarting the system..."
@@ -36,12 +36,10 @@ function terminal() {
               exit 0
               ;;
           *)
-              echo "Invalid option. Please select a valid option."
+              echo "Invalid option: $option. Please select a valid option."
               ;;
       esac
   done
-
-  exit 0
 }
 
 if [[ $firstArgLetter == "t" ]]; then
@@ -64,14 +62,14 @@ $sleep
 $logout
 $reboot
 $shutdown" | rofi -dmenu -i -p "Powermenu" \
-		  -theme "~/.config/rofi/spotlight-hidden-search.rasi")
+		  -theme "$HOME/.config/rofi/spotlight-hidden-search.rasi")
 
 if [ "$selected_option" == "$lock" ]
 then
   ~/.config/scripts/idle.sh l
 elif [ "$selected_option" == "$logout" ]
 then
-  loginctl terminate-user `whoami`
+  loginctl terminate-user "$(whoami)"
 elif [ "$selected_option" == "$shutdown" ]
 then
   # loginctl poweroff

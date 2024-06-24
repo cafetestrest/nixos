@@ -30,7 +30,7 @@ toggle() {
 
 manual() {
     disable
-    wlsunset -t $1 -T $2 -S $3 -s $4 -d $5 &
+    wlsunset -t "$1" -T "$2" -S "$3" -s "$4" -d "$5" &
 }
 
 monthlyAuto() {
@@ -69,19 +69,19 @@ monthlyManual() {
 #checks the first letter of the argument provided to the script
 firstArgLetter="$(echo "$1" | head -c 1)"
 
-if [ -z $firstArgLetter ]; then
+if [ -z "$firstArgLetter" ]; then
     # monthlyAuto
     monthlyManual
 else
-    if [[ $firstArgLetter == "d" ]]; then
+    if [[ "$firstArgLetter" == "d" ]]; then
         disable
-    elif [[ $firstArgLetter == "e" ]]; then
+    elif [[ "$firstArgLetter" == "e" ]]; then
         enable
-    elif [[ $firstArgLetter == "t" ]]; then
+    elif [[ "$firstArgLetter" == "t" ]]; then
         toggle
-    elif [[ $firstArgLetter == "m" ]]; then
+    elif [[ "$firstArgLetter" == "m" ]]; then
         monthlyAuto
-    elif [[ $firstArgLetter == "a" ]]; then
+    elif [[ "$firstArgLetter" == "a" ]]; then
         monthlyManual
     else
         monthlyManual

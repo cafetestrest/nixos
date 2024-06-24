@@ -119,7 +119,7 @@ check_apps_running() {
         fi
 
         #focus on the current class_name:
-        hyprctl dispatch focuswindow $class_name
+        hyprctl dispatch focuswindow "$class_name"
         sleep_time
 
         class_at=$(echo "$classWindowInfo" | grep "at:" | awk '{print $2}' | head -1)

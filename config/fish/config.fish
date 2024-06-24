@@ -13,6 +13,8 @@ end
 
 #fastfetch instead of default greeting
 function fish_greeting
+  cd ~/nixos
+
   fastfetch
 
   if not pidof copyq > /dev/null

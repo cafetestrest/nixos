@@ -5,7 +5,7 @@ chatMix=""
 output=""
 Ags=0
 
-firstArg="$(echo "$1")"
+firstArg="$1"
 
 if [[ $firstArg == "ags" ]]; then
     Ags=1
@@ -25,5 +25,5 @@ fi
 if [ "$Ags" == "1" ]; then
     ags -r "btdevice.setHeadsetData('$output')"
 else
-    echo $output
+    echo "$output"
 fi
