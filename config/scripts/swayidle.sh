@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 function run_swayidle {
-	# swayidle -w timeout 600 'if pgrep swaylock; then exec ~/.config/scripts/idle.sh z; else exec ~/.config/scripts/idle.sh g; fi' \
-	# timeout 900 'if pgrep swaylock; then exec ~/.config/scripts/idle.sh z; else exec ~/.config/scripts/idle.sh g; fi' \
-	# after-resume 'hyprctl dispatch dpms on && exec ~/.config/scripts/wakefromsleep.sh' \
-	# before-sleep 'exec ~/.config/scripts/idle.sh l && hyprctl dispatch dpms off' & disown
+	# swayidle -w timeout 600 'if pgrep swaylock; then exec idle z; else exec idle g; fi' \
+	# timeout 900 'if pgrep swaylock; then exec idle z; else exec idle g; fi' \
+	# after-resume 'hyprctl dispatch dpms on && exec wakefromsleep' \
+	# before-sleep 'exec idle l && hyprctl dispatch dpms off' & disown
 
 	hypridle & disown
 }

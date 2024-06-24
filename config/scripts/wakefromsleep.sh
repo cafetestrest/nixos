@@ -8,7 +8,7 @@ function refresh_ags_bluetooth_connected_devices() {
 
 function refresh_ags_weather_info() {
     if pgrep ags; then
-        ~/.config/scripts/openweathermap.sh ags
+        openweathermap ags
     fi
 }
 

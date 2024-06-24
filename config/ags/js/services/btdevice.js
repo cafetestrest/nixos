@@ -13,14 +13,14 @@ class BtDeviceInfo extends Service {
 
     call() {
         if (!this._data) {
-            Utils.execAsync(['bash', '-c', "sleep 5 && ~/.config/scripts/bluetoothbatterypercentage.sh ags"]).catch(console.error);
+            Utils.execAsync(['bash', '-c', "sleep 5 && bluetoothbatterypercentage ags"]).catch(console.error);
         } else {
-            Utils.execAsync(['bash', '-c', "~/.config/scripts/bluetoothbatterypercentage.sh ags"]).catch(console.error);
+            Utils.execAsync(['bash', '-c', "bluetoothbatterypercentage ags"]).catch(console.error);
         }
     }
 
     callHeadset() {
-        Utils.execAsync(['bash', '-c', "~/.config/scripts/headset.sh ags"]).catch(console.error);
+        Utils.execAsync(['bash', '-c', "headset ags"]).catch(console.error);
     }
 
     get callBtDeviceInfoScript() {

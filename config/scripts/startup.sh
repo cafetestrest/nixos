@@ -38,17 +38,17 @@ start_program() {
 # Start programs in order with a check
 # start_program "xterm" "xterm -e journalctl -xef"
 
-COMMAND=~/.config/scripts/nightlight.sh
-start_program "wlsunset" ~/.config/scripts/nightlight.sh
+COMMAND="nightlight a > /dev/null 2>&1"
+start_program "wlsunset"
 
-COMMAND=~/.config/scripts/swayidle.sh
+COMMAND="toggleidle a"
 start_program "hypridle"
 
 COMMAND=ags
 start_program "ags"
 
 if pgrep "ydotool"; then
-    echo "$program already running, before initialization"
+    echo "ydotool already running, before initialization"
 else
     sleep 2
 fi

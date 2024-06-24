@@ -187,9 +187,9 @@
     "custom/note": {
         "text": "Notes",
         "format": "",
-        "on-click": "~/.config/scripts/note.sh",
+        "on-click": "note",
         "on-click-right": "codium ~/Documents/note.md",
-        "exec": "~/.config/scripts/note.sh",
+        "exec": "note",
         "interval": 15,
         "return-type": "json"
     },
@@ -201,8 +201,8 @@
             "Paused": "",
         },
         "exec": "~/.config/waybar/scripts/nightlighticon.sh",
-        "on-click": "~/.config/scripts/nightlight.sh auto",
-        "on-click-right": "~/.config/scripts/nightlight.sh toggle",
+        "on-click": "nightlight auto",
+        "on-click-right": "nightlight toggle",
         "interval": 3,
     },
     "custom/clipboard": {
@@ -215,8 +215,8 @@
         "text": "Screenshot",
         "format": "",
         "tooltip": false,
-        "on-click": "~/.config/scripts/screenshot.sh",
-        "on-click-right": "~/.config/scripts/screenshot.sh 1",
+        "on-click": "screenshot",
+        "on-click-right": "screenshot 1",
     },
     "custom/colorpicker": {
         "format": "󰈊",
@@ -335,7 +335,7 @@
     },
     "custom/off": {
         // "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=logout/suspend/reboot/shutdown'",
-        "on-click": "~/.config/scripts/powermenu.sh",
+        "on-click": "powermenu",
         "format": " {}",
     },
     "tray": {

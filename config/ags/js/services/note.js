@@ -5,7 +5,7 @@ class Note extends Service {
     static { Service.register(this); }
 
     get callNote() {
-        Utils.execAsync(['bash', '-c', "~/.config/scripts/note.sh ags"]).catch(print);
+        Utils.execAsync(['bash', '-c', "note ags"]).catch(print);
         // this.emit('changed');
     }
 

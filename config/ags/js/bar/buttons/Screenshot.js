@@ -10,9 +10,9 @@ export default () => PanelButton({
         icon: icons.screenshot,
     }),
     on_clicked: () => {
-        Utils.execAsync(['bash', '-c', "~/.config/scripts/screenshot.sh 1"]).catch(print);
+        Utils.execAsync(['bash', '-c', "screenshot 1"]).catch(print);
     },
     on_secondary_click: () => {
-        Utils.execAsync(['bash', '-c', "~/.config/scripts/screenshot.sh"]).catch(print);
+        Utils.execAsync(['bash', '-c', "screenshot"]).catch(print);
     },
 });

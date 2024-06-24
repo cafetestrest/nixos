@@ -10,13 +10,13 @@ class Nightlight extends Service {
 
     set mode(value) {
         if (this._mode === "auto") {
-            Utils.execAsync(['bash', '-c', "~/.config/scripts/nightlight.sh enable"]).catch(print);
+            Utils.execAsync(['bash', '-c', "nightlight enable"]).catch(print);
             this._mode = "on";
         } else if (this._mode === "on") {
-            Utils.execAsync(['bash', '-c', "~/.config/scripts/nightlight.sh disable"]).catch(print);
+            Utils.execAsync(['bash', '-c', "nightlight disable"]).catch(print);
             this._mode = "off";
         } else {
-            Utils.execAsync(['bash', '-c', "~/.config/scripts/nightlight.sh automatic"]).catch(print);
+            Utils.execAsync(['bash', '-c', "nightlight automatic"]).catch(print);
             this._mode = "auto";
         }
 

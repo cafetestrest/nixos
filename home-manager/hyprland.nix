@@ -1,8 +1,7 @@
 { inputs, pkgs, ... }:
 let
   inherit (import ../variables.nix)
-    username
-    homeDirectory;
+    username;
 
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
@@ -54,7 +53,7 @@ in
     name = "Lock";
     comment = "Locks PC";
     icon = "system-lock-screen-symbolic";
-    exec = "${homeDirectory}/.config/scripts/idle.sh l";
+    exec = "idle l";
     terminal = false;
   };
 
@@ -62,7 +61,7 @@ in
     name = "Sleep";
     comment = "Put PC to Sleep";
     icon = "weather-clear-night-symbolic";
-    exec = "${homeDirectory}/.config/scripts/idle.sh s";
+    exec = "idle s";
     terminal = false;
   };
 
@@ -75,21 +74,10 @@ in
 
     settings = {
       exec-once = [
-        "~/.config/scripts/startup.sh"
+        "startup"
         # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         # "copyq --start-server"
-        # "~/.config/scripts/nightlight.sh"
-        # "~/.config/scripts/swayidle.sh startup"
-        # "xterm -e 'AGS_SKIP_V_CHECK=true ags'"
-        # "ags &"
-        # "xrdb -load ~/.Xresources"
-        # "xterm -e ~/.config/scripts/journal.sh"
         # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
-        # "~/.config/scripts/startup.sh" #open on startup
-        # "hyprpaper"
-        # "swaybg -i ~/Public/wall/wall.png --mode fill"
-        # "hyprctl setcursor Qogir 24"
-        # "transmission-gtk"
       ];
 
       # env = [
@@ -108,8 +96,8 @@ in
         # "LFW_IM_MODULE, ibus"
         # "INPUT_METHOD, fcitx"
 
-        "QT_QPA_PLATFORM, wayland;xcb"
-        "QT_QPA_PLATFORMTHEME, qt5ct"
+        # "QT_QPA_PLATFORM, xcb"
+        # "QT_QPA_PLATFORMTHEME, qt5ct"
 
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
@@ -243,8 +231,8 @@ in
         "SUPER, T, exec, terminator"
         "SUPER, E, exec, ${fileExplorer}"
         "SUPER, V, exec, copyq menu clipboard"
-        "SUPER, Print, exec, ~/.config/scripts/screenshot.sh"
-        "SUPER SHIFT, S, exec, ~/.config/scripts/screenshot.sh 1"
+        "SUPER, Print, exec, screenshot"
+        "SUPER SHIFT, S, exec, screenshot 1"
 
         "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags"
         "SUPER, space, ${e} -t applauncher"
@@ -258,8 +246,8 @@ in
         "SUPER, L, ${e} -t powermenu"
         "SUPER, N, ${e} -t weather"
         "SUPER, S, ${e} -t quicksettings"
-        "CTRL ALT, Delete, exec, xterm -e ~/.config/scripts/powermenu.sh t"
-        "SUPER SHIFT, Delete, exec, xterm -e ~/.config/scripts/powermenu.sh t"
+        "CTRL ALT, Delete, exec, xterm -e powermenu t"
+        "SUPER SHIFT, Delete, exec, xterm -e powermenu t"
         ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
         ''SUPER, Page_Down, exec, wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"''
         "SUPER SHIFT, escape, exec, playerctl --all-players stop"

@@ -153,7 +153,8 @@ check_apps_running() {
 
 pause_playing_media() {
     if [[ -z "$is_media_paused" ]]; then
-        status=$(playerctl status)
+        # Check playerctl status and handle the case when no players are found
+        status=$(playerctl status 2>&1 || true)
         # echo "media status: $status"
 
         if [ "$status" == "Playing" ]; then

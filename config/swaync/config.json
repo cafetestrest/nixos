@@ -72,11 +72,11 @@
         "actions": [
           {
             "label": "󰹑   Entire screen",
-            "command": "sleep 2 && ~/.config/scripts/screenshot.sh"
+            "command": "sleep 2 && screenshot"
           },
           {
             "label": "󰲎   Select a region",
-            "command": "sleep 2 && ~/.config/scripts/screenshot.sh 1"
+            "command": "sleep 2 && screenshot 1"
           },
           {
             "label": "󰉏   Open screenshot folder",
@@ -90,19 +90,19 @@
         "actions": [
           {
             "label": "󱠁   Automatic",
-            "command": "~/.config/scripts/nightlight.sh auto"
+            "command": "nightlight auto"
           },
           {
             "label": "󰌵   Enable",
-            "command": "~/.config/scripts/nightlight.sh enable"
+            "command": "nightlight enable"
           },
           {
             "label": "󰹐   Disable",
-            "command": "~/.config/scripts/nightlight.sh disable"
+            "command": "nightlight disable"
           },
           {
             "label": "󱩍   Toggle",
-            "command": "~/.config/scripts/nightlight.sh toggle"
+            "command": "nightlight toggle"
           }
         ]
       },

@@ -29,7 +29,10 @@ toggle() {
 }
 
 manual() {
-    disable
+    if pidof wlsunset; then
+        disable
+    fi
+
     wlsunset -t "$1" -T "$2" -S "$3" -s "$4" -d "$5" &
 }
 

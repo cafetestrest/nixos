@@ -11,7 +11,7 @@ success=
 
 help_usage() {
     echo "The following capabilities are available, please run the command like so:"
-    echo "monitor.sh (brightness | contrast | input_source | audio_speaker_volume | audio_mute) value"
+    echo "monitor (brightness | contrast | input_source | audio_speaker_volume | audio_mute) value"
     exit 1
 }
 
@@ -82,7 +82,7 @@ input_source_logic() {
         echo "Following input sources are available:"
         echo "hdmi1, hdmi2, dp"
         echo "command is valid like either one of:"
-        echo "monitor.sh (input | source | input_source | input-source) (hdmi1 | hdmi2 | dp)"
+        echo "monitor (input | source | input_source | input-source) (hdmi1 | hdmi2 | dp)"
         exit 1
     fi
 
@@ -113,7 +113,7 @@ fi
 #         echo "Following power modes are available:"
 #         echo "on, off"
 #         echo "command is valid like either one of:"
-#         echo "monitor.sh (power | powermode | power-mode | power_mode) (on | off)"
+#         echo "monitor (power | powermode | power-mode | power_mode) (on | off)"
 #         exit 1
 #     fi
 
