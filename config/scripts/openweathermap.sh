@@ -268,7 +268,7 @@ function weather_data() {
     else
         #current weather
         WeatherDate=$(echo "$response" | jq -r  .dt  | tr '\n' ' ')
-        WeatherHour=$(date +"%-H" -d @${WeatherDate})
+        WeatherHour=$(date +"%-H" -d @"${WeatherDate}")
         FormattedDate=$(date -d @"${WeatherDate}" +"%A, %B %d, %Y")
 
         # Extracting and formatting the temperature
@@ -353,7 +353,7 @@ function get_weather_forecast_data() {
     # while [ $i -lt $NumEntries ]; do
     while [ $i -lt 40 ]; do
         WeatherDate=$(echo "$response" | jq -r  .list[$i].dt  | tr '\n' ' ')
-        WeatherHour=$(date +"%-H" -d @${WeatherDate})
+        WeatherHour=$(date +"%-H" -d @"${WeatherDate}")
         CastDate=$(date +"%s" -d @"${WeatherDate}")
 
         Temperature=$(echo "$response" | jq -r .list[$i].main.temp | tr '\n' ' ')
