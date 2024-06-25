@@ -96,7 +96,7 @@ in
         # "LFW_IM_MODULE, ibus"
         # "INPUT_METHOD, fcitx"
 
-        # "QT_QPA_PLATFORM, xcb"
+        # "QT_QPA_PLATFORM, wayland"
         # "QT_QPA_PLATFORMTHEME, qt5ct"
 
         # Hyprcursor
@@ -104,15 +104,15 @@ in
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE, 24"
 
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
-        "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
+        # "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+        # "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
 
-        "GDK_BACKEND, wayland,x11"
-        "SDL_VIDEODRIVER, wayland"
-        "CLUTTER_BACKEND, wayland"
-        "EGL_PLATFORM, wayland"
+        # "GDK_BACKEND, wayland,x11"
+        # "SDL_VIDEODRIVER, wayland"
+        # "CLUTTER_BACKEND, wayland"
+        # "EGL_PLATFORM, wayland"
 
-        "XDG_SESSION_DESKTOP,Hyprland"
+        # "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
       monitor = [
@@ -230,7 +230,7 @@ in
         "SUPER SHIFT, I, exec, ${browser} --incognito"
         "SUPER, T, exec, terminator"
         "SUPER, E, exec, ${fileExplorer}"
-        "SUPER, V, exec, copyq menu clipboard"
+        "SUPER, V, exec, copyq toggle"
         "SUPER, Print, exec, screenshot"
         "SUPER SHIFT, S, exec, screenshot 1"
 

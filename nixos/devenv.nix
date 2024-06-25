@@ -17,6 +17,8 @@ in
 
   # required for port 80, traefik stopping otherwise
   # boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
+  # networking.firewall.allowedTCPPorts = [ 80 ];
+  # networking.firewall.allowedUDPPorts = [ 80 ];
 
   networking.extraHosts =
   ''
