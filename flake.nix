@@ -99,7 +99,7 @@
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/fish.nix                                      # fish and its extensions
-          ./nixos/fish.nix                                      # bash and shared shell Aliases
+          ./nixos/bash.nix                                      # bash and shared shell Aliases
           ./nixos/hyprland.nix                                  # hyprland packages
           ./nixos/gnome
           # ./nixos/cosmic

@@ -45,7 +45,19 @@
       end
 
       function . --description 'Visual Studio Code'
-        codium $argv
+        if count $argv > /dev/null
+            codium $argv
+        else
+            codium .
+        end
+      end
+
+      function code --description 'Visual Studio Code'
+        if count $argv > /dev/null
+            codium $argv
+        else
+            codium .
+        end
       end
 
       #git alias
