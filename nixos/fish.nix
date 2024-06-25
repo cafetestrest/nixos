@@ -11,107 +11,6 @@
 
   programs.fish = {
     enable = true;
-    shellAliases = {
-      garbage = "nix-collect-garbage -d && nix store optimise && sudo nix-collect-garbage -d && sudo nix store optimise";
-      neofetch = "fastfetch";
-      code = "codium $argv";
-      #aliases for shell
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      "....." = "cd ../../../..";
-      "......" = "cd ../../../../..";
-      cls = "clear";
-      cl = "clear";
-      # www = "cd ~/Sites";
-      # storm = "pstorm";
-      # phpstorm = "pstorm";
-
-      #docker aliases
-      dockerprune = "dockerpruneall";
-      getetchostsfromurl = "get_etc_hosts_domains_from_url $argv";
-      # getwardenoutput = "get_warden_services_urls";
-      # printwardenoutput = "get_warden_services_urls";
-
-      # #aliases for development
-      b = "warden shell";
-      # wenv = "warden env up";
-      # wsvc = "warden svc up";
-      start = "wardenstart";
-      # wsvcdown = "warden svc down";
-      # wenvdown = "warden env down";
-      down = "wardendown";
-
-      # #aliases for m2 warden
-      app = ''warden shell -c "$argv"'';
-      # php = "app php $argv";
-      cg = "app rm -rf /var/www/html/generated/code/ /var/www/html/generated/metadata/";
-      # composer = ''warden shell -c "COMPOSER_MEMORY_LIMIT=-1 composer $argv"'';
-      cud = "composer update";
-      cu = "cud --no-dev";
-      cid = "COMPOSER_MEMORY_LIMIT=-1 composer install";
-      ci = "cid --no-dev";
-      grunt = ''warden shell -c "grunt $argv"'';
-      gw = "grunt watch";
-      node = ''warden shell -c "node $argv"'';
-      yarn = ''warden shell -c "yarn $argv"'';
-      npx = ''warden shell -c "npx $argv"'';
-      # gccomposer = "app git checkout composer.lock";
-      #gcconfig = "app git checkout app/etc/config.php";
-      # vsb = "app varnish-static-ban";
-      # vsba = "vsb "\.*"";
-      # vsbc = "vsb "\.*\.css"";
-      # vsbh = "vsb "\.*\.html"";
-      # vsbj = "vsb "\.*\.js"";
-
-      m2 = ''warden shell -c "php -dmemory_limit=-1 bin/magento $argv"'';
-      magento = "m2";
-      msu = "m2 setup:upgrade";
-      sup = "msu";
-      cc = ''m2 cache:clean $argv'';
-      cf = "m2 cache:flush";
-      ccc = "m2 cache:clean config full_page";
-      ccfe = "m2 cache:clean block_html layout full_page";
-      dc = "m2 setup:di:compile";
-      scd = "m2 setup:static-content:deploy -f --jobs 6";
-      static = "scd";
-      scd1 = "m2 setup:static-content:deploy -f";
-      rebuild = "msu && cf";
-      rebuild1 = "msu && dc && scd1 && cf";
-      rebuild6 = "msu && dc && scd && cf";
-      rebuildprod = "rebuild6";
-      rebuildprod1 = "rebuild1";
-      rei = "m2 indexer:reindex";
-      res = "m2 indexer:reset";
-      rebuildfull = "msu && dc && scd && res && rei && cf";
-
-      #git alias
-      gpl = "git pull --all";
-      pull = "git pull --all";
-      push = "git push";
-      gs = "git status";
-      ga = "git add";
-      gall = "git add .";
-      gr = "git reset";
-      grall = "git reset .";
-      gd = "git diff";
-      gcl = "git clone";
-      clone = "git clone";
-      gch = "git checkout";
-      checkout = "git checkout";
-      gchall = "git checkout .";
-      checkoutall = "git checkout .";
-
-      #testing
-      # testing = "open_in_browser";
-
-      #nixos aliases
-      reb = "sudo nixos-rebuild switch --flake $HOME/nixos/#$USER";
-      rebuildnocache = "rebuild --option eval-cache false";
-      rebuildcache = "rebuildnocache";
-      upgrade = "rebuild --upgrade";
-    };
-
     shellInit = ''
       set -g theme_powerline_fonts yes
       set -g theme_nerd_fonts no
@@ -288,5 +187,127 @@
       #sets docker host
       # set DOCKER_HOST 127.0.0.1:2375
     '';
+    # plugins = with pkgs; [
+    #   {
+    #     name = "bobthefisher";
+    #     src = fishPlugins.bobthefisher.src;
+    #   }
+    #   {
+    #     name = "fzf-fish";
+    #     src = fishPlugins.fzf-fish.src;
+    #   }
+    #   {
+    #     name = "z";
+    #     src = fishPlugins.z.src;
+    #   }
+    #   {
+    #     name = "forgit";
+    #     src = fishPlugins.forgit.src;
+    #   }
+    #   {
+    #     name = "puffer";
+    #     src = fishPlugins.puffer.src;
+    #   }
+    # ];
+    # shellAliases = {
+    #   garbage = "nix-collect-garbage -d && nix store optimise && sudo nix-collect-garbage -d && sudo nix store optimise";
+    #   neofetch = "fastfetch";
+    #   code = "codium $argv";
+    #   #aliases for shell
+    #   ".." = "cd ..";
+    #   "..." = "cd ../..";
+    #   "...." = "cd ../../..";
+    #   "....." = "cd ../../../..";
+    #   "......" = "cd ../../../../..";
+    #   cls = "clear";
+    #   cl = "clear";
+    #   # www = "cd ~/Sites";
+    #   # storm = "pstorm";
+    #   # phpstorm = "pstorm";
+
+    #   #docker aliases
+    #   dockerprune = "dockerpruneall";
+    #   getetchostsfromurl = "get_etc_hosts_domains_from_url $argv";
+    #   # getwardenoutput = "get_warden_services_urls";
+    #   # printwardenoutput = "get_warden_services_urls";
+
+    #   # #aliases for development
+    #   b = "warden shell";
+    #   # wenv = "warden env up";
+    #   # wsvc = "warden svc up";
+    #   start = "wardenstart";
+    #   # wsvcdown = "warden svc down";
+    #   # wenvdown = "warden env down";
+    #   down = "wardendown";
+
+    #   # #aliases for m2 warden
+    #   app = ''warden shell -c "$argv"'';
+    #   # php = "app php $argv";
+    #   cg = "app rm -rf /var/www/html/generated/code/ /var/www/html/generated/metadata/";
+    #   # composer = ''warden shell -c "COMPOSER_MEMORY_LIMIT=-1 composer $argv"'';
+    #   cud = "composer update";
+    #   cu = "cud --no-dev";
+    #   cid = "COMPOSER_MEMORY_LIMIT=-1 composer install";
+    #   ci = "cid --no-dev";
+    #   grunt = ''warden shell -c "grunt $argv"'';
+    #   gw = "grunt watch";
+    #   node = ''warden shell -c "node $argv"'';
+    #   yarn = ''warden shell -c "yarn $argv"'';
+    #   npx = ''warden shell -c "npx $argv"'';
+    #   # gccomposer = "app git checkout composer.lock";
+    #   #gcconfig = "app git checkout app/etc/config.php";
+    #   # vsb = "app varnish-static-ban";
+    #   # vsba = "vsb "\.*"";
+    #   # vsbc = "vsb "\.*\.css"";
+    #   # vsbh = "vsb "\.*\.html"";
+    #   # vsbj = "vsb "\.*\.js"";
+
+    #   m2 = ''warden shell -c "php -dmemory_limit=-1 bin/magento $argv"'';
+    #   magento = "m2";
+    #   msu = "m2 setup:upgrade";
+    #   sup = "msu";
+    #   cc = ''m2 cache:clean $argv'';
+    #   cf = "m2 cache:flush";
+    #   ccc = "m2 cache:clean config full_page";
+    #   ccfe = "m2 cache:clean block_html layout full_page";
+    #   dc = "m2 setup:di:compile";
+    #   scd = "m2 setup:static-content:deploy -f --jobs 6";
+    #   static = "scd";
+    #   scd1 = "m2 setup:static-content:deploy -f";
+    #   rebuild = "msu && cf";
+    #   rebuild1 = "msu && dc && scd1 && cf";
+    #   rebuild6 = "msu && dc && scd && cf";
+    #   rebuildprod = "rebuild6";
+    #   rebuildprod1 = "rebuild1";
+    #   rei = "m2 indexer:reindex";
+    #   res = "m2 indexer:reset";
+    #   rebuildfull = "msu && dc && scd && res && rei && cf";
+
+    #   #git alias
+    #   gpl = "git pull --all";
+    #   pull = "git pull --all";
+    #   push = "git push";
+    #   gs = "git status";
+    #   ga = "git add";
+    #   gall = "git add .";
+    #   gr = "git reset";
+    #   grall = "git reset .";
+    #   gd = "git diff";
+    #   gcl = "git clone";
+    #   clone = "git clone";
+    #   gch = "git checkout";
+    #   checkout = "git checkout";
+    #   gchall = "git checkout .";
+    #   checkoutall = "git checkout .";
+
+    #   #testing
+    #   # testing = "open_in_browser";
+
+    #   #nixos aliases
+    #   reb = "sudo nixos-rebuild switch --flake $HOME/nixos/#$USER";
+    #   rebuildnocache = "rebuild --option eval-cache false";
+    #   rebuildcache = "rebuildnocache";
+    #   upgrade = "rebuild --upgrade";
+    # };
   };
 }
