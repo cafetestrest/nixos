@@ -11,7 +11,7 @@ function sespend() {
 }
 
 function checkIfMediaIsPlayingAndLock() {
-    status=$(playerctl status 2> /dev/null)
+    status=$(playerctl status 2>&1 || true)
 
     if [ "$status" != "Playing" ]; then
         lock
@@ -19,7 +19,7 @@ function checkIfMediaIsPlayingAndLock() {
 }
 
 function checkIfMediaIsPlayingAndSespend() {
-    status=$(playerctl status 2> /dev/null)
+    status=$(playerctl status 2>&1 || true)
 
     if [ "$status" != "Playing" ]; then
         sespend
@@ -27,12 +27,17 @@ function checkIfMediaIsPlayingAndSespend() {
 }
 
 function pauseMedia() {
-    playerctl pause
+    status=$(playerctl status 2>&1 || true)
+
+    if [ "$status" == "Playing" ]; then
+        playerctl pause
+        echo "paused playing media"
+    fi
 }
 
 function idle_action() {
     # Check if media is playing
-    status=$(playerctl status 2> /dev/null)
+    status=$(playerctl status 2>&1 || true)
 
     if [ "$status" != "Playing" ]; then
 
