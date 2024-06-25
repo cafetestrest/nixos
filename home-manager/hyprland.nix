@@ -194,6 +194,8 @@ in
 		"opacity 0.85,terminator"
 		"move cursor -50% -20%,^(com.github.hluk.copyq)$"
 		"move cursor -50% -20%,^(copyq)$"
+		"size 350 200,^(com.github.hluk.copyq)$"
+		"size 350 200,^(copyq)$"
       ];
 
       windowrulev2 = let
