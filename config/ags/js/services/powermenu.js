@@ -19,8 +19,8 @@ class PowerMenu extends Service {
     /** @param {'sleep' | 'reboot' | 'logout' | 'shutdown'} action */
     action(action) {
         [this.#cmd, this.#title] = {
-            'lock': [`/home/${Utils.USER}/.config/scripts/idle.sh l`, 'Lock'],
-            'sleep': [`/home/${Utils.USER}/.config/scripts/idle.sh s`, 'Sleep'],
+            'lock': [`idle l`, 'Lock'],
+            'sleep': [`idle s`, 'Sleep'],
             'reboot': ['systemctl reboot', 'Reboot'],
             'logout': [`loginctl terminate-user ${Utils.USER}`, 'Log Out'],
             'shutdown': ['shutdown now', 'Shutdown'],

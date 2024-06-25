@@ -11,7 +11,7 @@ class Idle extends Service {
     set mode(value) {
         this._mode = value;
 
-        Utils.execAsync(['bash', '-c', "~/.config/scripts/swayidle.sh toggle"]).catch(print);
+        Utils.execAsync(['bash', '-c', "toggleidle toggle"]).catch(print);
         this.emit('changed');
 	}
 

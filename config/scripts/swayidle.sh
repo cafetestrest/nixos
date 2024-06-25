@@ -39,7 +39,11 @@ function toggle {
 # esac
 
 #checks the first letter of the argument provided to the script
-firstArgLetter="$(echo "$1" | head -c 1)"
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
 
 if [ -z "$firstArgLetter" ]; then
     run_swayidle

@@ -1,16 +1,15 @@
-#!/usr/bin/env bash
-
 connectedDevices=$(bluetoothctl devices Connected)
 output=""
 Ags=0
 
-firstArg="$1"
-
-if [[ $firstArg == "ags" ]]; then
-    Ags=1
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
 fi
 
-if [[ $firstArg == "a" ]]; then
+if [[ $firstArgLetter == "a" ]]; then
     Ags=1
 fi
 

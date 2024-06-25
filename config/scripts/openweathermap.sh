@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 apiKey=""
 defaultLocation=""
 Ags=0
@@ -16,19 +14,11 @@ function debug_break() {
 }
 
 function get_script_argument_options() {
-    if [[ $firstArg == "ags" ]]; then
+    if [[ $firstArgLetter == "a" ]]; then
         Ags=1
     fi
 
-    if [[ $firstArg == "a" ]]; then
-        Ags=1
-    fi
-
-    if [[ $firstArg == "debug" ]]; then
-        Debug=1
-    fi
-
-    if [[ $firstArg == "d" ]]; then
+    if [[ $firstArgLetter == "d" ]]; then
         Debug=1
     fi
 }
@@ -53,9 +43,10 @@ function get_config_file_data() {
 }
 
 function check_api_status() {
-    check=$(echo "$response" | grep -c -e '"cod":"40')
-    check2=$(echo "$response" | grep -c -e '"cod":"30')
+    check=$(echo "$response" | grep -c -e '"cod":"40"' || true)
+    check2=$(echo "$response" | grep -c -e '"cod":"30"' || true)
     sum=$(( check + check2 ))
+
     if [ $sum -gt 0 ];then
         exit 99
     fi
@@ -277,11 +268,14 @@ function weather_data() {
     else
         #current weather
         WeatherDate=$(echo "$response" | jq -r  .dt  | tr '\n' ' ')
-        # openweathermaWeatherHour=$(date +"%-H" -d @"${WeatherDate}")p
+        WeatherHour=$(date +"%-H" -d @${WeatherDate})
         FormattedDate=$(date -d @"${WeatherDate}" +"%A, %B %d, %Y")
 
+        # Extracting and formatting the temperature
         Temperature=$(echo "$response" | jq -r .main.temp | tr '\n' ' ')
-        Temperature=$(printf '%.*f\n' 0 "$Temperature")
+        # Use bc to format the temperature to 0 decimal places
+        Temperature=$(echo "$Temperature" | bc -l | awk '{printf "%.0f", $1}')
+
         # ShortWeather=$(echo "$response" | jq -r .weather[0].main | tr '\n' ' '| awk '{$1=$1};1' )
         LongWeather=$(echo "$response" | jq -r .weather[0].description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
 
@@ -295,8 +289,8 @@ function weather_data() {
 
         MinTemperature=$(echo "$response" | jq -r .main.temp_min | tr '\n' ' ')
         MaxTemperature=$(echo "$response" | jq -r .main.temp_max | tr '\n' ' ')
-        MinTemp=$(printf '%.*f\n' 0 "$MinTemperature")
-        MaxTemp=$(printf '%.*f\n' 0 "$MaxTemperature")
+        MinTemp=$(echo "$MinTemperature" | bc -l | awk '{printf "%.0f", $1}')
+        MaxTemp=$(echo "$MaxTemperature" | bc -l | awk '{printf "%.0f", $1}')
 
         icons=$(echo "$response" | jq -r .weather[0].icon | tr '\n' ' ')
     fi
@@ -354,16 +348,16 @@ function get_weather_forecast_data() {
 
     clear_defaults
 
-    (( i = 0 ))
+    i=0
     # NumEntries=$(echo "$response" |jq -r .cnt)
     # while [ $i -lt $NumEntries ]; do
     while [ $i -lt 40 ]; do
         WeatherDate=$(echo "$response" | jq -r  .list[$i].dt  | tr '\n' ' ')
-        # openweathermaWeatherHour=$(date +"%-H" -d @"${WeatherDate}")p
+        WeatherHour=$(date +"%-H" -d @${WeatherDate})
         CastDate=$(date +"%s" -d @"${WeatherDate}")
 
         Temperature=$(echo "$response" | jq -r .list[$i].main.temp | tr '\n' ' ')
-        Temperature=$(printf '%.*f\n' 0 "$Temperature")
+        Temperature=$(echo "$Temperature" | bc -l | awk '{printf "%.0f", $1}')
 
         get_min_and_max_weather
 
@@ -416,7 +410,13 @@ function call_weather_forecast_api() {
 }
 
 #get this scripts arguments => (ags, debug or none)
-firstArg="$1"
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
+
 get_script_argument_options
 
 #call to get config file data => (apiKey and defaultLocation)

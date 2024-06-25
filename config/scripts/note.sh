@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 documentsDir=~/Documents
 noteFile=note.md
 
@@ -17,9 +15,14 @@ done < $documentsDir/$noteFile
 
 note=${note::-2}
 
-firstArg="$1"
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
 
-if [[ $firstArg == "ags" ]]; then
+if [[ $firstArgLetter == "a" ]]; then
     ags -r "note.setNote(\"$note\")"
 else
     echo "{\"text\":\"\", \"tooltip\":\"${note}\"}"

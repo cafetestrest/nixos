@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 function lock() {
     # gtklock -d
     # swaylock -f
@@ -46,7 +44,13 @@ function idle_action() {
     fi
 }
 
-firstArgLetter="$(echo "$1" | head -c 1)"
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
+
 if [ -z "$firstArgLetter" ]; then
     idle_action
 else

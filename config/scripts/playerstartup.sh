@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
-
 # apps to open on startup
 function open_startup_apps() {
-    hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/nixos"
+    hyprctl dispatch exec "[workspace 1]" "terminator"
     hyprctl dispatch exec "[workspace 1]" "codium ~/nixos/"
     hyprctl dispatch exec "[workspace 1]" chromium
     # hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/.config/scripts"

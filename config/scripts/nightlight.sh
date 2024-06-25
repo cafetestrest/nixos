@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
-
 disable() {
-    killall -9 wlsunset
+    if pidof wlsunset; then
+        killall -9 wlsunset
+    fi
 }
 
 enable() {
     disable
-    wlsunset -t 2700 -S 06:00 -s 06:00
+    wlsunset -t 2700 -S 06:00 -s 06:00 &
 }
 
 automatic() {
@@ -29,9 +29,7 @@ toggle() {
 }
 
 manual() {
-    if pidof wlsunset; then
-        disable
-    fi
+    disable
 
     wlsunset -t "$1" -T "$2" -S "$3" -s "$4" -d "$5" &
 }
@@ -70,7 +68,11 @@ monthlyManual() {
 }
 
 #checks the first letter of the argument provided to the script
-firstArgLetter="$(echo "$1" | head -c 1)"
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
 
 if [ -z "$firstArgLetter" ]; then
     # monthlyAuto

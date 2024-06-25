@@ -8,12 +8,6 @@ debug=0
 # location of the config key, it contains the following (lat and long) data:
 ConfigFile="$HOME/.config/ags/weather_key"
 
-if [ "$1" == "-r" ]; then
-    shift
-    ConfigFile="$1"
-    shift
-fi
-
 if [ -f "$ConfigFile" ]; then
     readarray -t line < "$ConfigFile"
     Latitude=${line[0]}
@@ -25,13 +19,18 @@ if [[ "$Latitude" == "" || "$Longitude" == "" ]]; then
     exit 1
 fi
 
-firstArg="$1"
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
 
-if [[ $firstArg == "ags" ]]; then
+if [[ $firstArgLetter == "a" ]]; then
     Ags=1
 fi
 
-if [[ $firstArg == "debug" ]]; then
+if [[ $firstArgLetter == "d" ]]; then
     debug=1
 fi
 

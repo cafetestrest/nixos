@@ -11,7 +11,7 @@ class Weather extends Service {
     }
 
     get weatherData() {
-        Utils.execAsync(['bash', '-c', "~/.config/scripts/openweathermap.sh ags"]).catch(print);
+        Utils.execAsync(['bash', '-c', "openweathermap ags"]).catch(print);
     }
 
     get temperatureWeather() {

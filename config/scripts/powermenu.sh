@@ -1,6 +1,9 @@
-#!/usr/bin/env bash
-
-firstArgLetter="$(echo "$1" | head -c 1)"
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
 
 function terminal() {
   # PS3="Select an option (enter the number): "; options=("Lock" "Sleep" "Logout" "Reboot" "Shutdown" "Exit"); select option in "${options[@]}"; do case $REPLY in 1) echo "Locking..."; idle l;; 2) echo "Going to sleep..."; idle s;; 3) echo "Logout..."; loginctl terminate-user "$(whoami)";; 4) echo "Restarting the system..."; exec systemctl reboot;; 5) echo "Shutting down the system..."; exec systemctl poweroff -i;; 6) echo "Exiting the power menu."; exit 0;; *) echo "Invalid option. Please select a valid option.";; esac; done
