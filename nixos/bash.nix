@@ -29,6 +29,8 @@
     '';
 
     interactiveShellInit = ''
+      . $HOME/.config/scripts/z/z.sh
+
       # Function to search through history and run the selected command
       peco_select_history() {
           # Get the selected command from history
@@ -43,6 +45,10 @@
 
       # Bind the function to a key (Ctrl-R in this example)
       bind -x '"\C-r": peco_select_history'
+
+      function gco () {
+        git commit -m "$1"
+      }
 
       function dockerpruneall () {
         docker system prune -a --volumes
@@ -294,6 +300,6 @@
     upgrade = "reb --upgrade";
     u = "upgrade";
     garbage = "nix-collect-garbage -d && nix store optimise && sudo nix-collect-garbage -d && sudo nix store optimise";
-    g = "garbage";
+    # g = "garbage";
   };
 }
