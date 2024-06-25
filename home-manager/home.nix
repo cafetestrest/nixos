@@ -15,10 +15,8 @@ in
       ./terminator.nix
       ./xterm.nix
       ./gdm/gtk.nix
-      ./scripts.nix # scripts, place to store all common scripts TODO remove this one after changing
       ./scripts # scripts, place to store all common scripts
       ./mpv.nix # mpv video player and its config
-      ./fish.nix
       ./fastfetch.nix
       ./vscode.nix
       # ./rooter.nix  #https://github.com/run-as-root/rooter
