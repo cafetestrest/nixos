@@ -3,7 +3,6 @@
 let
   inherit (import ../variables.nix)
     user
-    username
     homeDirectory;
 in
 {
@@ -42,7 +41,7 @@ in
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "${username}";
+  home.username = "${user}";
   home.homeDirectory = "${homeDirectory}";
 
   # This value determines the Home Manager release that your

@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 let
   inherit (import ../variables.nix)
-    username
+    user
     homeDirectory;
 in
 {
@@ -72,7 +72,7 @@ listener {
   #   listener {
   #       timeout = 600
   #       on-timeout = ${pkgs.hyprlock}/bin/hyprlock
-  #       on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back ${config.home.username}!"
+  #       on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back ${config.home.user}!"
   #   }
 
   #   # Suspend

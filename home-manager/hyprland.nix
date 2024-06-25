@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 let
   inherit (import ../variables.nix)
-    username;
+    user;
 
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
@@ -45,7 +45,7 @@ in
     name = "Log Out";
     comment = "Sign Out";
     icon = "system-log-out-symbolic";
-    exec = "loginctl terminate-user ${username}";
+    exec = "loginctl terminate-user ${user}";
     terminal = false;
   };
 

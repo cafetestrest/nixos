@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 let
   inherit (import ../variables.nix)
-    user
-    username;
+    user;
 in
 {
   nix.settings = {

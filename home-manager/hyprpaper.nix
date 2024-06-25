@@ -1,9 +1,5 @@
 { inputs, pkgs, ... }:
-let
-  inherit (import ../variables.nix)
-    username
-    homeDirectory;
-in
+
 {
   home.packages = with pkgs; [ hyprpaper ];
 

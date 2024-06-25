@@ -3,7 +3,6 @@ let
 in
 {
   user = "${username}";
-  username = "${username}";
   homeDirectory = "/home/${username}";
   networkingHostName = "nixos";
   systemArchitecture = "x86_64-linux";
