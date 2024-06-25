@@ -2,7 +2,7 @@
 
 function refresh_ags_bluetooth_connected_devices() {
     if pgrep ags; then
-        ags -r "$(cat ~/.config/scripts/resetbluetoothags.js)"
+        ags -r "$(cat "$HOME"/.config/scripts/resetbluetoothags.js)"
     fi
 }
 
@@ -23,7 +23,7 @@ sleep $interval
 while [ "$elapsed" -lt "$max_duration" ]; do
     if ! pgrep hyprlock; then
         # commands to run if unlocked
-        # refresh_ags_bluetooth_connected_devices
+        refresh_ags_bluetooth_connected_devices
 
         refresh_ags_weather_info
         break

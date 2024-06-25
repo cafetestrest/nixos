@@ -18,5 +18,6 @@
       ./ngrokwarden.nix
       ./headset.nix
       ./monitor.nix
-    ];
+      ./resetbluetoothags.nix
+  ];
 }
