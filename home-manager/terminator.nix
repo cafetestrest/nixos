@@ -50,3 +50,31 @@ in
     config = makeTerminatorConfig;
   };
 }
+
+# [global_config]
+# inactive_color_offset = "0.506494"
+# putty_paste_style = True
+# [keybindings]
+# close_term = "<Primary><Shift>w"
+# cycle_next = "<Primary>Page_Up"
+# cycle_prev = "<Primary>Page_Down"
+# help = "<Primary>F1"
+# new_tab = "<Primary>t"
+# next_tab = "<Primary>Tab"
+# preferences = "F1"
+# prev_tab = "<Primary><Shift>Tab"
+# [layouts]
+# [[default]]
+# [[[child1]]]
+# parent = "window0"
+# type = "Terminal"
+# [[[window0]]]
+# parent = ""
+# type = "Window"
+# [profiles]
+# [[default]]
+# copy_on_selection = True
+# font = "JetBrains Mono Regular 10"
+# show_titlebar = False
+# use_system_font = False
+# use_theme_colors = True

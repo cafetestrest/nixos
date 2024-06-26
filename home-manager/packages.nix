@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    terminator            #terminal
+    # terminator            #terminal
     fastfetch
     killall
     # anydesk
@@ -15,7 +15,6 @@
     bc                    #command line calculator
     # firefox             #firefox browser
     chromium              #chromium browser
-    copyq                 #copy/paste things
     # libsForQt5.qt5ct
     #wl-clipboard
     # albert              #keybinding for albert toggle to get programs search
