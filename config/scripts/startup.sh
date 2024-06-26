@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Function to start a program and wait for it to run
 start_program() {
     local program=$1

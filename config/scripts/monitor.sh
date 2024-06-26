@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # https://blog.tcharles.fr/ddc-ci-screen-control-on-linux/
 
 # Usage: ddc-setbrightness 50

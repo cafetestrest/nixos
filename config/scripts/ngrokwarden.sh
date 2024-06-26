@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 auth_token_src="$HOME/.warden/.authtoken"
 auth_token=""
 network_name=""

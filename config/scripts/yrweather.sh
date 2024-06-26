@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 Ags=0
 Latitude=""
 Longitude=""

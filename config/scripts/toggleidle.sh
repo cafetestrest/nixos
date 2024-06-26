@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-function run_swayidle {
+function run_idle_inhibitor {
 	# swayidle -w timeout 600 'if pgrep swaylock; then exec idle z; else exec idle g; fi' \
 	# timeout 900 'if pgrep swaylock; then exec idle z; else exec idle g; fi' \
 	# after-resume 'hyprctl dispatch dpms on && exec wakefromsleep' \
@@ -15,7 +13,7 @@ function toggle {
 		pkill hypridle
 		# notify-send -r 5556 -u normal "  Swayidle Inactive"
 	else
-        run_swayidle
+        run_idle_inhibitor
 		# notify-send -r 5556 -u normal "  Swayidle Active"
 	fi
 }
@@ -25,7 +23,7 @@ function toggle {
 # 		toggle
 # 		;;
 # 	startup)
-# 		run_swayidle
+# 		run_idle_inhibitor
 # 		;;
 # 	*)
 # 		if pgrep "swayidle" > /dev/null
@@ -46,12 +44,12 @@ else
 fi
 
 if [ -z "$firstArgLetter" ]; then
-    run_swayidle
+    run_idle_inhibitor
 else
     if [[ "$firstArgLetter" == "t" ]]; then
         toggle
     else
-        run_swayidle
+        run_idle_inhibitor
     fi
 fi
 

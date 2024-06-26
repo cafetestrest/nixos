@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 ssDir=~/Pictures/Screenshots
 
 if [ ! -d $ssDir ]; then

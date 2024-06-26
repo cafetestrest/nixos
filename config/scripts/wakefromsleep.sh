@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 function refresh_ags_bluetooth_connected_devices() {
     if pgrep ags; then
         ags -r "$(cat "$HOME"/.config/scripts/resetbluetoothags.js)"
