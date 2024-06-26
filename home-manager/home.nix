@@ -12,7 +12,7 @@ in
       ./fonts.nix
       ./chrome.nix
       ./terminator.nix
-      ./xterm.nix
+      # ./xterm.nix
       ./gdm/gtk.nix
       ./scripts # scripts, place to store all common scripts
       ./mpv.nix # mpv video player and its config
