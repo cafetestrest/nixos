@@ -6,9 +6,9 @@
       enable = true;
       package = pkgs.vscodium;
 
-      enableExtensionUpdateCheck = false;
-      enableUpdateCheck = false;
-      mutableExtensionsDir = false;
+      # enableExtensionUpdateCheck = false;
+      # enableUpdateCheck = false;
+      # mutableExtensionsDir = false;
 
     #   extensions = with pkgs.vscode-extensions; [
     #     redhat.java
