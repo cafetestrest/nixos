@@ -20,15 +20,15 @@
         };
       }
 
-      {
-        name = "vcs";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-vcs";
-          rev = "refs/heads/master";
-          sha256 = "sha256-BVQgQOnPcqIf4eqLrmuUCvZahyEDKzBgJUeppLQWjQY=";
-        };
-      }
+      # {
+      #   name = "vcs";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "oh-my-fish";
+      #     repo = "plugin-vcs";
+      #     rev = "refs/heads/master";
+      #     sha256 = "sha256-BVQgQOnPcqIf4eqLrmuUCvZahyEDKzBgJUeppLQWjQY=";
+      #   };
+      # }
 
       {
         name = "theme-default";
