@@ -98,8 +98,7 @@
           # ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
-          ./nixos/fish.nix                                      # fish and its extensions
-          ./nixos/bash.nix                                      # bash and shared shell Aliases
+          ./nixos/defaultshell.nix                              # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
           ./nixos/gnome
           # ./nixos/cosmic
@@ -127,6 +126,7 @@
               imports = [
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
+                ./home-manager/shell                  #fish (default) + bash
                 ./home-manager/hyprland.nix
                 ./home-manager/gnome/home.nix
                 ./home-manager/gnome/extensions.nix
