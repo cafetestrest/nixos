@@ -16,7 +16,6 @@ function open_startup_apps() {
     # startup_app_class_names=("Chromium-browser" "terminator")
     sleep_time
     sleep_time
-    sleep_time
 }
 
 move_left() {
@@ -120,6 +119,10 @@ check_apps_running() {
 
         if [[ -z $classWindowInfo ]]; then
             echo "Not running app with class: $class_name"
+            
+            sleep_time
+            sleep_time
+
             return 1
         fi
 
@@ -185,7 +188,7 @@ while [ $SECONDS -lt $end ]; do
         # pause_playing_media
         exit 0
     fi
-    sleep_time
+
     sleep_time
 done
 
