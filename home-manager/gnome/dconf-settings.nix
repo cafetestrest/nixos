@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  inherit (import ../../variables.nix)
+    gtkTheme
+    gtkFontName
+    gtkIconTheme
+    cursorTheme;
+in
 {
   dconf.settings = {
     "org/gnome/shell" = {
@@ -13,18 +20,18 @@
 
     "org/gnome/desktop/interface" = {
       #theme
-      gtk-theme = "Orchis-Dark";
+      gtk-theme = "${gtkTheme}";
 
       #fonts
-      font-name = "Cantarell 11";
-      document-font-name = "Cantarell 11";
+      font-name = "${gtkFontName}";
+      document-font-name = "${gtkFontName}";
       monospace-font-name = "Source Code Pro 10";
 
       #cursor
-      cursor-theme = "macOS-Monterey";
+      cursor-theme = "${cursorTheme}";
 
       #icon
-      icon-theme = "Adwaita";
+      icon-theme = "${gtkIconTheme}";
 
       #clock in top bar
       clock-show-seconds = true;

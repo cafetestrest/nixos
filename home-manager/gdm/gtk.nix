@@ -1,27 +1,34 @@
 { config, pkgs, ... }:
 
 let
-  cursor-theme = "macOS-Monterey";
+  inherit (import ../../variables.nix)
+    cursorSize
+    cursorTheme
+    gtkTheme
+    gtkIconTheme
+    gtkFontName
+    user;
+
   cursor-package = pkgs.apple-cursor;
 in
 {
     gtk = {
         enable = true;
 
-        font.name = "Cantarell 11";
+        font.name = "${gtkFontName}";
 
         theme = {
-            name = "Orchis-Dark";
+            name = "${gtkTheme}";
             # package = pkgs.juno-theme;
         };
 
         iconTheme = {
-            name = "Adwaita";
+            name = "${gtkIconTheme}";
             package = pkgs.gnome.adwaita-icon-theme;
         };
 
         cursorTheme = {
-            name = cursor-theme;
+            name = "${cursorTheme}";
             package = cursor-package;
         };
 
@@ -36,16 +43,16 @@ in
 
     home = {
         sessionVariables = {
-            XCURSOR_THEME = cursor-theme;
-            XCURSOR_SIZE = 24;
+            XCURSOR_THEME = "${cursorTheme}";
+            XCURSOR_SIZE = cursorSize;
         };
 
         pointerCursor = {
-            size = 24;
+            size = cursorSize;
             gtk.enable = true;
             # x11.enable = true;
             package = cursor-package;
-            name = cursor-theme;
+            name = "${cursorTheme}";
         };
     };
 }

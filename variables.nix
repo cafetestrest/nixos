@@ -15,4 +15,9 @@ in
   grubHardDriveForVM = "/dev/vda";
   configurationLimit = 20;
   wardenSha256Hash = "sha256-A5jBH5VY2KhYVyJ5gCAXZpMX0au/W/cRK8AhFXyyu/M="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"
+  cursorSize = 24;
+  cursorTheme = "macOS-Monterey";
+  gtkTheme = "Orchis-Dark";
+  gtkIconTheme = "Adwaita";
+  gtkFontName = "Cantarell 11";
 }

@@ -1,6 +1,9 @@
 { inputs, pkgs, ... }:
 let
   inherit (import ../variables.nix)
+    cursorSize
+    cursorTheme
+    gtkTheme
     user;
 
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -80,11 +83,6 @@ in
         # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
       ];
 
-      # env = [
-      #   "GDK_SCALE,1"
-      #   "XCURSOR_SIZE,24"
-      # ];
-
       env = [
         # log WLR stuff
         #"HYPRLAND_LOG_WLR,1"
@@ -101,8 +99,10 @@ in
 
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE, 24"
+        "GTK_THEME, ${gtkTheme}"
+        "XCURSOR_THEME, ${cursorTheme}"
+        "XCURSOR_SIZE, ${toString cursorSize}"
+        "HYPRCURSOR_SIZE, ${toString cursorSize}"
 
         # "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
         # "QT_AUTO_SCREEN_SCALE_FACTOR, 1"

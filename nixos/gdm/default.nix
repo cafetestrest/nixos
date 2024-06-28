@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ../variables.nix)
+  inherit (import ../../variables.nix)
+    cursorTheme
+    gtkFontName
     user;
 in
 {
@@ -17,9 +19,9 @@ in
           remember-numlock-state = true;
         };
         "org/gnome/desktop/interface" = {
-          cursor-theme = "macOS-Monterey";
+          cursor-theme = "${cursorTheme}";
 
-          document-font-name = "Cantarell 11";
+          document-font-name = "${gtkFontName}";
           monospace-font-name = "Source Code Pro 10";
 
           #clock in top bar
