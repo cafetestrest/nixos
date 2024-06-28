@@ -19,6 +19,5 @@
       ./headset.nix
       ./monitor.nix
       ./resetbluetoothags.nix
-      ./z.nix
   ];
 }
