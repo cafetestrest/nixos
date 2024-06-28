@@ -14,7 +14,6 @@
     pamixer               #audio terminal commands
     bc                    #command line calculator
     # firefox             #firefox browser
-    chromium              #chromium browser
     # libsForQt5.qt5ct
     #wl-clipboard
     # albert              #keybinding for albert toggle to get programs search
