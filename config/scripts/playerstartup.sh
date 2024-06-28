@@ -1,3 +1,7 @@
+sleep_time() {
+    sleep 0.2
+}
+
 # apps to open on startup
 function open_startup_apps() {
     hyprctl dispatch exec "[workspace 1]" "terminator"
@@ -10,11 +14,9 @@ function open_startup_apps() {
     # startup_app_class_names (left)          (right-upper)   (right-lower)
     startup_app_class_names=("Brave-browser" "codium-url-handler" "terminator")
     # startup_app_class_names=("Chromium-browser" "terminator")
-    sleep 1
-}
-
-sleep_time() {
-    sleep 0.2
+    sleep_time
+    sleep_time
+    sleep_time
 }
 
 move_left() {
@@ -89,6 +91,11 @@ class_name_substitutes() {
 
     if [[ -z $classWindowInfo && "$class_name" == "Chromium-browser" ]]; then
         class_name="chromium-browser"
+        classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
+    fi
+
+    if [[ -z $classWindowInfo && "$class_name" == "Brave-browser" ]]; then
+        class_name="brave-browser"
         classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
     fi
 }
@@ -178,7 +185,8 @@ while [ $SECONDS -lt $end ]; do
         # pause_playing_media
         exit 0
     fi
-    sleep 0.5
+    sleep_time
+    sleep_time
 done
 
 echo "done, exiting"
