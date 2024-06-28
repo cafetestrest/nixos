@@ -10,7 +10,7 @@ in
     [
       ./packages.nix
       ./fonts.nix
-      ./chrome.nix
+      # ./chrome.nix
       ./terminator.nix
       # ./xterm.nix
       ./gdm/gtk.nix
@@ -18,6 +18,7 @@ in
       ./mpv.nix # mpv video player and its config
       ./fastfetch.nix
       ./vscode.nix
+      ./brave.nix
       # ./rooter.nix  #https://github.com/run-as-root/rooter
     ];
 

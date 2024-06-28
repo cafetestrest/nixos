@@ -225,7 +225,7 @@ in
           notify-send "Opening video" "$(wl-paste)"
           mpv "$(wl-paste)"
         '';
-        browser = "chromium";
+        browser = "brave";
         fileExplorer = "nautilus";
       in [
         "SUPER, C, exec, ${browser}"

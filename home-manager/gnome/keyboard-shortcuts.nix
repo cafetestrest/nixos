@@ -59,8 +59,8 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
       binding = "<Super>c";
-      command = "chromium";
-      name = "chromium (win + c)";
+      command = "brave";
+      name = "brave (win + c)";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" = {
       binding = "<Super>v";
