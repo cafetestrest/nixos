@@ -94,8 +94,8 @@ in
         # "LFW_IM_MODULE, ibus"
         # "INPUT_METHOD, fcitx"
 
-        # "QT_QPA_PLATFORM, wayland"
-        # "QT_QPA_PLATFORMTHEME, qt5ct"
+        "QT_QPA_PLATFORM, wayland"
+        "QT_QPA_PLATFORMTHEME, qt5ct"
 
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
