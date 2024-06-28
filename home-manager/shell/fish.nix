@@ -5,9 +5,9 @@ let
     user;
 in
 {
-  home.packages = with pkgs; [
-    peco                      #for oh-my-fish (along with omf plugin)
-    # oh-my-fish                #fish extensions (plugins: z, peco, vcs) (themes: default)
+  imports =
+  [
+    ./omf/plugins.nix
   ];
 
   programs.fish = {
@@ -60,13 +60,6 @@ in
           end
         '';
         onEvent = "fish_greeting";
-      };
-
-      fish_user_key_bindings = {
-        body = ''
-          bind \cr 'peco_select_history (commandline -b)'
-        '';
-        onEvent = "fish_user_key_bindings";
       };
 
       code = {

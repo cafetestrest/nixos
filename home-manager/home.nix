@@ -19,6 +19,7 @@ in
       ./fastfetch.nix
       ./vscode.nix
       ./brave.nix
+      ./zoxide.nix
       # ./rooter.nix  #https://github.com/run-as-root/rooter
     ];
 
