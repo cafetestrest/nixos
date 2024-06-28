@@ -138,7 +138,7 @@ check_apps_running() {
             two_apps_moving
         fi
 
-        pause_playing_media
+        # pause_playing_media
 
         count=$((count+1))
     done
@@ -172,10 +172,10 @@ while [ $SECONDS -lt $end ]; do
     # Gets the hyprland clients (apps) running
     output=$(hyprctl clients)
 
-    pause_playing_media
+    # pause_playing_media
 
     if check_apps_running; then
-        pause_playing_media
+        # pause_playing_media
         exit 0
     fi
     sleep 0.5
