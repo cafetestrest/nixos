@@ -21,7 +21,7 @@
     gnomeExtensions.no-overview
     # gnomeExtensions.gtile
     gnomeExtensions.gsconnect
-    gnomeExtensions.fuzzy-app-search
+    unstable.gnomeExtensions.fuzzy-app-search   #for new gnome versions
     gnomeExtensions.executor
     gnomeExtensions.caffeine
     gnomeExtensions.blur-my-shell
@@ -62,7 +62,7 @@
         #"super-key@tommimon.github.com"
         # "useless-gaps@pimsnel.com"
         "pop-shell@system76.com"
-        "sound-percentage@maestroschan.fr"
+        # "sound-percentage@maestroschan.fr"
       ];
     };
   };

@@ -12,7 +12,7 @@ in
     "org/gnome/shell" = {
       favorite-apps = [
         "terminator.desktop"
-        "chromium-browser.desktop"
+        "brave-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.TextEditor.desktop"
       ];
