@@ -7,7 +7,7 @@
 ```bash
 sudo su
 mount /dev/disk/by-label/nixos /mnt
-nix-env -iA nixos.git
+nix-shell -p git
 git clone https://github.com/cafetestrest/nixos.git /mnt/etc/nixos
 ```
 3. Change the variables.nix file
@@ -22,7 +22,7 @@ reboot
 # nixos install after normal os installation
 1. clone repository locally
 ```bash
-nix-env -iA nixos.git
+nix-shell -p git
 git clone https://github.com/cafetestrest/nixos.git
 cd nixos
 ```
@@ -37,9 +37,7 @@ configurations under configuration.nix and packages to be installed under packag
 ```bash
 nano ~/nixos/variables.nix
 
-nano ~/nixos/hosts/configuration.nix
-
-nano ~/nixos/hosts/packages.nix
+nano ~/flakes.nix
 ```
 
 4. install nixos
@@ -49,28 +47,6 @@ reboot
 ```
 
 # Post install:
-- To get omf installed (https://github.com/NixOS/nixpkgs/issues/212158):
-
-```bash
-omf-install
-chmod +w -R ~/.local/share/omf
-omf install z
-omf install peco
-omf install vcs
-omf install default
-omf theme default
-```
-
-- To get theme for Gnome (https://github.com/vinceliuice/Orchis-theme):
-
-```bash
-git clone https://github.com/vinceliuice/Orchis-theme.git
-cd Orchis-theme
-./install.sh -c dark --tweaks compact submenu macos --shell 42 --round 5px -l
-```
-
-Might be able to get similar results by editing nix overlay and overriding attributes of the orchis-theme like already commended under: gnome/packages.nix file.
-
 - Wallpaper (https://github.com/ArcticSpaceFox/nixos-artwork/blob/master/wallpapers/nixos-wallpaper-ice-pattern-gradient.svg)
 
 Rotated 180 degrees horizontally and vertically (to get purple to the bottom right)
