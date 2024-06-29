@@ -86,9 +86,7 @@ const Applauncher = () => {
 
                 // logic to go over all items in the list, if it contains class math-result it should be visible
                 list.children.map(item => {
-                    if (item.class_name !== 'math-result') {
-                        item.visible = false;
-                    } else {
+                    if (item.class_name === 'math-result') {
                         item.visible = true;
                     }
                 });
