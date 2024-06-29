@@ -5,8 +5,25 @@ function lock() {
     loginctl lock-session
 }
 
+function lock_with_hyprlock() {
+    pidof hyprlock || hyprlock > /dev/null 2>&1 &
+}
+
 function sespend() {
-    # hyprctl dispatch dpms off
+    if [ -n "$(whereis swayidle | awk '{print $2}')" ]; then
+        if ! pgrep -x "swayidle" >/dev/null; then
+            lock_with_hyprlock
+            sleep 0.2
+        fi
+    fi
+
+    if [ -n "$(whereis hypridle | awk '{print $2}')" ]; then
+        if ! pgrep -x "hypridle" >/dev/null; then
+            lock_with_hyprlock
+            sleep 0.2
+        fi
+    fi
+
     systemctl suspend
 }
 
