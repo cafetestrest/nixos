@@ -1,6 +1,6 @@
 diff --git a/commands/svc.cmd b/commands/svc.cmd
---- a/commands/svc.cmd	(revision 51502ef1e4a1ddbb560680b9906512b705995775)
-+++ b/commands/svc.cmd	(date 1702827358474)
+--- a/commands/svc.cmd	(revision a9ebf257e2257fb835bee33ace53506c8a3369d4)
++++ b/commands/svc.cmd	(date 1719753814257)
 @@ -59,7 +59,9 @@
  
      ## copy configuration files into location where they'll be mounted into containers from

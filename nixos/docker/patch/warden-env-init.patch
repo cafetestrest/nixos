@@ -1,14 +1,10 @@
 diff --git a/commands/env-init.cmd b/commands/env-init.cmd
---- a/commands/env-init.cmd	(revision 39d472934585b7a656033f52c5ae4150470912bd)
-+++ b/commands/env-init.cmd	(date 1712693513617)
-@@ -50,4 +50,42 @@
-   export WARDEN_ENV_NAME
-   export GENERATED_APP_KEY="base64:$(dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64)"
+--- a/commands/env-init.cmd	(revision a9ebf257e2257fb835bee33ace53506c8a3369d4)
++++ b/commands/env-init.cmd	(date 1719753804963)
+@@ -52,6 +52,44 @@
    envsubst '$WARDEN_ENV_NAME:$GENERATED_APP_KEY' < "${ENV_INIT_FILE}" >> "${WARDEN_ENV_PATH}/.env"
--fi
-\ No newline at end of file
-+fi
-+
+ fi
+ 
 +if [[ ${WARDEN_ENV_TYPE} == "magento2" && ! -d ./.warden ]]; then
 +  # Remove "init.env" at the end
 +  dot_warden_folder_path="${ENV_INIT_FILE%init.env}.warden"
@@ -46,3 +42,7 @@ diff --git a/commands/env-init.cmd b/commands/env-init.cmd
 +
 +  copy_files $dot_warden_folder_path ./.warden
 +fi
++
+ if [ -s "${WARDEN_ENV_PATH}/.env" ]; then
+   printf "A warden env file was created at ${WARDEN_ENV_PATH}/.env\nYou may now use \'warden env up\' to start your environment.\n"
+   exit 0

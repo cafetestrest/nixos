@@ -1,8 +1,7 @@
 diff --git a/environments/magento2/init.env b/environments/magento2/init.env
-index f60032c..88b9e9a 100644
---- a/environments/magento2/init.env
-+++ b/environments/magento2/init.env
-@@ -7,16 +7,17 @@ WARDEN_VARNISH=1
+--- a/environments/magento2/init.env	(revision a9ebf257e2257fb835bee33ace53506c8a3369d4)
++++ b/environments/magento2/init.env	(date 1719753794261)
+@@ -7,16 +7,17 @@
  WARDEN_RABBITMQ=1
  WARDEN_REDIS=1
  
@@ -25,7 +24,7 @@ index f60032c..88b9e9a 100644
  
  WARDEN_SYNC_IGNORE=
  
-@@ -35,3 +36,28 @@ BLACKFIRE_CLIENT_TOKEN=
+@@ -35,3 +36,28 @@
  BLACKFIRE_SERVER_ID=
  BLACKFIRE_SERVER_TOKEN=
  
