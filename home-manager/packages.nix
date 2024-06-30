@@ -18,7 +18,7 @@
     #wl-clipboard
     # albert              #keybinding for albert toggle to get programs search
     # postman             #postman for API calls
-    jetbrains.phpstorm    #phpstorm PHP editor
+    stable.jetbrains.phpstorm    #phpstorm PHP editor
     # qbittorrent         #torrent application
     playerctl             #keyboard shortcuts for play/pause/previous/next track/volume control
     libnotify             #notifications from terminal
