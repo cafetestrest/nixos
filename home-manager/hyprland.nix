@@ -78,9 +78,14 @@ in
     settings = {
       exec-once = [
         "startup"
-        # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "hyprctl setcursor ${cursorTheme} ${toString cursorSize}"
         # "copyq --start-server"
         # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
+      ];
+
+      exec = [
+        "dbus-launch --sh-syntax --exit-with-session Hyprland"
+        # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland"
       ];
 
       env = [
