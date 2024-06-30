@@ -20,6 +20,7 @@ in
       ./vscode.nix
       ./brave.nix
       ./zoxide.nix
+      ./yeelight.nix
       # ./rooter.nix  #https://github.com/run-as-root/rooter
     ];
 

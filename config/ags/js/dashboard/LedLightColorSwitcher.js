@@ -8,7 +8,7 @@ const ToggleLights = () => Widget.Box({
         Widget.Button({
             class_name: 'on',
             on_clicked: box => {
-                Utils.execAsync(['bash', '-c', "~/Public/yeelight-shell-scripts/yeelight-scene.sh 0 On"])
+                Utils.execAsync(['bash', '-c', "~/.config/scripts/yeelight/yeelight-scene.sh 0 On"])
                     .catch(console.error);
             },
             child: Widget.Box({
@@ -21,7 +21,7 @@ const ToggleLights = () => Widget.Box({
         Widget.Button({
             class_name: 'off',
             on_clicked: box => {
-                Utils.execAsync(['bash', '-c', "~/Public/yeelight-shell-scripts/yeelight-scene.sh 0 Off"])
+                Utils.execAsync(['bash', '-c', "~/.config/scripts/yeelight/yeelight-scene.sh 0 Off"])
                     .catch(console.error);
             },
             child: Widget.Box({
@@ -57,7 +57,7 @@ const ColorTempSlider = () => Widget.Slider({
                 (flatNumber >= 1700 && flatNumber <= 6500 && flatNumber % 20 === 0)) {
                 // console.log('temp ' + flatNumber)
 
-                Utils.execAsync(['bash', '-c', `~/Public/yeelight-shell-scripts/yeelight-colortemp.sh 0 ${flatNumber}`]).catch(console.error);   
+                Utils.execAsync(['bash', '-c', `~/.config/scripts/yeelight/yeelight-colortemp.sh 0 ${flatNumber}`]).catch(console.error);   
             }
         }
 
@@ -86,7 +86,7 @@ const HueSlider = () => Widget.Slider({
             if (flatNumber >= 0 && flatNumber <= 359 && flatNumber % 6 === 0) {
                 // console.log('hue ' + flatNumber)
 
-                Utils.execAsync(['bash', '-c', `~/Public/yeelight-shell-scripts/yeelight-hue.sh 0 ${flatNumber} 100`]).catch(console.error);   
+                Utils.execAsync(['bash', '-c', `~/.config/scripts/yeelight/yeelight-hue.sh 0 ${flatNumber} 100`]).catch(console.error);   
             }
         }
 
@@ -113,7 +113,7 @@ const BrightnessSlider = () => Widget.Slider({
                 (flatNumber >= 0 && flatNumber <= 100 && flatNumber % 10 === 0)) {
                 // console.log('brightness ' + flatNumber)
 
-                Utils.execAsync(['bash', '-c', `~/Public/yeelight-shell-scripts/yeelight-brightness.sh 0 ${flatNumber}`]).catch(console.error);   
+                Utils.execAsync(['bash', '-c', `~/.config/scripts/yeelight/yeelight-brightness.sh 0 ${flatNumber}`]).catch(console.error);   
             }
         }
 
