@@ -38,5 +38,5 @@ export const NightlightToggle = () => SimpleToggleButton({
             return Nightlight.mode = "auto";
         }
     },
-    connection: [Nightlight, () => Nightlight.mode]
+    connection: [Nightlight, () => Nightlight.mode !== 'off']
 });
