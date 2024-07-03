@@ -23,24 +23,6 @@ in
       # ./rooter.nix  #https://github.com/run-as-root/rooter
     ];
 
-  home = {
-    sessionVariables = {
-      QT_XCB_GL_INTEGRATION = "none"; # kde-connect
-    };
-
-    # sessionPath = [
-    #   "$HOME/.local/bin"
-    # ];
-  };
-
-  #KDE Connect
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
-
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "${user}";

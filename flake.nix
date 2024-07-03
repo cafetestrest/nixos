@@ -131,6 +131,7 @@
                 ./home-manager/gnome/gtk.nix
                 # ./home-manager/gnome/home.nix
                 # ./home-manager/gnome/extensions.nix
+                # ./home-manager/kdeconnect.nix
               ];
             };
           }
