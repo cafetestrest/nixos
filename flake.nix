@@ -100,7 +100,7 @@
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/defaultshell.nix                              # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
-          ./nixos/gnome
+          # ./nixos/gnome
           # ./nixos/cosmic
           ./nixos/gdm
           ./nixos/gdm/background.nix                            # background for gdm
@@ -128,8 +128,9 @@
                 ./home-manager/home.nix
                 ./home-manager/shell                  #fish (default) + bash
                 ./home-manager/hyprland.nix
-                ./home-manager/gnome/home.nix
-                ./home-manager/gnome/extensions.nix
+                ./home-manager/gnome/gtk.nix
+                # ./home-manager/gnome/home.nix
+                # ./home-manager/gnome/extensions.nix
               ];
             };
           }

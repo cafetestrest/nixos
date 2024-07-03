@@ -36,7 +36,7 @@ in
 
   services.xserver.enable = true; # Enable the X11 windowing system.
 
-  systemd.services.NetworkManager-wait-online.enable = false; # Slows down boot (https://github.dev/Kranzes/nix-config)
+  # systemd.services.NetworkManager-wait-online.enable = false; # Slows down boot (https://github.dev/Kranzes/nix-config)
   # For faster reboot https://unix.stackexchange.com/questions/448268/change-systemd-stop-job-timeout-in-nixos-configuration
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
