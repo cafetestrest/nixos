@@ -4,6 +4,8 @@ let
   inherit (import ../../variables.nix)
     cursorTheme
     gtkFontName
+    gtkTheme
+    gtkIconTheme
     user;
 in
 {
@@ -19,10 +21,19 @@ in
           remember-numlock-state = true;
         };
         "org/gnome/desktop/interface" = {
-          cursor-theme = "${cursorTheme}";
+          #theme
+          gtk-theme = "${gtkTheme}";
 
+          #fonts
+          font-name = "${gtkFontName}";
           document-font-name = "${gtkFontName}";
           monospace-font-name = "Source Code Pro 10";
+
+          #cursor
+          cursor-theme = "${cursorTheme}";
+
+          #icon
+          icon-theme = "${gtkIconTheme}";
 
           #clock in top bar
           clock-show-seconds = true;
