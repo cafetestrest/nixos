@@ -3,14 +3,12 @@
 {
   home.packages = with pkgs; [
     # terminator            #terminal
-    fastfetch
     killall
     # anydesk
     # nixpkgs-fmt        #Nix code formatter for nixpkgs
     # tldr
     distrobox             #distibutions in docker container
     inotify-tools
-    jq                    #json
     pamixer               #audio terminal commands
     bc                    #command line calculator
     # firefox             #firefox browser
@@ -28,4 +26,10 @@
     # unstable.gpt4all
     peco                  #bash/fish better reverse search
   ];
+
+  programs = {
+    jq = {
+      enable = true;
+    };
+  };
 }
