@@ -131,6 +131,19 @@
                 ./home-manager/gnome/gtk.nix
                 # ./home-manager/gnome/home.nix
                 # ./home-manager/gnome/extensions.nix
+                ./home-manager/packages.nix
+                ./home-manager/fonts.nix
+                # ./home-manager/chrome.nix
+                ./home-manager/terminator.nix
+                # ./home-manager/xterm.nix
+                ./home-manager/scripts # scripts, place to store all common scripts
+                ./home-manager/mpv.nix # mpv video player and its config
+                ./home-manager/fastfetch.nix
+                ./home-manager/vscode.nix
+                ./home-manager/brave.nix
+                ./home-manager/zoxide.nix
+                ./home-manager/yeelight.nix
+                # ./home-manager/rooter.nix  #https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
               ];
             };

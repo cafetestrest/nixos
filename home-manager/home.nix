@@ -6,23 +6,6 @@ let
     homeDirectory;
 in
 {
-  imports =
-    [
-      ./packages.nix
-      ./fonts.nix
-      # ./chrome.nix
-      ./terminator.nix
-      # ./xterm.nix
-      ./scripts # scripts, place to store all common scripts
-      ./mpv.nix # mpv video player and its config
-      ./fastfetch.nix
-      ./vscode.nix
-      ./brave.nix
-      ./zoxide.nix
-      ./yeelight.nix
-      # ./rooter.nix  #https://github.com/run-as-root/rooter
-    ];
-
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "${user}";
