@@ -17,9 +17,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    gnome.gnome-themes-extra  #for building orchis theme (with sassc)
     gnome.eog
-    # xpad                      #sticky notes
     shotwell                #photo editor for gnome
     orchis
   ];
