@@ -107,7 +107,7 @@
           # ./nixos/swaylock.nix                                  # lockscreen packages
           # ./nixos/gtklock.nix                                   # lockscreen packages
           ./nixos/docker/docker.nix                             # docker, docker-compose and /etc/hosts
-          ./nixos/docker/warden.nix                             # docker, docker-compose and /etc/hosts
+          ./nixos/docker/warden.nix
           ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
@@ -144,6 +144,8 @@
                 ./home-manager/brave.nix
                 ./home-manager/zoxide.nix
                 ./home-manager/yeelight.nix
+                ./home-manager/phpstorm.nix
+                # ./home-manager/distrobox.nix
                 # ./home-manager/rooter.nix  #https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
               ];
