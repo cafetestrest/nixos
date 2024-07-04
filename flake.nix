@@ -93,20 +93,21 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          ./nixos/hosts/desktop   #Boot and Bootloader config
+          ./nixos/hosts/desktop/bootloader.nix                 #Boot and Bootloader config
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
           # ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/defaultshell.nix                              # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
-          # ./nixos/gnome
-          # ./nixos/cosmic
-          ./nixos/gdm
+          # ./nixos/gnome/gnome.nix
+          # ./nixos/cosmic/cosmic.nix
+          ./nixos/gdm/gdm.nix
           ./nixos/gdm/background.nix                            # background for gdm
           # ./nixos/swaylock.nix                                  # lockscreen packages
           # ./nixos/gtklock.nix                                   # lockscreen packages
-          ./nixos/docker                                        # docker, docker-compose and /etc/hosts
+          ./nixos/docker/docker.nix                             # docker, docker-compose and /etc/hosts
+          ./nixos/docker/warden.nix                             # docker, docker-compose and /etc/hosts
           ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
@@ -126,7 +127,7 @@
               imports = [
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
-                ./home-manager/shell                  #fish (default) + bash
+                ./home-manager/shell/shells.nix                  #fish (default) + bash
                 ./home-manager/hyprland.nix
                 ./home-manager/gnome/gtk.nix
                 # ./home-manager/gnome/home.nix
@@ -136,7 +137,7 @@
                 # ./home-manager/chrome.nix
                 ./home-manager/terminator.nix
                 # ./home-manager/xterm.nix
-                ./home-manager/scripts # scripts, place to store all common scripts
+                ./home-manager/scripts.nix # scripts, place to store all common scripts
                 ./home-manager/mpv.nix # mpv video player and its config
                 ./home-manager/fastfetch.nix
                 ./home-manager/vscode.nix
@@ -155,7 +156,7 @@
         inherit system;
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; })
-          ./nixos/hosts/vm
+          ./nixos/hosts/vm/vm.nix
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard

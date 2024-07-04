@@ -39,5 +39,7 @@ in
   in
   [
     warden
+    openssl         #warden for svc up
+    envsubst        #warden for env up (commands/env-init.cmd)
   ];
 }

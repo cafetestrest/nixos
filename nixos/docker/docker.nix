@@ -5,15 +5,9 @@ let
     user;
 in
 {
-  imports = [
-    ./warden.nix
-  ];
-
   environment.systemPackages = with pkgs; [
     docker
     docker-compose
-    openssl         #warden for svc up
-    envsubst        #warden for env up (commands/env-init.cmd)
   ];
 
   users.users.${user} = {
@@ -45,13 +39,26 @@ in
   #   127.0.0.1 ::1 mailhog.warden.test
   # '';
 
-  services.resolved = {
-    enable = true;
-    extraConfig = ''
-      DNS=127.0.0.1
-      Domains=~test
-    '';
-  };
+  # services.resolved = {
+  #   enable = true;
+  #   extraConfig = ''
+  #     DNS=127.0.0.1
+  #     Domains=~test
+  #   '';
+  # };
+
+  # networking = {
+  #   resolvconf.enable = true;
+  #   search = [ "home" "net" ];
+  #   defaultGateway = "127.0.0.1";
+  #   nameservers = [
+  #     "1.1.1.1"
+  #     "8.8.8.8"
+  #   ];
+  # };
+  # environment.etc = {
+  #   "resolv.conf".text = "nameserver 127.0.0.1\n";
+  # };
 
   # xdebug ports
   networking.firewall.allowedTCPPortRanges = [
