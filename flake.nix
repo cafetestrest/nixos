@@ -137,7 +137,7 @@
                 # ./home-manager/chrome.nix
                 ./home-manager/terminator.nix
                 # ./home-manager/xterm.nix
-                ./home-manager/scripts.nix # scripts, place to store all common scripts
+                ./home-manager/scripts/scripts.nix # scripts, place to store all common scripts
                 ./home-manager/mpv.nix # mpv video player and its config
                 ./home-manager/fastfetch.nix
                 ./home-manager/vscode.nix
