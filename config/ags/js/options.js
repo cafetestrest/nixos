@@ -276,6 +276,7 @@ export default {
             ['com.github.Aylur.ags', 'preferences-desktop-apps'],
             ['chromium-browser', 'chromium'],
             ['VSCodium', 'vscodium'],
+            ['codium-url-handler', 'vscodium'],
             ['jetbrains-phpstorm', 'phpstorm'],
             ['org.kde.kdeconnect.app', 'kdeconnect'],
             ['.blueman-manager-wrapped', 'blueman'],
