@@ -77,6 +77,7 @@
     gvfs.enable = true; #allows applications to access various types of file systems (local, remote, etc.)
     devmon.enable = true; #(Device Monitor) automates the mounting and unmounting of removable devices like USB drives
     udisks2.enable = true;  #tools, and a library to handle storage devices and disk management
+    colord.enable = true;  #Whether to enable colord, the color management daemon
     # upower.enable = true; #provides power management support, primarily for battery-powered devices
     # power-profiles-daemon.enable = true;  #manages and applies power profiles (like power saving or performance)
     # accounts-daemon.enable = true;  #provides user account information to applications login details and user-specific
