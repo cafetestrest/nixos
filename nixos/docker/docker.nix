@@ -25,39 +25,30 @@ in
     ## WARDEN END ##
   '';
 
-  # networking.extraHosts =
-  # ''
-  #   127.0.0.1 ::1 magento.test
-  #   172.17.0.1 host.docker.internal
-  #   127.0.0.1 ::1 app.exampleproject.test
-  #   127.0.0.1 ::1 rabbitmq.exampleproject.test
-  #   127.0.0.1 ::1 opensearch.exampleproject.test
-  #   127.0.0.1 ::1 elasticsearch.exampleproject.test
-  #   127.0.0.1 ::1 dnsmasq.warden.test
-  #   127.0.0.1 ::1 traefik.warden.test
-  #   127.0.0.1 ::1 portainer.warden.test
-  #   127.0.0.1 ::1 mailhog.warden.test
-  # '';
+  #in case you can not open website (automatic dns resolution is not working), check if this file is present and not directory in its place
+  #/.warden/etc/traefik/traefik.yml
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNS=127.0.0.1
+      Domains=~test
+    '';
+  };
 
-  # services.resolved = {
-  #   enable = true;
-  #   extraConfig = ''
-  #     DNS=127.0.0.1
-  #     Domains=~test
-  #   '';
+  # networking.hosts = {
+  #   "127.0.0.1" = [ "app.exampleproject.test" ];
   # };
 
   # networking = {
-  #   resolvconf.enable = true;
-  #   search = [ "home" "net" ];
-  #   defaultGateway = "127.0.0.1";
+  #   resolvconf = {
+  #     enable = true;
+  #     useLocalResolver = true;
+  #   };
+  #   search = [ "home net" ];
   #   nameservers = [
   #     "1.1.1.1"
   #     "8.8.8.8"
   #   ];
-  # };
-  # environment.etc = {
-  #   "resolv.conf".text = "nameserver 127.0.0.1\n";
   # };
 
   # xdebug ports
