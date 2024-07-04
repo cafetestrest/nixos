@@ -42,4 +42,42 @@ in
     pkgs.openssl         #warden for svc up
     pkgs.envsubst        #warden for env up (commands/env-init.cmd)
   ];
+
+  programs.ssh.extraConfig =
+  ''
+    ## WARDEN START ##
+    Host tunnel.warden.test
+    HostName 127.0.0.1
+    User user
+    Port 2222
+    IdentityFile ~/.warden/tunnel/ssh_key
+    ## WARDEN END ##
+  '';
+
+  #in case you can not open website (automatic dns resolution is not working), check if this file is present and not directory in its place
+  #/.warden/etc/traefik/traefik.yml
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNS=127.0.0.1
+      Domains=~test
+    '';
+  };
+
+  # networking.hosts = {
+  #   "127.0.0.1" = [ "app.exampleproject.test" ];
+  # };
+
+  # networking = {
+  #   resolvconf = {
+  #     enable = true;
+  #     useLocalResolver = true;
+  #   };
+  #   search = [ "home net" ];
+  #   nameservers = [
+  #     "1.1.1.1"
+  #     "8.8.8.8"
+  #   ];
+  # };
+
 }
