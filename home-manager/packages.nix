@@ -2,7 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    # terminator            #terminal
+    wget
+    unzip
     killall
     # anydesk
     # nixpkgs-fmt        #Nix code formatter for nixpkgs
@@ -29,6 +30,14 @@
 
   programs = {
     jq = {
+      enable = true;
+    };
+
+    git = {
+      enable = true;
+    };
+
+    htop = {
       enable = true;
     };
   };
