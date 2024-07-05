@@ -6,18 +6,18 @@ disable() {
 
 enable() {
     disable
-    wlsunset -t 2700 -S 06:00 -s 06:00 &
+    wlsunset -t "$nightLightTemp" -S 06:00 -s 06:00 &
 }
 
 automatic() {
     disable
-    nohup wlsunset -t 2700 -l 39.07 -L 21.82 &
+    nohup wlsunset -t "$nightLightTemp" -l 39.07 -L 21.82 &
 }
 
 automatic_winter() {
     # echo "Winter time"
     disable
-    nohup wlsunset -t 2700 -l 44.81 -L 23.46 > /dev/null 2>&1 &
+    nohup wlsunset -t "$nightLightTemp" -l 44.81 -L 23.46 > /dev/null 2>&1 &
 }
 
 toggle() {
@@ -72,6 +72,12 @@ if [[ $# -ge 1 ]]; then
     firstArgLetter="$(echo "$1" | head -c 1)"
 else
     firstArgLetter=
+fi
+
+if [[ $# -ge 2 ]]; then
+    nightLightTemp="$2"
+else
+    nightLightTemp=2700
 fi
 
 if [ -z "$firstArgLetter" ]; then
