@@ -10,6 +10,11 @@ function refresh_ags_weather_info() {
     fi
 }
 
+function refresh_nightlight() {
+    if pgrep wlsunset; then
+        nightlight a
+    fi
+}
 
 # check if the PC is unlocked - gtklock not running for max duration defined below
 max_duration=60     # Maximum duration to check - seconds
@@ -24,6 +29,8 @@ while [ "$elapsed" -lt "$max_duration" ]; do
         refresh_ags_bluetooth_connected_devices
 
         refresh_ags_weather_info
+
+        refresh_nightlight
         break
     fi
 
