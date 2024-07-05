@@ -8,12 +8,10 @@ export default [
     Theme({
         name: 'Kitty Dark',
         icon: '󰄛',
-        'desktop.wallpaper.img': WP + 'kittybl.jpeg',
     }),
     Theme({
         name: 'Kitty Light',
         icon: '󰄛',
-        'desktop.wallpaper.img': WP + 'kitty.jpeg',
         ...lightColors,
         'theme.widget.bg': '$accent',
         'theme.widget.opacity': 64,
@@ -21,7 +19,6 @@ export default [
     Theme({
         name: 'Leaves',
         icon: '󰌪',
-        'desktop.wallpaper.img': WP + 'leaves.jpg',
         'theme.accent.accent': '$green',
         'theme.accent.gradient': 'to right, $accent, darken($accent, 14%)',
         'theme.widget.opacity': 92,
@@ -34,7 +31,6 @@ export default [
         name: 'Ivory',
         icon: '󰟆',
         ...lightColors,
-        'desktop.wallpaper.img': WP + 'ivory.png',
         'desktop.wallpaper.fg': '$bg_color',
         'desktop.screen_corners': false,
         'bar.style': 'separated',
@@ -50,7 +46,6 @@ export default [
     Theme({
         name: 'Space',
         icon: '',
-        'desktop.wallpaper.img': WP + 'space.jpg',
         'spacing': 11,
         'padding': 10,
         'radii': 12,

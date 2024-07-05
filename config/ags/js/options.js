@@ -195,10 +195,10 @@ export default {
     desktop: {
         wallpaper: {
             fg: Option('#fff', { 'scss': 'wallpaper-fg' }),
-            img: Option(themes[0].options['desktop.wallpaper.img'], {
-                'scssFormat': v => `"${v}"`,
-                'type': 'img',
-            }),
+            // img: Option(themes[0].options['desktop.wallpaper.img'], {
+            //     'scssFormat': v => `"${v}"`,
+            //     'type': 'img',
+            // }),
         },
         avatar: Option(`/var/lib/AccountsService/icons/${USER}`, {
             'scssFormat': v => `"${v}"`,

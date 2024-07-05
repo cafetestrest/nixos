@@ -4,7 +4,7 @@ import icons from '../icons.js';
 const pkg = JSON.parse(Utils.readFile(App.configDir + '/package.json'));
 const show = JSON.parse(Utils.readFile(Utils.CACHE_DIR + '/show_about') || 'true');
 const dontShow = () => Utils.writeFile('false', Utils.CACHE_DIR + '/show_about');
-const avatar = App.configDir + '/assets/aylur.jpg';
+// const avatar = App.configDir + '/assets/aylur.jpg';
 
 /**
  * @param {Object} o
@@ -28,11 +28,11 @@ export default () => PopupWindow({
         vertical: true,
         class_name: 'window-content',
         children: [
-            Widget.Box({
-                class_name: 'avatar',
-                hpack: 'center',
-                css: `background-image: url('${avatar}');`,
-            }),
+            // Widget.Box({
+            //     class_name: 'avatar',
+            //     hpack: 'center',
+            //     css: `background-image: url('${avatar}');`,
+            // }),
             Widget.Box({
                 vertical: true,
                 class_name: 'labels vertical',
