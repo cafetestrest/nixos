@@ -1,16 +1,11 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{ config, pkgs, lib, modulesPath, vars, ... }:
 
-let
-  inherit (import ../../../variables.nix)
-    efiSysMountPoint
-    configurationLimit;
-in
 {
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.efi.efiSysMountPoint = "${efiSysMountPoint}";
-  # boot.loader.systemd-boot.configurationLimit = configurationLimit;
+  #boot.loader.efi.efiSysMountPoint = "${vars.efiSysMountPoint}";
+  # boot.loader.systemd-boot.configurationLimit = vars.configurationLimit;
 
   # Boot
   boot =
@@ -24,7 +19,7 @@ in
       # timeout = 0;
       systemd-boot.editor = false;
       systemd-boot.enable = true;
-      systemd-boot.configurationLimit = configurationLimit;
+      systemd-boot.configurationLimit = vars.configurationLimit;
       efi.canTouchEfiVariables = true;
     };
 

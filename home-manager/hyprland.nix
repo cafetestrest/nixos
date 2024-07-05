@@ -1,11 +1,6 @@
-{ inputs, pkgs, ... }:
-let
-  inherit (import ../variables.nix)
-    cursorSize
-    cursorTheme
-    gtkTheme
-    user;
+{ inputs, pkgs, vars, ... }:
 
+let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 in
@@ -48,7 +43,7 @@ in
     name = "Log Out";
     comment = "Sign Out";
     icon = "system-log-out-symbolic";
-    exec = "loginctl terminate-user ${user}";
+    exec = "loginctl terminate-user ${vars.user}";
     terminal = false;
   };
 
@@ -78,7 +73,7 @@ in
     settings = {
       exec-once = [
         "startup"
-        "hyprctl setcursor ${cursorTheme} ${toString cursorSize}"
+        "hyprctl setcursor ${vars.cursorTheme} ${toString vars.cursorSize}"
         # "copyq --start-server"
         # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
       ];
@@ -104,10 +99,10 @@ in
 
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
-        "GTK_THEME, ${gtkTheme}"
-        "XCURSOR_THEME, ${cursorTheme}"
-        "XCURSOR_SIZE, ${toString cursorSize}"
-        "HYPRCURSOR_SIZE, ${toString cursorSize}"
+        "GTK_THEME, ${vars.gtkTheme}"
+        "XCURSOR_THEME, ${vars.cursorTheme}"
+        "XCURSOR_SIZE, ${toString vars.cursorSize}"
+        "HYPRCURSOR_SIZE, ${toString vars.cursorSize}"
 
         # "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
         # "QT_AUTO_SCREEN_SCALE_FACTOR, 1"

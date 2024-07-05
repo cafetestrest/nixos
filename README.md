@@ -10,7 +10,7 @@ mount /dev/disk/by-label/nixos /mnt
 nix-shell -p git
 git clone https://github.com/cafetestrest/nixos.git /mnt/etc/nixos
 ```
-3. Change the variables.nix file
+3. Change the variables inside flake.nix file.
 
 4. Run the following to apply (change host)
 
@@ -32,12 +32,9 @@ cd nixos
 cp /etc/nixos/hardware-configuration.nix ~/nixos/hosts/desktop/hardware-configuration.nix
 ```
 
-3. update your username and other variables under variables.nix,
-configurations under configuration.nix and packages to be installed under packages.nix
+3. update your username and other variables under flakes.nix, configurations and packages:
 ```bash
-nano ~/nixos/variables.nix
-
-nano ~/flakes.nix
+nano ~/nixos/flakes.nix
 ```
 
 4. install nixos

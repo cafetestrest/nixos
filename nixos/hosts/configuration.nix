@@ -2,34 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    user
-    grubHardDrive
-    timezone
-    defaultLocale
-    consoleFont
-    initialPassword
-    networkingHostName
-    nixExtraOptions;
-in
 {
-  networking.hostName = "${networkingHostName}";
+  networking.hostName = "${vars.networkingHostName}";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  time.timeZone = "${timezone}";  # Set your time zone.
+  time.timeZone = "${vars.timezone}";  # Set your time zone.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  i18n.defaultLocale = "${defaultLocale}";  # Select internationalisation properties.
+  i18n.defaultLocale = "${vars.defaultLocale}";  # Select internationalisation properties.
   console = {
-    font = "${consoleFont}";
+    font = "${vars.consoleFont}";
     #keyMap = "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
@@ -91,14 +80,14 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
+  users.users.${vars.user} = {
     isNormalUser = true;
     extraGroups = [
       "networkmanager"
       "wheel"
       # "libvirtd"
     ];
-    initialHashedPassword = "${initialPassword}";
+    initialHashedPassword = "${vars.initialPassword}";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -138,7 +127,7 @@ in
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = "${nixExtraOptions}";
+    extraOptions = "${vars.nixExtraOptions}";
   };
 
   nix.settings = {

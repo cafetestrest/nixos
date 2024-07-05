@@ -1,11 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-  inherit (import ../../../variables.nix)
-    fishOmfPecoPluginSha256Hash
-    fishOmfVcsPluginSha256Hash
-    fishOmfThemeDefaultSha256Hash;
-in
 {
   imports =
     [
@@ -22,7 +16,7 @@ in
           owner = "oh-my-fish";
           repo = "plugin-peco";
           rev = "refs/heads/master";
-          sha256 = "${fishOmfPecoPluginSha256Hash}";
+          sha256 = "${vars.fishOmfPecoPluginSha256Hash}";
         };
       }
 
@@ -32,7 +26,7 @@ in
       #     owner = "oh-my-fish";
       #     repo = "plugin-vcs";
       #     rev = "refs/heads/master";
-      #     sha256 = "${fishOmfVcsPluginSha256Hash}";
+      #     sha256 = "${vars.fishOmfVcsPluginSha256Hash}";
       #   };
       # }
 
@@ -42,7 +36,7 @@ in
           owner = "oh-my-fish";
           repo = "theme-default";
           rev = "refs/heads/master";
-          sha256 = "${fishOmfThemeDefaultSha256Hash}";
+          sha256 = "${vars.fishOmfThemeDefaultSha256Hash}";
         };
       }
     ];

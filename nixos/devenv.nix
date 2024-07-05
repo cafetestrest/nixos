@@ -1,11 +1,8 @@
-{ config, pkgs, ... }:
-let
-  inherit (import ../variables.nix)
-    user;
-in
+{ config, pkgs, vars, ... }:
+
 {
   nix.settings = {
-    trusted-users = [ "root" "${user}" ];
+    trusted-users = [ "root" "${vars.user}" ];
 
     substituters = [
       "https://devenv.cachix.org"

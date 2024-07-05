@@ -1,9 +1,5 @@
-{ inputs, pkgs, ... }:
-let
-  inherit (import ../variables.nix)
-    user
-    homeDirectory;
-in
+{ inputs, pkgs, vars, ... }:
+
 {
   home.packages = with pkgs; [ unstable.hypridle ];
 

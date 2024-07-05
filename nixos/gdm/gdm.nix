@@ -1,13 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    cursorTheme
-    gtkFontName
-    gtkTheme
-    gtkIconTheme
-    user;
-in
 {
   services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.settings = {
@@ -22,18 +14,18 @@ in
         };
         "org/gnome/desktop/interface" = {
           #theme
-          gtk-theme = "${gtkTheme}";
+          gtk-theme = "${vars.gtkTheme}";
 
           #fonts
-          font-name = "${gtkFontName}";
-          document-font-name = "${gtkFontName}";
+          font-name = "${vars.gtkFontName}";
+          document-font-name = "${vars.gtkFontName}";
           monospace-font-name = "Source Code Pro 10";
 
           #cursor
-          cursor-theme = "${cursorTheme}";
+          cursor-theme = "${vars.cursorTheme}";
 
           #icon
-          icon-theme = "${gtkIconTheme}";
+          icon-theme = "${vars.gtkIconTheme}";
 
           #clock in top bar
           clock-show-seconds = true;
@@ -53,7 +45,7 @@ in
   };
 
   # services.xserver.displayManager.autoLogin.enable = true;  # Enable automatic login for the user.
-  # services.xserver.displayManager.autoLogin.user = "${user}";
+  # services.xserver.displayManager.autoLogin.user = "${vars.user}";
 
   # systemd.services."getty@tty1".enable = false; # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."autovt@tty1".enable = false;

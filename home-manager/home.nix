@@ -1,15 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-  inherit (import ../variables.nix)
-    user
-    homeDirectory;
-in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "${user}";
-  home.homeDirectory = "${homeDirectory}";
+  home.username = "${vars.user}";
+  home.homeDirectory = "/home/${vars.user}";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

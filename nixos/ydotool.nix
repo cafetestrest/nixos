@@ -1,9 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, vars, ... }:
 
-let
-  inherit (import ../variables.nix)
-    user;
-in
 {
   # programs.ydotool.enable = true;
   users.groups.ydotool = { };
@@ -35,7 +31,7 @@ in
   };
   environment.systemPackages = with pkgs; [ ydotool ];
 
-  users.users.${user} = {
+  users.users.${vars.user} = {
     extraGroups = [
       "ydotool"
       "input"

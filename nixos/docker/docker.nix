@@ -1,16 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, vars, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    user;
-in
 {
   environment.systemPackages = with pkgs; [
     docker
     docker-compose
   ];
 
-  users.users.${user} = {
+  users.users.${vars.user} = {
     extraGroups = [ "docker" ];
   };
 

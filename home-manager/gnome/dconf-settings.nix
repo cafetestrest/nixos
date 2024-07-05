@@ -1,12 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-  inherit (import ../../variables.nix)
-    gtkTheme
-    gtkFontName
-    gtkIconTheme
-    cursorTheme;
-in
 {
   dconf.settings = {
     "org/gnome/shell" = {
@@ -20,18 +13,18 @@ in
 
     "org/gnome/desktop/interface" = {
       #theme
-      gtk-theme = "${gtkTheme}";
+      gtk-theme = "${vars.gtkTheme}";
 
       #fonts
-      font-name = "${gtkFontName}";
-      document-font-name = "${gtkFontName}";
+      font-name = "${vars.gtkFontName}";
+      document-font-name = "${vars.gtkFontName}";
       monospace-font-name = "Source Code Pro 10";
 
       #cursor
-      cursor-theme = "${cursorTheme}";
+      cursor-theme = "${vars.cursorTheme}";
 
       #icon
-      icon-theme = "${gtkIconTheme}";
+      icon-theme = "${vars.gtkIconTheme}";
 
       #clock in top bar
       clock-show-seconds = true;

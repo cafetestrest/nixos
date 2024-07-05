@@ -1,17 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, vars, ... }:
 
 let
-  inherit (import ../../variables.nix)
-    cursorSize
-    cursorTheme
-    gtkIconTheme
-    gtkFontName
-    gtkTheme;
-
-    orchis = (pkgs.orchis-theme.override {
-      border-radius = 3;
-      tweaks = [ "compact" "macos" "submenu" ];
-    });
+  orchis = (pkgs.orchis-theme.override {
+    border-radius = 3;
+    tweaks = [ "compact" "macos" "submenu" ];
+  });
 
   cursor-package = pkgs.apple-cursor;
 in
@@ -25,19 +18,19 @@ in
   gtk = {
       enable = true;
 
-      font.name = "${gtkFontName}";
+      font.name = "${vars.gtkFontName}";
 
       theme = {
-          name = "${gtkTheme}";
+          name = "${vars.gtkTheme}";
           package = orchis;
       };
 
       iconTheme = {
-          name = "${gtkIconTheme}";
+          name = "${vars.gtkIconTheme}";
       };
 
       cursorTheme = {
-          name = "${cursorTheme}";
+          name = "${vars.cursorTheme}";
       };
 
       gtk3.extraConfig = {
@@ -57,17 +50,17 @@ in
 
   home = {
     sessionVariables = {
-        XCURSOR_THEME = "${cursorTheme}";
-        XCURSOR_SIZE = cursorSize;
-        GTK_THEME = "${gtkTheme}";
+        XCURSOR_THEME = "${vars.cursorTheme}";
+        XCURSOR_SIZE = vars.cursorSize;
+        GTK_THEME = "${vars.gtkTheme}";
     };
 
     pointerCursor = {
-        size = cursorSize;
+        size = vars.cursorSize;
         gtk.enable = true;
         # x11.enable = true;
         package = cursor-package;
-        name = "${cursorTheme}";
+        name = "${vars.cursorTheme}";
     };
   };
 }
