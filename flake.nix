@@ -128,6 +128,7 @@
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
                 ./home-manager/shell/shells.nix                  #fish (default) + bash
+                ./home-manager/mime-defaultapps.nix #xdg + default apps (mime)
                 ./home-manager/hyprland.nix
                 ./home-manager/gnome/gtk.nix
                 # ./home-manager/gnome/home.nix
