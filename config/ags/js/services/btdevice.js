@@ -8,15 +8,11 @@ class BtDevice extends Service {
         super();
         this._data = null;
         this._headsetdata = null;
-        // this.call();
+        this.call();
     }
 
     call() {
-        if (!this._data) {
-            Utils.execAsync(['bash', '-c', "sleep 5 && bluetoothbatterypercentage ags"]).catch(console.error);
-        } else {
-            Utils.execAsync(['bash', '-c', "bluetoothbatterypercentage ags"]).catch(console.error);
-        }
+        Utils.execAsync(['bash', '-c', "bluetoothbatterypercentage ags"]).catch(console.error);
     }
 
     callHeadset() {
