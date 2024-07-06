@@ -1,7 +1,7 @@
 import Service from 'resource:///com/github/Aylur/ags/service.js';
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 
-class BtDeviceInfo extends Service {
+class BtDevice extends Service {
     static { Service.register(this); }
 
     constructor() {
@@ -40,4 +40,4 @@ class BtDeviceInfo extends Service {
     setHeadsetData(text) { this._headsetdata = text }
 }
 
-export default new BtDeviceInfo();
+export default new BtDevice();
