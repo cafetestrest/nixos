@@ -25,10 +25,10 @@
   };
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-  environment.sessionVariables = {
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    NIXOS_OZONE_WL = "1";
-  };
+  # environment.sessionVariables = {
+  #   ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  #   NIXOS_OZONE_WL = "1";
+  # };
 
   environment.systemPackages = with pkgs; [
     # ags

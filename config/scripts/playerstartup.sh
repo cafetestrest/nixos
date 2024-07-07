@@ -4,9 +4,22 @@ sleep_time() {
 
 # apps to open on startup
 function open_startup_apps() {
-    hyprctl dispatch exec "[workspace 1]" "terminator"
-    hyprctl dispatch exec "[workspace 1]" "codium ~/nixos/"
-    hyprctl dispatch exec "[workspace 1]" brave
+    program="terminator"
+    if ! pgrep "$program" >/dev/null; then
+        hyprctl dispatch exec "[workspace 1]" "$program"
+    fi
+
+    program="codium"
+    flags="$HOME/nixos/"
+    if ! pgrep "$program" >/dev/null; then
+        hyprctl dispatch exec "[workspace 1]" "$program $flags"
+    fi
+
+    program="brave"
+    if ! pgrep "$program" >/dev/null; then
+        hyprctl dispatch exec "[workspace 1]" "$program"
+    fi
+
     # hyprctl dispatch exec "[workspace 1]" "terminator --working-directory ~/.config/scripts"
     # hyprctl dispatch exec "[workspace 1]" "codium ~/.config/scripts"
 
