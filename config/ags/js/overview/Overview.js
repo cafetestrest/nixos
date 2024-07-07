@@ -47,4 +47,5 @@ const children = box => {
 export default () => PopupWindow({
     name: 'overview',
     child: Overview(),
+    anchor: ['top'],
 });
