@@ -14,18 +14,18 @@
         };
         "org/gnome/desktop/interface" = {
           #theme
-          gtk-theme = "${vars.gtkTheme}";
+          gtk-theme = "${vars.gtk.gtkTheme}";
 
           #fonts
-          font-name = "${vars.gtkFontName}";
-          document-font-name = "${vars.gtkFontName}";
+          font-name = "${vars.gtk.gtkFontName}";
+          document-font-name = "${vars.gtk.gtkFontName}";
           monospace-font-name = "Source Code Pro 10";
 
           #cursor
-          cursor-theme = "${vars.cursorTheme}";
+          cursor-theme = "${vars.gtk.cursorTheme}";
 
           #icon
-          icon-theme = "${vars.gtkIconTheme}";
+          icon-theme = "${vars.gtk.gtkIconTheme}";
 
           #clock in top bar
           clock-show-seconds = true;

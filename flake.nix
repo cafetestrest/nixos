@@ -49,16 +49,22 @@
       efiSysMountPoint = "/boot/efi";
       grubHardDriveForVM = "/dev/vda";
       configurationLimit = 20;
-      wardenSha256Hash = "sha256-3C7xoJdtAeiuQdNqT0WnSafSILDX97Ro5Pt/UIuVg9k="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"
-      cursorSize = 24;
-      cursorTheme = "macOS-Monterey";
-      gtkTheme = "Orchis-Dark";
-      gtkIconTheme = "Adwaita";
-      gtkFontName = "Cantarell 11";
-      fishOmfPecoPluginSha256Hash = "sha256-EUoicPd+aUMlfCeo9BOuIiBlQSpPtMtMn5AUkZU3uQA=";
-      fishOmfVcsPluginSha256Hash = "sha256-BVQgQOnPcqIf4eqLrmuUCvZahyEDKzBgJUeppLQWjQY=";
-      fishOmfThemeDefaultSha256Hash = "sha256-FVZhJo6BTz5Gt7RSOnXXU0Btxejg/p89AhZOvB9Xk1k=";
-      yeelightShellScriptsGitRev = "d8b463dea258b4f1fdf4277dd5b37ca8bebad3ee";
+      gtk = {
+        cursorSize = 24;
+        cursorTheme = "macOS-Monterey";
+        gtkTheme = "Orchis-Dark";
+        gtkIconTheme = "Adwaita";
+        gtkFontName = "Cantarell 11";
+      };
+      sha = {
+        wardenSha256Hash = "sha256-3C7xoJdtAeiuQdNqT0WnSafSILDX97Ro5Pt/UIuVg9k="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"
+        fishOmfPecoPluginSha256Hash = "sha256-EUoicPd+aUMlfCeo9BOuIiBlQSpPtMtMn5AUkZU3uQA=";
+        fishOmfVcsPluginSha256Hash = "sha256-BVQgQOnPcqIf4eqLrmuUCvZahyEDKzBgJUeppLQWjQY=";
+        fishOmfThemeDefaultSha256Hash = "sha256-FVZhJo6BTz5Gt7RSOnXXU0Btxejg/p89AhZOvB9Xk1k=";
+      };
+      commit = {
+        yeelightShellScriptsGitRev = "d8b463dea258b4f1fdf4277dd5b37ca8bebad3ee";
+      };
     };
 
     system = "x86_64-linux";

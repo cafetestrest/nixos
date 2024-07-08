@@ -18,19 +18,19 @@ in
   gtk = {
       enable = true;
 
-      font.name = "${vars.gtkFontName}";
+      font.name = "${vars.gtk.gtkFontName}";
 
       theme = {
-          name = "${vars.gtkTheme}";
+          name = "${vars.gtk.gtkTheme}";
           package = orchis;
       };
 
       iconTheme = {
-          name = "${vars.gtkIconTheme}";
+          name = "${vars.gtk.gtkIconTheme}";
       };
 
       cursorTheme = {
-          name = "${vars.cursorTheme}";
+          name = "${vars.gtk.cursorTheme}";
       };
 
       gtk3.extraConfig = {
@@ -50,17 +50,17 @@ in
 
   home = {
     sessionVariables = {
-        XCURSOR_THEME = "${vars.cursorTheme}";
-        XCURSOR_SIZE = vars.cursorSize;
-        GTK_THEME = "${vars.gtkTheme}";
+        XCURSOR_THEME = "${vars.gtk.cursorTheme}";
+        XCURSOR_SIZE = vars.gtk.cursorSize;
+        GTK_THEME = "${vars.gtk.gtkTheme}";
     };
 
     pointerCursor = {
-        size = vars.cursorSize;
+        size = vars.gtk.cursorSize;
         gtk.enable = true;
         # x11.enable = true;
         package = cursor-package;
-        name = "${vars.cursorTheme}";
+        name = "${vars.gtk.cursorTheme}";
     };
   };
 }

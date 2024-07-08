@@ -73,7 +73,7 @@ in
     settings = {
       exec-once = [
         "startup"
-        "hyprctl setcursor ${vars.cursorTheme} ${toString vars.cursorSize}"
+        "hyprctl setcursor ${vars.gtk.cursorTheme} ${toString vars.gtk.cursorSize}"
         # "copyq --start-server"
         # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
       ];
@@ -99,10 +99,10 @@ in
 
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
-        "GTK_THEME, ${vars.gtkTheme}"
-        "XCURSOR_THEME, ${vars.cursorTheme}"
-        "XCURSOR_SIZE, ${toString vars.cursorSize}"
-        "HYPRCURSOR_SIZE, ${toString vars.cursorSize}"
+        "GTK_THEME, ${vars.gtk.gtkTheme}"
+        "XCURSOR_THEME, ${vars.gtk.cursorTheme}"
+        "XCURSOR_SIZE, ${toString vars.gtk.cursorSize}"
+        "HYPRCURSOR_SIZE, ${toString vars.gtk.cursorSize}"
 
         # "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
         # "QT_AUTO_SCREEN_SCALE_FACTOR, 1"

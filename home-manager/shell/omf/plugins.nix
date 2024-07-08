@@ -16,7 +16,7 @@
           owner = "oh-my-fish";
           repo = "plugin-peco";
           rev = "refs/heads/master";
-          sha256 = "${vars.fishOmfPecoPluginSha256Hash}";
+          sha256 = "${vars.sha.fishOmfPecoPluginSha256Hash}";
         };
       }
 
@@ -26,7 +26,7 @@
       #     owner = "oh-my-fish";
       #     repo = "plugin-vcs";
       #     rev = "refs/heads/master";
-      #     sha256 = "${vars.fishOmfVcsPluginSha256Hash}";
+      #     sha256 = "${vars.sha.fishOmfVcsPluginSha256Hash}";
       #   };
       # }
 
@@ -36,7 +36,7 @@
           owner = "oh-my-fish";
           repo = "theme-default";
           rev = "refs/heads/master";
-          sha256 = "${vars.fishOmfThemeDefaultSha256Hash}";
+          sha256 = "${vars.sha.fishOmfThemeDefaultSha256Hash}";
         };
       }
     ];
