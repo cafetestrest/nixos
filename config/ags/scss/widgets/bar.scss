@@ -302,6 +302,10 @@ $bar-spacing: 0px;
     background-color: transparent;
 }
 
+.panel-button.media:active box{
+    all: unset;
+}
+
 .media.panel-button:hover box {
     box-shadow: none;
     background-color: transparent;

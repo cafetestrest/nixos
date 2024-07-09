@@ -29,6 +29,7 @@ export default ({
     const posEnd = direction === 'up' || direction === 'left';
 
     const revealer = Widget.Revealer({
+        class_name: "revealer-revealer",
         transition: `slide_${direction}`,
         setup: setupRevealer,
         transition_duration: duration,
@@ -37,6 +38,7 @@ export default ({
 
     const eventbox = Widget.EventBox({
         ...rest,
+        class_name: "revealer-eventbox",
         setup: setupEventBox,
         on_hover: () => {
             if (open)
@@ -53,6 +55,7 @@ export default ({
             open = false;
         },
         child: Widget.Box({
+            class_name: "revealer-box-child",
             vertical,
             children: [
                 posStart && indicator,
@@ -63,6 +66,7 @@ export default ({
     });
 
     return Widget.Box({
+        class_name: "revealer-box",
         children: [eventbox],
     });
 };
