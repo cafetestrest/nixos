@@ -1,7 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  # 1. installation (use distrobox - ubuntu -> enable it in home-manager)
+  # 1. On installation of rangoli.nix log out of the session
+
+  # 2. installation (use distrobox - ubuntu -> enable it in home-manager)
   # sudo apt-get install freeglut3 freeglut3-dev
   # sudo apt install libopengl0 -y
   # sudo apt install mesa-utils
@@ -11,16 +13,16 @@
   # sudo apt-get install libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 libegl1-mesa
   # sudo apt-get install libxcb-xinerama0
 
-  # 2. download .run: https://github.com/rnayabed/rangoli/releases
+  # 3. download .run: https://github.com/rnayabed/rangoli/releases
   #chmod +x rangoli-installer-linux-64.run
 
-  # 3. edit out: bin/udev-rule-writer.sh
+  # 4. edit out: bin/udev-rule-writer.sh
   #udev_rule_path = "/home/bajic/Downloads/rangoli/udev"
 
-  # 4. set variable in bash
+  # 5. set variable in bash
   # QT_QPA_PLATFORM="xcb"
 
-  # 5. start the rangoli
+  # 6. start the rangoli
 
   services.udev.extraRules = ''
 # START Rangoli udev rules
