@@ -1,10 +1,10 @@
 { config, lib, pkgs, vars, ... }:
 
 let
-  cursor = "mcmojave-hyprcursor";
+  cursor = "McMojave";
 
-  mcmojave-hyprcursor = with pkgs; stdenv.mkDerivation rec {
-    name = "mcmojave-hyprcursor";
+  McMojave = with pkgs; stdenv.mkDerivation rec {
+    name = "McMojave";
     src = fetchFromGitHub {
       owner = "OtaK";
       repo = "McMojave-hyprcursor";
@@ -15,15 +15,15 @@ let
     installPhase = ''
       runHook preInstall
 
-      mkdir -p $out/share/icons/mcmojave-hyprcursor
-      cp -R dist/* $out/share/icons/mcmojave-hyprcursor/
+      mkdir -p $out/share/icons/McMojave
+      cp -R dist/* $out/share/icons/McMojave/
 
       runHook postInstall
     '';
 
   };
 
-  cursorPackage = mcmojave-hyprcursor;
+  cursorPackage = McMojave;
 in
 {
   home.packages = [
