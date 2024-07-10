@@ -171,7 +171,7 @@
                 ./home-manager/zoxide.nix
                 ./home-manager/yeelight.nix
                 ./home-manager/phpstorm.nix
-                ./home-manager/distrobox.nix
+                # ./home-manager/distrobox.nix
                 # ./home-manager/rooter.nix  #https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
                 # ./home-manager/hyprcursors.nix
