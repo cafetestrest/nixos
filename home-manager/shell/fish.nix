@@ -34,20 +34,18 @@
       set -U fish_pager_color_description 555 yellow
       set -U fish_pager_color_progress cyan
       set -U fish_color_history_current cyan
-    '';
 
-    interactiveShellInit = ''
       # enables direnv
       # direnv hook fish | source
-
-      #peco on ctrl + r
-      function fish_user_key_bindings
-        bind \cr 'peco_select_history (commandline -b)'
-      end
-
     '';
 
     functions = {
+      fish_user_key_bindings = {
+        body = ''
+          bind \cr 'peco_select_history (commandline -b)'
+        '';
+      };
+
       fish_greeting = {
         body = ''
           if test -d $HOME/nixos
