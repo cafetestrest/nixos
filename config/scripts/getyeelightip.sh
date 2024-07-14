@@ -19,6 +19,20 @@ if [ ! -s "$IP_FILE" ]; then
     done
 fi
 
+failedIP=
+~/.config/scripts/yeelight/yeelight-scene.sh 0 On || failedIP=$(cat $IP_FILE)
+
+if [ "$failedIP" ]; then
+    truncate -s 0 "$IP_FILE"
+
+    for ((i="$INITIAL_START_IP"; i<="$INITIAL_END_IP"; i++)); do
+        if [ "$IP_PREFIX.$i" == "$failedIP" ]; then
+            continue
+        fi
+        echo "$IP_PREFIX.$i" >> "$IP_FILE"
+    done
+fi
+
 echo "running the yeelight command please be patient..."
 output=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 Off)
 
