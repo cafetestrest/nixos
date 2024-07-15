@@ -141,7 +141,7 @@
           # ./nixos/chromesettings.nix                            #chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
           ./nixos/copyq.nix
-          # ./nixos/rangoli.nix                                   #needs distrobox from home-manager
+          # ./nixos/udev/rangoli-udev.nix                         #needs distrobox from home-manager
 
           home-manager.nixosModules.home-manager
           {
