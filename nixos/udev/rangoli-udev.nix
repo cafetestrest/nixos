@@ -18,14 +18,17 @@
   # sudo apt install mesa-utils
   # sudo apt install libopengl0 -y
   # sudo apt install freeglut3 freeglut3-dev
+  
+  # sudo apt update && sudo apt upgrade
 
   # 3. download .run: https://github.com/rnayabed/rangoli/releases (try with sudo if normal does not work)
   #sudo chmod +x rangoli-installer-linux-64.run
+  # ./rangoli-installer-linux-64.run
 
   # 4. edit out: bin/udev-rule-writer.sh
   #udev_rule_path = "/home/bajic/Downloads/rangoli/udev"
 
-  # 5. set variable in bash and launch rangoli
+  # 5. launch rangoli with the following command:
   # QT_QPA_PLATFORM=xcb bin/rangoli
 
   services.udev.extraRules = ''
