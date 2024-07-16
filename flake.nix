@@ -175,6 +175,7 @@
                 # ./home-manager/rooter.nix  #https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
                 # ./home-manager/hyprcursors.nix
+                ./home-manager/eza.nix  #ls replacement
               ];
             };
           }
