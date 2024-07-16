@@ -16,7 +16,7 @@
     };
 
     nixos-cosmic = {
-      url = "github:lxwntr/nixos-cosmic-multiple-de";
+      url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
