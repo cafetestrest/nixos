@@ -124,6 +124,7 @@
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/defaultshell.nix                              # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
+          # ./nixos/kde/plasma.nix                                # KDE plasma DE
           # ./nixos/gnome/gnome.nix
           # ./nixos/cosmic/cosmic.nix
           ./nixos/gdm/gdm.nix
