@@ -93,12 +93,14 @@
     # testing = "open_in_browser";
 
     #nixos aliases
-    reb = "sudo nixos-rebuild switch --flake $HOME/nixos/#$USER";
+    reb = "sys rebuild";
     r = "reb";
+    t = "sys test";
     rebuildnocache = "reb --option eval-cache false";
     upgrade = "reb --upgrade";
     u = "upgrade";
-    garbage = "nix-collect-garbage -d && nix store optimise && sudo nix-collect-garbage -d && sudo nix store optimise";
+    garbage = "sys clean";
+    # garbage = "nix-collect-garbage -d && nix store optimise && sudo nix-collect-garbage -d && sudo nix store optimise";
     # g = "garbage";
   };
 }
