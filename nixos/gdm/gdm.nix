@@ -5,6 +5,8 @@
   # services.xserver.displayManager.gdm.settings = {
   # };
 
+  programs.dconf.enable = true;
+
   programs.dconf.profiles = {
     gdm.databases = [{
       settings = {

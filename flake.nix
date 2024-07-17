@@ -119,6 +119,10 @@
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./nixos/hosts/desktop/bootloader.nix                 #Boot and Bootloader config
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
+          ./nixos/ssd.nix                                       # fstrim
+          ./nixos/ntfs.nix                                      # windows ntfs file partition support
+          ./nixos/bluetooth.nix                                 # bluetooth support and blueman
+          # ./nixos/wireless.nix
           # ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages

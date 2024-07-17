@@ -62,18 +62,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Enable bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    settings.General.Experimental = true;
-  };
-  services.blueman.enable = true;
-
   # usb automount
   services.gvfs.enable = true;
-
-  # dconf
-  programs.dconf.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;  # Allow unfree packages
@@ -138,11 +128,6 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-
-  nix.settings.auto-optimise-store = true;
-
-  #support ntfs hard drive 29-mar-2023
-  boot.supportedFilesystems = [ "ntfs" ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
