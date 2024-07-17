@@ -28,8 +28,8 @@
       # let `xdg-open` to open the url with the correct application.
       defaultApplications = let
         browser = [ "brave-browser.desktop" ];
-        editor = [ "codium.desktop" ];
-        editorHandler = [ "codium-url-handler.desktop" ];
+        editor = [ "code.desktop" ];
+        editorHandler = [ "code-url-handler.desktop" ];
         audio = [ "mpv.desktop" ];
         video = [ "mpv.desktop" ];
         image = [ "org.gnome.eog.desktop" ]; # || org.gnome.Loupe.desktop || org.gnome.Shotwell.desktop

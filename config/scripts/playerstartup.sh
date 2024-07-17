@@ -9,7 +9,7 @@ function open_startup_apps() {
         hyprctl dispatch exec "[workspace 1 silent]" "$program"
     fi
 
-    program="codium"
+    program="code"
     flags="$HOME/nixos/"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program $flags"
@@ -25,7 +25,7 @@ function open_startup_apps() {
 
     # startup_app_class_names (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
     # startup_app_class_names (left)          (right-upper)   (right-lower)
-    startup_app_class_names=("Brave-browser" "codium-url-handler" "terminator")
+    startup_app_class_names=("Brave-browser" "code-url-handler" "terminator")
     # startup_app_class_names=("Chromium-browser" "terminator")
     sleep_time
     sleep_time
@@ -98,6 +98,11 @@ two_apps_moving() {
 class_name_substitutes() {
     if [[ -z $classWindowInfo && "$class_name" == "codium-url-handler" ]]; then
         class_name="VSCodium"
+        classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
+    fi
+
+    if [[ -z $classWindowInfo && "$class_name" == "code-url-handler" ]]; then
+        class_name="Code"
         classWindowInfo=$(echo "$output" | awk -v RS= -v ORS='\n\n' "/class: $class_name/ {print}")
     fi
 

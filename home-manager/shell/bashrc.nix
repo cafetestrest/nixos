@@ -84,9 +84,9 @@
 
       function code () {
         if [ "$#" -gt 0 ]; then
-          codium "$@"
+          code "$@"
         else
-          codium .
+          code .
         fi
       }
 

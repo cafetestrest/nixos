@@ -5,7 +5,7 @@
     vscode = {
       enable = true;
       package =
-        (pkgs.vscodium.override
+        (pkgs.vscode.override
           {
             # isInsiders = true;
             # https://wiki.archlinux.org/title/Wayland#Electron
