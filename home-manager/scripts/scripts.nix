@@ -19,5 +19,6 @@
       ./headset.nix
       ./monitor.nix
       ./resetbluetoothags.nix
+      ./sys.nix
   ];
 }
