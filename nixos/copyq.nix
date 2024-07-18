@@ -11,10 +11,10 @@
 
   environment.shellInit = ''
     check_copyq() {
-      if ! pgrep -x "copyq" >/dev/null; then
-        if [ -n "$HYPRLAND_CMD" ]; then
-          QT_QPA_PLATFORM=wayland copyq --start-server &
-        fi
+      if ! pgrep "copyq" > /dev/null; then
+          if [ -n "$HYPRLAND_CMD" ]; then
+              QT_QPA_PLATFORM=wayland copyq --start-server &
+          fi
       fi
     }
 
