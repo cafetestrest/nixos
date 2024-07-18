@@ -56,22 +56,22 @@
         onEvent = "fish_greeting";
       };
 
-      # code = {
-      #   body = ''
-      #     if count $argv > /dev/null
-      #         codium $argv
-      #     else
-      #         codium .
-      #     end
-      #   '';
-      # };
+      code = {
+        body = ''
+          if count $argv > /dev/null
+              codium $argv
+          else
+              codium .
+          end
+        '';
+      };
 
       "." = {
         body = ''
           if count $argv > /dev/null
-              code $argv
+              codium $argv
           else
-              code .
+              codium .
           end
         '';
       };
