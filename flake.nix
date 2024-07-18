@@ -126,7 +126,7 @@
           # ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
-          ./nixos/defaultshell.nix                              # sets default shell (fish)
+          ./nixos/fishdefaultshell.nix                          # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
           # ./nixos/kde/plasma.nix                                # KDE plasma DE
           # ./nixos/gnome/gnome.nix
