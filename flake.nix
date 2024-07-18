@@ -117,7 +117,7 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          ./nixos/hosts/desktop/bootloader.nix                 #Boot and Bootloader config
+          ./nixos/hosts/desktop/bootloader.nix                  #Boot and Bootloader config
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
           ./nixos/ssd.nix                                       # fstrim
           ./nixos/ntfs.nix                                      # windows ntfs file partition support
@@ -139,14 +139,14 @@
           ./nixos/docker/warden.nix
           ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
           # ./nixos/waybar.nix
-          # ./nixos/devenv.nix                                    #required for https://github.com/run-as-root/rooter
-          #./nixos/hosts/vm/packages.nix                         #virt-manager packages and libvirtd
+          # ./nixos/devenv.nix                                    # required for https://github.com/run-as-root/rooter
+          #./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
           #./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
-          ./nixos/localsend.nix                                 #used for file sharing with other PC/mobile devices
-          # ./nixos/chromesettings.nix                            #chrome settings -> enables WideVine
+          ./nixos/localsend.nix                                 # used for file sharing with other PC/mobile devices
+          # ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
           ./nixos/copyq.nix
-          # ./nixos/udev/rangoli-udev.nix                         #needs distrobox from home-manager
+          # ./nixos/udev/rangoli-udev.nix                         # needs distrobox from home-manager
 
           home-manager.nixosModules.home-manager
           {
