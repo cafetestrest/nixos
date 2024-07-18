@@ -117,7 +117,7 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          ./nixos/hosts/desktop/bootloader.nix                  #Boot and Bootloader config
+          ./nixos/hosts/desktop/bootloader.nix                  # Boot and Bootloader config
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
           ./nixos/ssd.nix                                       # fstrim
           ./nixos/ntfs.nix                                      # windows ntfs file partition support
