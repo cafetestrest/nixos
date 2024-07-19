@@ -157,8 +157,8 @@
               imports = [
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
-                ./home-manager/shell/shells.nix                  #fish (default) + bash
-                ./home-manager/mime-defaultapps.nix #xdg + default apps (mime)
+                ./home-manager/shell/shells.nix                 #fish (default) + bash
+                ./home-manager/mime-defaultapps.nix             #xdg + default apps (mime)
                 ./home-manager/hyprland.nix
                 ./home-manager/gnome/gtk.nix
                 # ./home-manager/gnome/home.nix
@@ -168,8 +168,8 @@
                 # ./home-manager/chrome.nix
                 ./home-manager/terminator.nix
                 # ./home-manager/xterm.nix
-                ./home-manager/scripts/scripts.nix # scripts, place to store all common scripts
-                ./home-manager/mpv.nix # mpv video player and its config
+                ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
+                ./home-manager/mpv.nix                          # mpv video player and its config
                 ./home-manager/fastfetch.nix
                 ./home-manager/vscode.nix
                 ./home-manager/brave.nix
@@ -177,10 +177,10 @@
                 ./home-manager/yeelight.nix
                 ./home-manager/phpstorm.nix
                 # ./home-manager/distrobox.nix
-                # ./home-manager/rooter.nix  #https://github.com/run-as-root/rooter
+                # ./home-manager/rooter.nix                       #https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
                 # ./home-manager/hyprcursors.nix
-                ./home-manager/eza.nix  #ls replacement
+                ./home-manager/eza.nix                          #ls replacement
               ];
             };
           }
