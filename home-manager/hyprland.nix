@@ -222,6 +222,7 @@ in
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         mvwin = binding "SUPER SHIFT" "movewindow";
+        swapwin = binding "SUPER ALT" "swapwindow";
         e = "exec, ags";
         arr = [1 2 3 4 5 6 7 8 9];
         yt = pkgs.writeShellScriptBin "yt" ''
@@ -291,6 +292,10 @@ in
         (mvwin "down" "d")
         (mvwin "right" "r")
         (mvwin "left" "l")
+        (swapwin "up" "u")
+        (swapwin "down" "d")
+        (swapwin "right" "r")
+        (swapwin "left" "l")
       ]
       ++ (map (i: ws (toString i) (toString i)) arr)
       ++ (map (i: mvtows (toString i) (toString i)) arr);
