@@ -41,4 +41,8 @@
       ];
     };
   };
+
+  home.shellAliases = {
+    neofetch = "fastfetch";
+  };
 }

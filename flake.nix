@@ -182,6 +182,10 @@
                 # ./home-manager/kdeconnect.nix
                 # ./home-manager/hyprcursors.nix
                 ./home-manager/eza.nix                          #ls replacement
+                ./home-manager/bat.nix                          #cat replacement
+                ./home-manager/fd.nix                           #find replacement
+                ./home-manager/ripgrep.nix                      #grep replacement
+                ./home-manager/git.nix
               ];
             };
           }
