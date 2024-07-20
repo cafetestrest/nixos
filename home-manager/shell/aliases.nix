@@ -93,7 +93,7 @@
     # testing = "open_in_browser";
 
     #nixos aliases
-    reb = "sys rebuild";
+    reb = "sys rebuild switch";
     r = "reb";
     t = "sys test";
     rebuildnocache = "reb --option eval-cache false";
