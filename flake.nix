@@ -161,6 +161,7 @@
                 ./home-manager/mime-defaultapps.nix             #xdg + default apps (mime)
                 ./home-manager/hyprland.nix
                 ./home-manager/gnome/gtk.nix
+                ./home-manager/gnome/dconf-settings.nix
                 # ./home-manager/gnome/home.nix
                 # ./home-manager/gnome/extensions.nix
                 ./home-manager/packages.nix
