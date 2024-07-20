@@ -26,7 +26,7 @@ function get_rebuild_command() {
 function cmd_rebuild() {
     get_rebuild_command "$@"
 
-    sudo "$REBUILD_COMMAND" switch --flake "$FLAKE_LOCATION#$USER" "$@"
+    sudo "$REBUILD_COMMAND" --flake "$FLAKE_LOCATION#$USER" "$@"
 }
 
 function cmd_test() {
