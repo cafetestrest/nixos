@@ -4,18 +4,18 @@ import FontIcon from '../misc/FontIcon.js';
 import Progress from '../misc/Progress.js';
 import Indicator from '../services/onScreenIndicator.js';
 
-export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) => Widget.Box({
+export const OnScreenIndicator = ({ height = 48, width = 300 } = {}) => Widget.Box({
     class_name: 'indicator',
     css: 'padding: 1px;',
     child: Widget.Revealer({
-        transition: 'slide_left',
+        transition: width <= height ? 'slide_left' : 'slide_down',
         setup: self => self.hook(Indicator, (_, value) => {
             self.reveal_child = value > -1;
         }),
         child: Progress({
             width,
             height,
-            vertical: true,
+            vertical: width <= height ? true : false,
             setup: self => self.hook(Indicator, (_, value) => self.attribute(value)),
             child: Widget.Stack({
                 vpack: 'start',
@@ -24,13 +24,13 @@ export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) => Widget.B
                 children: {
                     true: Widget.Icon({
                         hpack: 'center',
-                        size: width,
+                        size: width <= height ? width : height,
                         setup: w => w.hook(Indicator, (_, _v, name) => w.icon = name || ''),
                     }),
                     false: FontIcon({
                         hpack: 'center',
                         hexpand: true,
-                        css: `font-size: ${width}px;`,
+                        css: width <= height ? `font-size: ${width}px;` : `font-size: ${height}px;`,
                         setup: w => w.hook(Indicator, (_, _v, name) => w.label = name || ''),
                     }),
                 },
@@ -48,6 +48,6 @@ export default monitor => Widget.Window({
     monitor,
     class_name: 'indicator',
     layer: 'overlay',
-    anchor: ['right'],
+    anchor: ['top'],
     child: OnScreenIndicator(),
 });
