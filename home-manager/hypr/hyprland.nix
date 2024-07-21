@@ -119,42 +119,42 @@ in
       windowrule = let
         f = regex: "float, ^(${regex})$";
       in [
-		(f "org.gnome.Calculator")
-		# (f "org.gnome.Nautilus")
-		(f "pavucontrol")
-		(f "nm-connection-editor")
-		(f "blueberry.py")
-		(f "org.gnome.Settings")
-		(f "org.gnome.design.Palette")
-		(f "Color Picker")
-		(f "xdg-desktop-portal")
-		(f "xdg-desktop-portal-gnome")
-		(f "transmission-gtk")
-		(f "com.github.Aylur.ags")
-		(f "com.github.hluk.copyq")
-		(f "copyq")
-		(f "jetbrains-phpstorm")
-		"float,Rofi"
-		# "workspace 7, title:Spotify"
-		"opacity 0.85,terminator"
-		"move cursor -50% -20%,^(com.github.hluk.copyq)$"
-		"move cursor -50% -20%,^(copyq)$"
-		"size 350 200,^(com.github.hluk.copyq)$"
-		"size 350 200,^(copyq)$"
+        (f "org.gnome.Calculator")
+        # (f "org.gnome.Nautilus")
+        (f "pavucontrol")
+        (f "nm-connection-editor")
+        (f "blueberry.py")
+        (f "org.gnome.Settings")
+        (f "org.gnome.design.Palette")
+        (f "Color Picker")
+        (f "xdg-desktop-portal")
+        (f "xdg-desktop-portal-gnome")
+        (f "transmission-gtk")
+        (f "com.github.Aylur.ags")
+        (f "com.github.hluk.copyq")
+        (f "copyq")
+        (f "jetbrains-phpstorm")
+        "float,Rofi"
+        # "workspace 7, title:Spotify"
+        "opacity 0.85,terminator"
+        "move cursor -50% -20%,^(com.github.hluk.copyq)$"
+        "move cursor -50% -20%,^(copyq)$"
+        "size 350 200,^(com.github.hluk.copyq)$"
+        "size 350 200,^(copyq)$"
       ];
 
       windowrulev2 = let
         f = regex: "stayfocused,class:${regex}";
       in [
-		(f "com.github.hluk.copyq")
-		(f "copyq")
-		(f "Rofi")
+        (f "com.github.hluk.copyq")
+        (f "copyq")
+        (f "Rofi")
       ];
 
       layerrule = let
         f = regex: "blur,${regex}";
       in [
-		(f "rofi")
+        (f "rofi")
       ];
 
       bind = let
