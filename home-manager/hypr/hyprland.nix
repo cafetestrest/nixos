@@ -5,64 +5,6 @@ let
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 in
 {
-  imports =
-    [
-      ./ags.nix # https://github.com/Aylur/ags
-      # ./swaylock.nix
-      ./hyprlock.nix
-      ./hypridle.nix
-      # ./hyprpaper.nix
-    ];
-
-  xdg.desktopEntries."org.gnome.Settings" = {
-    name = "Settings";
-    comment = "Gnome Control Center";
-    icon = "org.gnome.Settings";
-    exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
-    categories = [ "X-Preferences" ];
-    terminal = false;
-  };
-
-  xdg.desktopEntries."shutdown" = {
-    name = "Shutdown";
-    comment = "Power Off";
-    icon = "system-shutdown-symbolic";
-    exec = "shutdown now";
-    terminal = false;
-  };
-
-  xdg.desktopEntries."restart" = {
-    name = "Restart";
-    comment = "Reboot";
-    icon = "system-reboot-symbolic";
-    exec = "systemctl reboot";
-    terminal = false;
-  };
-
-  xdg.desktopEntries."logout" = {
-    name = "Log Out";
-    comment = "Sign Out";
-    icon = "system-log-out-symbolic";
-    exec = "loginctl terminate-user ${vars.user}";
-    terminal = false;
-  };
-
-  xdg.desktopEntries."lock" = {
-    name = "Lock";
-    comment = "Locks PC";
-    icon = "system-lock-screen-symbolic";
-    exec = "idle l";
-    terminal = false;
-  };
-
-  xdg.desktopEntries."sleep" = {
-    name = "Sleep";
-    comment = "Put PC to Sleep";
-    icon = "weather-clear-night-symbolic";
-    exec = "idle s";
-    terminal = false;
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland;

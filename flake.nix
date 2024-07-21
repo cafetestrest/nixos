@@ -140,8 +140,8 @@
           ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    # required for https://github.com/run-as-root/rooter
-          #./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
-          #./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
+          # ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
+          # ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           ./nixos/localsend.nix                                 # used for file sharing with other PC/mobile devices
           # ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
@@ -157,30 +157,36 @@
               imports = [
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
-                ./home-manager/shell/shells.nix                 #fish (default) + bash
-                ./home-manager/mime-defaultapps.nix             #xdg + default apps (mime)
-                ./home-manager/hyprland.nix
-                ./home-manager/gnome/gtk.nix
-                ./home-manager/gnome/dconf-settings.nix
+                ./home-manager/shell/shells.nix                 # fish (default) + bash
+                ./home-manager/mime-defaultapps.nix             # xdg + default apps (mime)
+                ./home-manager/hypr/hyprland.nix
+                ./home-manager/ags.nix                          # top bar + shell https://github.com/Aylur/ags
+                # ./home-manager/swaylock.nix                   # lock screen
+                ./home-manager/hypr/hyprlock.nix                # lock screen
+                ./home-manager/hypr/hypridle.nix                # idle inhibitor
+                ./home-manager/hypr/commands.nix                # dekstop entries / commands
+                # ./home-manager/hypr/hyprpaper.nix             # wallpaper
+                # ./home-manager/hypr/hyprcursors.nix           # cursors
+                ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
+                ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
                 # ./home-manager/gnome/home.nix
-                # ./home-manager/gnome/extensions.nix
-                ./home-manager/packages.nix
+                # ./home-manager/gnome/extensions.nix           # gnome extensions
+                ./home-manager/packages.nix                     # shared packages
                 ./home-manager/fonts.nix
                 # ./home-manager/chrome.nix
-                ./home-manager/terminator.nix
+                ./home-manager/terminator.nix                   # terminal config
                 # ./home-manager/xterm.nix
                 ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
                 ./home-manager/mpv.nix                          # mpv video player and its config
-                ./home-manager/fastfetch.nix
+                ./home-manager/fastfetch.nix                    # neofetch replacement
                 ./home-manager/vscode.nix
-                ./home-manager/brave.nix
-                ./home-manager/zoxide.nix
-                ./home-manager/yeelight.nix
-                ./home-manager/phpstorm.nix
+                ./home-manager/brave.nix                        # browser
+                ./home-manager/zoxide.nix                       # z - smarter cd
+                ./home-manager/yeelight.nix                     # smart lights
+                ./home-manager/phpstorm.nix                     # PHP IDE
                 # ./home-manager/distrobox.nix
-                # ./home-manager/rooter.nix                       #https://github.com/run-as-root/rooter
+                # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
-                # ./home-manager/hyprcursors.nix
                 ./home-manager/eza.nix                          #ls replacement
                 ./home-manager/bat.nix                          #cat replacement
                 ./home-manager/fd.nix                           #find replacement
