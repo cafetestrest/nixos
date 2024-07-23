@@ -5,6 +5,18 @@ IP_PREFIX=192.168.0
 INITIAL_START_IP=20
 INITIAL_END_IP=30
 
+if [[ $# -ge 3 ]]; then
+  IP_PREFIX=$3
+fi
+
+if [[ $# -ge 2 ]]; then
+  INITIAL_END_IP=$2
+fi
+
+if [[ $# -ge 1 ]]; then
+  INITIAL_START_IP=$1
+fi
+
 # check if IP file exists, if not create it
 if [ ! -f "$IP_FILE" ]; then
     echo "IP File does not exist, creating it under: $IP_FILE"
