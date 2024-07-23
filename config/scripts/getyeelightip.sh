@@ -40,69 +40,72 @@ if [ "$failedIP" ]; then
 fi
 
 function run_command() {
-    echo "running the yeelight command please be patient..."
-    output=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 Off)
+  echo "running the yeelight command please be patient..."
+  output=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 Off)
 
-    # OUTPUT=$(cat <<-END
-    # Executing on ID 10 [192.168.0.11] ...   10 "method":"set_power","params":["off"]
-    # Executing on ID 1 [192.168.0.20] ...   1 "method":"set_power","params":["off"]
-    # 192.168.0.20 not available
-    # Executing on ID 2 [192.168.0.21] ...   2 "method":"set_power","params":["off"]
-    # 192.168.0.21 not available
-    # Executing on ID 3 [192.168.0.22] ...   3 "method":"set_power","params":["off"]
-    # 192.168.0.22 not available
-    # Executing on ID 4 [192.168.0.23] ...   4 "method":"set_power","params":["off"]
-    # 192.168.0.23 not available
-    # Executing on ID 5 [192.168.0.24] ...   5 "method":"set_power","params":["off"]
-    # 192.168.0.24 not available
-    # Executing on ID 6 [192.168.0.25] ...   6 "method":"set_power","params":["off"]
-    # 192.168.0.25 not available
-    # Executing on ID 7 [192.168.0.26] ...   7 "method":"set_power","params":["off"]
-    # /home/bajic/.config/scripts/yeelight/yeelight.sh: connect: Connection refused
-    # /home/bajic/.config/scripts/yeelight/yeelight.sh: line 18: /dev/tcp/192.168.0.26/55443: Connection refused
-    # Executing on ID 8 [192.168.0.27] ...   8 "method":"set_power","params":["off"]
-    # 192.168.0.27 not available
-    # Executing on ID 9 [192.168.0.28] ...   9 "method":"set_power","params":["off"]
-    # 192.168.0.28 not available
-    # Executing on ID 10 [192.168.0.29] ...   10 "method":"set_power","params":["off"]
-    # Executing on ID 11 [192.168.0.30] ...   11 "method":"set_power","params":["off"]
-    # 192.168.0.30 not available
-    # END
-    # );
+  # OUTPUT=$(cat <<-END
+  # Executing on ID 10 [192.168.0.11] ...   10 "method":"set_power","params":["off"]
+  # Executing on ID 1 [192.168.0.20] ...   1 "method":"set_power","params":["off"]
+  # 192.168.0.20 not available
+  # Executing on ID 2 [192.168.0.21] ...   2 "method":"set_power","params":["off"]
+  # 192.168.0.21 not available
+  # Executing on ID 3 [192.168.0.22] ...   3 "method":"set_power","params":["off"]
+  # 192.168.0.22 not available
+  # Executing on ID 4 [192.168.0.23] ...   4 "method":"set_power","params":["off"]
+  # 192.168.0.23 not available
+  # Executing on ID 5 [192.168.0.24] ...   5 "method":"set_power","params":["off"]
+  # 192.168.0.24 not available
+  # Executing on ID 6 [192.168.0.25] ...   6 "method":"set_power","params":["off"]
+  # 192.168.0.25 not available
+  # Executing on ID 7 [192.168.0.26] ...   7 "method":"set_power","params":["off"]
+  # /home/bajic/.config/scripts/yeelight/yeelight.sh: connect: Connection refused
+  # /home/bajic/.config/scripts/yeelight/yeelight.sh: line 18: /dev/tcp/192.168.0.26/55443: Connection refused
+  # Executing on ID 8 [192.168.0.27] ...   8 "method":"set_power","params":["off"]
+  # 192.168.0.27 not available
+  # Executing on ID 9 [192.168.0.28] ...   9 "method":"set_power","params":["off"]
+  # 192.168.0.28 not available
+  # Executing on ID 10 [192.168.0.29] ...   10 "method":"set_power","params":["off"]
+  # Executing on ID 11 [192.168.0.30] ...   11 "method":"set_power","params":["off"]
+  # 192.168.0.30 not available
+  # END
+  # );
 
-    echo "Command output: $output"
+  echo "Command output: $output"
 
-    if [ "$output" ]; then
+  if [ "$output" ]; then
+    # Initialize a variable to store the successful IP
+    successful_ip="false"
+    current_ip=""
+    errors_found=false
 
-        # Initialize a variable to store the successful IP
-        successful_ip="false"
-        current_ip=""
-        errors_found=false
-
-        # Loop through the command output line by line
-        while IFS= read -r line; do
-            # Check if the line indicates the start of execution and extract the IP
-            if [[ $line =~ Executing\ on\ ID\ [0-9]+\ \[(192\.168\.[0-9]+\.[0-9]+)\] ]]; then
-                # If the previous IP had no errors and a current IP was being checked, mark it as successful
-                if [[ $errors_found == false && $current_ip != "" ]]; then
-                    successful_ip=$current_ip
-                fi
-                # Reset for the next IP
-                current_ip="${BASH_REMATCH[1]}"
-                errors_found=false
-            fi
-
-            # Check for error messages
-            if [[ $line =~ (not\ available|Connection\ refused) ]]; then
-                errors_found=true
-            fi
-        done <<< "$output"
-
-        # Final check for the last IP
-        if [[ $errors_found == false && $current_ip != "" && $current_ip != "false" ]]; then
+    # Loop through the command output line by line
+    while IFS= read -r line; do
+      # Check if the line indicates the start of execution and extract the IP
+      if [[ $line =~ Executing\ on\ ID\ [0-9]+\ \[(192\.168\.[0-9]+\.[0-9]+)\] ]]; then
+        # If the previous IP had no errors and a current IP was being checked, mark it as successful
+        if [[ $errors_found == false && $current_ip != "" ]]; then
             successful_ip=$current_ip
+            echo "successful ip: $current_ip"
+            break;
         fi
+        # Reset for the next IP
+        current_ip="${BASH_REMATCH[1]}"
+        errors_found=false
+      fi
+
+      # Check for error messages
+      if [[ $line =~ (not\ available|Connection\ refused) ]]; then
+        errors_found=true
+      fi
+    done <<< "$output"
+
+    # Final check for the last IP
+    if [[ $errors_found == false && $current_ip != "" && $current_ip != "false" ]]; then
+      if [[ "$failedIP" && "$failedIP" != "" ]]; then
+        successful_ip=$current_ip
+      fi
     fi
+  fi
 }
 
 run_command
