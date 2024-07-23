@@ -1,3 +1,4 @@
+window#clipboard .window-content,
 window#applauncher .window-content {
     @include floating_widget;
     padding: 0; //padding around window

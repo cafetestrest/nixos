@@ -178,7 +178,8 @@ in
         "SUPER SHIFT, I, exec, ${browser} --incognito"
         "SUPER, T, exec, terminator"
         "SUPER, E, exec, ${fileExplorer}"
-        "SUPER, V, exec, copyq toggle"
+        "SUPER SHIFT, V, exec, copyq toggle"
+        "SUPER, V, ${e} -t clipboard"
         "SUPER, Print, exec, screenshot"
         "SUPER SHIFT, S, exec, screenshot 1"
 

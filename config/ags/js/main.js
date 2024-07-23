@@ -1,4 +1,5 @@
 import Applauncher from './applauncher/Applauncher.js';
+import Clipboard from './applauncher/Clipboard.js';
 import Dashboard from './dashboard/Dashboard.js';
 import Desktop from './desktop/Desktop.js';
 import FloatingDock from './dock/FloatingDock.js';
@@ -39,6 +40,7 @@ const windows = () => [
     // About(),
     Weather(),
     QSNotifications(),
+    Clipboard(),
 ];
 
 // export default {

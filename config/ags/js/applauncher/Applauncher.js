@@ -133,6 +133,8 @@ const Applauncher = () => {
 
 export default () => PopupWindow({
     name: WINDOW_NAME,
-    anchor: [],
+    transition: 'slide_down',
     child: Applauncher(),
+    anchor: [],
+    // anchor: options.applauncher.anchor.bind('value'),
 });
