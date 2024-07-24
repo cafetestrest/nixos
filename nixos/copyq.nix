@@ -13,7 +13,7 @@
     check_copyq() {
       if ! pgrep "copyq" > /dev/null; then
           if [ -n "$HYPRLAND_CMD" ]; then
-              QT_QPA_PLATFORM=wayland;xcb copyq --start-server &
+              QT_QPA_PLATFORM=wayland copyq --start-server &
           fi
       fi
     }
