@@ -48,6 +48,6 @@ export default monitor => Widget.Window({
     monitor,
     class_name: 'indicator',
     layer: 'overlay',
-    anchor: ['top'],
+    anchor: ['top', 'right'],
     child: OnScreenIndicator(),
 });
