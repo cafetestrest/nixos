@@ -40,7 +40,7 @@ const windows = () => [
     // About(),
     Weather(),
     QSNotifications(),
-    Clipboard(),
+    // Clipboard(),
 ];
 
 // export default {
