@@ -187,11 +187,13 @@
                 # ./home-manager/distrobox.nix
                 # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
-                ./home-manager/eza.nix                          #ls replacement
-                ./home-manager/bat.nix                          #cat replacement
-                ./home-manager/fd.nix                           #find replacement
-                ./home-manager/ripgrep.nix                      #grep replacement
+                ./home-manager/eza.nix                          # ls replacement
+                ./home-manager/bat.nix                          # cat replacement
+                ./home-manager/fd.nix                           # find replacement
+                ./home-manager/ripgrep.nix                      # grep replacement
                 ./home-manager/git.nix
+                ./home-manager/kitty.nix                        # terminal
+                ./home-manager/yazi.nix                         # file explorer in terminal
               ];
             };
           }
