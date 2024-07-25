@@ -9,7 +9,6 @@
     "......" = "cd ../../../../..";
     cls = "clear";
     cl = "clear";
-    f = "yazi";
 
     #docker aliases
     dockerprune = "dockerpruneall";
