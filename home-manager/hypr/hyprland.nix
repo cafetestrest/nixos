@@ -176,7 +176,8 @@ in
       in [
         "SUPER, C, exec, ${browser}"
         "SUPER SHIFT, I, exec, ${browser} --incognito"
-        "SUPER, T, exec, terminator"
+        "SUPER, T, exec, kitty"
+        "SUPER, Return, exec, kitty"
         "SUPER, E, exec, ${fileExplorer}"
         "SUPER, V, exec, copyq toggle"
         # "SUPER, V, ${e} -t clipboard"

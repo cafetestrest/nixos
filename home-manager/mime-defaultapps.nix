@@ -22,7 +22,7 @@
     # the system-level desktop entries can be list by command:
     #   ls -l /run/current-system/sw/share/applications/
     # the user-level desktop entries can be list by command(user bajic):
-    #  ls /etc/profiles/per-user/bajic/share/applications/
+    #  ls -l /etc/profiles/per-user/bajic/share/applications/
     mimeApps = {
       enable = true;
       # let `xdg-open` to open the url with the correct application.

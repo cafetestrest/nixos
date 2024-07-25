@@ -39,13 +39,13 @@
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Control><Alt>t";
-      command = "terminator";
-      name = "terminator (ctrl + alt + t)";
+      command = "kitty";
+      name = "kitty (ctrl + alt + t)";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Super>t";
-      command = "terminator";
-      name = "terminator (win + t)";
+      command = "kitty";
+      name = "kitty (win + t)";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
       binding = "<Super>f";

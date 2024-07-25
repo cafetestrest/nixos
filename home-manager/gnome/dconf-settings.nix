@@ -4,7 +4,7 @@
   dconf.settings = {
     "org/gnome/shell" = {
       favorite-apps = [
-        "terminator.desktop"
+        "kitty.desktop"
         "brave-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "org.gnome.TextEditor.desktop"

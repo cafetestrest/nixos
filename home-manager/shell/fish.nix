@@ -50,8 +50,8 @@
         body = ''
           if test -d $HOME/nixos
             cd $HOME/nixos
-            fastfetch
           end
+          fastfetch
         '';
         onEvent = "fish_greeting";
       };
