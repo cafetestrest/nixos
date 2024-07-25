@@ -9,9 +9,10 @@
     source = ../config/terminal/kitty/kitty.conf;
   };
 
-  # kitty folder
+  xdg.configFile."kitty/dark.conf".source = "${pkgs.kitty-themes}/share/kitty-themes/themes/VSCode_Dark.conf";
+
   # xdg.configFile."kitty" = {
   #   source = ../config/terminal/kitty;
-  #   recursive = true;
+  #   # recursive = true;
   # };
 }
