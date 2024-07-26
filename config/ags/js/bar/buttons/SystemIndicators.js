@@ -14,6 +14,7 @@ import FontIcon from '../../misc/FontIcon.js';
 import { PercentLabel, VolumeIndicator } from '../../quicksettings/widgets/Volume.js';
 import { IdleIndicator } from '../../quicksettings/widgets/Idle.js';
 import { NightlightIndicator } from '../../quicksettings/widgets/NightLight.js';
+import Btdevice from '../../services/btdevice.js';
 
 const ProfileIndicator = () => Widget.Icon()
     .bind('visible', Asusctl, 'profile', p => p !== 'Balanced')
@@ -119,6 +120,33 @@ const SpeakerIndicator = () => Widget.Box({
     }),
 });
 
+const HeadsetInfo = () => Widget.Box({
+    class_name: 'headset-indicator',
+    setup: self => {
+        self.poll(5000, (self) => {
+            Btdevice.callHeadsetBatteryScript
+            const data = Btdevice.headsetdata;
+    
+            self.get_children().forEach(ch => ch.destroy());
+    
+            data ? self.add(Widget.Box({
+                class_name: 'headset-battery',
+                children: [
+                    // Widget.Icon({
+                    //     class_name: 'headset-battery-icon',
+                    //     icon: icons.audio.type.headset
+                    // }),
+                    Widget.Label({
+                        class_name: 'headset-battery-label',
+                        label: data
+                    }),
+                ],
+            })) : null;
+        });
+    },
+});
+
+
 export default () => PanelButton({
     class_name: 'quicksettings panel-button',
     on_clicked: () => {
@@ -154,6 +182,7 @@ export default () => PanelButton({
             // AudioIndicator(),
             MicrophoneIndicator(),
             SpeakerIndicator(),
+            HeadsetInfo(),
         ],
     }),
 });
