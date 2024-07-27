@@ -194,6 +194,7 @@
                 ./home-manager/git.nix
                 ./home-manager/kitty.nix                        # terminal
                 ./home-manager/yazi.nix                         # file explorer in terminal
+                ./home-manager/micro.nix                        # terminal text editor
               ];
             };
           }
