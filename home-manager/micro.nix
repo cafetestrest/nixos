@@ -24,4 +24,11 @@
   xdg.configFile."micro/bindings.json" = {
     source = ../config/editor/micro/bindings.json;
   };
+
+  home = {
+    sessionVariables = {
+      EDITOR = "micro";
+      VISUAL = "micro";
+    };
+  };
 }
