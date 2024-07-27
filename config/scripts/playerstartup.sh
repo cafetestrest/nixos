@@ -7,12 +7,14 @@ function open_startup_apps() {
     program="kitty"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program"
+    	sleep 1
     fi
 
     program="codium"
     flags="$HOME/nixos/"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program $flags"
+    	sleep 1
     fi
 
     program="brave"
@@ -137,7 +139,7 @@ check_apps_running() {
 
         if [[ -z $classWindowInfo ]]; then
             echo "Not running app with class: $class_name"
-            
+
             sleep_time
             sleep_time
 

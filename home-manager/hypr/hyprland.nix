@@ -113,7 +113,7 @@ in
       };
 
       cursor = {
-        hotspot_padding = 1;  #fixes issue that power menu toggle in ags is not far right 
+        hotspot_padding = 1;  #fixes issue that power menu toggle in ags is not far right
       };
 
       windowrule = let

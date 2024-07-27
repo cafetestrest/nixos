@@ -210,7 +210,7 @@
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
-          /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure 
+          /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure
   
           home-manager.nixosModules.home-manager
           {
