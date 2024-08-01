@@ -27,6 +27,7 @@ import Screenshot from './buttons/Screenshot.js';
 import Note from './buttons/Note.js';
 import BluetoothDevice from './buttons/BluetoothDevice.js';
 import BluetoothDevices from './buttons/BluetoothDevices.js';
+import BluetoothDevicesV2 from './buttons/BluetoothDevicesV2.js';
 import { TemperatureIndicator } from './buttons/Weather.js';
 
 const submenuItems = Variable(1);
@@ -97,7 +98,8 @@ const End = () => Widget.Box({
         UsageRAM(),
         UsageDisk(),
         // BluetoothDevice(),
-        BluetoothDevices(),
+        // BluetoothDevices(),
+        BluetoothDevicesV2(),
         SeparatorDot(),
         SysTray(),
         ColorPicker(),
