@@ -8,11 +8,11 @@ class BtDevice extends Service {
         super();
         this._data = null;
         this._headsetdata = null;
-        this.call();
+        // this.call();
     }
 
     call() {
-        // Utils.execAsync(['bash', '-c', "bluetoothbatterypercentage ags"]).catch(console.error);
+        // Utils.execAsync(['bash', '-c', "btupowerbatterypercentage ags"]).catch(console.error);
         console.log('enable bluetoothbatterypercentage or btupowerbatterypercentage script')
     }
 
