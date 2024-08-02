@@ -90,6 +90,15 @@
         fi
       }
 
+      function cx () {
+        if [ "$#" -gt 0 ]; then
+          cd "$@"
+          l
+        else
+          l
+        fi
+      }
+
       function xkill {
           if [[ -n "$1" ]]; then
               kill -9 $(ps ax | grep "$1" | grep -v grep | awk '{print $1}')

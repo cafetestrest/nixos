@@ -61,6 +61,17 @@
         onEvent = "fish_greeting";
       };
 
+      cx = {
+        body = ''
+          if count $argv > /dev/null
+              cd $argv
+              l
+          else
+              l
+          end
+        '';
+      };
+
       code = {
         body = ''
           if count $argv > /dev/null
