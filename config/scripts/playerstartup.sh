@@ -9,6 +9,8 @@ function open_startup_apps() {
         hyprctl dispatch exec "[workspace 1 silent]" "$program"
     	sleep_time
         sleep_time
+        sleep_time
+        sleep_time
     fi
 
     program="codium"
