@@ -4,7 +4,8 @@
   imports =
     [
       ./startup.nix
-      ./bluetoothbatterypercentage.nix
+      # ./bluetoothbatterypercentage.nix
+      # ./btupowerbatterypercentage.nix
       ./yrweather.nix
       ./openweathermap.nix
       ./toggleidle.nix
