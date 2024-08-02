@@ -8,12 +8,11 @@ export default () => Widget.Box({
     box.children = Bluetooth._getDevices()
         .map(({ name, connected, paired, trusted, batteryPercentage }) => {
             if (connected && paired && trusted) {
-
                 let icon_name = 'bluetooth-active';
                 if (name.includes('100')) {
-                    icon_name = 'input-mouse'
-                } else if (name.includes('V2')) {
                     icon_name = 'input-keyboard'
+                } else if (name.includes('V2')) {
+                    icon_name = 'input-mouse'
                 } else if (name.includes('uds')) {
                     icon_name = 'audio-headphones'
                 }
