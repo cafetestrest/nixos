@@ -99,6 +99,14 @@ const Applauncher = () => {
         }),
     });
 
+    function focus() {
+        entry.text = ""
+        entry.set_position(-1)
+        entry.select_region(0, -1)
+        entry.grab_focus()
+        // favs.reveal_child = true
+    }
+
     return Widget.Box({
         className: 'applauncher',
         vertical: true,
@@ -117,11 +125,12 @@ const Applauncher = () => {
             if (win !== WINDOW_NAME)
                 return;
 
-            entry.text = '-';
+            // entry.text = '-';
             entry.text = '';
 
             if (visible) {
-                entry.grab_focus();
+                focus()
+                // entry.grab_focus();
             }
             else {
                 items = mkItems();
@@ -133,8 +142,8 @@ const Applauncher = () => {
 
 export default () => PopupWindow({
     name: WINDOW_NAME,
-    transition: 'slide_down',
+    // transition: 'slide_down',
     child: Applauncher(),
-    anchor: [],
+    // anchor: [],
     // anchor: options.applauncher.anchor.bind('value'),
 });
