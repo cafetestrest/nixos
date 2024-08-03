@@ -19,6 +19,7 @@ const SysButton = (action, label) => Widget.Button({
             // Widget.Label(label),
         ],
     }),
+    setup: w => w.keybind("Escape", () => App.closeWindow('powermenu')),
 });
 
 export default () => ShadedPopup({
