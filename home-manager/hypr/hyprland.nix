@@ -8,6 +8,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland;
+    #package = hyprland.override { debug = true; };
     systemd.enable = true;
     xwayland.enable = true;
     # plugins = with plugins; [ hyprbars borderspp ];
