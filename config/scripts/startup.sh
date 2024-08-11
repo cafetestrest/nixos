@@ -42,8 +42,6 @@ start_program "wlsunset"
 COMMAND="toggleidle a"
 start_program "hypridle"
 
-sleep 1
-
 COMMAND=ags
 start_program "ags"
 
