@@ -3,7 +3,6 @@
 let
   headset = pkgs.writeShellApplication {
     name = "headset";
-    # text = builtins.readFile ../../config/scripts/headset.sh;
     text = ''
       batteryPercent=""
       chatMix=""
