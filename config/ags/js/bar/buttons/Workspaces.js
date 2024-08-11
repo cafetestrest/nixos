@@ -13,7 +13,7 @@ const Workspaces = () => {
         children: range(ws || 20).map(i => Widget.Button({
             attribute: i,
             on_clicked: () => dispatch(i),
-            on_secondary_click: () => Utils.execAsync(['bash', '-c', "playerstartup"]).catch(print),
+            on_secondary_click: () => Utils.execAsync(['bash', '-c', "openstartupapps"]).catch(print),
             child: Widget.Label({
                 label: `${i}`,
                 class_name: 'indicator',

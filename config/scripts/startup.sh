@@ -56,4 +56,4 @@ fi
 
 sleep 1
 
-playerstartup
+openstartupapps

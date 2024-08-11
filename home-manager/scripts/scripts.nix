@@ -12,7 +12,7 @@
       ./nightlight.nix
       ./note.nix
       ./screenshot.nix
-      ./playerstartup.nix
+      ./openstartupapps.nix
       ./idle.nix
       ./powermenu.nix
       ./wakefromsleep.nix

@@ -183,37 +183,44 @@ check_apps_running() {
     return 0
 }
 
-pause_playing_media() {
-    if [[ -z "$is_media_paused" ]]; then
-        # Check playerctl status and handle the case when no players are found
-        status=$(playerctl status 2>&1 || true)
-        # echo "media status: $status"
+# pause_playing_media() {
+#     if [[ -z "$is_media_paused" ]]; then
+#         # Check playerctl status and handle the case when no players are found
+#         status=$(playerctl status 2>&1 || true)
+#         # echo "media status: $status"
 
-        if [ "$status" == "Playing" ]; then
-            playerctl pause
-            is_media_paused=1
-            echo "paused playing media"
-        fi
-    fi
-}
-
-open_startup_apps
+#         if [ "$status" == "Playing" ]; then
+#             playerctl pause
+#             is_media_paused=1
+#             echo "paused playing media"
+#         fi
+#     fi
+# }
 
 # Main loop to retry for 10 seconds
-is_media_paused=
-end=$((SECONDS+10))
+# is_media_paused=
+bar_opened=
+end=$((SECONDS+20))
 while [ $SECONDS -lt $end ]; do
-    # Gets the hyprland clients (apps) running
-    output=$(hyprctl clients)
+    if pgrep ags; then
+        if [[ "$bar_opened" == "" ]]; then
+            open_startup_apps
+            bar_opened=1
+        else
+            # Gets the hyprland clients (apps) running
+            output=$(hyprctl clients)
 
-    # pause_playing_media
+            # pause_playing_media
 
-    if check_apps_running; then
-        # pause_playing_media
-        exit 0
+            if check_apps_running; then
+                # pause_playing_media
+                exit 0
+            fi
+        fi
     fi
 
     sleep_time
 done
 
 echo "done, exiting"
+exit 0

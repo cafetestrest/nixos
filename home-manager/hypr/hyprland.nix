@@ -15,9 +15,15 @@ in
 
     settings = {
       exec-once = [
-        "startup"
+        # "startup"
+        "nightlight a"
+        "hypridle"
+        "ags"
+        "openstartupapps"
         "hyprctl setcursor ${vars.gtk.cursorTheme} ${toString vars.gtk.cursorSize}"
+        # "~/.config/scripts/111.sh"
         # "copyq --start-server"
+        # ''hyprctl dispatch exec "xterm -e journalctl -xef"''
         # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
       ];
 
