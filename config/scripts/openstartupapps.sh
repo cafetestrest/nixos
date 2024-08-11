@@ -197,12 +197,22 @@ check_apps_running() {
 #     fi
 # }
 
+open_note_file() {
+    if pgrep code >/dev/null; then
+        code "$HOME/Documents/note.md"
+    fi
+
+    if pgrep codium >/dev/null; then
+        codium "$HOME/Documents/note.md"
+    fi
+}
+
 # Main loop to retry for 10 seconds
 # is_media_paused=
 bar_opened=
 end=$((SECONDS+20))
 while [ $SECONDS -lt $end ]; do
-    if pgrep ags; then
+    if pgrep ags >/dev/null; then
         if [[ "$bar_opened" == "" ]]; then
             open_startup_apps
             bar_opened=1
@@ -213,6 +223,7 @@ while [ $SECONDS -lt $end ]; do
             # pause_playing_media
 
             if check_apps_running; then
+                open_note_file
                 # pause_playing_media
                 exit 0
             fi
