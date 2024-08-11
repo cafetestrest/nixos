@@ -137,7 +137,7 @@
           # ./nixos/gtklock.nix                                   # lockscreen packages
           ./nixos/docker/docker.nix                             # docker, docker-compose and /etc/hosts
           ./nixos/docker/warden.nix
-          ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset
+          ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset - udev rules
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    # required for https://github.com/run-as-root/rooter
           # ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
