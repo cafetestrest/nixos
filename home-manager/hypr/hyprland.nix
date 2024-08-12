@@ -33,35 +33,17 @@ in
       # ];
 
       env = [
-        # log WLR stuff
-        #"HYPRLAND_LOG_WLR,1"
-
-        # "QT_IM_MODULE, fcitx"
-        # "XMODIFIERS, @im=fcitx"
-
-        # "SDL_IM_MODULE, fcitx"
-        # "LFW_IM_MODULE, ibus"
-        # "INPUT_METHOD, fcitx"
-
-        "QT_QPA_PLATFORM, wayland"
-        "QT_QPA_PLATFORMTHEME, qt5ct"
-
+        "GDK_BACKEND,wayland"
+        "GTK_THEME,${vars.gtk.gtkTheme}"
+        "XCURSOR_THEME,${vars.gtk.cursorTheme}"
+        "XCURSOR_SIZE,${toString vars.gtk.cursorSize}"
+        "QT_QPA_PLATFORM,wayland"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "NIXOS_OZONE_WL,1"
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
-        "GTK_THEME, ${vars.gtk.gtkTheme}"
-        "XCURSOR_THEME, ${vars.gtk.cursorTheme}"
-        "XCURSOR_SIZE, ${toString vars.gtk.cursorSize}"
-        "HYPRCURSOR_SIZE, ${toString vars.gtk.cursorSize}"
-
-        # "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
-        # "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
-
-        # "GDK_BACKEND, wayland,x11"
-        # "SDL_VIDEODRIVER, wayland"
-        # "CLUTTER_BACKEND, wayland"
-        # "EGL_PLATFORM, wayland"
-
-        # "XDG_SESSION_DESKTOP,Hyprland"
+        "HYPRCURSOR_SIZE,${toString vars.gtk.cursorSize}"
+        "AQ_DRM_DEVICES,/dev/dri/card1" #needed for aquamarine
       ];
 
       monitor = [
