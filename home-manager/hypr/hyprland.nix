@@ -43,7 +43,6 @@ in
         # Hyprcursor
         # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
         "HYPRCURSOR_SIZE,${toString vars.gtk.cursorSize}"
-        "AQ_DRM_DEVICES,/dev/dri/card1" #needed for aquamarine
       ];
 
       monitor = [

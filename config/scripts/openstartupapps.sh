@@ -207,6 +207,8 @@ open_note_file() {
     fi
 }
 
+sleep 3
+
 # Main loop to retry for 10 seconds
 # is_media_paused=
 bar_opened=
@@ -214,7 +216,6 @@ end=$((SECONDS+20))
 while [ $SECONDS -lt $end ]; do
     if pgrep ags >/dev/null; then
         if [[ "$bar_opened" == "" ]]; then
-        	sleep 1
             open_startup_apps
             bar_opened=1
         else
