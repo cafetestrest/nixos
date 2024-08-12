@@ -214,6 +214,7 @@ end=$((SECONDS+20))
 while [ $SECONDS -lt $end ]; do
     if pgrep ags >/dev/null; then
         if [[ "$bar_opened" == "" ]]; then
+        	sleep 1
             open_startup_apps
             bar_opened=1
         else
