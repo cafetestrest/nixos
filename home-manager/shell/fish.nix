@@ -53,7 +53,7 @@
 
       fish_greeting = {
         body = ''
-          if test -d $HOME/nixos
+          if [ -d $HOME/nixos ]
             cd $HOME/nixos
           end
           fastfetch
