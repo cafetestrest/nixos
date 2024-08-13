@@ -200,7 +200,7 @@ in
         # "ALT, Q, killactive"
         "SUPER, F, togglefloating"
         "SUPER, M, fullscreen"
-        "SUPER SHIFT, M, fakefullscreen"
+        # "SUPER SHIFT, M, fakefullscreen"
         "SUPER, J, togglesplit"
         "SUPER, P, pseudo"
         "SUPER SHIFT, P, workspaceopt, allpseudo"
