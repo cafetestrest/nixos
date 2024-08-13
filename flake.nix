@@ -24,7 +24,7 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      # ref = "refs/tags/v0.41.2";
+      inputs.nixpkgs.follows = "nixpkgs";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
