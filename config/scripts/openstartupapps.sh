@@ -7,10 +7,7 @@ function open_startup_apps() {
     program="kitty"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program"
-    	sleep_time
-        sleep_time
-        sleep_time
-        sleep_time
+        sleep 1
     fi
 
     program="codium"
