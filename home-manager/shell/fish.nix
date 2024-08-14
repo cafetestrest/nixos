@@ -63,7 +63,7 @@
 
       cx = {
         body = ''
-          if [ count $argv > /dev/null ]
+          if [ (count $argv) -gt 0 ]
               cd $argv
               l
           else
@@ -74,7 +74,7 @@
 
       code = {
         body = ''
-          if [ count $argv > /dev/null ]
+          if [ (count $argv) -gt 0 ]
               codium $argv
           else
               codium .
@@ -84,7 +84,7 @@
 
       "." = {
         body = ''
-          if [ count $argv > /dev/null ]
+          if [ (count $argv) -gt 0 ]
               codium $argv
           else
               codium .
@@ -101,7 +101,7 @@
 
       # xkill = {
       #   body = ''
-      #     if [ -n "$arg" ]
+      #     if [ (count $argv) -gt 0 ]
       #       kill -9 (ps ax | grep arg | awk '{print $1}')
       #     else
       #       echo "Please add an argument which process name you would like to kill."
@@ -144,7 +144,7 @@
       wardendown = {
         body = ''
           warden svc down
-          if [ -n "$arg" ]
+          if [ (count $argv) -gt 0 ]
             warden env down $arg
           else
             warden env down
