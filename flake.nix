@@ -149,6 +149,7 @@
           # ./nixos/teamviewer.nix
           ./nixos/copyq.nix
           # ./nixos/udev/rangoli-udev.nix                         # needs distrobox from home-manager
+          ./nixos/i2c.nix                                       #for ddcutil (monitor control)
 
           home-manager.nixosModules.home-manager
           {
