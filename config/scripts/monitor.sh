@@ -5,22 +5,20 @@
 # ddcutil --bus=7 setvcp 10 "$1" &
 # wait
 
-success=
-
-help_usage() {
+cmd_usage() {
     echo "The following capabilities are available, please run the command like so:"
     echo "monitor (brightness | contrast | input_source | audio_speaker_volume | audio_mute) value"
     exit 1
 }
 
 get_bus() {
-    # ddcutil detect
-    bus=$(ddcutil detect | grep bus | awk -F'i2c-' '{print $2}')
+    # PROGRAM detect
+    bus=$($PROGRAM detect | grep bus | awk -F'i2c-' '{print $2}')
 }
 
 capabilities() {
     # get list of monitor capabilities
-    # ddcutil capabilities --bus=$BUS
+    # $PROGRAM capabilities --bus=$BUS
 
     # manually updated for now
     brightness="10"
@@ -30,80 +28,59 @@ capabilities() {
     # green="18"
     # blue="1A"
     # active_control="52"
-    input_source="60"
+    # input_source="60"
     # power_mode="D6"
     audio_speaker_volume="62"
     audio_mute="8D"
 }
 
-get_bus
-
-if [[ ! "$bus" ]]; then
-    echo "No bus found, please update get_bus function currently it is: ddcutil detect | grep bus | awk -F'i2c-' '{print \$2}'."
-    exit 1
-fi
-
-capabilities
-
-if [[ $# -le 1 ]]; then
-    help_usage
-fi
-
-if [[ "${1##--}" == "brightness" ]]; then
-    ddcutil --bus="$bus" setvcp $brightness "$2" &
+cmd_brightness() {
+    $PROGRAM --bus="$bus" setvcp $brightness "$1" &
     wait
-    echo "changed brightness successfully to: $2"
-    success=1
-fi
-
-if [[ "${1##--}" == "contrast" ]]; then
-    ddcutil --bus="$bus" setvcp $contrast "$2" &
-    wait
-    echo "changed contrast successfully to: $2"
-    success=1
-fi
-
-input_source_logic() {
-    if [[ $2 == "hdmi1" || $2 == "1" || $2 == "11" ]]; then
-        input_val="11"
-    fi
-
-    if [[ $2 == "hdmi2" || $2 == "2" || $2 == "12"  ]]; then
-        input_val="12"
-    fi
-
-    if [[ $2 == "dp" || $2 == "3" || $2 == "15"  ]]; then
-        input_val="15"
-    fi
-
-    if [[ ! $input_val ]]; then
-        echo "Following input sources are available:"
-        echo "hdmi1, hdmi2, dp"
-        echo "command is valid like either one of:"
-        echo "monitor (input | source | input_source | input-source) (hdmi1 | hdmi2 | dp)"
-        exit 1
-    fi
-
-    ddcutil --bus="$bus" setvcp "$input_source" "$input_val" &
-    wait
-    echo "changed input source successfully to: $input_val ($2)"
-    success=1
+    echo "changed brightness successfully to: $1"
+    exit 0
 }
 
-if [[ "${1##--}" == "source" || "${1##--}" == "input" ]]; then
-    input_source_logic "$1" "$2"
-fi
+cmd_contrast() {
+    $PROGRAM --bus="$bus" setvcp $contrast "$1" &
+    wait
+    echo "changed contrast successfully to: $1"
+    exit 0
+}
 
-if [[ "${1##--}" == "input-source" || "${1##--}" == "input_source" ]]; then
-    input_source_logic "$1" "$2"
-fi
+# cmd_input_source() {
+#     if [[ $1 == "hdmi1" || $1 == "1" || $1 == "11" ]]; then
+#         input_val="11"
+#     fi
 
-# power_mode_logic() {
-#     if [[ $2 == "on" || $2 == "1" ]]; then
+#     if [[ $1 == "hdmi2" || $1 == "2" || $1 == "12"  ]]; then
+#         input_val="12"
+#     fi
+
+#     if [[ $1 == "dp" || $1 == "3" || $1 == "15"  ]]; then
+#         input_val="15"
+#     fi
+
+#     if [[ ! $input_val ]]; then
+#         echo "Following input sources are available:"
+#         echo "hdmi1, hdmi2, dp"
+#         echo "command is valid like either one of:"
+#         echo "monitor (input | source | input_source | input-source) (hdmi1 | hdmi2 | dp)"
+#         exit 1
+#     fi
+
+#     $PROGRAM --bus="$bus" setvcp "$input_source" "$input_val" &
+#     wait
+#     echo "changed input source successfully to: $input_val ($1)"
+#     exit 0
+# }
+
+# cmd_power_mode() {
+#     if [[ $1 == "on" || $1 == "1" ]]; then
 #         input_val="1"
 #     fi
 
-#     if [[ $2 == "off" || $2 == "0"|| $2 == "4" ]]; then
+#     if [[ $1 == "off" || $1 == "0"|| $1 == "4" ]]; then
 #         input_val="4"
 #     fi
 
@@ -115,41 +92,25 @@ fi
 #         exit 1
 #     fi
 
-#     ddcutil --bus="$bus" setvcp "$power_mode" "$input_val" &
+#     $PROGRAM --bus="$bus" setvcp "$power_mode" "$input_val" &
 #     wait
-#     echo "changed power mode successfully to: $input_val ($2)"
-#     success=1
+#     echo "changed power mode successfully to: $input_val ($1)"
+#     exit 0
 # }
 
-# if [[ $(echo "$1" | sed 's/^--*//') == "power" || $(echo "$1" | sed 's/^--*//') == "powermode" ]]; then
-#     power_mode_logic $1 $2
-# fi
-
-# if [[ $(echo "$1" | sed 's/^--*//') == "power-mode" || $(echo "$1" | sed 's/^--*//') == "power_mode" ]]; then
-#     power_mode_logic $1 $2
-# fi
-
-audio_speaker_volume_logic() {
-    ddcutil --bus="$bus" setvcp $audio_speaker_volume "$2" &
+cmd_volume() {
+    $PROGRAM --bus="$bus" setvcp $audio_speaker_volume "$1" &
     wait
-    echo "changed audio speaker volume successfully to: $2"
-    success=1
+    echo "changed audio speaker volume successfully to: $1"
+    exit 0
 }
 
-if [[ "${1##--}" == "audio" || "${1##--}" == "speaker" ]]; then
-    audio_speaker_volume_logic "$1" "$2"
-fi
-
-if [[ "${1##--}" == "volume" || "${1##--}" == "audio_speaker_volume" ]]; then
-    audio_speaker_volume_logic "$1" "$2"
-fi
-
-if [[ "${1##--}" == "mute" || "${1##--}" == "audio_mute" ]]; then
-    if [[ $2 == "on" || $2 == "1" ]]; then
+cmd_mute() {
+    if [[ $1 == "on" || $1 == "1" ]]; then
         input_val="1"
     fi
 
-    if [[ $2 == "off" || $2 == "2" ]]; then
+    if [[ $1 == "off" || $1 == "2" ]]; then
         input_val="2"
     fi
 
@@ -157,12 +118,46 @@ if [[ "${1##--}" == "mute" || "${1##--}" == "audio_mute" ]]; then
         input_val="2"
     fi
 
-    ddcutil --bus="$bus" setvcp $audio_mute "$input_val" &
+    $PROGRAM --bus="$bus" setvcp $audio_mute "$input_val" &
     wait
-    echo "changed audio mute successfully to: $2"
-    success=1
+    echo "changed audio mute successfully to: $1"
+    exit 0
+}
+
+PROGRAM=ddcutil
+
+get_bus
+
+if [[ ! "$bus" ]]; then
+    echo "No bus found, please update get_bus function currently it is: ddcutil detect | grep bus | awk -F'i2c-' '{print \$2}'."
+    exit 1
 fi
 
-if [[ ! $success ]]; then
-    help_usage
+capabilities
+
+if [[ $# -le 1 ]]; then
+    cmd_usage "$@"
 fi
+
+case "$1" in
+    brightness|--brightness) shift;                         cmd_brightness "$@" ;;
+    contrast|--contrast) shift;                             cmd_contrast "$@" ;;
+    # source|--source) shift;                                 cmd_input_source "$@" ;;
+    # input|--input) shift;                                   cmd_input_source "$@" ;;
+    # input-source|--input-source) shift;                     cmd_input_source "$@" ;;
+    # input_source|--input_source) shift;                     cmd_input_source "$@" ;;
+    # power|--power) shift;                                   cmd_power_mode "$@" ;;
+    # powermode|--powermode) shift;                           cmd_power_mode "$@" ;;
+    # power-mode|--power-mode) shift;                         cmd_power_mode "$@" ;;
+    # power_mode|--power_mode) shift;                         cmd_power_mode "$@" ;;
+    audio|--audio) shift;                                   cmd_volume "$@" ;;
+    speaker|--speaker) shift;                               cmd_volume "$@" ;;
+    volume|--volume) shift;                                 cmd_volume "$@" ;;
+    audio_speaker_volume|--audio_speaker_volume) shift;     cmd_volume "$@" ;;
+    mute|--mute) shift;                                     cmd_mute "$@" ;;
+    audio_mute|--audio_mute) shift;                         cmd_mute "$@" ;;
+    help|--help) shift;                                     cmd_usage "$@" ;;
+    *)                     echo "Unknown command: " "$@" && cmd_usage "$@" ;;
+esac
+
+cmd_usage
