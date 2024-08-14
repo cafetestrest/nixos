@@ -32,7 +32,6 @@
 
   environment.systemPackages = with pkgs; [
     # ags
-    wlsunset                            #night light for wayland
     # wlogout                             #logout for wayland - can be deleted and used wofi
     grim                                #screenshot tool
     slurp                               #select a screenshot region
