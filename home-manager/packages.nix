@@ -16,7 +16,6 @@
     #wl-clipboard
     # albert              #keybinding for albert toggle to get programs search
     # qbittorrent         #torrent application
-    playerctl             #keyboard shortcuts for play/pause/previous/next track/volume control
     libnotify             #notifications from terminal
     # librewolf           #firefox browser
     icon-library          #library of icons

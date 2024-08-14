@@ -3,6 +3,9 @@
 let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+  mediaControl = "${pkgs.playerctl}/bin/playerctl";
+  lock = "${pkgs.unstable.hyprlock}/bin/hyprlock";
+  idle = "${pkgs.unstable.hypridle}/bin/hypridle";
 in
 {
   wayland.windowManager.hyprland = {
@@ -17,7 +20,7 @@ in
       exec-once = [
         # "startup"
         "nightlight a"
-        "hypridle"
+        "${idle}"
         "ags"
         "openstartupapps"
         "hyprctl setcursor ${vars.gtk.cursorTheme} ${toString vars.gtk.cursorSize}"
@@ -188,7 +191,7 @@ in
         "SUPER SHIFT, Delete, exec, xterm -e powermenu t"
         ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
         ''SUPER, Page_Down, exec, wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"''
-        "SUPER SHIFT, escape, exec, playerctl --all-players stop"
+        "SUPER SHIFT, escape, exec, ${mediaControl} --all-players stop"
 
         # youtube
         # ", XF86Launch1, exec, ${yt}/bin/yt"
@@ -270,13 +273,13 @@ in
         # ",XF86AudioPrev, ${e} 'mpris?.previous()'"
         # ",XF86AudioNext, ${e} 'mpris?.next()'"
         ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
-        ",XF86AudioPlay, exec, playerctl play-pause"
-        ",XF86AudioStop, exec, playerctl stop"
-        ",XF86AudioPause, exec, playerctl pause"
-        ",XF86AudioPrev, exec, playerctl previous"
-        ",XF86AudioNext, exec, playerctl next"
+        ",XF86AudioPlay, exec, ${mediaControl} play-pause"
+        ",XF86AudioStop, exec, ${mediaControl} stop"
+        ",XF86AudioPause, exec, ${mediaControl} pause"
+        ",XF86AudioPrev, exec, ${mediaControl} previous"
+        ",XF86AudioNext, exec, ${mediaControl} next"
         # "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
-        "SUPER, BackSpace, exec, pkill -SIGUSR1 hyprlock && hyprlock --immediate"
+        "SUPER, BackSpace, exec, pkill -SIGUSR1 ${lock} && ${lock} --immediate"
       ];
 
       bindm = [

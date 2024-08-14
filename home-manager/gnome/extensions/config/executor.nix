@@ -4,7 +4,7 @@
   dconf.settings = {
     "org/gnome/shell/extensions/executor" = {
       center-active=false;
-      center-commands-json="{\"commands\":[{\"isActive\":true,\"command\":\"echo $(echo $(playerctl metadata | grep -E artist | awk '{for (i=3; i<=NF; i++) printf $i \\\" \\\"}' | awk '{print $0\\\"-\\\"}') $(playerctl metadata | grep -E title | awk '{for (i=3; i<=NF; i++) printf $i \\\" \\\"}') | cut -c1-50)\",\"interval\":5,\"uuid\":\"cd5a3b3d-e7f9-4fa8-84f4-80ff5cb07e08\"}]}";
+      center-commands-json="{\"commands\":[{\"isActive\":true,\"command\":\"echo $(echo $(${pkgs.playerctl}/bin/playerctl metadata | grep -E artist | awk '{for (i=3; i<=NF; i++) printf $i \\\" \\\"}' | awk '{print $0\\\"-\\\"}') $(${pkgs.playerctl}/bin/playerctl metadata | grep -E title | awk '{for (i=3; i<=NF; i++) printf $i \\\" \\\"}') | cut -c1-50)\",\"interval\":5,\"uuid\":\"cd5a3b3d-e7f9-4fa8-84f4-80ff5cb07e08\"}]}";
       center-index=0;
       click-on-output-active=false;
       left-active=false;

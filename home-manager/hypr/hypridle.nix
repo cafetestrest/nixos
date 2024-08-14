@@ -1,11 +1,11 @@
 { inputs, pkgs, vars, ... }:
 
 {
-  home.packages = with pkgs; [ unstable.hypridle ];
+  # home.packages = with pkgs; [ unstable.hypridle ];
 
 xdg.configFile."hypr/hypridle.conf".text = ''
 general {
-    lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+    lock_cmd = pidof hyprlock || ${pkgs.unstable.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
     before_sleep_cmd = loginctl lock-session    # lock before suspend.
     after_sleep_cmd = hyprctl dispatch dpms on && wakefromsleep
     # to avoid having to press a key twice to turn on the display. (https://github.com/hyprwm/hyprlock/issues/371#issuecomment-2288214526)
