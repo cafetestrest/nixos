@@ -44,13 +44,11 @@
       # direnv hook fish | source
     '';
 
-    functions = {
-      fish_user_key_bindings = {
-        body = ''
-          bind \cr 'peco_select_history (commandline -b)'
-        '';
-      };
+    interactiveShellInit = ''
+      bind \cr 'peco_select_history (commandline -b)'
+    '';
 
+    functions = {
       fish_greeting = {
         body = ''
           if [ -d $HOME/nixos ]
