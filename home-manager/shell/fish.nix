@@ -6,6 +6,10 @@
     ./omf/plugins.nix
   ];
 
+  home.packages = with pkgs; [
+    peco  #bash/fish better reverse search
+  ];
+
   programs.fish = {
     enable = true;
 

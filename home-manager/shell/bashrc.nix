@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    peco  #bash/fish better reverse search
+  ];
+
   programs.bash = {
     enableCompletion = true;
     bashrcExtra = ''
