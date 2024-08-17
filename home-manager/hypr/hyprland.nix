@@ -9,6 +9,18 @@ let
   pamixer = "${pkgs.pamixer}/bin/pamixer";
 in
 {
+  home.packages = with pkgs; [
+    icon-library          #library of icons
+    libnotify             #notifications from terminal - notify-send
+    killall
+  ];
+
+  programs = {
+    jq = {
+      enable = true;
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland;
