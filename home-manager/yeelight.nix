@@ -20,4 +20,16 @@ in
   };
 
   home.packages = [ getyeelightip ];
+
+  home.shellAliases = {
+    yeelight-colortemp = "/home/${vars.user}/.config/scripts/yeelight/yeelight-colortemp.sh";
+    yeelight-hue = "/home/${vars.user}/.config/scripts/yeelight/yeelight-hue.sh";
+    yeelight-redshift = "/home/${vars.user}/.config/scripts/yeelight/yeelight-redshift.sh";
+    yeelight-scene = "/home/${vars.user}/.config/scripts/yeelight/yeelight-scene.sh";
+    yeelight = "/home/${vars.user}/.config/scripts/yeelight/yeelight.sh";
+    yeelight-brightness = "/home/${vars.user}/.config/scripts/yeelight/yeelight-brightness.sh";
+    yeelight-disco = "/home/${vars.user}/.config/scripts/yeelight/yeelight-disco.sh";
+    yeelight-rgb = "/home/${vars.user}/.config/scripts/yeelight/yeelight-rgb.sh";
+    yeelight-toggle = "/home/${vars.user}/.config/scripts/yeelight/yeelight-toggle.sh";
+  };
 }
