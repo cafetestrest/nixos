@@ -5,6 +5,7 @@ let
     name = "openweathermap";
     runtimeInputs = with pkgs; [
       bc
+      jq
     ];
     text = builtins.readFile ../../config/scripts/openweathermap.sh;
   };

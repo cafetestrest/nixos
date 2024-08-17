@@ -21,5 +21,9 @@
     htop = {
       enable = true;
     };
+
+    jq = {
+      enable = true;
+    };
   };
 }

@@ -5,6 +5,7 @@ let
     name = "yrweather";
     runtimeInputs = with pkgs; [
       bc
+      jq
     ];
     text = builtins.readFile ../../config/scripts/yrweather.sh;
   };

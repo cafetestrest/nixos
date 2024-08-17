@@ -15,12 +15,6 @@ in
     killall
   ];
 
-  programs = {
-    jq = {
-      enable = true;
-    };
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland;
