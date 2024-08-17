@@ -6,6 +6,7 @@ let
   mediaControl = "${pkgs.playerctl}/bin/playerctl";
   lock = "${pkgs.unstable.hyprlock}/bin/hyprlock";
   idle = "${pkgs.unstable.hypridle}/bin/hypridle";
+  pamixer = "${pkgs.pamixer}/bin/pamixer";
 in
 {
   wayland.windowManager.hyprland = {
@@ -242,9 +243,9 @@ in
         ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
         # ",XF86AudioRaiseVolume, ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
         # ",XF86AudioLowerVolume, ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
-        ",XF86AudioLowerVolume, exec, pamixer -d 1"
-        ",XF86AudioRaiseVolume, exec, pamixer -i 1"
-        ",XF86AudioMute, exec, pamixer -t"
+        ",XF86AudioLowerVolume, exec, ${pamixer} -d 1"
+        ",XF86AudioRaiseVolume, exec, ${pamixer} -i 1"
+        ",XF86AudioMute, exec, ${pamixer} -t"
         "SUPER, Tab, cyclenext"
         "ALT, Tab, cyclenext"
         "SUPER SHIFT, Tab, cyclenext, prev"
