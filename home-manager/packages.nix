@@ -8,7 +8,6 @@
     # anydesk
     # nixpkgs-fmt        #Nix code formatter for nixpkgs
     # tldr
-    bc                    #command line calculator
     # firefox             #firefox browser
     # libsForQt5.qt5ct
     #wl-clipboard
