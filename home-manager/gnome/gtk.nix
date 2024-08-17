@@ -30,7 +30,9 @@ in
       };
 
       cursorTheme = {
-          name = "${vars.gtk.cursorTheme}";
+        name = "${vars.gtk.cursorTheme}";
+        package = cursor-package;
+        size = 24;
       };
 
       gtk3.extraConfig = {
@@ -48,19 +50,19 @@ in
     "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
-  home = {
-    sessionVariables = {
-        XCURSOR_THEME = "${vars.gtk.cursorTheme}";
-        XCURSOR_SIZE = vars.gtk.cursorSize;
-        GTK_THEME = "${vars.gtk.gtkTheme}";
-    };
+  # home = {
+  #   sessionVariables = {
+  #       XCURSOR_THEME = "${vars.gtk.cursorTheme}";
+  #       XCURSOR_SIZE = vars.gtk.cursorSize;
+  #       GTK_THEME = "${vars.gtk.gtkTheme}";
+  #   };
 
-    pointerCursor = {
-        size = vars.gtk.cursorSize;
-        gtk.enable = true;
-        # x11.enable = true;
-        package = cursor-package;
-        name = "${vars.gtk.cursorTheme}";
-    };
-  };
+  #   pointerCursor = {
+  #       size = vars.gtk.cursorSize;
+  #       gtk.enable = true;
+  #       # x11.enable = true;
+  #       package = cursor-package;
+  #       name = "${vars.gtk.cursorTheme}";
+  #   };
+  # };
 }

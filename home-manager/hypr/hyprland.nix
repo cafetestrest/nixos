@@ -45,8 +45,8 @@ in
       env = [
         "GDK_BACKEND,wayland"
         "GTK_THEME,${vars.gtk.gtkTheme}"
-        "XCURSOR_THEME,${vars.gtk.cursorTheme}"
-        "XCURSOR_SIZE,${toString vars.gtk.cursorSize}"
+        # "XCURSOR_THEME,${vars.gtk.cursorTheme}"
+        # "XCURSOR_SIZE,${toString vars.gtk.cursorSize}"
         "QT_QPA_PLATFORM,wayland"
         "QT_QPA_PLATFORMTHEME,qt5ct"
         "NIXOS_OZONE_WL,1"

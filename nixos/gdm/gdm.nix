@@ -5,6 +5,10 @@
   # services.xserver.displayManager.gdm.settings = {
   # };
 
+  environment.systemPackages = with pkgs; [
+    apple-cursor #cursor package for GDM session
+  ];
+
   programs.dconf.enable = true;
 
   programs.dconf.profiles = {
