@@ -16,6 +16,7 @@
     wl-gammactl
     brightnessctl
     gjs
+    inotify-tools #inotifywait - reload for scss
   ];
 
   programs.ags = {

@@ -8,7 +8,6 @@
     # anydesk
     # nixpkgs-fmt        #Nix code formatter for nixpkgs
     # tldr
-    inotify-tools
     pamixer               #audio terminal commands
     bc                    #command line calculator
     # firefox             #firefox browser
