@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   imports =
@@ -55,10 +55,12 @@
     functions = {
       fish_greeting = {
         body = ''
-          if [ -d $HOME/nixos ]
-            cd $HOME/nixos
+          if [ (whoami) = "${vars.user}" ]
+            if [ -d $HOME/nixos ]
+              cd $HOME/nixos
+            end
+            fastfetch
           end
-          fastfetch
         '';
         onEvent = "fish_greeting";
       };
