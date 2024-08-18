@@ -204,7 +204,7 @@ open_note_file() {
     fi
 }
 
-sleep 4
+sleep 3
 
 # Main loop to retry for 10 seconds
 # is_media_paused=
