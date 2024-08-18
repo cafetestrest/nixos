@@ -54,10 +54,19 @@ function cmd_update() {
 }
 
 function cmd_clean() {
+    nix store optimise --verbose
+    nix store gc --verbose
+}
+
+function cmd_garbage() {
     nix-collect-garbage -d
     nix store optimise
     sudo nix-collect-garbage -d
     sudo nix store optimise
+}
+
+function cmd_repair() {
+    sudo nix-store --verify --check-contents --repair
 }
 
 function cmd_usage() {
@@ -73,6 +82,12 @@ Usage:
         Must be run as root.
     $PROGRAM clean
         Garbage collect and optimise the Nix Store.
+    $PROGRAM garbage
+        Garbage collect and optimise the Nix Store using nix-collect-garbage.
+        Must be run as root.
+    $PROGRAM repair
+        Verify, check contents and repair broken links in Nix Store.
+        Must be run as root.
     $PROGRAM help
         Show this text.
 _EOF
@@ -86,11 +101,13 @@ if [[ $# -eq 0 ]] ; then
 fi
 
 case "$1" in
-    rebuild|r) shift;                   cmd_rebuild "$@" ;;
-    test|t) shift;                      cmd_test "$@" ;;
-    update|u) shift;                    cmd_update "$@" ;;
-    clean|garbage|remove|g|c) shift;    cmd_clean "$@" ;;
-    help|--help) shift;                 cmd_usage "$@" ;;
-    *)  echo "Unknown command: " "$@" && cmd_usage "$@" ;;
+    rebuild|r|--rebuild|--r) shift;                 cmd_rebuild "$@" ;;
+    test|t|--test|--t) shift;                       cmd_test "$@" ;;
+    update|u|--update|--u) shift;                   cmd_update "$@" ;;
+    clean|remove|c|--clean|--remove|--c) shift;     cmd_clean "$@" ;;
+    garbage|g|--garbage|--g) shift;                 cmd_garbage "$@" ;;
+    repair|--repair) shift;                         cmd_repair "$@" ;;
+    help|--help) shift;                             cmd_usage "$@" ;;
+    *)             echo "Unknown command: " "$@" && cmd_usage "$@" ;;
 esac
 exit 0
