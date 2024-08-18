@@ -26,13 +26,13 @@ function get_rebuild_command() {
 function cmd_rebuild() {
     get_rebuild_command "$@"
 
-    sudo "$REBUILD_COMMAND" --flake "$FLAKE_LOCATION#$USER" "$@"
+    "$REBUILD_COMMAND" --flake "$FLAKE_LOCATION#$USER" "$@" --use-remote-sudo --print-build-logs
 }
 
 function cmd_test() {
     get_rebuild_command "$@"
 
-    sudo "$REBUILD_COMMAND" test --fast --flake "$FLAKE_LOCATION#$USER" "$@"
+    "$REBUILD_COMMAND" test --fast --flake "$FLAKE_LOCATION#$USER" "$@" --use-remote-sudo --print-build-logs
 }
 
 function cmd_update() {
