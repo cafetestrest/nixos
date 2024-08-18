@@ -3,6 +3,9 @@
 let
   sys = pkgs.writeShellApplication {
     name = "sys";
+    runtimeInputs = with pkgs; [
+      sudo
+    ];
     text = builtins.readFile ../../config/scripts/sys.sh;
   };
 in

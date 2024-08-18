@@ -150,7 +150,7 @@
           ./nixos/copyq.nix
           # ./nixos/udev/rangoli-udev.nix                         # needs distrobox from home-manager
           ./nixos/i2c.nix                                       # for ddcutil (monitor control)
-          ./nixos/doas.nix                                      # replace sudo with doas
+          # ./nixos/doas.nix                                      # replace sudo with doas
 
           home-manager.nixosModules.home-manager
           {
