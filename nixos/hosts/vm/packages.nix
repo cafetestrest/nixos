@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    virt-manager              # virtual manager
     virt-viewer               # vm
   ];
 
