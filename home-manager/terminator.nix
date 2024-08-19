@@ -45,7 +45,7 @@ let
 in
 {
   options.terminator = {
-    enable = lib.mkEnableOption "Asus Laptop";
+    enable = lib.mkEnableOption "Terminator terminal";
   };
 
   config = lib.mkIf config.terminator.enable {
