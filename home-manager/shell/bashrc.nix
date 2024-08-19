@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,9 +6,10 @@
   ];
 
   programs.bash = {
+    enable = true;
     enableCompletion = true;
     bashrcExtra = ''
-      if [ -d "$HOME/nixos" ]; then
+      if [[ $(whoami) == "${vars.user}" && -d "$HOME/nixos" ]]; then
         cd "$HOME/nixos"
         fastfetch
       fi
