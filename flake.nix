@@ -201,6 +201,7 @@
                 ./home-manager/micro.nix                        # terminal text editor
                 ./home-manager/copyq.nix                        # config for copyq
                 ./home-manager/shell/docker/shells.nix          # docker aliases for fish/bash
+                ./home-manager/shell/warden/shells.nix          # warden aliases for fish/bash
               ];
             };
           }
