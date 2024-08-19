@@ -13,9 +13,9 @@
   programs.fish = {
     enable = true;
 
-    shellAliases = {
-      nix-shell = "nix-shell --run fish";
-    };
+    # shellAliases = {
+    #   nix-shell = "nix-shell --run fish";
+    # };
 
     shellInit = ''
       set -g theme_powerline_fonts yes
