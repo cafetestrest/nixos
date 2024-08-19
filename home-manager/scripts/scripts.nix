@@ -21,7 +21,7 @@
       ./monitor.nix
       ./resetbluetoothags.nix
       ./sys.nix
-      ./clipboardtoggle.nix
+      # ./clipboardtoggle.nix
       ./sync.nix
   ];
 }
