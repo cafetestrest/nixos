@@ -67,6 +67,9 @@
       commit = {
         yeelightShellScriptsGitRev = "d8b463dea258b4f1fdf4277dd5b37ca8bebad3ee";
       };
+      modules = {
+        terminator.enable = false;
+      };
     };
 
     system = "x86_64-linux";
@@ -178,7 +181,7 @@
                 ./home-manager/packages.nix                     # shared packages
                 ./home-manager/fonts.nix
                 # ./home-manager/chrome.nix
-                # ./home-manager/terminator.nix                   # terminal config
+                ./home-manager/terminator.nix                   # terminal config
                 # ./home-manager/xterm.nix
                 ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
                 ./home-manager/mpv.nix                          # mpv video player and its config

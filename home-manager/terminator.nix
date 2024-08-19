@@ -44,10 +44,16 @@ let
   };
 in
 {
-  programs.terminator = {
-    enable = true;
-    # extraPackages = [ pkgs.terminatorThemes ]; # Optional: For additional themes
-    config = makeTerminatorConfig;
+  options.terminator = {
+    enable = lib.mkEnableOption "Asus Laptop";
+  };
+
+  config = lib.mkIf config.terminator.enable {
+    programs.terminator = {
+      enable = true;
+      # extraPackages = [ pkgs.terminatorThemes ]; # Optional: For additional themes
+      config = makeTerminatorConfig;
+    };
   };
 }
 
