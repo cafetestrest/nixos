@@ -6,7 +6,8 @@
   home.username = "${vars.user}";
   home.homeDirectory = "/home/${vars.user}";
 
-  terminator.enable = vars.modules.terminator.enable;
+  # TODO move to own config
+  terminator.enable = (vars.modules.terminator.enable or false);
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

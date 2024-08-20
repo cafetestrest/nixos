@@ -68,7 +68,11 @@
         yeelightShellScriptsGitRev = "d8b463dea258b4f1fdf4277dd5b37ca8bebad3ee";
       };
       modules = {
-        terminator.enable = false;
+        # bootloader = {
+        #   grub.enable = false;
+        #   systemd-boot.enable = true;
+        # };
+        terminator.enable = true;
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = false;
@@ -91,10 +95,15 @@
       sha = pc.sha;
       commit = pc.commit;
       modules = {
+        # bootloader = {
+        #   grub.enable = true;
+        #   systemd-boot.enable = false;
+        # };
         terminator.enable = true;
       };
     };
 
+    #TODO all all systems, choose which one is proper one
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
@@ -131,7 +140,7 @@
         nurpkgs = prev;
         pkgs = prev;
         # repoOverrides = {
-        #   test = test-nur.packages.${prev.system};
+        #   test = test-nur.packages.${prev.system};  #TODO move overlays
         # };
       };
     };
@@ -147,9 +156,11 @@
         { inherit inputs vars; };
         modules = [
           ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
+            nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ]; #TODO move overlays
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          ./nixos/hosts/desktop/bootloader.nix                  # Boot and Bootloader config
+          # TODO move to module file (all should be enabled when they all have their own config)
+          ./nixos/bootloader/systemd-boot.nix                   # Boot and Bootloader config
+          ./nixos/bootloader/grub.nix
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
           ./nixos/ssd.nix                                       # fstrim
           ./nixos/ntfs.nix                                      # windows ntfs file partition support
@@ -193,6 +204,7 @@
             { inherit inputs vars; };
             home-manager.users.${pc.user} = {
               imports = [
+                # TODO move to module file (all should be enabled when they all have their own config)
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
                 ./home-manager/shell/shells.nix                 # fish (default) + bash
@@ -250,8 +262,10 @@
         in
         { inherit inputs vars; };
         modules = [
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; })
-          ./nixos/hosts/vm/vm.nix
+          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; }) # TODO move to overlay file 
+          # TODO all should be here as well as for PC
+          ./nixos/bootloader/grub.nix                           # VM Boot and Bootloader config
+          ./nixos/bootloader/systemd-boot.nix
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
@@ -273,6 +287,7 @@
             { inherit inputs vars; };
             home-manager.users.${vm.user} = {
               imports = [
+                # TODO all should be here as well as for PC
                 ./home-manager/home.nix
                 ./home-manager/gnome/home.nix
                 ./home-manager/gnome/extensions.nix
