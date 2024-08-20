@@ -75,7 +75,7 @@
     vm = {
       user = "test";
       networkingHostName = "nixos";
-      timezone = "Europe/Belgrade";
+      timezone = "America/New_York";
       defaultLocale = "en_GB.UTF-8";
       consoleFont = "Lat2-Terminus16";
       initialPassword = "$y$j9T$8zHiYDS6ygvXsdcgXn2pg1$6BkJP/RL33k.q5vUPfXyT0DelCZEt8RbUAcDysQ22A3";
@@ -252,7 +252,12 @@
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure
-  
+          /etc/nixos/configuration.nix
+          # ./nixos/kde/plasma.nix                                # KDE plasma DE
+          # ./nixos/gnome/gnome.nix
+          # ./nixos/cosmic/cosmic.nix
+          # ./nixos/gdm/gdm.nix
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -268,6 +273,7 @@
                 ./home-manager/gnome/home.nix
                 ./home-manager/gnome/extensions.nix
                 ./home-manager/terminator.nix                   # terminal config
+                ./home-manager/git.nix
               ];
             };
           }
