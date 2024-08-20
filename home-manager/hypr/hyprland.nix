@@ -25,11 +25,11 @@ in
 
     settings = {
       exec-once = [
-        # "startup"
-        "nightlight a"
-        "${idle}"
-        "ags"
-        "openstartupapps"
+        "startup"
+        # "nightlight a"
+        # "${idle}"
+        # "ags"
+        # "openstartupapps"
         "hyprctl setcursor ${vars.gtk.cursorTheme} ${toString vars.gtk.cursorSize}"
         # "~/.config/scripts/111.sh"
         # "copyq --start-server"

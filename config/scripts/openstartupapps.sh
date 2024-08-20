@@ -7,7 +7,10 @@ function open_startup_apps() {
     program="kitty"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program"
-        sleep 2.5
+        sleep_time
+        sleep_time
+        sleep_time
+        sleep_time
     fi
 
     program="codium"
@@ -203,8 +206,6 @@ open_note_file() {
         codium "$HOME/Documents/note.md"
     fi
 }
-
-sleep 4
 
 # Main loop to retry for 10 seconds
 # is_media_paused=
