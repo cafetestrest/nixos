@@ -1,13 +1,24 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.virtualisation.spice-virt-manager;
+in
 {
-  environment.systemPackages = with pkgs; [
-    spice                     # vm
-    spice-gtk                 # vm
-    spice-protocol            # vm
-    #win-virtio               # vm windows stuff
-    #win-spice                # vm windows stuff
-  ];
+  options = {
+    module.virtualisation.spice-virt-manager.enable = mkEnableOption "Enables interaction with virtualized desktop devices";
+  };
 
-  services.spice-vdagentd.enable = false;
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      spice                     # vm
+      spice-gtk                 # vm
+      spice-protocol            # vm
+      #win-virtio               # vm windows stuff
+      #win-spice                # vm windows stuff
+    ];
+
+    services.spice-vdagentd.enable = false;
+  };
 }

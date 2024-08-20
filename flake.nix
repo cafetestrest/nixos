@@ -69,6 +69,10 @@
       };
       modules = {
         terminator.enable = false;
+        virtualisation = {
+          virt-manager.enable = false;
+          spice-virt-manager.enable = false;
+        };
       };
     };
 
