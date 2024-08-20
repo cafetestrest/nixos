@@ -54,6 +54,6 @@ fi
 # env QT_QPA_PLATFORM=wayland copyq --start-server &
 # echo "Copyq started"
 
-sleep 1
+sleep 2
 
 openstartupapps
