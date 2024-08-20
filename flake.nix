@@ -40,7 +40,7 @@
 
   outputs = { nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, home-manager, nixos-cosmic, ... }@inputs:
   let
-    vars = {
+    pc = {
       user = "bajic";
       networkingHostName = "nixos";
       timezone = "Europe/Belgrade";
@@ -49,7 +49,7 @@
       initialPassword = "$y$j9T$8zHiYDS6ygvXsdcgXn2pg1$6BkJP/RL33k.q5vUPfXyT0DelCZEt8RbUAcDysQ22A3";
       nixExtraOptions = "experimental-features = nix-command flakes";
       efiSysMountPoint = "/boot/efi";
-      grubHardDriveForVM = "/dev/vda";
+      grubDevice = "/dev/vda";  # vm device location
       configurationLimit = 20;
       gtk = {
         cursorSize = 24;
@@ -69,6 +69,25 @@
       };
       modules = {
         terminator.enable = false;
+      };
+    };
+
+    vm = {
+      user = "test";
+      networkingHostName = "nixos";
+      timezone = "Europe/Belgrade";
+      defaultLocale = "en_GB.UTF-8";
+      consoleFont = "Lat2-Terminus16";
+      initialPassword = "$y$j9T$8zHiYDS6ygvXsdcgXn2pg1$6BkJP/RL33k.q5vUPfXyT0DelCZEt8RbUAcDysQ22A3";
+      nixExtraOptions = "experimental-features = nix-command flakes";
+      efiSysMountPoint = "/boot/efi";
+      grubDevice = "/dev/vda";
+      configurationLimit = 20;
+      gtk = pc.gtk;
+      sha = pc.sha;
+      commit = pc.commit;
+      modules = {
+        terminator.enable = true;
       };
     };
 
@@ -115,9 +134,13 @@
   in
   {
     nixosConfigurations = {
-      ${vars.user} = lib.nixosSystem {
+      ${pc.user} = lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs vars; };
+        specialArgs =
+        let
+          vars = pc;
+        in
+        { inherit inputs vars; };
         modules = [
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ];
@@ -145,8 +168,8 @@
           ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset - udev rules
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    # required for https://github.com/run-as-root/rooter
-          # ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
-          # ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
+          ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
+          ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           ./nixos/localsend.nix                                 # used for file sharing with other PC/mobile devices
           # ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
@@ -159,8 +182,12 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs vars; };
-            home-manager.users.${vars.user} = {
+            home-manager.extraSpecialArgs =
+            let
+              vars = pc;
+            in
+            { inherit inputs vars; };
+            home-manager.users.${pc.user} = {
               imports = [
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
@@ -211,9 +238,13 @@
         ];
       };
 
-      vm = lib.nixosSystem {
+      ${vm.user} = lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs vars; };
+        specialArgs =
+        let
+          vars = vm;
+        in
+        { inherit inputs vars; };
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; })
           ./nixos/hosts/vm/vm.nix
@@ -226,12 +257,17 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs vars; };
-            home-manager.users.${vars.user} = {
+            home-manager.extraSpecialArgs =
+            let
+              vars = vm;
+            in
+            { inherit inputs vars; };
+            home-manager.users.${vm.user} = {
               imports = [
                 ./home-manager/home.nix
                 ./home-manager/gnome/home.nix
                 ./home-manager/gnome/extensions.nix
+                ./home-manager/terminator.nix                   # terminal config
               ];
             };
           }
