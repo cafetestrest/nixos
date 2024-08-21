@@ -19,7 +19,7 @@ in
     };
 
     programs.fish = {
-      enable = true;
+      enable = true;  #TODO
     };
   };
 }

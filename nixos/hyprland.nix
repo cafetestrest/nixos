@@ -19,12 +19,12 @@ in
       xwayland.enable = true;
     };
 
-    xdg.portal = {
+    xdg.portal = {  #TODO
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
-    security = {
+    security = {  #TODO
       polkit.enable = true;
       pam.services.ags = {};
     };
@@ -40,14 +40,14 @@ in
     #   NIXOS_OZONE_WL = "1";
     # };
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [ #TODO
       # ags
       # wlogout                             #logout for wayland - can be deleted and used wofi
       grim                                #screenshot tool
       slurp                               #select a screenshot region
       # swaybg                              #wallpaper
       # swayidle                            #idle manager for sway/hyprland
-      hyprpicker                          #pipette - color hex picker
+      hyprpicker                          #pipette - color hex picker 
       loupe                               #image viewer
       gnome.nautilus                      #file manager
       gnome-text-editor
@@ -63,10 +63,10 @@ in
       gnome.gnome-control-center
       gnome.gnome-weather
       gnome.gnome-clocks
-      gnome.gnome-software # for flatpak
+      gnome.gnome-software # for flatpak  #TODO
     ];
 
-    systemd = {
+    systemd = { #TODO
       user.services.polkit-gnome-authentication-agent-1 = {
         description = "polkit-gnome-authentication-agent-1";
         wantedBy = [ "graphical-session.target" ];
@@ -82,7 +82,7 @@ in
       };
     };
 
-    services = {
+    services = {  #TODO
       gvfs.enable = true; #allows applications to access various types of file systems (local, remote, etc.)
       devmon.enable = true; #(Device Monitor) automates the mounting and unmounting of removable devices like USB drives
       udisks2.enable = true;  #tools, and a library to handle storage devices and disk management
