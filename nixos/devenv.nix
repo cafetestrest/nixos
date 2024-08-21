@@ -1,27 +1,38 @@
-{ config, pkgs, vars, ... }:
+{ config, lib, vars, ... }:
 
+with lib;
+
+let
+  cfg = config.module.programs.devenv;
+in
 {
-  nix.settings = {
-    trusted-users = [ "root" "${vars.user}" ];
-
-    substituters = [
-      "https://devenv.cachix.org"
-    ];
-    trusted-public-keys = [
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
+  options = {
+    module.programs.devenv.enable = mkEnableOption "Enables devenv";
   };
 
-  # required for port 80, traefik stopping otherwise
-  # boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
-  # networking.firewall.allowedTCPPorts = [ 80 ];
-  # networking.firewall.allowedUDPPorts = [ 80 ];
+  config = mkIf cfg.enable {
+    nix.settings = {
+      trusted-users = [ "root" "${vars.user}" ];  #TODO remove root?
 
-  networking.extraHosts =
-  ''
-    127.0.0.1 ::1 magento2.rooter.test
-    127.0.0.1 ::1 test.rooter.test
-    127.0.0.1 ::1 rooter.rooter.test
-    127.0.0.1 ::1 magento2.test
-  '';
+      substituters = [
+        "https://devenv.cachix.org"
+      ];
+      trusted-public-keys = [
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
+    };
+
+    # required for port 80, traefik stopping otherwise  #TODO remove?
+    # boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
+    # networking.firewall.allowedTCPPorts = [ 80 ];
+    # networking.firewall.allowedUDPPorts = [ 80 ];
+
+    networking.extraHosts = #TODO
+    ''
+      127.0.0.1 ::1 magento2.rooter.test
+      127.0.0.1 ::1 test.rooter.test
+      127.0.0.1 ::1 rooter.rooter.test
+      127.0.0.1 ::1 magento2.test
+    '';
+  };
 }

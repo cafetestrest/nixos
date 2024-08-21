@@ -50,10 +50,10 @@
       swaylock.enable = (vars.modules.screen-locker.swaylock.enable or false);
       gtklock.enable = (vars.modules.screen-locker.gtklock.enable or false);
     };
-    # bar = {
+    bar = {
     #   ags.enable = (vars.modules.bar.ags.enable or false);
-    #   waybar.enable = (vars.modules.bar.waybar.enable or false);
-    # };
+      waybar.enable = (vars.modules.bar.waybar.enable or false);
+    };
     services = {
       udev = {
         rangoli.enable = (vars.modules.services.udev.rangoli.enable or false);
@@ -61,8 +61,8 @@
       };
     #   i2c.enable = (vars.modules.services.i2c.enable or false);
     };
-    # programs = {
-    #   devenv.enable = (vars.modules.programs.devenv.enable or false);
+    programs = {
+      devenv.enable = (vars.modules.programs.devenv.enable or false);
     #   localsend.enable = (vars.modules.programs.localsend.enable or false);
     #   chrome = {
     #     settings.enable = (vars.modules.programs.chrome.settings.enable or false);
@@ -70,6 +70,6 @@
     #   teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
     #   copyq.enable = (vars.modules.programs.copyq.enable or false);
     #   doas.enable = (vars.modules.programs.doas.enable or false);
-    # };
+    };
   };
 }
