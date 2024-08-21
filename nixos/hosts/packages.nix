@@ -16,6 +16,7 @@
     };
     drive = {
       ssd.enable = (vars.modules.drive.ssd.enable or false);
+      ntfs.enable = (vars.modules.drive.ntfs.enable or false);
     };
     virtualisation = {
       virt-manager.enable = (vars.modules.virtualisation.virt-manager.enable or false);

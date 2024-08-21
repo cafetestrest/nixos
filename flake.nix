@@ -106,6 +106,7 @@
         };
         drive = {
           ssd.enable = true;
+          ntfs.enable = true;
         };
         virtualisation = {
           virt-manager.enable = false;
