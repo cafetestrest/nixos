@@ -108,11 +108,11 @@
         services = {
           udev = {
             rangoli.enable = false;
+            headsetcontrol.enable = true;
           };
           i2c.enable = true;
         };
         programs = {
-          headsetcontrol.enable = true;
           devenv.enable = false;
           localsend.enable = true;
           chrome.settings.enable = true;
@@ -247,7 +247,8 @@
           ./nixos/gtklock.nix                                   # lockscreen packages
           ./nixos/docker/docker.nix                             # docker, docker-compose and /etc/hosts
           ./nixos/docker/warden.nix
-          ./nixos/headsetcontrol.nix                            # used to retrieve battery percentage from headset - udev rules
+          ./nixos/udev/headsetcontrol.nix                       # used to retrieve battery percentage from headset - udev rules
+          ./nixos/udev/rangoli.nix                              # needs distrobox from home-manager
           # ./nixos/waybar.nix
           # ./nixos/devenv.nix                                    # required for https://github.com/run-as-root/rooter
           ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
@@ -256,7 +257,6 @@
           # ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
           ./nixos/copyq.nix
-          # ./nixos/udev/rangoli-udev.nix                         # needs distrobox from home-manager
           ./nixos/i2c.nix                                       # for ddcutil (monitor control)
           # ./nixos/doas.nix                                      # replace sudo with doas
 

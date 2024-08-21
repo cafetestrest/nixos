@@ -54,14 +54,14 @@
     #   ags.enable = (vars.modules.bar.ags.enable or false);
     #   waybar.enable = (vars.modules.bar.waybar.enable or false);
     # };
-    # services = {
-    #   udev = {
-    #     rangoli.enable = (vars.modules.services.udev.rangoli.enable or false);
-    #   };
+    services = {
+      udev = {
+        rangoli.enable = (vars.modules.services.udev.rangoli.enable or false);
+        headsetcontrol.enable = (vars.modules.services.udev.headsetcontrol.enable or false);
+      };
     #   i2c.enable = (vars.modules.services.i2c.enable or false);
-    # };
+    };
     # programs = {
-    #   headsetcontrol.enable = (vars.modules.programs.headsetcontrol.enable or false);
     #   devenv.enable = (vars.modules.programs.devenv.enable or false);
     #   localsend.enable = (vars.modules.programs.localsend.enable or false);
     #   chrome = {
