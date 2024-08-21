@@ -9,6 +9,7 @@
 
   # TODO move to own config
   module = {
+    configuration.enable = (vars.modules.configuration.enable or true);  # default value true for configuration.nix
     bootloader = {
       grub.enable = (vars.modules.bootloader.grub.enable or false);
       systemd-boot.enable = (vars.modules.bootloader.systemd-boot.enable or true);  # default value true bootload systemd-boot

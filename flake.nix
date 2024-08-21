@@ -68,10 +68,11 @@
         yeelightShellScriptsGitRev = "d8b463dea258b4f1fdf4277dd5b37ca8bebad3ee";
       };
       modules = {
-        # bootloader = {
-        #   grub.enable = false;
-        #   systemd-boot.enable = true;
-        # };
+        configuration.enable = true;  # use default configuration.nix file
+        bootloader = {
+          grub.enable = false;
+          systemd-boot.enable = true;
+        };
         terminator.enable = true;
         virtualisation = {
           virt-manager.enable = false;
@@ -95,11 +96,12 @@
       sha = pc.sha;
       commit = pc.commit;
       modules = {
-        # bootloader = {
-        #   grub.enable = true;
-        #   systemd-boot.enable = false;
-        # };
-        terminator.enable = true;
+        configuration.enable = true;  # use default configuration.nix file (if you want to use /etc/nixos/configuration.nix disable this)
+        bootloader = {
+          grub.enable = true;
+          systemd-boot.enable = false;
+        };
+        terminator.enable = false;
       };
     };
 
@@ -270,7 +272,7 @@
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure
-          /etc/nixos/configuration.nix
+          # /etc/nixos/configuration.nix
           # ./nixos/kde/plasma.nix                                # KDE plasma DE
           # ./nixos/gnome/gnome.nix
           # ./nixos/cosmic/cosmic.nix
