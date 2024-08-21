@@ -1,19 +1,30 @@
-{ config, vars, ... }:
+{ config, lib, vars, ... }:
 
+with lib;
+
+let
+  cfg = config.module.security.doas;
+in
 {
-  security = {
-    sudo.enable = true;
-    doas.enable = true;
-    doas.extraRules = [
-      {
-        users = [ "${vars.user}" ];
-        keepEnv = true;
-        persist = true;
-      }
-    ];
+  options = {
+    module.security.doas.enable = mkEnableOption "Enables doas";
   };
 
-  environment.shellAliases = {
-    sudo = "doas";
+  config = mkIf cfg.enable {
+    security = {
+      sudo.enable = true; #TODO add support
+      doas.enable = true;
+      doas.extraRules = [
+        {
+          users = [ "${vars.user}" ];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
+    };
+
+    environment.shellAliases = {
+      sudo = "doas";
+    };
   };
 }

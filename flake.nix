@@ -112,6 +112,9 @@
           };
           i2c.enable = true;
         };
+        security = {
+          doas.enable = false;
+        };
         programs = {
           devenv.enable = false;
           localsend.enable = true;
@@ -121,7 +124,6 @@
           teamviewer.enable = false;
           copyq.enable = true;
           ydotool.enable = true;
-          doas.enable = false;
         };
         home-manager = {
           git.enable = true;
@@ -262,7 +264,7 @@
           ./nixos/copyq.nix
           ./nixos/ydotool.nix
           ./nixos/i2c.nix                                       # for ddcutil (monitor control)
-          # ./nixos/doas.nix                                      # replace sudo with doas
+          ./nixos/doas.nix                                      # replace sudo with doas
 
           home-manager.nixosModules.home-manager
           {

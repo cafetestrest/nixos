@@ -51,15 +51,17 @@
       gtklock.enable = (vars.modules.screen-locker.gtklock.enable or false);
     };
     bar = {
-    #   ags.enable = (vars.modules.bar.ags.enable or false);
       waybar.enable = (vars.modules.bar.waybar.enable or false);
+    };
+    security = {
+      doas.enable = (vars.modules.security.doas.enable or false);
     };
     services = {
       udev = {
         rangoli.enable = (vars.modules.services.udev.rangoli.enable or false);
         headsetcontrol.enable = (vars.modules.services.udev.headsetcontrol.enable or false);
       };
-    #   i2c.enable = (vars.modules.services.i2c.enable or false);
+      i2c.enable = (vars.modules.services.i2c.enable or false);
     };
     programs = {
       devenv.enable = (vars.modules.programs.devenv.enable or false);
@@ -70,7 +72,6 @@
       teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
       copyq.enable = (vars.modules.programs.copyq.enable or false);
       ydotool.enable = (vars.modules.programs.ydotool.enable or false);
-    #   doas.enable = (vars.modules.programs.doas.enable or false);
     };
   };
 }
