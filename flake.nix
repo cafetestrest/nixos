@@ -120,6 +120,7 @@
           };
           teamviewer.enable = false;
           copyq.enable = true;
+          ydotool.enable = true;
           doas.enable = false;
         };
         home-manager = {
@@ -257,8 +258,9 @@
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           ./nixos/localsend.nix                                 # used for file sharing with other PC/mobile devices
           ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
-          # ./nixos/teamviewer.nix
+          ./nixos/teamviewer.nix
           ./nixos/copyq.nix
+          ./nixos/ydotool.nix
           ./nixos/i2c.nix                                       # for ddcutil (monitor control)
           # ./nixos/doas.nix                                      # replace sudo with doas
 

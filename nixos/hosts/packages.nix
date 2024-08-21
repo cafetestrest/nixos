@@ -67,8 +67,9 @@
       chrome = {
         widevine.enable = (vars.modules.programs.chrome.widevine.enable or false);
       };
-    #   teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
-    #   copyq.enable = (vars.modules.programs.copyq.enable or false);
+      teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
+      copyq.enable = (vars.modules.programs.copyq.enable or false);
+      ydotool.enable = (vars.modules.programs.ydotool.enable or false);
     #   doas.enable = (vars.modules.programs.doas.enable or false);
     };
   };

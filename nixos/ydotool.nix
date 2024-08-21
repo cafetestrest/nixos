@@ -1,11 +1,23 @@
-{ config, pkgs, lib, vars, ... }:
+{ config, lib, vars, ... }:
 
+with lib;
+
+let
+  cfg = config.module.programs.ydotool;
+  cfgCopyq = config.module.programs.copyq;
+in
 {
-  programs.ydotool.enable = true;
+  options = {
+    module.programs.ydotool.enable = mkEnableOption "Enables ydotool";
+  };
 
-  users.users.${vars.user} = {
-    extraGroups = [
-      "ydotool" #TODO remove on 24.11
-    ];
+  config = mkIf (cfg.enable || cfgCopyq.enable) {
+    programs.ydotool.enable = true;
+
+    users.users.${vars.user} = {
+      extraGroups = [
+        "ydotool" #TODO remove on 24.11
+      ];
+    };
   };
 }

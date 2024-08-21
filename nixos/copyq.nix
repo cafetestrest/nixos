@@ -1,24 +1,36 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.programs.copyq;
+in
 {
-  environment.systemPackages = with pkgs; [
-    copyq                 #copy/paste things
-  ];
+  options = {
+    module.programs.copyq.enable = mkEnableOption "Enables copyq";
+  };
 
-  imports = [
-    ./ydotool.nix
-  ];
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      copyq                 #copy/paste things  #TODO move to hm?
+    ];
 
-  environment.shellInit = ''
-    check_copyq() {
-      if ! pgrep "copyq" > /dev/null; then
-          if [ -n "$HYPRLAND_CMD" ]; then
-              QT_QPA_PLATFORM=wayland copyq --start-server &
-          fi
-      fi
-    }
+    # imports = [
+    #   ./ydotool.nix
+    # ];
 
-    # Call the function on shell startup
-    check_copyq
-  '';
+    #TODO add config support?
+    environment.shellInit = ''
+      check_copyq() {
+        if ! pgrep "copyq" > /dev/null; then
+            if [ -n "$HYPRLAND_CMD" ]; then
+                QT_QPA_PLATFORM=wayland copyq --start-server &
+            fi
+        fi
+      }
+
+      # Call the function on shell startup
+      check_copyq
+    '';
+  };
 }

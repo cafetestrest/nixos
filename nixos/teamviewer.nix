@@ -1,9 +1,20 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.programs.teamviewer;
+in
 {
-  environment.systemPackages = with pkgs; [
-    teamviewer
-  ];
+  options = {
+    module.programs.teamviewer.enable = mkEnableOption "Enables teamviewer";
+  };
 
-  services.teamviewer.enable = true;
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      teamviewer  #TODO move to hm?
+    ];
+
+    services.teamviewer.enable = true;
+  };
 }
