@@ -73,6 +73,15 @@
           grub.enable = false;
           systemd-boot.enable = true;
         };
+        drive = {
+          ssd.enable = true;
+          ntfs.enable = true;
+        };
+        hardware = {
+          bluetooth.enable = true;
+          wireless.enable = false;
+          amd-gpu.enable = false;
+        };
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = false;
@@ -93,7 +102,7 @@
         display-manager = {
           gdm = {
             enable = true;
-            custom-background.enable = true;
+            custom-background.enable = false; #TODO fix
           };
         };
         screen-locker = {
@@ -211,15 +220,6 @@
         bootloader = {
           grub.enable = true;
           systemd-boot.enable = false;
-        };
-        drive = {
-          ssd.enable = true;
-          ntfs.enable = true;
-        };
-        hardware = {
-          bluetooth.enable = true;
-          wireless.enable = false;
-          amd-gpu.enable = false;
         };
         virtualisation = {
           virt-manager.enable = false;
