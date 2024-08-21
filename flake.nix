@@ -73,10 +73,13 @@
           grub.enable = false;
           systemd-boot.enable = true;
         };
-        terminator.enable = true;
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = false;
+        };
+        home-manager = {
+          git.enable = true;
+          terminator.enable = true;
         };
       };
     };
@@ -101,7 +104,14 @@
           grub.enable = true;
           systemd-boot.enable = false;
         };
-        terminator.enable = false;
+        virtualisation = {
+          virt-manager.enable = false;
+          spice-virt-manager.enable = true;
+        };
+        home-manager = {
+          git.enable = true;
+          terminator.enable = false;
+        };
       };
     };
 

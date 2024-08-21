@@ -7,7 +7,10 @@
   home.homeDirectory = "/home/${vars.user}";
 
   # TODO move to own config
-  terminator.enable = (vars.modules.terminator.enable or false);
+  module = {
+    terminator.enable = (vars.modules.home-manager.terminator.enable or false);
+    git.enable = (vars.modules.home-manager.git.enable or false);
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

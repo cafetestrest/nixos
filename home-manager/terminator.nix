@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
 let
+  cfg = config.module.terminator;
+
   makeTerminatorConfig = {
     global_config = {
       inactive_color_offset = 0.5064935064935064;
@@ -44,11 +48,11 @@ let
   };
 in
 {
-  options.terminator = {
-    enable = lib.mkEnableOption "Terminator terminal";
+  options = {
+    module.terminator.enable = mkEnableOption "Terminator terminal";
   };
 
-  config = lib.mkIf config.terminator.enable {
+  config = mkIf cfg.enable {
     programs.terminator = {
       enable = true;
       # extraPackages = [ pkgs.terminatorThemes ]; # Optional: For additional themes
