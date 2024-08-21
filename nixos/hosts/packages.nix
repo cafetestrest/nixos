@@ -63,10 +63,10 @@
     };
     programs = {
       devenv.enable = (vars.modules.programs.devenv.enable or false);
-    #   localsend.enable = (vars.modules.programs.localsend.enable or false);
-    #   chrome = {
-    #     settings.enable = (vars.modules.programs.chrome.settings.enable or false);
-    #   };
+      localsend.enable = (vars.modules.programs.localsend.enable or false);
+      chrome = {
+        widevine.enable = (vars.modules.programs.chrome.widevine.enable or false);
+      };
     #   teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
     #   copyq.enable = (vars.modules.programs.copyq.enable or false);
     #   doas.enable = (vars.modules.programs.doas.enable or false);

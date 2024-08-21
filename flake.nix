@@ -115,7 +115,9 @@
         programs = {
           devenv.enable = false;
           localsend.enable = true;
-          chrome.settings.enable = true;
+          chrome = {
+            widevine.enable = true;
+          };
           teamviewer.enable = false;
           copyq.enable = true;
           doas.enable = false;
@@ -254,7 +256,7 @@
           ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
           ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
           ./nixos/localsend.nix                                 # used for file sharing with other PC/mobile devices
-          # ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
+          ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
           # ./nixos/teamviewer.nix
           ./nixos/copyq.nix
           ./nixos/i2c.nix                                       # for ddcutil (monitor control)

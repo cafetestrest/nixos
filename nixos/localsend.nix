@@ -1,10 +1,21 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.programs.localsend;
+in
 {
-  environment.systemPackages = with pkgs; [
-    localsend
-  ];
+  options = {
+    module.programs.localsend.enable = mkEnableOption "Enables localsend";
+  };
 
-  networking.firewall.allowedTCPPorts = [ 53317 ];
-  networking.firewall.allowedUDPPorts = [ 53317 ];
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      localsend #TODO move to hm ?
+    ];
+
+    networking.firewall.allowedTCPPorts = [ 53317 ];
+    networking.firewall.allowedUDPPorts = [ 53317 ];
+  };
 }
