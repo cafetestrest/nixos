@@ -18,6 +18,10 @@
       ssd.enable = (vars.modules.drive.ssd.enable or false);
       ntfs.enable = (vars.modules.drive.ntfs.enable or false);
     };
+    services = {
+      bluetooth.enable = (vars.modules.services.bluetooth.enable or false);
+      wireless.enable = (vars.modules.services.wireless.enable or false);
+    };
     virtualisation = {
       virt-manager.enable = (vars.modules.virtualisation.virt-manager.enable or false);
       spice-virt-manager.enable = (vars.modules.virtualisation.spice-virt-manager.enable or false);

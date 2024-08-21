@@ -108,6 +108,10 @@
           ssd.enable = true;
           ntfs.enable = true;
         };
+        services = {
+          bluetooth.enable = true;
+          wireless.enable = true;
+        };
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = true;
