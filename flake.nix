@@ -76,6 +76,50 @@
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = false;
+          docker = {
+            enable = true;
+            warden = true;
+          };
+        };
+        shell = {
+          default-fish.enable = true;
+        };
+        window-manager = {
+          hyprland.enable = true;
+          plasma.enable = false;
+          gnome.enable = false;
+          cosmic.enable = false;
+        };
+        display-manager = {
+          gdm = {
+            enable = true;
+            custom-background.enable = true;
+          };
+          sddm.enable = false;
+        };
+        screen-locker = {
+          hyprlock.enable = true;
+          swaylock.enable = false;
+          gtklock.enable = false;
+        };
+        bar = {
+          ags.enable = true;
+          waybar.enable = false;
+        };
+        services = {
+          udev = {
+            rangoli.enable = false;
+          };
+          i2c.enable = true;
+        };
+        programs = {
+          headsetcontrol.enable = true;
+          devenv.enable = false;
+          localsend.enable = true;
+          chrome.settings.enable = true;
+          teamviewer.enable = false;
+          copyq.enable = true;
+          doas.enable = false;
         };
         home-manager = {
           git.enable = true;
@@ -189,7 +233,7 @@
           ./nixos/wireless.nix
           ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
-          ./nixos/hosts/packages.nix                            # shared packages
+          ./nixos/hosts/packages.nix                            # shared packages # TODO separate and add config here too, this one should be sharedPackages 
           ./nixos/fishdefaultshell.nix                          # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
           # ./nixos/kde/plasma.nix                                # KDE plasma DE
