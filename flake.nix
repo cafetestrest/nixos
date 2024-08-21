@@ -95,7 +95,6 @@
             enable = true;
             custom-background.enable = true;
           };
-          sddm.enable = false;
         };
         screen-locker = {
           hyprlock.enable = true;

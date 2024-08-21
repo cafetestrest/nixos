@@ -40,13 +40,12 @@
       gnome.enable = (vars.modules.desktop-environment.gnome.enable or true);  # default value true Gnome WM
       # cosmic.enable = (vars.modules.desktop-environment.cosmic.enable or false);  #TODO fix
     };
-    # display-manager = {
-    #   gdm = {
-    #     enable = (vars.modules.display-manager.gdm.enable or true); # default value true GDM DM
-    #     custom-background.enable = (vars.modules.display-manager.gdm.custom-background.enable or false);
-    #   };
-    #   sddm.enable = (vars.modules.display-manager.sddm.enable or false);
-    # };
+    display-manager = {
+      gdm = {
+        enable = (vars.modules.display-manager.gdm.enable or true); # default value true GDM DM
+        custom-background.enable = (vars.modules.display-manager.gdm.custom-background.enable or false);
+      };
+    };
     # screen-locker = {
     #   swaylock.enable = (vars.modules.screen-locker.swaylock.enable or false);
     #   gtklock.enable = (vars.modules.screen-locker.gtklock.enable or false);
