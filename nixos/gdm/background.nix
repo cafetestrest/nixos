@@ -23,14 +23,19 @@ in
                   #   sha256 = "0f0vlmdj5wcsn20qg79ir5cmpmz5pysypw6a711dbaz2r9x1c79l";
                   # };
                 in pkgs.writeText "bg.patch" ''
-                  --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
-                  +++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
-                  @@ -15,4 +15,5 @@ $_gdm_dialog_width: 23em;
-                  /* Login Dialog */
-                  .login-dialog {
-                    background-color: $_gdm_bg;
-                  +  background-image: url('file:///etc/nixos/lockscreen.jpg');
-                  }
+diff --git a/data/theme/gnome-shell-sass/widgets/_login-lock.scss b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+index 909fa62..3200ecf 100644
+--- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
++++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+@@ -206,7 +206,7 @@ $_gdm_dialog_width: 25em;
+ }
+ 
+ #lockDialogGroup {
+-  background-color: $_gdm_bg;
++  background-color: black url(file:///etc/nixos/background.jpg);
+ }
+ 
+ // Clock
                 '')
               ];
             });

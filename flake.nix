@@ -242,7 +242,7 @@
           ./nixos/gnome/gnome.nix
           # ./nixos/cosmic/cosmic.nix
           ./nixos/gdm/gdm.nix
-          # ./nixos/gdm/background.nix                            # background for gdm  #TODO fix
+          ./nixos/gdm/background.nix                            # background for gdm  #TODO fix
           # ./nixos/swaylock.nix                                  # lockscreen packages
           # ./nixos/gtklock.nix                                   # lockscreen packages
           ./nixos/docker/docker.nix                             # docker, docker-compose and /etc/hosts
