@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.services.bluetooth;
+  cfg = config.module.hardware.bluetooth;
 in
 {
   options = {
-    module.services.bluetooth.enable = mkEnableOption "Enables bluetooth";
+    module.hardware.bluetooth.enable = mkEnableOption "Enables bluetooth";
   };
 
   config = mkIf cfg.enable {

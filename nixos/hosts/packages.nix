@@ -18,9 +18,10 @@
       ssd.enable = (vars.modules.drive.ssd.enable or false);
       ntfs.enable = (vars.modules.drive.ntfs.enable or false);
     };
-    services = {
-      bluetooth.enable = (vars.modules.services.bluetooth.enable or false);
-      wireless.enable = (vars.modules.services.wireless.enable or false);
+    hardware = {
+      bluetooth.enable = (vars.modules.hardware.bluetooth.enable or false);
+      wireless.enable = (vars.modules.hardware.wireless.enable or false);
+      amd-gpu.enable = (vars.modules.hardware.amd-gpu.enable or false);
     };
     virtualisation = {
       virt-manager.enable = (vars.modules.virtualisation.virt-manager.enable or false);

@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.services.wireless;
+  cfg = config.module.hardware.wireless;
 in
 {
   options = {
-    module.services.wireless.enable = mkEnableOption "Enables wireless support via wpa_supplicant";
+    module.hardware.wireless.enable = mkEnableOption "Enables wireless support via wpa_supplicant";
   };
 
   config = mkIf cfg.enable {

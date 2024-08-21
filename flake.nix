@@ -108,9 +108,10 @@
           ssd.enable = true;
           ntfs.enable = true;
         };
-        services = {
+        hardware = {
           bluetooth.enable = true;
           wireless.enable = false;
+          amd-gpu.enable = false;
         };
         virtualisation = {
           virt-manager.enable = false;
@@ -186,7 +187,7 @@
           ./nixos/ntfs.nix                                      # windows ntfs file partition support
           ./nixos/bluetooth.nix                                 # bluetooth support and blueman
           ./nixos/wireless.nix
-          # ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
+          ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
           ./nixos/hosts/configuration.nix                       # shared configuration
           ./nixos/hosts/packages.nix                            # shared packages
           ./nixos/fishdefaultshell.nix                          # sets default shell (fish)
