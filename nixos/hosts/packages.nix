@@ -38,7 +38,7 @@
       hyprland.enable = (vars.modules.desktop-environment.hyprland.enable or false);
       plasma6.enable = (vars.modules.desktop-environment.plasma6.enable or false);
       gnome.enable = (vars.modules.desktop-environment.gnome.enable or true);  # default value true Gnome WM
-      cosmic.enable = (vars.modules.desktop-environment.cosmic.enable or false);
+      # cosmic.enable = (vars.modules.desktop-environment.cosmic.enable or false);  #TODO fix
     };
     # display-manager = {
     #   gdm = {

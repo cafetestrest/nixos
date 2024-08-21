@@ -241,7 +241,7 @@
           ./nixos/hyprland.nix                                  # hyprland packages
           ./nixos/kde/plasma.nix                                # KDE plasma DE
           ./nixos/gnome/gnome.nix
-          ./nixos/cosmic/cosmic.nix
+          # ./nixos/cosmic/cosmic.nix
           ./nixos/gdm/gdm.nix
           ./nixos/gdm/background.nix                            # background for gdm
           # ./nixos/swaylock.nix                                  # lockscreen packages
