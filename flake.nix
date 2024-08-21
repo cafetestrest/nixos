@@ -78,7 +78,7 @@
           spice-virt-manager.enable = false;
           docker = {
             enable = true;
-            warden = true;
+            warden.enable = true;
           };
         };
         shell = {

@@ -1,22 +1,33 @@
 { config, lib, pkgs, vars, ... }:
 
-{
-  environment.systemPackages = with pkgs; [
-    docker
-    docker-compose
-  ];
+with lib;
 
-  users.users.${vars.user} = {
-    extraGroups = [ "docker" ];
+let
+  cfg = config.module.virtualisation.docker;
+in
+{
+  options = {
+    module.virtualisation.docker.enable = mkEnableOption "Enables Docker virtualisation";
   };
 
-  # xdebug ports
-  networking.firewall.allowedTCPPortRanges = [
-    { from = 9000; to = 9003; }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    { from = 9000; to = 9003; }
-  ];
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      docker
+      docker-compose  #TODO
+    ];
 
-  virtualisation.docker.enable = true;
+    users.users.${vars.user} = {
+      extraGroups = [ "docker" ];
+    };
+
+    # xdebug ports
+    networking.firewall.allowedTCPPortRanges = [  #TODO
+      { from = 9000; to = 9003; }
+    ];
+    networking.firewall.allowedUDPPortRanges = [
+      { from = 9000; to = 9003; }
+    ];
+
+    virtualisation.docker.enable = true;
+  };
 }

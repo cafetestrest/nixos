@@ -26,10 +26,10 @@
     virtualisation = {
       virt-manager.enable = (vars.modules.virtualisation.virt-manager.enable or false);
       spice-virt-manager.enable = (vars.modules.virtualisation.spice-virt-manager.enable or false);
-      # docker = {
-      #   enable = (vars.modules.virtualisation.docker.enable or false);
-      #   warden = (vars.modules.virtualisation.warden.enable or false);
-      # };
+      docker = {
+        enable = (vars.modules.virtualisation.docker.enable or false);
+        warden.enable = (vars.modules.virtualisation.docker.warden.enable or false);
+      };
     };
     shell = {
       default-fish.enable = (vars.modules.shell.default-fish.enable or false);
