@@ -1,14 +1,25 @@
-{ config, pkgs, vars, ... }:
+{ config, pkgs, lib, vars, ... }:
 
+with lib;
+
+let
+  cfg = config.module.shell.default-fish;
+in
 {
-  # users.defaultUserShell = pkgs.fish;
-
-  users.users.${vars.user} = {
-    shell = pkgs.fish;
-    useDefaultShell = true;
+  options = {
+    module.shell.default-fish.enable = mkEnableOption "Enables fish shell as sets it as default";
   };
 
-  programs.fish = {
-    enable = true;
+  config = mkIf cfg.enable {
+    # users.defaultUserShell = pkgs.fish;
+
+    users.users.${vars.user} = {
+      shell = pkgs.fish;
+      useDefaultShell = true;
+    };
+
+    programs.fish = {
+      enable = true;
+    };
   };
 }

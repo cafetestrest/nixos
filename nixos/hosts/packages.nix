@@ -31,9 +31,9 @@
       #   warden = (vars.modules.virtualisation.warden.enable or false);
       # };
     };
-    # shell = {
-    #   default-fish.enable = (vars.modules.shell.default-fish.enable or false);
-    # };
+    shell = {
+      default-fish.enable = (vars.modules.shell.default-fish.enable or false);
+    };
     # window-manager = {
     #   hyprland.enable = (vars.modules.window-manager.hyprland.enable or false);
     #   plasma.enable = (vars.modules.window-manager.plasma.enable or false);
