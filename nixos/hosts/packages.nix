@@ -36,7 +36,7 @@
     };
     window-manager = {
       hyprland.enable = (vars.modules.window-manager.hyprland.enable or false);
-    #   plasma.enable = (vars.modules.window-manager.plasma.enable or false);
+      plasma6.enable = (vars.modules.window-manager.plasma6.enable or false);
     #   gnome.enable = (vars.modules.window-manager.gnome.enable or true);  # default value true Gnome WM
     #   cosmic.enable = (vars.modules.window-manager.cosmic.enable or false);
     };

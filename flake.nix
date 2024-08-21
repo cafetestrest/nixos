@@ -86,7 +86,7 @@
         };
         window-manager = {
           hyprland.enable = true;
-          plasma.enable = false;
+          plasma6.enable = false;
           gnome.enable = false;
           cosmic.enable = false;
         };
@@ -236,7 +236,7 @@
           ./nixos/hosts/packages.nix                            # shared packages # TODO separate and add config here too, this one should be sharedPackages 
           ./nixos/fishdefaultshell.nix                          # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
-          # ./nixos/kde/plasma.nix                                # KDE plasma DE
+          ./nixos/kde/plasma.nix                                # KDE plasma DE
           # ./nixos/gnome/gnome.nix
           # ./nixos/cosmic/cosmic.nix
           ./nixos/gdm/gdm.nix
