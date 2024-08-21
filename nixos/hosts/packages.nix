@@ -14,6 +14,9 @@
       grub.enable = (vars.modules.bootloader.grub.enable or false);
       systemd-boot.enable = (vars.modules.bootloader.systemd-boot.enable or true);  # default value true bootload systemd-boot
     };
+    drive = {
+      ssd.enable = (vars.modules.drive.ssd.enable or false);
+    };
     virtualisation = {
       virt-manager.enable = (vars.modules.virtualisation.virt-manager.enable or false);
       spice-virt-manager.enable = (vars.modules.virtualisation.spice-virt-manager.enable or false);

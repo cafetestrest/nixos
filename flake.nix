@@ -104,6 +104,9 @@
           grub.enable = true;
           systemd-boot.enable = false;
         };
+        drive = {
+          ssd.enable = true;
+        };
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = true;
