@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.git;
+  cfg = config.module.packages.git;
 in
 {
   options = {
-    module.git.enable = mkEnableOption "Enables git";
+    module.packages.git.enable = mkEnableOption "Enables git";
   };
 
   config = mkIf cfg.enable {

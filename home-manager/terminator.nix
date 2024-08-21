@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.module.terminator;
+  cfg = config.module.packages.terminator;
 
   makeTerminatorConfig = {
     global_config = {
@@ -49,7 +49,7 @@ let
 in
 {
   options = {
-    module.terminator.enable = mkEnableOption "Terminator terminal";
+    module.packages.terminator.enable = mkEnableOption "Terminator terminal";
   };
 
   config = mkIf cfg.enable {

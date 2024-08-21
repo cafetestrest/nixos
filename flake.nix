@@ -40,7 +40,7 @@
 
   outputs = { nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, home-manager, nixos-cosmic, ... }@inputs:
   let
-    pc = {
+    pc = rec {
       user = "bajic";
       networkingHostName = "nixos";
       timezone = "Europe/Belgrade";
@@ -103,7 +103,7 @@
         };
         bar = {
           ags.enable = true;
-          waybar.enable = false;
+          waybar.enable = false;  #TODO move to overlay
         };
         services = {
           udev = {
@@ -126,13 +126,73 @@
           ydotool.enable = true;
         };
         home-manager = {
-          git.enable = true;
-          terminator.enable = true;
+          # enable = true; #TODO add support
+          packages = {
+            enable = true;  # shared packages
+            git.enable = true;
+            terminator.enable = false;
+            chrome.enable = false;
+            xterm.enable = false;
+            mpv.enable = true;
+            fastfetch.enable = true;
+            vscode.enable = true;
+            # brave
+            # zoxide
+            # phpstorm
+            # distrobox
+            # rooter  #TODO depends on docker
+            # kdeconnect
+            # eza
+            # bat
+            # fd
+            # ripgrep
+            # git
+            # kitty
+            # yazi
+            # micro
+            copyq.enable = modules.programs.copyq.enable; #TODO depends on ydotool as well
+          };
+          # scripts = {
+          #   # yeelight
+          #   # each one here
+          # };
+          # shell = {
+          #   # docker
+          #   # warden
+          #   # shells
+          # };
+          fonts.enable = true; #TODO add support for all of them
+          xdg = {
+            # enable = true;  #TODO add support
+            defaultapps.enable = true; #TODO add further support ?
+          };
+          hypr = {
+            hyprland.enable = modules.desktop-environment.hyprland.enable;
+            commands.enable = modules.bar.ags.enable;
+            hyprpaper.enable = false;
+            hyprcursors.enable = false;
+          };
+          bar = {
+            ags.enable = modules.bar.ags.enable;
+          };
+          screen-locker = {
+            swaylock.enable = modules.screen-locker.swaylock.enable;
+            hyprlock.enable = modules.screen-locker.hyprlock.enable;
+          };
+          idle-inhibitor = {
+            hypridle.enable = true;
+          };
+          gnome = {
+            gtk-config.enable = true;
+            dconf-settings.enable = true;
+            # home  #TODO add support for all imports
+            extensions.enable = modules.desktop-environment.gnome.enable;
+          };
         };
       };
     };
 
-    vm = {
+    vm = rec {
       user = "test";
       networkingHostName = "nixos";
       timezone = "America/New_York";

@@ -8,8 +8,10 @@
 
   # TODO move to own config
   module = {
-    terminator.enable = (vars.modules.home-manager.terminator.enable or false);
-    git.enable = (vars.modules.home-manager.git.enable or false);
+    packages = {
+      terminator.enable = (vars.modules.home-manager.packages.terminator.enable or false);
+      git.enable = (vars.modules.home-manager.packages.git.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your
