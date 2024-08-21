@@ -46,10 +46,10 @@
         custom-background.enable = (vars.modules.display-manager.gdm.custom-background.enable or false);
       };
     };
-    # screen-locker = {
-    #   swaylock.enable = (vars.modules.screen-locker.swaylock.enable or false);
-    #   gtklock.enable = (vars.modules.screen-locker.gtklock.enable or false);
-    # };
+    screen-locker = {
+      swaylock.enable = (vars.modules.screen-locker.swaylock.enable or false);
+      gtklock.enable = (vars.modules.screen-locker.gtklock.enable or false);
+    };
     # bar = {
     #   ags.enable = (vars.modules.bar.ags.enable or false);
     #   waybar.enable = (vars.modules.bar.waybar.enable or false);

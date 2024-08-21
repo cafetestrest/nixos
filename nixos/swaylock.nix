@@ -1,19 +1,24 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.screen-locker.swaylock;
+in
 {
-  environment.systemPackages = with pkgs; [
-    unstable.swaylock-effects
-  ];
-
-  security.pam.services.swaylock = {
-    text = ''
-     auth include login
-    '';
+  options = {
+    module.screen-locker.swaylock.enable = mkEnableOption "Enables Swaylock Screen locker";
   };
 
-  security.pam.services.gtklock = {
-    text = ''
-     auth include login
-    '';
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      unstable.swaylock-effects
+    ];
+
+    security.pam.services.swaylock = {
+      text = ''
+      auth include login
+      '';
+    };
   };
 }
