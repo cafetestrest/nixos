@@ -34,11 +34,11 @@
     shell = {
       default-fish.enable = (vars.modules.shell.default-fish.enable or false);
     };
-    window-manager = {
-      hyprland.enable = (vars.modules.window-manager.hyprland.enable or false);
-      plasma6.enable = (vars.modules.window-manager.plasma6.enable or false);
-    #   gnome.enable = (vars.modules.window-manager.gnome.enable or true);  # default value true Gnome WM
-    #   cosmic.enable = (vars.modules.window-manager.cosmic.enable or false);
+    desktop-environment = {
+      hyprland.enable = (vars.modules.desktop-environment.hyprland.enable or false);
+      plasma6.enable = (vars.modules.desktop-environment.plasma6.enable or false);
+      gnome.enable = (vars.modules.desktop-environment.gnome.enable or true);  # default value true Gnome WM
+      cosmic.enable = (vars.modules.desktop-environment.cosmic.enable or false);
     };
     # display-manager = {
     #   gdm = {

@@ -84,7 +84,7 @@
         shell = {
           default-fish.enable = true;
         };
-        window-manager = {
+        desktop-environment = {
           hyprland.enable = true;
           plasma6.enable = false;
           gnome.enable = false;
@@ -160,6 +160,9 @@
         virtualisation = {
           virt-manager.enable = false;
           spice-virt-manager.enable = true;
+        };
+        desktop-environment = {
+          gnome.enable = true;
         };
         home-manager = {
           git.enable = true;
@@ -237,8 +240,8 @@
           ./nixos/fishdefaultshell.nix                          # sets default shell (fish)
           ./nixos/hyprland.nix                                  # hyprland packages
           ./nixos/kde/plasma.nix                                # KDE plasma DE
-          # ./nixos/gnome/gnome.nix
-          # ./nixos/cosmic/cosmic.nix
+          ./nixos/gnome/gnome.nix
+          ./nixos/cosmic/cosmic.nix
           ./nixos/gdm/gdm.nix
           ./nixos/gdm/background.nix                            # background for gdm
           # ./nixos/swaylock.nix                                  # lockscreen packages

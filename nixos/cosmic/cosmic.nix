@@ -1,6 +1,16 @@
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.desktop-environment.cosmic;
+in
 {
+  options = {
+    module.desktop-environment.cosmic.enable = mkEnableOption "Enables Cosmic DE";
+  };
+
+  config = mkIf cfg.enable {
   imports = [
     inputs.nixos-cosmic.nixosModules.default
   ];
@@ -17,4 +27,5 @@
   #   cosmic-files
   #   cosmic-term
   # ];
+  };
 }

@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.window-manager.plasma6;
+  cfg = config.module.desktop-environment.plasma6;
 in
 {
   options = {
-    module.window-manager.plasma6.enable = mkEnableOption "Enables the KDE Plasma 6 Desktop Environment";
+    module.desktop-environment.plasma6.enable = mkEnableOption "Enables the KDE Plasma 6 DE";
   };
 
   config = mkIf cfg.enable {

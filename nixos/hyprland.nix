@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.window-manager.hyprland;
+  cfg = config.module.desktop-environment.hyprland;
 in
 {
   options = {
-    module.window-manager.hyprland.enable = mkEnableOption "Enables Hyprland WM";
+    module.desktop-environment.hyprland.enable = mkEnableOption "Enables Hyprland DE";
   };
 
   config = mkIf cfg.enable {
