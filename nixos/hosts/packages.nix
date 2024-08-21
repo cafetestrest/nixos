@@ -34,15 +34,15 @@
     shell = {
       default-fish.enable = (vars.modules.shell.default-fish.enable or false);
     };
-    # window-manager = {
-    #   hyprland.enable = (vars.modules.window-manager.hyprland.enable or false);
+    window-manager = {
+      hyprland.enable = (vars.modules.window-manager.hyprland.enable or false);
     #   plasma.enable = (vars.modules.window-manager.plasma.enable or false);
-    #   gnome.enable = (vars.modules.window-manager.gnome.enable or true);
+    #   gnome.enable = (vars.modules.window-manager.gnome.enable or true);  # default value true Gnome WM
     #   cosmic.enable = (vars.modules.window-manager.cosmic.enable or false);
-    # };
+    };
     # display-manager = {
     #   gdm = {
-    #     enable = (vars.modules.display-manager.gdm.enable or true);
+    #     enable = (vars.modules.display-manager.gdm.enable or true); # default value true GDM DM
     #     custom-background.enable = (vars.modules.display-manager.gdm.custom-background.enable or false);
     #   };
     #   sddm.enable = (vars.modules.display-manager.sddm.enable or false);
