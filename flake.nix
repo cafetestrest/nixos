@@ -241,7 +241,6 @@
       };
     };
 
-# ./home-manager/packages.nix                     # shared packages
 # ./home-manager/fonts.nix
 # # ./home-manager/chrome.nix
 # ./home-manager/terminator.nix                   # terminal config

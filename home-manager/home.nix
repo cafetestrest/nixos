@@ -9,6 +9,7 @@
   # TODO move to own config
   module = {
     packages = {
+      enable = (vars.modules.home-manager.packages.enable or true);
       terminator.enable = (vars.modules.home-manager.packages.terminator.enable or false);
       git.enable = (vars.modules.home-manager.packages.git.enable or false);
     };
