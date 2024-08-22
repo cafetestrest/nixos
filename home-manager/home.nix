@@ -6,7 +6,102 @@
   home.username = "${vars.user}";
   home.homeDirectory = "/home/${vars.user}";
 
-  # TODO move to own config
+  imports = [
+    ./shell/shells.nix                 # fish (default) + bash
+    ./xdg/xdg.nix                      # xdg
+    ./xdg/mime-defaultapps.nix         # xdg default apps (mime)
+    ./hypr/hyprland.nix
+    ./ags.nix                          # top bar + shell https://github.com/Aylur/ags
+    ./swaylock.nix                   # lock screen
+    ./hypr/hyprlock.nix                # lock screen
+    ./hypr/hypridle.nix                # idle inhibitor
+    ./hypr/commands.nix                # dekstop entries / commands
+    ./hypr/hyprpaper.nix             # wallpaper
+    ./hypr/hyprcursors.nix           # cursors
+    ./gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
+    ./gnome/dconf-settings.nix         # gtk dconf settings
+    ./gnome/keyboard-shortcuts.nix
+    ./gnome/autostart/albert.nix
+    ./gnome/autostart/copyq.nix
+    ./gnome/autostart/xpad.nix
+    ./gnome/packages.nix
+    ./gnome/extensions/blur-my-shell.nix
+    ./gnome/extensions/caffeine.nix
+    ./gnome/extensions/dash-to-panel.nix
+    ./gnome/extensions/executor.nix
+    ./gnome/extensions/gtile.nix
+    ./gnome/extensions/media-controls.nix
+    ./gnome/extensions/pop-shell.nix
+    ./gnome/extensions/super-key.nix
+    ./gnome/extensions/tiling-assistant.nix
+    ./gnome/extensions/useless-gaps.nix
+    ./gnome/extensions/user-themes.nix
+    ./gnome/extensions/no-overview.nix
+    ./gnome/extensions/gsconnect.nix
+    ./gnome/extensions/fuzzy-app-search.nix
+    ./gnome/extensions/appindicator.nix
+    ./gnome/extensions/workspace-indicator.nix
+    ./gnome/extensions/openweather.nix
+    ./gnome/extensions/rounded-window-corners.nix
+    ./gnome/extensions/tray-icons-reloaded.nix
+    ./gnome/extensions.nix           # gnome extensions
+    ./packages.nix                     # shared packages
+    ./fonts/ubuntu-font-family.nix
+    ./fonts/font-awesome.nix
+    ./fonts/font-awesome5.nix
+    ./fonts/material-symbols.nix
+    ./fonts/noto-fonts-emoji.nix
+    ./fonts/nerdfonts.nix
+    ./fonts/jetbrains-mono.nix
+    ./fonts/roboto.nix
+    ./fonts/montserrat.nix
+    ./fonts/cantarell-fonts.nix
+    ./chrome.nix
+    ./terminator.nix                   # terminal config
+    ./xterm.nix
+    ./mpv.nix                          # mpv video player and its config
+    ./fastfetch.nix                    # neofetch replacement
+    ./vscode.nix
+    ./brave.nix                        # browser
+    ./zoxide.nix                       # z - smarter cd
+    ./yeelight.nix                     # smart lights
+    ./phpstorm.nix                     # PHP IDE
+    ./distrobox.nix
+    ./rooter.nix                       # magento https://github.com/run-as-root/rooter
+    ./kdeconnect.nix
+    ./eza.nix                          # ls replacement
+    ./bat.nix                          # cat replacement
+    ./fd.nix                           # find replacement
+    ./ripgrep.nix                      # grep replacement
+    ./git.nix
+    ./kitty.nix                        # terminal
+    ./yazi.nix                         # file explorer in terminal
+    ./micro.nix                        # terminal text editor
+    ./copyq.nix                        # config for copyq
+    ./shell/docker/shells.nix          # docker aliases for fish/bash
+    ./shell/warden/shells.nix          # warden aliases for fish/bash
+    ./scripts/startup.nix
+    ./scripts/bluetoothbatterypercentage.nix
+    ./scripts/btupowerbatterypercentage.nix
+    ./scripts/yrweather.nix
+    ./scripts/openweathermap.nix
+    ./scripts/toggleidle.nix
+    ./scripts/nightlight.nix
+    ./scripts/note.nix
+    ./scripts/screenshot.nix
+    ./scripts/openstartupapps.nix
+    ./scripts/idle.nix
+    ./scripts/powermenu.nix
+    ./scripts/wakefromsleep.nix
+    ./scripts/ngrokwarden.nix
+    ./scripts/headset.nix
+    ./scripts/monitor.nix
+    ./scripts/resetbluetoothags.nix
+    ./scripts/sys.nix
+    ./scripts/clipboardtoggle.nix
+    ./scripts/sync.nix
+  ];
+
   module = {
     packages = {
       enable = (vars.modules.home-manager.packages.enable or true);

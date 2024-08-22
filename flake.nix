@@ -203,7 +203,7 @@
           };
           xdg = {
             enable = true;
-            defaultapps.enable = true; #TODO add further support ?
+            defaultapps.enable = true; #TODO move to users
           };
           hypr = {
             hyprland.enable = modules.desktop-environment.hyprland.enable;
@@ -360,41 +360,8 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ]; #TODO move overlays
           }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
-          # TODO move to module file (all should be enabled when they all have their own config)
-          ./nixos/bootloader/systemd-boot.nix                   # Boot and Bootloader config
-          ./nixos/bootloader/grub.nix
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
-          ./nixos/ssd.nix                                       # fstrim
-          ./nixos/ntfs.nix                                      # windows ntfs file partition support
-          ./nixos/bluetooth.nix                                 # bluetooth support and blueman
-          ./nixos/wireless.nix
-          ./nixos/hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
-          ./nixos/hosts/configuration.nix                       # shared configuration
-          ./nixos/hosts/packages.nix                            # shared packages # TODO separate and add config here too, this one should be sharedPackages 
-          ./nixos/fishdefaultshell.nix                          # sets default shell (fish)
-          ./nixos/hyprland.nix                                  # hyprland packages
-          ./nixos/kde/plasma.nix                                # KDE plasma DE
-          ./nixos/gnome/gnome.nix
-          # ./nixos/cosmic/cosmic.nix
-          ./nixos/gdm/gdm.nix
-          ./nixos/gdm/background.nix                            # background for gdm
-          ./nixos/swaylock.nix                                  # lockscreen packages
-          ./nixos/gtklock.nix                                   # lockscreen packages
-          ./nixos/docker/docker.nix                             # docker, docker-compose and /etc/hosts
-          ./nixos/docker/warden.nix
-          ./nixos/udev/headsetcontrol.nix                       # used to retrieve battery percentage from headset - udev rules
-          ./nixos/udev/rangoli.nix                              # needs distrobox from home-manager
-          ./nixos/waybar.nix
-          ./nixos/devenv.nix                                    # required for https://github.com/run-as-root/rooter
-          ./nixos/hosts/vm/packages.nix                         # virt-manager packages and libvirtd
-          ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
-          ./nixos/localsend.nix                                 # used for file sharing with other PC/mobile devices
-          ./nixos/chromesettings.nix                            # chrome settings -> enables WideVine
-          ./nixos/teamviewer.nix
-          ./nixos/copyq.nix
-          ./nixos/ydotool.nix
-          ./nixos/i2c.nix                                       # for ddcutil (monitor control)
-          ./nixos/doas.nix                                      # replace sudo with doas
+          ./nixos/nixosModules.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -407,102 +374,7 @@
             { inherit inputs vars; };
             home-manager.users.${pc.user} = {
               imports = [
-                # TODO move to module file (all should be enabled when they all have their own config)
-                #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
-                ./home-manager/shell/shells.nix                 # fish (default) + bash
-                ./home-manager/xdg/xdg.nix                      # xdg
-                ./home-manager/xdg/mime-defaultapps.nix         # xdg default apps (mime)
-                ./home-manager/hypr/hyprland.nix
-                ./home-manager/ags.nix                          # top bar + shell https://github.com/Aylur/ags
-                ./home-manager/swaylock.nix                   # lock screen
-                ./home-manager/hypr/hyprlock.nix                # lock screen
-                ./home-manager/hypr/hypridle.nix                # idle inhibitor
-                ./home-manager/hypr/commands.nix                # dekstop entries / commands
-                ./home-manager/hypr/hyprpaper.nix             # wallpaper
-                ./home-manager/hypr/hyprcursors.nix           # cursors
-                ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
-                ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
-                ./home-manager/gnome/keyboard-shortcuts.nix
-                ./home-manager/gnome/autostart/albert.nix
-                ./home-manager/gnome/autostart/copyq.nix
-                ./home-manager/gnome/autostart/xpad.nix
-                ./home-manager/gnome/packages.nix
-                ./home-manager/gnome/extensions/blur-my-shell.nix
-                ./home-manager/gnome/extensions/caffeine.nix
-                ./home-manager/gnome/extensions/dash-to-panel.nix
-                ./home-manager/gnome/extensions/executor.nix
-                ./home-manager/gnome/extensions/gtile.nix
-                ./home-manager/gnome/extensions/media-controls.nix
-                ./home-manager/gnome/extensions/pop-shell.nix
-                ./home-manager/gnome/extensions/super-key.nix
-                ./home-manager/gnome/extensions/tiling-assistant.nix
-                ./home-manager/gnome/extensions/useless-gaps.nix
-                ./home-manager/gnome/extensions/user-themes.nix
-                ./home-manager/gnome/extensions/no-overview.nix
-                ./home-manager/gnome/extensions/gsconnect.nix
-                ./home-manager/gnome/extensions/fuzzy-app-search.nix
-                ./home-manager/gnome/extensions/appindicator.nix
-                ./home-manager/gnome/extensions/workspace-indicator.nix
-                ./home-manager/gnome/extensions/openweather.nix
-                ./home-manager/gnome/extensions/rounded-window-corners.nix
-                ./home-manager/gnome/extensions/tray-icons-reloaded.nix
-                ./home-manager/gnome/extensions.nix           # gnome extensions
-                ./home-manager/packages.nix                     # shared packages
-                ./home-manager/fonts/ubuntu-font-family.nix
-                ./home-manager/fonts/font-awesome.nix
-                ./home-manager/fonts/font-awesome5.nix
-                ./home-manager/fonts/material-symbols.nix
-                ./home-manager/fonts/noto-fonts-emoji.nix
-                ./home-manager/fonts/nerdfonts.nix
-                ./home-manager/fonts/jetbrains-mono.nix
-                ./home-manager/fonts/roboto.nix
-                ./home-manager/fonts/montserrat.nix
-                ./home-manager/fonts/cantarell-fonts.nix
-                ./home-manager/chrome.nix
-                ./home-manager/terminator.nix                   # terminal config
-                ./home-manager/xterm.nix
-                ./home-manager/mpv.nix                          # mpv video player and its config
-                ./home-manager/fastfetch.nix                    # neofetch replacement
-                ./home-manager/vscode.nix
-                ./home-manager/brave.nix                        # browser
-                ./home-manager/zoxide.nix                       # z - smarter cd
-                ./home-manager/yeelight.nix                     # smart lights
-                ./home-manager/phpstorm.nix                     # PHP IDE
-                ./home-manager/distrobox.nix
-                ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
-                ./home-manager/kdeconnect.nix
-                ./home-manager/eza.nix                          # ls replacement
-                ./home-manager/bat.nix                          # cat replacement
-                ./home-manager/fd.nix                           # find replacement
-                ./home-manager/ripgrep.nix                      # grep replacement
-                ./home-manager/git.nix
-                ./home-manager/kitty.nix                        # terminal
-                ./home-manager/yazi.nix                         # file explorer in terminal
-                ./home-manager/micro.nix                        # terminal text editor
-                ./home-manager/copyq.nix                        # config for copyq
-                ./home-manager/shell/docker/shells.nix          # docker aliases for fish/bash
-                ./home-manager/shell/warden/shells.nix          # warden aliases for fish/bash
-                ./home-manager/scripts/startup.nix
-                ./home-manager/scripts/bluetoothbatterypercentage.nix
-                ./home-manager/scripts/btupowerbatterypercentage.nix
-                ./home-manager/scripts/yrweather.nix
-                ./home-manager/scripts/openweathermap.nix
-                ./home-manager/scripts/toggleidle.nix
-                ./home-manager/scripts/nightlight.nix
-                ./home-manager/scripts/note.nix
-                ./home-manager/scripts/screenshot.nix
-                ./home-manager/scripts/openstartupapps.nix
-                ./home-manager/scripts/idle.nix
-                ./home-manager/scripts/powermenu.nix
-                ./home-manager/scripts/wakefromsleep.nix
-                ./home-manager/scripts/ngrokwarden.nix
-                ./home-manager/scripts/headset.nix
-                ./home-manager/scripts/monitor.nix
-                ./home-manager/scripts/resetbluetoothags.nix
-                ./home-manager/scripts/sys.nix
-                ./home-manager/scripts/clipboardtoggle.nix
-                ./home-manager/scripts/sync.nix
               ];
             };
           }
@@ -518,18 +390,9 @@
         { inherit inputs vars; };
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; }) # TODO move to overlay file 
-          # TODO all should be here as well as for PC
-          ./nixos/bootloader/grub.nix                           # VM Boot and Bootloader config
-          ./nixos/bootloader/systemd-boot.nix
-          ./nixos/hosts/configuration.nix                       # shared configuration
-          ./nixos/hosts/packages.nix                            # shared packages
-          ./nixos/hosts/vm/spice-virt-manager.nix               # tools for VM copy/paste clipboard
+          ./nixos/nixosModules.nix
           /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure
           # /etc/nixos/configuration.nix
-          # ./nixos/kde/plasma.nix                                # KDE plasma DE
-          # ./nixos/gnome/gnome.nix
-          # ./nixos/cosmic/cosmic.nix
-          # ./nixos/gdm/gdm.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -544,8 +407,6 @@
               imports = [
                 # TODO all should be here as well as for PC
                 ./home-manager/home.nix
-                ./home-manager/terminator.nix                   # terminal config
-                ./home-manager/git.nix
               ];
             };
           }
