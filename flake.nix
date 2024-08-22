@@ -253,18 +253,18 @@
               rounded-window-corners.enable = false;
               tray-icons-reloaded.enable = false;
             };
-            fonts = {
-              ubuntu-font-family.enable = true;
-              font-awesome.enable = true;
-              font-awesome5.enable = true;
-              material-symbols.enable = true;
-              noto-fonts-emoji.enable = true;
-              nerdfonts.enable = true;
-              jetbrains-mono.enable = true;
-              roboto.enable = true;
-              montserrat.enable = true;
-              cantarell-fonts.enable = true;
-            };
+          };
+          fonts = {
+            ubuntu-font-family.enable = true;
+            font-awesome.enable = true;
+            font-awesome5.enable = true;
+            material-symbols.enable = true;
+            noto-fonts-emoji.enable = true;
+            nerdfonts.enable = true;
+            jetbrains-mono.enable = true;
+            roboto.enable = true;
+            montserrat.enable = true;
+            cantarell-fonts.enable = true;
           };
         };
       };
