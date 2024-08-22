@@ -135,7 +135,6 @@
           ydotool.enable = true;
         };
         home-manager = {
-          # enable = true; #TODO add support
           packages = {
             enable = true;  # shared packages
             git.enable = true;
@@ -270,8 +269,6 @@
       };
     };
 
-# ./home-manager/home.nix
-
     vm = rec {
       user = "test";
       networkingHostName = "nixos";
@@ -405,7 +402,6 @@
             { inherit inputs vars; };
             home-manager.users.${vm.user} = {
               imports = [
-                # TODO all should be here as well as for PC
                 ./home-manager/home.nix
               ];
             };
