@@ -214,7 +214,6 @@
       };
     };
 
-# ./home-manager/hypr/commands.nix                # dekstop entries / commands
 # # ./home-manager/hypr/hyprpaper.nix             # wallpaper
 # # ./home-manager/hypr/hyprcursors.nix           # cursors
 # ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
