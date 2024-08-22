@@ -1,20 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      #gnome extensions dconf configuration
-      ./extensions/config/caffeine.nix
-      ./extensions/config/dash-to-panel.nix
-      ./extensions/config/executor.nix
-      ./extensions/config/gtile.nix
-      #./extensions/config/super-key.nix
-      ./extensions/config/useless-gaps.nix
-      ./extensions/config/mediacontrols.nix
-      ./extensions/config/tiling-assistant.nix
-      ./extensions/config/pop-shell.nix #TODO remove
-    ];
-
   home.packages = with pkgs; [
     gnomeExtensions.user-themes #TODO move to proper extension nix file
     gnomeExtensions.no-overview
