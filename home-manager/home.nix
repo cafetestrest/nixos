@@ -36,6 +36,8 @@
     hypr = {
       hyprland.enable = (vars.modules.home-manager.hypr.hyprland.enable or false);
       commands.enable = (vars.modules.home-manager.hypr.commands.enable or false);
+      hyprpaper.enable = (vars.modules.home-manager.hypr.hyprpaper.enable or false);
+      hyprcursors.enable = (vars.modules.home-manager.hypr.hyprcursors.enable or false);
     };
     bar = {
       ags.enable = (vars.modules.home-manager.bar.ags.enable or false);

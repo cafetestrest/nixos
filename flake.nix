@@ -214,8 +214,6 @@
       };
     };
 
-# # ./home-manager/hypr/hyprpaper.nix             # wallpaper
-# # ./home-manager/hypr/hyprcursors.nix           # cursors
 # ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
 # ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
 # # ./home-manager/gnome/home.nix
@@ -394,8 +392,8 @@
                 ./home-manager/hypr/hyprlock.nix                # lock screen
                 ./home-manager/hypr/hypridle.nix                # idle inhibitor
                 ./home-manager/hypr/commands.nix                # dekstop entries / commands
-                # ./home-manager/hypr/hyprpaper.nix             # wallpaper
-                # ./home-manager/hypr/hyprcursors.nix           # cursors
+                ./home-manager/hypr/hyprpaper.nix             # wallpaper
+                ./home-manager/hypr/hyprcursors.nix           # cursors
                 ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
                 ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
                 # ./home-manager/gnome/home.nix

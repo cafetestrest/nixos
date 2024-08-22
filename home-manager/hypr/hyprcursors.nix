@@ -1,4 +1,6 @@
-{ config, lib, pkgs, vars, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   cursor = "McMojave";
@@ -24,17 +26,25 @@ let
   };
 
   cursorPackage = McMojave;
+
+  cfg = config.module.hypr.hyprcursors;
 in
 {
-  home.packages = [
-    cursorPackage
-  ];
+  options = {
+    module.hypr.hyprcursors.enable = mkEnableOption "Enables hyprcursors";
+  };
 
-  # xdg.dataFile.".icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
+  config = mkIf cfg.enable {
+    home.packages = [
+      cursorPackage
+    ];
 
-  home.file = {
-    ".icons/${cursor}" = {
-      source = "${cursorPackage}/share/icons/${cursor}";
+    # xdg.dataFile.".icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
+
+    home.file = {
+      ".icons/${cursor}" = {
+        source = "${cursorPackage}/share/icons/${cursor}";
+      };
     };
   };
 }
