@@ -36,6 +36,9 @@
     hypr = {
       hyprland.enable = (vars.modules.home-manager.hypr.hyprland.enable or false);
     };
+    bar = {
+      ags.enable = (vars.modules.home-manager.bar.ags.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your
