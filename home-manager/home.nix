@@ -83,6 +83,18 @@
         tray-icons-reloaded.enable = (vars.modules.home-manager.gnome.extension.tray-icons-reloaded.enable or false);
       };
     };
+    fonts = {
+      ubuntu-font-family.enable = (vars.modules.home-manager.fonts.ubuntu-font-family.enable or false);
+      font-awesome.enable = (vars.modules.home-manager.fonts.font-awesome.enable or false);
+      font-awesome5.enable = (vars.modules.home-manager.fonts.font-awesome5.enable or false);
+      material-symbols.enable = (vars.modules.home-manager.fonts.material-symbols.enable or false);
+      noto-fonts-emoji.enable = (vars.modules.home-manager.fonts.noto-fonts-emoji.enable or false);
+      nerdfonts.enable = (vars.modules.home-manager.fonts.nerdfonts.enable or false);
+      jetbrains-mono.enable = (vars.modules.home-manager.fonts.jetbrains-mono.enable or false);
+      roboto.enable = (vars.modules.home-manager.fonts.roboto.enable or false);
+      montserrat.enable = (vars.modules.home-manager.fonts.montserrat.enable or false);
+      cantarell-fonts.enable = (vars.modules.home-manager.fonts.cantarell-fonts.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your

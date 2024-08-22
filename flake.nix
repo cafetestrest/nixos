@@ -183,7 +183,6 @@
               aliases.enable = false;
             };
           };
-          fonts.enable = true; #TODO add support for all of them
           xdg = {
             enable = true;
             defaultapps.enable = true; #TODO add further support ?
@@ -236,12 +235,23 @@
               rounded-window-corners.enable = false;
               tray-icons-reloaded.enable = false;
             };
+            fonts = {
+              ubuntu-font-family.enable = true;
+              font-awesome.enable = true;
+              font-awesome5.enable = true;
+              material-symbols.enable = true;
+              noto-fonts-emoji.enable = true;
+              nerdfonts.enable = true;
+              jetbrains-mono.enable = true;
+              roboto.enable = true;
+              montserrat.enable = true;
+              cantarell-fonts.enable = true;
+            };
           };
         };
       };
     };
 
-# ./home-manager/fonts.nix
 # # ./home-manager/chrome.nix
 # ./home-manager/terminator.nix                   # terminal config
 # # ./home-manager/xterm.nix
@@ -444,7 +454,16 @@
                 ./home-manager/gnome/extensions/tray-icons-reloaded.nix
                 ./home-manager/gnome/extensions.nix           # gnome extensions
                 ./home-manager/packages.nix                     # shared packages
-                ./home-manager/fonts.nix
+                ./home-manager/fonts/ubuntu-font-family.nix
+                ./home-manager/fonts/font-awesome.nix
+                ./home-manager/fonts/font-awesome5.nix
+                ./home-manager/fonts/material-symbols.nix
+                ./home-manager/fonts/noto-fonts-emoji.nix
+                ./home-manager/fonts/nerdfonts.nix
+                ./home-manager/fonts/jetbrains-mono.nix
+                ./home-manager/fonts/roboto.nix
+                ./home-manager/fonts/montserrat.nix
+                ./home-manager/fonts/cantarell-fonts.nix
                 # ./home-manager/chrome.nix
                 ./home-manager/terminator.nix                   # terminal config
                 # ./home-manager/xterm.nix
