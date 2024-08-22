@@ -4,7 +4,6 @@
   imports =
     [
       #gnome
-      ./dconf-settings.nix
       ./keyboard-shortcuts.nix
       # ./autostart/copyq.nix
       ./packages.nix

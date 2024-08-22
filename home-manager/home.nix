@@ -52,7 +52,13 @@
     gnome = {
       gtk-config.enable = (vars.modules.home-manager.gnome.gtk-config.enable or false);
       dconf-settings.enable = (vars.modules.home-manager.gnome.dconf-settings.enable or false);
-      # home  #TODO add support for all imports
+      keyboard-shortcuts.enable = (vars.modules.home-manager.gnome.keyboard-shortcuts.enable or false);
+      packages.enable = (vars.modules.home-manager.gnome.packages.enable or false);
+      autostart = {
+        copyq.enable = (vars.modules.home-manager.gnome.autostart.copyq.enable or false);
+        albert.enable = (vars.modules.home-manager.gnome.autostart.albert.enable or false);
+        xpad.enable = (vars.modules.home-manager.gnome.autostart.xpad.enable or false);
+      };
       # extensions.enable = modules.desktop-environment.gnome.enable;
     };
   };

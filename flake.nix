@@ -207,14 +207,19 @@
           gnome = {
             gtk-config.enable = true;
             dconf-settings.enable = true;
-            # home  #TODO add support for all imports
+            keyboard-shortcuts.enable = modules.desktop-environment.gnome.enable;
+            packages.enable = modules.desktop-environment.gnome.enable;
+            autostart = {
+              copyq.enable = false;
+              albert.enable = false;
+              xpad.enable = false;
+            };
             extensions.enable = modules.desktop-environment.gnome.enable;
           };
         };
       };
     };
 
-# # ./home-manager/gnome/home.nix
 # # ./home-manager/gnome/extensions.nix           # gnome extensions
 # ./home-manager/packages.nix                     # shared packages
 # ./home-manager/fonts.nix
@@ -394,7 +399,11 @@
                 ./home-manager/hypr/hyprcursors.nix           # cursors
                 ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
                 ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
-                # ./home-manager/gnome/home.nix
+                ./home-manager/gnome/keyboard-shortcuts.nix
+                ./home-manager/gnome/autostart/albert.nix
+                ./home-manager/gnome/autostart/copyq.nix
+                ./home-manager/gnome/autostart/xpad.nix
+                ./home-manager/gnome/packages.nix
                 # ./home-manager/gnome/extensions.nix           # gnome extensions
                 ./home-manager/packages.nix                     # shared packages
                 ./home-manager/fonts.nix
