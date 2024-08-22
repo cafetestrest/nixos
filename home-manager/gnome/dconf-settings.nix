@@ -1,69 +1,82 @@
-{ config, pkgs, vars, ... }:
+{ config, lib, vars, ... }:
 
+with lib;
+
+let
+  cfg = config.module.gnome.dconf-settings;
+in
 {
-  dconf.settings = {
-    "org/gnome/shell" = {
-      favorite-apps = [
-        "kitty.desktop"
-        "brave-browser.desktop"
-        "org.gnome.Nautilus.desktop"
-        "org.gnome.TextEditor.desktop"
-      ];
-    };
+  options = {
+    module.gnome.dconf-settings.enable = mkEnableOption "Enables GTK dconf settings";
+  };
 
-    "org/gnome/desktop/interface" = {
-      #theme
-      gtk-theme = "${vars.gtk.gtkTheme}";
+  #TODO move to user
 
-      #fonts
-      font-name = "${vars.gtk.gtkFontName}";
-      document-font-name = "${vars.gtk.gtkFontName}";
-      monospace-font-name = "Source Code Pro 10";
+  config = mkIf cfg.enable {
+    dconf.settings = {
+      "org/gnome/shell" = {
+        favorite-apps = [
+          "kitty.desktop"
+          "brave-browser.desktop"
+          "org.gnome.Nautilus.desktop"
+          "org.gnome.TextEditor.desktop"
+        ];
+      };
 
-      #cursor
-      cursor-theme = "${vars.gtk.cursorTheme}";
+      "org/gnome/desktop/interface" = {
+        #theme
+        gtk-theme = "${vars.gtk.gtkTheme}";
 
-      #icon
-      icon-theme = "${vars.gtk.gtkIconTheme}";
+        #fonts
+        font-name = "${vars.gtk.gtkFontName}";
+        document-font-name = "${vars.gtk.gtkFontName}";
+        monospace-font-name = "Source Code Pro 10";
 
-      #clock in top bar
-      clock-show-seconds = true;
-      clock-show-weekday = true;
+        #cursor
+        cursor-theme = "${vars.gtk.cursorTheme}";
 
-      #dark theme
-      color-scheme = "prefer-dark";
-    };
+        #icon
+        icon-theme = "${vars.gtk.gtkIconTheme}";
 
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = "close,minimize:appmenu";
-      action-double-click-titlebar = "none";
-    };
+        #clock in top bar
+        clock-show-seconds = true;
+        clock-show-weekday = true;
 
-    "org/gnome/desktop/peripherals/keyboard" = {
-      numlock-state = true;
-      remember-numlock-state = true;
-    };
+        #dark theme
+        color-scheme = "prefer-dark";
+      };
 
-    "org/gnome/settings-daemon/plugins/color" = {
-      night-light-enabled = true;
-      night-light-schedule-automatic = true;
-      night-light-temperature = "2700";
-    };
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "close,minimize:appmenu";
+        action-double-click-titlebar = "none";
+      };
 
-    "org/blueman/general" = {
-      plugin-list=[
-        "!ConnectionNotifier"
-        "!StatusNotifierItem"
-      ];
-    };
+      "org/gnome/desktop/peripherals/keyboard" = {
+        numlock-state = true;
+        remember-numlock-state = true;
+      };
 
-    "org/gnome/desktop/app-folders" = {
-      folder-children=''['Utilities', 'YaST', '34ef9738-be1a-4e66-82a3-4fca8235702a']'';
-    };
+      "org/gnome/settings-daemon/plugins/color" = {
+        night-light-enabled = true;
+        night-light-schedule-automatic = true;
+        night-light-temperature = "2700";
+      };
 
-    "org/gnome/desktop/app-folders/folders/34ef9738-be1a-4e66-82a3-4fca8235702a" = {
-      apps=''['lock.desktop', 'logout.desktop', 'shutdown.desktop', 'sleep.desktop', 'restart.desktop']'';
-      name="Unnamed Folder";
+      "org/blueman/general" = {
+        plugin-list=[
+          "!ConnectionNotifier"
+          "!StatusNotifierItem"
+        ];
+      };
+
+      "org/gnome/desktop/app-folders" = {
+        folder-children=''['Utilities', 'YaST', '34ef9738-be1a-4e66-82a3-4fca8235702a']'';
+      };
+
+      "org/gnome/desktop/app-folders/folders/34ef9738-be1a-4e66-82a3-4fca8235702a" = {
+        apps=''['lock.desktop', 'logout.desktop', 'shutdown.desktop', 'sleep.desktop', 'restart.desktop']'';
+        name="Unnamed Folder";
+      };
     };
   };
 }

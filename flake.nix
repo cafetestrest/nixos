@@ -214,7 +214,6 @@
       };
     };
 
-# ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
 # # ./home-manager/gnome/home.nix
 # # ./home-manager/gnome/extensions.nix           # gnome extensions
 # ./home-manager/packages.nix                     # shared packages

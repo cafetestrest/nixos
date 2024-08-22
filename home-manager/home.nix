@@ -51,7 +51,7 @@
     };
     gnome = {
       gtk-config.enable = (vars.modules.home-manager.gnome.gtk-config.enable or false);
-      # dconf-settings.enable = true;
+      dconf-settings.enable = (vars.modules.home-manager.gnome.dconf-settings.enable or false);
       # home  #TODO add support for all imports
       # extensions.enable = modules.desktop-environment.gnome.enable;
     };
