@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    gnomeExtensions.media-controls
+  ];
+
   dconf.settings = {
     "org/gnome/shell/extensions/mediacontrols" = {
       colored-player-icon=false;

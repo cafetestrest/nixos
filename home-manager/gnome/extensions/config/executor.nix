@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    gnomeExtensions.executor
+  ];
+
   dconf.settings = {
     "org/gnome/shell/extensions/executor" = {
       center-active=false;

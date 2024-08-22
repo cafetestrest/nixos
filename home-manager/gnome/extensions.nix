@@ -18,22 +18,13 @@
   home.packages = with pkgs; [
     gnomeExtensions.user-themes #TODO move to proper extension nix file
     gnomeExtensions.no-overview
-    # gnomeExtensions.gtile
     gnomeExtensions.gsconnect
     unstable.gnomeExtensions.fuzzy-app-search   #for new gnome versions
-    gnomeExtensions.executor
-    gnomeExtensions.caffeine
     gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-panel
     gnomeExtensions.appindicator
-    gnomeExtensions.media-controls
-    gnomeExtensions.tiling-assistant
-    gnomeExtensions.pop-shell
     # gnomeExtensions.workspace-indicator
     # gnomeExtensions.openweather               #using this, not yet on nix: https://extensions.gnome.org/extension/6655/openweather/
     # gnomeExtensions.rounded-window-corners    #missing in gnome 45
-    # gnomeExtensions.super-key                 #not using
-    # gnomeExtensions.useless-gaps              #missing in gnome 45
     # gnomeExtensions.tray-icons-reloaded       #not working on wayland, using gnomeExtensions.appindicator
   ];
 

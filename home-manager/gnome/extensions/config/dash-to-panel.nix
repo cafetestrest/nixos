@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    gnomeExtensions.dash-to-panel
+  ];
+
   dconf.settings = {
     "org/gnome/shell/extensions/dash-to-panel" = {
       animate-appicon-hover-animation-extent=''{'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}'';
