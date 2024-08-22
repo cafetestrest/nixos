@@ -39,6 +39,10 @@
     bar = {
       ags.enable = (vars.modules.home-manager.bar.ags.enable or false);
     };
+    screen-locker = {
+      swaylock.enable = (vars.modules.home-manager.screen-locker.swaylock.enable or false);
+      hyprlock.enable = (vars.modules.home-manager.screen-locker.hyprlock.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your

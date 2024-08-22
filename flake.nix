@@ -214,8 +214,6 @@
       };
     };
 
-# # ./home-manager/swaylock.nix                   # lock screen
-# ./home-manager/hypr/hyprlock.nix                # lock screen
 # ./home-manager/hypr/hypridle.nix                # idle inhibitor
 # ./home-manager/hypr/commands.nix                # dekstop entries / commands
 # # ./home-manager/hypr/hyprpaper.nix             # wallpaper
@@ -394,7 +392,7 @@
                 ./home-manager/xdg/mime-defaultapps.nix         # xdg default apps (mime)
                 ./home-manager/hypr/hyprland.nix
                 ./home-manager/ags.nix                          # top bar + shell https://github.com/Aylur/ags
-                # ./home-manager/swaylock.nix                   # lock screen
+                ./home-manager/swaylock.nix                   # lock screen
                 ./home-manager/hypr/hyprlock.nix                # lock screen
                 ./home-manager/hypr/hypridle.nix                # idle inhibitor
                 ./home-manager/hypr/commands.nix                # dekstop entries / commands

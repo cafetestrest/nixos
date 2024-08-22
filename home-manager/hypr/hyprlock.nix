@@ -1,78 +1,88 @@
-{ inputs, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.screen-locker.hyprlock;
+in
 {
-  # home.packages = with pkgs; [ unstable.hyprlock ];
+  options = {
+    module.screen-locker.hyprlock.enable = mkEnableOption "Enables hyprlock config";
+  };
 
-xdg.configFile."hypr/hyprlock.conf".text = ''
-general{
+  config = mkIf cfg.enable {
+    # home.packages = with pkgs; [ unstable.hyprlock ];
 
-}
-background {
-    monitor =
-    path=/etc/nixos/hyprlock.png
-    # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
-    blur_passes = 1 # 0 disables blurring
-    blur_size = 1
-    new_optimizations = true
-    ignore_opacity = false
-}
+    xdg.configFile."hypr/hyprlock.conf".text = ''
+      general{
 
-input-field {
-    monitor =
-    size = 190, 30
-    outline_thickness = 2
-    dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
-    dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
-    dots_center = true
-    outer_color = rgba(40,40,40,0.0)
-    inner_color = rgba(200, 200, 200, 0.8)
-    font_color = rgba(10, 10, 10, 0.8)
-    fade_on_empty = false
-    placeholder_text = Enter Password # Text rendered in the input box when it's empty.
-    hide_input = false
+      }
+      background {
+          monitor =
+          path=/etc/nixos/hyprlock.png
+          # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
+          blur_passes = 1 # 0 disables blurring
+          blur_size = 1
+          new_optimizations = true
+          ignore_opacity = false
+      }
 
-    position = 0, 170
-    halign = center
-    valign = bottom
-}
+      input-field {
+          monitor =
+          size = 190, 30
+          outline_thickness = 2
+          dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true
+          outer_color = rgba(40,40,40,0.0)
+          inner_color = rgba(200, 200, 200, 0.8)
+          font_color = rgba(10, 10, 10, 0.8)
+          fade_on_empty = false
+          placeholder_text = Enter Password # Text rendered in the input box when it's empty.
+          hide_input = false
 
-label {
-    monitor =
-    text = cmd[update:1000] echo "<span>$(date '+%A, %d %B')</span>"
-    # text = cmd[update:1000] echo "<span foreground='##eeeeee'>$(date '+%A, %d %B')</span>"
-    color = rgba(250, 250, 250, 0.8)
-    font_size = 40
-    font_family = Roboto
+          position = 0, 170
+          halign = center
+          valign = bottom
+      }
 
-    position = 0, -200
-    halign = center
-    valign = top
-}
+      label {
+          monitor =
+          text = cmd[update:1000] echo "<span>$(date '+%A, %d %B')</span>"
+          # text = cmd[update:1000] echo "<span foreground='##eeeeee'>$(date '+%A, %d %B')</span>"
+          color = rgba(250, 250, 250, 0.8)
+          font_size = 40
+          font_family = Roboto
 
-label {
-    monitor =
-    text = cmd[update:1000] echo "<span>$(date '+%H:%M')</span>"
-    color = rgba(250, 250, 250, 0.8)
-    font_size = 190
-    font_family = Roboto,Bold
+          position = 0, -200
+          halign = center
+          valign = top
+      }
 
-    position = 0, -250
-    halign = center
-    valign = top
-}
+      label {
+          monitor =
+          text = cmd[update:1000] echo "<span>$(date '+%H:%M')</span>"
+          color = rgba(250, 250, 250, 0.8)
+          font_size = 190
+          font_family = Roboto,Bold
 
-label {
-    monitor =
-    text =    $USER
-    color = rgba(200, 200, 200, 1.0)
-    font_size = 18
-    font_family = Roboto
+          position = 0, -250
+          halign = center
+          valign = top
+      }
 
-    position = 0, 240
-    halign = center
-    valign = bottom
-}
-  '';
+      label {
+          monitor =
+          text =    $USER
+          color = rgba(200, 200, 200, 1.0)
+          font_size = 18
+          font_family = Roboto
+
+          position = 0, 240
+          halign = center
+          valign = bottom
+      }
+      '';
 
     # programs.hyprlock = {
     # enable = true;
@@ -111,5 +121,6 @@ label {
     #     position.y = 160;
     #   }
     # ];
-  # };
+    # };
+  };
 }
