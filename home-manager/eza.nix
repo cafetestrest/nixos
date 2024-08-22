@@ -1,17 +1,28 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
+with lib;
+
+let
+  cfg = config.module.packages.eza;
+in
 {
-  programs.eza = {
-    enable = true;
-    icons = true;
-    git = true;
+  options = {
+    module.packages.eza.enable = mkEnableOption "Enables eza";
+  };
 
-    extraOptions = [
-      "--group"
-      "--group-directories-first"
-      "--header"
-      "--no-permissions"
-      "--octal-permissions"
-    ];
+  config = mkIf cfg.enable {
+    programs.eza = {
+      enable = true;
+      icons = true;
+      git = true;
+
+      extraOptions = [
+        "--group"
+        "--group-directories-first"
+        "--header"
+        "--no-permissions"
+        "--octal-permissions"
+      ];
+    };
   };
 }

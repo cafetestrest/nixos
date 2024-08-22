@@ -22,6 +22,16 @@
       yeelight.enable = (vars.modules.home-manager.packages.yeelight.enable or false);
       phpstorm.enable = (vars.modules.home-manager.packages.phpstorm.enable or false);
       distrobox.enable = (vars.modules.home-manager.packages.distrobox.enable or false);
+      rooter.enable = (vars.modules.home-manager.packages.rooter.enable or false);
+      kdeconnect.enable = (vars.modules.home-manager.packages.kdeconnect.enable or false);
+      eza.enable = (vars.modules.home-manager.packages.eza.enable or false);
+      bat.enable = (vars.modules.home-manager.packages.bat.enable or false);
+      fd.enable = (vars.modules.home-manager.packages.fd.enable or false);
+      ripgrep.enable = (vars.modules.home-manager.packages.ripgrep.enable or false);
+      kitty.enable = (vars.modules.home-manager.packages.kitty.enable or false);
+      yazi.enable = (vars.modules.home-manager.packages.yazi.enable or false);
+      micro.enable = (vars.modules.home-manager.packages.micro.enable or false);
+      copyq.enable = (vars.modules.home-manager.packages.copyq.enable or false);
     };
     shell = {
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);

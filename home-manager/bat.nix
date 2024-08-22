@@ -1,11 +1,22 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
+with lib;
+
+let
+  cfg = config.module.packages.bat;
+in
 {
-  programs.bat = {
-    enable = true;
+  options = {
+    module.packages.bat.enable = mkEnableOption "Enables bat";
   };
 
-  home.shellAliases = {
-    cat = "bat";
+  config = mkIf cfg.enable {
+    programs.bat = {
+      enable = true;
+    };
+
+    home.shellAliases = {
+      cat = "bat";
+    };
   };
 }

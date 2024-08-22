@@ -1,11 +1,22 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
+with lib;
+
+let
+  cfg = config.module.packages.ripgrep;
+in
 {
-  programs.ripgrep = {
-    enable = true;
+  options = {
+    module.packages.ripgrep.enable = mkEnableOption "Enables ripgrep";
   };
 
-  home.shellAliases = {
-    grep = "rg";
+  config = mkIf cfg.enable {
+    programs.ripgrep = {
+      enable = true;
+    };
+
+    home.shellAliases = {
+      grep = "rg";
+    };
   };
 }

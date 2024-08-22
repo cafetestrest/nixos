@@ -1,18 +1,29 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.packages.rooter;
+in
 {
-  #https://dev.to/run_as_root/good-bye-docker-hello-nix-configuring-a-magento-2-development-environment-with-rooter-11in
+  options = {
+    module.packages.rooter.enable = mkEnableOption "Enables rooter";
+  };
 
-  home.packages = with pkgs; [
-    unstable.cachix
-    unstable.devenv
-    inputs.rooter.packages.${pkgs.system}.rooter
-  ];
+  config = mkIf cfg.enable {
+    #https://dev.to/run_as_root/good-bye-docker-hello-nix-configuring-a-magento-2-development-environment-with-rooter-11in
 
-  programs = {
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+    home.packages = with pkgs; [
+      unstable.cachix
+      unstable.devenv
+      inputs.rooter.packages.${pkgs.system}.rooter
+    ];
+
+    programs = {
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
     };
   };
 }

@@ -150,17 +150,16 @@
             yeelight.enable = true;
             phpstorm.enable = true;
             distrobox.enable = false;
-            # rooter  #TODO depends on docker
-            # kdeconnect
-            # eza
-            # bat
-            # fd
-            # ripgrep
-            # git
-            # kitty
-            # yazi
-            # micro
-            copyq.enable = modules.programs.copyq.enable; #TODO depends on ydotool as well
+            rooter.enable = false;
+            kdeconnect.enable = false;
+            eza.enable = true;
+            bat.enable = true;
+            fd.enable = true;
+            ripgrep.enable = false;
+            kitty.enable = true;
+            yazi.enable = true;
+            micro.enable = true;
+            copyq.enable = modules.programs.copyq.enable;
           };
           # scripts = {
           #   # yeelight
@@ -253,17 +252,6 @@
       };
     };
 
-# # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
-# # ./home-manager/kdeconnect.nix
-# ./home-manager/eza.nix                          # ls replacement
-# ./home-manager/bat.nix                          # cat replacement
-# ./home-manager/fd.nix                           # find replacement
-# # ./home-manager/ripgrep.nix                      # grep replacement
-# ./home-manager/git.nix
-# ./home-manager/kitty.nix                        # terminal
-# ./home-manager/yazi.nix                         # file explorer in terminal
-# ./home-manager/micro.nix                        # terminal text editor
-# ./home-manager/copyq.nix                        # config for copyq
 # ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
 # ./home-manager/home.nix
 
@@ -466,12 +454,12 @@
                 ./home-manager/yeelight.nix                     # smart lights
                 ./home-manager/phpstorm.nix                     # PHP IDE
                 ./home-manager/distrobox.nix
-                # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
-                # ./home-manager/kdeconnect.nix
+                ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
+                ./home-manager/kdeconnect.nix
                 ./home-manager/eza.nix                          # ls replacement
                 ./home-manager/bat.nix                          # cat replacement
                 ./home-manager/fd.nix                           # find replacement
-                # ./home-manager/ripgrep.nix                      # grep replacement
+                ./home-manager/ripgrep.nix                      # grep replacement
                 ./home-manager/git.nix
                 ./home-manager/kitty.nix                        # terminal
                 ./home-manager/yazi.nix                         # file explorer in terminal

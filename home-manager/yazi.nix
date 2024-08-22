@@ -1,11 +1,22 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
+with lib;
+
+let
+  cfg = config.module.packages.yazi;
+in
 {
-  programs.yazi = {
-    enable = true;
+  options = {
+    module.packages.yazi.enable = mkEnableOption "Enables yazi";
   };
 
-  home.shellAliases = {
-    f = "yazi";
+  config = mkIf cfg.enable {
+    programs.yazi = {
+      enable = true;
+    };
+
+    home.shellAliases = {
+      f = "yazi";
+    };
   };
 }
