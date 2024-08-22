@@ -252,8 +252,6 @@
       };
     };
 
-# # ./home-manager/chrome.nix
-# ./home-manager/terminator.nix                   # terminal config
 # # ./home-manager/xterm.nix
 # ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
 # ./home-manager/mpv.nix                          # mpv video player and its config
@@ -464,7 +462,7 @@
                 ./home-manager/fonts/roboto.nix
                 ./home-manager/fonts/montserrat.nix
                 ./home-manager/fonts/cantarell-fonts.nix
-                # ./home-manager/chrome.nix
+                ./home-manager/chrome.nix
                 ./home-manager/terminator.nix                   # terminal config
                 # ./home-manager/xterm.nix
                 ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
