@@ -4,13 +4,14 @@ with lib;
 
 let
   cfg = config.module.gnome.extension.super-key;
+  cfgExtensions = config.module.gnome.extension;
 in
 {
   options = {
     module.gnome.extension.super-key.enable = mkEnableOption "Enables super-key Gnome extension";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && cfgExtensions.enable) {
     home.packages = with pkgs; [
       gnomeExtensions.super-key
     ];

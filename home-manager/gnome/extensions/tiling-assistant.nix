@@ -4,13 +4,14 @@ with lib;
 
 let
   cfg = config.module.gnome.extension.tiling-assistant;
+  cfgExtensions = config.module.gnome.extension;
 in
 {
   options = {
     module.gnome.extension.tiling-assistant.enable = mkEnableOption "Enables tiling-assistant Gnome extension";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && cfgExtensions.enable) {
     home.packages = with pkgs; [
       gnomeExtensions.tiling-assistant
     ];

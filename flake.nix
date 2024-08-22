@@ -220,20 +220,27 @@
               caffeine.enable = modules.home-manager.gnome.extension.enable;
               dash-to-panel.enable = modules.home-manager.gnome.extension.enable;
               executor.enable = modules.home-manager.gnome.extension.enable;
-              gtile.enable = modules.home-manager.gnome.extension.enable;
+              gtile.enable = false;
               super-key.enable = false;
-              useless-gaps.enable = modules.home-manager.gnome.extension.enable;
+              useless-gaps.enable = false;
               media-controls.enable = modules.home-manager.gnome.extension.enable;
               tiling-assistant.enable = modules.home-manager.gnome.extension.enable;
               pop-shell.enable = modules.home-manager.gnome.extension.enable;
-              # ...
+              user-themes.enable = modules.home-manager.gnome.extension.enable;
+              no-overview.enable = modules.home-manager.gnome.extension.enable;
+              gsconnect.enable = modules.home-manager.gnome.extension.enable;
+              fuzzy-app-search.enable = modules.home-manager.gnome.extension.enable;
+              appindicator.enable = modules.home-manager.gnome.extension.enable;
+              workspace-indicator.enable = false;
+              openweather.enable = false;
+              rounded-window-corners.enable = false;
+              tray-icons-reloaded.enable = false;
             };
           };
         };
       };
     };
 
-# # ./home-manager/gnome/extensions.nix           # gnome extensions
 # ./home-manager/packages.nix                     # shared packages
 # ./home-manager/fonts.nix
 # # ./home-manager/chrome.nix
@@ -427,7 +434,16 @@
                 ./home-manager/gnome/extensions/super-key.nix
                 ./home-manager/gnome/extensions/tiling-assistant.nix
                 ./home-manager/gnome/extensions/useless-gaps.nix
-                # ./home-manager/gnome/extensions.nix           # gnome extensions
+                ./home-manager/gnome/extensions/user-themes.nix
+                ./home-manager/gnome/extensions/no-overview.nix
+                ./home-manager/gnome/extensions/gsconnect.nix
+                ./home-manager/gnome/extensions/fuzzy-app-search.nix
+                ./home-manager/gnome/extensions/appindicator.nix
+                ./home-manager/gnome/extensions/workspace-indicator.nix
+                ./home-manager/gnome/extensions/openweather.nix
+                ./home-manager/gnome/extensions/rounded-window-corners.nix
+                ./home-manager/gnome/extensions/tray-icons-reloaded.nix
+                ./home-manager/gnome/extensions.nix           # gnome extensions
                 ./home-manager/packages.nix                     # shared packages
                 ./home-manager/fonts.nix
                 # ./home-manager/chrome.nix

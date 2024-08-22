@@ -4,13 +4,14 @@ with lib;
 
 let
   cfg = config.module.gnome.extension.useless-gaps;
+  cfgExtensions = config.module.gnome.extension;
 in
 {
   options = {
     module.gnome.extension.useless-gaps.enable = mkEnableOption "Enables useless-gaps Gnome extension";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && cfgExtensions.enable) {
     home.packages = with pkgs; [
       gnomeExtensions.useless-gaps              #missing in gnome 45
     ];

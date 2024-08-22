@@ -4,13 +4,14 @@ with lib;
 
 let
   cfg = config.module.gnome.extension.dash-to-panel;
+  cfgExtensions = config.module.gnome.extension;
 in
 {
   options = {
     module.gnome.extension.dash-to-panel.enable = mkEnableOption "Enables dash-to-panel Gnome extension";
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && cfgExtensions.enable) {
     home.packages = with pkgs; [
       gnomeExtensions.dash-to-panel
     ];

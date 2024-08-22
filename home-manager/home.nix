@@ -60,7 +60,7 @@
         xpad.enable = (vars.modules.home-manager.gnome.autostart.xpad.enable or false);
       };
       extension = {
-        # enable = (vars.modules.home-manager.gnome.extension.enable or false);
+        enable = (vars.modules.home-manager.gnome.extension.enable or false);
         blur-my-shell.enable = (vars.modules.home-manager.gnome.extension.blur-my-shell.enable or false);
         caffeine.enable = (vars.modules.home-manager.gnome.extension.caffeine.enable or false);
         dash-to-panel.enable = (vars.modules.home-manager.gnome.extension.dash-to-panel.enable or false);
@@ -71,6 +71,15 @@
         media-controls.enable = (vars.modules.home-manager.gnome.extension.media-controls.enable or false);
         tiling-assistant.enable = (vars.modules.home-manager.gnome.extension.tiling-assistant.enable or false);
         pop-shell.enable = (vars.modules.home-manager.gnome.extension.pop-shell.enable or false);
+        user-themes.enable = (vars.modules.home-manager.gnome.extension.user-themes.enable or false);
+        no-overview.enable = (vars.modules.home-manager.gnome.extension.no-overview.enable or false);
+        gsconnect.enable = (vars.modules.home-manager.gnome.extension.gsconnect.enable or false);
+        fuzzy-app-search.enable = (vars.modules.home-manager.gnome.extension.fuzzy-app-search.enable or false);
+        appindicator.enable = (vars.modules.home-manager.gnome.extension.appindicator.enable or false);
+        workspace-indicator.enable = (vars.modules.home-manager.gnome.extension.workspace-indicator.enable or false);
+        openweather.enable = (vars.modules.home-manager.gnome.extension.openweather.enable or false);
+        rounded-window-corners.enable = (vars.modules.home-manager.gnome.extension.rounded-window-corners.enable or false);
+        tray-icons-reloaded.enable = (vars.modules.home-manager.gnome.extension.tray-icons-reloaded.enable or false);
       };
     };
   };
