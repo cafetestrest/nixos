@@ -17,6 +17,7 @@ in
       general{
 
       }
+      #TODO add support for this image
       background {
           monitor =
           path=/etc/nixos/hyprlock.png

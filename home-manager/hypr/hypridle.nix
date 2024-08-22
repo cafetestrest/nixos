@@ -1,82 +1,94 @@
-{ inputs, pkgs, vars, ... }:
+{ pkgs, config, lib, ... }:
 
+with lib;
+
+let
+  cfg = config.module.idle-inhibitor.hypridle;
+in
 {
-  # home.packages = with pkgs; [ unstable.hypridle ];
+  options = {
+    module.idle-inhibitor.hypridle.enable = mkEnableOption "Enables hypridle config";
+    #TODO add after_sleep_cmd if wakefromsleep is enabled and else without it
+  };
 
-xdg.configFile."hypr/hypridle.conf".text = ''
-general {
-    lock_cmd = pidof hyprlock || ${pkgs.unstable.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
-    before_sleep_cmd = loginctl lock-session    # lock before suspend.
-    after_sleep_cmd = hyprctl dispatch dpms on && wakefromsleep
-    # to avoid having to press a key twice to turn on the display. (https://github.com/hyprwm/hyprlock/issues/371#issuecomment-2288214526)
-}
+  config = mkIf cfg.enable {
+    # home.packages = with pkgs; [ unstable.hypridle ];
 
-#listener {
-#    timeout = 150                                # 2.5min.
-#    on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
-#    on-resume = brightnessctl -r                 # monitor backlight restore.
-#}
+    xdg.configFile."hypr/hypridle.conf".text = ''
+      general {
+          lock_cmd = pidof hyprlock || ${pkgs.unstable.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
+          before_sleep_cmd = loginctl lock-session    # lock before suspend.
+          after_sleep_cmd = hyprctl dispatch dpms on && wakefromsleep
+          # to avoid having to press a key twice to turn on the display. (https://github.com/hyprwm/hyprlock/issues/371#issuecomment-2288214526)
+      }
 
-# turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
-#listener { 
-#    timeout = 150                                          # 2.5min.
-#    on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
-#    on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
-#}
+      #listener {
+      #    timeout = 150                                # 2.5min.
+      #    on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+      #    on-resume = brightnessctl -r                 # monitor backlight restore.
+      #}
 
-listener {
-    timeout = 600                                 # 10min
-    on-timeout = loginctl lock-session            # lock screen when timeout has passed
-}
+      # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
+      #listener { 
+      #    timeout = 150                                          # 2.5min.
+      #    on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
+      #    on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
+      #}
 
-listener {
-    timeout = 660                                 # 11min
-    on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
-    on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
-}
+      listener {
+          timeout = 600                                 # 10min
+          on-timeout = loginctl lock-session            # lock screen when timeout has passed
+      }
 
-listener {
-    timeout = 720                                 # 12min
-    on-timeout = systemctl suspend                # suspend pc
-}
-  '';
+      listener {
+          timeout = 660                                 # 11min
+          on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+          on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
+      }
 
-  # services.hypridle = {
-  #   enable = true;
-  #   lockCmd = "${lib.getExe pkgs.hyprlock}";
-  #   beforeSleepCmd = "${lib.getExe pkgs.hyprlock}";
-  #   listeners = [
-  #     {
-  #       timeout = 300;
-  #       onTimeout = "${lib.getExe pkgs.hyprlock}";
-  #     }
-  #     {
-  #       timeout = 305;
-  #       onTimeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-  #       onResume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-  #     }
-  #   ];
-  # };
+      listener {
+          timeout = 720                                 # 12min
+          on-timeout = systemctl suspend                # suspend pc
+      }
+      '';
 
-  #   home.packages = with pkgs; [ hypridle ];
+    # services.hypridle = {
+    #   enable = true;
+    #   lockCmd = "${lib.getExe pkgs.hyprlock}";
+    #   beforeSleepCmd = "${lib.getExe pkgs.hyprlock}";
+    #   listeners = [
+    #     {
+    #       timeout = 300;
+    #       onTimeout = "${lib.getExe pkgs.hyprlock}";
+    #     }
+    #     {
+    #       timeout = 305;
+    #       onTimeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+    #       onResume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+    #     }
+    #   ];
+    # };
 
-  # xdg.configFile."hypr/hypridle.conf".text = ''
-  #   general {
-  #       ignore_dbus_inhibit = false
-  #   }
+    #   home.packages = with pkgs; [ hypridle ];
 
-  #   # Screenlock
-  #   listener {
-  #       timeout = 600
-  #       on-timeout = ${pkgs.hyprlock}/bin/hyprlock
-  #       on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back ${config.home.user}!"
-  #   }
+    # xdg.configFile."hypr/hypridle.conf".text = ''
+    #   general {
+    #       ignore_dbus_inhibit = false
+    #   }
 
-  #   # Suspend
-  #   listener {
-  #       timeout = 660
-  #       on-timeout = systemctl suspend
-  #       # on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back to your desktop!"
-  #   }
-  # '';
+    #   # Screenlock
+    #   listener {
+    #       timeout = 600
+    #       on-timeout = ${pkgs.hyprlock}/bin/hyprlock
+    #       on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back ${config.home.user}!"
+    #   }
+
+    #   # Suspend
+    #   listener {
+    #       timeout = 660
+    #       on-timeout = systemctl suspend
+    #       # on-resume = ${pkgs.libnotify}/bin/notify-send "Welcome back to your desktop!"
+    #   }
+    # '';
+  };
 }

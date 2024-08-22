@@ -43,6 +43,9 @@
       swaylock.enable = (vars.modules.home-manager.screen-locker.swaylock.enable or false);
       hyprlock.enable = (vars.modules.home-manager.screen-locker.hyprlock.enable or false);
     };
+    idle-inhibitor = {
+      hypridle.enable = (vars.modules.home-manager.idle-inhibitor.hypridle.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your
