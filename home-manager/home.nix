@@ -33,6 +33,9 @@
       enable = (vars.modules.home-manager.xdg.enable or false);
       defaultapps.enable = (vars.modules.home-manager.xdg.defaultapps.enable or false);
     };
+    hypr = {
+      hyprland.enable = (vars.modules.home-manager.hypr.hyprland.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your

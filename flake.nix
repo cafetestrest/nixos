@@ -214,7 +214,6 @@
       };
     };
 
-# ./home-manager/mime-defaultapps.nix             # xdg + default apps (mime)
 # ./home-manager/hypr/hyprland.nix
 # ./home-manager/ags.nix                          # top bar + shell https://github.com/Aylur/ags
 # # ./home-manager/swaylock.nix                   # lock screen

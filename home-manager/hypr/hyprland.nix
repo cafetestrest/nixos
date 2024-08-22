@@ -1,4 +1,6 @@
-{ inputs, pkgs, vars, ... }:
+{ inputs, config, lib, pkgs, vars, ... }:
+
+with lib;
 
 let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -7,339 +9,348 @@ let
   lock = "${pkgs.unstable.hyprlock}/bin/hyprlock";
   idle = "${pkgs.unstable.hypridle}/bin/hypridle";
   pamixer = "${pkgs.pamixer}/bin/pamixer";
+  #TODO move most of this config to users
+
+  cfg = config.module.hypr.hyprland;
 in
 {
-  home.packages = with pkgs; [
-    icon-library          #library of icons
-    libnotify             #notifications from terminal - notify-send
-    killall
-  ];
+  options = {
+    module.hypr.hyprland.enable = mkEnableOption "Enables Hyprland config";
+  };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    package = hyprland;
-    #package = hyprland.override { debug = true; };
-    systemd.enable = true;
-    xwayland.enable = true;
-    # plugins = with plugins; [ hyprbars borderspp ];
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      icon-library          #library of icons
+      libnotify             #notifications from terminal - notify-send
+      killall
+    ];
 
-    settings = {
-      exec-once = [
-        "startup"
-        # "nightlight a"
-        # "${idle}"
-        # "ags"
-        # "openstartupapps"
-        "hyprctl setcursor ${vars.gtk.cursorTheme} ${toString vars.gtk.cursorSize}"
-        # "~/.config/scripts/111.sh"
-        # "copyq --start-server"
-        # ''hyprctl dispatch exec "xterm -e journalctl -xef"''
-        # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
-      ];
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = hyprland;
+      #package = hyprland.override { debug = true; };
+      systemd.enable = true;
+      xwayland.enable = true;
+      # plugins = with plugins; [ hyprbars borderspp ];
 
-      # exec = [
-      #   "dbus-launch --sh-syntax --exit-with-session Hyprland"
-      #   # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland"
-      # ];
-
-      env = [
-        "GDK_BACKEND,wayland"
-        "GTK_THEME,${vars.gtk.gtkTheme}"
-        # "XCURSOR_THEME,${vars.gtk.cursorTheme}"
-        # "XCURSOR_SIZE,${toString vars.gtk.cursorSize}"
-        "QT_QPA_PLATFORM,wayland"
-        "QT_QPA_PLATFORMTHEME,qt5ct"
-        "NIXOS_OZONE_WL,1"
-        # Hyprcursor
-        # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
-        "HYPRCURSOR_SIZE,${toString vars.gtk.cursorSize}"
-      ];
-
-      monitor = [
-        "DP-3, 3840x2160, 0x0, 1"
-        # ",highres,auto,1"
-      ];
-
-      general = {
-        layout = "dwindle";
-        resize_on_border = true;
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-      };
-
-      misc = {
-        # layers_hog_keyboard_focus = false;#If true, will make keyboard-interactive layers keep their focus on mouse move (e.g. wofi, bemenu)
-        disable_splash_rendering = true;
-        force_default_wallpaper = 0;
-        disable_hyprland_logo = false;
-      };
-
-      input = {
-        kb_layout = "us";
-        follow_mouse = 1;
-        numlock_by_default = true;
-        touchpad = {
-          natural_scroll = "no";
-          disable_while_typing = true;
-          drag_lock = true;
-        };
-        sensitivity = 0;
-        # float_switch_override_focus = 2; #If enabled (1 or 2), focus will change to the window under the cursor when changing from tiled-to-floating and vice versa. If 2, focus will also follow mouse on float-to-float switches.
-      };
-
-      binds = {
-        allow_workspace_cycles = true;
-      };
-
-      dwindle = {
-        pseudotile = "yes";
-        preserve_split = "yes";
-        # no_gaps_when_only = "yes";
-      };
-
-      gestures = {
-        workspace_swipe = false;
-        # workspace_swipe_forever = true;
-        # workspace_swipe_numbered = true;
-      };
-
-      xwayland = {
-        force_zero_scaling = true;
-      };
-
-      cursor = {
-        hotspot_padding = 1;  #fixes issue that power menu toggle in ags is not far right
-      };
-
-      windowrule = let
-        f = regex: "float, ^(${regex})$";
-      in [
-        (f "org.gnome.Calculator")
-        # (f "org.gnome.Nautilus")
-        (f "pavucontrol")
-        (f "nm-connection-editor")
-        (f "blueberry.py")
-        (f "org.gnome.Settings")
-        (f "org.gnome.design.Palette")
-        (f "Color Picker")
-        (f "xdg-desktop-portal")
-        (f "xdg-desktop-portal-gnome")
-        (f "transmission-gtk")
-        (f "com.github.Aylur.ags")
-        (f "com.github.hluk.copyq")
-        (f "copyq")
-        (f "jetbrains-phpstorm")
-        "float,Rofi"
-        # "workspace 7, title:Spotify"
-        "opacity 0.85,terminator"
-        "move cursor -50% -20%,^(com.github.hluk.copyq)$"
-        "move cursor -50% -20%,^(copyq)$"
-        "size 350 200,^(com.github.hluk.copyq)$"
-        "size 350 200,^(copyq)$"
-      ];
-
-      windowrulev2 = let
-        f = regex: "stayfocused,class:${regex}";
-      in [
-        (f "com.github.hluk.copyq")
-        (f "copyq")
-        (f "Rofi")
-      ];
-
-      layerrule = let
-        f = regex: "blur,${regex}";
-      in [
-        (f "rofi")
-      ];
-
-      bind = let
-        binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
-        mvfocus = binding "SUPER" "movefocus";
-        ws = binding "SUPER" "workspace";
-        mvactive = binding "SUPER ALT" "moveactive";
-        mvtows = binding "SUPER SHIFT" "movetoworkspace";
-        mvwin = binding "SUPER SHIFT" "movewindow";
-        swapwin = binding "SUPER ALT" "swapwindow";
-        e = "exec, ags";
-        arr = [1 2 3 4 5 6 7 8 9];
-        yt = pkgs.writeShellScriptBin "yt" ''
-          notify-send "Opening video" "$(wl-paste)"
-          mpv "$(wl-paste)"
-        '';
-        browser = "brave";
-        fileExplorer = "nautilus";
-      in [
-        "SUPER, C, exec, ${browser}"
-        "SUPER SHIFT, I, exec, ${browser} --incognito"
-        "SUPER, T, exec, kitty"
-        "SUPER, Return, exec, kitty"
-        "SUPER, E, exec, ${fileExplorer}"
-        "SUPER, V, exec, copyq toggle"
-        # "SUPER, V, ${e} -t clipboard"
-        "SUPER, Print, exec, screenshot"
-        "SUPER SHIFT, S, exec, screenshot 1"
-
-        "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags"
-        "SUPER, space, ${e} -t applauncher"
-        "ALT, space, ${e} -t applauncher"
-        # ", XF86PowerOff, ${e} -t powermenu"
-        # "SUPER, Tab, ${e} -t overview"
-        # ", XF86Launch4, ${e} -r 'recorder.start()'"
-        ",Print, ${e} -r 'recorder.screenshot()'"
-        "SHIFT,Print, ${e} -r 'recorder.screenshot(true)'"
-        # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
-        "SUPER, L, ${e} -t powermenu"
-        "SUPER, N, ${e} -t weather"
-        "SUPER, S, ${e} -t quicksettings"
-        "CTRL ALT, Delete, exec, xterm -e powermenu t"
-        "SUPER SHIFT, Delete, exec, xterm -e powermenu t"
-        ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
-        ''SUPER, Page_Down, exec, wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"''
-        "SUPER SHIFT, escape, exec, ${mediaControl} --all-players stop"
-
-        # youtube
-        # ", XF86Launch1, exec, ${yt}/bin/yt"
-
-        # "ALT, Tab, focuscurrentorlast"
-        "CTRL ALT, BackSpace, exit"
-        "SUPER SHIFT, L, exit"
-        "SUPER, Q, killactive"
-        # "ALT, Q, killactive"
-        "SUPER, F, togglefloating"
-        "SUPER, M, fullscreen"
-        # "SUPER SHIFT, M, fakefullscreen"
-        "SUPER, J, togglesplit"
-        "SUPER, P, pseudo"
-        "SUPER SHIFT, P, workspaceopt, allpseudo"
-        "SUPER SHIFT, F, workspaceopt, allfloat"
-        "SUPER, 0, workspace, 10"
-        "SUPER SHIFT, 0, movetoworkspace, 10"
-
-        (mvfocus "up" "u")
-        (mvfocus "down" "d")
-        (mvfocus "right" "r")
-        (mvfocus "left" "l")
-        (ws "mouse_up" "e-1")
-        (ws "mouse_down" "e+1")
-        # (mvtows "left" "e-1")
-        # (mvtows "right" "e+1")
-        (mvactive "left" "-20 0")
-        (mvactive "right" "20 0")
-        (mvactive "down" "0 20")
-        (mvactive "up" "0 -20")
-        (mvwin "up" "u")
-        (mvwin "down" "d")
-        (mvwin "right" "r")
-        (mvwin "left" "l")
-        (swapwin "up" "u")
-        (swapwin "down" "d")
-        (swapwin "right" "r")
-        (swapwin "left" "l")
-      ]
-      ++ (map (i: ws (toString i) (toString i)) arr)
-      ++ (map (i: mvtows (toString i) (toString i)) arr);
-
-      bindle = let e = "exec, ags -r"; in [
-        # ",XF86MonBrightnessUp, ${e} 'brightness.screen += 0.05; indicator.display()'"
-        # ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
-        ",XF86KbdBrightnessUp, ${e} 'brightness.kbd++; indicator.kbd()'"
-        ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
-        # ",XF86AudioRaiseVolume, ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
-        # ",XF86AudioLowerVolume, ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
-        ",XF86AudioLowerVolume, exec, ${pamixer} -d 1"
-        ",XF86AudioRaiseVolume, exec, ${pamixer} -i 1"
-        ",XF86AudioMute, exec, ${pamixer} -t"
-        "SUPER, Tab, cyclenext"
-        "ALT, Tab, cyclenext"
-        "SUPER SHIFT, Tab, cyclenext, prev"
-        "ALT SHIFT, Tab, cyclenext, prev"
-      ];
-
-      binde = let
-        binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
-        resizeactive = binding "SUPER CTRL" "resizeactive";
-        resizeactivectrl = binding "SUPER SHIFT CTRL" "resizeactive";
-      in [
-        (resizeactive "right" "100 0")
-        (resizeactive "left" "-100 0")
-        (resizeactive "up" "0 -100")
-        (resizeactive "down" "0 100")
-        (resizeactivectrl "right" "10 0")
-        (resizeactivectrl "left" "-10 0")
-        (resizeactivectrl "up" "0 -10")
-        (resizeactivectrl "down" "0 10")
-      ];
-
-      bindl = let e = "exec, ags -r"; in [
-        # ",XF86AudioPlay, ${e} 'mpris?.playPause()'"
-        # ",XF86AudioStop, ${e} 'mpris?.stop()'"
-        # ",XF86AudioPause, ${e} 'mpris?.pause()'"
-        # ",XF86AudioPrev, ${e} 'mpris?.previous()'"
-        # ",XF86AudioNext, ${e} 'mpris?.next()'"
-        ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
-        ",XF86AudioPlay, exec, ${mediaControl} play-pause"
-        ",XF86AudioStop, exec, ${mediaControl} stop"
-        ",XF86AudioPause, exec, ${mediaControl} pause"
-        ",XF86AudioPrev, exec, ${mediaControl} previous"
-        ",XF86AudioNext, exec, ${mediaControl} next"
-        # "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
-        "SUPER, BackSpace, exec, pkill -SIGUSR1 ${lock} && ${lock} --immediate"
-      ];
-
-      bindm = [
-        "SUPER, mouse:273, resizewindow"
-        "SUPER, mouse:272, movewindow"
-      ];
-
-      decoration = {
-        rounding = 10;
-
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
-
-        # dim_inactive = false;
-
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-          new_optimizations = "on";
-          # noise = 0.01;
-          # contrast = 0.9;
-          # brightness = 0.8;
-        };
-      };
-
-      animations = {
-        enabled = "yes";
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+      settings = {
+        exec-once = [
+          "startup"
+          # "nightlight a"
+          # "${idle}"
+          # "ags"
+          # "openstartupapps"
+          "hyprctl setcursor ${vars.gtk.cursorTheme} ${toString vars.gtk.cursorSize}"
+          # "~/.config/scripts/111.sh"
+          # "copyq --start-server"
+          # ''hyprctl dispatch exec "xterm -e journalctl -xef"''
+          # ''hyprctl dispatch exec "[workspace 2]" "xterm -e ~/.config/scripts/111.sh"''
         ];
-      };
 
-      plugin = {
-        hyprbars = {
-          bar_color = "rgb(2a2a2a)";
-          bar_height = 28;
-          col_text = "rgba(ffffffdd)";
-          bar_text_size = 11;
-          bar_text_font = "Ubuntu Nerd Font";
+        # exec = [
+        #   "dbus-launch --sh-syntax --exit-with-session Hyprland"
+        #   # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland"
+        # ];
 
-          buttons = {
-            button_size = 0;
-            "col.maximize" = "rgba(ffffff11)";
-            "col.close" = "rgba(ff111133)";
+        env = [
+          "GDK_BACKEND,wayland"
+          "GTK_THEME,${vars.gtk.gtkTheme}"
+          # "XCURSOR_THEME,${vars.gtk.cursorTheme}"
+          # "XCURSOR_SIZE,${toString vars.gtk.cursorSize}"
+          "QT_QPA_PLATFORM,wayland"
+          "QT_QPA_PLATFORMTHEME,qt5ct"
+          "NIXOS_OZONE_WL,1"
+          # Hyprcursor
+          # "HYPRCURSOR_THEME, ${config.theme.cursor_name}"
+          "HYPRCURSOR_SIZE,${toString vars.gtk.cursorSize}"
+        ];
+
+        monitor = [
+          "DP-3, 3840x2160, 0x0, 1"
+          # ",highres,auto,1"
+        ];
+
+        general = {
+          layout = "dwindle";
+          resize_on_border = true;
+          gaps_in = 5;
+          gaps_out = 10;
+          border_size = 2;
+          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          "col.inactive_border" = "rgba(595959aa)";
+        };
+
+        misc = {
+          # layers_hog_keyboard_focus = false;#If true, will make keyboard-interactive layers keep their focus on mouse move (e.g. wofi, bemenu)
+          disable_splash_rendering = true;
+          force_default_wallpaper = 0;
+          disable_hyprland_logo = false;
+        };
+
+        input = {
+          kb_layout = "us";
+          follow_mouse = 1;
+          numlock_by_default = true;
+          touchpad = {
+            natural_scroll = "no";
+            disable_while_typing = true;
+            drag_lock = true;
+          };
+          sensitivity = 0;
+          # float_switch_override_focus = 2; #If enabled (1 or 2), focus will change to the window under the cursor when changing from tiled-to-floating and vice versa. If 2, focus will also follow mouse on float-to-float switches.
+        };
+
+        binds = {
+          allow_workspace_cycles = true;
+        };
+
+        dwindle = {
+          pseudotile = "yes";
+          preserve_split = "yes";
+          # no_gaps_when_only = "yes";
+        };
+
+        gestures = {
+          workspace_swipe = false;
+          # workspace_swipe_forever = true;
+          # workspace_swipe_numbered = true;
+        };
+
+        xwayland = {
+          force_zero_scaling = true;
+        };
+
+        cursor = {
+          hotspot_padding = 1;  #fixes issue that power menu toggle in ags is not far right
+        };
+
+        windowrule = let
+          f = regex: "float, ^(${regex})$";
+        in [
+          (f "org.gnome.Calculator")
+          # (f "org.gnome.Nautilus")
+          (f "pavucontrol")
+          (f "nm-connection-editor")
+          (f "blueberry.py")
+          (f "org.gnome.Settings")
+          (f "org.gnome.design.Palette")
+          (f "Color Picker")
+          (f "xdg-desktop-portal")
+          (f "xdg-desktop-portal-gnome")
+          (f "transmission-gtk")
+          (f "com.github.Aylur.ags")
+          (f "com.github.hluk.copyq")
+          (f "copyq")
+          (f "jetbrains-phpstorm")
+          "float,Rofi"
+          # "workspace 7, title:Spotify"
+          "opacity 0.85,terminator"
+          "move cursor -50% -20%,^(com.github.hluk.copyq)$"
+          "move cursor -50% -20%,^(copyq)$"
+          "size 350 200,^(com.github.hluk.copyq)$"
+          "size 350 200,^(copyq)$"
+        ];
+
+        windowrulev2 = let
+          f = regex: "stayfocused,class:${regex}";
+        in [
+          (f "com.github.hluk.copyq")
+          (f "copyq")
+          (f "Rofi")
+        ];
+
+        layerrule = let
+          f = regex: "blur,${regex}";
+        in [
+          (f "rofi")
+        ];
+
+        bind = let
+          binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
+          mvfocus = binding "SUPER" "movefocus";
+          ws = binding "SUPER" "workspace";
+          mvactive = binding "SUPER ALT" "moveactive";
+          mvtows = binding "SUPER SHIFT" "movetoworkspace";
+          mvwin = binding "SUPER SHIFT" "movewindow";
+          swapwin = binding "SUPER ALT" "swapwindow";
+          e = "exec, ags";
+          arr = [1 2 3 4 5 6 7 8 9];
+          yt = pkgs.writeShellScriptBin "yt" ''
+            notify-send "Opening video" "$(wl-paste)"
+            mpv "$(wl-paste)"
+          '';
+          browser = "brave";
+          fileExplorer = "nautilus";
+        in [
+          "SUPER, C, exec, ${browser}"
+          "SUPER SHIFT, I, exec, ${browser} --incognito"
+          "SUPER, T, exec, kitty"
+          "SUPER, Return, exec, kitty"
+          "SUPER, E, exec, ${fileExplorer}"
+          "SUPER, V, exec, copyq toggle"
+          # "SUPER, V, ${e} -t clipboard"
+          "SUPER, Print, exec, screenshot"
+          "SUPER SHIFT, S, exec, screenshot 1"
+
+          "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags"
+          "SUPER, space, ${e} -t applauncher"
+          "ALT, space, ${e} -t applauncher"
+          # ", XF86PowerOff, ${e} -t powermenu"
+          # "SUPER, Tab, ${e} -t overview"
+          # ", XF86Launch4, ${e} -r 'recorder.start()'"
+          ",Print, ${e} -r 'recorder.screenshot()'"
+          "SHIFT,Print, ${e} -r 'recorder.screenshot(true)'"
+          # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
+          "SUPER, L, ${e} -t powermenu"
+          "SUPER, N, ${e} -t weather"
+          "SUPER, S, ${e} -t quicksettings"
+          "CTRL ALT, Delete, exec, xterm -e powermenu t"
+          "SUPER SHIFT, Delete, exec, xterm -e powermenu t"
+          ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
+          ''SUPER, Page_Down, exec, wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"''
+          "SUPER SHIFT, escape, exec, ${mediaControl} --all-players stop"
+
+          # youtube
+          # ", XF86Launch1, exec, ${yt}/bin/yt"
+
+          # "ALT, Tab, focuscurrentorlast"
+          "CTRL ALT, BackSpace, exit"
+          "SUPER SHIFT, L, exit"
+          "SUPER, Q, killactive"
+          # "ALT, Q, killactive"
+          "SUPER, F, togglefloating"
+          "SUPER, M, fullscreen"
+          # "SUPER SHIFT, M, fakefullscreen"
+          "SUPER, J, togglesplit"
+          "SUPER, P, pseudo"
+          "SUPER SHIFT, P, workspaceopt, allpseudo"
+          "SUPER SHIFT, F, workspaceopt, allfloat"
+          "SUPER, 0, workspace, 10"
+          "SUPER SHIFT, 0, movetoworkspace, 10"
+
+          (mvfocus "up" "u")
+          (mvfocus "down" "d")
+          (mvfocus "right" "r")
+          (mvfocus "left" "l")
+          (ws "mouse_up" "e-1")
+          (ws "mouse_down" "e+1")
+          # (mvtows "left" "e-1")
+          # (mvtows "right" "e+1")
+          (mvactive "left" "-20 0")
+          (mvactive "right" "20 0")
+          (mvactive "down" "0 20")
+          (mvactive "up" "0 -20")
+          (mvwin "up" "u")
+          (mvwin "down" "d")
+          (mvwin "right" "r")
+          (mvwin "left" "l")
+          (swapwin "up" "u")
+          (swapwin "down" "d")
+          (swapwin "right" "r")
+          (swapwin "left" "l")
+        ]
+        ++ (map (i: ws (toString i) (toString i)) arr)
+        ++ (map (i: mvtows (toString i) (toString i)) arr);
+
+        bindle = let e = "exec, ags -r"; in [
+          # ",XF86MonBrightnessUp, ${e} 'brightness.screen += 0.05; indicator.display()'"
+          # ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
+          ",XF86KbdBrightnessUp, ${e} 'brightness.kbd++; indicator.kbd()'"
+          ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
+          # ",XF86AudioRaiseVolume, ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
+          # ",XF86AudioLowerVolume, ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
+          ",XF86AudioLowerVolume, exec, ${pamixer} -d 1"
+          ",XF86AudioRaiseVolume, exec, ${pamixer} -i 1"
+          ",XF86AudioMute, exec, ${pamixer} -t"
+          "SUPER, Tab, cyclenext"
+          "ALT, Tab, cyclenext"
+          "SUPER SHIFT, Tab, cyclenext, prev"
+          "ALT SHIFT, Tab, cyclenext, prev"
+        ];
+
+        binde = let
+          binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
+          resizeactive = binding "SUPER CTRL" "resizeactive";
+          resizeactivectrl = binding "SUPER SHIFT CTRL" "resizeactive";
+        in [
+          (resizeactive "right" "100 0")
+          (resizeactive "left" "-100 0")
+          (resizeactive "up" "0 -100")
+          (resizeactive "down" "0 100")
+          (resizeactivectrl "right" "10 0")
+          (resizeactivectrl "left" "-10 0")
+          (resizeactivectrl "up" "0 -10")
+          (resizeactivectrl "down" "0 10")
+        ];
+
+        bindl = let e = "exec, ags -r"; in [
+          # ",XF86AudioPlay, ${e} 'mpris?.playPause()'"
+          # ",XF86AudioStop, ${e} 'mpris?.stop()'"
+          # ",XF86AudioPause, ${e} 'mpris?.pause()'"
+          # ",XF86AudioPrev, ${e} 'mpris?.previous()'"
+          # ",XF86AudioNext, ${e} 'mpris?.next()'"
+          ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
+          ",XF86AudioPlay, exec, ${mediaControl} play-pause"
+          ",XF86AudioStop, exec, ${mediaControl} stop"
+          ",XF86AudioPause, exec, ${mediaControl} pause"
+          ",XF86AudioPrev, exec, ${mediaControl} previous"
+          ",XF86AudioNext, exec, ${mediaControl} next"
+          # "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
+          "SUPER, BackSpace, exec, pkill -SIGUSR1 ${lock} && ${lock} --immediate"
+        ];
+
+        bindm = [
+          "SUPER, mouse:273, resizewindow"
+          "SUPER, mouse:272, movewindow"
+        ];
+
+        decoration = {
+          rounding = 10;
+
+          drop_shadow = "yes";
+          shadow_range = 4;
+          shadow_render_power = 3;
+          "col.shadow" = "rgba(1a1a1aee)";
+
+          # dim_inactive = false;
+
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 1;
+            new_optimizations = "on";
+            # noise = 0.01;
+            # contrast = 0.9;
+            # brightness = 0.8;
+          };
+        };
+
+        animations = {
+          enabled = "yes";
+          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+          animation = [
+            "windows, 1, 7, myBezier"
+            "windowsOut, 1, 7, default, popin 80%"
+            "border, 1, 10, default"
+            "borderangle, 1, 8, default"
+            "fade, 1, 7, default"
+            "workspaces, 1, 6, default"
+          ];
+        };
+
+        plugin = {
+          hyprbars = {
+            bar_color = "rgb(2a2a2a)";
+            bar_height = 28;
+            col_text = "rgba(ffffffdd)";
+            bar_text_size = 11;
+            bar_text_font = "Ubuntu Nerd Font";
+
+            buttons = {
+              button_size = 0;
+              "col.maximize" = "rgba(ffffff11)";
+              "col.close" = "rgba(ff111133)";
+            };
           };
         };
       };
