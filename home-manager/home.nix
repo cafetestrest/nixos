@@ -49,6 +49,12 @@
     idle-inhibitor = {
       hypridle.enable = (vars.modules.home-manager.idle-inhibitor.hypridle.enable or false);
     };
+    gnome = {
+      gtk-config.enable = (vars.modules.home-manager.gnome.gtk-config.enable or false);
+      # dconf-settings.enable = true;
+      # home  #TODO add support for all imports
+      # extensions.enable = modules.desktop-environment.gnome.enable;
+    };
   };
 
   # This value determines the Home Manager release that your

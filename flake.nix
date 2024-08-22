@@ -214,7 +214,6 @@
       };
     };
 
-# ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
 # ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
 # # ./home-manager/gnome/home.nix
 # # ./home-manager/gnome/extensions.nix           # gnome extensions

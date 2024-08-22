@@ -13,6 +13,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ hyprpaper ];
 
+    #TODO add wallpaper?
     xdg.configFile."hypr/hyprpaper.conf".text = ''
       preload = ~/Public/wall/wall.png
       #if more than one preload is desired then continue to preload other backgrounds
