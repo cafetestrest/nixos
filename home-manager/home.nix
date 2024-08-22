@@ -29,6 +29,10 @@
         aliases.enable = (vars.modules.home-manager.shell.warden.aliases.enable or false);
       };
     };
+    xdg = {
+      enable = (vars.modules.home-manager.xdg.enable or false);
+      defaultapps.enable = (vars.modules.home-manager.xdg.defaultapps.enable or false);
+    };
   };
 
   # This value determines the Home Manager release that your
