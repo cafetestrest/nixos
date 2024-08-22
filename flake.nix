@@ -144,11 +144,12 @@
             xterm.enable = false;
             mpv.enable = true;
             fastfetch.enable = true;
+            brave.enable = true;
             vscode.enable = true;
-            # brave
-            # zoxide
-            # phpstorm
-            # distrobox
+            zoxide.enable = true;
+            yeelight.enable = true;
+            phpstorm.enable = true;
+            distrobox.enable = false;
             # rooter  #TODO depends on docker
             # kdeconnect
             # eza
@@ -252,16 +253,6 @@
       };
     };
 
-# # ./home-manager/xterm.nix
-# ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
-# ./home-manager/mpv.nix                          # mpv video player and its config
-# ./home-manager/fastfetch.nix                    # neofetch replacement
-# ./home-manager/vscode.nix
-# ./home-manager/brave.nix                        # browser
-# ./home-manager/zoxide.nix                       # z - smarter cd
-# ./home-manager/yeelight.nix                     # smart lights
-# ./home-manager/phpstorm.nix                     # PHP IDE
-# # ./home-manager/distrobox.nix
 # # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
 # # ./home-manager/kdeconnect.nix
 # ./home-manager/eza.nix                          # ls replacement
@@ -273,6 +264,7 @@
 # ./home-manager/yazi.nix                         # file explorer in terminal
 # ./home-manager/micro.nix                        # terminal text editor
 # ./home-manager/copyq.nix                        # config for copyq
+# ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
 # ./home-manager/home.nix
 
     vm = rec {
@@ -464,7 +456,7 @@
                 ./home-manager/fonts/cantarell-fonts.nix
                 ./home-manager/chrome.nix
                 ./home-manager/terminator.nix                   # terminal config
-                # ./home-manager/xterm.nix
+                ./home-manager/xterm.nix
                 ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
                 ./home-manager/mpv.nix                          # mpv video player and its config
                 ./home-manager/fastfetch.nix                    # neofetch replacement
@@ -473,7 +465,7 @@
                 ./home-manager/zoxide.nix                       # z - smarter cd
                 ./home-manager/yeelight.nix                     # smart lights
                 ./home-manager/phpstorm.nix                     # PHP IDE
-                # ./home-manager/distrobox.nix
+                ./home-manager/distrobox.nix
                 # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
                 # ./home-manager/kdeconnect.nix
                 ./home-manager/eza.nix                          # ls replacement

@@ -13,6 +13,15 @@
       terminator.enable = (vars.modules.home-manager.packages.terminator.enable or false);
       git.enable = (vars.modules.home-manager.packages.git.enable or false);
       chrome.enable = (vars.modules.home-manager.packages.chrome.enable or false);
+      xterm.enable = (vars.modules.home-manager.packages.xterm.enable or false);
+      mpv.enable = (vars.modules.home-manager.packages.mpv.enable or false);
+      fastfetch.enable = (vars.modules.home-manager.packages.fastfetch.enable or false);
+      brave.enable = (vars.modules.home-manager.packages.brave.enable or false);
+      vscode.enable = (vars.modules.home-manager.packages.vscode.enable or false);
+      zoxide.enable = (vars.modules.home-manager.packages.zoxide.enable or false);
+      yeelight.enable = (vars.modules.home-manager.packages.yeelight.enable or false);
+      phpstorm.enable = (vars.modules.home-manager.packages.phpstorm.enable or false);
+      distrobox.enable = (vars.modules.home-manager.packages.distrobox.enable or false);
     };
     shell = {
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);
