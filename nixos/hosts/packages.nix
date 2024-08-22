@@ -43,7 +43,7 @@
     display-manager = {
       gdm = {
         enable = (vars.modules.display-manager.gdm.enable or true); # default value true GDM DM
-        custom-background.enable = (vars.modules.display-manager.gdm.custom-background.enable or false);  #TODO fix
+        custom-background.enable = (vars.modules.display-manager.gdm.custom-background.enable or false);
       };
     };
     screen-locker = {
