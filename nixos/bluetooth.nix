@@ -17,6 +17,6 @@ in
       settings.General.Experimental = true;
     };
 
-    services.blueman.enable = true; #TODO
+    services.blueman.enable = true; #TODO move to its own config
   };
 }

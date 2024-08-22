@@ -19,7 +19,7 @@ in
     };
 
     programs.fish = {
-      enable = true;  #TODO
+      enable = true;  #TODO check if fish is enabled on config, add its own config?
     };
   };
 }

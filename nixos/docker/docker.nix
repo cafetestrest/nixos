@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       docker
-      docker-compose  #TODO
+      docker-compose  #TODO add config for docker compose
     ];
 
     users.users.${vars.user} = {
@@ -21,7 +21,7 @@ in
     };
 
     # xdebug ports
-    networking.firewall.allowedTCPPortRanges = [  #TODO
+    networking.firewall.allowedTCPPortRanges = [  #TODO move to xdebug config
       { from = 9000; to = 9003; }
     ];
     networking.firewall.allowedUDPPortRanges = [

@@ -16,7 +16,7 @@ in
     # };
 
     environment.systemPackages = with pkgs; [
-      apple-cursor #cursor package for GDM session  #TODO
+      apple-cursor #cursor package for GDM session  #TODO move out, maybe to user config
     ];
 
     programs.dconf.enable = true;

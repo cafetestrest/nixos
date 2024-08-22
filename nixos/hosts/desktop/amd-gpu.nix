@@ -23,7 +23,7 @@ in
     # ];
 
     #OpenGL
-    hardware.opengl = { #TODO
+    hardware.opengl = { #TODO move to its own config
       enable = true;
       driSupport = true;
       driSupport32Bit = true;

@@ -16,7 +16,7 @@ in
         # { name = "bobthefisher"; src = pkgs.fishPlugins.bobthefisher.src; }
 
         {
-          name = "peco";  #TODO if peco is installed
+          name = "peco";  #TODO if peco is installed && if enabled on its own config
           src = pkgs.fetchFromGitHub {
             owner = "oh-my-fish";
             repo = "plugin-peco";
@@ -36,7 +36,7 @@ in
         # }
 
         {
-          name = "theme-default";#TODO if enabled
+          name = "theme-default";#TODO if enabled on its own config
           src = pkgs.fetchFromGitHub {
             owner = "oh-my-fish";
             repo = "theme-default";

@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      peco  #bash/fish better reverse search  #TODO
+      peco  #bash/fish better reverse search  #TODO check if peco is enabled in config
     ];
 
     programs.fish = {
@@ -57,7 +57,7 @@ in
         bind \cr 'peco_select_history (commandline -b)'
       '';
 
-      functions = {#TODO
+      functions = {#TODO check if fastfetch is installed in config?
         fish_greeting = {
           body = ''
             if [ (whoami) = "${vars.user}" ]
@@ -81,7 +81,7 @@ in
           '';
         };
 
-        code = {#TODO
+        code = {#TODO move to vscode config
           body = ''
             if [ (count $argv) -gt 0 ]
                 codium $argv
@@ -91,7 +91,7 @@ in
           '';
         };
 
-        "." = {#TODO
+        "." = {#TODO move to vscode config
           body = ''
             if [ (count $argv) -gt 0 ]
                 codium $argv
@@ -118,7 +118,7 @@ in
         #   '';
         # };
 
-        gco = { #TODO
+        gco = { #TODO move to git config
           body = ''
             git commit -m "$argv"
           '';

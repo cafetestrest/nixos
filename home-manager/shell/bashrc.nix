@@ -22,7 +22,7 @@ in
           fastfetch
         fi
 
-        # devenv TODO
+        # devenv TODO move to devenv config
         #eval "$(direnv hook bash)"
 
         # history
@@ -41,7 +41,7 @@ in
 
         # . $HOME/.config/scripts/z/z.sh
 
-        #TODO
+        #TODO mvoe to peco config - fish
         # Function to search through history and run the selected command
         peco_select_history() {
             # Get the selected command from history
@@ -54,11 +54,11 @@ in
             fi
         }
 
-        #TODO
+        #TODO move to peco config - fish
         # Bind the function to a key (Ctrl-R in this example)
         bind -x '"\C-r": peco_select_history'
 
-        #TODO
+        #TODO move to git
         function gco () {
           git commit -m "$1"
         }
@@ -68,7 +68,7 @@ in
           touch $1
         }
 
-        #TODO
+        #TODO move to code
         function code () {
           if [ "$#" -gt 0 ]; then
             codium "$@"

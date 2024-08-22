@@ -27,7 +27,7 @@ in
     # networking.firewall.allowedTCPPorts = [ 80 ];
     # networking.firewall.allowedUDPPorts = [ 80 ];
 
-    networking.extraHosts = #TODO
+    networking.extraHosts = #TODO move to its own config
     ''
       127.0.0.1 ::1 magento2.rooter.test
       127.0.0.1 ::1 test.rooter.test
