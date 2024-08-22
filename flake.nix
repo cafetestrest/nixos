@@ -473,7 +473,6 @@
               imports = [
                 # TODO all should be here as well as for PC
                 ./home-manager/home.nix
-                ./home-manager/gnome/home.nix
                 ./home-manager/gnome/extensions.nix
                 ./home-manager/terminator.nix                   # terminal config
                 ./home-manager/git.nix
