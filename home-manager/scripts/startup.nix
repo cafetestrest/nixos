@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   startup = pkgs.writeShellApplication {
@@ -9,7 +11,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/startup.sh;
   };
+
+  cfg = config.module.scripts.startup;
 in
 {
-  home.packages = [ startup ];
+  options = {
+    module.scripts.startup.enable = mkEnableOption "Enables startup scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ startup ];
+  };
 }

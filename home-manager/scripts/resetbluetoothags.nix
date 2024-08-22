@@ -1,9 +1,20 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
 
+with lib;
+
+let
+  cfg = config.module.scripts.resetbluetoothags;
+in
 {
-  home.file = {
-    ".config/scripts/resetbluetoothags.js" = {
-      source = ../../config/scripts/resetbluetoothags.js;
+  options = {
+    module.scripts.resetbluetoothags.enable = mkEnableOption "Enables resetbluetoothags scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.file = {
+      ".config/scripts/resetbluetoothags.js" = {
+        source = ../../config/scripts/resetbluetoothags.js;
+      };
     };
   };
 }

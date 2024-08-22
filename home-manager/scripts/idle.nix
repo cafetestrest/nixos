@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   idle = pkgs.writeShellApplication {
@@ -12,7 +14,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/idle.sh;
   };
+
+  cfg = config.module.scripts.idle;
 in
 {
-  home.packages = [ idle ];
+  options = {
+    module.scripts.idle.enable = mkEnableOption "Enables idle scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ idle ];
+  };
 }

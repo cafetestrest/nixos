@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   openweathermap = pkgs.writeShellApplication {
@@ -9,7 +11,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/openweathermap.sh;
   };
+
+  cfg = config.module.scripts.openweathermap;
 in
 {
-  home.packages = [ openweathermap ];
+  options = {
+    module.scripts.openweathermap.enable = mkEnableOption "Enables openweathermap scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ openweathermap ];
+  };
 }

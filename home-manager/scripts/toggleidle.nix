@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   toggleidle = pkgs.writeShellApplication {
@@ -8,7 +10,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/toggleidle.sh;
   };
+
+  cfg = config.module.scripts.toggleidle;
 in
 {
-  home.packages = [ toggleidle ];
+  options = {
+    module.scripts.toggleidle.enable = mkEnableOption "Enables toggleidle scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ toggleidle ];
+  };
 }

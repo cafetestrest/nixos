@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   headset = pkgs.writeShellApplication {
@@ -6,7 +8,15 @@ let
     runtimeInputs = with pkgs; [headsetcontrol];
     text = builtins.readFile ../../config/scripts/headset.sh;
   };
+
+  cfg = config.module.scripts.headset;
 in
 {
-  home.packages = [ headset ];
+  options = {
+    module.scripts.headset.enable = mkEnableOption "Enables headset scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ headset ];
+  };
 }

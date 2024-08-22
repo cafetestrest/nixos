@@ -19,7 +19,6 @@
       brave.enable = (vars.modules.home-manager.packages.brave.enable or false);
       vscode.enable = (vars.modules.home-manager.packages.vscode.enable or false);
       zoxide.enable = (vars.modules.home-manager.packages.zoxide.enable or false);
-      yeelight.enable = (vars.modules.home-manager.packages.yeelight.enable or false);
       phpstorm.enable = (vars.modules.home-manager.packages.phpstorm.enable or false);
       distrobox.enable = (vars.modules.home-manager.packages.distrobox.enable or false);
       rooter.enable = (vars.modules.home-manager.packages.rooter.enable or false);
@@ -114,6 +113,29 @@
       roboto.enable = (vars.modules.home-manager.fonts.roboto.enable or false);
       montserrat.enable = (vars.modules.home-manager.fonts.montserrat.enable or false);
       cantarell-fonts.enable = (vars.modules.home-manager.fonts.cantarell-fonts.enable or false);
+    };
+    scripts = {
+      yeelight.enable = (vars.modules.home-manager.scripts.yeelight.enable or false);
+      startup.enable = (vars.modules.home-manager.scripts.startup.enable or false);
+      bluetoothbatterypercentage.enable = (vars.modules.home-manager.scripts.bluetoothbatterypercentage.enable or false);
+      btupowerbatterypercentage.enable = (vars.modules.home-manager.scripts.btupowerbatterypercentage.enable or false);
+      yrweather.enable = (vars.modules.home-manager.scripts.yrweather.enable or false);
+      openweathermap.enable = (vars.modules.home-manager.scripts.openweathermap.enable or false);
+      toggleidle.enable = (vars.modules.home-manager.scripts.toggleidle.enable or false);
+      nightlight.enable = (vars.modules.home-manager.scripts.nightlight.enable or false);
+      note.enable = (vars.modules.home-manager.scripts.note.enable or false);
+      screenshot.enable = (vars.modules.home-manager.scripts.screenshot.enable or false);
+      openstartupapps.enable = (vars.modules.home-manager.scripts.openstartupapps.enable or false);
+      idle.enable = (vars.modules.home-manager.scripts.idle.enable or false);
+      powermenu.enable = (vars.modules.home-manager.scripts.powermenu.enable or false);
+      wakefromsleep.enable = (vars.modules.home-manager.scripts.wakefromsleep.enable or false);
+      ngrokwarden.enable = (vars.modules.home-manager.scripts.ngrokwarden.enable or false);
+      headset.enable = (vars.modules.home-manager.scripts.headset.enable or false);
+      monitor.enable = (vars.modules.home-manager.scripts.monitor.enable or false);
+      resetbluetoothags.enable = (vars.modules.home-manager.scripts.resetbluetoothags.enable or false);
+      sys.enable = (vars.modules.home-manager.scripts.sys.enable or false);
+      clipboardtoggle.enable = (vars.modules.home-manager.scripts.clipboardtoggle.enable or false);
+      sync.enable = (vars.modules.home-manager.scripts.sync.enable or false);
     };
   };
 

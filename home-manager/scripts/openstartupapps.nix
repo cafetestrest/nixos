@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   openstartupapps = pkgs.writeShellApplication {
@@ -8,7 +10,15 @@ let
     # ];
     text = builtins.readFile ../../config/scripts/openstartupapps.sh;
   };
+
+  cfg = config.module.scripts.openstartupapps;
 in
 {
-  home.packages = [ openstartupapps ];
+  options = {
+    module.scripts.openstartupapps.enable = mkEnableOption "Enables openstartupapps scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ openstartupapps ];
+  };
 }

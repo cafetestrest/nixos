@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   wakefromsleep = pkgs.writeShellApplication {
@@ -8,7 +10,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/wakefromsleep.sh;
   };
+
+  cfg = config.module.scripts.wakefromsleep;
 in
 {
-  home.packages = [ wakefromsleep ];
+  options = {
+    module.scripts.wakefromsleep.enable = mkEnableOption "Enables wakefromsleep scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ wakefromsleep ];
+  };
 }

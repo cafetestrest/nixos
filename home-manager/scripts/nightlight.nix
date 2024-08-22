@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   nightlight = pkgs.writeShellApplication {
@@ -9,7 +11,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/nightlight.sh;
   };
+
+  cfg = config.module.scripts.nightlight;
 in
 {
-  home.packages = [ nightlight ];
+  options = {
+    module.scripts.nightlight.enable = mkEnableOption "Enables nightlight scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ nightlight ];
+  };
 }

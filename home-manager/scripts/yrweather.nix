@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   yrweather = pkgs.writeShellApplication {
@@ -9,7 +11,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/yrweather.sh;
   };
+
+  cfg = config.module.scripts.yrweather;
 in
 {
-  home.packages = [ yrweather ];
+  options = {
+    module.scripts.yrweather.enable = mkEnableOption "Enables yrweather scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ yrweather ];
+  };
 }

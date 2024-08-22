@@ -8,11 +8,11 @@ let
     text = builtins.readFile ../config/scripts/getyeelightip.sh;
   };
 
-  cfg = config.module.packages.yeelight;
+  cfg = config.module.scripts.yeelight;
 in
 {
   options = {
-    module.packages.yeelight.enable = mkEnableOption "Enables yeelight scripts";
+    module.scripts.yeelight.enable = mkEnableOption "Enables yeelight scripts";
   };
 
   config = mkIf cfg.enable {

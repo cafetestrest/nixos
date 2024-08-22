@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   powermenu = pkgs.writeShellApplication {
@@ -8,7 +10,15 @@ let
     ];
     text = builtins.readFile ../../config/scripts/powermenu.sh;
   };
+
+  cfg = config.module.scripts.powermenu;
 in
 {
-  home.packages = [ powermenu ];
+  options = {
+    module.scripts.powermenu.enable = mkEnableOption "Enables powermenu scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ powermenu ];
+  };
 }

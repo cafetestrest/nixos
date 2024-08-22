@@ -147,7 +147,6 @@
             brave.enable = true;
             vscode.enable = true;
             zoxide.enable = true;
-            yeelight.enable = true;
             phpstorm.enable = true;
             distrobox.enable = false;
             rooter.enable = false;
@@ -161,10 +160,29 @@
             micro.enable = true;
             copyq.enable = modules.programs.copyq.enable;
           };
-          # scripts = {
-          #   # yeelight
-          #   # each one here
-          # };
+          scripts = {
+            yeelight.enable = true;
+            startup.enable = true;
+            bluetoothbatterypercentage.enable = false;
+            btupowerbatterypercentage.enable = false;
+            yrweather.enable = true;
+            openweathermap.enable = true;
+            toggleidle.enable = true;
+            nightlight.enable = true;
+            note.enable = true;
+            screenshot.enable = true;
+            openstartupapps.enable = true;
+            idle.enable = true;
+            powermenu.enable = true;
+            wakefromsleep.enable = true;
+            ngrokwarden.enable = true;
+            headset.enable = true;
+            monitor.enable = true;
+            resetbluetoothags.enable = true;
+            sys.enable = true;
+            clipboardtoggle.enable = false;
+            sync.enable = true;
+          };
           shell = {
             aliases.enable = true;
             fish = {
@@ -252,7 +270,6 @@
       };
     };
 
-# ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
 # ./home-manager/home.nix
 
     vm = rec {
@@ -445,7 +462,6 @@
                 ./home-manager/chrome.nix
                 ./home-manager/terminator.nix                   # terminal config
                 ./home-manager/xterm.nix
-                ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
                 ./home-manager/mpv.nix                          # mpv video player and its config
                 ./home-manager/fastfetch.nix                    # neofetch replacement
                 ./home-manager/vscode.nix
@@ -467,6 +483,26 @@
                 ./home-manager/copyq.nix                        # config for copyq
                 ./home-manager/shell/docker/shells.nix          # docker aliases for fish/bash
                 ./home-manager/shell/warden/shells.nix          # warden aliases for fish/bash
+                ./home-manager/scripts/startup.nix
+                ./home-manager/scripts/bluetoothbatterypercentage.nix
+                ./home-manager/scripts/btupowerbatterypercentage.nix
+                ./home-manager/scripts/yrweather.nix
+                ./home-manager/scripts/openweathermap.nix
+                ./home-manager/scripts/toggleidle.nix
+                ./home-manager/scripts/nightlight.nix
+                ./home-manager/scripts/note.nix
+                ./home-manager/scripts/screenshot.nix
+                ./home-manager/scripts/openstartupapps.nix
+                ./home-manager/scripts/idle.nix
+                ./home-manager/scripts/powermenu.nix
+                ./home-manager/scripts/wakefromsleep.nix
+                ./home-manager/scripts/ngrokwarden.nix
+                ./home-manager/scripts/headset.nix
+                ./home-manager/scripts/monitor.nix
+                ./home-manager/scripts/resetbluetoothags.nix
+                ./home-manager/scripts/sys.nix
+                ./home-manager/scripts/clipboardtoggle.nix
+                ./home-manager/scripts/sync.nix
               ];
             };
           }

@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   monitor = pkgs.writeShellApplication {
@@ -6,7 +8,15 @@ let
     runtimeInputs = with pkgs; [ddcutil];
     text = builtins.readFile ../../config/scripts/monitor.sh;
   };
+
+  cfg = config.module.scripts.monitor;
 in
 {
-  home.packages = [ monitor ];
+  options = {
+    module.scripts.monitor.enable = mkEnableOption "Enables monitor scripts";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = [ monitor ];
+  };
 }
