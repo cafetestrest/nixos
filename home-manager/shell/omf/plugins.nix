@@ -1,51 +1,57 @@
-{ config, pkgs, vars, ... }:
+{ config, pkgs, lib, vars, ... }:
 
+with lib;
+
+let
+  cfg = config.module.shell.fish.omf-plugins;
+in
 {
-  imports =
-    [
-      ./commands.nix
-    ];
+  options = {
+    module.shell.fish.omf-plugins.enable = mkEnableOption "Enables omf plugins";
+  };
 
-  programs.fish = {
-    plugins = [
-      # { name = "bobthefisher"; src = pkgs.fishPlugins.bobthefisher.src; }
+  config = mkIf cfg.enable {
+    programs.fish = {
+      plugins = [
+        # { name = "bobthefisher"; src = pkgs.fishPlugins.bobthefisher.src; }
 
-      {
-        name = "peco";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-peco";
-          rev = "refs/heads/master";
-          sha256 = "${vars.sha.fishOmfPecoPluginSha256Hash}";
+        {
+          name = "peco";  #TODO if peco is installed
+          src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "plugin-peco";
+            rev = "refs/heads/master";
+            sha256 = "${vars.sha.fishOmfPecoPluginSha256Hash}";
+          };
+        }
+
+        # {
+        #   name = "vcs";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "oh-my-fish";
+        #     repo = "plugin-vcs";
+        #     rev = "refs/heads/master";
+        #     sha256 = "${vars.sha.fishOmfVcsPluginSha256Hash}";
+        #   };
+        # }
+
+        {
+          name = "theme-default";#TODO if enabled
+          src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "theme-default";
+            rev = "refs/heads/master";
+            sha256 = "${vars.sha.fishOmfThemeDefaultSha256Hash}";
+          };
+        }
+      ];
+      functions = {
+        fish_user_key_bindings = {  #TODO if peco is installed
+          body = ''
+            bind \cr 'peco_select_history (commandline -b)'
+          '';
+          onEvent = "fish_user_key_bindings";
         };
-      }
-
-      # {
-      #   name = "vcs";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "oh-my-fish";
-      #     repo = "plugin-vcs";
-      #     rev = "refs/heads/master";
-      #     sha256 = "${vars.sha.fishOmfVcsPluginSha256Hash}";
-      #   };
-      # }
-
-      {
-        name = "theme-default";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "theme-default";
-          rev = "refs/heads/master";
-          sha256 = "${vars.sha.fishOmfThemeDefaultSha256Hash}";
-        };
-      }
-    ];
-    functions = {
-      fish_user_key_bindings = {
-        body = ''
-          bind \cr 'peco_select_history (commandline -b)'
-        '';
-        onEvent = "fish_user_key_bindings";
       };
     };
   };

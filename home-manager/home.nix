@@ -12,6 +12,23 @@
       terminator.enable = (vars.modules.home-manager.packages.terminator.enable or false);
       git.enable = (vars.modules.home-manager.packages.git.enable or false);
     };
+    shell = {
+      aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);
+      fish = {
+        enable = (vars.modules.home-manager.shell.fish.enable or false);
+        omf-plugins.enable = (vars.modules.home-manager.shell.fish.omf-plugins.enable or false);
+        omf-commands.enable = (vars.modules.home-manager.shell.fish.omf-commands.enable or false);
+      };
+      bash = {
+        enable = (vars.modules.home-manager.shell.bash.enable or false);
+        bashrc.enable = (vars.modules.home-manager.shell.bash.bashrc.enable or false);
+      };
+      docker.enable = (vars.modules.home-manager.shell.docker.enable or false);
+      warden = {
+        enable = (vars.modules.home-manager.shell.warden.enable or false);
+        aliases.enable = (vars.modules.home-manager.shell.warden.aliases.enable or false);
+      };
+    };
   };
 
   # This value determines the Home Manager release that your

@@ -102,7 +102,7 @@
         display-manager = {
           gdm = {
             enable = true;
-            custom-background.enable = false; #TODO fix
+            custom-background.enable = true;
           };
         };
         screen-locker = {
@@ -165,14 +165,27 @@
           #   # yeelight
           #   # each one here
           # };
-          # shell = {
-          #   # docker
-          #   # warden
-          #   # shells
-          # };
+          shell = {
+            aliases.enable = true;
+            fish = {
+              enable = true;
+              omf.enable = true;
+              omf-plugins.enable = modules.home-manager.shell.fish.omf.enable;
+              omf-commands.enable = modules.home-manager.shell.fish.omf.enable;
+            };
+            bash = {
+              enable = true;
+              bashrc.enable = true;
+            };
+            docker.enable = modules.virtualisation.docker.enable;
+            warden = {
+              enable = modules.virtualisation.docker.warden.enable;
+              aliases.enable = false;
+            };
+          };
           fonts.enable = true; #TODO add support for all of them
           xdg = {
-            # enable = true;  #TODO add support
+            enable = true;
             defaultapps.enable = true; #TODO add further support ?
           };
           hypr = {
@@ -200,6 +213,46 @@
         };
       };
     };
+
+# ./home-manager/mime-defaultapps.nix             # xdg + default apps (mime)
+# ./home-manager/hypr/hyprland.nix
+# ./home-manager/ags.nix                          # top bar + shell https://github.com/Aylur/ags
+# # ./home-manager/swaylock.nix                   # lock screen
+# ./home-manager/hypr/hyprlock.nix                # lock screen
+# ./home-manager/hypr/hypridle.nix                # idle inhibitor
+# ./home-manager/hypr/commands.nix                # dekstop entries / commands
+# # ./home-manager/hypr/hyprpaper.nix             # wallpaper
+# # ./home-manager/hypr/hyprcursors.nix           # cursors
+# ./home-manager/gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
+# ./home-manager/gnome/dconf-settings.nix         # gtk dconf settings
+# # ./home-manager/gnome/home.nix
+# # ./home-manager/gnome/extensions.nix           # gnome extensions
+# ./home-manager/packages.nix                     # shared packages
+# ./home-manager/fonts.nix
+# # ./home-manager/chrome.nix
+# ./home-manager/terminator.nix                   # terminal config
+# # ./home-manager/xterm.nix
+# ./home-manager/scripts/scripts.nix              # scripts, place to store all common scripts
+# ./home-manager/mpv.nix                          # mpv video player and its config
+# ./home-manager/fastfetch.nix                    # neofetch replacement
+# ./home-manager/vscode.nix
+# ./home-manager/brave.nix                        # browser
+# ./home-manager/zoxide.nix                       # z - smarter cd
+# ./home-manager/yeelight.nix                     # smart lights
+# ./home-manager/phpstorm.nix                     # PHP IDE
+# # ./home-manager/distrobox.nix
+# # ./home-manager/rooter.nix                       # magento https://github.com/run-as-root/rooter
+# # ./home-manager/kdeconnect.nix
+# ./home-manager/eza.nix                          # ls replacement
+# ./home-manager/bat.nix                          # cat replacement
+# ./home-manager/fd.nix                           # find replacement
+# # ./home-manager/ripgrep.nix                      # grep replacement
+# ./home-manager/git.nix
+# ./home-manager/kitty.nix                        # terminal
+# ./home-manager/yazi.nix                         # file explorer in terminal
+# ./home-manager/micro.nix                        # terminal text editor
+# ./home-manager/copyq.nix                        # config for copyq
+# ./home-manager/home.nix
 
     vm = rec {
       user = "test";
@@ -235,7 +288,6 @@
       };
     };
 
-    #TODO all all systems, choose which one is proper one
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
@@ -341,7 +393,8 @@
                 #each has more inputs on their own, go into one by one and configure as needed
                 ./home-manager/home.nix
                 ./home-manager/shell/shells.nix                 # fish (default) + bash
-                ./home-manager/mime-defaultapps.nix             # xdg + default apps (mime)
+                ./home-manager/xdg/xdg.nix                      # xdg
+                ./home-manager/xdg/mime-defaultapps.nix         # xdg default apps (mime)
                 ./home-manager/hypr/hyprland.nix
                 ./home-manager/ags.nix                          # top bar + shell https://github.com/Aylur/ags
                 # ./home-manager/swaylock.nix                   # lock screen
