@@ -59,7 +59,19 @@
         albert.enable = (vars.modules.home-manager.gnome.autostart.albert.enable or false);
         xpad.enable = (vars.modules.home-manager.gnome.autostart.xpad.enable or false);
       };
-      # extensions.enable = modules.desktop-environment.gnome.enable;
+      extension = {
+        # enable = (vars.modules.home-manager.gnome.extension.enable or false);
+        blur-my-shell.enable = (vars.modules.home-manager.gnome.extension.blur-my-shell.enable or false);
+        # caffeine.enable = (vars.modules.home-manager.gnome.extension.caffeine.enable or false);
+        # dash-to-panel.enable = (vars.modules.home-manager.gnome.extension.dash-to-panel.enable or false);
+        # executor.enable = (vars.modules.home-manager.gnome.extension.executor.enable or false);
+        # gtile.enable = (vars.modules.home-manager.gnome.extension.gtile.enable or false);
+        # super-key.enable = (vars.modules.home-manager.gnome.extension.super-key.enable or false);
+        # useless-gaps.enable = (vars.modules.home-manager.gnome.extension.useless-gaps.enable or false);
+        # mediacontrols.enable = (vars.modules.home-manager.gnome.extension.mediacontrols.enable or false);
+        # tiling-assistant.enable = (vars.modules.home-manager.gnome.extension.tiling-assistant.enable or false);
+        # pop-shell.enable = (vars.modules.home-manager.gnome.extension.pop-shell.enable or false);
+      };
     };
   };
 

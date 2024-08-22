@@ -4,7 +4,6 @@
   imports =
     [
       #gnome extensions dconf configuration
-      ./extensions/config/blur-my-shell.nix
       ./extensions/config/caffeine.nix
       ./extensions/config/dash-to-panel.nix
       ./extensions/config/executor.nix
@@ -13,11 +12,11 @@
       ./extensions/config/useless-gaps.nix
       ./extensions/config/mediacontrols.nix
       ./extensions/config/tiling-assistant.nix
-      ./extensions/config/pop-shell.nix
+      ./extensions/config/pop-shell.nix #TODO remove
     ];
 
   home.packages = with pkgs; [
-    gnomeExtensions.user-themes
+    gnomeExtensions.user-themes #TODO move to proper extension nix file
     gnomeExtensions.no-overview
     # gnomeExtensions.gtile
     gnomeExtensions.gsconnect
@@ -38,7 +37,7 @@
     # gnomeExtensions.tray-icons-reloaded       #not working on wayland, using gnomeExtensions.appindicator
   ];
 
-  dconf.settings = {
+  dconf.settings = {  #TODO move to user
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [

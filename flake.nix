@@ -214,12 +214,35 @@
               albert.enable = false;
               xpad.enable = false;
             };
-            extensions.enable = modules.desktop-environment.gnome.enable;
+            extension = {
+              enable = modules.desktop-environment.gnome.enable;
+              blur-my-shell.enable = modules.home-manager.gnome.extension.enable;
+              caffeine.enable = modules.home-manager.gnome.extension.enable;
+              dash-to-panel.enable = modules.home-manager.gnome.extension.enable;
+              executor.enable = modules.home-manager.gnome.extension.enable;
+              gtile.enable = modules.home-manager.gnome.extension.enable;
+              super-key.enable = false;
+              useless-gaps.enable = modules.home-manager.gnome.extension.enable;
+              mediacontrols.enable = modules.home-manager.gnome.extension.enable;
+              tiling-assistant.enable = modules.home-manager.gnome.extension.enable;
+              pop-shell.enable = modules.home-manager.gnome.extension.enable;
+              # ...
+            };
           };
         };
       };
     };
 
+      # ./extensions/config/blur-my-shell.nix
+      # ./extensions/config/caffeine.nix
+      # ./extensions/config/dash-to-panel.nix
+      # ./extensions/config/executor.nix
+      # ./extensions/config/gtile.nix
+      # #./extensions/config/super-key.nix
+      # ./extensions/config/useless-gaps.nix
+      # ./extensions/config/mediacontrols.nix
+      # ./extensions/config/tiling-assistant.nix
+      # ./extensions/config/pop-shell.nix
 # # ./home-manager/gnome/extensions.nix           # gnome extensions
 # ./home-manager/packages.nix                     # shared packages
 # ./home-manager/fonts.nix
@@ -404,6 +427,7 @@
                 ./home-manager/gnome/autostart/copyq.nix
                 ./home-manager/gnome/autostart/xpad.nix
                 ./home-manager/gnome/packages.nix
+                ./home-manager/gnome/extensions/blur-my-shell.nix
                 # ./home-manager/gnome/extensions.nix           # gnome extensions
                 ./home-manager/packages.nix                     # shared packages
                 ./home-manager/fonts.nix
