@@ -46,6 +46,7 @@ in
         color-scheme = "prefer-dark";
       };
 
+      # TODO if hyprland is enabled,otherwise add all three
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "close,minimize:appmenu";
         action-double-click-titlebar = "none";

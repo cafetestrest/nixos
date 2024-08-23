@@ -42,6 +42,7 @@
     ./ydotool.nix
     ./i2c.nix                                       # for ddcutil (monitor control)
     ./doas.nix                                      # replace sudo with doas
+    ./extraHosts.nix                                # extra host entries for the /etc/hosts file
   ];
 
   module = {
@@ -129,6 +130,7 @@
       teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
       copyq.enable = (vars.modules.programs.copyq.enable or false);
       ydotool.enable = (vars.modules.programs.ydotool.enable or false);
+      extraHosts = (vars.modules.programs.extraHosts or "192.168.0.1 lanlocalhost3");
     };
   };
 }

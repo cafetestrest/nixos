@@ -155,6 +155,12 @@
           teamviewer.enable = false;
           copyq.enable = true;
           ydotool.enable = true;
+          extraHosts = ''
+            127.0.0.1 ::1 magento2.rooter.test
+            127.0.0.1 ::1 test.rooter.test
+            127.0.0.1 ::1 rooter.rooter.test
+            127.0.0.1 ::1 magento2.test
+          '';
         };
         home-manager = {
           packages = {
@@ -227,7 +233,9 @@
           };
           xdg = {
             enable = true;
-            defaultapps.enable = true; #TODO move to users
+            defaultapps = {
+              pc.enable = true; # for user PC
+            };
           };
           hypr = {
             hyprland = {

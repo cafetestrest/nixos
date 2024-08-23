@@ -26,13 +26,5 @@ in
     # boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
     # networking.firewall.allowedTCPPorts = [ 80 ];
     # networking.firewall.allowedUDPPorts = [ 80 ];
-
-    networking.extraHosts = #TODO move to users config
-    ''
-      127.0.0.1 ::1 magento2.rooter.test
-      127.0.0.1 ::1 test.rooter.test
-      127.0.0.1 ::1 rooter.rooter.test
-      127.0.0.1 ::1 magento2.test
-    '';
   };
 }

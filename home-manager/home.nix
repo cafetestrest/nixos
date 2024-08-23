@@ -12,18 +12,18 @@
     ./shell/bashrc.nix
     ./shell/omf/commands.nix
     ./shell/omf/plugins.nix
-    ./xdg/xdg.nix                       # xdg
-    ./xdg/mime-defaultapps.nix          # xdg default apps (mime)
+    ./xdg/xdg.nix                         # xdg
+    ./hosts/desktop/mime-defaultapps.nix  # xdg default apps (mime) - for user PC
     ./hypr/hyprland.nix
-    ./ags.nix                           # top bar + shell https://github.com/Aylur/ags
-    ./swaylock.nix                      # lock screen
-    ./hypr/hyprlock.nix                 # lock screen
-    ./hypr/hypridle.nix                 # idle inhibitor
-    ./hypr/commands.nix                 # dekstop entries / commands
-    ./hypr/hyprpaper.nix                # wallpaper
-    ./hypr/hyprcursor-mcmojave.nix      # cursors
-    ./gnome/gtk.nix                     # extra packages, gtk configs, session variables, pointer
-    ./gnome/dconf-settings.nix          # gtk dconf settings
+    ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
+    ./swaylock.nix                        # lock screen
+    ./hypr/hyprlock.nix                   # lock screen
+    ./hypr/hypridle.nix                   # idle inhibitor
+    ./hypr/commands.nix                   # dekstop entries / commands
+    ./hypr/hyprpaper.nix                  # wallpaper
+    ./hypr/hyprcursor-mcmojave.nix        # cursors
+    ./gnome/gtk.nix                       # extra packages, gtk configs, session variables, pointer
+    ./gnome/dconf-settings.nix            # gtk dconf settings
     ./gnome/keyboard-shortcuts.nix
     ./gnome/autostart/albert.nix
     ./gnome/autostart/copyq.nix
@@ -156,7 +156,9 @@
     };
     xdg = {
       enable = (vars.modules.home-manager.xdg.enable or false);
-      defaultapps.enable = (vars.modules.home-manager.xdg.defaultapps.enable or false);
+      defaultapps = {
+        pc.enable = (vars.modules.home-manager.xdg.defaultapps.pc.enable or false);
+      };
     };
     hypr = {
       hyprland = {
