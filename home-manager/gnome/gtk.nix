@@ -3,25 +3,30 @@
 with lib;
 
 let
-  orchis = (pkgs.orchis-theme.override {  #TODO move this out
-    border-radius = 3;
-    tweaks = [ "compact" "macos" "submenu" ];
-  });
-
-  cursor-package = pkgs.apple-cursor; #TODO move this out
-
   cfg = config.module.gnome.gtk-config;
+  gtkThemePackageCfg = config.module.gnome.gtkThemePackage;
+  cursorPackageCfg = config.module.gnome.cursorPackage;
 in
 {
   options = {
     module.gnome.gtk-config.enable = mkEnableOption "Enables GTK config";
+    module.gnome.cursorPackage = mkOption {
+      type = types.package;
+      description = "GTK Cursor Package to be included when enabled";
+      default = pkgs.apple-cursor;
+    };
+    module.gnome.gtkThemePackage = mkOption {
+      type = types.package;
+      description = "GTK Theme Package to be included when enabled";
+      default = (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];});
+    };
   };
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       gnome.eog
       shotwell                #photo editor for gnome
-      orchis
+      gtkThemePackageCfg
     ];
 
     gtk = {
@@ -31,7 +36,7 @@ in
 
         theme = {
             name = "${vars.gtk.gtkTheme}";
-            package = orchis;
+            package = gtkThemePackageCfg;
         };
 
         iconTheme = {
@@ -40,7 +45,7 @@ in
 
         cursorTheme = {
           name = "${vars.gtk.cursorTheme}";
-          package = cursor-package;
+          package = cursorPackageCfg;
           size = 24;
         };
 
@@ -70,7 +75,7 @@ in
     #       size = vars.gtk.cursorSize;
     #       gtk.enable = true;
     #       # x11.enable = true;
-    #       package = cursor-package;
+    #       package = cursorPackageCfg;
     #       name = "${vars.gtk.cursorTheme}";
     #   };
     # };

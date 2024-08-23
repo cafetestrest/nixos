@@ -55,6 +55,7 @@
         cursorSize = 24;
         cursorTheme = "macOS-Monterey";
         cursorPackage = pkgs.apple-cursor;
+        gtkThemePackage = (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];});
         gtkTheme = "Orchis-Dark";
         gtkIconTheme = "Adwaita";
         gtkFontName = "Cantarell 11";

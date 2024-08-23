@@ -10,8 +10,6 @@ in
     module.gnome.keyboard-shortcuts.enable = mkEnableOption "Enables GNOME keyboard shortcuts";
   };
 
-  #TODO move to user
-
   config = mkIf cfg.enable {
     dconf.settings = {
       "org/gnome/desktop/wm/keybindings" = {
