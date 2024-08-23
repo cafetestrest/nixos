@@ -9,11 +9,12 @@ let
   lock = "${pkgs.unstable.hyprlock}/bin/hyprlock";
   idle = "${pkgs.unstable.hypridle}/bin/hypridle";
   pamixer = "${pkgs.pamixer}/bin/pamixer";
-  #TODO move most of this config to users
 
   cfg = config.module.hypr.hyprland;
   cfgPkgs = config.module.hypr.hyprland.packages;
   cfgGnomePkgs = config.module.hypr.hyprland.gnome-packages;
+  hyprlockCfg = config.module.screen-locker.hyprlock;
+  # hypridleCfg = config.module.idle-inhibitor.hypridle;
 in
 {
   options = {
@@ -320,6 +321,7 @@ in
           ",XF86AudioPrev, exec, ${mediaControl} previous"
           ",XF86AudioNext, exec, ${mediaControl} next"
           # "SUPER, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 swaylock -f --grace 0"
+        ] ++ lib.optionals hyprlockCfg.enable [
           "SUPER, BackSpace, exec, pkill -SIGUSR1 ${lock} && ${lock} --immediate"
         ];
 
