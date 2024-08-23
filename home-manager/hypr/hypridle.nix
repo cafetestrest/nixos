@@ -4,11 +4,11 @@ with lib;
 
 let
   cfg = config.module.idle-inhibitor.hypridle;
+  cfgWake = config.module.scripts.wakefromsleep;
 in
 {
   options = {
     module.idle-inhibitor.hypridle.enable = mkEnableOption "Enables hypridle config";
-    #TODO add after_sleep_cmd if wakefromsleep is enabled and else without it
   };
 
   config = mkIf cfg.enable {
@@ -18,7 +18,8 @@ in
       general {
           lock_cmd = pidof hyprlock || ${pkgs.unstable.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
           before_sleep_cmd = loginctl lock-session    # lock before suspend.
-          after_sleep_cmd = hyprctl dispatch dpms on && wakefromsleep
+          after_sleep_cmd = ${if cfgWake.enable then "hyprctl dispatch dpms on && wakefromsleep" else "hyprctl dispatch dpms on"}
+
           # to avoid having to press a key twice to turn on the display. (https://github.com/hyprwm/hyprlock/issues/371#issuecomment-2288214526)
       }
 
