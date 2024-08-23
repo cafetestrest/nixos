@@ -17,8 +17,9 @@
     ./xdg/xdg.nix                         # xdg
     ./hypr/hyprland.nix
     ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
-    ./swaylock.nix                        # lock screen
-    ./hypr/hyprlock.nix                   # lock screen
+    ./gtklock.nix                         # GTK lock screen
+    ./swaylock.nix                        # Sway lock screen
+    ./hypr/hyprlock.nix                   # Hypr lock screen
     ./hypr/hypridle.nix                   # idle inhibitor
     ./hypr/commands.nix                   # dekstop entries / commands
     ./hypr/hyprpaper.nix                  # wallpaper
@@ -178,6 +179,7 @@
     };
     screen-locker = {
       swaylock.enable = (vars.modules.home-manager.screen-locker.swaylock.enable or false);
+      gtklock.enable = (vars.modules.home-manager.screen-locker.gtklock.enable or false);
       hyprlock.enable = (vars.modules.home-manager.screen-locker.hyprlock.enable or false);
       hyprlock.backgroundImagePath = (vars.modules.home-manager.screen-locker.hyprlock.backgroundImagePath or "");
     };

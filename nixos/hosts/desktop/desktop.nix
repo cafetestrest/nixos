@@ -221,6 +221,7 @@ rec {
       };
       screen-locker = {
         swaylock.enable = modules.screen-locker.swaylock.enable;
+        gtklock.enable = modules.screen-locker.gtklock.enable;
         hyprlock.enable = modules.screen-locker.hyprlock.enable;
         hyprlock.backgroundImagePath = "/etc/nixos/hyprlock.png";
       };
