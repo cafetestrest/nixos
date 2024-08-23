@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  # TODO
   home.packages = with pkgs; [
     waybar
     #wl-clipboard                        #copy to clipboard (for hyprpicker)

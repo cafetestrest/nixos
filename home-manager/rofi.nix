@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # TODO
   home.packages = with pkgs; [
     rofi-wayland
     rofimoji

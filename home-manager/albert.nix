@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # TODO
   home.file = {
     ".config/albert/albert.conf".text = ''
 [General]
