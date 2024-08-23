@@ -4,10 +4,16 @@ with lib;
 
 let
   cfg = config.module.display-manager.gdm;
+  cursorPackageCfg = config.module.gtk.cursorPackage;
 in
 {
   options = {
     module.display-manager.gdm.enable = mkEnableOption "Enables GDM";
+    module.gtk.cursorPackage = mkOption {
+      type = types.package;
+      description = "Package to be included when GDM is enabled";
+      default = pkgs.apple-cursor;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -16,12 +22,12 @@ in
     # };
 
     environment.systemPackages = with pkgs; [
-      apple-cursor #cursor package for GDM session  #TODO move out, maybe to user config
+      cursorPackageCfg
     ];
 
     programs.dconf.enable = true;
 
-    programs.dconf.profiles = { #TODO
+    programs.dconf.profiles = {
       gdm.databases = [{
         settings = {
           "org/gnome/desktop/peripherals/keyboard" = {

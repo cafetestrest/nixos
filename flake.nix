@@ -54,6 +54,7 @@
       gtk = {
         cursorSize = 24;
         cursorTheme = "macOS-Monterey";
+        cursorPackage = pkgs.apple-cursor;
         gtkTheme = "Orchis-Dark";
         gtkIconTheme = "Adwaita";
         gtkFontName = "Cantarell 11";

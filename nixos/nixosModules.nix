@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, vars, pkgs, ... }:
 
 {
   imports = [
@@ -49,6 +49,9 @@
     bootloader = {
       grub.enable = (vars.modules.bootloader.grub.enable or false);
       systemd-boot.enable = (vars.modules.bootloader.systemd-boot.enable or true);  # default value true bootload systemd-boot
+    };
+    gtk = {
+      cursorPackage = (vars.gtk.cursorPackage or pkgs.apple-cursor);
     };
     drive = {
       ssd.enable = (vars.modules.drive.ssd.enable or false);
