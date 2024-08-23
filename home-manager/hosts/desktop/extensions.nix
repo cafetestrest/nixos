@@ -3,15 +3,15 @@
 with lib;
 
 let
-  cfg = config.module.gnome.extension;
+  cfg = config.module.gnome.extension.hosts.desktop;
 in
 {
   options = {
-    module.gnome.extension.enable = mkEnableOption "Enables Gnome extensions";
+    module.gnome.extension.hosts.desktop.enable = mkEnableOption "Enables Gnome extensions for host desktop";
   };
 
   config = mkIf cfg.enable {
-    dconf.settings = {  #TODO move to user
+    dconf.settings = {
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [

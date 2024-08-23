@@ -237,7 +237,7 @@
           xdg = {
             enable = true;
             defaultapps = {
-              pc.enable = true; # for user PC
+              hosts.desktop.enable = true; # for user PC
             };
           };
           hypr = {
@@ -275,22 +275,22 @@
               xpad.enable = false;
             };
             extension = {
-              enable = modules.desktop-environment.gnome.enable;
-              blur-my-shell.enable = modules.home-manager.gnome.extension.enable;
-              caffeine.enable = modules.home-manager.gnome.extension.enable;
-              dash-to-panel.enable = modules.home-manager.gnome.extension.enable;
-              executor.enable = modules.home-manager.gnome.extension.enable;
+              hosts.desktop.enable = modules.desktop-environment.gnome.enable;
+              blur-my-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              caffeine.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              dash-to-panel.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              executor.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
               gtile.enable = false;
               super-key.enable = false;
               useless-gaps.enable = false;
-              media-controls.enable = modules.home-manager.gnome.extension.enable;
-              tiling-assistant.enable = modules.home-manager.gnome.extension.enable;
-              pop-shell.enable = modules.home-manager.gnome.extension.enable;
-              user-themes.enable = modules.home-manager.gnome.extension.enable;
-              no-overview.enable = modules.home-manager.gnome.extension.enable;
-              gsconnect.enable = modules.home-manager.gnome.extension.enable;
-              fuzzy-app-search.enable = modules.home-manager.gnome.extension.enable;
-              appindicator.enable = modules.home-manager.gnome.extension.enable;
+              media-controls.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              pop-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              user-themes.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              no-overview.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              gsconnect.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              fuzzy-app-search.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+              appindicator.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
               workspace-indicator.enable = false;
               openweather.enable = false;
               rounded-window-corners.enable = false;

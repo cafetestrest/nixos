@@ -7,13 +7,14 @@
   home.homeDirectory = "/home/${vars.user}";
 
   imports = [
+    ./hosts/desktop/mime-defaultapps.nix  # xdg default apps (mime) - for user PC
+    ./hosts/desktop/extensions.nix      # gnome extensions
     ./shell/aliases.nix
     ./shell/fish.nix
     ./shell/bashrc.nix
     ./shell/omf/commands.nix
     ./shell/omf/plugins.nix
     ./xdg/xdg.nix                         # xdg
-    ./hosts/desktop/mime-defaultapps.nix  # xdg default apps (mime) - for user PC
     ./hypr/hyprland.nix
     ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
     ./swaylock.nix                        # lock screen
@@ -48,7 +49,6 @@
     ./gnome/extensions/openweather.nix
     ./gnome/extensions/rounded-window-corners.nix
     ./gnome/extensions/tray-icons-reloaded.nix
-    ./gnome/extensions.nix              # gnome extensions
     ./packages.nix                      # shared packages
     ./fonts/ubuntu-font-family.nix
     ./fonts/font-awesome.nix
@@ -157,7 +157,7 @@
     xdg = {
       enable = (vars.modules.home-manager.xdg.enable or false);
       defaultapps = {
-        pc.enable = (vars.modules.home-manager.xdg.defaultapps.pc.enable or false);
+        hosts.desktop.enable = (vars.modules.home-manager.xdg.defaultapps.hosts.desktop.enable or false);
       };
     };
     hypr = {
@@ -195,7 +195,7 @@
         xpad.enable = (vars.modules.home-manager.gnome.autostart.xpad.enable or false);
       };
       extension = {
-        enable = (vars.modules.home-manager.gnome.extension.enable or false);
+        hosts.desktop.enable = (vars.modules.home-manager.gnome.extension.hosts.desktop.enable or false);
         blur-my-shell.enable = (vars.modules.home-manager.gnome.extension.blur-my-shell.enable or false);
         caffeine.enable = (vars.modules.home-manager.gnome.extension.caffeine.enable or false);
         dash-to-panel.enable = (vars.modules.home-manager.gnome.extension.dash-to-panel.enable or false);

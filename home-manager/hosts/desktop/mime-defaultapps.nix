@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.xdg.defaultapps.pc;
+  cfg = config.module.xdg.defaultapps.hosts.desktop;
 in
 {
   options = {
-    module.xdg.defaultapps.pc.enable = mkEnableOption "Enables xdg mimeapps - default apps for user PC";
+    module.xdg.defaultapps.hosts.desktop.enable = mkEnableOption "Enables xdg mimeapps - default apps for host desktop";
   };
 
   config = mkIf cfg.enable {

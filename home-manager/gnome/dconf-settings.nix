@@ -10,12 +10,10 @@ in
     module.gnome.dconf-settings.enable = mkEnableOption "Enables GTK dconf settings";
   };
 
-  #TODO move to user
-
   config = mkIf cfg.enable {
     dconf.settings = {
       "org/gnome/shell" = {
-        favorite-apps = [
+        favorite-apps = [#TODO move to config
           "kitty.desktop"
           "brave-browser.desktop"
           "org.gnome.Nautilus.desktop"
