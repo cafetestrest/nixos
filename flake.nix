@@ -70,6 +70,10 @@
       };
       modules = {
         configuration.enable = true;  # use default configuration.nix file
+        overlay = {
+          pkgs.enable = true; # nix pkgs overlays
+          waybar.enable = false;
+        };
         bootloader = {
           grub.enable = false;
           systemd-boot.enable = true;
@@ -134,7 +138,6 @@
         };
         bar = {
           ags.enable = true;
-          waybar.enable = false;  #TODO move to overlay
         };
         services = {
           udev = {
@@ -350,44 +353,10 @@
       inherit system;
       config.allowUnfree = true;
     };
-
-    lib = nixpkgs.lib;
-
-    # https://discourse.nixos.org/t/only-one-nixpkgs-in-a-flake-input-can-allow-unfree/8866
-    overlay-old = final: prev: {
-      old = import nixpkgs-old {
-        system = "${prev.system}";
-        config.allowUnfree = true;
-      };
-    };
-
-    overlay-stable = final: prev: {
-      stable = import nixpkgs-stable {
-        system = "${prev.system}";
-        config.allowUnfree = true;
-      };
-    };
-
-    overlay-unstable = final: prev: {
-      unstable = import nixpkgs-unstable {
-        system = "${prev.system}";
-        config.allowUnfree = true;
-      };
-    };
-
-    overlay-nur = final: prev: {
-      nur = import nur {
-        nurpkgs = prev;
-        pkgs = prev;
-        # repoOverrides = {
-        #   test = test-nur.packages.${prev.system};  #TODO move overlays
-        # };
-      };
-    };
   in
   {
     nixosConfigurations = {
-      ${pc.user} = lib.nixosSystem {
+      ${pc.user} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs =
         let
@@ -395,9 +364,6 @@
         in
         { inherit inputs vars; };
         modules = [
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable overlay-nur ]; #TODO move overlays
-          }) # https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
           ./nixos/hosts/desktop/hardware-configuration.nix      # Include the results of the hardware scan.
           ./nixos/nixosModules.nix
 
@@ -419,7 +385,7 @@
         ];
       };
 
-      ${vm.user} = lib.nixosSystem {
+      ${vm.user} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs =
         let
@@ -427,7 +393,6 @@
         in
         { inherit inputs vars; };
         modules = [
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-old overlay-stable overlay-unstable nur.overlay ]; }) # TODO move to overlay file 
           ./nixos/nixosModules.nix
           /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure
           # /etc/nixos/configuration.nix

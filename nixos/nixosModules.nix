@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./overlays/pkgsOverlay.nix                      # pkgs overlays (stable, unstable, old...)
+    ./overlays/waybar.nix
     ./bootloader/systemd-boot.nix                   # Boot and Bootloader config
     ./bootloader/grub.nix
     ./ssd.nix                                       # fstrim
@@ -30,7 +32,6 @@
     ./docker/warden.nix
     ./udev/headsetcontrol.nix                       # used to retrieve battery percentage from headset - udev rules
     ./udev/rangoli.nix                              # needs distrobox from home-manager
-    ./waybar.nix
     ./devenv.nix                                    # required for https://github.com/run-as-root/rooter
     ./virtualisation/virtualisation.nix             # libvirtd
     ./virtualisation/qemu.nix                       # virt-manager packages
@@ -47,6 +48,10 @@
 
   module = {
     configuration.enable = (vars.modules.configuration.enable or true);  # default value true for configuration.nix
+    overlay = {
+      pkgs.enable = (vars.modules.overlay.pkgs.enable or true); # default value true for pkgs overlays (stable, unstable, old...)
+      waybar.enable = (vars.modules.overlay.waybar.enable or false);
+    };
     bootloader = {
       grub.enable = (vars.modules.bootloader.grub.enable or false);
       systemd-boot.enable = (vars.modules.bootloader.systemd-boot.enable or true);  # default value true bootload systemd-boot
@@ -108,12 +113,10 @@
     security = {
       polkit.enable = (vars.modules.security.polkit.enable or false);
     };
-    bar = {
-      waybar.enable = (vars.modules.bar.waybar.enable or false);
-    };
     security = {
       doas.enable = (vars.modules.security.doas.enable or false);
     };
+    # bar = {};
     services = {
       udev = {
         rangoli.enable = (vars.modules.services.udev.rangoli.enable or false);
@@ -130,7 +133,7 @@
       teamviewer.enable = (vars.modules.programs.teamviewer.enable or false);
       copyq.enable = (vars.modules.programs.copyq.enable or false);
       ydotool.enable = (vars.modules.programs.ydotool.enable or false);
-      extraHosts = (vars.modules.programs.extraHosts or "192.168.0.1 lanlocalhost3");
+      extraHosts = (vars.modules.programs.extraHosts or "");
     };
   };
 }

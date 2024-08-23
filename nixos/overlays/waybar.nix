@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.module.bar.waybar;
+  cfg = config.module.overlay.waybar;
 in
 {
   options = {
-    module.bar.waybar.enable = mkEnableOption "Enables Waybar overlay";
+    module.overlay.waybar.enable = mkEnableOption "Enables Waybar overlay";
   };
 
   config = mkIf cfg.enable {
