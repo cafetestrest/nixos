@@ -5,6 +5,7 @@ with lib;
 let
   cfg = config.module.gnome.dconf-settings;
   favoriteAppsCfg = config.module.gnome.favoriteApps;
+  hyprlandCfg = config.module.hypr.hyprland;
 in
 {
   options = {
@@ -46,16 +47,12 @@ in
         # color-scheme = "prefer-dark";
       };
 
-      # TODO if hyprland is enabled,otherwise add all three
       "org/gnome/desktop/wm/preferences" = {
-        button-layout = "close,minimize:appmenu";
+        button-layout = if hyprlandCfg.enable 
+          then "close,minimize:appmenu"
+          else "close,minimize,maximize:appmenu";
         action-double-click-titlebar = "none";
       };
-      # "org/gnome/desktop/wm/preferences" = {
-      #   #titlebar-font = "Ubuntu Bold 11";
-      #   button-layout = "close,minimize,maximize:appmenu";
-      #   action-double-click-titlebar = "none";
-      # };
 
       "org/gnome/desktop/peripherals/keyboard" = {
         numlock-state = true;
