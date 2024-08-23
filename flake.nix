@@ -235,7 +235,10 @@
               gnome-packages.enable = modules.desktop-environment.hyprland.enable;
             };
             commands.enable = modules.bar.ags.enable;
-            hyprpaper.enable = false;
+            hyprpaper = {
+              enable = true;
+              backgroundImagePath = "~/Public/wall/wall.png";
+            };
             hyprcursors.enable = false;
           };
           bar = {

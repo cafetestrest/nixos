@@ -165,7 +165,10 @@
         gnome-packages.enable = (vars.modules.home-manager.hypr.hyprland.gnome-packages.enable or false);
       };
       commands.enable = (vars.modules.home-manager.hypr.commands.enable or false);
-      hyprpaper.enable = (vars.modules.home-manager.hypr.hyprpaper.enable or false);
+      hyprpaper = {
+        enable = (vars.modules.home-manager.hypr.hyprpaper.enable or false);
+        backgroundImagePath = (vars.modules.home-manager.hypr.hyprpaper.backgroundImagePath or "");
+      };
       hyprcursors.enable = (vars.modules.home-manager.hypr.hyprcursors.enable or false);
     };
     bar = {
