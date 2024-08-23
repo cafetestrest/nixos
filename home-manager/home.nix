@@ -21,7 +21,7 @@
     ./hypr/hypridle.nix                 # idle inhibitor
     ./hypr/commands.nix                 # dekstop entries / commands
     ./hypr/hyprpaper.nix                # wallpaper
-    ./hypr/hyprcursors.nix              # cursors
+    ./hypr/hyprcursor-mcmojave.nix      # cursors
     ./gnome/gtk.nix                     # extra packages, gtk configs, session variables, pointer
     ./gnome/dconf-settings.nix          # gtk dconf settings
     ./gnome/keyboard-shortcuts.nix
@@ -68,7 +68,6 @@
     ./vscode.nix
     ./brave.nix                         # browser
     ./zoxide.nix                        # z - smarter cd
-    ./yeelight.nix                      # smart lights
     ./phpstorm.nix                      # PHP IDE
     ./distrobox.nix
     ./rooter.nix                        # magento https://github.com/run-as-root/rooter
@@ -85,6 +84,7 @@
     ./peco.nix                          # better reverse search
     ./shell/docker/shells.nix           # docker aliases for fish/bash
     ./shell/warden/shells.nix           # warden aliases for fish/bash
+    ./scripts/yeelight.nix              # smart lights
     ./scripts/startup.nix
     ./scripts/bluetoothbatterypercentage.nix
     ./scripts/btupowerbatterypercentage.nix

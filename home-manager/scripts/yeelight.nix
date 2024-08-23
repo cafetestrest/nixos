@@ -5,7 +5,7 @@ with lib;
 let
   getyeelightip = pkgs.writeShellApplication {
     name = "getyeelightip";
-    text = builtins.readFile ../config/scripts/getyeelightip.sh;
+    text = builtins.readFile ../../config/scripts/getyeelightip.sh;
   };
 
   cfg = config.module.scripts.yeelight;

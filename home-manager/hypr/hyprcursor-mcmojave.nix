@@ -25,8 +25,6 @@ let
 
   };
 
-  #TODO rename this and put into hyprcursors folder
-
   cursorPackage = McMojave;
 
   cfg = config.module.hypr.hyprcursors;

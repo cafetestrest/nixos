@@ -236,7 +236,7 @@
             };
             commands.enable = modules.bar.ags.enable;
             hyprpaper = {
-              enable = true;
+              enable = false;
               backgroundImagePath = "~/Public/wall/wall.png";
             };
             hyprcursors.enable = false;
