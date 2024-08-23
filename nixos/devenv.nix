@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
     nix.settings = {
-      trusted-users = [ "root" "${vars.user}" ];  #TODO remove root?
+      trusted-users = [ "root" "${vars.user}" ];
 
       substituters = [
         "https://devenv.cachix.org"
@@ -27,7 +27,7 @@ in
     # networking.firewall.allowedTCPPorts = [ 80 ];
     # networking.firewall.allowedUDPPorts = [ 80 ];
 
-    networking.extraHosts = #TODO move to its own config
+    networking.extraHosts = #TODO move to users config
     ''
       127.0.0.1 ::1 magento2.rooter.test
       127.0.0.1 ::1 test.rooter.test

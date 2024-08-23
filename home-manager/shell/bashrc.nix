@@ -13,18 +13,10 @@ in
   };
 
   config = mkIf (cfgBashrc.enable && cfgBash.enable) {
-    programs.bash = {#TODO move some of the bashrcExtra to users directory
-      enable = true;  #TODO add flag
-      enableCompletion = true;#TODO if fastfetch is installed
+    programs.bash = {
+      enable = true;
+      enableCompletion = true;
       bashrcExtra = ''
-        if [[ $(whoami) == "${vars.user}" && -d "$HOME/nixos" ]]; then
-          cd "$HOME/nixos"
-          fastfetch
-        fi
-
-        # devenv TODO move to devenv config
-        #eval "$(direnv hook bash)"
-
         # history
         HISTCONTROL=ignoredups # no duplicate lines in history
         HISTSIZE=200000
@@ -39,42 +31,9 @@ in
         #PROMPT_COMMAND="''\${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r" # help history
         shopt -s histappend # man shopt
 
-        # . $HOME/.config/scripts/z/z.sh
-
-        #TODO mvoe to peco config - fish
-        # Function to search through history and run the selected command
-        peco_select_history() {
-            # Get the selected command from history
-            local selected_command=$(history | cut -c 8- | ${pkgs.peco}/bin/peco --query "$READLINE_LINE")
-
-            # If a command was selected, insert it into the current line
-            if [ -n "$selected_command" ]; then
-                READLINE_LINE="$selected_command"
-                READLINE_POINT=$"{#READLINE_LINE}"
-            fi
-        }
-
-        #TODO move to peco config - fish
-        # Bind the function to a key (Ctrl-R in this example)
-        bind -x '"\C-r": peco_select_history'
-
-        #TODO move to git
-        function gco () {
-          git commit -m "$1"
-        }
-
         function create () {
           mkdir -p $(dirname $1)
           touch $1
-        }
-
-        #TODO move to code
-        function code () {
-          if [ "$#" -gt 0 ]; then
-            codium "$@"
-          else
-            codium .
-          fi
         }
 
         function cx () {

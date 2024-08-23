@@ -4,6 +4,9 @@ with lib;
 
 let
   cfg = config.module.packages.git;
+  cfgBashrc = config.module.shell.bash.bashrc;
+  cfgBash = config.module.shell.bash;
+  cfgFish = config.module.shell.fish;
 in
 {
   options = {
@@ -31,6 +34,20 @@ in
       checkout = "git checkout";
       gchall = "git checkout .";
       checkoutall = "git checkout .";
+    };
+
+    programs.bash.bashrcExtra = lib.mkIf (cfgBash.enable && cfgBashrc.enable) ''
+      function gco () {
+        git commit -m "$1"
+      }
+    '';
+
+    programs.fish.functions = lib.mkIf cfgFish.enable {
+      gco = {
+        body = ''
+            git commit -m "$argv"
+        '';
+      };
     };
   };
 }

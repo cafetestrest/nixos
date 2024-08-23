@@ -4,6 +4,7 @@ with lib;
 
 let
   cfg = config.module.programs.copyq;
+  cfgHyprland = config.module.desktop-environment.hyprland;
 in
 {
   options = {
@@ -12,15 +13,10 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      copyq                 #copy/paste things  #TODO move to hm?
+      copyq                 #copy/paste things
     ];
 
-    # imports = [
-    #   ./ydotool.nix
-    # ];
-
-    #TODO add config support?
-    environment.shellInit = ''
+    environment.shellInit = lib.mkIf cfgHyprland.enable ''
       check_copyq() {
         if ! pgrep "copyq" > /dev/null; then
             if [ -n "$HYPRLAND_CMD" ]; then

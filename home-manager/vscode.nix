@@ -4,6 +4,9 @@ with lib;
 
 let
   cfg = config.module.packages.vscode;
+  cfgBashrc = config.module.shell.bash.bashrc;
+  cfgBash = config.module.shell.bash;
+  cfgFish = config.module.shell.fish;
 in
 {
   options = {
@@ -88,6 +91,38 @@ in
       #     "powermode.explosions.frequency" = 1;
       #     "powermode.combo.timerEnable" = "hide";
       #   };
+      };
+    };
+
+    programs.bash.bashrcExtra = lib.mkIf (cfgBash.enable && cfgBashrc.enable) ''
+      function code () {
+        if [ "$#" -gt 0 ]; then
+          codium "$@"
+        else
+          codium .
+        fi
+      }
+    '';
+
+    programs.fish.functions = lib.mkIf cfgFish.enable {
+      code = {
+        body = ''
+          if [ (count $argv) -gt 0 ]
+              codium $argv
+          else
+              codium .
+          end
+        '';
+      };
+
+      "." = {
+        body = ''
+          if [ (count $argv) -gt 0 ]
+              codium $argv
+          else
+              codium .
+          end
+        '';
       };
     };
   };

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, vars, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 
@@ -11,10 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      peco  #bash/fish better reverse search  #TODO check if peco is enabled in config
-    ];
-
     programs.fish = {
       enable = true;
 
@@ -48,28 +44,9 @@ in
         set -U fish_pager_color_description 555 yellow
         set -U fish_pager_color_progress cyan
         set -U fish_color_history_current cyan
-
-        # enables direnv  #TODO move to direnv
-        # direnv hook fish | source
       '';
 
-      interactiveShellInit = ''
-        bind \cr 'peco_select_history (commandline -b)'
-      '';
-
-      functions = {#TODO check if fastfetch is installed in config?
-        fish_greeting = {
-          body = ''
-            if [ (whoami) = "${vars.user}" ]
-              if [ -d $HOME/nixos ]
-                cd $HOME/nixos
-              end
-              fastfetch
-            end
-          '';
-          onEvent = "fish_greeting";
-        };
-
+      functions = {
         cx = {
           body = ''
             if [ (count $argv) -gt 0 ]
@@ -77,26 +54,6 @@ in
                 l
             else
                 l
-            end
-          '';
-        };
-
-        code = {#TODO move to vscode config
-          body = ''
-            if [ (count $argv) -gt 0 ]
-                codium $argv
-            else
-                codium .
-            end
-          '';
-        };
-
-        "." = {#TODO move to vscode config
-          body = ''
-            if [ (count $argv) -gt 0 ]
-                codium $argv
-            else
-                codium .
             end
           '';
         };
@@ -117,12 +74,6 @@ in
         #     end
         #   '';
         # };
-
-        gco = { #TODO move to git config
-          body = ''
-            git commit -m "$argv"
-          '';
-        };
       };
     };
   };

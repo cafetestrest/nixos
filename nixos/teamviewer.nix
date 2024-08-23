@@ -11,10 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      teamviewer  #TODO move to hm?
-    ];
-
     services.teamviewer.enable = true;
   };
 }

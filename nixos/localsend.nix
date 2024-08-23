@@ -11,10 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      localsend #TODO move to hm ?
-    ];
-
     networking.firewall.allowedTCPPorts = [ 53317 ];
     networking.firewall.allowedUDPPorts = [ 53317 ];
   };

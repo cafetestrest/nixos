@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
     security = {
-      sudo.enable = true; #TODO add support
+      sudo.enable = true;
       doas.enable = true;
       doas.extraRules = [
         {

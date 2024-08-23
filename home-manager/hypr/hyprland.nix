@@ -12,17 +12,41 @@ let
   #TODO move most of this config to users
 
   cfg = config.module.hypr.hyprland;
+  cfgPkgs = config.module.hypr.hyprland.packages;
+  cfgGnomePkgs = config.module.hypr.hyprland.gnome-packages;
 in
 {
   options = {
     module.hypr.hyprland.enable = mkEnableOption "Enables Hyprland config";
+    module.hypr.hyprland.packages.enable = mkEnableOption "Enables Hyprland Packages";
+    module.hypr.hyprland.gnome-packages.enable = mkEnableOption "Enables Hyprland Gnome Packages";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      icon-library          #library of icons
-      libnotify             #notifications from terminal - notify-send
+    home.packages = with pkgs; lib.optionals cfgPkgs.enable [
+      icon-library  #library of icons
+      libnotify #notifications from terminal - notify-send
       killall
+      loupe #image viewer
+      grim                                #screenshot tool
+      slurp                               #select a screenshot region
+      hyprpicker                          #pipette - color hex picker 
+    ] ++ lib.optionals cfgGnomePkgs.enable [
+      gnome.nautilus                      #file manager
+      gnome-text-editor
+      gnome.gnome-calculator
+      # gnome.gnome-font-viewer
+      # gnome.gnome-disk-utility
+      # gnome.gnome-characters              #check all characters, can be copied
+      # gnome.adwaita-icon-theme
+      # gnome.baobab
+      gnome.gnome-calendar
+      # gnome.gnome-boxes
+      # gnome.gnome-system-monitor
+      gnome.gnome-control-center
+      # gnome.gnome-weather
+      gnome.gnome-clocks
+      # gnome.gnome-software # for flatpak
     ];
 
     wayland.windowManager.hyprland = {

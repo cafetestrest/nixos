@@ -15,16 +15,6 @@ in
       plugins = [
         # { name = "bobthefisher"; src = pkgs.fishPlugins.bobthefisher.src; }
 
-        {
-          name = "peco";  #TODO if peco is installed && if enabled on its own config
-          src = pkgs.fetchFromGitHub {
-            owner = "oh-my-fish";
-            repo = "plugin-peco";
-            rev = "refs/heads/master";
-            sha256 = "${vars.sha.fishOmfPecoPluginSha256Hash}";
-          };
-        }
-
         # {
         #   name = "vcs";
         #   src = pkgs.fetchFromGitHub {
@@ -45,14 +35,6 @@ in
           };
         }
       ];
-      functions = {
-        fish_user_key_bindings = {  #TODO if peco is installed
-          body = ''
-            bind \cr 'peco_select_history (commandline -b)'
-          '';
-          onEvent = "fish_user_key_bindings";
-        };
-      };
     };
   };
 }

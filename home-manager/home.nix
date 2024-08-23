@@ -7,19 +7,23 @@
   home.homeDirectory = "/home/${vars.user}";
 
   imports = [
-    ./shell/shells.nix                 # fish (default) + bash
-    ./xdg/xdg.nix                      # xdg
-    ./xdg/mime-defaultapps.nix         # xdg default apps (mime)
+    ./shell/aliases.nix
+    ./shell/fish.nix
+    ./shell/bashrc.nix
+    ./shell/omf/commands.nix
+    ./shell/omf/plugins.nix
+    ./xdg/xdg.nix                       # xdg
+    ./xdg/mime-defaultapps.nix          # xdg default apps (mime)
     ./hypr/hyprland.nix
-    ./ags.nix                          # top bar + shell https://github.com/Aylur/ags
-    ./swaylock.nix                   # lock screen
-    ./hypr/hyprlock.nix                # lock screen
-    ./hypr/hypridle.nix                # idle inhibitor
-    ./hypr/commands.nix                # dekstop entries / commands
-    ./hypr/hyprpaper.nix             # wallpaper
-    ./hypr/hyprcursors.nix           # cursors
-    ./gnome/gtk.nix                    # extra packages, gtk configs, session variables, pointer
-    ./gnome/dconf-settings.nix         # gtk dconf settings
+    ./ags.nix                           # top bar + shell https://github.com/Aylur/ags
+    ./swaylock.nix                      # lock screen
+    ./hypr/hyprlock.nix                 # lock screen
+    ./hypr/hypridle.nix                 # idle inhibitor
+    ./hypr/commands.nix                 # dekstop entries / commands
+    ./hypr/hyprpaper.nix                # wallpaper
+    ./hypr/hyprcursors.nix              # cursors
+    ./gnome/gtk.nix                     # extra packages, gtk configs, session variables, pointer
+    ./gnome/dconf-settings.nix          # gtk dconf settings
     ./gnome/keyboard-shortcuts.nix
     ./gnome/autostart/albert.nix
     ./gnome/autostart/copyq.nix
@@ -44,8 +48,8 @@
     ./gnome/extensions/openweather.nix
     ./gnome/extensions/rounded-window-corners.nix
     ./gnome/extensions/tray-icons-reloaded.nix
-    ./gnome/extensions.nix           # gnome extensions
-    ./packages.nix                     # shared packages
+    ./gnome/extensions.nix              # gnome extensions
+    ./packages.nix                      # shared packages
     ./fonts/ubuntu-font-family.nix
     ./fonts/font-awesome.nix
     ./fonts/font-awesome5.nix
@@ -57,29 +61,30 @@
     ./fonts/montserrat.nix
     ./fonts/cantarell-fonts.nix
     ./chrome.nix
-    ./terminator.nix                   # terminal config
+    ./terminator.nix                    # terminal config
     ./xterm.nix
-    ./mpv.nix                          # mpv video player and its config
-    ./fastfetch.nix                    # neofetch replacement
+    ./mpv.nix                           # mpv video player and its config
+    ./fastfetch.nix                     # neofetch replacement
     ./vscode.nix
-    ./brave.nix                        # browser
-    ./zoxide.nix                       # z - smarter cd
-    ./yeelight.nix                     # smart lights
-    ./phpstorm.nix                     # PHP IDE
+    ./brave.nix                         # browser
+    ./zoxide.nix                        # z - smarter cd
+    ./yeelight.nix                      # smart lights
+    ./phpstorm.nix                      # PHP IDE
     ./distrobox.nix
-    ./rooter.nix                       # magento https://github.com/run-as-root/rooter
+    ./rooter.nix                        # magento https://github.com/run-as-root/rooter
     ./kdeconnect.nix
-    ./eza.nix                          # ls replacement
-    ./bat.nix                          # cat replacement
-    ./fd.nix                           # find replacement
-    ./ripgrep.nix                      # grep replacement
+    ./eza.nix                           # ls replacement
+    ./bat.nix                           # cat replacement
+    ./fd.nix                            # find replacement
+    ./ripgrep.nix                       # grep replacement
     ./git.nix
-    ./kitty.nix                        # terminal
-    ./yazi.nix                         # file explorer in terminal
-    ./micro.nix                        # terminal text editor
-    ./copyq.nix                        # config for copyq
-    ./shell/docker/shells.nix          # docker aliases for fish/bash
-    ./shell/warden/shells.nix          # warden aliases for fish/bash
+    ./kitty.nix                         # terminal
+    ./yazi.nix                          # file explorer in terminal
+    ./micro.nix                         # terminal text editor
+    ./copyq.nix                         # config for copyq
+    ./peco.nix                          # better reverse search
+    ./shell/docker/shells.nix           # docker aliases for fish/bash
+    ./shell/warden/shells.nix           # warden aliases for fish/bash
     ./scripts/startup.nix
     ./scripts/bluetoothbatterypercentage.nix
     ./scripts/btupowerbatterypercentage.nix
@@ -100,6 +105,8 @@
     ./scripts/sys.nix
     ./scripts/clipboardtoggle.nix
     ./scripts/sync.nix
+    ./localsend.nix                     # used for file sharing with other PC/mobile devices
+    ./teamviewer.nix
   ];
 
   module = {
@@ -126,6 +133,9 @@
       yazi.enable = (vars.modules.home-manager.packages.yazi.enable or false);
       micro.enable = (vars.modules.home-manager.packages.micro.enable or false);
       copyq.enable = (vars.modules.home-manager.packages.copyq.enable or false);
+      localsend.enable = (vars.modules.home-manager.packages.localsend.enable or false);
+      teamviewer.enable = (vars.modules.home-manager.packages.teamviewer.enable or false);
+      peco.enable = (vars.modules.home-manager.packages.peco.enable or false);
     };
     shell = {
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);
@@ -149,7 +159,11 @@
       defaultapps.enable = (vars.modules.home-manager.xdg.defaultapps.enable or false);
     };
     hypr = {
-      hyprland.enable = (vars.modules.home-manager.hypr.hyprland.enable or false);
+      hyprland = {
+        enable = (vars.modules.home-manager.hypr.hyprland.enable or false);
+        packages.enable = (vars.modules.home-manager.hypr.hyprland.packages.enable or false);
+        gnome-packages.enable = (vars.modules.home-manager.hypr.hyprland.gnome-packages.enable or false);
+      };
       commands.enable = (vars.modules.home-manager.hypr.commands.enable or false);
       hyprpaper.enable = (vars.modules.home-manager.hypr.hyprpaper.enable or false);
       hyprcursors.enable = (vars.modules.home-manager.hypr.hyprcursors.enable or false);

@@ -12,6 +12,6 @@ in
 
   config = mkIf cfg.enable {
     services.desktopManager.plasma6.enable = true;  # Enable the KDE Plasma Desktop Environment.
-    # services.displayManager.defaultSession = "plasma";#TODO add config flag
+    # services.displayManager.defaultSession = "plasma";
   };
 }

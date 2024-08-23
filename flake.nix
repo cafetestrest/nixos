@@ -78,25 +78,39 @@
           ntfs.enable = true;
         };
         hardware = {
-          bluetooth.enable = true;
+          bluetooth = {
+            enable = true;
+            blueman.enable = modules.hardware.bluetooth.enable;
+          };
           wireless.enable = false;
           amd-gpu.enable = false;
+          opengl.enable = modules.hardware.amd-gpu.enable;
         };
         virtualisation = {
+          enable = true;
           virt-manager.enable = false;
           spice-virt-manager.enable = false;
           docker = {
             enable = true;
             warden.enable = true;
+            xdebug-ports.enable = true;
           };
         };
         shell = {
+          fish.enable = true;
           default-fish.enable = true;
         };
+        xdg.enable = true;
         desktop-environment = {
-          hyprland.enable = true;
+          hyprland = {
+            enable = true;
+            services.enable = modules.desktop-environment.hyprland.enable;
+          };
           plasma6.enable = false;
-          gnome.enable = false;
+          gnome = {
+            enable = false;
+            auto-login.enable = false;
+          };
           cosmic.enable = false;
         };
         display-manager = {
@@ -106,9 +120,15 @@
           };
         };
         screen-locker = {
-          hyprlock.enable = true;
+          hyprlock = {
+            enable = true;
+            service = modules.screen-locker.hyprlock.enable;
+          };
           swaylock.enable = false;
           gtklock.enable = false;
+        };
+        security = {
+          polkit.enable = true;
         };
         bar = {
           ags.enable = true;
@@ -157,7 +177,10 @@
             kitty.enable = true;
             yazi.enable = true;
             micro.enable = true;
+            peco.enable = true;
             copyq.enable = modules.programs.copyq.enable;
+            localsend.enable = modules.programs.localsend.enable;
+            teamviewer.enable = modules.programs.teamviewer.enable;
           };
           scripts = {
             yeelight.enable = true;
@@ -205,7 +228,11 @@
             defaultapps.enable = true; #TODO move to users
           };
           hypr = {
-            hyprland.enable = modules.desktop-environment.hyprland.enable;
+            hyprland = {
+              enable = modules.desktop-environment.hyprland.enable;
+              packages.enable = modules.desktop-environment.hyprland.enable;
+              gnome-packages.enable = modules.desktop-environment.hyprland.enable;
+            };
             commands.enable = modules.bar.ags.enable;
             hyprpaper.enable = false;
             hyprcursors.enable = false;

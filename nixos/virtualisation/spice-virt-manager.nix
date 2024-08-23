@@ -19,6 +19,10 @@ in
       #win-spice                # vm windows stuff
     ];
 
+    virtualisation = {
+      spiceUSBRedirection.enable = true;
+    };
+
     services.spice-vdagentd.enable = false;
   };
 }

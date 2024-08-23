@@ -72,9 +72,6 @@ in
     # Enable touchpad support (enabled default in most desktopManager).
     # services.xserver.libinput.enable = true;
 
-    # usb automount
-    services.gvfs.enable = true;
-
     nixpkgs.config = {
       allowUnfree = true;  # Allow unfree packages
     };

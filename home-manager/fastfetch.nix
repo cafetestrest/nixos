@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, vars, ... }:
 
 with lib;
 
 let
   cfg = config.module.packages.fastfetch;
+  cfgBashrc = config.module.shell.bash.bashrc;
+  cfgBash = config.module.shell.bash;
+  cfgFish = config.module.shell.fish;
 in
 {
   options = {
@@ -54,6 +57,27 @@ in
 
     home.shellAliases = {
       neofetch = "fastfetch";
+    };
+
+    programs.bash.bashrcExtra = lib.mkIf (cfgBash.enable && cfgBashrc.enable) ''
+      if [[ $(whoami) == "${vars.user}" && -d "$HOME/nixos" ]]; then
+        cd "$HOME/nixos"
+        fastfetch
+      fi
+    '';
+
+    programs.fish.functions = lib.mkIf cfgFish.enable {
+      fish_greeting = {
+        body = ''
+          if [ (whoami) = "${vars.user}" ]
+            if [ -d $HOME/nixos ]
+              cd $HOME/nixos
+            end
+            fastfetch
+          end
+        '';
+        onEvent = "fish_greeting";
+      };
     };
   };
 }

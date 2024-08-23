@@ -7,7 +7,7 @@ let
 in
 {
   options = {
-    module.hardware.amd-gpu.enable = mkEnableOption "Enables AMD GPU and OpenGL";
+    module.hardware.amd-gpu.enable = mkEnableOption "Enables AMD GPU";
   };
 
   config = mkIf cfg.enable {
@@ -20,28 +20,6 @@ in
     #HIP (removed due error: "error: 'hip' has been removed in favor of 'rocmPackages.clr'")
     # systemd.tmpfiles.rules = [
     #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
-    # ];
-
-    #OpenGL
-    hardware.opengl = { #TODO move to its own config
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
-
-    # hardware.opengl.extraPackages = with pkgs; [
-    #   rocm-opencl-icd
-    #   rocm-opencl-runtime
-    # ];
-
-    # #Vulkan
-    # hardware.opengl.driSupport = true;
-    # # For 32 bit applications
-    # hardware.opengl.driSupport32Bit = true;
-
-    # # For 32 bit applications 
-    # hardware.opengl.extraPackages32 = with pkgs; [
-    #   driversi686Linux.amdvlk
     # ];
   };
 }
