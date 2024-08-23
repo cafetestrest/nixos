@@ -4,21 +4,23 @@ with lib;
 
 let
   cfg = config.module.gnome.dconf-settings;
+  favoriteAppsCfg = config.module.gnome.favoriteApps;
 in
 {
   options = {
     module.gnome.dconf-settings.enable = mkEnableOption "Enables GTK dconf settings";
+
+    module.gnome.favoriteApps = mkOption {
+      type = types.listOf types.str;
+      description = "List of favorite applications in GNOME Shell";
+      default = [ "org.gnome.Nautilus.desktop" "org.gnome.TextEditor.desktop" ];
+    };
   };
 
   config = mkIf cfg.enable {
     dconf.settings = {
       "org/gnome/shell" = {
-        favorite-apps = [#TODO move to config
-          "kitty.desktop"
-          "brave-browser.desktop"
-          "org.gnome.Nautilus.desktop"
-          "org.gnome.TextEditor.desktop"
-        ];
+        favorite-apps = favoriteAppsCfg;
       };
 
       "org/gnome/desktop/interface" = {
@@ -41,7 +43,7 @@ in
         clock-show-weekday = true;
 
         #dark theme
-        color-scheme = "prefer-dark";
+        # color-scheme = "prefer-dark";
       };
 
       # TODO if hyprland is enabled,otherwise add all three
@@ -49,6 +51,11 @@ in
         button-layout = "close,minimize:appmenu";
         action-double-click-titlebar = "none";
       };
+      # "org/gnome/desktop/wm/preferences" = {
+      #   #titlebar-font = "Ubuntu Bold 11";
+      #   button-layout = "close,minimize,maximize:appmenu";
+      #   action-double-click-titlebar = "none";
+      # };
 
       "org/gnome/desktop/peripherals/keyboard" = {
         numlock-state = true;
