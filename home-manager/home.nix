@@ -174,6 +174,7 @@
     screen-locker = {
       swaylock.enable = (vars.modules.home-manager.screen-locker.swaylock.enable or false);
       hyprlock.enable = (vars.modules.home-manager.screen-locker.hyprlock.enable or false);
+      hyprlock.backgroundImagePath = (vars.modules.home-manager.screen-locker.hyprlock.backgroundImagePath or "");
     };
     idle-inhibitor = {
       hypridle.enable = (vars.modules.home-manager.idle-inhibitor.hypridle.enable or false);

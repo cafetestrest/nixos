@@ -4,10 +4,16 @@ with lib;
 
 let
   cfg = config.module.display-manager.gdm.custom-background;
+  cfgBackgroundImagePath = config.module.display-manager.gdm.backgroundImagePath;
 in
 {
   options = {
     module.display-manager.gdm.custom-background.enable = mkEnableOption "Enables GDM Custom Background";
+    module.display-manager.gdm.backgroundImagePath = mkOption {
+      type = types.str;
+      description = "Path to the image used in GDM";
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -32,7 +38,7 @@ index 909fa62..d0a8d0e 100644
 
  #lockDialogGroup {
 -  background-color: $_gdm_bg;
-+  background: url(file:///etc/nixos/lockscreen.jpg);
++  background: url(${cfgBackgroundImagePath});
 +  // background-repeat: repeat-x;
 +  // background-size: auto;
 +  // background-position: 0 0;

@@ -4,10 +4,16 @@ with lib;
 
 let
   cfg = config.module.screen-locker.hyprlock;
+  cfgBackgroundImagePath = config.module.screen-locker.hyprlock.backgroundImagePath;
 in
 {
   options = {
     module.screen-locker.hyprlock.enable = mkEnableOption "Enables hyprlock config";
+    module.screen-locker.hyprlock.backgroundImagePath = mkOption {
+      type = types.str;
+      description = "Path to the image used in hyprlock.conf";
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -17,10 +23,9 @@ in
       general{
 
       }
-      #TODO add support for this image
       background {
           monitor =
-          path=/etc/nixos/hyprlock.png
+          path=${cfgBackgroundImagePath}
           # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
           blur_passes = 1 # 0 disables blurring
           blur_size = 1

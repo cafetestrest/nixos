@@ -117,6 +117,7 @@
           gdm = {
             enable = true;
             custom-background.enable = true;
+            backgroundImagePath = "file:///etc/nixos/lockscreen.jpg";
           };
         };
         screen-locker = {
@@ -243,6 +244,7 @@
           screen-locker = {
             swaylock.enable = modules.screen-locker.swaylock.enable;
             hyprlock.enable = modules.screen-locker.hyprlock.enable;
+            hyprlock.backgroundImagePath = "/etc/nixos/hyprlock.png";
           };
           idle-inhibitor = {
             hypridle.enable = true;

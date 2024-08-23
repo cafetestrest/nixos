@@ -26,7 +26,7 @@ in
         # }
 
         {
-          name = "theme-default";#TODO if enabled on its own config
+          name = "theme-default";
           src = pkgs.fetchFromGitHub {
             owner = "oh-my-fish";
             repo = "theme-default";
