@@ -187,6 +187,7 @@
     gnome = {
       gtk-config.enable = (vars.modules.home-manager.gnome.gtk-config.enable or false);
       gtkThemePackage = (vars.gtk.gtkThemePackage or (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];}));
+      preferDarkTheme = (vars.gtk.preferDarkTheme or 1);
       cursorPackage = (vars.gtk.cursorPackage or pkgs.apple-cursor);
       dconf-settings.enable = (vars.modules.home-manager.gnome.dconf-settings.enable or false);
       keyboard-shortcuts.enable = (vars.modules.home-manager.gnome.keyboard-shortcuts.enable or false);

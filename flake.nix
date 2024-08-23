@@ -59,6 +59,7 @@
         gtkTheme = "Orchis-Dark";
         gtkIconTheme = "Adwaita";
         gtkFontName = "Cantarell 11";
+        preferDarkTheme = 1;
       };
       sha = {
         wardenSha256Hash = "sha256-XX/GJEhCiOUkuZ0Wetcrqc9BTJE7UUKetNiW+t4g+Y4="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"

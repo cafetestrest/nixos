@@ -6,6 +6,7 @@ let
   cfg = config.module.gnome.gtk-config;
   gtkThemePackageCfg = config.module.gnome.gtkThemePackage;
   cursorPackageCfg = config.module.gnome.cursorPackage;
+  preferDarkThemeCfg = config.module.gnome.preferDarkTheme;
 in
 {
   options = {
@@ -19,6 +20,11 @@ in
       type = types.package;
       description = "GTK Theme Package to be included when enabled";
       default = (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];});
+    };
+    module.gnome.preferDarkTheme = mkOption {
+      type = types.int;
+      description = "Which mode to prefer when enabled";
+      default = 1;
     };
   };
 
@@ -50,15 +56,15 @@ in
         };
 
         gtk3.extraConfig = {
-            gtk-application-prefer-dark-theme=1;  #TODO move out
+            gtk-application-prefer-dark-theme=preferDarkThemeCfg;
         };
 
         gtk4.extraConfig = {
-            gtk-application-prefer-dark-theme=1;
+            gtk-application-prefer-dark-theme=preferDarkThemeCfg;
         };
     };
 
-    xdg.configFile = {  #TODO move out
+    xdg.configFile = {
       "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
       "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
       "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
