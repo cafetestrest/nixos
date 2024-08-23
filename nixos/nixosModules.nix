@@ -8,7 +8,7 @@
     ./ntfs.nix                                      # windows ntfs file partition support
     ./bluetooth.nix                                 # bluetooth support and blueman
     ./wireless.nix
-    ./hosts/desktop/amd-gpu.nix                     # configuration for AMD GPU
+    ./amd-gpu.nix                     # configuration for AMD GPU
     ./opengl.nix
     ./hosts/shared/configuration.nix                # default configuration with defined vars
     ./hosts/shared/packages.nix                     # shared packages - vim
