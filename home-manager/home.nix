@@ -8,7 +8,7 @@
 
   imports = [
     ./hosts/desktop/mime-defaultapps.nix  # xdg default apps (mime) - for user PC
-    ./hosts/desktop/extensions.nix      # gnome extensions
+    ./hosts/desktop/extensions.nix        # gnome extensions
     ./shell/aliases.nix
     ./shell/fish.nix
     ./shell/bashrc.nix
@@ -51,7 +51,7 @@
     ./gnome/extensions/openweather.nix
     ./gnome/extensions/rounded-window-corners.nix
     ./gnome/extensions/tray-icons-reloaded.nix
-    ./packages.nix                      # shared packages
+    ./packages.nix                          # shared packages
     ./fonts/ubuntu-font-family.nix
     ./fonts/font-awesome.nix
     ./fonts/font-awesome5.nix
@@ -63,31 +63,31 @@
     ./fonts/montserrat.nix
     ./fonts/cantarell-fonts.nix
     ./chrome.nix
-    ./terminator.nix                    # terminal config
+    ./terminator.nix                        # terminal config
     ./xterm.nix
-    ./mpv.nix                           # mpv video player and its config
-    ./fastfetch.nix                     # neofetch replacement
+    ./mpv.nix                               # mpv video player and its config
+    ./fastfetch.nix                         # neofetch replacement
     ./vscode.nix
-    ./brave.nix                         # browser
-    ./zoxide.nix                        # z - smarter cd
-    ./phpstorm.nix                      # PHP IDE
+    ./brave.nix                             # browser
+    ./zoxide.nix                            # z - smarter cd
+    ./phpstorm.nix                          # PHP IDE
     ./distrobox.nix
-    ./rooter.nix                        # magento https://github.com/run-as-root/rooter
+    ./rooter.nix                            # magento https://github.com/run-as-root/rooter
     ./kdeconnect.nix
-    ./eza.nix                           # ls replacement
-    ./bat.nix                           # cat replacement
-    ./fd.nix                            # find replacement
-    ./ripgrep.nix                       # grep replacement
+    ./eza.nix                               # ls replacement
+    ./bat.nix                               # cat replacement
+    ./fd.nix                                # find replacement
+    ./ripgrep.nix                           # grep replacement
     ./git.nix
-    ./kitty.nix                         # terminal
-    ./yazi.nix                          # file explorer in terminal
-    ./micro.nix                         # terminal text editor
-    ./copyq.nix                         # config for copyq
-    ./peco.nix                          # better reverse search
-    ./albert.nix                        # linux launcher
-    ./shell/docker/shells.nix           # docker aliases for fish/bash
-    ./shell/warden/shells.nix           # warden aliases for fish/bash
-    ./scripts/yeelight.nix              # smart lights
+    ./kitty.nix                             # terminal
+    ./yazi.nix                              # file explorer in terminal
+    ./micro.nix                             # terminal text editor
+    ./copyq.nix                             # config for copyq
+    ./peco.nix                              # better reverse search
+    ./albert.nix                            # linux launcher
+    ./shell/docker/shells.nix               # docker aliases for fish/bash
+    ./shell/warden/shells.nix               # warden aliases for fish/bash
+    ./scripts/yeelight.nix                  # smart lights
     ./scripts/startup.nix
     ./scripts/bluetoothbatterypercentage.nix
     ./scripts/btupowerbatterypercentage.nix
@@ -108,8 +108,9 @@
     ./scripts/sys.nix
     ./scripts/clipboardtoggle.nix
     ./scripts/sync.nix
-    ./localsend.nix                     # used for file sharing with other PC/mobile devices
+    ./localsend.nix                         # used for file sharing with other PC/mobile devices
     ./teamviewer.nix
+    ./rofi.nix                              # app launcher
   ];
 
   module = {
@@ -140,6 +141,7 @@
       teamviewer.enable = (vars.modules.home-manager.packages.teamviewer.enable or false);
       peco.enable = (vars.modules.home-manager.packages.peco.enable or false);
       albert.enable = (vars.modules.home-manager.packages.albert.enable or false);
+      rofi.enable = (vars.modules.home-manager.packages.rofi.enable or false);
     };
     shell = {
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);

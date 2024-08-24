@@ -157,6 +157,7 @@ rec {
         localsend.enable = modules.programs.localsend.enable;
         teamviewer.enable = modules.programs.teamviewer.enable;
         albert.enable = false;
+        rofi.enable = false;
       };
       scripts = {
         yeelight.enable = true;
