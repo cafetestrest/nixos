@@ -111,6 +111,7 @@
     ./localsend.nix                         # used for file sharing with other PC/mobile devices
     ./teamviewer.nix
     ./rofi.nix                              # app launcher
+    ./swaync.nix                            # sway notification center
   ];
 
   module = {
@@ -142,6 +143,7 @@
       peco.enable = (vars.modules.home-manager.packages.peco.enable or false);
       albert.enable = (vars.modules.home-manager.packages.albert.enable or false);
       rofi.enable = (vars.modules.home-manager.packages.rofi.enable or false);
+      swaync.enable = (vars.modules.home-manager.packages.swaync.enable or false);
     };
     shell = {
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);

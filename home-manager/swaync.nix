@@ -1,20 +1,30 @@
 { config, lib, pkgs, ... }:
 
+with lib;
+
+let
+  cfg = config.module.packages.swaync;
+in
 {
-  # TODO
-  home.packages = with pkgs; [
-    swaynotificationcenter     #notifications
-  ];
+  options = {
+    module.packages.swaync.enable = mkEnableOption "Enables swaync";
+  };
 
-  home.file = {
-    #swaync config
-    ".config/swaync/config.json" = {
-      source = ../config/swaync/config.json;
-    };
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      swaynotificationcenter     #notifications
+    ];
 
-    #swaync style
-    ".config/swaync/style.css" = {
-      source = ../config/swaync/style.css;
+    home.file = {
+      #swaync config
+      ".config/swaync/config.json" = {
+        source = ../config/swaync/config.json;
+      };
+
+      #swaync style
+      ".config/swaync/style.css" = {
+        source = ../config/swaync/style.css;
+      };
     };
   };
 }

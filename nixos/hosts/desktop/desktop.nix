@@ -158,6 +158,7 @@ rec {
         teamviewer.enable = modules.programs.teamviewer.enable;
         albert.enable = false;
         rofi.enable = false;
+        swaync.enable = false;
       };
       scripts = {
         yeelight.enable = true;
