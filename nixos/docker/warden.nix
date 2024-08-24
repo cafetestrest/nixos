@@ -26,8 +26,8 @@ in
           cp version $out/
 
           mkdir -p $out/environments/magento2/.warden
-          cp -r ${./warden/warden}/* $out/environments/magento2/.warden
-        '';#TODO mvoe warden folder
+          cp -r ${../../config/docker/warden/warden}/* $out/environments/magento2/.warden
+        '';
 
         src = fetchFromGitHub {
           owner = "wardenenv";
@@ -37,9 +37,9 @@ in
         };
 
         patches = [
-          ./patch/warden-svc-up-detach.patch#TODO move them
-          ./patch/warden-env-init.patch
-          ./patch/env-init-file.patch
+          ../../config/docker/warden/patch/warden-svc-up-detach.patch
+          ../../config/docker/warden/patch/warden-env-init.patch
+          ../../config/docker/warden/patch/env-init-file.patch
         ];
       };
     in
