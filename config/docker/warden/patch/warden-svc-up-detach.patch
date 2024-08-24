@@ -1,7 +1,8 @@
 diff --git a/commands/svc.cmd b/commands/svc.cmd
---- a/commands/svc.cmd	(revision a9ebf257e2257fb835bee33ace53506c8a3369d4)
-+++ b/commands/svc.cmd	(date 1719753814257)
-@@ -59,7 +59,9 @@
+index 1b94d49..e824569 100644
+--- a/commands/svc.cmd
++++ b/commands/svc.cmd
+@@ -62,7 +62,9 @@ if [[ "${WARDEN_PARAMS[0]}" == "up" ]]; then
  
      ## copy configuration files into location where they'll be mounted into containers from
      mkdir -p "${WARDEN_HOME_DIR}/etc/traefik"

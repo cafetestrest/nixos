@@ -1,7 +1,8 @@
 diff --git a/commands/env-init.cmd b/commands/env-init.cmd
---- a/commands/env-init.cmd	(revision a9ebf257e2257fb835bee33ace53506c8a3369d4)
-+++ b/commands/env-init.cmd	(date 1719753804963)
-@@ -52,6 +52,44 @@
+index fed889e..6e217e8 100644
+--- a/commands/env-init.cmd
++++ b/commands/env-init.cmd
+@@ -52,6 +52,44 @@ if [[ ! -z $ENV_INIT_FILE ]]; then
    envsubst '$WARDEN_ENV_NAME:$GENERATED_APP_KEY' < "${ENV_INIT_FILE}" >> "${WARDEN_ENV_PATH}/.env"
  fi
  
