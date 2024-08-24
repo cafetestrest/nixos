@@ -155,6 +155,7 @@ rec {
         copyq.enable = modules.programs.copyq.enable;
         localsend.enable = modules.programs.localsend.enable;
         teamviewer.enable = modules.programs.teamviewer.enable;
+        albert.enable = false;
       };
       scripts = {
         yeelight.enable = true;
@@ -235,7 +236,7 @@ rec {
         packages.enable = modules.desktop-environment.gnome.enable;
         autostart = {
           copyq.enable = false;
-          albert.enable = false;
+          albert.enable = modules.home-manager.packages.albert.enable;
           xpad.enable = false;
         };
         extension = {

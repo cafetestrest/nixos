@@ -83,6 +83,7 @@
     ./micro.nix                         # terminal text editor
     ./copyq.nix                         # config for copyq
     ./peco.nix                          # better reverse search
+    ./albert.nix                        # linux launcher
     ./shell/docker/shells.nix           # docker aliases for fish/bash
     ./shell/warden/shells.nix           # warden aliases for fish/bash
     ./scripts/yeelight.nix              # smart lights
@@ -137,6 +138,7 @@
       localsend.enable = (vars.modules.home-manager.packages.localsend.enable or false);
       teamviewer.enable = (vars.modules.home-manager.packages.teamviewer.enable or false);
       peco.enable = (vars.modules.home-manager.packages.peco.enable or false);
+      albert.enable = (vars.modules.home-manager.packages.albert.enable or false);
     };
     shell = {
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);

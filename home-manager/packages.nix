@@ -20,7 +20,6 @@ in
       # firefox             #firefox browser
       # libsForQt5.qt5ct
       #wl-clipboard
-      # albert              #keybinding for albert toggle to get programs search
       # qbittorrent         #torrent application
       # librewolf           #firefox browser
       # unstable.zed-editor
