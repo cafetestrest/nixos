@@ -70,20 +70,20 @@ in
       "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
     };
 
-    # home = {
+    home = {
     #   sessionVariables = {
     #       XCURSOR_THEME = "${vars.gtk.cursorTheme}";
     #       XCURSOR_SIZE = vars.gtk.cursorSize;
     #       GTK_THEME = "${vars.gtk.gtkTheme}";
     #   };
 
-    #   pointerCursor = {
-    #       size = vars.gtk.cursorSize;
-    #       gtk.enable = true;
-    #       # x11.enable = true;
-    #       package = cursorPackageCfg;
-    #       name = "${vars.gtk.cursorTheme}";
-    #   };
-    # };
+      pointerCursor = {
+          size = vars.gtk.cursorSize;
+          gtk.enable = true;
+          # x11.enable = true;
+          package = cursorPackageCfg;
+          name = "${vars.gtk.cursorTheme}";
+      };
+    };
   };
 }
