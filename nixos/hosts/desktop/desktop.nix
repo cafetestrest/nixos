@@ -101,6 +101,7 @@ rec {
     };
     bar = {
       ags.enable = true;
+      waybar.enable = false;
     };
     services = {
       udev = {

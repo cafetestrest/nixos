@@ -17,6 +17,7 @@
     ./xdg/xdg.nix                         # xdg
     ./hypr/hyprland.nix
     ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
+    ./waybar.nix                          # top bar - wayland
     ./gtklock.nix                         # GTK lock screen
     ./swaylock.nix                        # Sway lock screen
     ./hypr/hyprlock.nix                   # Hypr lock screen
@@ -178,6 +179,7 @@
     };
     bar = {
       ags.enable = (vars.modules.home-manager.bar.ags.enable or false);
+      waybar.enable = (vars.modules.home-manager.bar.waybar.enable or false);
     };
     screen-locker = {
       swaylock.enable = (vars.modules.home-manager.screen-locker.swaylock.enable or false);
