@@ -109,6 +109,7 @@ rec {
         headsetcontrol.enable = true;
       };
       i2c.enable = true;
+      numlock-on-tty.enable = true;
     };
     security = {
       doas.enable = false;

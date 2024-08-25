@@ -44,6 +44,7 @@
     ./i2c.nix                                       # for ddcutil (monitor control)
     ./doas.nix                                      # replace sudo with doas
     ./extraHosts.nix                                # extra host entries for the /etc/hosts file
+    ./numlock-on-tty.nix                            # enables numlock on TTY
   ];
 
   module = {
@@ -123,6 +124,7 @@
         headsetcontrol.enable = (vars.modules.services.udev.headsetcontrol.enable or false);
       };
       i2c.enable = (vars.modules.services.i2c.enable or false);
+      numlock-on-tty.enable = (vars.modules.services.numlock-on-tty.enable or false);
     };
     programs = {
       devenv.enable = (vars.modules.programs.devenv.enable or false);
