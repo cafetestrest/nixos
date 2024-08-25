@@ -13,6 +13,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
+      package = pkgs.master.kitty;  # TODO move to unstable
     };
 
     xdg.configFile."kitty/kitty.conf" = {
