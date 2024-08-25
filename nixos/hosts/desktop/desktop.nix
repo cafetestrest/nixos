@@ -107,6 +107,7 @@ rec {
       };
       i2c.enable = true;
       numlock-on-tty.enable = false;
+      nix-diff.enable = true;
     };
     security = {
       doas.enable = false;
