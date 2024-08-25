@@ -45,8 +45,8 @@
       config.allowUnfree = true;
     };
 
-    desktop = import ./nixos/hosts/desktop/desktop.nix { inherit pkgs; };
-    vm = import ./nixos/hosts/vm/vm.nix { inherit desktop; };
+    desktop = import ./nixos/hosts/desktop/desktop-modules.nix { inherit pkgs; };
+    vm = import ./nixos/hosts/vm/vm-modules.nix { inherit desktop; };
   in
   {
     nixosConfigurations = {
