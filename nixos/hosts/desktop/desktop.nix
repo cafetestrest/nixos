@@ -59,9 +59,9 @@ rec {
       virt-manager.enable = false;
       spice-virt-manager.enable = false;
       docker = {
-        enable = true;
-        warden.enable = true;
-        xdebug-ports.enable = true;
+        enable = false;
+        warden.enable = false;
+        xdebug-ports.enable = false;
       };
     };
     shell = {
@@ -89,10 +89,7 @@ rec {
       };
     };
     screen-locker = {
-      hyprlock = {
-        enable = true;
-        service = modules.screen-locker.hyprlock.enable;
-      };
+      hyprlock.enable = true;
       swaylock.enable = false;
       gtklock.enable = false;
     };
@@ -109,7 +106,7 @@ rec {
         headsetcontrol.enable = true;
       };
       i2c.enable = true;
-      numlock-on-tty.enable = true;
+      numlock-on-tty.enable = false;
     };
     security = {
       doas.enable = false;
@@ -176,7 +173,7 @@ rec {
         idle.enable = true;
         powermenu.enable = true;
         wakefromsleep.enable = true;
-        ngrokwarden.enable = true;
+        ngrokwarden.enable = modules.virtualisation.docker.warden.enable;
         headset.enable = true;
         monitor.enable = true;
         resetbluetoothags.enable = true;
@@ -205,7 +202,7 @@ rec {
       xdg = {
         enable = true;
         defaultapps = {
-          hosts.desktop.enable = true; # for user PC
+          hosts.desktop.enable = true; # for user desktop
         };
       };
       hypr = {
