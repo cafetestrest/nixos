@@ -32,6 +32,10 @@ in
     #   NIXOS_OZONE_WL = "1";
     # };
 
+    # hardware.opengl = {
+    #   package = pkgs-unstable-hyprland.mesa.drivers;  # Hotfix for following unstable branch
+    # };
+
     services = {
       # gvfs.enable = cfgServices.enable; #allows applications to access various types of file systems (local, remote, etc.)
       # devmon.enable = cfgServices.enable; #(Device Monitor) automates the mounting and unmounting of removable devices like USB drives
