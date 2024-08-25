@@ -5,12 +5,12 @@ with lib;
 let
   cfg = config.module.overlay.pkgs;
 
-  overlay-old = final: prev: {
-    old = import inputs.nixpkgs-old {
-      system = "${prev.system}";
-      config.allowUnfree = true;
-    };
-  };
+  # overlay-old = final: prev: {
+  #   old = import inputs.nixpkgs-old {
+  #     system = "${prev.system}";
+  #     config.allowUnfree = true;
+  #   };
+  # };
 
   overlay-stable = final: prev: {
     stable = import inputs.nixpkgs-stable {
@@ -26,15 +26,19 @@ let
     };
   };
 
-  overlay-nur = final: prev: {
-    nur = import inputs.nur {
-      nurpkgs = prev;
-      pkgs = prev;
-      # repoOverrides = {
-      #   test = test-nur.packages.${prev.system};
-      # };
+  overlay-master = final: prev: {
+    master = import inputs.nixpkgs-master {
+      system = "${prev.system}";
+      config.allowUnfree = true;
     };
   };
+
+  # overlay-nur = final: prev: {
+  #   nur = import inputs.nur {
+  #     nurpkgs = prev;
+  #     pkgs = prev;
+  #   };
+  # };
 in
 {
   options = {
@@ -43,10 +47,11 @@ in
 
   config = mkIf cfg.enable {
     nixpkgs.overlays = [
-      overlay-old
+      # overlay-old
       overlay-stable
       overlay-unstable
-      overlay-nur
+      overlay-master
+      # overlay-nur
     ];
   };
 }

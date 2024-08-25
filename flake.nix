@@ -6,8 +6,9 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-old.url = "github:nixos/nixpkgs/nixos-22.05";
-    nur.url = "github:nix-community/NUR";
+    # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    # nur.url = "github:nix-community/NUR";
     ags.url = "github:Aylur/ags";
 
     rooter = {
@@ -15,10 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # };
 
     hyprland = {
       type = "git";
@@ -35,7 +36,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-old, nixpkgs-stable, nixpkgs-unstable, nur, home-manager, nixos-cosmic, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-stable, nixpkgs-unstable, nixpkgs-master, home-manager, ... }@inputs:
   let
     system = "x86_64-linux";
 
