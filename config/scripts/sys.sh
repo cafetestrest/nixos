@@ -1,4 +1,4 @@
-FLAKE_LOCATION=$HOME/nixos/
+# FLAKE_LOCATION=$HOME/nixos/
 
 function get_flake_location() {
     HAS_PATH_ARGUMENT=""

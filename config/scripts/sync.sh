@@ -50,7 +50,7 @@ _EOF
 }
 
 PROGRAM=sync
-FLAKE_LOCATION=$HOME/nixos
+# FLAKE_LOCATION=$HOME/nixos
 
 if [[ $# -eq 0 ]] ; then
     cmd_usage "$@"

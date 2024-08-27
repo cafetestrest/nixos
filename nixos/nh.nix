@@ -22,5 +22,5 @@ in
   #     upgrade = "reb --update";
   #     garbage = "nh clean all";
   #   };
-  # };
+  };
 }

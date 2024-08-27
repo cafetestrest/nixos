@@ -60,8 +60,8 @@ in
     };
 
     programs.bash.bashrcExtra = lib.mkIf (cfgBash.enable && cfgBashrc.enable) ''
-      if [[ $(whoami) == "${vars.user}" && -d "$HOME/nixos" ]]; then
-        cd "$HOME/nixos"
+      if [[ $(whoami) == "${vars.user}" && -d "${vars.flakeLocation}" ]]; then
+        cd "${vars.flakeLocation}"
         fastfetch
       fi
     '';
@@ -70,8 +70,8 @@ in
       fish_greeting = {
         body = ''
           if [ (whoami) = "${vars.user}" ]
-            if [ -d $HOME/nixos ]
-              cd $HOME/nixos
+            if [ -d "${vars.flakeLocation}" ]
+              cd "${vars.flakeLocation}"
             end
             fastfetch
           end
