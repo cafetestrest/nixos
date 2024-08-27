@@ -14,8 +14,7 @@ function open_startup_apps() {
     flags="$HOME/nixos/"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program $flags"
-    	sleep_time
-        sleep_time
+        sleep 0.6
     fi
 
     program="brave"
