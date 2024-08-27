@@ -15,5 +15,12 @@ in
       enable = true;
       flake = "${vars.flakeLocation}";
     };
-  };
+
+  #   home.shellAliases = {
+  #     reb = "nh os switch --hostname ${vars.user}";
+  #     r = "reb";
+  #     upgrade = "reb --update";
+  #     garbage = "nh clean all";
+  #   };
+  # };
 }

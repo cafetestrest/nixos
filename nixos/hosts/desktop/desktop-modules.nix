@@ -56,7 +56,7 @@ rec {
       opengl.enable = modules.hardware.amd-gpu.enable;
     };
     virtualisation = {
-      enable = true;
+      enable = false;
       virt-manager.enable = false;
       spice-virt-manager.enable = false;
       docker = {
@@ -121,8 +121,8 @@ rec {
       };
       teamviewer.enable = false;
       copyq.enable = true;
-      ydotool.enable = true;
-      nh.enable = true;
+      ydotool.enable = modules.programs.copyq.enable;
+      nh.enable = false;
       extraHosts = ''
         127.0.0.1 ::1 magento2.rooter.test
         127.0.0.1 ::1 test.rooter.test
