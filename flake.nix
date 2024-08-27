@@ -73,7 +73,7 @@
         specialArgs = let vars = vm; in { inherit inputs vars; };
         modules = [
           ./nixos/nixosModules.nix
-          /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#vm --impure
+          /etc/nixos/hardware-configuration.nix                 # Impure, run: sudo nixos-rebuild switch --flake .#$USER --impure
           # /etc/nixos/configuration.nix
 
           home-manager.nixosModules.home-manager {
