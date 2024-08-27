@@ -2,6 +2,7 @@
 
 rec {
   user = "bajic";
+  flakeLocation = "/home/${user}/nixos";
   networkingHostName = "nixos";
   timezone = "Europe/Belgrade";
   defaultLocale = "en_GB.UTF-8";
@@ -121,6 +122,7 @@ rec {
       teamviewer.enable = false;
       copyq.enable = true;
       ydotool.enable = true;
+      nh.enable = true;
       extraHosts = ''
         127.0.0.1 ::1 magento2.rooter.test
         127.0.0.1 ::1 test.rooter.test

@@ -1,7 +1,8 @@
 { desktop }:
 
-{
+rec {
   user = "test";
+  flakeLocation = "/home/${user}/nixos";
   networkingHostName = "nixos";
   timezone = "America/New_York";
   defaultLocale = "en_GB.UTF-8";

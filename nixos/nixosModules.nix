@@ -46,6 +46,7 @@
     ./extraHosts.nix                                # extra host entries for the /etc/hosts file
     ./numlock-on-tty.nix                            # enables numlock on TTY
     ./nix-diff.nix                                  # enables nix-diff on rebuild
+    ./nh.nix                                        # nh os rebuild command
   ];
 
   module = {
@@ -138,6 +139,7 @@
       copyq.enable = (vars.modules.programs.copyq.enable or false);
       ydotool.enable = (vars.modules.programs.ydotool.enable or false);
       extraHosts = (vars.modules.programs.extraHosts or "");
+      nh.enable = (vars.modules.programs.nh.enable or false);
     };
   };
 }
