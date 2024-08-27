@@ -17,8 +17,6 @@ in
       enable = true;
       enableCompletion = true;
       bashrcExtra = ''
-        export FLAKE_LOCATION="${vars.flakeLocation}"
-
         # history
         HISTCONTROL=ignoredups # no duplicate lines in history
         HISTSIZE=200000
