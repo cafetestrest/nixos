@@ -92,7 +92,7 @@ window#quicksettings .window-content {
     }
 
     .mixer-item {
-        scale { @include slider($width: 7px); }
+        // scale { @include slider($width: 7px); }
         image { font-size: 1.2em; }
     }
 
@@ -253,6 +253,28 @@ window#quicksettings .window-content {
         button, .icon {
             @include button($flat: false);
             padding: $spacing;
+        }
+
+        // mixer-item after volume slider, shows Playback percentage
+        .volume-level {
+            min-width: $spacing * 3;
+        }
+
+        // mixer-item usually says Playback
+        // .volume-description {
+        // }
+        // .app-mixer-icon {
+        // }
+
+        .app-mixer-label {
+            padding-left: $spacing;
+        }
+
+        // make mixer item a bit smaller than volume slider
+        .mixer-item .volumeslider {
+            trough {
+                min-height: $sliderVolumeMinHeight * 7 / 8;
+            }
         }
 
         .volumeslider {

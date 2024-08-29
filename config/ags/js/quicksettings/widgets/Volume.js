@@ -75,33 +75,45 @@ const MixerItem = stream => Widget.Box({
     hexpand: true,
     class_name: 'mixer-item horizontal',
     children: [
-        Widget.Icon({
-            tooltip_text: stream.bind('name').transform(n => n || ''),
-            icon: stream.bind('name').transform(n => {
-                return Utils.lookUpIcon(n || '')
-                    ? (n || '')
-                    : icons.mpris.fallback;
-            }),
-        }),
         Widget.Box({
             vertical: true,
             children: [
                 Widget.Label({
                     xalign: 0,
+                    class_name: 'volume-description',
                     truncate: 'end',
                     label: stream.bind('description').transform(d => d || ''),
                 }),
-                Widget.Slider({
-                    hexpand: true,
-                    draw_value: false,
-                    value: stream.bind('volume'),
-                    on_change: ({ value }) => stream.volume = value,
+                Widget.Box({
+                    children: [
+                        Widget.Icon({
+                            tooltip_text: stream.bind('name').transform(n => n || ''),
+                            icon: stream.bind('name').transform(n => {
+                                return Utils.lookUpIcon(n || '')
+                                    ? (n || '')
+                                    : icons.mpris.fallback;
+                            }),
+                        }),
+                        Widget.Box({
+                            vertical: true,
+                            children: [
+                                Widget.Slider({
+                                    class_name: 'volumeslider',
+                                    hexpand: true,
+                                    draw_value: false,
+                                    value: stream.bind('volume'),
+                                    on_change: ({ value }) => stream.volume = value,
+                                }),
+                            ],
+                        }),
+                        Widget.Label({
+                            xalign: 1,
+                            class_name: 'volume-level',
+                            label: stream.bind('volume').transform(v => `${Math.floor(v * 100)}`),
+                        }),
+                    ],
                 }),
             ],
-        }),
-        Widget.Label({
-            xalign: 1,
-            label: stream.bind('volume').transform(v => `${Math.floor(v * 100)}`),
         }),
     ],
 });
@@ -141,8 +153,14 @@ const SettingsButton = () => Widget.Button({
 
 export const AppMixer = () => Menu({
     name: 'app-mixer',
-    icon: FontIcon(icons.audio.mixer),
-    title: Widget.Label('App Mixer'),
+    icon: FontIcon({
+        class_name: 'app-mixer-icon',
+        icon: icons.audio.mixer,
+    }),
+    title: Widget.Label({
+        class_name: 'app-mixer-label',
+        label: 'App Mixer',
+    }),
     content: [
         Widget.Box({
             class_name: 'app-mixer',

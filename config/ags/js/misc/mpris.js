@@ -67,8 +67,11 @@ export const PlayerIcon = (player, { symbolic = true, ...props } = {}) => Widget
             selectedIcon = '';
         }
 
-        //check if media is paused, update the icon is it is
-        if (player && player.playBackStatus === 'Paused') {
+        // check if this is being rendered on quicksettings and if there is no icon -> don't render the icon
+        if (selectedIcon !== name && self.hpack === 'end' && self.hexpand === true) {
+            selectedIcon = '';
+        } else if (player && player.playBackStatus === 'Paused') {
+            //check if media is paused, update the icon is it is
             selectedIcon = icons.mpris.play;
         }
 
@@ -199,13 +202,13 @@ export const LoopButton = player => PlayerButton({
 export const PlayPauseButton = player => PlayerButton({
     player,
     children: {
-        'Playing': Widget.Label({
+        'Playing': Widget.Icon({
             class_name: 'playing',
-            label: icons.mpris.playing,
+            icon: icons.mpris.pause,
         }),
-        'Paused': Widget.Label({
+        'Paused': Widget.Icon({
             class_name: 'paused',
-            label: icons.mpris.paused,
+            icon: icons.mpris.play,
         }),
         'Stopped': Widget.Label({
             class_name: 'stopped',

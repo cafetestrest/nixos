@@ -10,8 +10,8 @@ const Footer = player => Widget.CenterBox({
         class_name: 'position',
         children: [
             mpris.PositionLabel(player),
-            mpris.Slash(player),
-            mpris.LengthLabel(player),
+            // mpris.Slash(player),
+            // mpris.LengthLabel(player),
         ],
     }),
     center_widget: Widget.Box({
@@ -24,10 +24,16 @@ const Footer = player => Widget.CenterBox({
             mpris.LoopButton(player),
         ],
     }),
-    end_widget: mpris.PlayerIcon(player, {
-        symbolic: false,
-        hexpand: true,
-        hpack: 'end',
+    end_widget: Widget.Box({
+        class_name: 'end-position',
+        children: [
+            mpris.PlayerIcon(player, {
+                symbolic: false,
+                hexpand: true,
+                hpack: 'end',
+            }),
+            mpris.LengthLabel(player),
+        ],
     }),
 });
 
