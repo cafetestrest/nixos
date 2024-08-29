@@ -64,6 +64,11 @@
         @include slider($width: .4em, $slider: false, $gradient: linear-gradient($shader-fg, $shader-fg), $radii: 0);
         margin-bottom: $padding/2;
 
+        // disabled that blue 1px border around volume slider
+        trough:focus{
+            box-shadow: none;
+        }
+
         trough {
             highlight,
             progress {
