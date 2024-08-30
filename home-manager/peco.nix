@@ -23,7 +23,7 @@ in
       # Function to search through history and run the selected command
       peco_select_history() {
           # Get the selected command from history
-          local selected_command=$(history | cut -c 8- | ${pkgs.peco}/bin/peco --query "$READLINE_LINE")
+          local selected_command=$(history | tac | cut -c 8- | ${pkgs.peco}/bin/peco --query "$READLINE_LINE")
 
           # If a command was selected, insert it into the current line
           if [ -n "$selected_command" ]; then
