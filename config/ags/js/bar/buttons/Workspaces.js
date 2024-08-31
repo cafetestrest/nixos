@@ -13,7 +13,6 @@ const Workspaces = () => {
         children: range(ws || 20).map(i => Widget.Button({
             attribute: i,
             on_clicked: () => dispatch(i),
-            on_secondary_click: () => Utils.execAsync(['bash', '-c', "openstartupapps"]).catch(print),
             child: Widget.Label({
                 label: `${i}`,
                 class_name: 'indicator',
@@ -39,6 +38,7 @@ export default () => Widget.EventBox({
     child: Widget.Box({
         // its nested like this to keep it consistent with other PanelButton widgets
         child: Widget.EventBox({
+            on_secondary_click: () => Utils.execAsync(['bash', '-c', "openstartupapps"]).catch(print),
             on_scroll_up: () => dispatch('m+1'),
             on_scroll_down: () => dispatch('m-1'),
             class_name: 'eventbox',
