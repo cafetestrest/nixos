@@ -64,7 +64,7 @@ const Start = () => Widget.Box({
     class_name: 'start',
     children: [
         OverviewButton(),
-        SeparatorDot(),
+        // SeparatorDot(),
         Workspaces(),
         SeparatorDot(),
         Taskbar(),

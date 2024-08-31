@@ -97,7 +97,10 @@ $bar-spacing: 0px;
     }
 
     .overview {
-        label { color: transparentize($accent, 0.2); }
+        label {
+            color: transparentize($accent, 0.2);
+            padding-right: 0.5rem;  // make the button look centered when focused
+        }
         &:hover label { color: $accent; }
         &:active label, &.active label { color: $accent-fg; }
     }
