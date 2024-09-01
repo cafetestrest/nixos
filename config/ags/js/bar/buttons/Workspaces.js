@@ -10,7 +10,7 @@ const dispatch = arg => Utils.execAsync(`hyprctl dispatch workspace ${arg}`);
 const Workspaces = () => {
     const ws = options.workspaces.value;
     return Widget.Box({
-        children: range(ws || 20).map(i => Widget.Button({
+        children: range(ws || 10).map(i => Widget.Button({
             attribute: i,
             on_clicked: () => dispatch(i),
             child: Widget.Label({
@@ -26,7 +26,7 @@ const Workspaces = () => {
         setup: box => {
             if (ws === 0) {
                 box.hook(Hyprland.active.workspace, () => box.children.map(btn => {
-                    btn.visible = Hyprland.workspaces.some(ws => ws.id === btn.attribute);
+                    btn.visible = Hyprland.workspaces.some(ws => ws.id >= btn.attribute);
                 }));
             }
         },
@@ -38,6 +38,7 @@ export default () => Widget.EventBox({
     child: Widget.Box({
         // its nested like this to keep it consistent with other PanelButton widgets
         child: Widget.EventBox({
+            on_clicked: () => dispatch(i),
             on_secondary_click: () => Utils.execAsync(['bash', '-c', "openstartupapps"]).catch(print),
             on_scroll_up: () => dispatch('m+1'),
             on_scroll_down: () => dispatch('m-1'),
