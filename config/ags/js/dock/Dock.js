@@ -4,7 +4,8 @@ import Applications from 'resource:///com/github/Aylur/ags/service/applications.
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import icons from '../icons.js';
 import options from '../options.js';
-import { launchApp, range } from '../utils.js';
+import { launchApp, range, substitute } from '../utils.js';
+
 
 const focus = ({ address }) => Hyprland.messageAsync(`dispatch focuswindow address:${address}`);
 
@@ -43,9 +44,12 @@ export const Taskbar = () => Widget.Box({
             if (client.class.toLowerCase().includes(appName.toLowerCase()))
                 return null;
         }
+
+        const substitutionsIcons = options.substitutions.icons;
+        const classIcon = substitute(substitutionsIcons, client.class);
+
         for (const app of Applications.list) {
-            if (client.title && app.match(client.title) ||
-                client.class && app.match(client.class)) {
+            if (client.class && (app.match(client.class) || app.icon_name === classIcon)) {
                 return AppButton({
                     icon: app.icon_name || '',
                     tooltip_text: app.name,
