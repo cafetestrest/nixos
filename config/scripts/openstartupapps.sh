@@ -194,12 +194,14 @@ check_apps_running() {
 # }
 
 open_note_file() {
-    if pgrep code >/dev/null; then
-        code "$HOME/Documents/note.md"
-    fi
+    if [ -f "$HOME/Documents/note.md" ]; then
+        if pgrep code >/dev/null; then
+            code "$HOME/Documents/note.md"
+        fi
 
-    if pgrep codium >/dev/null; then
-        codium "$HOME/Documents/note.md"
+        if pgrep codium >/dev/null; then
+            codium "$HOME/Documents/note.md"
+        fi
     fi
 }
 

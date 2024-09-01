@@ -10,7 +10,10 @@ mount /dev/disk/by-label/nixos /mnt
 nix-shell -p git
 git clone https://github.com/cafetestrest/nixos.git /mnt/etc/nixos
 ```
-3. Change the variables inside flake.nix file.
+3. update your username and other variables under:
+```bash
+nano nixos/hosts/desktop/desktop-modules.nix
+```
 
 4. Run the following to apply (change host)
 
@@ -27,19 +30,14 @@ git clone https://github.com/cafetestrest/nixos.git
 cd nixos
 ```
 
-2. copy installed hardware configuration to the repo folder locally
+2. update your username and other variables under:
 ```bash
-cp /etc/nixos/hardware-configuration.nix ~/nixos/hosts/desktop/hardware-configuration.nix
+nano nixos/hosts/desktop/desktop-modules.nix
 ```
 
-3. update your username and other variables under flakes.nix, configurations and packages:
+3. install nixos
 ```bash
-nano ~/nixos/flakes.nix
-```
-
-4. install nixos
-```bash
-sudo nixos-rebuild switch --flake .#<host>
+sudo nixos-rebuild boot --flake .#$USER
 reboot
 ```
 
@@ -49,6 +47,7 @@ reboot
 Rotated 180 degrees horizontally and vertically (to get purple to the bottom right)
 Upscaled to 3840x2160
 
+Configuration files:
 
-- To resolve the issue with command not found - pasting sql:
-sudo nix-channel --update
+- openweathermap API keys and location data located at: $HOME/.config/scripts/weather.rc
+- yrweather API keys and location data located at: $HOME/.config/ags/weather_key
