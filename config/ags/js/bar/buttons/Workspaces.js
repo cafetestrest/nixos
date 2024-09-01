@@ -26,7 +26,12 @@ const Workspaces = () => {
         setup: box => {
             if (ws === 0) {
                 box.hook(Hyprland.active.workspace, () => box.children.map(btn => {
-                    btn.visible = Hyprland.workspaces.some(ws => ws.id >= btn.attribute);
+                    btn.visible = Hyprland.workspaces.some(ws => {
+                        if (ws.id < 10)
+                            return ws.id + 1 >= btn.attribute
+
+                        return ws.id >= btn.attribute
+                    });
                 }));
             }
         },
