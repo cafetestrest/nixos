@@ -3,6 +3,7 @@ import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 import options from '../../options.js';
 import { range } from '../../utils.js';
+import App from 'resource:///com/github/Aylur/ags/app.js';
 
 /** @param {any} arg */
 const dispatch = arg => Utils.execAsync(`hyprctl dispatch workspace ${arg}`);
@@ -44,7 +45,7 @@ export default () => Widget.EventBox({
         // its nested like this to keep it consistent with other PanelButton widgets
         child: Widget.EventBox({
             on_clicked: () => dispatch(i),
-            on_secondary_click: () => Utils.execAsync(['bash', '-c', "openstartupapps"]).catch(print),
+            on_secondary_click: () => App.toggleWindow('overview'),
             on_scroll_up: () => dispatch('m+1'),
             on_scroll_down: () => dispatch('m-1'),
             class_name: 'eventbox',
