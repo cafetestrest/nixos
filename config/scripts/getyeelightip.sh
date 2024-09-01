@@ -70,8 +70,8 @@ function run_command() {
   # Executing on ID 6 [192.168.0.25] ...   6 "method":"set_power","params":["off"]
   # 192.168.0.25 not available
   # Executing on ID 7 [192.168.0.26] ...   7 "method":"set_power","params":["off"]
-  # /home/user/.config/scripts/yeelight/yeelight.sh: connect: Connection refused
-  # /home/user/.config/scripts/yeelight/yeelight.sh: line 18: /dev/tcp/192.168.0.26/55443: Connection refused
+  # $HOME/.config/scripts/yeelight/yeelight.sh: connect: Connection refused
+  # $HOME/.config/scripts/yeelight/yeelight.sh: line 18: /dev/tcp/192.168.0.26/55443: Connection refused
   # Executing on ID 8 [192.168.0.27] ...   8 "method":"set_power","params":["off"]
   # 192.168.0.27 not available
   # Executing on ID 9 [192.168.0.28] ...   9 "method":"set_power","params":["off"]
