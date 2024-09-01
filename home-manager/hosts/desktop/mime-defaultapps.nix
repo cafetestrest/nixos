@@ -23,8 +23,8 @@ in
       #  echo $XDG_DATA_DIRS
       # the system-level desktop entries can be list by command:
       #   ls -l /run/current-system/sw/share/applications/
-      # the user-level desktop entries can be list by command(user bajic):
-      #  ls -l /etc/profiles/per-user/bajic/share/applications/
+      # the user-level desktop entries can be list by command(user username):
+      #  ls -l /etc/profiles/per-user/$USER/share/applications/
       mimeApps = {
         enable = true;
         # let `xdg-open` to open the url with the correct application.

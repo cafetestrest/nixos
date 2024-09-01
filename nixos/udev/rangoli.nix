@@ -32,11 +32,11 @@ in
   # sudo apt update && sudo apt upgrade
 
   # 3. download .run: https://github.com/rnayabed/rangoli/releases (try with sudo if normal does not work)
-  #sudo chmod +x rangoli-installer-linux-64.run
+  # sudo chmod +x rangoli-installer-linux-64.run
   # ./rangoli-installer-linux-64.run
 
   # 4. edit out: bin/udev-rule-writer.sh
-  #udev_rule_path = "/home/bajic/Downloads/rangoli/udev"
+  # udev_rule_path = "/home/$USER/Downloads/rangoli/udev"
 
   # 5. launch rangoli with the following command:
   # QT_QPA_PLATFORM=xcb bin/rangoli

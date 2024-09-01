@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, vars, ... }:
 
 with lib;
 
@@ -29,7 +29,7 @@ in
         enabled=true
 
         [org.albert.extension.chromium]
-        bookmarks_path=/home/bajic/.config/chromium/Default/Bookmarks
+        bookmarks_path=/home/${vars.user}/.config/chromium/Default/Bookmarks
         enabled=false
 
         [org.albert.extension.files]
