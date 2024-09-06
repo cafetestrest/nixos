@@ -3,7 +3,7 @@ import Bluetooth from 'resource:///com/github/Aylur/ags/service/bluetooth.js';
 
 // This one is relying on ags Bluetooth service to provice information and is quicker but does not show battery percentage without gnome
 export default () => Widget.Box({
-    class_name: 'bluetooth-indicator panel-button',
+    class_name: 'power-indicator panel-button',
 }).hook(Bluetooth, box => {
     box.children = Bluetooth.connectedDevices
         .map(({ iconName, batteryPercentage }) => Widget.Box({

@@ -293,8 +293,8 @@ $bar-spacing: 0px;
 }
 
 // bt devices connected instead in QS inidcators, added next to systray
-.bluetooth-indicator.panel-button box,
-.bluetooth-indicator.panel-button label {
+.power-indicator.panel-button box,
+.power-indicator.panel-button label {
    padding: 0;
    margin-left:0.4em;
 }

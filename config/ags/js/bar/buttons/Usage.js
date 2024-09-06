@@ -50,3 +50,28 @@ export const UsageDisk = () => Widget.Box({
         UsagePercentageLabel('disk', '', '%'),
     ]
 });
+
+export const UsagePower = () => Widget.Box({
+    class_name: 'power-indicator panel-button',
+    setup: self => self.hook(vars['upower'], () => {
+        const data = vars['upower'].value
+
+        self.get_children().forEach(ch => ch.destroy());
+
+        data.forEach(({ iconName, batteryPercentage }) =>
+            self.add(Widget.Box({
+                class_name: 'btdevice',
+                children: [
+                    Widget.Icon({
+                        class_name: 'btdevice-icon',
+                        icon: iconName,
+                    }),
+                    Widget.Label({
+                        class_name: 'btdevice-label',
+                        label: batteryPercentage !== "" ? batteryPercentage.toString() + "%" : "",
+                    }),
+                ],
+            }))
+        );
+    }),
+});

@@ -22,7 +22,7 @@ import options from '../options.js';
 
 import * as Dock from '../dock/Dock.js';
 import WorkspacesHypr from './buttons/WorkspacesHypr.js';
-import { UsageCPU, UsageDisk, UsageRAM } from './buttons/Usage.js';
+import { UsageCPU, UsageDisk, UsageRAM, UsagePower } from './buttons/Usage.js';
 import Screenshot from './buttons/Screenshot.js';
 import Note from './buttons/Note.js';
 import BluetoothDevice from './buttons/BluetoothDevice.js';
@@ -97,8 +97,9 @@ const End = () => Widget.Box({
         UsageCPU(),
         UsageRAM(),
         UsageDisk(),
+        UsagePower(),
         // BluetoothDevice(),
-        BluetoothDevices(),
+        // BluetoothDevices(),
         // BluetoothDevicesV2(),
         SeparatorDot(),
         SysTray(),
