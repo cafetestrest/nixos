@@ -54,6 +54,30 @@ const Applauncher = () => {
                 return mathOperationRegex.test(text);
             }
 
+            function addTextToList(text, list) {
+                const limit = 37;
+                const maxLength = 111;
+
+                // If text exceeds 111 characters, trim the start and add "..."
+                if (text.length > maxLength) {
+                    text = '...' + text.slice(-maxLength + 3); // Keep last 108 characters, replacing the beginning with "..."
+                }
+
+                const numLines = Math.ceil(text.length / limit);
+
+                // Loop through the text and add each chunk as a row
+                for (let i = 0; i < numLines; i++) {
+                    const start = i * limit;
+                    const end = start + limit;
+                    const rowText = text.slice(start, end);
+
+                    list.add(Widget.Label({
+                        className: 'math-result',
+                        label: rowText + '',
+                    }));
+                }
+            }
+
             let mathResult = null;
 
             if (containsMathOperation(text)) {
@@ -74,10 +98,7 @@ const Applauncher = () => {
             });
 
             if (containsMathOperation(text) && mathResult) {
-                list.add(Widget.Label({
-                    className: 'math-result',
-                    label: text + '',
-                }));
+                addTextToList(text, list)
 
                 list.add(Widget.Label({
                     className: 'math-result',
