@@ -80,6 +80,16 @@ $bar-spacing: 0px;
         }
     }
 
+    .revealer-eventbox {
+        .player-icon {
+            margin-top: $spacing / 5;   // adds spacing so that play/pause button is centered
+        }
+    }
+
+    .media-track-label {
+        padding-right: $spacing;
+    }
+
     .panel-button {
         @include panel-button;
     }

@@ -21,7 +21,9 @@ const Indicator = ({ player, direction = 'right' }) => HoverRevealer({
     on_scroll_down: () => player.previous(),
     on_secondary_click: () => player.playPause(),
     indicator: mpris.PlayerIcon(player),
+    eventBoxClassName: 'panel-button',
     child: Widget.Label({
+        class_name: 'media-track-label',
         vexpand: true,
         truncate: 'end',
         max_width_chars: 40,
