@@ -25,8 +25,10 @@ const Indicator = ({ player, direction = 'right' }) => HoverRevealer({
         vexpand: true,
         truncate: 'end',
         max_width_chars: 40,
-        label: player.bind('track_title').transform(() =>
-            `${player.track_artists.join(', ')}   ${player.track_title}   `),
+        label: Utils.merge([
+            player.bind('track_artists'),
+            player.bind('track_title'),
+        ], (artists, title) => `${artists.join(", ")}   ${title}`),
     }),
     setupRevealer: self => {
         let current = '';
