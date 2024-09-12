@@ -146,6 +146,7 @@ export const Slash = player => Widget.Label({
  * @param {any} o.cantValue
  */
 const PlayerButton = ({ player, children, onClick, prop, canProp, cantValue }) => Widget.Button({
+    class_name: 'panel-button',
     child: Widget.Stack({ children }).bind('shown', player, prop, p => {
         if (p) {
             return `${p}`
