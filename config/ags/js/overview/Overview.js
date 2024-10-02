@@ -5,12 +5,13 @@ import options from '../options.js';
 import { range } from '../utils.js';
 
 const ws = options.workspaces;
+let wsTotal = ws.value === 0 ? 10 : ws.value;
 
 const Overview = () => Widget.Box({
     children: [Workspace(0)], // for type infer
     setup: self => Utils.idle(() => {
         self.hook(ws, () => {
-            self.children = range(ws.value).map(Workspace);
+            self.children = range(wsTotal).map(Workspace);
             update(self);
             children(self);
         });
@@ -37,7 +38,7 @@ const update = box => {
 
 /** @param {import('types/widgets/box').default} box */
 const children = box => {
-    if (ws.value === 0) {
+    if (ws.value === wsTotal) {
         box.children = Hyprland.workspaces
             .sort((ws1, ws2) => ws1.id - ws2.id)
             .map(({ id }) => Workspace(id));
