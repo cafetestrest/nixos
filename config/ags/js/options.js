@@ -267,6 +267,9 @@ export default {
     temperature: '/sys/class/thermal/thermal_zone0/temp',
     systemFetchInterval: 5000,
     brightnessctlKBD: 'asus::kbd_backlight',
+    //ls -l /etc/profiles/per-user/$USER/share/applications/ | grep appname
+    //cat .desktop file to reveal its Icon=
+    //hyprctl clients with app open to show its class
     substitutions: {
         icons: [
             ['transmission-gtk', 'transmission'],
@@ -298,6 +301,7 @@ export default {
             ['pavucontrol', 'multimedia-volume-control'],
             ['XTerm', 'xterm-color_48x48'],
             ['remote-viewer', 'virt-viewer'],
+            ['cursor-url-handler', 'cursor'],
         ],
         titles: [
             ['com.github.Aylur.ags', 'AGS'],
