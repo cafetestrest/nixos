@@ -52,6 +52,14 @@ in
             symlink
           }
 
+          function cmd_hyprland() {
+              PROGRAM_LOCATION=$XDG_CONFIG_HOME/hypr/hyprland.conf
+              LOCATION="$XDG_CONFIG_HOME/hypr/hyprland.conf.bak"
+
+              remove "$@"
+            symlink
+          }
+
           function cmd_usage() {
               cat <<-_EOF
           Usage:
@@ -75,6 +83,7 @@ in
           case "$1" in
               ags) shift;                                     cmd_ags "$@" ;;
               kitty) shift;                                   cmd_kitty "$@" ;;
+              hyprland) shift;                                cmd_hyprland "$@" ;;
               help|--help) shift;                             cmd_usage "$@" ;;
               *)  echo "Unknown command $@, syncing ags: " && cmd_ags "$@" ;;
           esac
