@@ -29,7 +29,7 @@ in
         gtk-theme = "${vars.gtk.gtkTheme}";
 
         #fonts
-        font-name = "${vars.gtk.gtkFontName}";
+        font-name = lib.mkDefault "${vars.gtk.gtkFontName}";
         document-font-name = "${vars.gtk.gtkFontName}";
         monospace-font-name = "Source Code Pro 10";
 
@@ -48,7 +48,7 @@ in
       };
 
       "org/gnome/desktop/wm/preferences" = {
-        button-layout = if hyprlandCfg.enable 
+        button-layout = if hyprlandCfg.enable
           then "close,minimize:appmenu"
           else "close,minimize,maximize:appmenu";
         action-double-click-titlebar = "none";
