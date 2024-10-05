@@ -148,7 +148,7 @@ rec {
         kdeconnect.enable = false;
         eza.enable = true;
         bat.enable = true;
-        fd.enable = true;
+        fd.enable = false;
         ripgrep.enable = false;
         kitty.enable = true;
         yazi.enable = true;
