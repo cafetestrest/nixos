@@ -21,7 +21,6 @@ export default ({
     duration = 300,
     setupEventBox,
     setupRevealer,
-    eventBoxClassName = '',
     ...rest
 }) => {
     let open = false;
@@ -39,7 +38,7 @@ export default ({
 
     const eventbox = Widget.EventBox({
         ...rest,
-        class_name: `revealer-eventbox ${eventBoxClassName}`,
+        class_name: `revealer-eventbox`,
         setup: setupEventBox,
         on_hover: () => {
             if (open)

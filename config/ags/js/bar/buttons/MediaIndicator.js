@@ -21,7 +21,6 @@ const Indicator = ({ player, direction = 'right' }) => HoverRevealer({
     on_scroll_down: () => player.previous(),
     on_secondary_click: () => player.playPause(),
     indicator: mpris.PlayerIcon(player),
-    eventBoxClassName: 'panel-button',
     child: Widget.Label({
         class_name: 'media-track-label',
         vexpand: true,
@@ -32,6 +31,17 @@ const Indicator = ({ player, direction = 'right' }) => HoverRevealer({
             player.bind('track_title'),
         ], (artists, title) => `${artists.join(", ")}   ${title}`),
     }),
+    setupEventBox: self => {
+        self.hook(player, () => {
+            if (player.track_title) {
+                if (!self.class_name.includes('button')) {
+                    self.class_name += ' panel-button'
+                }
+            } else {
+                self.class_name = 'revealer-eventbox'
+            }
+        });
+    },
     setupRevealer: self => {
         let current = '';
         self.hook(player, () => {
