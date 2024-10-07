@@ -87,7 +87,7 @@
     ./copyq.nix                             # config for copyq
     ./peco.nix                              # better reverse search
     ./albert.nix                            # linux launcher
-    ./shell/docker/shells.nix               # docker aliases for fish/bash
+    ./shell/docker.nix                      # docker aliases for fish/bash
     ./shell/warden/shells.nix               # warden aliases for fish/bash
     ./scripts/yeelight.nix                  # smart lights
     ./scripts/startup.nix
