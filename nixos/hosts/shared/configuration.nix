@@ -41,7 +41,7 @@ in
       DefaultTimeoutStopSec=10s
     '';
 
-    services.xserver.xkb = {  # Configure keymap in X11 
+    services.xserver.xkb = {  # Configure keymap in X11
       layout = "us";
       variant = "";
       # xkbVariant = {
@@ -50,7 +50,7 @@ in
       # };
     };
 
-    sound.enable = true;  # Enable sound with pipewire.
+    #sound.enable = true;  # Enable sound with pipewire.
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {

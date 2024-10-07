@@ -30,7 +30,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      gnome.eog
+      eog
       shotwell                #photo editor for gnome
       gtkThemePackageCfg
     ];

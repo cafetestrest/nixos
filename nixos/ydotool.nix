@@ -13,11 +13,5 @@ in
 
   config = mkIf (cfg.enable || cfgCopyq.enable) {
     programs.ydotool.enable = true;
-
-    users.users.${vars.user} = {
-      extraGroups = [
-        "ydotool" #TODO remove on 24.11
-      ];
-    };
   };
 }

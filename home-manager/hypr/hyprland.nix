@@ -33,21 +33,21 @@ in
       slurp                               #select a screenshot region
       hyprpicker                          #pipette - color hex picker 
     ] ++ lib.optionals cfgGnomePkgs.enable [
-      gnome.nautilus                      #file manager
+      nautilus                      #file manager
       gnome-text-editor
-      gnome.gnome-calculator
-      # gnome.gnome-font-viewer
-      # gnome.gnome-disk-utility
-      # gnome.gnome-characters              #check all characters, can be copied
-      # gnome.adwaita-icon-theme
-      # gnome.baobab
-      gnome.gnome-calendar
-      # gnome.gnome-boxes
-      # gnome.gnome-system-monitor
-      gnome.gnome-control-center
-      # gnome.gnome-weather
-      gnome.gnome-clocks
-      # gnome.gnome-software # for flatpak
+      gnome-calculator
+      # gnome-font-viewer
+      # gnome-disk-utility
+      # gnome-characters              #check all characters, can be copied
+      # adwaita-icon-theme
+      # baobab
+      gnome-calendar
+      # gnome-boxes
+      # gnome-system-monitor
+      gnome-control-center
+      # gnome-weather
+      gnome-clocks
+      # gnome-software # for flatpak
     ];
 
     wayland.windowManager.hyprland = {
