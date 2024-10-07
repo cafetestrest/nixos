@@ -188,7 +188,12 @@ rec {
         aliases.enable = true;
         fish = {
           enable = true;
-          plugins.enable = modules.home-manager.shell.fish.enable;
+          plugins = {
+            enable = modules.home-manager.shell.fish.enable;
+            autopair.enable = modules.home-manager.shell.fish.plugins.enable;
+            done.enable = modules.home-manager.shell.fish.plugins.enable;
+            tide.enable = modules.home-manager.shell.fish.plugins.enable;
+          };
           omf-commands.enable = false;
         };
         bash = {

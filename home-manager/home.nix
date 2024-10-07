@@ -10,10 +10,12 @@
     ./hosts/desktop/mime-defaultapps.nix  # xdg default apps (mime) - for user PC
     ./hosts/desktop/extensions.nix        # gnome extensions
     ./shell/aliases.nix
-    ./shell/fish.nix
+    ./shell/fish/fish.nix
+    ./shell/fish/plugins/autopair.nix
+    ./shell/fish/plugins/done.nix
+    ./shell/fish/plugins/tide.nix
+    ./shell/fish/omf/commands.nix
     ./shell/bashrc.nix
-    ./shell/omf/commands.nix
-    ./shell/fish-plugins.nix
     ./xdg/xdg.nix                         # xdg
     ./hypr/hyprland.nix
     ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
@@ -149,7 +151,11 @@
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);
       fish = {
         enable = (vars.modules.home-manager.shell.fish.enable or false);
-        plugins.enable = (vars.modules.home-manager.shell.fish.plugins.enable or false);
+        plugins = {
+          autopair.enable = (vars.modules.home-manager.shell.fish.plugins.autopair.enable or false);
+          done.enable = (vars.modules.home-manager.shell.fish.plugins.done.enable or false);
+          tide.enable = (vars.modules.home-manager.shell.fish.plugins.tide.enable or false);
+        };
         omf-commands.enable = (vars.modules.home-manager.shell.fish.omf-commands.enable or false);
       };
       bash = {
