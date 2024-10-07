@@ -2,18 +2,17 @@
   description = "A very basic flake";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    # nur.url = "github:nix-community/NUR";
     ags.url = "github:Aylur/ags";
+    rooter.url = "github:run-as-root/rooter";
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
 
-    rooter = {
-      url = "github:run-as-root/rooter";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    home-manager = {
+      url = github:nix-community/home-manager;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # nixos-cosmic = {
@@ -25,14 +24,6 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-
-    home-manager = {
-      url = github:nix-community/home-manager;
-      # url = github:nix-community/home-manager/release-24.05;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

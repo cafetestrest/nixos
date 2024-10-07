@@ -6,7 +6,7 @@ let
   startup = pkgs.writeShellApplication {
     name = "startup";
     runtimeInputs = with pkgs; [
-      unstable.hypridle
+      hypridle
       wlsunset
     ];
     text = builtins.readFile ../../config/scripts/startup.sh;

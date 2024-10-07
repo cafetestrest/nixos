@@ -5,13 +5,6 @@ with lib;
 let
   cfg = config.module.overlay.pkgs;
 
-  # overlay-old = final: prev: {
-  #   old = import inputs.nixpkgs-old {
-  #     system = "${prev.system}";
-  #     config.allowUnfree = true;
-  #   };
-  # };
-
   overlay-stable = final: prev: {
     stable = import inputs.nixpkgs-stable {
       system = "${prev.system}";
@@ -32,13 +25,6 @@ let
       config.allowUnfree = true;
     };
   };
-
-  # overlay-nur = final: prev: {
-  #   nur = import inputs.nur {
-  #     nurpkgs = prev;
-  #     pkgs = prev;
-  #   };
-  # };
 in
 {
   options = {

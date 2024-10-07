@@ -22,8 +22,9 @@ in
       #wl-clipboard
       # qbittorrent         #torrent application
       # librewolf           #firefox browser
-      # unstable.zed-editor
-      # unstable.gpt4all
+      # zed-editor
+      # gpt4all
+      code-cursor #todo testing if this can replace vscode
     ];
 
     programs = {
