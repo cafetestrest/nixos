@@ -35,6 +35,10 @@ in
       jq = {
         enable = true;
       };
+
+      fzf = {
+        enable = true;
+      };
     };
   };
 }
