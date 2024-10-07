@@ -26,7 +26,7 @@ in
         # }
 
         # {
-        #   name = "theme-default";
+        #   name = "theme-default"; #⋊> ~/nixos on main ◦
         #   src = pkgs.fetchFromGitHub {
         #     owner = "oh-my-fish";
         #     repo = "theme-default";
