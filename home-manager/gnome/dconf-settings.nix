@@ -29,8 +29,8 @@ in
         gtk-theme = "${vars.gtk.gtkTheme}";
 
         #fonts
-        font-name = lib.mkDefault "${vars.gtk.gtkFontName}";
-        document-font-name = "${vars.gtk.gtkFontName}";
+        font-name = lib.mkForce "${vars.gtk.gtkFontName}";
+        document-font-name = lib.mkForce "${vars.gtk.gtkFontName}";
         monospace-font-name = "Source Code Pro 10";
 
         #cursor
