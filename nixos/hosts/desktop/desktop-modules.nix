@@ -188,9 +188,8 @@ rec {
         aliases.enable = true;
         fish = {
           enable = true;
-          omf.enable = true;
-          omf-plugins.enable = modules.home-manager.shell.fish.omf.enable;
-          omf-commands.enable = modules.home-manager.shell.fish.omf.enable;
+          plugins.enable = modules.home-manager.shell.fish.enable;
+          omf-commands.enable = false;
         };
         bash = {
           enable = true;

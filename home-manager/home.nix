@@ -13,7 +13,7 @@
     ./shell/fish.nix
     ./shell/bashrc.nix
     ./shell/omf/commands.nix
-    ./shell/omf/plugins.nix
+    ./shell/fish-plugins.nix
     ./xdg/xdg.nix                         # xdg
     ./hypr/hyprland.nix
     ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
@@ -149,7 +149,7 @@
       aliases.enable = (vars.modules.home-manager.shell.aliases.enable or false);
       fish = {
         enable = (vars.modules.home-manager.shell.fish.enable or false);
-        omf-plugins.enable = (vars.modules.home-manager.shell.fish.omf-plugins.enable or false);
+        plugins.enable = (vars.modules.home-manager.shell.fish.plugins.enable or false);
         omf-commands.enable = (vars.modules.home-manager.shell.fish.omf-commands.enable or false);
       };
       bash = {
