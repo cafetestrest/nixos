@@ -18,6 +18,9 @@ in
 
       shellInit = ''
         set -g tide_character_icon "⋊>"
+        set -g tide_character_color 00AFFF
+        set -g tide_pwd_color_anchors bryellow
+        set -g tide_pwd_color_dirs bryellow
       '';
 
     };
