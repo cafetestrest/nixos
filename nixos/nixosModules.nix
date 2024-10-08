@@ -80,7 +80,9 @@
       virt-manager.enable = (vars.modules.virtualisation.virt-manager.enable or false);
       spice-virt-manager.enable = (vars.modules.virtualisation.spice-virt-manager.enable or false);
       docker = {
-        enable = (vars.modules.virtualisation.docker.enable or false);
+        enable = (vars.modules.virtualisation.docker.enable or false)
+          || (vars.modules.virtualisation.docker.warden.enable or false)
+          || (vars.modules.home-manager.packages.distrobox.enable or false);
         warden.enable = (vars.modules.virtualisation.docker.warden.enable or false);
         xdebug-ports.enable = (vars.modules.virtualisation.docker.xdebug-ports.enable or false);
       };
