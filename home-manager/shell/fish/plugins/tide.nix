@@ -15,6 +15,11 @@ in
       plugins = [
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
       ];
+
+      shellInit = ''
+        set -g tide_character_icon "⋊>"
+      '';
+
     };
 
     home.activation.configure-tide = lib.hm.dag.entryAfter ["writeBoundary"] ''
