@@ -43,7 +43,9 @@ class Colors extends Service {
         if (!color)
             return;
 
-        Utils.execAsync(`copyq write ${color}`);
+            Utils.execAsync(`copyq write "${color}"`)
+            .catch(err => console.error(err));
+
         // this.wlCopy(color);
         const list = this.#colors.value;
         if (!list.includes(color)) {

@@ -18,7 +18,7 @@ export default () => PanelButton({
                 child: Widget.Label(color),
                 css: `background-color: ${color}`,
                 // on_activate: () => Colors.wlCopy(color),
-                on_activate: () => Utils.execAsync(`copyq write ${color}`)
+                on_activate: () => Utils.execAsync(`copyq write "${color}"`).catch(err => console.error(err)),
             })),
         }).popup_at_widget(btn, Gdk.Gravity.SOUTH, Gdk.Gravity.NORTH, null);
     },
