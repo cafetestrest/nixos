@@ -18,6 +18,7 @@ in
       vscode = {
         enable = true;
         enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
         package =
           (pkgs.vscodium.override
             {
@@ -65,7 +66,9 @@ in
         #   }
         # ];
 
-      #   userSettings = {
+        userSettings = {
+            "update.mode" = "none";
+            "update.showReleaseNotes" = false;
       #     "workbench.iconTheme" = "catppuccin-macchiato";
       #     "workbench.colorTheme" = "Mayukai Semantic Mirage";
           
@@ -90,7 +93,7 @@ in
       #     "powermode.shake.enabled" = false;
       #     "powermode.explosions.frequency" = 1;
       #     "powermode.combo.timerEnable" = "hide";
-      #   };
+        };
       };
     };
 
