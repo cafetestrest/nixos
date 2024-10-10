@@ -14,17 +14,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8e0a0c6b-1120-4f42-8a1a-9d790ce7382f";
+    { device = "/dev/disk/by-uuid/ef33ffd9-8334-4418-8172-f5bc4fc42fe2";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/67E3-6294";
-      fsType = "vfat";
-    };
-
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/98c1a945-881c-4997-849d-0fcdaa8ba32b"; }
+    [ { device = "/dev/disk/by-uuid/b226d64d-3c07-4d9b-b804-c515caef2f85"; }
     ];
 
   # fileSystems."/mnt/hdd" =
@@ -42,13 +37,5 @@
   # networking.interfaces.enp8s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-  powerManagement.cpuFreqGovernor = "performance";
-
-  # https://github.dev/Kranzes/nix-config
-  hardware = {
-    enableAllFirmware = true;
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  };
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
