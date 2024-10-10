@@ -36,6 +36,9 @@ start_program() {
 # Start programs in order with a check
 # start_program "xterm" "xterm -e journalctl -xef"
 
+sleep 0.3
+openstartupapps
+
 COMMAND="nightlight a > /dev/null 2>&1"
 start_program "wlsunset"
 
@@ -47,13 +50,7 @@ start_program "ags"
 
 if pgrep "ydotool"; then
     echo "ydotool already running, before initialization"
-else
-    sleep 2
 fi
 
 # env QT_QPA_PLATFORM=wayland copyq --start-server &
 # echo "Copyq started"
-
-sleep 4.5
-
-openstartupapps
