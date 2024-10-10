@@ -6,8 +6,8 @@ let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
   mediaControl = "${pkgs.playerctl}/bin/playerctl";
-  lock = "${pkgs.hyprlock}/bin/hyprlock";
-  idle = "${pkgs.hypridle}/bin/hypridle";
+  lock = "${pkgs.unstable.hyprlock}/bin/hyprlock";
+  idle = "${pkgs.unstable.hypridle}/bin/hypridle";
   pamixer = "${pkgs.pamixer}/bin/pamixer";
 
   cfg = config.module.hypr.hyprland;
@@ -33,20 +33,20 @@ in
       slurp                               #select a screenshot region
       hyprpicker                          #pipette - color hex picker 
     ] ++ lib.optionals cfgGnomePkgs.enable [
-      nautilus                      #file manager
+      gnome.nautilus                      #file manager
       gnome-text-editor
-      gnome-calculator
+      gnome.gnome-calculator
       # gnome-font-viewer
       # gnome-disk-utility
       # gnome-characters              #check all characters, can be copied
       # adwaita-icon-theme
       # baobab
-      gnome-calendar
+      gnome.gnome-calendar
       # gnome-boxes
       # gnome-system-monitor
-      gnome-control-center
+      gnome.gnome-control-center
       # gnome-weather
-      gnome-clocks
+      gnome.gnome-clocks
       # gnome-software # for flatpak
     ];
 

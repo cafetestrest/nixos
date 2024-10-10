@@ -12,11 +12,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    # home.packages = with pkgs; [ hypridle ];
+    # home.packages = with pkgs; [ unstable.hypridle ];
 
     xdg.configFile."hypr/hypridle.conf".text = ''
       general {
-          lock_cmd = pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
+          lock_cmd = pidof hyprlock || ${pkgs.unstable.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
           before_sleep_cmd = loginctl lock-session    # lock before suspend.
           after_sleep_cmd = ${if cfgWake.enable then "hyprctl dispatch dpms on && wakefromsleep" else "hyprctl dispatch dpms on"}
 

@@ -6,8 +6,8 @@ let
   idle = pkgs.writeShellApplication {
     name = "idle";
     runtimeInputs = with pkgs; [
-      hyprlock
-      hypridle
+      unstable.hyprlock
+      unstable.hypridle
       playerctl
       # swayidle
       # swaylock

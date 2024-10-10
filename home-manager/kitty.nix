@@ -13,7 +13,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
-      package = pkgs.kitty;
+      package = pkgs.unstable.kitty;
     };
 
     xdg.configFile."kitty/kitty.conf" = {

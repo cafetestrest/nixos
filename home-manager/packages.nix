@@ -24,7 +24,6 @@ in
       # librewolf           #firefox browser
       # zed-editor
       # gpt4all
-      code-cursor #todo testing if this can replace vscode
     ];
 
     programs = {

@@ -17,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # home.packages = with pkgs; [ hyprlock ];
+    # home.packages = with pkgs; [ unstable.hyprlock ];
 
     xdg.configFile."hypr/hyprlock.conf".text = ''
       general{

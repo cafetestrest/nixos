@@ -20,7 +20,8 @@ in
     nixpkgs = {
       overlays = [
         (self: super: {
-            gnome-shell = super.gnome-shell.overrideAttrs (old: {
+          gnome = super.gnome.overrideScope (selfg: superg: {
+            gnome-shell = superg.gnome-shell.overrideAttrs (old: {
               patches = (old.patches or []) ++ [
                 (let
                   # bg = pkgs.fetchurl {
@@ -29,22 +30,26 @@ in
                   # };
                 in pkgs.writeText "bg.patch" ''
 diff --git a/data/theme/gnome-shell-sass/widgets/_login-lock.scss b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
-index 909fa6238..d2427ef93 100644
+index 909fa62..d0a8d0e 100644
 --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
 +++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
-@@ -206,7 +206,7 @@ $_gdm_dialog_width: 25em;
+@@ -206,7 +206,10 @@ $_gdm_dialog_width: 25em;
  }
- 
+
  #lockDialogGroup {
 -  background-color: $_gdm_bg;
 +  background: url(${cfgBackgroundImagePath});
++  // background-repeat: repeat-x;
++  // background-size: auto;
++  // background-position: 0 0;
  }
- 
+
  // Clock
 
                 '')
               ];
             });
+          });
         })
       ];
     };
