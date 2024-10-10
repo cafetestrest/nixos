@@ -77,7 +77,7 @@ rec {
       };
       plasma6.enable = false;
       gnome = {
-        enable = false;
+        enable = true;
         auto-login.enable = false;
       };
       cosmic.enable = false;
