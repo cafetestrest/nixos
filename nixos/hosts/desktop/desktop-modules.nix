@@ -10,7 +10,7 @@ rec {
   initialPassword = "$y$j9T$8zHiYDS6ygvXsdcgXn2pg1$6BkJP/RL33k.q5vUPfXyT0DelCZEt8RbUAcDysQ22A3";
   nixExtraOptions = "experimental-features = nix-command flakes";
   efiSysMountPoint = "/boot/efi";
-  grubDevice = "/dev/vda";  # vm device location
+  grubDevice = "/dev/nvme0n1";
   configurationLimit = 20;
   gtk = {
     cursorSize = 24;
@@ -39,8 +39,8 @@ rec {
       waybar.enable = false;
     };
     bootloader = {
-      grub.enable = false;
-      systemd-boot.enable = true;
+      grub.enable = true;
+      systemd-boot.enable = false;
     };
     drive = {
       ssd.enable = true;
