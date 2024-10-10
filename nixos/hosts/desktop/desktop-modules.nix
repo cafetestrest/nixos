@@ -248,7 +248,8 @@ rec {
           xpad.enable = false;
         };
         extension = {
-          hosts.desktop.enable = modules.desktop-environment.gnome.enable;
+          enable = true;
+          hosts.desktop.enable = modules.desktop-environment.gnome.enable;  # enables extensions for desktop host
           blur-my-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           caffeine.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           dash-to-panel.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;

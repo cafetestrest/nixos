@@ -34,6 +34,7 @@
     ./gnome/autostart/copyq.nix
     ./gnome/autostart/xpad.nix
     ./gnome/packages.nix
+    ./gnome/extensions  # enables/disables extensions
     ./gnome/extensions/blur-my-shell.nix
     ./gnome/extensions/caffeine.nix
     ./gnome/extensions/dash-to-panel.nix
@@ -215,6 +216,7 @@
         xpad.enable = (vars.modules.home-manager.gnome.autostart.xpad.enable or false);
       };
       extension = {
+        enable = (vars.modules.home-manager.gnome.extension.enable or false);
         hosts.desktop.enable = (vars.modules.home-manager.gnome.extension.hosts.desktop.enable or false);
         blur-my-shell.enable = (vars.modules.home-manager.gnome.extension.blur-my-shell.enable or false);
         caffeine.enable = (vars.modules.home-manager.gnome.extension.caffeine.enable or false);
