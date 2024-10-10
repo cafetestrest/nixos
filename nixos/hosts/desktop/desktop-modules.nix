@@ -14,7 +14,7 @@ rec {
   configurationLimit = 20;
   gtk = {
     cursorSize = 24;
-    cursorTheme = "macOS";
+    cursorTheme = "macOS-Monterey";
     cursorPackage = pkgs.apple-cursor;
     gtkThemePackage = (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];});
     gtkTheme = "Orchis-Dark";
