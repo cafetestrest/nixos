@@ -13,6 +13,7 @@
     ./shell/fish/fish.nix
     ./shell/fish/plugins/autopair.nix
     ./shell/fish/plugins/done.nix
+    ./shell/fish/plugins/sponge.nix
     ./shell/fish/plugins/tide.nix
     ./shell/fish/omf/commands.nix
     ./shell/bashrc.nix
@@ -155,6 +156,7 @@
         plugins = {
           autopair.enable = (vars.modules.home-manager.shell.fish.plugins.autopair.enable or false);
           done.enable = (vars.modules.home-manager.shell.fish.plugins.done.enable or false);
+          sponge.enable = (vars.modules.home-manager.shell.fish.plugins.sponge.enable or false);
           tide.enable = (vars.modules.home-manager.shell.fish.plugins.tide.enable or false);
         };
         omf-commands.enable = (vars.modules.home-manager.shell.fish.omf-commands.enable or false);
