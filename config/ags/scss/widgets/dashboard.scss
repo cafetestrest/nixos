@@ -44,7 +44,8 @@ window#dashboard .window-content {
     @include floating-widget;
 
     .notifications {
-        min-width: $notifications-width;
+        // min-width: $notifications-width;
+        min-width: $spacing * 40;
 
         .header {
             margin-bottom: $spacing;

@@ -138,16 +138,16 @@ export default {
     }),
 
     font: {
-        font: Option('Ubuntu Nerd Font', {
+        font: Option('Ubuntu Sans', {
             'type': 'font',
             'title': 'Font',
             'scss': 'font',
         }),
-        mono: Option('Mononoki Nerd Font', {
+        mono: Option('Ubuntu Sans Mono', {
             'title': 'Monospaced Font',
             'scss': 'mono-font',
         }),
-        size: Option(13, {
+        size: Option(12, {
             'scss': 'font-size',
             'unit': 'pt',
         }),

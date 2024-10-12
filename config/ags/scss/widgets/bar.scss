@@ -207,8 +207,8 @@ $bar-spacing: 0px;
 
         .indicator {
             font-size: 0;
-            min-width: 8px;
-            min-height: 8px;
+            min-width: 6px;
+            min-height: 6px;
             border-radius: $radii*0.6;
             box-shadow: inset 0 0 0 $border-width $border-color;
             margin: 0 $padding/2;
@@ -218,8 +218,8 @@ $bar-spacing: 0px;
 
         &.occupied .indicator {
             background-color: transparentize($fg-color, 0.2);
-            min-width: 10px;
-            min-height: 10px;
+            min-width: 6px;
+            min-height: 6px;
         }
 
         &:hover .indicator {
@@ -231,8 +231,8 @@ $bar-spacing: 0px;
         }
 
         &.active .indicator {
-            min-width: 24px;
-            min-height: 16px;
+            min-width: 26px;
+            min-height: 10px;
         }
     }
 

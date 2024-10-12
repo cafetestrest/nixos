@@ -64,10 +64,10 @@ const Start = () => Widget.Box({
     class_name: 'start',
     children: [
         OverviewButton(),
-        // SeparatorDot(),
-        Workspaces(),
         SeparatorDot(),
         Taskbar(),
+        // SeparatorDot(),
+        Workspaces(),
         // Dock.Taskbar(),
         // SeparatorDot(),
         // WorkspacesHypr(),
