@@ -39,8 +39,8 @@ rec {
       waybar.enable = false;
     };
     bootloader = {
-      grub.enable = true;
-      systemd-boot.enable = false;
+      grub.enable = false;
+      systemd-boot.enable = true;
     };
     drive = {
       ssd.enable = true;
