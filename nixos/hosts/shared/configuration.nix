@@ -21,6 +21,7 @@ in
     networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
     time.timeZone = "${vars.timezone}";  # Set your time zone.
+    time.hardwareClockInLocalTime = true;
 
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
