@@ -12,7 +12,9 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      ubuntu_font_family
+      ubuntu_font_family  # TODO remove on 24.11
+      unstable.ubuntu-sans
+      unstable.ubuntu-sans-mono
     ];
   };
 }

@@ -41,7 +41,7 @@ in
             #fonts
             font-name = "${vars.gtk.gtkFontName}";
             document-font-name = "${vars.gtk.gtkFontName}";
-            monospace-font-name = "Source Code Pro 10";
+            monospace-font-name = "Ubuntu Sans Mono 13";
 
             #cursor
             cursor-theme = "${vars.gtk.cursorTheme}";

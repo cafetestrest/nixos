@@ -19,7 +19,7 @@ rec {
     gtkThemePackage = (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];});
     gtkTheme = "Orchis-Dark";
     gtkIconTheme = "Adwaita";
-    gtkFontName = "Cantarell 11";
+    gtkFontName = "Ubuntu Sans 11";
     preferDarkTheme = 1;
     favoriteApps = [ "kitty.desktop" "brave-browser.desktop" "org.gnome.Nautilus.desktop" "org.gnome.TextEditor.desktop" ];
   };
