@@ -270,8 +270,9 @@ rec {
           openweather.enable = false;
           rounded-window-corners.enable = true;
           tray-icons-reloaded.enable = false;
-          bluetooth-battery-meter.enable = true;
+          bluetooth-battery-meter.enable = false;
           weatherornot.enable = true;
+          astra-monitor.enable = false;
           # sound-percentage.enable = true; # TODO not in nixpkgs
         };
       };

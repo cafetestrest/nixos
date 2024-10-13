@@ -28,7 +28,8 @@ in
           "rounded-window-corners@fxgn"
           "useless-gaps@pimsnel.com"
           "sound-percentage@subashghimire.info.np"  # TODO not in nixpkgs
-          "Bluetooth-Battery-Meter@maniacx.github.com"
+          # "Bluetooth-Battery-Meter@maniacx.github.com"
+          # "monitor@astraext.github.io"
           "executor@raujonas.github.io" # TODO Disable on Gnome 47
           "user-theme@gnome-shell-extensions.gcampax.github.com"  # TODO Disable on Gnome 47
           "pop-shell@system76.com"  # Check if used to enable on Gnome 47
