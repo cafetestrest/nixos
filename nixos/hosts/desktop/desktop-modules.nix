@@ -257,21 +257,22 @@ rec {
           executor.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
           gtile.enable = false;
           super-key.enable = false;
-          useless-gaps.enable = false;  # TODO enable on Gnome 47
+          useless-gaps.enable = true;
           media-controls.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
           pop-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
           user-themes.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
           no-overview.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          gsconnect.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
+          gsconnect.enable = false;
           fuzzy-app-search.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           appindicator.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
           workspace-indicator.enable = false;
           openweather.enable = false;
-          rounded-window-corners.enable = false;  # TODO enable on Gnome 47
+          rounded-window-corners.enable = true;
           tray-icons-reloaded.enable = false;
-          bluetooth-battery-meter.enable = false; # TODO enable on Gnome 47
-          weatherornot.enable = false; # TODO enable on Gnome 47
+          bluetooth-battery-meter.enable = true;
+          weatherornot.enable = true;
+          # sound-percentage.enable = true; # TODO not in nixpkgs
         };
       };
       fonts = {

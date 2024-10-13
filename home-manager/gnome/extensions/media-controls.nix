@@ -18,7 +18,10 @@ in
 
     dconf.settings = {
       "org/gnome/shell/extensions/mediacontrols" = {
-        colored-player-icon=false;
+        colored-player-icon = false;
+        extension-position = "Left";
+        show-control-icons-seek-backward = false;
+        show-control-icons-seek-forward = false;
       };
     };
   };

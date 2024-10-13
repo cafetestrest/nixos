@@ -15,47 +15,30 @@ in
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [
-          "user-theme@gnome-shell-extensions.gcampax.github.com"
-          "no-overview@fthx"
-          # "gTile@vibou"
-          "gsconnect@andyholmes.github.io"
-          "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-          "executor@raujonas.github.io"
-          "caffeine@patapon.info"
+          # "ding@rastersoft.com" # Gnome 47
+          # "ubuntu-dock@ubuntu.com"  # Gnome 47
+          # "tiling-assistant@ubuntu.com" #  Gnome 47
           "blur-my-shell@aunetx"
+          "caffeine@patapon.info"
           "dash-to-panel@jderose9.github.com"
-          "appindicatorsupport@rgcjonas.gmail.com"
-          # "openweather-extension@penguin-teal.github.io"
+          "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
           "mediacontrols@cliffniff.github.com"
-          "tiling-assistant@leleat-on-github"
-          # "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-          # "trayIconsReloaded@selfmade.pl"
-          # "rounded-window-corners@yilozt"
-          # "openweather-extension@jenslody.de"
-          #"super-key@tommimon.github.com"
-          # "useless-gaps@pimsnel.com"
-          "pop-shell@system76.com"
-          # "sound-percentage@maestroschan.fr"
+          "no-overview@fthx"
+          "weatherornot@somepaulo.github.io"
+          "rounded-window-corners@fxgn"
+          "useless-gaps@pimsnel.com"
+          "sound-percentage@subashghimire.info.np"  # TODO not in nixpkgs
+          "Bluetooth-Battery-Meter@maniacx.github.com"
+          "executor@raujonas.github.io" # TODO Disable on Gnome 47
+          "user-theme@gnome-shell-extensions.gcampax.github.com"  # TODO Disable on Gnome 47
+          "pop-shell@system76.com"  # Check if used to enable on Gnome 47
+          "appindicatorsupport@rgcjonas.gmail.com"  # TODO Disable on Gnome 47
+          "tiling-assistant@leleat-on-github" # TODO Disable on Gnome 47
+          # "gsconnect@andyholmes.github.io"  # Unused, missing on Gnome 47
+          # "gTile@vibou" # Unused
+          # "super-key@tommimon.github.com" # Unused
+          # "openweather-extension@penguin-teal.github.io"  # Unused
         ];
-
-        # # Enable on Gnome 47+
-        # enabled-extensions = [
-        #   "ding@rastersoft.com"
-        #   "ubuntu-dock@ubuntu.com"
-        #   "tiling-assistant@ubuntu.com"
-        #   "blur-my-shell@aunetx"
-        #   "caffeine@patapon.info"
-        #   "dash-to-panel@jderose9.github.com"
-        #   "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
-        #   "mediacontrols@cliffniff.github.com"
-        #   "no-overview@fthx"
-        #   "weatherornot@somepaulo.github.io"
-        #   "rounded-window-corners@fxgn"
-        #   "useless-gaps@pimsnel.com"
-        #   "sound-percentage@subashghimire.info.np"
-        #   "Bluetooth-Battery-Meter@maniacx.github.com"
-        #   # "executor@raujonas.github.io"
-        # ];
       };
     };
   };
