@@ -250,26 +250,28 @@ rec {
         };
         extension = {
           enable = true;
-          hosts.desktop.enable = modules.desktop-environment.gnome.enable;  # enables extensions for desktop host
+          hosts.desktop.enable = modules.desktop-environment.gnome.enable;  # enables extensions for desktop host, TODO swap on Gnome 47
           blur-my-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           caffeine.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           dash-to-panel.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          executor.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+          executor.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
           gtile.enable = false;
           super-key.enable = false;
-          useless-gaps.enable = false;
+          useless-gaps.enable = false;  # TODO enable on Gnome 47
           media-controls.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          pop-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          user-themes.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+          tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
+          pop-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
+          user-themes.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
           no-overview.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          gsconnect.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+          gsconnect.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
           fuzzy-app-search.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          appindicator.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+          appindicator.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
           workspace-indicator.enable = false;
           openweather.enable = false;
-          rounded-window-corners.enable = false;
+          rounded-window-corners.enable = false;  # TODO enable on Gnome 47
           tray-icons-reloaded.enable = false;
+          bluetooth-battery-meter.enable = false; # TODO enable on Gnome 47
+          weatherornot.enable = false; # TODO enable on Gnome 47
         };
       };
       fonts = {

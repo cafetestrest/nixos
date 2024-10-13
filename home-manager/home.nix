@@ -55,6 +55,8 @@
     ./gnome/extensions/openweather.nix
     ./gnome/extensions/rounded-window-corners.nix
     ./gnome/extensions/tray-icons-reloaded.nix
+    ./gnome/extensions/bluetooth-battery-meter.nix
+    ./gnome/extensions/weatherornot.nix
     ./packages.nix                          # shared packages
     ./fonts/ubuntu-font-family.nix
     ./fonts/font-awesome.nix
@@ -239,6 +241,8 @@
         openweather.enable = (vars.modules.home-manager.gnome.extension.openweather.enable or false);
         rounded-window-corners.enable = (vars.modules.home-manager.gnome.extension.rounded-window-corners.enable or false);
         tray-icons-reloaded.enable = (vars.modules.home-manager.gnome.extension.tray-icons-reloaded.enable or false);
+        bluetooth-battery-meter.enable = (vars.modules.home-manager.gnome.extension.bluetooth-battery-meter.enable or false);
+        weatherornot.enable = (vars.modules.home-manager.gnome.extension.weatherornot.enable or false);
       };
     };
     fonts = {

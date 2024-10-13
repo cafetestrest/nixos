@@ -31,7 +31,7 @@ in
         panel-element-positions=''{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":true,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"centerMonitor"},{"element":"centerBox","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}'';
         panel-lengths=''{"0":100}'';
         panel-positions=''{"0":"TOP"}'';
-        panel-sizes=''{"0":29}'';
+        panel-sizes=''{"0":28}'';
         primary-monitor=0;
         scroll-panel-action="CHANGE_VOLUME";
         status-icon-padding=-1;

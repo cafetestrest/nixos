@@ -37,6 +37,25 @@ in
           "pop-shell@system76.com"
           # "sound-percentage@maestroschan.fr"
         ];
+
+        # # Enable on Gnome 47+
+        # enabled-extensions = [
+        #   "ding@rastersoft.com"
+        #   "ubuntu-dock@ubuntu.com"
+        #   "tiling-assistant@ubuntu.com"
+        #   "blur-my-shell@aunetx"
+        #   "caffeine@patapon.info"
+        #   "dash-to-panel@jderose9.github.com"
+        #   "gnome-fuzzy-app-search@gnome-shell-extensions.Czarlie.gitlab.com"
+        #   "mediacontrols@cliffniff.github.com"
+        #   "no-overview@fthx"
+        #   "weatherornot@somepaulo.github.io"
+        #   "rounded-window-corners@fxgn"
+        #   "useless-gaps@pimsnel.com"
+        #   "sound-percentage@subashghimire.info.np"
+        #   "Bluetooth-Battery-Meter@maniacx.github.com"
+        #   # "executor@raujonas.github.io"
+        # ];
       };
     };
   };

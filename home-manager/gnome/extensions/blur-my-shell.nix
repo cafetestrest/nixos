@@ -18,13 +18,9 @@ in
 
     dconf.settings = {
       "org/gnome/shell/extensions/blur-my-shell/panel" = {
-        blur=true;
-        brightness=1.0;
-        color="(0.0, 0.0, 0.0, 1.0)";
-        customize=true;
-        override-background=true;
-        sigma=0;
-        static-blur=true;
+        brightness=0.59999999999999998;
+        pipeline="pipeline_default";
+        sigma=30;
         style-panel=2;
       };
     };
