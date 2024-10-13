@@ -1,3 +1,16 @@
+skipRunningStartupApps=0
+
+#checks the first letter of the argument provided to the script
+if [[ $# -ge 1 ]]; then
+    firstArgLetter="$(echo "$1" | head -c 1)"
+else
+    firstArgLetter=
+fi
+
+if [[ $firstArgLetter == "s" ]]; then
+    skipRunningStartupApps=1
+fi
+
 # Function to start a program and wait for it to run
 start_program() {
     local program=$1
@@ -37,7 +50,10 @@ start_program() {
 # start_program "xterm" "xterm -e journalctl -xef"
 
 sleep 0.3
-openstartupapps
+
+if [ "$skipRunningStartupApps" = "0" ]; then
+    openstartupapps
+fi
 
 COMMAND="nightlight a > /dev/null 2>&1"
 start_program "wlsunset"
