@@ -14,59 +14,77 @@ in
     home.file = {
       "sync" = {
         text = ''
+          firstArgLetter=
+
           function symlink() {
-            echo "ln -s $LOCATION $PROGRAM_LOCATION"
-            ln -s $LOCATION $PROGRAM_LOCATION
+            if [[ "$firstArgLetter" != "r" ]]; then
+              echo "ln -s $LOCATION $PROGRAM_LOCATION"
+              ln -s $LOCATION $PROGRAM_LOCATION
+            fi
           }
 
           function remove() {
-              #checks the first letter of the argument provided to the script
-              if [[ $# -ge 1 ]]; then
-                  firstArgLetter="$(echo "$1" | head -c 1)"
-              else
-                  firstArgLetter=
-              fi
+            #checks the first letter of the argument provided to the script
+            if [[ $# -ge 1 ]]; then
+              firstArgLetter="$(echo "$1" | head -c 1)"
+            fi
 
-              echo "rm -rf $PROGRAM_LOCATION"
-              rm -rf $PROGRAM_LOCATION
+            echo "rm -rf $PROGRAM_LOCATION"
+            rm -rf $PROGRAM_LOCATION
 
-              if [[ "$firstArgLetter" == "r" ]]; then
-                  echo 'Remove done, exiting now.'
-                  exit 0
-              fi
+            if [[ "$firstArgLetter" == "r" ]]; then
+              echo "Removing: $PROGRAM_LOCATION"
+            fi
           }
 
           function cmd_ags() {
-              PROGRAM_LOCATION=$XDG_CONFIG_HOME/ags
-              LOCATION="$FLAKE_LOCATION/config/ags"
+            PROGRAM_LOCATION=$XDG_CONFIG_HOME/ags
+            LOCATION="$FLAKE_LOCATION/config/ags"
 
-              remove "$@"
+            remove "$@"
             symlink
           }
 
           function cmd_kitty() {
-              PROGRAM_LOCATION=$XDG_CONFIG_HOME/kitty/kitty.conf
-              LOCATION="$FLAKE_LOCATION/config/terminal/kitty/kitty.conf"
+            PROGRAM_LOCATION=$XDG_CONFIG_HOME/kitty/kitty.conf
+            LOCATION="$FLAKE_LOCATION/config/terminal/kitty/kitty.conf"
 
-              remove "$@"
+            remove "$@"
             symlink
           }
 
           function cmd_hyprland() {
-              PROGRAM_LOCATION=$XDG_CONFIG_HOME/hypr/hyprland.conf
-              LOCATION="$XDG_CONFIG_HOME/hypr/hyprland.conf.bak"
+            PROGRAM_LOCATION=$XDG_CONFIG_HOME/hypr/hyprland.conf
+            LOCATION="$XDG_CONFIG_HOME/hypr/hyprland.conf.bak"
 
-              remove "$@"
+            remove "$@"
+            symlink
+          }
+
+          function cmd_waybar() {
+            PROGRAM_LOCATION=$XDG_CONFIG_HOME/waybar/config.jsonc
+            LOCATION="$FLAKE_LOCATION/config/waybar/config.jsonc"
+
+            remove "$@"
+            symlink
+
+            PROGRAM_LOCATION=$XDG_CONFIG_HOME/waybar/style.css
+            LOCATION="$FLAKE_LOCATION/config/waybar/style.css"
+
+            remove "$@"
             symlink
           }
 
           function cmd_usage() {
               cat <<-_EOF
-          Usage:
-              $PROGRAM ags
+            Usage:
+              $PROGRAM { ags | kitty | hyprland | waybar } [r | remove]
                   Syncs over ags config from flake config files.
-              $PROGRAM ags remove
+
+              OPTIONS:
+                remove | r
                   Removes synced files.
+
               $PROGRAM help
                   Show this text.
           _EOF
@@ -83,6 +101,7 @@ in
           case "$1" in
               ags) shift;                                     cmd_ags "$@" ;;
               kitty) shift;                                   cmd_kitty "$@" ;;
+              waybar) shift;                                  cmd_waybar "$@" ;;
               hyprland) shift;                                cmd_hyprland "$@" ;;
               help|--help) shift;                             cmd_usage "$@" ;;
               *)  echo "Unknown command $@, syncing ags: " && cmd_ags "$@" ;;

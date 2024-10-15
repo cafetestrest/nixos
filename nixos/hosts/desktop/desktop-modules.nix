@@ -33,7 +33,6 @@ rec {
     configuration.enable = true;  # use default configuration.nix file
     overlay = {
       pkgs.enable = true; # nix pkgs overlays
-      waybar.enable = false;
     };
     bootloader = {
       grub.enable = false;
@@ -225,6 +224,7 @@ rec {
       };
       bar = {
         ags.enable = modules.bar.ags.enable;
+        waybar.enable = modules.bar.waybar.enable;
       };
       screen-locker = {
         swaylock.enable = modules.screen-locker.swaylock.enable;

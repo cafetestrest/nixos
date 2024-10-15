@@ -16,7 +16,8 @@
         "custom/menu",
         // "custom/hostname",
         "wlr/taskbar",
-        "wlr/workspaces",
+        // "wlr/workspaces",
+        "hyprland/workspaces"
     ],
     "modules-center": [
         "clock",
@@ -107,6 +108,11 @@
         "on-click": "~/.config/waybar/scripts/weather.sh",
         "return-type": "json"
     },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
     "wlr/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -156,8 +162,8 @@
         "interval": 30,
     },
     "custom/cpu": {
-        "interval": 30,
-        "exec": "echo ︁ $(top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}')",
+        "interval": 10,
+        "exec": "echo \"  $(top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/' | awk '{print 100 - $1\"%\"}')\"",
         "exec-if": "sleep 2",
         "tooltip": false
     },
@@ -172,17 +178,17 @@
         "tooltip": false
     },
     "custom/memory": {
-        "interval": 30,
+        "interval": 10,
         "exec": "echo \"<span font='Font Awesome 5 Free 9'>︁</span>\" $(free --giga -h | grep 'Mem' | awk '{print $3}')",
         "exec-if": "sleep 2",
         "tooltip": false
     },
     "disk": {
         // "format": " {percentage_used}% ({free})",
-        "format": " {percentage_used}%",
+        "format": "   {percentage_used}%",
         "tooltip": true,
         "on-click-right": "terminator",
-        "interval": 2
+        "interval": 600
     },
     "custom/note": {
         "text": "Notes",
@@ -300,7 +306,7 @@
         "escape": true
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pamixer -t",

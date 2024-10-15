@@ -3,7 +3,6 @@
 {
   imports = [
     ./overlays/pkgsOverlay.nix                      # pkgs overlays (stable, unstable, old...)
-    ./overlays/waybar.nix
     ./bootloader/systemd-boot.nix                   # Boot and Bootloader config
     ./bootloader/grub.nix
     ./ssd.nix                                       # fstrim
@@ -53,7 +52,6 @@
     configuration.enable = (vars.modules.configuration.enable or true);  # default value true for configuration.nix
     overlay = {
       pkgs.enable = (vars.modules.overlay.pkgs.enable or true); # default value true for pkgs overlays (stable, unstable, old...)
-      waybar.enable = (vars.modules.overlay.waybar.enable or false);
     };
     bootloader = {
       grub.enable = (vars.modules.bootloader.grub.enable or false);

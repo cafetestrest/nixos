@@ -11,10 +11,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      waybar
-      #wl-clipboard                        #copy to clipboard (for hyprpicker)
-    ];
+    programs.waybar = {
+      enable = true;
+    };
 
     home.file = {
       #waybar config
