@@ -41,6 +41,7 @@ in
     '';
 
     programs.fish.functions = lib.mkIf cfgFish.enable {
+      #functions from: https://github.com/oh-my-fish/plugin-peco
       peco_kill = {
         body = ''
           ps ax -o pid,time,command | peco --query "$LBUFFER" | awk '{print $1}' | xargs kill
