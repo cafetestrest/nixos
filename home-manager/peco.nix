@@ -40,16 +40,30 @@ in
       bind \cr 'peco_select_history (commandline -b)'
     '';
 
-    programs.fish.plugins = lib.mkIf cfgFish.enable [
-      {
-        name = "peco";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-peco";
-          rev = "refs/heads/master";
-          sha256 = "${vars.sha.fishOmfPecoPluginSha256Hash}";
-        };
-      }
-    ];
+    programs.fish.functions = lib.mkIf cfgFish.enable {
+      peco_kill = {
+        body = ''
+          ps ax -o pid,time,command | peco --query "$LBUFFER" | awk '{print $1}' | xargs kill
+        '';
+      };
+
+      peco_select_history = {
+        body = ''
+          if test (count $argv) = 0
+            set peco_flags --layout=bottom-up
+          else
+            set peco_flags --layout=bottom-up --query "$argv"
+          end
+
+          history|peco $peco_flags|read foo
+
+          if [ $foo ]
+            commandline $foo
+          else
+            commandline ""
+          end
+        '';
+      };
+    };
   };
 }

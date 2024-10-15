@@ -33,7 +33,7 @@ in
           owner = "wardenenv";
           repo = "warden";
           rev = "main";
-          sha256 = "${vars.sha.wardenSha256Hash}";
+          sha256 = "${vars.hash.wardenSha256}";
         };
 
         patches = [
