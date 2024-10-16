@@ -7,9 +7,17 @@ screenshot() {
 
     if [ "$#" -eq  "0" ]
     then
-        IMG=$ssDir/$(date +'Screenshot_%Y-%m-%d_%H-%M-%S.png') && grim "$IMG" && notify-send "Screenshot" "Saved and Copied";
+        # IMG=$ssDir/$(date +'Screenshot_%Y-%m-%d_%H-%M-%S.png') && grim "$IMG" && notify-send "Screenshot" "Saved and Copied";
+        hyprshot -m output --current --output-folder "$ssDir"
     else
-        IMG=$ssDir/$(date +'Screenshot_%Y-%m-%d_%H-%M-%S.png') && grim -g "$(slurp -c cba6f788 -b 00000055 -w 0)" "$IMG" && notify-send "Screenshot" "Saved and Copied";
+        firstArgLetter="$(echo "$1" | head -c 1)"
+
+        if [[ $firstArgLetter == "2" || $firstArgLetter == "w" ]]; then
+            hyprshot -m window --output-folder "$ssDir"
+        else
+            # IMG=$ssDir/$(date +'Screenshot_%Y-%m-%d_%H-%M-%S.png') && grim -g "$(slurp -c cba6f788 -b 00000055 -w 0)" "$IMG" && notify-send "Screenshot" "Saved and Copied";
+            hyprshot -m region --output-folder "$ssDir"
+        fi
     fi
 }
 
@@ -24,6 +32,9 @@ case "$1" in
     region|--region) shift;             screenshot 1 ;;
     r|--r) shift;                       screenshot 1 ;;
     1|--1) shift;                       screenshot 1 ;;
+    window|--window) shift;             screenshot 2 ;;
+    w|--w) shift;                       screenshot 2 ;;
+    2|--2) shift;                       screenshot 2 ;;
     *)                                  screenshot "$@" ;;
 esac
 exit 0

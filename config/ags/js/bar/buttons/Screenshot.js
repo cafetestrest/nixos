@@ -15,4 +15,7 @@ export default () => PanelButton({
     on_secondary_click: () => {
         Utils.execAsync(['bash', '-c', "screenshot"]).catch(print);
     },
+    on_middle_click: () => {
+        Utils.execAsync(['bash', '-c', "screenshot 2"]).catch(print);
+    },
 });

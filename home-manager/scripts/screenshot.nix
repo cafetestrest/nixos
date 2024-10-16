@@ -7,8 +7,7 @@ let
     name = "screenshot";
     runtimeInputs = with pkgs; [
       libnotify
-      slurp
-      grim
+      hyprshot
     ];
     text = builtins.readFile ../../config/scripts/screenshot.sh;
   };
