@@ -1,9 +1,9 @@
 
 # Variables
-IP_FILE=~/.config/scripts/yeelight/yeelight-ips
-IP_PREFIX=192.168.0
+IP_PREFIX="192.168.0"
 INITIAL_START_IP=20
 INITIAL_END_IP=30
+IP_FILE=~/.config/scripts/yeelight/yeelight-ips
 
 if [[ $# -ge 3 ]]; then
   IP_PREFIX=$3
@@ -17,123 +17,61 @@ if [[ $# -ge 1 ]]; then
   INITIAL_START_IP=$1
 fi
 
-# check if IP file exists, if not create it
+# Create file if it doesn't exist
 if [ ! -f "$IP_FILE" ]; then
-    echo "IP File does not exist, creating it under: $IP_FILE"
-    touch $IP_FILE
+    echo "File $IP_FILE not found. Creating it..."
+    touch "$IP_FILE"
 fi
 
-if [ ! -s "$IP_FILE" ]; then
-    echo "IP file under: $IP_FILE is empty, filling it with initial IP's"
-    
-    for ((i="$INITIAL_START_IP"; i<="$INITIAL_END_IP"; i++)); do
-        echo "$IP_PREFIX.$i" >> "$IP_FILE"
-    done
-fi
+# Fill the file with the first IP if it's empty
+# if [ ! -s "$IP_FILE" ]; then
+    echo "${IP_PREFIX}.${INITIAL_START_IP}" > "$IP_FILE"
+# fi
 
-failedIP=
-~/.config/scripts/yeelight/yeelight-scene.sh 0 On || failedIP=$(cat $IP_FILE)
+# Read the current IP from the file
+CURRENT_IP=$(cat "$IP_FILE")
 
-echo "failedIP: $failedIP"
+# Function to check if the command test-scene.sh runs successfully
+check_command() {
+    sleep 0.5
+    # OUTPUT=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 Off 2>&1)
+    OUTPUT=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 On 2>&1)
+    echo $OUTPUT
 
-function reset_ips() {
-    truncate -s 0 "$IP_FILE"
-
-    for ((i="$INITIAL_START_IP"; i<="$INITIAL_END_IP"; i++)); do
-        if [ "$IP_PREFIX.$i" == "$failedIP" ]; then
-            continue
-        fi
-        echo "$IP_PREFIX.$i" >> "$IP_FILE"
-    done
-}
-
-if [ "$failedIP" ]; then
-    reset_ips
-fi
-
-function run_command() {
-  echo "running the yeelight command please be patient..."
-  output=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 Off)
-
-  # OUTPUT=$(cat <<-END
-  # Executing on ID 10 [192.168.0.11] ...   10 "method":"set_power","params":["off"]
-  # Executing on ID 1 [192.168.0.20] ...   1 "method":"set_power","params":["off"]
-  # 192.168.0.20 not available
-  # Executing on ID 2 [192.168.0.21] ...   2 "method":"set_power","params":["off"]
-  # 192.168.0.21 not available
-  # Executing on ID 3 [192.168.0.22] ...   3 "method":"set_power","params":["off"]
-  # 192.168.0.22 not available
-  # Executing on ID 4 [192.168.0.23] ...   4 "method":"set_power","params":["off"]
-  # 192.168.0.23 not available
-  # Executing on ID 5 [192.168.0.24] ...   5 "method":"set_power","params":["off"]
-  # 192.168.0.24 not available
-  # Executing on ID 6 [192.168.0.25] ...   6 "method":"set_power","params":["off"]
-  # 192.168.0.25 not available
-  # Executing on ID 7 [192.168.0.26] ...   7 "method":"set_power","params":["off"]
-  # $HOME/.config/scripts/yeelight/yeelight.sh: connect: Connection refused
-  # $HOME/.config/scripts/yeelight/yeelight.sh: line 18: /dev/tcp/192.168.0.26/55443: Connection refused
-  # Executing on ID 8 [192.168.0.27] ...   8 "method":"set_power","params":["off"]
-  # 192.168.0.27 not available
-  # Executing on ID 9 [192.168.0.28] ...   9 "method":"set_power","params":["off"]
-  # 192.168.0.28 not available
-  # Executing on ID 10 [192.168.0.29] ...   10 "method":"set_power","params":["off"]
-  # Executing on ID 11 [192.168.0.30] ...   11 "method":"set_power","params":["off"]
-  # 192.168.0.30 not available
-  # END
-  # );
-
-  echo "Command output: $output"
-
-  if [ "$output" ]; then
-    # Initialize a variable to store the successful IP
-    successful_ip="false"
-    current_ip=""
-    errors_found=false
-
-    # Loop through the command output line by line
-    while IFS= read -r line; do
-      # Check if the line indicates the start of execution and extract the IP
-      if [[ $line =~ Executing\ on\ ID\ [0-9]+\ \[(192\.168\.[0-9]+\.[0-9]+)\] ]]; then
-        # If the previous IP had no errors and a current IP was being checked, mark it as successful
-        if [[ $errors_found == false && $current_ip != "" ]]; then
-            successful_ip=$current_ip
-            echo "successful ip: $current_ip"
-            break;
-        fi
-        # Reset for the next IP
-        current_ip="${BASH_REMATCH[1]}"
-        errors_found=false
-      fi
-
-      # Check for error messages
-      if [[ $line =~ (not\ available|Connection\ refused) ]]; then
-        errors_found=true
-      fi
-    done <<< "$output"
-
-    # Final check for the last IP
-    if [[ $errors_found == false && $current_ip != "" && $current_ip != "false" ]]; then
-      if [[ "$failedIP" && "$failedIP" != "" ]]; then
-        successful_ip=$current_ip
-      fi
+    if [[ "$OUTPUT" == *"not available"* || "$OUTPUT" == *"refused"* ]]; then
+        return 1  # Failure
+    else
+        return 0  # Success
     fi
-  fi
 }
 
-run_command
-
-if [[ "$successful_ip" == "false" ]]; then
-    echo "No successful IP found, resetting IPs and trying again..."
-    reset_ips
-    run_command
-fi
-
-if [[ "$successful_ip" != "false" ]]; then
-    echo "Writing $successful_ip to file under: $IP_FILE"
-    echo "$successful_ip" > "$IP_FILE"
-else
-    echo "No successful IP found, exiting..."
-    exit 1
-fi
-
-~/.config/scripts/yeelight/yeelight-scene.sh 0 On
+# Loop until we reach the end IP or find a working one
+while true; do
+    echo "Testing IP: $CURRENT_IP"
+    
+    # Try running the command
+    if check_command; then
+        echo "Command succeeded with IP: $CURRENT_IP"
+        sleep 0.5
+        ~/.config/scripts/yeelight/yeelight-scene.sh 0 Off
+        sleep 0.5
+        ~/.config/scripts/yeelight/yeelight-scene.sh 0 On
+        exit 0
+    else
+        echo "$CURRENT_IP not available. Trying next IP..."
+        
+        # Increment IP
+        CURRENT_IP_NUM=${CURRENT_IP##*.}
+        NEXT_IP_NUM=$((CURRENT_IP_NUM + 1))
+        
+        if [ "$NEXT_IP_NUM" -gt "$INITIAL_END_IP" ]; then
+            echo "Reached the end IP: ${IP_PREFIX}.${INITIAL_END_IP}. Exiting."
+            exit 1
+        fi
+        
+        # Update the IP in the file
+        NEW_IP="${IP_PREFIX}.${NEXT_IP_NUM}"
+        echo "$NEW_IP" > "$IP_FILE"
+        CURRENT_IP="$NEW_IP"
+    fi
+done
