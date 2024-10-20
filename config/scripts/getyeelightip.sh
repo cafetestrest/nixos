@@ -36,7 +36,7 @@ check_command() {
     sleep 0.5
     # OUTPUT=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 Off 2>&1)
     OUTPUT=$(~/.config/scripts/yeelight/yeelight-scene.sh 0 On 2>&1)
-    echo $OUTPUT
+    echo "$OUTPUT"
 
     if [[ "$OUTPUT" == *"not available"* || "$OUTPUT" == *"refused"* ]]; then
         return 1  # Failure
@@ -48,7 +48,7 @@ check_command() {
 # Loop until we reach the end IP or find a working one
 while true; do
     echo "Testing IP: $CURRENT_IP"
-    
+
     # Try running the command
     if check_command; then
         echo "Command succeeded with IP: $CURRENT_IP"
@@ -59,16 +59,16 @@ while true; do
         exit 0
     else
         echo "$CURRENT_IP not available. Trying next IP..."
-        
+
         # Increment IP
         CURRENT_IP_NUM=${CURRENT_IP##*.}
         NEXT_IP_NUM=$((CURRENT_IP_NUM + 1))
-        
+
         if [ "$NEXT_IP_NUM" -gt "$INITIAL_END_IP" ]; then
             echo "Reached the end IP: ${IP_PREFIX}.${INITIAL_END_IP}. Exiting."
             exit 1
         fi
-        
+
         # Update the IP in the file
         NEW_IP="${IP_PREFIX}.${NEXT_IP_NUM}"
         echo "$NEW_IP" > "$IP_FILE"
