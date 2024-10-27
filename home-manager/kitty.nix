@@ -16,6 +16,10 @@ in
       package = pkgs.unstable.kitty;
     };
 
+    home.packages = with pkgs; [
+      screen
+    ];
+
     xdg.configFile."kitty/kitty.conf" = {
       source = ../config/terminal/kitty/kitty.conf;
     };
