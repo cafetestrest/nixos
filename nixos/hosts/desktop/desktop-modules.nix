@@ -179,6 +179,7 @@ rec {
         sys.enable = true;
         clipboardtoggle.enable = false;
         sync.enable = true;
+        exportbluetoothinfo.enable = true;
       };
       shell = {
         aliases.enable = true;

@@ -115,6 +115,7 @@
     ./scripts/sys.nix
     ./scripts/clipboardtoggle.nix
     ./scripts/sync.nix
+    ./scripts/exportbluetoothinfo.nix
     ./localsend.nix                         # used for file sharing with other PC/mobile devices
     ./teamviewer.nix
     ./rofi.nix                              # app launcher
@@ -281,6 +282,7 @@
       sys.enable = (vars.modules.home-manager.scripts.sys.enable or false);
       clipboardtoggle.enable = (vars.modules.home-manager.scripts.clipboardtoggle.enable or false);
       sync.enable = (vars.modules.home-manager.scripts.sync.enable or false);
+      exportbluetoothinfo.enable = (vars.modules.home-manager.scripts.exportbluetoothinfo.enable or false);
     };
   };
 
