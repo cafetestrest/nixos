@@ -105,7 +105,11 @@ Key="
         *)
             echo "Usage: $0 --ltk <ltk_value> | --rand <rand_value> | --erand <erand_value> | --length <length_value> | --keylength <keylength_value> | --encsize <encsize_value> | --ediv <ediv_value> | --csrk <csrk_value>"
             echo "To sync bluetooth device info on dual boot so that devices can be used with both systems."
+            echo "Setup BT devices on Linux first, reboot to Windows and set them up there too. Download psexec from Microsoft and run:"
+            echo "psexec.exe -s -i regedit /e C:\BTKeys.reg HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BTHPORT\Parameters\Keys"
+            echo "Reboot to Linux. Run this command to get new data."
             echo "Edit and rename manually per device 'info' files from /var/lib/bluetooth/ using: 'su root'"
+            echo "sudo systemctl restart bluetooth.service"
             echo "Based on: https://console.systems/2014/09/how-to-pair-low-energy-le-bluetooth.html"
             exit 1
             ;;
