@@ -4,7 +4,7 @@ sleep_time() {
 
 # apps to open on startup
 function open_startup_apps() {
-    program="kitty"
+    program="kitty -e fish -c 'cd ~/nixos && fastfetch; exec fish'"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program"
         sleep 2.2

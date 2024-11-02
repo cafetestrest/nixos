@@ -18,6 +18,10 @@ in
       #   nix-shell = "nix-shell --run fish";
       # };
 
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+      '';
+
       shellInit = ''
         set -g theme_powerline_fonts yes
         set -g theme_nerd_fonts no

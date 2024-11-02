@@ -58,26 +58,5 @@ in
     home.shellAliases = {
       neofetch = "fastfetch";
     };
-
-    programs.bash.bashrcExtra = lib.mkIf (cfgBash.enable && cfgBashrc.enable) ''
-      if [[ $(whoami) == "${vars.user}" && -d "${vars.flakeLocation}" ]]; then
-        cd "${vars.flakeLocation}"
-        fastfetch
-      fi
-    '';
-
-    programs.fish.functions = lib.mkIf cfgFish.enable {
-      fish_greeting = {
-        body = ''
-          if [ (whoami) = "${vars.user}" ]
-            if [ -d "${vars.flakeLocation}" ]
-              cd "${vars.flakeLocation}"
-            end
-            fastfetch
-          end
-        '';
-        onEvent = "fish_greeting";
-      };
-    };
   };
 }

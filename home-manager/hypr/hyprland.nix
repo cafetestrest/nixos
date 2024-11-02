@@ -209,7 +209,7 @@ in
         in [
           "SUPER, C, exec, ${browser}"
           "SUPER SHIFT, I, exec, ${browser} --incognito"
-          "SUPER, T, exec, kitty"
+          "SUPER, T, exec, kitty -e fish -c 'cd ${vars.flakeLocation} && fastfetch; exec fish'"
           "SUPER, Return, exec, kitty"
           "SUPER, E, exec, ${fileExplorer}"
           "SUPER, V, exec, copyq toggle"
