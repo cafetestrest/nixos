@@ -69,6 +69,7 @@ in
         userSettings = {
             "update.mode" = "none";
             "update.showReleaseNotes" = false;
+            "window.titleBarStyle" = "custom";
       #     "workbench.iconTheme" = "catppuccin-macchiato";
       #     "workbench.colorTheme" = "Mayukai Semantic Mirage";
           
