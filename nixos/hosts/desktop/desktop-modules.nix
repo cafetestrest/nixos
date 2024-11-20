@@ -248,30 +248,30 @@ rec {
         };
         extension = {
           enable = true;
-          hosts.desktop.enable = modules.desktop-environment.gnome.enable;  # enables extensions for desktop host, TODO swap on Gnome 47
+          hosts.desktop.enable = modules.desktop-environment.gnome.enable;
           blur-my-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           caffeine.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           dash-to-panel.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          executor.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
+          executor.enable = false;
           gtile.enable = false;
           super-key.enable = false;
-          useless-gaps.enable = true;
+          useless-gaps.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           media-controls.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
-          pop-shell.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
-          user-themes.enable = modules.home-manager.gnome.extension.hosts.desktop.enable; # TODO disable on Gnome 47
+          tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+          pop-shell.enable = false;
+          user-themes.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           no-overview.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           gsconnect.enable = false;
           fuzzy-app-search.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
-          appindicator.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
+          appindicator.enable = false;
           workspace-indicator.enable = false;
           openweather.enable = false;
-          rounded-window-corners.enable = false; #TODO enable
+          rounded-window-corners.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           tray-icons-reloaded.enable = false;
           bluetooth-battery-meter.enable = false;
-          weatherornot.enable = true;
+          weatherornot.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           astra-monitor.enable = false;
-          # sound-percentage.enable = true; # TODO not in nixpkgs
+          sound-percentage.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
         };
       };
       fonts = {

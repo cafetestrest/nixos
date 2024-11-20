@@ -12,9 +12,9 @@ in
   };
 
   config = mkIf (cfg.enable && cfgExtensions.enable) {
-    home.packages = with pkgs; [
-      gnomeExtensions.tiling-assistant
-    ];
+    # home.packages = with pkgs; [
+    #   gnomeExtensions.tiling-assistant
+    # ];
 
     dconf.settings = {
       "org/gnome/shell/extensions/tiling-assistant" = {

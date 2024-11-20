@@ -6,8 +6,8 @@ let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
   mediaControl = "${pkgs.playerctl}/bin/playerctl";
-  lock = "${pkgs.unstable.hyprlock}/bin/hyprlock";
-  idle = "${pkgs.unstable.hypridle}/bin/hypridle";
+  lock = "${pkgs.hyprlock}/bin/hyprlock";
+  idle = "${pkgs.hypridle}/bin/hypridle";
   pamixer = "${pkgs.pamixer}/bin/pamixer";
 
   cfg = config.module.hypr.hyprland;

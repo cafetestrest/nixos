@@ -8,7 +8,7 @@ in
 {
   options = {
     module.services.nix-diff.enable = mkEnableOption "Enables nix-diff on rebuild";
-    # TODO disable when this gets merged: https://github.com/NixOS/nixpkgs/pull/208902
+    # https://github.com/NixOS/nixpkgs/pull/208902
   };
 
   config = mkIf cfg.enable {

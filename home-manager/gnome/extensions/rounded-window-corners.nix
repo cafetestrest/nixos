@@ -13,7 +13,7 @@ in
 
   config = mkIf (cfg.enable && cfgExtensions.enable) {
     home.packages = with pkgs; [
-      gnomeExtensions.rounded-window-corners
+      gnomeExtensions.rounded-window-corners-reborn
     ];
   };
 }
