@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      unstable.swaylock-effects
+      swaylock-effects
     ];
 
     security.pam.services.swaylock = {

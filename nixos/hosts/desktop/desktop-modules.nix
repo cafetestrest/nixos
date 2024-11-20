@@ -14,7 +14,7 @@ rec {
   configurationLimit = 20;
   gtk = {
     cursorSize = 24;
-    cursorTheme = "macOS-Monterey";
+    cursorTheme = "macOS";
     cursorPackage = pkgs.apple-cursor;
     gtkThemePackage = (pkgs.orchis-theme.override { border-radius = 3; tweaks = [ "compact" "macos" "submenu" ];});
     gtkTheme = "Orchis-Dark";
@@ -266,7 +266,7 @@ rec {
           appindicator.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;  # TODO disable on Gnome 47
           workspace-indicator.enable = false;
           openweather.enable = false;
-          rounded-window-corners.enable = true;
+          rounded-window-corners.enable = false; #TODO enable
           tray-icons-reloaded.enable = false;
           bluetooth-battery-meter.enable = false;
           weatherornot.enable = true;

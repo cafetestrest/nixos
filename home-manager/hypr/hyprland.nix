@@ -33,20 +33,20 @@ in
       slurp                               #select a screenshot region
       hyprpicker                          #pipette - color hex picker 
     ] ++ lib.optionals cfgGnomePkgs.enable [
-      gnome.nautilus                      #file manager
+      nautilus                      #file manager
       gnome-text-editor
-      gnome.gnome-calculator
+      gnome-calculator
       # gnome-font-viewer
       # gnome-disk-utility
       # gnome-characters              #check all characters, can be copied
       # adwaita-icon-theme
       # baobab
-      gnome.gnome-calendar
+      gnome-calendar
       # gnome-boxes
       # gnome-system-monitor
-      gnome.gnome-control-center
+      gnome-control-center
       # gnome-weather
-      gnome.gnome-clocks
+      gnome-clocks
       # gnome-software # for flatpak
     ];
 
@@ -337,12 +337,6 @@ in
 
         decoration = {
           rounding = 10;
-
-          drop_shadow = "yes";
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
-
           # dim_inactive = false;
 
           blur = {

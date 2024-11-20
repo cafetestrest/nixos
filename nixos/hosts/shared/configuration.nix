@@ -124,7 +124,7 @@ in
     # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     nix = {
-      package = pkgs.nixFlakes;
+      package = pkgs.nixVersions.stable;
       extraOptions = "${vars.nixExtraOptions}";
     };
 
