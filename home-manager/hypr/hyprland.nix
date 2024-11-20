@@ -125,6 +125,11 @@ in
           # float_switch_override_focus = 2; #If enabled (1 or 2), focus will change to the window under the cursor when changing from tiled-to-floating and vice versa. If 2, focus will also follow mouse on float-to-float switches.
         };
 
+        device = {
+          name = "orochi-v2-mouse";
+          sensitivity = -0.5;
+        };
+
         binds = {
           allow_workspace_cycles = true;
         };
