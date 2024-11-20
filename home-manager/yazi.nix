@@ -18,5 +18,16 @@ in
     home.shellAliases = {
       f = "yazi";
     };
+
+    home.file."${config.xdg.configHome}/yazi/keymap.toml".text =
+    /*
+    toml
+    */
+    ''
+      [[manager.prepend_keymap]]
+      on   = [ "<C-q>" ]
+      run  = "close"
+      desc = "Close the current tab, or quit if it is last tab"
+    '';
   };
 }
