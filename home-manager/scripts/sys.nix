@@ -53,7 +53,7 @@ let
                     HAS_PATH_ARGUMENT=""
                     continue
                 fi
-                sudo nix flake lock --update-input "$arg"
+                sudo nix flake update "$arg"
             done
         else
             sudo nix flake update
