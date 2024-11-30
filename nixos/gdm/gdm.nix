@@ -62,6 +62,13 @@ in
             night-light-schedule-automatic = true;
             night-light-temperature = "2700";
           };
+
+          # disables Low Disk Space on "boot" notification due to dual boot
+          "org/gnome/settings-daemon/plugins/housekeeping" = {
+            ignore-paths=[
+              "/boot"
+            ];
+          };
         };
       }];
     };

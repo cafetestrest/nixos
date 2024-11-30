@@ -25,7 +25,7 @@ in
           "mediacontrols@cliffniff.github.com"
           "no-overview@fthx"
           "weatherornot@somepaulo.github.io"
-          "useless-gaps@pimsnel.com"
+          # "useless-gaps@pimsnel.com"
           "sound-percentage@subashghimire.info.np"
           # "Bluetooth-Battery-Meter@maniacx.github.com"
           # "monitor@astraext.github.io"

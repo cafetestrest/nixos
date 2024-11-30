@@ -242,7 +242,7 @@ rec {
         keyboard-shortcuts.enable = modules.desktop-environment.gnome.enable;
         packages.enable = modules.desktop-environment.gnome.enable;
         autostart = {
-          copyq.enable = false;
+          copyq.enable = modules.home-manager.packages.copyq.enable;
           albert.enable = modules.home-manager.packages.albert.enable;
           xpad.enable = false;
         };
@@ -255,7 +255,7 @@ rec {
           executor.enable = false;
           gtile.enable = false;
           super-key.enable = false;
-          useless-gaps.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
+          useless-gaps.enable = false;
           media-controls.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           tiling-assistant.enable = modules.home-manager.gnome.extension.hosts.desktop.enable;
           pop-shell.enable = false;

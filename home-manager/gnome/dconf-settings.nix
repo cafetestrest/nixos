@@ -80,6 +80,13 @@ in
         apps=''['lock.desktop', 'logout.desktop', 'shutdown.desktop', 'sleep.desktop', 'restart.desktop']'';
         name="Unnamed Folder";
       };
+
+      # disables Low Disk Space on "boot" notification due to dual boot
+      "org/gnome/settings-daemon/plugins/housekeeping" = {
+        ignore-paths=[
+          "/boot"
+        ];
+      };
     };
   };
 }
