@@ -31,7 +31,8 @@ in
       loupe #image viewer
       grim                                #screenshot tool
       slurp                               #select a screenshot region
-      hyprpicker                          #pipette - color hex picker 
+      hyprpicker                          #pipette - color hex picker
+      wl-clipboard                        #clipboard copy/paste
     ] ++ lib.optionals cfgGnomePkgs.enable [
       nautilus                      #file manager
       gnome-text-editor

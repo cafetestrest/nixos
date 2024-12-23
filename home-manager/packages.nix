@@ -19,7 +19,6 @@ in
       # tldr
       # firefox             #firefox browser
       # libsForQt5.qt5ct
-      #wl-clipboard
       # qbittorrent         #torrent application
       # librewolf           #firefox browser
       # zed-editor
