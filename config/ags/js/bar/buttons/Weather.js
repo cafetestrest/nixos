@@ -301,6 +301,7 @@ export const WeatherMainWidget = (widgetIcon, widgetDate, rain, temperatureDataP
 export const Tooltip = (total = null) => Widget.Box({
     setup: self => self.hook(Weather, () => {
         let tooltip = Weather.tooltip;
+        console.log(tooltip)
 
         if (tooltip) {
             self.get_children().forEach(ch => ch.destroy());
@@ -315,6 +316,10 @@ export const Tooltip = (total = null) => Widget.Box({
             let forecastWidgetsNumber = 0;
 
             tooltip.forEach(w => {
+                if (w.indicator) {
+                    return;
+                }
+
                 if (w.date !== prevDayName) {
                     weatherStatusIconArray = [];
                     prevDayName = w.date;
@@ -372,6 +377,9 @@ export const Tooltip = (total = null) => Widget.Box({
             for (let i = 0; i < tooltip.length; i++) {
                 w = tooltip[i];
 
+                if (w.indicator) {
+                    continue;
+                }
                 // console.log('loop ' + w.date + ' h ' + w.hour + ' i ' + w.icon )
 
                 // used to limit forecast to specified amount (if total variable is provided, it will display that amount of forecast widgets on a main one)

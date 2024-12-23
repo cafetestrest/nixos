@@ -113,12 +113,14 @@ function print_weather_output() {
         output="${output%,}"
     fi
 
-    output="[$output]"
-
     if [ "$Ags" == "1" ]; then
+        output="[$output]"
         ags -r "weather.setTooltip($output)"
         ags -r "weather.setTemperatureWeather(\"$nowTemperature\")"
     else
+        output+=",{\"indicator\":\"$nowTemperature\"}"
+        output="${output%,}"
+        output="[$output]"
         echo "$output"
     fi
 }
@@ -275,6 +277,9 @@ function weather_data() {
         Temperature=$(echo "$response" | jq -r .main.temp | tr '\n' ' ')
         # Use bc to format the temperature to 0 decimal places
         Temperature=$(echo "$Temperature" | bc -l | awk '{printf "%.0f", $1}')
+        if [ "$Temperature" == "-0" ]; then
+            Temperature=0
+        fi
 
         # ShortWeather=$(echo "$response" | jq -r .weather[0].main | tr '\n' ' '| awk '{$1=$1};1' )
         LongWeather=$(echo "$response" | jq -r .weather[0].description | sed -E 's/\S+/\u&/g' | tr '\n' ' '| awk '{$1=$1};1' )
@@ -358,6 +363,9 @@ function get_weather_forecast_data() {
 
         Temperature=$(echo "$response" | jq -r .list[$i].main.temp | tr '\n' ' ')
         Temperature=$(echo "$Temperature" | bc -l | awk '{printf "%.0f", $1}')
+        if [ "$Temperature" == "-0" ]; then
+            Temperature=0
+        fi
 
         get_min_and_max_weather
 
