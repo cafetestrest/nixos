@@ -2,8 +2,8 @@ import { App, Gtk, Widget } from "astal/gtk3";
 import AstalApps from "gi://AstalApps?version=0.1";
 
 export const MathResult = (mathText: string, query: string) => {
-    const characterLimitPerRow = 31; // Define character limit per row
-    const totalCharacterLimit = 93; // Define total character limit
+    const characterLimitPerRow = 43; // Define character limit per row
+    const totalCharacterLimit = 111; // Define total character limit
 
     // Truncate the query if it exceeds the total character limit
     if (query.length > totalCharacterLimit) {
