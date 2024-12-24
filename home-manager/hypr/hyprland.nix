@@ -221,20 +221,23 @@ in
           "SUPER, V, exec, copyq toggle"
           # "SUPER, V, ${e} -t clipboard"
           "SUPER, Print, exec, screenshot"
+          ",Print, exec, screenshot"
           "SUPER SHIFT, S, exec, screenshot 1"
+          "SHIFT,Print, exec, screenshot 1"
 
-          "SUPER SHIFT, R, ${e} quit; AGS_SKIP_V_CHECK=true ags"
-          "SUPER, space, ${e} -t applauncher"
-          "ALT, space, ${e} -t applauncher"
+          "SUPER SHIFT, R, ${e} quit; ags run"
+          "SUPER, space, ${e} toggle app-launcher"
+          "ALT, space, ${e} toggle app-launcher"
           # ", XF86PowerOff, ${e} -t powermenu"
           # "SUPER, Tab, ${e} -t overview"
           # ", XF86Launch4, ${e} -r 'recorder.start()'"
-          ",Print, ${e} -r 'recorder.screenshot()'"
-          "SHIFT,Print, ${e} -r 'recorder.screenshot(true)'"
+          # ",Print, ${e} -r 'recorder.screenshot()'"
+          # "SHIFT,Print, ${e} -r 'recorder.screenshot(true)'"
           # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
-          "SUPER, L, ${e} -t powermenu"
-          "SUPER, N, ${e} -t weather"
-          "SUPER, S, ${e} -t quicksettings"
+          "SUPER, L, ${e} toggle powermenu"
+          "SUPER, N, ${e} toggle notifications"
+          "SUPER SHIFT, N, ${e} toggle weather"
+          "SUPER, S, ${e} toggle control-center"
           "CTRL ALT, Delete, exec, xterm -e powermenu t"
           "SUPER SHIFT, Delete, exec, xterm -e powermenu t"
           ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
@@ -283,11 +286,11 @@ in
         ++ (map (i: ws (toString i) (toString i)) arr)
         ++ (map (i: mvtows (toString i) (toString i)) arr);
 
-        bindle = let e = "exec, ags -r"; in [
+        bindle = let e = "exec, ags"; in [
           # ",XF86MonBrightnessUp, ${e} 'brightness.screen += 0.05; indicator.display()'"
           # ",XF86MonBrightnessDown, ${e} 'brightness.screen -= 0.05; indicator.display()'"
-          ",XF86KbdBrightnessUp, ${e} 'brightness.kbd++; indicator.kbd()'"
-          ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
+          # ",XF86KbdBrightnessUp, ${e} 'brightness.kbd++; indicator.kbd()'"
+          # ",XF86KbdBrightnessDown, ${e} 'brightness.kbd--; indicator.kbd()'"
           # ",XF86AudioRaiseVolume, ${e} 'audio.speaker.volume += 0.05; indicator.speaker()'"
           # ",XF86AudioLowerVolume, ${e} 'audio.speaker.volume -= 0.05; indicator.speaker()'"
           ",XF86AudioLowerVolume, exec, ${pamixer} -d 1"
@@ -314,13 +317,13 @@ in
           (resizeactivectrl "down" "0 10")
         ];
 
-        bindl = let e = "exec, ags -r"; in [
+        bindl = let e = "exec, ags"; in [
           # ",XF86AudioPlay, ${e} 'mpris?.playPause()'"
           # ",XF86AudioStop, ${e} 'mpris?.stop()'"
           # ",XF86AudioPause, ${e} 'mpris?.pause()'"
           # ",XF86AudioPrev, ${e} 'mpris?.previous()'"
           # ",XF86AudioNext, ${e} 'mpris?.next()'"
-          ",XF86AudioMicMute, ${e} 'audio.microphone.isMuted = !audio.microphone.isMuted'"
+          ",XF86AudioMicMute, exec, ${pamixer} --default-source -t"
           ",XF86AudioPlay, exec, ${mediaControl} play-pause"
           ",XF86AudioStop, exec, ${mediaControl} stop"
           ",XF86AudioPause, exec, ${mediaControl} pause"

@@ -9,7 +9,7 @@
     # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # nur.url = "github:nix-community/NUR";
-    ags.url = "github:Aylur/ags/v1";  #TODO update
+    ags.url = "github:Aylur/ags";
 
     rooter = {
       url = "github:run-as-root/rooter";

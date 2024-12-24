@@ -1,5 +1,2 @@
-node_modules
-types
-package-lock.json
-weather_key
-setup.sh
+@girs/
+node_modules/

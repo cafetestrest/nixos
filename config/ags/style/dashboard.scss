@@ -1,0 +1,167 @@
+@use "./colors.scss" as *;
+
+.dashboard {
+	border-radius: 2.714rem;
+	min-width: 29rem;
+	transition:
+		background-color 1s ease-in-out,
+		color 1s ease-in-out;
+}
+
+.block {
+	background: $surface_transparent;
+	border-radius: 2.143rem;
+	padding: 1.429rem;
+	transition:
+		background-color 1s ease,
+		color 1s ease;
+}
+
+.placeholder {
+	color: $outline;
+	label {
+		font-size: 20rem;
+	}
+}
+
+.calendar__header {
+	.sidebar-calendar-monthshift-btn {
+		margin-left: 1rem;
+		padding: 0 0.7rem;
+	}
+
+	.calendar__monthyear {
+		padding: 0.5rem 1rem;
+	}
+
+	button {
+		padding: 0.4rem;
+		border-radius: 1.2rem;
+		background-color: $surface_container_highest;
+		color: $on_surface;
+		transition:
+			background-color 0.2s ease-in-out,
+			color 0.2s ease-in-out;
+		&:hover {
+			background: $primary_fixed;
+			color: $on_primary_fixed;
+		}
+		&:focus {
+			background-color: $hover;
+		}
+	}
+
+	margin-top: 0.857rem;
+	padding: 0.714rem;
+}
+
+.calendar__monthyear {
+	* {
+		font-size: 1.286rem;
+		font-weight: 500;
+	}
+}
+
+.calendar__button {
+	border-radius: 1.2rem;
+	&:hover {
+		background: $primary_fixed;
+		color: $on_primary_fixed;
+	}
+	&:focus {
+		background-color: $hover;
+	}
+
+	padding: 0.714rem 0.857rem;
+}
+
+.calendar__button__today {
+	border-radius: 7.143rem;
+	background: $primary;
+	color: $on_primary;
+}
+
+.calendar__button__other-month {
+	color: $outline;
+}
+
+.calendar__weekday {
+	min-height: 2.857rem;
+	min-width: 2.571rem;
+	font-weight: 600;
+}
+
+.calendar__day {
+	border-radius: 7.143rem;
+	min-height: 2.857rem;
+	min-width: 2.857rem;
+	&.active {
+		background: $primary;
+		color: $on_primary;
+	}
+	&.inactive {
+		color: $inverse_surface_transparent_variant;
+	}
+}
+
+.todos {
+	min-height: 0;
+	padding: 0.857rem 0.857rem 0;
+
+	revealer:last-child {
+		.todo {
+			margin-bottom: 0.857rem;
+		}
+	}
+}
+
+.todos__combobox {
+	* {
+		font-size: 20rem;
+	}
+	button {
+		margin: 0 0.714rem;
+		padding: 0.857rem 0 20rem 0;
+	}
+}
+
+.todos__heading {
+	margin-bottom: 0.571rem;
+}
+
+.todos__scrollable {
+	min-height: 20rem;
+}
+
+.todo {
+	min-height: 3.429rem;
+	padding: 0 0.714rem;
+	font-weight: 400;
+	label {
+		font-size: 1.143rem;
+	}
+}
+
+.todo__check,
+.todo__delete {
+	font-size: 1.429rem;
+	color: $on_surface_variant;
+}
+
+.todos__input_box {
+	padding: 0 0.714rem;
+	icon {
+		font-size: 1.429rem;
+		color: $primary;
+	}
+	min-height: 3rem;
+}
+
+.todos__input {
+	padding: 0;
+	font-size: 1.143rem;
+	background: none;
+	font-weight: 500;
+	color: $primary;
+	caret-color: $primary;
+}

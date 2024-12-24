@@ -61,7 +61,7 @@ start_program "wlsunset"
 COMMAND="toggleidle a"
 start_program "hypridle"
 
-COMMAND=ags
+COMMAND="ags run"
 start_program "ags"
 
 if pgrep "ydotool"; then
