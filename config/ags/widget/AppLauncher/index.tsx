@@ -9,74 +9,88 @@ const apps = new AstalApps.Apps();
 
 const query = Variable<string>("");
 
-let parens = /\(([0-9+\-*/\^ .]+)\)/             // Regex for identifying parenthetical expressions
-let exp = /(\d+(?:\.\d+)?) ?\^ ?(\d+(?:\.\d+)?)/ // Regex for identifying exponentials (x ^ y)
-let mul = /(\d+(?:\.\d+)?) ?\* ?(\d+(?:\.\d+)?)/ // Regex for identifying multiplication (x * y)
-let div = /(\d+(?:\.\d+)?) ?\/ ?(\d+(?:\.\d+)?)/ // Regex for identifying division (x / y)
-let add = /(\d+(?:\.\d+)?) ?\+ ?(\d+(?:\.\d+)?)/ // Regex for identifying addition (x + y)
-let sub = /(\d+(?:\.\d+)?) ?- ?(\d+(?:\.\d+)?)/  // Regex for identifying subtraction (x - y)
+function evaluate(expr: string): string {
+    // Helper function to handle percentage operations
+    const handlePercentage = (expression: string): string => {
+        return expression.replace(/(\d+(\.\d+)?)%/g, (match, p1) => {
+            return `(${parseFloat(p1) / 100})`;
+        });
+    };
 
-/**
- * Evaluates a numerical expression as a string and returns a Number
- * Follows standard PEMDAS operation ordering
- * @param {String} expr Numerical expression input
- * @returns {Number} Result of expression
- */
-function evaluate(expr: string)
-{
-    if(isNaN(Number(expr)))
-    {
-        if(parens.test(expr))
-        {
-            let newExpr = expr.replace(parens, function(match, subExpr) {
-                return evaluate(subExpr);
-            });
-            return evaluate(newExpr);
-        }
-        else if(exp.test(expr))
-        {
-            let newExpr = expr.replace(exp, function(match, base, pow) {
-                return Math.pow(Number(base), Number(pow));
-            });
-            return evaluate(newExpr);
-        }
-        else if(mul.test(expr))
-        {
-            let newExpr = expr.replace(mul, function(match, a, b) {
-                return Number(a) * Number(b);
-            });
-            return evaluate(newExpr);
-        }
-        else if(div.test(expr))
-        {
-            let newExpr = expr.replace(div, function(match, a, b) {
-                if(b != 0)
-                    return Number(a) / Number(b);
-                else
-                    throw new Error('Division by zero');
-            });
-            return evaluate(newExpr);
-        }
-        else if(add.test(expr))
-        {
-            let newExpr = expr.replace(add, function(match, a, b) {
-                return Number(a) + Number(b);
-            });
-            return evaluate(newExpr);
-        }
-        else if(sub.test(expr))
-        {
-            let newExpr = expr.replace(sub, function(match, a, b) {
-                return Number(a) - Number(b);
-            });
-            return evaluate(newExpr);
-        }
-        else
-        {
-            return expr;
-        }
-    }
-    return Number(expr);
+    // Handle percentage by converting it into a fraction
+    expr = handlePercentage(expr);
+
+    // Function to evaluate an expression
+    const calculate = (expr: string): number => {
+        const tokens = expr.match(/([+\-*/^()])|(\d+(\.\d+)?)/g);
+        if (!tokens) throw new Error('Invalid expression');
+
+        const operators: string[] = [];
+        const values: number[] = [];
+
+        const precedence: Record<string, number> = {
+            '+': 1, '-': 1, '*': 2, '/': 2, '^': 3
+        };
+
+        const applyOperator = () => {
+            const operator = operators.pop();
+            const right = values.pop();
+            const left = values.pop();
+
+            if (operator === '+') values.push(left + right);
+            else if (operator === '-') values.push(left - right);
+            else if (operator === '*') values.push(left * right);
+            else if (operator === '/') values.push(left / right);
+            else if (operator === '^') values.push(Math.pow(left, right));
+        };
+
+        const process = () => {
+            while (tokens.length) {
+                const token = tokens.shift();
+                if (/\d+(\.\d+)?/.test(token)) {
+                    values.push(parseFloat(token));
+                } else if (token === '(') {
+                    operators.push(token);
+                } else if (token === ')') {
+                    while (operators[operators.length - 1] !== '(') {
+                        applyOperator();
+                    }
+                    operators.pop();
+                } else if (precedence[token]) {
+                    while (
+                        operators.length &&
+                        precedence[operators[operators.length - 1]] >= precedence[token]
+                    ) {
+                        applyOperator();
+                    }
+                    operators.push(token);
+                } else {
+                    throw new Error(`Invalid token: ${token}`);
+                }
+            }
+
+            while (operators.length) {
+                applyOperator();
+            }
+
+            return values[0];
+        };
+
+        return process();
+    };
+
+    // Calculate the result
+    const result = calculate(expr);
+
+    // Format the result with commas
+    return formatWithCommas(result);
+}
+
+// Helper function to format numbers with commas
+function formatWithCommas(num: number): string {
+    if (isNaN(num)) return 'Invalid number';
+
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function containsMathOperation(text:string) {
