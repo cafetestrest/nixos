@@ -33,6 +33,7 @@ export default () => {
     const clients = bind(Hyprland, 'clients');
 
 	const focus = (address: string) => Hyprland.dispatch("focuswindow", `address:0x${address}`);
+	const close = (address: string) => Hyprland.dispatch("closewindow", `address:0x${address}`);
 
     const clientList = clients.as((clientList) => {
         if (clientList.length === 0) {
@@ -61,10 +62,10 @@ export default () => {
                                     return;
                                 }
                                 switch (event.button) {
-                                    case Gdk.BUTTON_SECONDARY:// maybe minimize move to special workspace?
-                                        return focus(address);
-                                    case Gdk.BUTTON_MIDDLE: // maybe fullscreen?
-                                        return focus(address);
+                                    case Gdk.BUTTON_SECONDARY:
+                                        return close(address);
+                                    case Gdk.BUTTON_MIDDLE:
+                                        return close(address);
                             }}}
                         >
                             <icon

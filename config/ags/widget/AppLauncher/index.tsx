@@ -10,81 +10,80 @@ const apps = new AstalApps.Apps();
 const query = Variable<string>("");
 
 function evaluate(expr: string): string {
-    // Helper function to handle percentage operations
-    const handlePercentage = (expression: string): string => {
-        return expression.replace(/(\d+(\.\d+)?)%/g, (match, p1) => {
-            return `(${parseFloat(p1) / 100})`;
-        });
+    const operators: { [key: string]: (a: number, b: number) => number } = {
+        '+': (a, b) => a + b,
+        '-': (a, b) => a - b,
+        '*': (a, b) => a * b,
+        '/': (a, b) => a / b,
+        '^': (a, b) => Math.pow(a, b)
     };
 
-    // Handle percentage by converting it into a fraction
-    expr = handlePercentage(expr);
+    const precedence: { [key: string]: number } = {
+        '+': 1,
+        '-': 1,
+        '*': 2,
+        '/': 2,
+        '^': 3
+    };
 
-    // Function to evaluate an expression
-    const calculate = (expr: string): number => {
-        const tokens = expr.match(/([+\-*/^()])|(\d+(\.\d+)?)/g);
-        if (!tokens) throw new Error('Invalid expression');
+    const toPostfix = (infix: string): string[] => {
+        const output: string[] = [];
+        const stack: string[] = [];
+        const tokens = infix.match(/(\d+(\.\d+)?|\+|\-|\*|\/|\^|\(|\))/g);
 
-        const operators: string[] = [];
-        const values: number[] = [];
+        if (!tokens) throw new Error("Invalid expression");
 
-        const precedence: Record<string, number> = {
-            '+': 1, '-': 1, '*': 2, '/': 2, '^': 3
-        };
-
-        const applyOperator = () => {
-            const operator = operators.pop();
-            const right = values.pop();
-            const left = values.pop();
-
-            if (operator === '+') values.push(left + right);
-            else if (operator === '-') values.push(left - right);
-            else if (operator === '*') values.push(left * right);
-            else if (operator === '/') values.push(left / right);
-            else if (operator === '^') values.push(Math.pow(left, right));
-        };
-
-        const process = () => {
-            while (tokens.length) {
-                const token = tokens.shift();
-                if (/\d+(\.\d+)?/.test(token)) {
-                    values.push(parseFloat(token));
-                } else if (token === '(') {
-                    operators.push(token);
-                } else if (token === ')') {
-                    while (operators[operators.length - 1] !== '(') {
-                        applyOperator();
-                    }
-                    operators.pop();
-                } else if (precedence[token]) {
-                    while (
-                        operators.length &&
-                        precedence[operators[operators.length - 1]] >= precedence[token]
-                    ) {
-                        applyOperator();
-                    }
-                    operators.push(token);
-                } else {
-                    throw new Error(`Invalid token: ${token}`);
+        for (const token of tokens) {
+            if (!isNaN(parseFloat(token))) {
+                output.push(token);
+            } else if (token === '(') {
+                stack.push(token);
+            } else if (token === ')') {
+                while (stack.length && stack[stack.length - 1] !== '(') {
+                    output.push(stack.pop()!);
                 }
+                stack.pop();
+            } else if (token in operators) {
+                while (
+                    stack.length &&
+                    precedence[stack[stack.length - 1]] >= precedence[token] &&
+                    token !== '^'
+                ) {
+                    output.push(stack.pop()!);
+                }
+                stack.push(token);
             }
+        }
 
-            while (operators.length) {
-                applyOperator();
-            }
+        while (stack.length) {
+            output.push(stack.pop()!);
+        }
 
-            return values[0];
-        };
-
-        return process();
+        return output;
     };
 
-    // Calculate the result
-    const result = calculate(expr);
+    const evaluatePostfix = (postfix: string[]): number => {
+        const stack: number[] = [];
 
-    // Format the result with commas
-    return formatWithCommas(result);
+        for (const token of postfix) {
+            if (!isNaN(parseFloat(token))) {
+                stack.push(parseFloat(token));
+            } else if (token in operators) {
+                const b = stack.pop();
+                const a = stack.pop();
+                if (a === undefined || b === undefined) throw new Error("Invalid expression");
+                stack.push(operators[token](a, b));
+            }
+        }
+
+        if (stack.length !== 1) throw new Error("Invalid expression");
+        return stack[0];
+    };
+
+    const result = evaluatePostfix(toPostfix(expr));
+	return formatWithCommas(result);
 }
+
 
 // Helper function to format numbers with commas
 function formatWithCommas(num: number): string {
