@@ -1,8 +1,9 @@
 import { Gtk } from "astal/gtk3";
-import { Binding, Variable } from "astal";
+import { bind, Binding, Variable } from "astal";
 import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
 import { bash } from "../../../lib/utils";
+import { Menu } from "../pages/Main";
 
 export const revealLightstripColor = Variable(false);
 
@@ -10,15 +11,15 @@ export default ({
 	revealMenu,
 	closeMenu,
 }: {
-	revealMenu: Binding<boolean>;
+	revealMenu: Variable<boolean>;
 	closeMenu: () => void;
 }) => {
-	return (
+	const content = (
 		<box
 			vertical
 			className={"control-center__dropdown-menu lightstrip-color qs-menu"}
 			spacing={spacing * 2}
-			visible={revealMenu}
+			// visible={bind(revealMenu)}
 		>
 			<box>
 				<label
@@ -77,4 +78,6 @@ export default ({
 			</button>
 		</box>
 	);
+
+	return (<Menu name={"lightstrip"} bindVariable={revealMenu} content={[content]}/>);
 };

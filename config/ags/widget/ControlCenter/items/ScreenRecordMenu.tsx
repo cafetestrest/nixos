@@ -1,27 +1,29 @@
 import { Gtk } from "astal/gtk3";
 // import { Binding, Variable } from "astal";
-import { Binding } from "astal";
+import { bind, Binding, Variable } from "astal";
 import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
 import Button from "../../../common/Button";
 import ScreenRecordService from "../../../service/ScreenRecord";
+import { Menu } from "../pages/Main";
 
 // const recordMicrophone = Variable(false);
 // const recordInternalAudio = Variable(false);
+
 
 export default ({
 	revealMenu,
 	closeMenu,
 }: {
-	revealMenu: Binding<boolean>;
+	revealMenu: Variable<boolean>;
 	closeMenu: () => void;
 }) => {
-	return (
+	const content = (
 		<box
 			vertical
 			className={"control-center__dropdown-menu qs-menu"}
 			spacing={spacing * 2}
-			visible={revealMenu}
+			// visible={bind(revealMenu)}
 		>
 			<icon
 				icon={icons.record}
@@ -65,4 +67,6 @@ export default ({
 			</box>
 		</box>
 	);
+
+	return (<Menu name={"screenrecord"} bindVariable={revealMenu} content={[content]}/>);
 };

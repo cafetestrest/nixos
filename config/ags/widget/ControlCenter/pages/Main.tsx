@@ -104,7 +104,7 @@ export default () => {
 						</box>
 
 						<ScreenRecordMenu
-							revealMenu={bind(revealScreenRecord)}
+							revealMenu={revealScreenRecord}
 							closeMenu={() =>
 								revealScreenRecord.set(!revealScreenRecord.get())
 							}
@@ -138,7 +138,7 @@ export default () => {
 						</box>
 
 						<ScreenshotMenu
-							revealMenu={bind(revealScreenShot)}
+							revealMenu={revealScreenShot}
 							closeMenu={() =>
 								revealScreenShot.set(!revealScreenShot.get())
 							}
@@ -165,7 +165,7 @@ export default () => {
 						</box>
 
 						<LightstripColor
-							revealMenu={bind(revealLightstripColor)}
+							revealMenu={revealLightstripColor}
 							closeMenu={() =>
 								revealLightstripColor.set(!revealLightstripColor.get())
 							}
@@ -261,3 +261,12 @@ export default () => {
 		</box>
 	);
 };
+
+export const Menu = ({ name, bindVariable, content }: {name: string, bindVariable: Variable<boolean> , content: Gtk.Widget[] }) => (
+	<revealer
+		transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+		revealChild={bind(bindVariable)}
+	>
+		<box className={`menu ${name}`} vertical children={content} />
+	</revealer>
+);

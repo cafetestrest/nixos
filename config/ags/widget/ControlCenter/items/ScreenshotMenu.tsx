@@ -1,8 +1,9 @@
 import { Gtk } from "astal/gtk3";
-import { Binding, Variable } from "astal";
+import { bind, Binding, Variable } from "astal";
 import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
 import { bash, toggleWindow } from "../../../lib/utils";
+import { Menu } from "../pages/Main";
 
 export const revealScreenShot = Variable(false);
 
@@ -10,15 +11,15 @@ export default ({
 	revealMenu,
 	closeMenu,
 }: {
-	revealMenu: Binding<boolean>;
+	revealMenu: Variable<boolean>;
 	closeMenu: () => void;
 }) => {
-	return (
+	const content = (
 		<box
 			vertical
 			className={"control-center__dropdown-menu sink-box qs-menu"}
 			spacing={spacing * 2}
-			visible={revealMenu}
+			// visible={bind(revealMenu)}
 		>
 			{/* <icon
 				icon={icons.screenshot}
@@ -84,4 +85,6 @@ export default ({
 			</button>
 		</box>
 	);
+
+	return (<Menu name={"screenshot"} bindVariable={revealMenu} content={[content]}/>);
 };
