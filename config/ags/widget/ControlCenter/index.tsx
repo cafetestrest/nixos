@@ -7,6 +7,10 @@ import { spacing } from "../../lib/variables";
 import PopupWindow from "../../common/PopupWindow";
 import { toggleWindow } from "../../lib/utils";
 // import FanProfiles from "./pages/FanProfiles";
+import { revealSinks } from "./items/Volume";
+import { revealScreenShot } from "./items/ScreenshotMenu";
+import { revealLightstripColor } from "./items/LightstripColor";
+import { revealScreenRecord } from "./pages/Main";
 
 export const controlCenterPage = Variable("main");
 
@@ -39,10 +43,34 @@ export default () => {
 			onKeyPressEvent={(self, event) => {
 				const [keyEvent, keyCode] = event.get_keycode();
 				if (keyEvent && keyCode == 9) {
-					if (controlCenterPage.get() == "main") {
-						toggleWindow(self.name);
-					} else {
-						controlCenterPage.set("main");
+					let changed = false;
+
+					if (revealSinks.get()) {
+						revealSinks.set(false);
+						changed = true;
+					}
+
+					if (revealScreenShot.get()) {
+						revealScreenShot.set(false);
+						changed = true;
+					}
+
+					if (revealLightstripColor.get()) {
+						revealLightstripColor.set(false);
+						changed = true;
+					}
+
+					if (revealScreenRecord.get()) {
+						revealScreenRecord.set(false);
+						changed = true;
+					}
+
+					if (false === changed) {
+						if (controlCenterPage.get() == "main") {
+							toggleWindow(self.name);
+						} else {
+							controlCenterPage.set("main");
+						}
 					}
 				}
 			}}

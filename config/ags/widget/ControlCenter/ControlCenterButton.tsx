@@ -57,9 +57,12 @@ export default ({
 			}}}
 			onKeyReleaseEvent={(_, event) => {
 				const [keyEvent, keyCode] = event.get_keycode();
-
 				if (keyEvent && menuName && menuName !== 'arrow' && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
 					controlCenterPage.set(menuName);
+				} else if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) {
+					if (onPrimaryClick) {
+						onPrimaryClick();
+					}
 				}
 			}}
 			{...props}

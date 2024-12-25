@@ -22,11 +22,11 @@ import ControlCenterButton from "../ControlCenterButton";
 import ScreenshotMenu, { revealScreenShot } from "../items/ScreenshotMenu";
 import LightstripColor, { revealLightstripColor } from "../items/LightstripColor";
 
-export default () => {
-	const revealScreenRecord = Variable(false);
-	const revealFristPage = Variable(true);
-	const revealSecondPage = Variable(false);
+export const revealScreenRecord = Variable(false);
+export const revealFristPage = Variable(true);
+export const revealSecondPage = Variable(false);
 
+export default () => {
 	const SinkButton = () => (
 		<button
 			className={"control-center__powermenu-button sink"}
