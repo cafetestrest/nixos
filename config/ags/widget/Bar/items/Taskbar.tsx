@@ -25,7 +25,14 @@ function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: string) {
 	if ((!icon || icon === "") && client.initialTitle !== "")
 	  icon = Applications.exact_query(client.initialTitle)[0]?.iconName;
 
-	icon = substitutions.icons[client.initialTitle] || icon;
+	icon = substitutions.icons[client.initialClass] || icon;
+
+    if (icon === 'preferences-desktop-display') {
+        if (iconName === 'Ghostty' || client.initialClass === 'com.mitchellh.ghostty') {
+            icon = client.initialClass;
+        }
+    }
+
 	return Astal.Icon.lookup_icon(icon) ? icon : icons.fallback.executable;
 };
 
