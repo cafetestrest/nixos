@@ -10,6 +10,7 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # nur.url = "github:nix-community/NUR";
     ags.url = "github:Aylur/ags";
+    ghostty.url = "github:ghostty-org/ghostty";
 
     rooter = {
       url = "github:run-as-root/rooter";

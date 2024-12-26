@@ -147,6 +147,7 @@ rec {
         fd.enable = false;
         ripgrep.enable = false;
         kitty.enable = true;
+        ghostty.enable = true;
         yazi.enable = true;
         micro.enable = true;
         peco.enable = true;

@@ -121,6 +121,7 @@
     ./teamviewer.nix
     ./rofi.nix                              # app launcher
     ./swaync.nix                            # sway notification center
+    ./ghostty.nix                           # ghostty terminal
   ];
 
   module = {
@@ -144,6 +145,7 @@
       fd.enable = (vars.modules.home-manager.packages.fd.enable or false);
       ripgrep.enable = (vars.modules.home-manager.packages.ripgrep.enable or false);
       kitty.enable = (vars.modules.home-manager.packages.kitty.enable or false);
+      ghostty.enable = (vars.modules.home-manager.packages.ghostty.enable or false);
       yazi.enable = (vars.modules.home-manager.packages.yazi.enable or false);
       micro.enable = (vars.modules.home-manager.packages.micro.enable or false);
       copyq.enable = (vars.modules.home-manager.packages.copyq.enable or false);
