@@ -88,10 +88,10 @@ const ScreenRecorderService = GObject.registerClass(
       // const output = hypr.focusedMonitor.name;
       // const cmd = `wl-screenrec --output ${output} --filename ${this.#file}`;
 
-      let cmd = `wf-recorder -c h264_vaapi -f ${this.#file}"`;
+      let cmd = `wf-recorder -c h264_vaapi -f ${this.#file}`;
 
       if (this.#recordSelectRegion) {
-        cmd += ` -g "${await bash("slurp")}`;
+        cmd += ` -g "${await bash("slurp")}"`;
       }
 
       if (this.#recordAudio) {
