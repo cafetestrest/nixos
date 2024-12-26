@@ -21,19 +21,7 @@ in
       # inputs.ags.packages.${pkgs.system}.auth
       # inputs.matugen.packages.${pkgs.system}.default
       material-symbols
-      wl-screenrec
-
-      # sassc
-      # socat
-      # imagemagick
-      # pavucontrol #audio
-      # wayshot #screen recorder
-      # wf-recorder #screen recorder
-      # swappy #screen recorder
-      # wl-gammactl
-      # brightnessctl
-      # gjs
-      # inotify-tools #inotifywait - reload for scss
+      wf-recorder #screen recorder
     ];
 
     programs.ags = {

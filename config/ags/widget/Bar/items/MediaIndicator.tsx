@@ -121,7 +121,7 @@ const Player = ({ player }: PlayerProps) => {
 export default () => {
 	const mpris = AstalMpris.get_default();
 
-    return <box vertical>
+    return <box>
         {bind(mpris, "players").as(arr => arr.map(player => {
 				return (<Player player={player} />)
 			}

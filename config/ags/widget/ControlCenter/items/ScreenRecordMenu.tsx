@@ -4,12 +4,8 @@ import { bind, Binding, Variable } from "astal";
 import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
 import Button from "../../../common/Button";
-import ScreenRecordService from "../../../service/ScreenRecord";
+import ScreenRecordService, { recordInternalAudioToggle, recordOnlySelectedScreenToggle } from "../../../service/ScreenRecord";
 import { Menu } from "../pages/Main";
-
-// const recordMicrophone = Variable(false);
-// const recordInternalAudio = Variable(false);
-
 
 export default ({
 	revealMenu,
@@ -40,17 +36,45 @@ export default ({
 			>
 				<icon icon={icons.audio.mic.high} />
 				<label label={"Record audio"} />
-				<switch hexpand halign={Gtk.Align.END} />
-				{/* // TODO check audio switch or impement it */}
+				<switch
+					hexpand
+					halign={Gtk.Align.END}
+					active={false}
+					setup={(self) => {
+						self.connect('notify::active', () => {
+							ScreenRecordService.setAudioRecord(self.active)
+						});
+
+						self.hook(recordInternalAudioToggle, () => {
+							self.active = false;
+						})
+					}}
+				/>
 			</box>
 			<box
 				hexpand
 				className={"control-center__dropdown-menu_item"}
 				spacing={spacing * 2}
 			>
-				<icon icon={icons.audio.type.speaker} />
+				<icon icon={icons.select} />
+				<label label={"Record only selected size"} />
+				<switch
+					hexpand
+					halign={Gtk.Align.END}
+					active={false}
+					setup={(self) => {
+						self.connect('notify::active', () => {
+							ScreenRecordService.setRecordSelected(self.active)
+						});
+
+						self.hook(recordOnlySelectedScreenToggle, () => {
+							self.active = false;
+						})
+					}}
+				/>
+				{/* <icon icon={icons.audio.type.speaker} />
 				<label label={"Record internal audio"} />
-				<switch hexpand halign={Gtk.Align.END} />
+				<switch hexpand halign={Gtk.Align.END} /> */}
 			</box>
 			<box hexpand halign={Gtk.Align.END} spacing={spacing}>
 				<Button buttonType="outlined" onClicked={closeMenu}>
