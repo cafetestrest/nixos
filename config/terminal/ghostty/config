@@ -1,0 +1,24 @@
+theme = Dark+
+shell-integration = fish
+font-family = JetBrains Mono
+font-style = Regular
+font-size = 11
+window-decoration = false
+confirm-close-surface = false
+copy-on-select = clipboard
+clipboard-paste-protection = false
+
+keybind = ctrl+w=close_surface
+keybind = ctrl+q=close_surface
+keybind = ctrl+shift+q=close_surface
+keybind = ctrl+p=toggle_window_decorations
+keybind = ctrl+d=new_split:right
+keybind = ctrl+t=new_tab
+keybind = ctrl+t=new_tab
+keybind = ctrl+v=paste_from_clipboard
+#keybind = ctrl+c=copy_to_clipboard
+keybind = ctrl+shift+r=reload_config
+keybind = ctrl+up=goto_split:top
+keybind = ctrl+left=goto_split:left
+keybind = ctrl+down=goto_split:bottom
+keybind = ctrl+right=goto_split:right

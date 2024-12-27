@@ -53,6 +53,14 @@ in
             symlink
           }
 
+          function cmd_ghostty() {
+            PROGRAM_LOCATION=$XDG_CONFIG_HOME/ghostty/config
+            LOCATION="$FLAKE_LOCATION/config/terminal/ghostty/config"
+
+            remove "$@"
+            symlink
+          }
+
           function cmd_hyprland() {
             PROGRAM_LOCATION=$XDG_CONFIG_HOME/hypr/hyprland.conf
             LOCATION="$XDG_CONFIG_HOME/hypr/hyprland.conf.bak"
@@ -101,6 +109,7 @@ in
           case "$1" in
               ags) shift;                                     cmd_ags "$@" ;;
               kitty) shift;                                   cmd_kitty "$@" ;;
+              ghostty) shift;                                 cmd_ghostty "$@" ;;
               waybar) shift;                                  cmd_waybar "$@" ;;
               hyprland) shift;                                cmd_hyprland "$@" ;;
               help|--help) shift;                             cmd_usage "$@" ;;
