@@ -128,12 +128,12 @@ const AudioIndicator = () => {
 			<icon
 				className={"headset-icon"}
 				visible={bind(speaker, 'icon').as((icon) => {
-					if (icon === 'audio-headset-bluetooth' || icon === 'audio-headset-analog-usb')
+					if (icon === 'audio-headset-bluetooth' || icon === 'audio-headset-analog-usb' || icon === 'audio-card-analog-usb')
 						return true;
 					return false;
 				})}
 				icon={bind(speaker, 'icon').as((icon) => {
-					if (icon === 'audio-headset-bluetooth' || icon === 'audio-headset-analog-usb')
+					if (icon === 'audio-headset-bluetooth' || icon === 'audio-headset-analog-usb' || icon === 'audio-card-analog-usb')
 						return icons.audio.type.headset;
 					return icons.audio.type.card;
 				}
