@@ -380,3 +380,10 @@ $itemsMinHeight: 1.5rem;
 .player__next {
 	padding: 0.2rem 0.4rem;
 }
+
+.player-icon-cover-art {
+	min-width: 1.5rem;
+	background-size: cover;
+	background-position: center;
+	border-radius: 0.5rem;
+}

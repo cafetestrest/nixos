@@ -169,6 +169,8 @@ export default {
 		stopped: "media-playback-start-symbolic",
 		prev: "media-skip-backward-symbolic",
 		next: "media-skip-forward-symbolic",
+		gonext: "go-next-symbolic",
+		goprev: "go-previous-symbolic",
 	},
 	powermenu: {
         lock: 'system-lock-screen-symbolic',

@@ -18,7 +18,20 @@ const Player = ({ player }: PlayerProps) => {
 				lookUpIcon(`${i}-symbolic`) ? `${i}-symbolic` : lookUpIcon(i) ? i : icons.fallback.audio,
 			)}
 			className="player__icon"
+			visible={bind(player, 'coverArt').as((c) => c === '')}
 		/>
+	);
+
+	const coverArt = bind(player, 'coverArt').as(
+        (c) => {
+			if (c)
+				return `background-image: url('${c}')`
+			return `background-image: none`
+		},
+    )
+
+	const PlayerIconCover = () => (
+		<box className="player-icon-cover-art" css={coverArt} visible={bind(player, 'coverArt').as((c) => c !== '')}/>
 	);
 
 	const Title = new Widget.Label({
@@ -78,6 +91,7 @@ const Player = ({ player }: PlayerProps) => {
 			>
 				<box>
 					<PlayerIcon />
+					<PlayerIconCover />
 				</box>
 			</BarButton>
 			<revealer
@@ -108,11 +122,11 @@ const Player = ({ player }: PlayerProps) => {
 				</box>
 			</revealer>
 			<box visible={bind(player, "canGoPrevious")}>
-				<ControlButton icon={icons.media.prev} onClick={() => player.previous()} className="player__previous" />
+				<ControlButton icon={icons.media.goprev} onClick={() => player.previous()} className="player__previous" />
 			</box>
 			<PlayPauseButton />
 			<box visible={bind(player, "canGoNext")}>
-				<ControlButton icon={icons.media.next} onClick={() => player.next()} className="player__next" />
+				<ControlButton icon={icons.media.gonext} onClick={() => player.next()} className="player__next" />
 			</box>
 		</box>
 	)
