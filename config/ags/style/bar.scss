@@ -382,8 +382,9 @@ $itemsMinHeight: 1.5rem;
 }
 
 .player-icon-cover-art {
-	min-width: 1.5rem;
+	margin: 1px 0;
+	min-width: 1.4rem;
 	background-size: cover;
 	background-position: center;
-	border-radius: 0.5rem;
+	border-radius: 50%;
 }
