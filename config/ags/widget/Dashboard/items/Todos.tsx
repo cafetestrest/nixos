@@ -29,8 +29,7 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 				className={"todo-label"}
 				wrap={true}
 				truncate={todo.content.length > 256 ? true : false}
-				wrapMode={Pango.WrapMode.WORD_CHAR}
-				justify={Gtk.Justification.LEFT}
+				wrapMode={Pango.WrapMode.CHAR}
 				justifyFill={true}
 			/>
 
