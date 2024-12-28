@@ -241,7 +241,8 @@ in
           "CTRL ALT, Delete, exec, xterm -e powermenu t"
           "SUPER SHIFT, Delete, exec, xterm -e powermenu t"
           ''SUPER, Page_Up, exec, wpctl set-default $(wpctl status | grep "Digital Stereo (HDMI" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to HDMI"''
-          ''SUPER, Page_Down, exec, wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"''
+          "SUPER, Page_Down, exec, setaudiosource"
+          # ''SUPER, Page_Down, exec, wpctl set-default $(wpctl status | grep "SteelSeries Arctis 7 Game" | grep "\d+" -Po | head -n 1) && notify-send "Audio Output changed to Headset"''
           "SUPER SHIFT, escape, exec, ${mediaControl} --all-players stop"
 
           # youtube

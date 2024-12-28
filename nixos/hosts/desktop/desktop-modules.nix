@@ -181,6 +181,7 @@ rec {
         clipboardtoggle.enable = false;
         sync.enable = true;
         exportbluetoothinfo.enable = true;
+        setaudiosource.enable = true;
       };
       shell = {
         aliases.enable = true;
@@ -189,7 +190,7 @@ rec {
           plugins = {
             enable = modules.home-manager.shell.fish.enable;
             autopair.enable = modules.home-manager.shell.fish.plugins.enable;
-            done.enable = modules.home-manager.shell.fish.plugins.enable;
+            done.enable = false;
             sponge.enable = modules.home-manager.shell.fish.plugins.enable;
             tide.enable = modules.home-manager.shell.fish.plugins.enable;
           };
