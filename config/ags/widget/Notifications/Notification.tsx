@@ -53,6 +53,22 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
 		}
 	}
 
+	if (appIcon) {
+		return (
+			<box
+				valign={Gtk.Align.START}
+				hexpand={false}
+				className="notification-app-icon"
+				css={`
+					background-image: url("file://${appIcon}");
+					background-size: cover;
+					background-repeat: no-repeat;
+					background-position: center;
+				`}
+			/>
+		);
+	}
+
 	let icon = icons.fallback.notification;
 
 	return new Widget.Box({
@@ -85,40 +101,42 @@ export default function Notification(props: NotificationsProps) {
 				<box
 					className="notification__header"
 					vexpand={true}
-					valign={Gtk.Align.CENTER}
+					valign={Gtk.Align.START}
 				>
-					<box hexpand={true} spacing={6}>
-						<label
-							className="notification__title"
-							maxWidthChars={14}
-							wrap={true}
-							justify={Gtk.Justification.LEFT}
-							truncate={true}
-							useMarkup={true}
-							label={notification.summary.trim()}
-						/>
-						<label className="notification__dot" label={"•"} />
-						{notification.appName != "" && (
+					<box hexpand={true} vertical>
+						<box>
 							<label
-								className="notification__app-name"
+								halign={Gtk.Align.START}
+								className="notification__title"
+								// maxWidthChars={14}
+								// wrap={true}
 								justify={Gtk.Justification.LEFT}
 								truncate={true}
-								wrap={true}
-								maxWidthChars={8}
 								useMarkup={true}
-								label={notification.app_name.trim()}
+								label={notification.summary.trim()}
+								hexpand
 							/>
-						)}
-						{notification.appName != "" && (
-							<label className="notification__dot" label={"•"} />
-						)}
+							<label
+								halign={Gtk.Align.END}
+								className="notification__time"
+								label={time(notification.time)?.toString()}
+							/>
+						</box>
 						<label
-							className="notification__time"
-							label={time(notification.time)?.toString()}
+							className="notification__description"
+							hexpand={true}
+							useMarkup={true}
+							xalign={0}
+							lines={3}
+							justify={Gtk.Justification.LEFT}
+							truncate={true}
+							maxWidthChars={24}
+							wrap={true}
+							label={notification.body.trim().toString()}
 						/>
 					</box>
 				</box>
-				<revealer
+				{/* <revealer
 					visible={notification.body != ""}
 					reveal_child={notification.body != ""}
 				>
@@ -134,7 +152,7 @@ export default function Notification(props: NotificationsProps) {
 						wrap={true}
 						label={notification.body.trim().toString()}
 					/>
-				</revealer>
+				</revealer> */}
 			</box>
 			<button
 				vexpand={true}

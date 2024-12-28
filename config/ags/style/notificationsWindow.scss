@@ -40,20 +40,24 @@
 .notifications-window__list {
 	border-radius: 0.8rem;
 
-	revealer:first-child {
-		.notification {
-			border-top-left-radius: 1.714rem;
-			border-top-right-radius: 1.714rem;
-		}
+	revealer .notification{
+		border-radius: 1.2rem;
 	}
 
-	revealer:last-child {
-		.notification {
-			border-bottom-left-radius: 1.714rem;
-			border-bottom-right-radius: 1.714rem;
-			margin-bottom: 0.714rem;
-		}
-	}
+	// revealer:first-child {
+	// 	.notification {
+	// 		border-top-left-radius: 1.714rem;
+	// 		border-top-right-radius: 1.714rem;
+	// 	}
+	// }
+
+	// revealer:last-child {
+	// 	.notification {
+	// 		border-bottom-left-radius: 1.714rem;
+	// 		border-bottom-right-radius: 1.714rem;
+	// 		margin-bottom: 0.714rem;
+	// 	}
+	// }
 }
 
 .notifications-scrollable {

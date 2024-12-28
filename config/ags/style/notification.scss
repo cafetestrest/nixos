@@ -1,17 +1,25 @@
 @use "./colors.scss" as *;
 
 .notification {
-	padding: 1rem 1.143rem 1rem 1.429rem;
+	padding: 1rem 1.143rem 0.4rem 1.429rem;
 	color: $on_surface;
 	background-color: $surface_transparent;
 	border-radius: 1.857rem;
 }
 
-.notification__icon {
-	min-height: 2.143rem;
-	min-width: 2.143rem;
+.notification-app-icon {
+	min-height: 3rem;
+	min-width: 3rem;
 	margin-right: 1rem;
-	border-radius: 7.143rem;
+	border-radius: 0.8rem;
+}
+
+.notification__icon {
+	min-height: 3rem;
+	min-width: 3rem;
+	margin-right: 1rem;
+	// border-radius: 7.143rem;
+	border-radius: 0.8rem;
 	background: $inverse_surface_transparent;
 }
 
@@ -20,13 +28,13 @@
 }
 
 .notification__title {
-	font-size: 1.071rem;
+	font-size: 1rem;
 	font-weight: 500;
 }
 
 .notification__header {
-	margin-top: 0.429rem;
-	margin-bottom: 0.714rem;
+	// margin-top: 0.429rem;
+	// margin-bottom: 0.714rem;
 }
 
 .notification__app-name,
@@ -37,9 +45,13 @@
 	font-weight: 400;
 }
 
+.notification__time {
+	padding-right: 0.5rem;
+}
+
 .notification__description {
 	margin-bottom: 0.571rem;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	font-weight: 400;
 }
 
