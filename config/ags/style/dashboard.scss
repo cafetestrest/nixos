@@ -9,6 +9,7 @@
 }
 
 .block {
+	border: $containerBorder;
 	background: $surface_transparent;
 	border-radius: 2.143rem;
 	padding: 1.429rem;
@@ -106,6 +107,8 @@
 }
 
 .todos {
+	border: $containerBorder;
+
 	min-height: 0;
 	padding: 0.857rem 0.857rem 0;
 

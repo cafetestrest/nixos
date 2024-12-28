@@ -205,3 +205,7 @@ $osd: color.adjust(gray, $alpha: -0.30);
 $shadowTransparent: color.adjust($shadowColor, $alpha: -0.50);
 $buttonShadow: inset 0 0 0 1px $hover, inset 0 0 0 99px $hover;
 $sliderGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
+$containerShadowInset: inset 0 0 2px 0 rgba(238, 238, 238, 0.1);
+$containerShadowDarkInset: inset 0 0 2px 0 rgba(0, 0, 0, 0.1);
+$containerShadow: 0 0 5px 0 rgba(0, 0, 0, 0.6);
+$containerBorder: 1px solid rgba(238, 238, 238, 0.04);

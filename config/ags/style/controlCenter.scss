@@ -10,14 +10,14 @@ $togglesHeight: 10.7rem;
 		// min-height: 46.429rem;
 		background: $surface_transparent;
 		margin: 1px;
-		box-shadow: inset 0 0 2px 0 rgba(238, 238, 238, 0.1);
-		border: 1px solid rgba(238, 238, 238, 0.04);
+		border: $containerBorder;
+		// box-shadow: $containerShadowDarkInset;
 	}
 
 	.menu .sink-box,
 	.menu .control-center__dropdown-menu {
-		box-shadow: inset 0 0 2px 0 rgba(238, 238, 238, 0.1);
-		border: 1px solid rgba(238, 238, 238, 0.04);
+		box-shadow: $containerShadowDarkInset;
+		border: $containerBorder;
 	}
 
 	.control-center__page {

@@ -1,6 +1,7 @@
 @use "./colors.scss" as *;
 
 .app-launcher {
+	border: $containerBorder;
 	min-width: 39.3rem;
 	min-height: 27.5rem;
 	border-radius: 1.2rem;
@@ -145,5 +146,5 @@
 
 .math-result {
 	padding: 1rem;
-	font-size: 3rem;
+	font-size: 2.5rem;
 }
