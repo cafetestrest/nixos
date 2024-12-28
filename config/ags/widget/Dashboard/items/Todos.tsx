@@ -2,13 +2,15 @@ import { bind, GLib, readFile, Variable, writeFile } from "astal";
 import { Gtk,  } from "astal/gtk3";
 import TodosService, { Todo } from "../../../service/LocalTodos";
 import icons from "../../../lib/icons";
+import Pango from "gi://Pango?version=1.0";
 
 const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 	return (
-		<box spacing={24} hexpand={true} className="todo">
+		<box spacing={24} hexpand={false} className="todo">
 			<button
+				className={"todo-toggle"}
 				onClick={() => {
-					TodosService.check(idx);
+					TodosService.toggle(idx);
 				}}
 			>
 				<icon
@@ -24,9 +26,16 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 				hexpand={true}
 				halign={Gtk.Align.START}
 				label={todo.content}
+				className={"todo-label"}
+				wrap={true}
+				truncate={todo.content.length > 256 ? true : false}
+				wrapMode={Pango.WrapMode.WORD_CHAR}
+				justify={Gtk.Justification.LEFT}
+				justifyFill={true}
 			/>
 
 			<button
+				className={"todo-remove"}
 				valign={Gtk.Align.CENTER}
 				onClicked={() => {
 					TodosService.remove(idx);
@@ -53,21 +62,22 @@ export default () => {
 
 	return (
 		<box vertical className={"todos block"}>
-			<label
+			{/* <label
 				label={"Todos"}
 				className={"todos__heading"}
-				halign={Gtk.Align.START}
-			/>
+				halign={Gtk.Align.CENTER}
+			/> */}
 			<box className={"todos__input_box"} spacing={24}>
 				<icon icon={icons.todo.checkedAlt} />
 				<entry
 					className={"todos__input"}
-					placeholderText={"New todo..."}
+					placeholderText={"Add new todo"}
 					onChanged={({ text }) => newTodoText.set(text)}
 					onActivate={(self) => {
 						addNewTodo(newTodoText.get());
 						self.text = "";
 					}}
+					hexpand
 				/>
 			</box>
 			<stack

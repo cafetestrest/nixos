@@ -27,7 +27,7 @@
 .calendar__header {
 	.sidebar-calendar-monthshift-btn {
 		margin-left: 1rem;
-		padding: 0 0.7rem;
+		padding: 0 0.8rem;
 	}
 
 	.calendar__monthyear {
@@ -63,7 +63,7 @@
 }
 
 .calendar__button {
-	border-radius: 1.2rem;
+	border-radius: 7.143rem;
 	&:hover {
 		background: $primary_fixed;
 		color: $on_primary_fixed;
@@ -72,7 +72,8 @@
 		background-color: $hover;
 	}
 
-	padding: 0.714rem 0.857rem;
+	padding: 0.5rem 0.75rem;
+	margin: 0.2rem;
 }
 
 .calendar__button__today {
@@ -126,10 +127,17 @@
 }
 
 .todos__heading {
-	margin-bottom: 0.571rem;
+	margin-top: 0.3rem;
+	font-size: 1.3rem;
 }
 
 .todos__scrollable {
+	margin-bottom: 1rem;
+	.top,
+	.bottom {
+		background: transparent;
+	}
+
 	min-height: 20rem;
 }
 
@@ -139,6 +147,32 @@
 	font-weight: 400;
 	label {
 		font-size: 1.143rem;
+	}
+
+	.todo-toggle {
+		&:focus {
+			.todo__check {
+				color: $primary;
+			}
+		}
+
+		&:hover {
+			.todo__check {
+				color: $primary_transparent;
+			}
+		}
+	}
+	.todo-remove {
+		border-radius: 1.2rem;
+		padding: 0 0.2rem;
+
+		&:focus {
+			background-color: $red;
+		}
+
+		&:hover {
+			background-color: $red_source;
+		}
 	}
 }
 

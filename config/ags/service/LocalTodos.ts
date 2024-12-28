@@ -49,6 +49,12 @@ const LocalTodosService = GObject.registerClass(
       this.notify("todos");
     }
 
+    toggle(index: number) {
+      this._todos[index].done = !this._todos[index].done;
+      this.#save();
+      this.notify("todos");
+    }
+
     remove(index: number) {
       this._todos.splice(index, 1);
       writeFileAsync(this._todoPath, JSON.stringify(this._todos)).catch(print);
