@@ -143,7 +143,7 @@ rec {
         rooter.enable = false;
         kdeconnect.enable = false;
         eza.enable = true;
-        bat.enable = true;
+        bat.enable = false;
         fd.enable = false;
         ripgrep.enable = false;
         kitty.enable = true;
