@@ -18,7 +18,6 @@ import MixerMenu from "./widget/Popups/menus/Mixer";
 // import Verification from "./widget/Powermenu/Verification";
 import Powermenu from "./widget/Powermenu";
 import ScreenRecordService from "./service/ScreenRecord";
-// import GoogleOAuth2Service from "./service/GoogleOAuth2";
 import Dashboard from "./widget/Dashboard";
 import Weather from "./widget/Dashboard/weather";
 
@@ -59,10 +58,6 @@ function main() {
 		notificationsPopups.delete(gdkmonitor);
 		osds.delete(gdkmonitor);
 	});
-
-	// if (!GoogleOAuth2Service.isAuthenticated()) {
-	// 	GoogleOAuth2Service.openAuthorizationWebView();
-	// }
 
 	// monitorColorsChange();
 	// reloadScss('.config/ags/style/bar.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');

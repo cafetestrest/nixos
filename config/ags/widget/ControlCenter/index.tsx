@@ -6,7 +6,6 @@ import Bluetooth from "./pages/Bluetooth";
 import { spacing } from "../../lib/variables";
 import PopupWindow from "../../common/PopupWindow";
 import { toggleWindow } from "../../lib/utils";
-// import FanProfiles from "./pages/FanProfiles";
 import { revealSinks } from "./items/Volume";
 import { revealScreenShot } from "./items/ScreenshotMenu";
 import { revealLightstripColor } from "./items/LightstripColor";
@@ -102,7 +101,6 @@ export default () => {
 						>
 							<Main />
 							{Network()}
-							{/* {FanProfiles()} */}
 							{Bluetooth()}
 						</stack>
 					</box>

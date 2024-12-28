@@ -7,7 +7,6 @@ import DND from "../items/DND";
 import Microphone from "../items/Microphone";
 import icons from "../../../lib/icons";
 // import Brightness from "../items/Brightness";
-// import FanProfileButton from "../items/FanProfile";
 import ScreenRecord from "../items/ScreenRecord";
 // import ColorScheme from "../items/ColorScheme";
 import ScreenRecordMenu from "../items/ScreenRecordMenu";
