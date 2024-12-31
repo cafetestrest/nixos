@@ -3,8 +3,10 @@ import Page from "../Page";
 import { Gtk } from "astal/gtk3";
 import { bind, timeout } from "astal";
 import icons from "../../../lib/icons";
+import { upower } from "../../../lib/variables";
 
 const bluetooth = AstalBluetooth.get_default();
+const power = bind(upower);
 
 type DeviceItemProps = {
 	device: AstalBluetooth.Device;
@@ -26,16 +28,24 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
 			<box>
 				<icon icon={device.icon + "-symbolic"} />
 				<label label={device.name} />
-				{
-					// Todo: Add bluetooth battery percentage
-					// <label
-					// 	className="bluetooth__percentage"
-					// 	label={`${device.battery_percentage}%`}
-					// 	visible={bind(device, "battery_percentage").as(
-					// 		(p) => p > 0,
-					// 	)}
-					// />
-				}
+
+				<label
+					className="bluetooth__percentage"
+					label={power.as((arr) => {
+						const upowerData = arr.find(item => item.model === device.name) || false
+						if (upowerData && upowerData?.batteryPercentage) {
+							return upowerData.batteryPercentage + "%";
+						}
+						return "";
+					})}
+					visible={power.as((arr) => {
+						const upowerData = arr.find(item => item.model === device.name) || false
+						if (upowerData && upowerData?.batteryPercentage) {
+							return true;
+						}
+						return false;
+					})}
+				/>
 				<box hexpand />
 				{
 					// TODO: Add spinner
