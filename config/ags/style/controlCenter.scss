@@ -28,6 +28,14 @@ $togglesHeight: 10.7rem;
 		padding: 1rem 1rem 0.7rem 1rem;
 	}
 
+	.control-center__page.network,
+	.control-center__page.bluetooth {
+		.top,
+		.bottom {
+			background: transparent;
+		}
+	}
+
 	.control-center__page_scrollable-content {
 		margin-bottom: 1.429rem;
 	}

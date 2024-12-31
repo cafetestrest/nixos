@@ -4,6 +4,7 @@ import { Gtk } from "astal/gtk3";
 import { bind, timeout } from "astal";
 import icons from "../../../lib/icons";
 import { upower } from "../../../lib/variables";
+import { Spinner } from "../../../common/Types";
 
 const bluetooth = AstalBluetooth.get_default();
 const power = bind(upower);
@@ -24,9 +25,10 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
 					device.connect_device(() => {});
 				});
 			}}
+			visible={device.name !== null}
 		>
 			<box>
-				<icon icon={device.icon + "-symbolic"} />
+				<icon icon={device.icon === null ? icons.bluetooth.enabled : device.icon + "-symbolic"} />
 				<label label={device.name} />
 
 				<label
@@ -48,8 +50,7 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
 				/>
 				<box hexpand />
 				{
-					// TODO: Add spinner
-					// <spinner visible={bind(device, "connecting")} />
+					<Spinner visible={bind(device, "connecting")} />
 				}
 				<icon
 					icon={icons.ui.tick}

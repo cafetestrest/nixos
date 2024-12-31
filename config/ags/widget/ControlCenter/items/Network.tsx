@@ -24,7 +24,7 @@ export default () => {
 	const wifiIcon = bind(wifi, "iconName");
 	const wiredIcon = bind(wired, "iconName");
 
-	// TODO: This is a hack to make sure the icon is updated when the primary network changes
+	// This is a hack to make sure the icon is updated when the primary network changes
 	icon = Variable.derive([primary, wifiIcon], (primary, iconWifi) => {
 		if (primary == Network.Primary.WIFI) {
 			return iconWifi;
