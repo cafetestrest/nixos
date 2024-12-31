@@ -34,13 +34,17 @@ export default () => {
 				}}
 				onClickRelease={(self, event) => {
 					switch (event.button) {
-						case Gdk.BUTTON_SECONDARY: // todo check if does work
+						case Gdk.BUTTON_SECONDARY:
+							weather.stopWatch() // this kills the subprocess
+							weather.stopPoll()
+							// weather.start // launches the subprocess again
 							weather.startPoll()
-							return weather.stopPoll()
 						case Gdk.BUTTON_MIDDLE:
-							weather.startPoll
-							return weather.stopPoll
-				}}}
+							weather.stopWatch()
+							weather.stopPoll()
+							weather.startPoll()
+					}
+				}}
 				setup={(self) => {
 					const window = App.get_window("weather");
 					if (window) {
