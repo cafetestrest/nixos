@@ -42,12 +42,7 @@ reboot
 ```
 
 # Post install:
-- Wallpaper (https://github.com/ArcticSpaceFox/nixos-artwork/blob/master/wallpapers/nixos-wallpaper-ice-pattern-gradient.svg)
-
-Rotated 180 degrees horizontally and vertically (to get purple to the bottom right)
-Upscaled to 3840x2160
 
 Configuration files:
 
 - openweathermap API keys and location data located at: $HOME/.config/scripts/weather.rc
-- yrweather API keys and location data located at: $HOME/.config/ags/weather_key
