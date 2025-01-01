@@ -7,9 +7,6 @@ import AppLauncher from "./widget/AppLauncher";
 import Notifications from "./widget/Notifications";
 import OSD from "./widget/OSD";
 import {
-	monitorColorsChange,
-	reloadScss,
-	monitorDashboard,
 	toggleWindow,
 } from "./lib/utils";
 import Scrim from "./widget/Scrims/Scrim";

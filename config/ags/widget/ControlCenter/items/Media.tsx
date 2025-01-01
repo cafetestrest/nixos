@@ -2,33 +2,13 @@ import { Gtk, Gdk, Widget } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import AstalMpris from "gi://AstalMpris?version=0.1";
 import icons from "../../../lib/icons";
-import { hexToRgb, lookUpIcon } from "../../../lib/utils";
-import PlayerColorsService from "../../../service/PlayerColors";
-import { Colors } from "../../../lib/variables";
+import { lookUpIcon } from "../../../lib/utils";
 
 type PlayerProps = {
 	player: AstalMpris.Player;
 };
 
 const Player = ({ player }: PlayerProps) => {
-	const PlayerColors = PlayerColorsService(player);
-
-	const updateColors = (element: Gtk.Widget, colors: Colors | null, background: "image" | "container"  = "container") => {
-		if (colors) {
-			const { r, g, b } = hexToRgb(colors.primary)!;
-			element.css =
-                background  == "image"
-                    ?   `background-image: radial-gradient(circle,
-                                    rgba(${r}, ${g}, ${b}, 0.05) 10%,
-                                    rgba(${r}, ${g}, ${b}, 0.6)),
-                                    radial-gradient(circle, rgba(0,0,0, 0.25) 10%, rgba(0,0,0, 0.25)),
-                                    url("${player.coverArt}");
-                        color: ${colors.on_primary};`
-                    :   `background-color: ${colors.primary_container};
-                        color: ${colors.on_primary_container};`
-        }
-	};
-
 	const PlayerIcon = () => (
 		<icon
 			halign={Gtk.Align.END}
@@ -70,7 +50,6 @@ const Player = ({ player }: PlayerProps) => {
 				};
 				toggleActive();
 				self.hook(player, "notify::playback-status", toggleActive);
-				self.hook(PlayerColors, "notify::colors", () => updateColors(self, PlayerColors.colors!));
 			}}
 		>
 			<icon
@@ -120,7 +99,6 @@ const Player = ({ player }: PlayerProps) => {
 			vertical
 			className={`player player-${player.busName}`}
 			vexpand
-			setup={(self) => self.hook(PlayerColors, "notify::colors", () => {updateColors(self, PlayerColors.colors, "image")})}
 			visible={bind(player, "playback_status").as((v) => {
 				if (v != 2) {
 					return true;
