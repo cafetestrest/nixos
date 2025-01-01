@@ -1,3 +1,8 @@
+![bar-1](https://github.com/user-attachments/assets/52abf09f-a7c2-4ea9-b01b-574902e9fcd7)
+![bar-2](https://github.com/user-attachments/assets/3dc8f9f1-e3a0-41c2-b926-46f3e88078a5)
+![bar-3](https://github.com/user-attachments/assets/f8b1845e-6197-48b0-8f4a-42178723c851)
+![bar-4](https://github.com/user-attachments/assets/944391b8-8d3a-45a1-9177-b5a616c0f5a7)
+
 # nixos install of live usb
 1. open gparted
   * device / create partition table
