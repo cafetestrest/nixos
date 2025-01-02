@@ -3,7 +3,7 @@
 .app-launcher {
 	border: $containerBorder;
 	min-width: 39.3rem;
-	min-height: 27.5rem;
+	// min-height: 27.5rem;
 	border-radius: 1.2rem;
 	padding: 0;
 	background: $surface_transparent;
@@ -45,6 +45,7 @@
 	// padding-right: 0;
 	// padding-left: 0;
 	border-radius: 0.8rem;
+	min-height: 2.4rem;
 
 	label {
 		transition: all 0.2s ease;
@@ -145,5 +146,6 @@
 
 .math-result {
 	padding: 1rem;
-	font-size: 2.5rem;
+	// font-size: 2.5rem;
+	font-size: 1.5rem;
 }

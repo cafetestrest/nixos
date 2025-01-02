@@ -112,7 +112,7 @@ export default () => {
 			}
 		}
 
-		return mathResult ? MathResult(mathResult.toString(), query.toString()) : apps
+		return mathResult ? MathResult(mathResult.toString()) : apps
 			.fuzzy_query(query)
 			.map((app: AstalApps.Application) => AppItem(app))
 	});
@@ -162,7 +162,32 @@ export default () => {
 				});
 			}}
 		>
-			<box className="app-launcher" vertical>
+			<box className="app-launcher" vertical
+				css={bind(items).as((i) => {
+					if (!i || !Array.isArray(i)) {
+						return "";
+					}
+
+					const length = i.length;
+					if (length === 0) {
+						return "min-height: 0;";
+					}
+
+					if (length > 7) {
+						return "min-height: 27.5rem;";
+					} else {
+						// Calculate proportional height if length <= 7
+						const baseHeight = 7; // Minimum number of items for the max height
+						const maxMinHeight = 27.5; // Maximum min-height in rem
+						const minMinHeight = 4; // Minimum min-height in rem (adjust as needed)
+
+						// Calculate proportional min-height
+						const heightPerItem = (maxMinHeight - minMinHeight) / baseHeight;
+						const calculatedHeight = minMinHeight + length * heightPerItem;
+						return `min-height: ${calculatedHeight.toFixed(2)}rem;`;
+					}
+				})}
+				>
 				<box className="entry-box" >
 					<icon
 						icon={icons.apps.search}
