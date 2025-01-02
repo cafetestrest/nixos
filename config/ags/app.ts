@@ -8,6 +8,7 @@ import Notifications from "./widget/Notifications";
 import OSD from "./widget/OSD";
 import {
 	toggleWindow,
+	reloadScss,
 } from "./lib/utils";
 import Scrim from "./widget/Scrims/Scrim";
 import SinkMenu from "./widget/Popups/menus/Sink";

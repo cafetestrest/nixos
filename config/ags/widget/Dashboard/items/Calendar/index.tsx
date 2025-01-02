@@ -136,6 +136,14 @@ export default () => {
 			shiftCalendarXMonths(
 				event.direction === Gdk.ScrollDirection.UP ? 1 : -1,
 			),
+		setup: (self) => {
+			// Connect to the "map" signal to refresh the calendar on visibility
+			self.connect("map", () => {
+				const newDate = new Date();
+				calendarJson = getCalendarLayout(newDate, true); // Recalculate for the current month
+				addCalendarChildren(calendarDays, calendarJson);
+			});
+		},
 		child: new Widget.Box({
 			halign: CENTER,
 			children: [
