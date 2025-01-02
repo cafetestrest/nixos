@@ -9,8 +9,8 @@
 		background-size: cover;
 		background-position: center;
 		transition: 0.5s background ease-in-out;
-		padding: 0.4rem;
 		margin-top: 0.8rem;
+		padding: 1rem;
 	}
 
 	.player__icon {
@@ -19,14 +19,16 @@
 	}
 
 	.player__title {
-		// font-weight: 600;
+		margin-bottom: 0.3rem;
+		font-weight: 500;
 		// font-size: 1.357rem;
 		// padding-right: 1.286rem;
 	}
 
 	.player__artist {
+		margin-bottom: 1rem;
 		// padding-right: 1.286rem;
-		// font-weight: 400;
+		font-weight: 400;
 		// font-size: 1.214rem;
 	}
 
@@ -35,7 +37,6 @@
 		// min-height: 4.286rem;
 		padding: 0 0.4rem;
 		// background: $primary;
-		color: $on_surface;
 		border-radius: 0;
 		transition:
 			background 0.3s ease-in-out,
@@ -145,8 +146,8 @@
 			font-size: 8px;
 			color: $secondary;
 		}
-        background-size: cover;
-        background-position: center;
+		background-size: cover;
+		background-position: center;
 
 		border-radius: 1.5rem;
 		margin-right: 0.4rem;
@@ -159,6 +160,7 @@
 	}
 
 	.player button {
+		color: unset;
 		border-radius: 1.2rem;
 
 		&:focus {
@@ -166,6 +168,26 @@
 		}
 		&:hover {
 			background-color: $inverse_surface_transparent_variant;
+		}
+	}
+
+	// .player__icon,
+	// .player__playpause-icon {
+	// 	// box-shadow: 1px 1px 1px black;
+	// 	-gtk-icon-shadow: 2px 2px 2px $secondary;
+	// }
+
+	// .player__artist,
+	// .player__title,
+	// .player-length,
+	// .player-position {
+	// 	text-shadow: 2px 2px 2px black;
+	// }
+
+	.player__position-slider {
+		trough {
+			box-shadow: $playerSliderShadow;
+			border: $containerBorder;
 		}
 	}
 }
