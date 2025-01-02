@@ -89,6 +89,20 @@ export default () => {
 			}}
 		>
 			<box vertical className="notifications-window" spacing={spacing}>
+				<box className={"notification-scroll-box"}>
+					<scrollable vexpand className={"notifications-scrollable"}>
+						<box
+							className="notifications-window__list"
+							visible={true}
+							orientation={Gtk.Orientation.VERTICAL}
+							spacing={6}
+							vexpand={true}
+							hexpand={true}
+						>
+							{bind(notifs)}
+						</box>
+					</scrollable>
+				</box>
 				<button
 					halign={Gtk.Align.END}
 					hexpand={false}
@@ -104,20 +118,6 @@ export default () => {
 						label={"Clear all"}
 					></label>
 				</button>
-				<box className={"notification-scroll-box"}>
-					<scrollable vexpand className={"notifications-scrollable"}>
-						<box
-							className="notifications-window__list"
-							visible={true}
-							orientation={Gtk.Orientation.VERTICAL}
-							spacing={6}
-							vexpand={true}
-							hexpand={true}
-						>
-							{bind(notifs)}
-						</box>
-					</scrollable>
-				</box>
 			</box>
 		</PopupWindow>
 	);

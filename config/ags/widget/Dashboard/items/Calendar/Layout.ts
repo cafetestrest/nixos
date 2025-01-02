@@ -31,7 +31,7 @@ function getPrevMonthDays(month, year) {
 	return 31;
 }
 
-export function getCalendarLayout(dateObject, highlight) {
+export function getCalendarLayout(dateObject: Date|undefined, highlight: boolean) {
 	if (!dateObject) dateObject = new Date();
 	const weekday = (dateObject.getDay() + 6) % 7; // MONDAY IS THE FIRST DAY OF THE WEEK
 	const day = dateObject.getDate();

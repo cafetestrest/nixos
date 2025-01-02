@@ -3,12 +3,17 @@ import { getCalendarLayout } from "./Layout";
 import { Box, Label, Button } from "astal/gtk3/widget";
 import icons from "../../../../lib/icons";
 
+type Day = {
+	day: string;
+	today: number;
+};
+
 let calendarJson = getCalendarLayout(undefined, true);
 let monthshift = 0;
 
 const { CENTER, START, END } = Gtk.Align;
 
-function getDateInXMonthsTime(x) {
+function getDateInXMonthsTime(x: number) {
 	var currentDate = new Date(); // Get the current date
 	var targetMonth = currentDate.getMonth() + x; // Calculate the target month
 	var targetYear = currentDate.getFullYear(); // Get the current year
@@ -37,19 +42,17 @@ const weekDays = [
 	{ day: "Su", today: 0 },
 ];
 
-const CalendarDay = (day, today) =>
+const CalendarDay = (day: string, today: number) =>
 	new Widget.Button({
 		className: `calendar__button ${today == 1 ? "calendar__button__today" : today == -1 ? "calendar__button__other-month" : ""}`,
-		child: new Widget.Overlay({
-			child: new Box({}),
-			overlays: [
-				new Label({
-					halign: CENTER,
-					className: "calendar__button_text",
-					label: String(day),
-				}),
-			],
-		}),
+		child: new Box({
+			halign: CENTER,
+			child: new Label({
+				halign: CENTER,
+				className: "calendar__button_text",
+				label: String(day),
+			}),
+		})
 	});
 
 export default () => {
@@ -61,24 +64,24 @@ export default () => {
 		},
 	});
 
-	const addCalendarChildren = (box, calendarJson) => {
+	const addCalendarChildren = (box: Widget.Box, calendarJson) => {
 		const children = box.get_children();
 		for (let i = 0; i < children.length; i++) {
 			const child = children[i];
 			child.destroy();
 		}
 		box.children = calendarJson.map(
-			(row, i) =>
+			(row: Array<Day>) =>
 				new Widget.Box({
 					spacing: 18,
-					children: row.map((day, i) =>
+					children: row.map((day) =>
 						CalendarDay(day.day, day.today),
 					),
 				}),
 		);
 	};
 
-	function shiftCalendarXMonths(x) {
+	function shiftCalendarXMonths(x: number) {
 		if (x == 0) monthshift = 0;
 		else monthshift += x;
 		var newDate;
@@ -148,6 +151,7 @@ export default () => {
 			halign: CENTER,
 			children: [
 				new Widget.Box({
+					className: "calendar-box-outline",
 					hexpand: true,
 					vertical: true,
 					children: [
@@ -155,7 +159,7 @@ export default () => {
 						new Widget.Box({
 							homogeneous: true,
 							spacing: 12,
-							children: weekDays.map((day, i) =>
+							children: weekDays.map((day: Day, i) =>
 								CalendarDay(day.day, day.today),
 							),
 						}),

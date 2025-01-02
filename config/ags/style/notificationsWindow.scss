@@ -20,10 +20,11 @@
 .notifications-window__clear {
 	background: none;
 	padding: 0.429rem 0.5rem;
-	margin-right: 1.286rem;
+	// margin-right: 1.286rem;
+	margin-bottom: 0.5rem;
 	border-radius: 1.2rem;
 
-	background-color: $surface_container_highest;
+	// background-color: $surface_container_highest;
 	color: $on_surface;
 	transition:
 		background-color 0.2s ease-in-out,
