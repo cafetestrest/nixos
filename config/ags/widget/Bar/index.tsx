@@ -131,6 +131,7 @@ const ColorPickerButton = () => {
 const PowerMenuButton = () => (
 	<BarButton
 		className={"powermenu-button"}
+		onClicked={() => {}}
 		onClickRelease={(_, event: Astal.ClickEvent) => {
 			switch (event.button) {
 				case Gdk.BUTTON_PRIMARY:
