@@ -7,7 +7,11 @@ let
     name = "screenshot";
     runtimeInputs = with pkgs; [
       libnotify
-      hyprshot
+      (hyprshot.overrideAttrs (old : {
+        patches = (old.patches or []) ++ [
+          ../../config/hyprshot/hyprshot.patch
+        ];
+      }))
     ];
     text = builtins.readFile ../../config/scripts/screenshot.sh;
   };

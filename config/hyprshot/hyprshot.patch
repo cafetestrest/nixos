@@ -1,0 +1,21 @@
+diff --git a/hyprshot b/hyprshot
+index 69f0a05..756bb9c 100755
+--- a/hyprshot
++++ b/hyprshot
+@@ -56,9 +56,14 @@ function send_notification() {
+     local message=$([ $CLIPBOARD -eq 1 ] && \
+         echo "Image copied to the clipboard" || \
+         echo "Image saved in <i>${1}</i> and copied to the clipboard.")
+-    notify-send "Screenshot saved" \
++    RES=$(notify-send "Screenshot saved" \
+                 "${message}" \
+-                -t "$NOTIF_TIMEOUT" -i "${1}" -a Hyprshot
++                -t "$NOTIF_TIMEOUT" -i "${1}" -a Hyprshot -A "file=Show in Files" -A "view=View");
++    case "$RES" in
++        "file") xdg-open "$SAVEDIR" ;;
++        "view") xdg-open $1 ;;
++        *) ;;
++    esac
+ }
+ 
+ function trim() {

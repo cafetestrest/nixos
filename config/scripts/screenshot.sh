@@ -19,7 +19,7 @@ screenshot() {
                 hyprshot -m window --output-folder "$ssDir"
             else
                 # IMG=$ssDir/$(date +'Screenshot_%Y-%m-%d_%H-%M-%S.png') && grim -g "$(slurp -c cba6f788 -b 00000055 -w 0)" "$IMG" && notify-send "Screenshot" "Saved and Copied";
-                hyprshot -m region --output-folder "$ssDir"
+                hyprshot -m region --output-folder "$ssDir" --freeze
             fi
         fi
     fi
