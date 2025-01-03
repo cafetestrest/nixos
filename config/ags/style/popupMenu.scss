@@ -84,6 +84,7 @@
 		progress {
 			border-radius: 7.143rem;
 			background-color: $primary;
+			box-shadow: inset 1rem 1rem 1rem 1rem $primary;
 			border-radius: 7.143rem;
 		}
 
@@ -93,6 +94,12 @@
 			min-width: 1rem;
 			background-color: transparent;
 			box-shadow: none;
+		}
+
+		// different shade when hover/focus - same as in common file - &:hover
+		highlight:hover,
+		highlight:focus {
+			box-shadow: inset 0 0 0 99px $primaryShade;
 		}
 	}
 }

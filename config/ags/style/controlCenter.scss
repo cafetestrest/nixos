@@ -14,12 +14,6 @@ $togglesHeight: 10.7rem;
 		// box-shadow: $containerShadowDarkInset;
 	}
 
-	.menu .sink-box,
-	.menu .control-center__dropdown-menu {
-		box-shadow: $containerShadowDarkInset;
-		border: $containerBorder;
-	}
-
 	.control-center__page {
 		padding: 1.429rem 1.429rem 0 1.429rem;
 	}
@@ -217,17 +211,68 @@ $togglesHeight: 10.7rem;
 		color: red;
 	}
 
-	.control-center__dropdown-menu_title {
-		font-size: 1.429rem;
-		font-weight: 600;
-	}
-
 	.control-center__dropdown-menu_item {
 		icon {
 			font-size: 1.143rem;
 		}
 		label {
 			font-size: 1.143rem;
+		}
+	}
+
+	.control-center__time-to-empty {
+		color: $on_surface;
+		font-size: 1.071rem;
+		font-weight: 500;
+	}
+
+	.control-center__footer {
+		// margin: 0.714rem 0.571rem;
+	}
+
+	.weather {
+		margin-top: 0.3rem;
+	}
+
+	.lightstrip-color {
+		.fetch-new-ip {
+			padding: 0 0.4rem;
+			border-radius: 1.2rem;
+		}
+	}
+
+	.button-arrow {
+	}
+
+	.control-center__page {
+		.control-center-toggles {
+			// fix to make min height of control center toggles unifed with multiple pages
+			min-height: $togglesHeight;
+		}
+	}
+
+	// filler when 1 button in control center is missing
+	.filler-button {
+		min-width: $buttonMinHeight * 3.8 * 1.1;
+	}
+}
+
+.app-launcher-sinks,
+.ControlCenter {
+	.control-center-space {
+		margin: 0 0.3rem;
+	}
+
+	.control-center__page.bluetooth button,
+	.control-center__page.bluetooth switch,
+	.qs-menu,
+	.qs-menu button,
+	.qs-menu switch{
+		&:focus {
+			box-shadow: $buttonShadow;
+		}
+		&:hover {
+			background-color: $inverse_surface_transparent_variant;
 		}
 	}
 
@@ -287,10 +332,56 @@ $togglesHeight: 10.7rem;
 		}
 	}
 
-	.control-center__time-to-empty {
-		color: $on_surface;
-		font-size: 1.071rem;
-		font-weight: 500;
+	.volumeslider {
+		trough{
+			highlight,
+			progress {
+				background: $sliderGradient;
+			}
+
+			// different shade when hover/focus - same as in common file - &:hover
+			highlight:hover,
+			highlight:focus {
+				box-shadow: $buttonShadow;
+			}
+		}
+	}
+
+	.qsvolume-box {
+		// margin-top: 0.3rem;
+	}
+
+	.menu .sink-box,
+	.menu .control-center__dropdown-menu {
+		box-shadow: $containerShadowDarkInset;
+		border: $containerBorder;
+	}
+
+	.sink-box {
+		margin-top: 0.8rem;
+	}
+
+	.lightstrip-color,
+	.sink-box {
+		background: $inverse_surface_transparent;
+		border-radius: 2.286rem;
+		padding: 1.714rem;
+
+		.cotrol-center-menu-button {
+			border-radius: 2.286rem;
+			background-color: $bgColorTransparent;
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+	}
+
+	.control-center__dropdown-menu_title {
+		font-size: 1.429rem;
+		font-weight: 600;
+	}
+
+	.cotrol-center-menu-button {
+		padding: 0.4rem 0;
 	}
 
 	.control-center__settings-button,
@@ -320,147 +411,27 @@ $togglesHeight: 10.7rem;
 		}
 	}
 
-	.control-center__footer {
-		// margin: 0.714rem 0.571rem;
-	}
-
-	.control-center-space {
-		margin: 0 0.3rem;
-	}
-
 	// all buttons in qs
 	.control-center__button:hover {
 		box-shadow: $buttonShadow;
 	}
-
-	.control-center__button:active {
-	}
-
 	.control-center__button:focus {
 		box-shadow: $buttonShadow;
-	}
-
-	// slider
-	.control-center__volume-slider slider {
-	}
-
-	.control-center__volume-slider highlight slider:hover trough {
-		// box-shadow: $buttonShadow;
-		// background-color: $hover;
-	}
-
-	.control-center__volume-slider slider:active {
-	}
-
-	.control-center__volume-slider slider:focus {
-		// box-shadow: $buttonShadow;
-	}
-
-	.control-center__powermenu-button {
 	}
 
 	.control-center__powermenu-button:hover {
 		box-shadow: $buttonShadow;
 	}
 
-	.control-center__powermenu-button:active {
-	}
-
 	.control-center__powermenu-button:focus {
 		box-shadow: $buttonShadow;
-	}
-
-	.control-center__sink-button {
 	}
 
 	.control-center__sink-button:hover {
 		box-shadow: $buttonShadow;
 	}
 
-	.control-center__sink-button:active {
-	}
-
 	.control-center__sink-button:focus {
 		box-shadow: $buttonShadow;
-	}
-
-	.volumeslider {
-		trough{
-			highlight,
-			progress {
-				background: $sliderGradient;
-			}
-
-			// different shade when hover/focus - same as in common file - &:hover
-			highlight:hover,
-			highlight:focus {
-				box-shadow: $buttonShadow;
-			}
-		}
-	}
-
-	.qsvolume-box {
-		// margin-top: 0.3rem;
-	}
-
-	.weather {
-		margin-top: 0.3rem;
-	}
-
-	.lightstrip-color {
-		.fetch-new-ip {
-			padding: 0 0.4rem;
-			border-radius: 1.2rem;
-		}
-	}
-
-	.sink-box {
-		margin-top: 0.8rem;
-	}
-
-	.lightstrip-color,
-	.sink-box {
-		background: $inverse_surface_transparent;
-		border-radius: 2.286rem;
-		padding: 1.714rem;
-
-		.cotrol-center-menu-button {
-			border-radius: 2.286rem;
-			background-color: $bgColorTransparent;
-			padding-left: 1rem;
-			padding-right: 1rem;
-		}
-	}
-
-	.cotrol-center-menu-button {
-		padding: 0.4rem 0;
-	}
-
-	.button-arrow {
-	}
-
-	.control-center__page.bluetooth button,
-	.control-center__page.bluetooth switch,
-	.qs-menu,
-	.qs-menu button,
-	.qs-menu switch{
-		&:focus {
-			box-shadow: $buttonShadow;
-		}
-		&:hover {
-			background-color: $inverse_surface_transparent_variant;
-		}
-	}
-
-	.control-center__page {
-		.control-center-toggles {
-			// fix to make min height of control center toggles unifed with multiple pages
-			min-height: $togglesHeight;
-		}
-	}
-
-	// filler when 1 button in control center is missing
-	.filler-button {
-		min-width: $buttonMinHeight * 3.8 * 1.1;
 	}
 }

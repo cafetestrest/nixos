@@ -25,33 +25,33 @@ export const revealScreenRecord = Variable(false);
 export const revealFristPage = Variable(true);
 export const revealSecondPage = Variable(false);
 
-export default () => {
-	const SinkButton = () => (
-		<button
-			className={"control-center__powermenu-button sink"}
-			onClick={() => {
+export const SinkButton = () => (
+	<button
+		className={"control-center__powermenu-button sink"}
+		onClick={() => {
+			revealScreenRecord.set(false);
+			revealScreenShot.set(false);
+			revealLightstripColor.set(false);
+			revealSinks.set(!revealSinks.get())
+		}}
+		onKeyReleaseEvent={(_, event) => {
+			const [keyEvent, keyCode] = event.get_keycode();
+
+			if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
 				revealScreenRecord.set(false);
 				revealScreenShot.set(false);
 				revealLightstripColor.set(false);
 				revealSinks.set(!revealSinks.get())
-			}}
-			onKeyReleaseEvent={(_, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
+			}
+		}}
+	>
+		<icon
+			icon={bind(revealSinks).as((v) => true === v ? icons.ui.arrow.up : icons.ui.arrow.right)}
+		/>
+	</button>
+);
 
-				if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
-					revealScreenRecord.set(false);
-					revealScreenShot.set(false);
-					revealLightstripColor.set(false);
-					revealSinks.set(!revealSinks.get())
-				}
-			}}
-		>
-			<icon
-				icon={bind(revealSinks).as((v) => true === v ? icons.ui.arrow.up : icons.ui.arrow.right)}
-			/>
-		</button>
-	);
-
+export default () => {
 	return (
 		<box
 			name="main"

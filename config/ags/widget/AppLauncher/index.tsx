@@ -9,6 +9,10 @@ import Media from "../ControlCenter/items/Media";
 import Todos from "../Dashboard/items/Todos";
 import { Tooltip } from "../Dashboard/weather";
 import { PowermenuButtons } from "../Powermenu";
+// import { Sinks } from "../Popups/menus/Sink";
+import { MixerMenu } from "../Popups/menus/Mixer";
+import Volume, { SinkRevealer } from "../ControlCenter/items/Volume";
+import { SinkButton } from "../ControlCenter/pages/Main";
 
 const apps = new AstalApps.Apps();
 
@@ -177,17 +181,18 @@ export default () => {
 			<box className="app-launcher" vertical
 				css={bind(items).as((i) => {
 					const queryText = widget.get();
-					if (queryText !== '' && queryText.startsWith(":p"))
-						return "min-height: 11rem;";
+					if (queryText !== '') {
+						if (queryText.startsWith(":p"))
+							return "min-height: 11rem;";
 
-					if (queryText !== '' && queryText.startsWith(":m"))
-						return "min-height: 15rem;";
+						if (queryText.startsWith(":m"))
+							return "min-height: 15rem;";
 
-					if (queryText !== '' && queryText.startsWith(":w"))
-						return "min-height: 17rem;";
+						if (queryText.startsWith(":w"))
+							return "min-height: 17rem;";
 
-					if (queryText !== '')
 						return "min-height: 27.5rem;";
+					}
 
 					if (containsMathOperation(query.get()))
 						return "min-height: 4rem;";
@@ -243,6 +248,15 @@ export default () => {
 					<box className="app-launcher__list" vertical>
 						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
 							{items}
+						</box>
+						<box className={"app-launcher-sinks"} visible={bind(widget).as((w) => w.startsWith(":s") ? true : false)} vertical>
+							<box className={"qsvolume-box"}>
+								<Volume valign={Gtk.Align.CENTER}/>
+								<box className={"control-center-space"} />
+								<SinkButton />
+							</box>
+							<SinkRevealer />
+							<MixerMenu />
 						</box>
 						<box className={"app-launcher-powermenu"} visible={bind(widget).as((w) => w.startsWith(":p") ? true : false)}>
 							<PowermenuButtons />
