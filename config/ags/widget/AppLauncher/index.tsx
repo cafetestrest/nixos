@@ -164,28 +164,28 @@ export default () => {
 		>
 			<box className="app-launcher" vertical
 				css={bind(items).as((i) => {
-					if (!i || !Array.isArray(i)) {
+					if (containsMathOperation(query.get()))
+						return "min-height: 4rem;";
+
+					if (!i || !Array.isArray(i))
 						return "";
-					}
 
 					const length = i.length;
-					if (length === 0) {
+					if (length === 0)
 						return "min-height: 0;";
-					}
 
-					if (length > 7) {
+					if (length > 7)
 						return "min-height: 27.5rem;";
-					} else {
-						// Calculate proportional height if length <= 7
-						const baseHeight = 7; // Minimum number of items for the max height
-						const maxMinHeight = 27.5; // Maximum min-height in rem
-						const minMinHeight = 4; // Minimum min-height in rem (adjust as needed)
 
-						// Calculate proportional min-height
-						const heightPerItem = (maxMinHeight - minMinHeight) / baseHeight;
-						const calculatedHeight = minMinHeight + length * heightPerItem;
-						return `min-height: ${calculatedHeight.toFixed(2)}rem;`;
-					}
+					// Calculate proportional height if length <= 7
+					const baseHeight = 7; // Minimum number of items for the max height
+					const maxMinHeight = 27.5; // Maximum min-height in rem
+					const minMinHeight = 3; // Minimum min-height in rem (adjust as needed)
+
+					// Calculate proportional min-height
+					const heightPerItem = (maxMinHeight - minMinHeight) / baseHeight;
+					const calculatedHeight = minMinHeight + length * heightPerItem;
+					return `min-height: ${calculatedHeight.toFixed(2)}rem;`;
 				})}
 				>
 				<box className="entry-box" >
@@ -197,11 +197,26 @@ export default () => {
 					/>
 					{Entry}
 				</box>
+				<revealer
+					transitionType={Gtk.RevealerTransitionType.SLIDE_UP}
+					revealChild={bind(items).as((i) => {
+						if (containsMathOperation(query.get()))
+							return true;
+
+						if (!i || !Array.isArray(i))
+							return false;
+
+						if (i.length === 0)
+							return false;
+						return true;
+					})}
+				>
 				<scrollable vexpand className={"app-scroll-list"}>
 					<box className="app-launcher__list" vertical>
 						{items}
 					</box>
 				</scrollable>
+				</revealer>
 			</box>
 		</PopupWindow>
 	);

@@ -99,6 +99,7 @@
 }
 
 .app-scroll-list {
+	border-top: 1px solid $hover;
 	// padding: 0.4rem;
 	padding-bottom: 0.4rem;
 }
@@ -128,7 +129,6 @@
 }
 
 .entry-box {
-	border-bottom: 1px solid $hover;
 	margin-top: 0.333rem;
 	padding: 0.4rem 0;
 }
@@ -140,12 +140,12 @@
 }
 
 .math-query {
-	padding: 1rem;
+	padding: 0.5rem 1rem 0 1rem;
 	font-size: 1.5rem;
 }
 
 .math-result {
-	padding: 1rem;
+	padding: 0.5rem 1rem 0 1rem;
 	// font-size: 2.5rem;
 	font-size: 1.5rem;
 }
