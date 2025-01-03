@@ -149,3 +149,45 @@
 	// font-size: 2.5rem;
 	font-size: 1.5rem;
 }
+
+.app-launcher-calendar {
+	.block {
+		border: none;
+		background: transparent;
+		border-radius: 0;
+		padding: 0;
+	}
+	.calendar-box-outline {
+		padding-bottom: 0;
+	}
+
+	.calendar__header {
+		.sidebar-calendar-monthshift-btn {
+			padding: 0 0.8rem;
+		}
+	
+		.calendar__monthyear {
+			padding: 0.5rem 1rem;
+		}
+	
+		button {
+			padding: 0.4rem;
+		}
+	
+		margin-top: 0;
+		padding: 0;
+	}
+}
+
+.app-launcher-powermenu {
+	.powermenu {
+		padding: 0;
+		background: transparent;
+		border: none;
+	}
+
+	.powermenu__button {
+		min-width: 6rem;
+		min-height: 6rem;
+	}
+}

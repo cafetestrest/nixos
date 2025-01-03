@@ -19,6 +19,31 @@ const PowermenuButton = ({ action, iconName }: PowermenuButtonProps) => (
 	</button>
 );
 
+export const PowermenuButtons = () => (
+	<box spacing={24} homogeneous className={"powermenu"} hexpand>
+		<PowermenuButton
+			action="lock"
+			iconName={icons.powermenu.lock}
+		/>
+		<PowermenuButton
+			action="sleep"
+			iconName={icons.powermenu.sleep}
+		/>
+		<PowermenuButton
+			action="logout"
+			iconName={icons.powermenu.logout}
+		/>
+		<PowermenuButton
+			action="reboot"
+			iconName={icons.powermenu.reboot}
+		/>
+		<PowermenuButton
+			action="shutdown"
+			iconName={icons.powermenu.shutdown}
+		/>
+	</box>
+);
+
 export default () => {
 	return (
 		<PopupWindow
@@ -33,28 +58,7 @@ export default () => {
 				}
 			}}
 		>
-			<box spacing={24} homogeneous className={"powermenu"}>
-				<PowermenuButton
-					action="lock"
-					iconName={icons.powermenu.lock}
-				/>
-				<PowermenuButton
-					action="sleep"
-					iconName={icons.powermenu.sleep}
-				/>
-				<PowermenuButton
-					action="logout"
-					iconName={icons.powermenu.logout}
-				/>
-				<PowermenuButton
-					action="reboot"
-					iconName={icons.powermenu.reboot}
-				/>
-				<PowermenuButton
-					action="shutdown"
-					iconName={icons.powermenu.shutdown}
-				/>
-			</box>
+			<PowermenuButtons/>
 		</PopupWindow>
 	);
 };

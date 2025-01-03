@@ -4,10 +4,16 @@ import AstalApps from "gi://AstalApps?version=0.1";
 import AppItem, { MathResult } from "./AppItem";
 import PopupWindow from "../../common/PopupWindow";
 import icons from "../../lib/icons";
+import Calendar from "../Dashboard/items/Calendar";
+import Media from "../ControlCenter/items/Media";
+import Todos from "../Dashboard/items/Todos";
+import { Tooltip } from "../Dashboard/weather";
+import { PowermenuButtons } from "../Powermenu";
 
 const apps = new AstalApps.Apps();
 
 const query = Variable<string>("");
+const widget = Variable<string>("");
 
 function evaluate(expr: string): string {
     const operators: { [key: string]: (a: number, b: number) => number } = {
@@ -102,6 +108,12 @@ function containsMathOperation(text:string) {
 
 export default () => {
 	const items = query((query) => {
+		if (query.startsWith(":")) {
+			widget.set(query)
+		} else {
+			widget.set('')
+		}
+
 		let mathResult;
 		if (containsMathOperation(query)) {
 			try {
@@ -164,6 +176,19 @@ export default () => {
 		>
 			<box className="app-launcher" vertical
 				css={bind(items).as((i) => {
+					const queryText = widget.get();
+					if (queryText !== '' && queryText.startsWith(":p"))
+						return "min-height: 11rem;";
+
+					if (queryText !== '' && queryText.startsWith(":m"))
+						return "min-height: 15rem;";
+
+					if (queryText !== '' && queryText.startsWith(":w"))
+						return "min-height: 17rem;";
+
+					if (queryText !== '')
+						return "min-height: 27.5rem;";
+
 					if (containsMathOperation(query.get()))
 						return "min-height: 4rem;";
 
@@ -200,6 +225,9 @@ export default () => {
 				<revealer
 					transitionType={Gtk.RevealerTransitionType.SLIDE_UP}
 					revealChild={bind(items).as((i) => {
+						if (widget.get() !== '')
+							return true;
+
 						if (containsMathOperation(query.get()))
 							return true;
 
@@ -213,7 +241,24 @@ export default () => {
 				>
 				<scrollable vexpand className={"app-scroll-list"}>
 					<box className="app-launcher__list" vertical>
-						{items}
+						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
+							{items}
+						</box>
+						<box className={"app-launcher-powermenu"} visible={bind(widget).as((w) => w.startsWith(":p") ? true : false)}>
+							<PowermenuButtons />
+						</box>
+						<box className={"app-launcher-weather"} visible={bind(widget).as((w) => w.startsWith(":w") ? true : false)}>
+							<Tooltip total={7} />
+						</box>
+						<box className={"app-launcher-calendar"} visible={bind(widget).as((w) => w.startsWith(":cal") ? true : false)}>
+							{Calendar()}
+						</box>
+						<box className={"app-launcher-todo"} visible={bind(widget).as((w) => w.startsWith(":todo") ? true : false)}>
+							{Todos()}
+						</box>
+						<box className={"app-launcher-media"} visible={bind(widget).as((w) => w.startsWith(":m") ? true : false)}>
+							<Media />
+						</box>
 					</box>
 				</scrollable>
 				</revealer>
