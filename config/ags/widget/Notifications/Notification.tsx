@@ -103,12 +103,11 @@ export default function Notification(props: NotificationsProps) {
 			if (query.startsWith(":n "))
 				query = query.replace(":n ", "");
 
-			if (query.startsWith(":n"))
-				query = query.replace(":n", "");
-
 			if (!query)
 				return true;
 
+			if (query.startsWith(":n"))
+				query = query.replace(":n", "");
 
 			if (!query)
 				return true;

@@ -3,14 +3,44 @@ import { Gtk,  } from "astal/gtk3";
 import TodosService, { Todo } from "../../../service/LocalTodos";
 import icons from "../../../lib/icons";
 import Pango from "gi://Pango?version=1.0";
+import { widgetTodoQuery } from "../../AppLauncher";
 
 const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 	return (
-		<box spacing={24} hexpand={false} className="todo">
+		<box spacing={24} hexpand={false} className="todo" visible={bind(widgetTodoQuery).as((query) => {
+			if (!query)
+				return true;
+
+			if (query.startsWith(":todo "))
+				query = query.replace(":todo ", "");
+
+			if (!query)
+				return true;
+
+			if (query.startsWith(":todo"))
+				query = query.replace(":todo", "");
+
+			if (!query)
+				return true;
+
+			const todoContent = todo.content.toLowerCase().trim();
+
+			if (todoContent && todoContent.includes(query.toLowerCase().trim()))
+				return true;
+
+			return false;
+		})}>
 			<button
 				className={"todo-toggle"}
 				onClick={() => {
 					TodosService.toggle(idx);
+				}}
+				onKeyReleaseEvent={(_, event) => {
+					const [keyEvent, keyCode] = event.get_keycode();
+	
+					if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
+						TodosService.toggle(idx);
+					}
 				}}
 			>
 				<icon
@@ -38,6 +68,13 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 				valign={Gtk.Align.CENTER}
 				onClicked={() => {
 					TodosService.remove(idx);
+				}}
+				onKeyReleaseEvent={(_, event) => {
+					const [keyEvent, keyCode] = event.get_keycode();
+	
+					if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
+						TodosService.remove(idx);
+					}
 				}}
 			>
 				<icon

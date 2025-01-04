@@ -22,9 +22,9 @@ const showWidgetCalendar = Variable<boolean>(false);
 const showWidgetSinks = Variable<boolean>(false);
 const showWidgetPowermenu = Variable<boolean>(false);
 const showWidgetWeather = Variable<boolean>(false);
-const showWidgetTodo = Variable<boolean>(false);
 const showWidgetMedia = Variable<boolean>(false);
 export const widgetNotificationsQuery = Variable<string>('');
+export const widgetTodoQuery = Variable<string>('');
 
 function evaluate(expr: string): string {
     const operators: { [key: string]: (a: number, b: number) => number } = {
@@ -189,7 +189,17 @@ export default () => {
 			<box className="app-launcher" vertical
 				css={bind(items).as((i) => {
 					const queryText = widget.get();
-					if (queryText !== '') {
+					if (queryText === '') {
+						showWidgetPowermenu.set(false);
+						showWidgetMedia.set(false);
+						showWidgetWeather.set(false);
+						showWidgetCalendar.set(false);
+						showWidgetSinks.set(false);
+						widgetTodoQuery.set('');
+						widgetNotificationsQuery.set('');
+					}
+
+					if (queryText !== '' && queryText.startsWith(":")) {
 						if (queryText.startsWith(":p")) {
 							showWidgetPowermenu.set(true);
 							return "min-height: 11rem;";
@@ -216,7 +226,7 @@ export default () => {
 						}
 
 						if (queryText.startsWith(":todo")) {
-							showWidgetTodo.set(true);
+							widgetTodoQuery.set(queryText);
 							return "min-height: 27.5rem;";
 						}
 
@@ -227,13 +237,6 @@ export default () => {
 
 						return "min-height: 27.5rem;";
 					}
-					showWidgetPowermenu.set(false);
-					showWidgetMedia.set(false);
-					showWidgetWeather.set(false);
-					showWidgetCalendar.set(false);
-					showWidgetSinks.set(false);
-					showWidgetTodo.set(false);
-					widgetNotificationsQuery.set('');
 
 					if (containsMathOperation(query.get()))
 						return "min-height: 4rem;";
@@ -287,16 +290,9 @@ export default () => {
 				>
 				<scrollable vexpand className={"app-scroll-list"}>
 					<box className="app-launcher__list" vertical>
-						{bind(widget).as((w) => {
-							return w === "" ?
-							(
-								<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
-									{items}
-								</box>
-							) : (
-								<box />
-							)
-						})}
+						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
+							{items}
+						</box>
 						{bind(showWidgetSinks).as((w) => {
 							if (w)
 								revealSinks.set(true);
@@ -331,8 +327,8 @@ export default () => {
 								</box>
 							) : ( <box />)
 						})}
-						{bind(showWidgetTodo).as((w) => {
-							return w ?
+						{bind(widgetTodoQuery).as((w) => {
+							return w !== "" ?
 							(
 								<box className={"app-launcher-todo"}>
 									{Todos()}
