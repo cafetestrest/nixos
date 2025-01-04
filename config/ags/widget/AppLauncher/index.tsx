@@ -11,7 +11,7 @@ import { Tooltip } from "../Dashboard/weather";
 import { PowermenuButtons } from "../Powermenu";
 // import { Sinks } from "../Popups/menus/Sink";
 import { MixerMenu } from "../Popups/menus/Mixer";
-import Volume, { SinkRevealer } from "../ControlCenter/items/Volume";
+import Volume, { SinkRevealer, revealSinks } from "../ControlCenter/items/Volume";
 import { SinkButton } from "../ControlCenter/pages/Main";
 
 const apps = new AstalApps.Apps();
@@ -172,6 +172,7 @@ export default () => {
 				self.hook(self, "notify::visible", () => {
 					if (!self.get_visible()) {
 						query.set("");
+						revealSinks.set(false);
 					} else {
 						Entry.grab_focus();
 					}
@@ -249,14 +250,18 @@ export default () => {
 						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
 							{items}
 						</box>
-						<box className={"app-launcher-sinks"} visible={bind(widget).as((w) => w.startsWith(":s") ? true : false)} vertical>
+						<box className={"app-launcher-sinks"} visible={bind(widget).as((w) => {
+							const isVisible = w.startsWith(":s") ? true : false;
+							if (isVisible)
+								revealSinks.set(true);
+
+							return isVisible;
+						})} vertical>
 							<box className={"qsvolume-box"}>
 								<Volume valign={Gtk.Align.CENTER}/>
-								<box className={"control-center-space"} />
-								<SinkButton />
 							</box>
-							<SinkRevealer />
 							<MixerMenu />
+							<SinkRevealer />
 						</box>
 						<box className={"app-launcher-powermenu"} visible={bind(widget).as((w) => w.startsWith(":p") ? true : false)}>
 							<PowermenuButtons />
