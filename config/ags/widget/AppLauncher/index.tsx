@@ -12,6 +12,7 @@ import { PowermenuButtons } from "../Powermenu";
 // import { Sinks } from "../Popups/menus/Sink";
 import { MixerMenu } from "../Popups/menus/Mixer";
 import Volume, { SinkRevealer, revealSinks } from "../ControlCenter/items/Volume";
+import { AllNotifications } from "../Notifications";
 
 const apps = new AstalApps.Apps();
 
@@ -23,6 +24,7 @@ const showWidgetPowermenu = Variable<boolean>(false);
 const showWidgetWeather = Variable<boolean>(false);
 const showWidgetTodo = Variable<boolean>(false);
 const showWidgetMedia = Variable<boolean>(false);
+const showWidgetNotifications = Variable<boolean>(false);
 
 function evaluate(expr: string): string {
     const operators: { [key: string]: (a: number, b: number) => number } = {
@@ -218,6 +220,11 @@ export default () => {
 							return "min-height: 27.5rem;";
 						}
 
+						if (queryText.startsWith(":n")) {
+							showWidgetNotifications.set(true);
+							return "min-height: 27.5rem;";
+						}
+
 						return "min-height: 27.5rem;";
 					}
 					showWidgetPowermenu.set(false);
@@ -226,6 +233,7 @@ export default () => {
 					showWidgetCalendar.set(false);
 					showWidgetSinks.set(false);
 					showWidgetTodo.set(false);
+					showWidgetNotifications.set(false);
 
 					if (containsMathOperation(query.get()))
 						return "min-height: 4rem;";
@@ -279,9 +287,16 @@ export default () => {
 				>
 				<scrollable vexpand className={"app-scroll-list"}>
 					<box className="app-launcher__list" vertical>
-						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
-							{items}
-						</box>
+						{bind(widget).as((w) => {
+							return w === "" ?
+							(
+								<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
+									{items}
+								</box>
+							) : (
+								<box />
+							)
+						})}
 						{bind(showWidgetSinks).as((w) => {
 							if (w)
 								revealSinks.set(true);
@@ -332,6 +347,9 @@ export default () => {
 								</box>
 							) : ( <box />)
 						})}
+						<box className={"app-launcher-notifications"} visible={bind(showWidgetNotifications)}>
+							<AllNotifications />
+						</box>
 					</box>
 				</scrollable>
 				</revealer>

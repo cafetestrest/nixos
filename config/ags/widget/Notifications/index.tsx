@@ -53,9 +53,52 @@ class NotificationsMap implements Subscribable {
 		return this.var.subscribe(callback);
 	}
 }
-export default () => {
+
+export const notifs = new NotificationsMap();
+export const notifications = Notifd.get_default();
+
+export const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Notifd, notifs: NotificationsMap}) => (
+	<box vertical className="notifications-window" spacing={spacing}>
+		<box className={"notification-scroll-box"}>
+			<scrollable vexpand className={"notifications-scrollable"}>
+				<box
+					className="notifications-window__list"
+					visible={true}
+					orientation={Gtk.Orientation.VERTICAL}
+					spacing={6}
+					vexpand={true}
+					hexpand={true}
+				>
+					{bind(notifs)}
+				</box>
+			</scrollable>
+		</box>
+		<button
+			halign={Gtk.Align.END}
+			hexpand={false}
+			className="notifications-window__clear"
+			onClicked={() => {
+				notifications.get_notifications().forEach((n) => {
+					timeout(150, () => n.dismiss());
+				});
+			}}
+			>
+			<label
+				className="notifications-window__clear-label"
+				label={"Clear all"}
+			></label>
+		</button>
+	</box>
+);
+
+export const AllNotifications = () => {
 	const notifs = new NotificationsMap();
 	const notifications = Notifd.get_default();
+
+	return(<NotificationsWindow notifs={notifs} notifications={notifications} />)
+};
+
+export default () => {
 	notifications.get_notifications().forEach((n) => n.dismiss()); // This will remove all existing notifications on startup
 
 	return (
@@ -88,37 +131,7 @@ export default () => {
 				});
 			}}
 		>
-			<box vertical className="notifications-window" spacing={spacing}>
-				<box className={"notification-scroll-box"}>
-					<scrollable vexpand className={"notifications-scrollable"}>
-						<box
-							className="notifications-window__list"
-							visible={true}
-							orientation={Gtk.Orientation.VERTICAL}
-							spacing={6}
-							vexpand={true}
-							hexpand={true}
-						>
-							{bind(notifs)}
-						</box>
-					</scrollable>
-				</box>
-				<button
-					halign={Gtk.Align.END}
-					hexpand={false}
-					className="notifications-window__clear"
-					onClicked={() => {
-						notifications.get_notifications().forEach((n) => {
-							timeout(150, () => n.dismiss());
-						});
-					}}
-					>
-					<label
-						className="notifications-window__clear-label"
-						label={"Clear all"}
-					></label>
-				</button>
-			</box>
+			<NotificationsWindow notifs={notifs} notifications={notifications} />
 		</PopupWindow>
 	);
 };
