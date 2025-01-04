@@ -91,24 +91,24 @@
 	color: $outline;
 }
 
-.calendar__weekday {
-	min-height: 2.857rem;
-	min-width: 2.571rem;
-	font-weight: 600;
-}
+// .calendar__weekday {
+// 	min-height: 2.857rem;
+// 	min-width: 2.571rem;
+// 	font-weight: 600;
+// }
 
-.calendar__day {
-	border-radius: 7.143rem;
-	min-height: 2.857rem;
-	min-width: 2.857rem;
-	&.active {
-		background: $primary;
-		color: $on_primary;
-	}
-	&.inactive {
-		color: $inverse_surface_transparent_variant;
-	}
-}
+// .calendar__day {
+// 	border-radius: 7.143rem;
+// 	min-height: 2.857rem;
+// 	min-width: 2.857rem;
+// 	&.active {
+// 		background: $primary;
+// 		color: $on_primary;
+// 	}
+// 	&.inactive {
+// 		color: $inverse_surface_transparent_variant;
+// 	}
+// }
 
 .todos {
 	border: $containerBorder;
