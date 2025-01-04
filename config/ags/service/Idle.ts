@@ -38,6 +38,10 @@ class IdleModeService extends GObject.Object {
 		return [0, 1];
 	}
 
+	currentProfile = () => {
+		return this.#profile;
+	}
+
 	async nextProfile() {
 		this.#profile++;
 		if (this.#profile > 1) this.#profile = 0;
