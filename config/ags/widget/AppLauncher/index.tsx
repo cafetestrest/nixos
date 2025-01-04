@@ -250,34 +250,58 @@ export default () => {
 						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
 							{items}
 						</box>
-						<box className={"app-launcher-sinks"} visible={bind(widget).as((w) => {
+						{bind(widget).as((w) => {
 							const isVisible = w.startsWith(":s") ? true : false;
+
 							if (isVisible)
 								revealSinks.set(true);
 
-							return isVisible;
-						})} vertical>
-							<box className={"qsvolume-box"}>
-								<Volume valign={Gtk.Align.CENTER}/>
-							</box>
-							<MixerMenu />
-							<SinkRevealer />
-						</box>
-						<box className={"app-launcher-powermenu"} visible={bind(widget).as((w) => w.startsWith(":p") ? true : false)}>
-							<PowermenuButtons />
-						</box>
+							return isVisible ?
+							(
+								<box className={"app-launcher-sinks"} vertical>
+									<box className={"qsvolume-box"}>
+										<Volume valign={Gtk.Align.CENTER}/>
+									</box>
+									<MixerMenu />
+									<SinkRevealer />
+								</box>
+							) : ( <box />)
+						})}
+						{bind(widget).as((w) => {
+							return w.startsWith(":p") ?
+							(
+								<box className={"app-launcher-powermenu"}>
+									<PowermenuButtons />
+								</box>
+							) : ( <box />)
+						})}
 						<box className={"app-launcher-weather"} visible={bind(widget).as((w) => w.startsWith(":w") ? true : false)}>
 							<Tooltip total={7} />
 						</box>
-						<box className={"app-launcher-calendar"} visible={bind(widget).as((w) => w.startsWith(":cal") ? true : false)}>
-							{Calendar()}
-						</box>
-						<box className={"app-launcher-todo"} visible={bind(widget).as((w) => w.startsWith(":todo") ? true : false)}>
-							{Todos()}
-						</box>
-						<box className={"app-launcher-media"} visible={bind(widget).as((w) => w.startsWith(":m") ? true : false)}>
-							<Media />
-						</box>
+						{bind(widget).as((w) => {
+							return w.startsWith(":cal") ?
+							(
+								<box className={"app-launcher-calendar"}>
+									{Calendar()}
+								</box>
+							) : ( <box />)
+						})}
+						{bind(widget).as((w) => {
+							return w.startsWith(":todo") ?
+							(
+								<box className={"app-launcher-todo"}>
+									{Todos()}
+								</box>
+							) : ( <box />)
+						})}
+						{bind(widget).as((w) => {
+							return w.startsWith(":m") ?
+							(
+								<box className={"app-launcher-media"}>
+									<Media />
+								</box>
+							) : ( <box />)
+						})}
 					</box>
 				</scrollable>
 				</revealer>
