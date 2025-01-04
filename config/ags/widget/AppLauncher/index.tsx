@@ -24,7 +24,7 @@ const showWidgetPowermenu = Variable<boolean>(false);
 const showWidgetWeather = Variable<boolean>(false);
 const showWidgetTodo = Variable<boolean>(false);
 const showWidgetMedia = Variable<boolean>(false);
-const showWidgetNotifications = Variable<boolean>(false);
+export const widgetNotificationsQuery = Variable<string>('');
 
 function evaluate(expr: string): string {
     const operators: { [key: string]: (a: number, b: number) => number } = {
@@ -221,7 +221,7 @@ export default () => {
 						}
 
 						if (queryText.startsWith(":n")) {
-							showWidgetNotifications.set(true);
+							widgetNotificationsQuery.set(queryText);
 							return "min-height: 27.5rem;";
 						}
 
@@ -233,7 +233,7 @@ export default () => {
 					showWidgetCalendar.set(false);
 					showWidgetSinks.set(false);
 					showWidgetTodo.set(false);
-					showWidgetNotifications.set(false);
+					widgetNotificationsQuery.set('');
 
 					if (containsMathOperation(query.get()))
 						return "min-height: 4rem;";
@@ -347,7 +347,7 @@ export default () => {
 								</box>
 							) : ( <box />)
 						})}
-						<box className={"app-launcher-notifications"} visible={bind(showWidgetNotifications)}>
+						<box className={"app-launcher-notifications"} visible={bind(widgetNotificationsQuery).as((w) => w !== "")}>
 							<AllNotifications />
 						</box>
 					</box>

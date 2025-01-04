@@ -199,3 +199,31 @@
 		margin-top: 0.5rem;
 	}
 }
+
+.app-launcher-notifications {
+	.notifications-window {
+		border-radius: 0;
+		min-height: 0rem;
+		padding: 0;
+	
+		.notification {
+			padding: 0;
+			background-color: transparent;
+
+			.notification__actions {
+				margin: 0;
+			}
+		}
+
+	}
+
+	.notifications-window__clear {
+		margin: 0;
+	}
+	.content {
+		border-radius: 1.2rem;
+		transition: 0.2s border-radius ease-in-out;
+		background-color: $inverse_surface_transparent;
+		padding: 0.5rem 1rem;
+	}
+}

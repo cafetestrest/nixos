@@ -1,8 +1,9 @@
 import { Gtk, Widget } from "astal/gtk3";
 import { type EventBox } from "astal/gtk3/widget";
-import { timeout, GLib, idle } from "astal";
+import { timeout, GLib, idle, bind } from "astal";
 import Notifd from "gi://AstalNotifd";
 import icons from "../../lib/icons";
+import { widgetNotificationsQuery } from "../AppLauncher";
 
 const transitionDuration = 300;
 
@@ -95,7 +96,35 @@ export default function Notification(props: NotificationsProps) {
 	const { notification, onHoverLost, setup } = props;
 
 	const Content = () => (
-		<box hexpand={true} className="content">
+		<box hexpand={true} className="content" visible={bind(widgetNotificationsQuery).as((query) => {
+			if (!query)
+				return true;
+
+			if (query.startsWith(":n "))
+				query = query.replace(":n ", "");
+
+			if (query.startsWith(":n"))
+				query = query.replace(":n", "");
+
+			if (!query)
+				return true;
+
+
+			if (!query)
+				return true;
+
+			const body = notification.body.toLowerCase().trim();
+
+			if (body && body.includes(query.toLowerCase().trim()))
+				return true;
+
+			const summary = notification.summary.toLowerCase().trim();
+
+			if (summary && summary.includes(query.toLowerCase().trim()))
+				return true;
+
+			return false;
+		})}>
 			<NotificationIcon notification={notification} />
 			<box hexpand={true} vexpand={true} vertical={true}>
 				<box
