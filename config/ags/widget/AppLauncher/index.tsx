@@ -12,12 +12,17 @@ import { PowermenuButtons } from "../Powermenu";
 // import { Sinks } from "../Popups/menus/Sink";
 import { MixerMenu } from "../Popups/menus/Mixer";
 import Volume, { SinkRevealer, revealSinks } from "../ControlCenter/items/Volume";
-import { SinkButton } from "../ControlCenter/pages/Main";
 
 const apps = new AstalApps.Apps();
 
 const query = Variable<string>("");
 const widget = Variable<string>("");
+const showWidgetCalendar = Variable<boolean>(false);
+const showWidgetSinks = Variable<boolean>(false);
+const showWidgetPowermenu = Variable<boolean>(false);
+const showWidgetWeather = Variable<boolean>(false);
+const showWidgetTodo = Variable<boolean>(false);
+const showWidgetMedia = Variable<boolean>(false);
 
 function evaluate(expr: string): string {
     const operators: { [key: string]: (a: number, b: number) => number } = {
@@ -183,17 +188,44 @@ export default () => {
 				css={bind(items).as((i) => {
 					const queryText = widget.get();
 					if (queryText !== '') {
-						if (queryText.startsWith(":p"))
+						if (queryText.startsWith(":p")) {
+							showWidgetPowermenu.set(true);
 							return "min-height: 11rem;";
+						}
 
-						if (queryText.startsWith(":m"))
+						if (queryText.startsWith(":m")) {
+							showWidgetMedia.set(true);
 							return "min-height: 15rem;";
+						}
 
-						if (queryText.startsWith(":w"))
+						if (queryText.startsWith(":w")) {
+							showWidgetWeather.set(true);
 							return "min-height: 17rem;";
+						}
+
+						if (queryText.startsWith(":cal")) {
+							showWidgetCalendar.set(true);
+							return "min-height: 27.5rem;";
+						}
+
+						if (queryText.startsWith(":s")) {
+							showWidgetSinks.set(true);
+							return "min-height: 27.5rem;";
+						}
+
+						if (queryText.startsWith(":todo")) {
+							showWidgetTodo.set(true);
+							return "min-height: 27.5rem;";
+						}
 
 						return "min-height: 27.5rem;";
 					}
+					showWidgetPowermenu.set(false);
+					showWidgetMedia.set(false);
+					showWidgetWeather.set(false);
+					showWidgetCalendar.set(false);
+					showWidgetSinks.set(false);
+					showWidgetTodo.set(false);
 
 					if (containsMathOperation(query.get()))
 						return "min-height: 4rem;";
@@ -250,13 +282,11 @@ export default () => {
 						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
 							{items}
 						</box>
-						{bind(widget).as((w) => {
-							const isVisible = w.startsWith(":s") ? true : false;
-
-							if (isVisible)
+						{bind(showWidgetSinks).as((w) => {
+							if (w)
 								revealSinks.set(true);
 
-							return isVisible ?
+							return w ?
 							(
 								<box className={"app-launcher-sinks"} vertical>
 									<box className={"qsvolume-box"}>
@@ -267,35 +297,35 @@ export default () => {
 								</box>
 							) : ( <box />)
 						})}
-						{bind(widget).as((w) => {
-							return w.startsWith(":p") ?
+						{bind(showWidgetPowermenu).as((w) => {
+							return w ?
 							(
 								<box className={"app-launcher-powermenu"}>
 									<PowermenuButtons />
 								</box>
 							) : ( <box />)
 						})}
-						<box className={"app-launcher-weather"} visible={bind(widget).as((w) => w.startsWith(":w") ? true : false)}>
+						<box className={"app-launcher-weather"} visible={bind(showWidgetWeather)}>
 							<Tooltip total={7} />
 						</box>
-						{bind(widget).as((w) => {
-							return w.startsWith(":cal") ?
+						{bind(showWidgetCalendar).as((w) => {
+							return w ?
 							(
 								<box className={"app-launcher-calendar"}>
 									{Calendar()}
 								</box>
 							) : ( <box />)
 						})}
-						{bind(widget).as((w) => {
-							return w.startsWith(":todo") ?
+						{bind(showWidgetTodo).as((w) => {
+							return w ?
 							(
 								<box className={"app-launcher-todo"}>
 									{Todos()}
 								</box>
 							) : ( <box />)
 						})}
-						{bind(widget).as((w) => {
-							return w.startsWith(":m") ?
+						{bind(showWidgetMedia).as((w) => {
+							return w ?
 							(
 								<box className={"app-launcher-media"}>
 									<Media />
