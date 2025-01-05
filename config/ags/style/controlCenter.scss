@@ -3,6 +3,7 @@
 $buttonMinHeight: 2.714rem;
 $togglesHeight: 10.7rem;
 
+.app-launcher-sinks,
 .app-launcher-controlcenter,
 .ControlCenter {
 	.control-center__container {
@@ -256,11 +257,7 @@ $togglesHeight: 10.7rem;
 	.filler-button {
 		min-width: $buttonMinHeight * 3.8 * 1.1;
 	}
-}
 
-.app-launcher-controlcenter,
-.app-launcher-sinks,
-.ControlCenter {
 	.control-center-space {
 		margin: 0 0.3rem;
 	}
@@ -383,6 +380,10 @@ $togglesHeight: 10.7rem;
 	}
 
 	.cotrol-center-menu-button {
+		&:hover {
+			background-color: $inverse_surface_transparent_variant;
+		}
+
 		padding: 0.4rem 0;
 	}
 
