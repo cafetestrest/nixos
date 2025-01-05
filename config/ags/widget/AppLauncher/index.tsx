@@ -13,6 +13,7 @@ import { PowermenuButtons } from "../Powermenu";
 import { MixerMenu } from "../Popups/menus/Mixer";
 import Volume, { SinkRevealer, revealSinks } from "../ControlCenter/items/Volume";
 import { AllNotifications } from "../Notifications";
+import { FirstPage, SecondPage } from "../ControlCenter/pages/Main";
 
 const apps = new AstalApps.Apps();
 
@@ -25,6 +26,7 @@ const showWidgetWeather = Variable<boolean>(false);
 const showWidgetMedia = Variable<boolean>(false);
 export const widgetNotificationsQuery = Variable<string>('');
 export const widgetTodoQuery = Variable<string>('');
+export const showWidgetControlCenter = Variable<boolean>(false);
 
 function evaluate(expr: string): string {
     const operators: { [key: string]: (a: number, b: number) => number } = {
@@ -197,6 +199,7 @@ export default () => {
 						showWidgetSinks.set(false);
 						widgetTodoQuery.set('');
 						widgetNotificationsQuery.set('');
+						showWidgetControlCenter.set(false);
 					}
 
 					if (queryText !== '' && queryText.startsWith(":")) {
@@ -227,6 +230,11 @@ export default () => {
 
 						if (queryText.startsWith(":todo")) {
 							widgetTodoQuery.set(queryText);
+							return "min-height: 27.5rem;";
+						}
+
+						if (queryText.startsWith(":qs") || queryText.startsWith(":cc")) {
+							showWidgetControlCenter.set(true);
 							return "min-height: 27.5rem;";
 						}
 
@@ -332,6 +340,16 @@ export default () => {
 							(
 								<box className={"app-launcher-todo"}>
 									{Todos()}
+								</box>
+							) : ( <box />)
+						})}
+						{bind(showWidgetControlCenter).as((w) => {
+							return w ?
+							(
+								<box vertical className={"app-launcher-controlcenter"}>
+									<FirstPage />
+									<box className={"control-center-box-space"} />
+									<SecondPage />
 								</box>
 							) : ( <box />)
 						})}

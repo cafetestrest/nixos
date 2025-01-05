@@ -51,6 +51,106 @@ export const SinkButton = () => (
 	</button>
 );
 
+export const FirstPage = () => (
+	<box vertical>
+		<box>
+			<BluetoothButton />
+			<box className={"control-center-space"} />
+			<NightLight />
+		</box>
+
+		<box className={"control-center-box-space"} />
+
+		<box>
+			<Microphone />
+			<box className={"control-center-space"} />
+			<DND />
+		</box>
+
+		<box className={"control-center-box-space"} />
+
+		<box>
+			<Idle />
+			<box className={"control-center-space"} />
+			<ScreenRecord
+				onClicked={() => {
+					revealSinks.set(false);
+					revealLightstripColor.set(false);
+					revealScreenShot.set(false);
+
+					if (ScreenRecordService.recording) {
+						ScreenRecordService.stop();
+					} else {
+						revealScreenRecord.set(!revealScreenRecord.get());
+					}
+				}}
+			/>
+		</box>
+
+		<ScreenRecordMenu
+			revealMenu={revealScreenRecord}
+			closeMenu={() =>
+				revealScreenRecord.set(!revealScreenRecord.get())
+			}
+		/>
+	</box>
+);
+
+export const SecondPage = () => (
+	<box vertical className={"second-page"}>
+		<box>
+			<NetworkButton />
+			<box className={"control-center-space"} />
+			<ControlCenterButton
+				className={"screenshot-button toggles"}
+				icon={icons.screenshot}
+				label={"Screenshot"}
+				onClicked={() => {
+					revealSinks.set(false);
+					revealScreenRecord.set(false);
+					revealLightstripColor.set(false);
+					revealScreenShot.set(!revealScreenShot.get())
+				}}
+				menuName="arrow"
+			/>
+		</box>
+
+		<ScreenshotMenu
+			revealMenu={revealScreenShot}
+			closeMenu={() =>
+				revealScreenShot.set(!revealScreenShot.get())
+			}
+		/>
+
+		<box className={"control-center-box-space"} />
+
+		<box>
+			{/* {Brightness()} */}
+			<ControlCenterButton
+				className={"lightstrip-color-button toggles"}
+				icon={icons.brightness.indicator}
+				label={"Lightstrip"}
+				onClicked={() => {
+					revealSinks.set(false);
+					revealScreenRecord.set(false);
+					revealScreenShot.set(false);
+					revealLightstripColor.set(!revealLightstripColor.get())
+				}}
+				menuName="arrow"
+			/>
+			<box className={"control-center-space"} />
+			<box hexpand className={"filler-button toggles"} />
+		</box>
+
+		<LightstripColor
+			revealMenu={revealLightstripColor}
+			closeMenu={() =>
+				revealLightstripColor.set(!revealLightstripColor.get())
+			}
+		/>
+	</box>
+);
+
 export default () => {
 	return (
 		<box
@@ -67,48 +167,7 @@ export default () => {
 					transition_duration={300}
 					transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}
 				>
-					<box vertical>
-						<box>
-							<BluetoothButton />
-							<box className={"control-center-space"} />
-							<NightLight />
-						</box>
-
-						<box className={"control-center-box-space"} />
-
-						<box>
-							<Microphone />
-							<box className={"control-center-space"} />
-							<DND />
-						</box>
-
-						<box className={"control-center-box-space"} />
-
-						<box>
-							<Idle />
-							<box className={"control-center-space"} />
-							<ScreenRecord
-								onClicked={() => {
-									revealSinks.set(false);
-									revealLightstripColor.set(false);
-									revealScreenShot.set(false);
-
-									if (ScreenRecordService.recording) {
-										ScreenRecordService.stop();
-									} else {
-										revealScreenRecord.set(!revealScreenRecord.get());
-									}
-								}}
-							/>
-						</box>
-
-						<ScreenRecordMenu
-							revealMenu={revealScreenRecord}
-							closeMenu={() =>
-								revealScreenRecord.set(!revealScreenRecord.get())
-							}
-						/>
-					</box>
+					<FirstPage />
 				</revealer>
 
 				<revealer
@@ -118,58 +177,7 @@ export default () => {
 					transition_duration={300}
 					transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT}
 				>
-					<box vertical>
-						<box>
-							<NetworkButton />
-							<box className={"control-center-space"} />
-							<ControlCenterButton
-								className={"screenshot-button toggles"}
-								icon={icons.screenshot}
-								label={"Screenshot"}
-								onClicked={() => {
-									revealSinks.set(false);
-									revealScreenRecord.set(false);
-									revealLightstripColor.set(false);
-									revealScreenShot.set(!revealScreenShot.get())
-								}}
-								menuName="arrow"
-							/>
-						</box>
-
-						<ScreenshotMenu
-							revealMenu={revealScreenShot}
-							closeMenu={() =>
-								revealScreenShot.set(!revealScreenShot.get())
-							}
-						/>
-
-						<box className={"control-center-box-space"} />
-
-						<box>
-							{/* {Brightness()} */}
-							<ControlCenterButton
-								className={"lightstrip-color-button toggles"}
-								icon={icons.brightness.indicator}
-								label={"Lightstrip"}
-								onClicked={() => {
-									revealSinks.set(false);
-									revealScreenRecord.set(false);
-									revealScreenShot.set(false);
-									revealLightstripColor.set(!revealLightstripColor.get())
-								}}
-								menuName="arrow"
-							/>
-							<box className={"control-center-space"} />
-							<box hexpand className={"filler-button toggles"} />
-						</box>
-
-						<LightstripColor
-							revealMenu={revealLightstripColor}
-							closeMenu={() =>
-								revealLightstripColor.set(!revealLightstripColor.get())
-							}
-						/>
-					</box>
+					<SecondPage />
 				</revealer>
 			</box>
 

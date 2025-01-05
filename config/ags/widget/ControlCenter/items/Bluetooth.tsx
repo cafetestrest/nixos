@@ -3,6 +3,8 @@ import ControlCenterButton from "../ControlCenterButton";
 import Bluetooth from "gi://AstalBluetooth?version=0.1";
 import icons from "../../../lib/icons";
 import { controlCenterPage } from "..";
+import { showWidgetControlCenter } from "../../AppLauncher";
+import { toggleWindow } from "../../../lib/utils";
 
 export default () => {
 	const bluetooth = Bluetooth.get_default();
@@ -35,6 +37,10 @@ export default () => {
 					() => bluetooth.isPowered,
 				]}
 				onPrimaryClick={() => {
+					if (showWidgetControlCenter.get()) {
+						toggleWindow('app-launcher')
+						toggleWindow('control-center')
+					}
 					controlCenterPage.set("bluetooth");
 				}}
 				menuName={"bluetooth"}

@@ -3,6 +3,8 @@ import icons from "../../lib/icons";
 import { Subscribable } from "astal/binding";
 import { controlCenterPage } from ".";
 import Network from "gi://AstalNetwork?version=0.1";
+import { showWidgetControlCenter } from "../AppLauncher";
+import { toggleWindow } from "../../lib/utils";
 
 type ControlCenterButtonProps = {
 	icon: Widget.IconProps["icon"];
@@ -58,9 +60,14 @@ export default ({
 			onKeyReleaseEvent={(_, event) => {
 				const [keyEvent, keyCode] = event.get_keycode();
 				if (keyEvent && menuName && menuName !== 'arrow' && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
+					if (showWidgetControlCenter.get()) {
+						toggleWindow('app-launcher')
+						toggleWindow('control-center')
+					}
 					controlCenterPage.set(menuName);
 				} else if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) {
 					if (onPrimaryClick) {
+						console.log('primary')
 						onPrimaryClick();
 					}
 				}

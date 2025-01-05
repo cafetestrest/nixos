@@ -49,7 +49,7 @@ const PowerMenuSerivce = GObject.registerClass(
 					Idle?.nextProfile();
 					setTimeout(function() {
 						//do nothing, Idle needs to wait small delay for nextProfile to run
-				   }, 500);
+				   }, 1500);
 				}
 			}
 
