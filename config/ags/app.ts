@@ -64,6 +64,7 @@ function main() {
 	// reloadScss('.config/ags/style/dashboard.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/appLauncher.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/notificationsWindow.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
+	// reloadScss('.config/ags/style/notification.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/weather.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// monitorDashboard();
 }

@@ -215,6 +215,9 @@
 			background-color: transparent;
 
 			.notification__actions {
+				background-color: $inverse_surface_transparent;
+				border-bottom-left-radius: 1.2rem;
+				border-bottom-right-radius: 1.2rem;
 				margin: 0;
 			}
 		}
@@ -225,7 +228,8 @@
 		margin: 0;
 	}
 	.content {
-		border-radius: 1.2rem;
+		border-top-left-radius: 1.2rem;
+		border-top-right-radius: 1.2rem;
 		transition: 0.2s border-radius ease-in-out;
 		background-color: $inverse_surface_transparent;
 		padding: 0.5rem 1rem;
