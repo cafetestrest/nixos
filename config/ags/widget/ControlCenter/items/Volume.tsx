@@ -60,7 +60,7 @@ export const SinkRevealer = () => Audio && (
 										return desc;
 									})} truncate={true} maxWidthChars={40} />
 									<box hexpand />
-									<icon icon={bind(speaker, 'is_default').as((def) => true === def ? icons.ui.tick : "")} />
+									<icon visible={bind(speaker, 'is_default')} icon={icons.ui.tick} />
 								</box>
 							</button>
 						);

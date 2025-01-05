@@ -10,6 +10,18 @@ type BarTrayItemProps = {
 const BarTrayItem = ({ item }: BarTrayItemProps) => {
 	if (item.iconThemePath) App.add_icons(item.iconThemePath);
 
+	// return (<menubutton
+	// 	tooltipMarkup={bind(item, "tooltipMarkup")}
+	// 	usePopover={false}
+	// 	actionGroup={bind(item, "action-group").as((ag) => [
+	// 	  "dbusmenu",
+	// 	  ag,
+	// 	])}
+	// 	menuModel={bind(item, "menu-model")}
+	// >
+	// 	<icon gicon={bind(item, "gicon")} />
+	// </menubutton>);
+
 	const menu = item.create_menu();
 
 	return (

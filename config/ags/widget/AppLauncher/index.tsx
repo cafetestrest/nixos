@@ -301,66 +301,45 @@ export default () => {
 						<box vertical visible={bind(widget).as((w) => w === '' ? true : false)}>
 							{items}
 						</box>
-						{bind(showWidgetSinks).as((w) => {
+						<box className={"app-launcher-sinks"} vertical visible={bind(showWidgetSinks).as((w) => {
 							if (w)
 								revealSinks.set(true);
+							return w;
+							})}
+						>
+							<box className={"qsvolume-box"}>
+								<Volume valign={Gtk.Align.CENTER}/>
+							</box>
+							<MixerMenu />
+							<SinkRevealer />
+						</box>
 
-							return w ?
-							(
-								<box className={"app-launcher-sinks"} vertical>
-									<box className={"qsvolume-box"}>
-										<Volume valign={Gtk.Align.CENTER}/>
-									</box>
-									<MixerMenu />
-									<SinkRevealer />
-								</box>
-							) : ( <box />)
-						})}
-						{bind(showWidgetPowermenu).as((w) => {
-							return w ?
-							(
-								<box className={"app-launcher-powermenu"}>
-									<PowermenuButtons />
-								</box>
-							) : ( <box />)
-						})}
+						<box className={"app-launcher-powermenu"} visible={bind(showWidgetPowermenu)}>
+							<PowermenuButtons />
+						</box>
+
 						<box className={"app-launcher-weather"} visible={bind(showWidgetWeather)}>
 							<Tooltip total={7} />
 						</box>
-						{bind(showWidgetCalendar).as((w) => {
-							return w ?
-							(
-								<box className={"app-launcher-calendar"}>
-									{Calendar()}
-								</box>
-							) : ( <box />)
-						})}
-						{bind(widgetTodoQuery).as((w) => {
-							return w !== "" ?
-							(
-								<box className={"app-launcher-todo"}>
-									{Todos()}
-								</box>
-							) : ( <box />)
-						})}
-						{bind(showWidgetControlCenter).as((w) => {
-							return w ?
-							(
-								<box vertical className={"app-launcher-controlcenter"}>
-									<FirstPage />
-									<box className={"control-center-box-space"} />
-									<SecondPage />
-								</box>
-							) : ( <box />)
-						})}
-						{bind(showWidgetMedia).as((w) => {
-							return w ?
-							(
-								<box className={"app-launcher-media"}>
-									<Media />
-								</box>
-							) : ( <box />)
-						})}
+
+						<box className={"app-launcher-calendar"} visible={bind(showWidgetCalendar)}>
+							{Calendar()}
+						</box>
+
+						<box className={"app-launcher-todo"} visible={bind(widgetTodoQuery).as((w) => w !== "")}>
+							{Todos()}
+						</box>
+
+						<box vertical className={"app-launcher-controlcenter"} visible={bind(showWidgetControlCenter)}>
+							<FirstPage />
+							<box className={"control-center-box-space"} />
+							<SecondPage />
+						</box>
+
+						<box className={"app-launcher-media"} visible={bind(showWidgetMedia)}>
+							<Media />
+						</box>
+
 						<box className={"app-launcher-notifications"} visible={bind(widgetNotificationsQuery).as((w) => w !== "")}>
 							<AllNotifications />
 						</box>
