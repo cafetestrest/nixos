@@ -67,7 +67,6 @@ export default ({
 					controlCenterPage.set(menuName);
 				} else if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) {
 					if (onPrimaryClick) {
-						console.log('primary')
 						onPrimaryClick();
 					}
 				}
