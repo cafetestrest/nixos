@@ -18,6 +18,7 @@ import Powermenu from "./widget/Powermenu";
 import ScreenRecordService from "./service/ScreenRecord";
 import Dashboard from "./widget/Dashboard";
 import Weather from "./widget/Dashboard/weather";
+import Overview from "./widget/Dashboard/Overview";
 
 function main() {
 	const bars = new Map<Gdk.Monitor, Gtk.Widget>();
@@ -35,6 +36,7 @@ function main() {
 	Powermenu();
 	Dashboard();
 	Weather();
+	Overview();
 
 	for (const gdkmonitor of App.get_monitors()) {
 		bars.set(gdkmonitor, Bar(gdkmonitor));
@@ -62,6 +64,7 @@ function main() {
 	// reloadScss('.config/ags/style/controlCenter.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/player.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/dashboard.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
+	reloadScss('.config/ags/style/overview.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/appLauncher.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/notificationsWindow.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/notification.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');

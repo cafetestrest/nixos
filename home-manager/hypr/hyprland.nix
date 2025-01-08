@@ -204,6 +204,7 @@ in
           "noanim, osd"
           "noanim, popup-window"
           "noanim, verification"
+          "noanim, overview"
         ];
 
         bind = let

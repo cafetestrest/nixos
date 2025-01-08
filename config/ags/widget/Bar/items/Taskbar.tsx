@@ -13,7 +13,7 @@ type Address = {
 const Hyprland = AstalHyprland.get_default();
 const Applications = AstalApps.Apps.new();
 
-function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: string) {
+export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: string) {
 	if (!client) return icons.fallback.executable;
 
 	let icon = "";

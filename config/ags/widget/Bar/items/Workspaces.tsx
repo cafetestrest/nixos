@@ -1,5 +1,6 @@
-import { Gtk, Gdk, Widget } from "astal/gtk3";
+import { Gtk, Gdk, Widget, App } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland";
+import { toggleWindow } from "../../../lib/utils";
 // import { range } from "../../../lib/utils";
 // import BarItem from "../BarItem";
 // import { bind } from "astal";
@@ -37,7 +38,7 @@ const setupWorkspaceTile = (i: number) => (self: Widget.Button) => {
 			onClickRelease={(self, event) => {
 				switch (event.button) {
 					case Gdk.BUTTON_SECONDARY:
-						return dispatch('1')
+						return toggleWindow("overview");
 					case Gdk.BUTTON_MIDDLE:
 						return dispatch('1')
 			}}}
