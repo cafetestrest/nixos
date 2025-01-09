@@ -56,13 +56,13 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 			}
 		}}
 		setup={(btn) => {
-			btn.hook(btn, "drag-data-get", (_w, _c, data) => data.set_text(address, address.length));
-			btn.hook(btn, "drag-begin", (_, context) => {
+			btn.hook(btn, "drag-data-get", (_w, _c, data) => data.set_text(address, address.length))
+			.hook(btn, "drag-begin", (_, context) => {
 				Gtk.drag_set_icon_surface(context, createSurfaceFromWidget(btn));
 				btn.toggleClassName('hidden', true);
-			});
-			btn.hook(btn, "drag-end", () => btn.toggleClassName('hidden', false));
-			btn.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY);
+			})
+			.hook(btn, "drag-end", () => btn.toggleClassName('hidden', false))
+			.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY);
 		}}
 	>
 		<icon
@@ -122,7 +122,6 @@ const Workspace = (index: number) => {
 				hexpand
 				vexpand
 				onClick={() => {
-					toggleWindow(namespace);
 					workspace(index)
 				}}
 				setup={(eventbox) => {
@@ -142,16 +141,16 @@ const update = (box) => {
 	if (!box.get_parent()?.visible)
         return;
 
-    const clients = Hyprland.message('j/clients');
+	Hyprland.message_async("j/clients", (_, res) => {
+		const clients = Hyprland.message_finish(res);
 
-	if (!clients) {
-		console.log("ERROR ")
-		return;
-	}
-
-	box.children.forEach(ws => {
-		ws.attribute(JSON.parse(clients));
-	});
+		if (!clients)
+			return
+	
+		box.children.forEach(ws => {
+			ws.attribute(JSON.parse(clients));
+		});
+	})
 };
 
 const children = (box) => {
