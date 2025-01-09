@@ -1,7 +1,7 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import PopupWindow from "../../common/PopupWindow";
 import { Variable, bind } from "astal";
-import { range, lookUpIcon } from "../../lib/utils";
+import { range, lookUpIcon, toggleWindow } from "../../lib/utils";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 import icons, { substitutions } from "../../lib/icons";
 import { getHyprlandClientIcon } from "../Bar/items/Taskbar";
@@ -12,6 +12,7 @@ const Hyprland = AstalHyprland.get_default();
 export const ws = Variable<number>(10);
 const SCALE = 0.08;
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
+const namespace = "overview";
 
 /**
   * @param {import('gi://Gtk?version=3.0').default.Widget} widget
@@ -46,12 +47,14 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 
 			switch (event.button) {
 				case Gdk.BUTTON_PRIMARY:
-					return focus(address)
+					focus(address)
+					return toggleWindow(namespace);
 				case Gdk.BUTTON_SECONDARY:
 					return close(address);
 				case Gdk.BUTTON_MIDDLE:
 					return close(address);
-		}}}
+			}
+		}}
 		setup={(btn) => {
 			btn.hook(btn, "drag-data-get", (_w, _c, data) => data.set_text(address, address.length));
 			btn.hook(btn, "drag-begin", (_, context) => {
@@ -59,7 +62,7 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 				btn.toggleClassName('hidden', true);
 			});
 			btn.hook(btn, "drag-end", () => btn.toggleClassName('hidden', false));
-			btn.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY)
+			btn.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY);
 		}}
 	>
 		<icon
@@ -118,7 +121,10 @@ const Workspace = (index: number) => {
 				className={"eventbox"}
 				hexpand
 				vexpand
-				onClick={() => workspace(index)}
+				onClick={() => {
+					toggleWindow(namespace);
+					workspace(index)
+				}}
 				setup={(eventbox) => {
 					eventbox.drag_dest_set(Gtk.DestDefaults.ALL, TARGET, Gdk.DragAction.COPY);
 					eventbox.connect('drag-data-received', (_w, _c, _x, _y, data) => {
@@ -158,7 +164,7 @@ const children = (box) => {
 
 const Overview = () => (
 	<box
-		className={"overview"}
+		className={namespace}
 		setup={(self) => {
 			self.hook(Hyprland, "event", () => {
 				self.children = range(10).map(Workspace);
@@ -183,8 +189,8 @@ const Overview = () => (
 export default () => {
 	return (
 		<PopupWindow
-			name={"overview"}
-			namespace="overview"
+			name={namespace}
+			namespace={namespace}
 			scrimType="transparent"
 			anchor={Astal.WindowAnchor.TOP}
 			marginTop={12}
