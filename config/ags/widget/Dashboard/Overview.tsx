@@ -1,6 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import PopupWindow from "../../common/PopupWindow";
-import { Variable } from "astal";
+import { Variable, bind } from "astal";
 import { range, lookUpIcon } from "../../lib/utils";
 import AstalHyprland from "gi://AstalHyprland?version=0.1";
 import icons, { substitutions } from "../../lib/icons";
@@ -89,20 +89,18 @@ const Workspace = (index: number) => {
 
 	return (
 		<box
-			className={"workspace"}
+			className={bind(Hyprland, 'clients').as((clientList) => {
+				for (const client of clientList) {
+					if (client.workspace.id === index)
+						return "active workspace";
+				}
+				return "workspace";
+			})}
 			halign={Gtk.Align.CENTER}
 			css={`
 				min-width: ${3840 * SCALE}px;
             	min-height: ${2160 * SCALE}px;
 			`}
-			setup={(self) => {
-				self.hook(Hyprland, "event", () => {
-					self.toggleClassName(
-						"active",
-						Boolean(Hyprland.get_workspace(index)?.clients.length)
-					);
-				})
-			}}
 			attribute={(clients) => {
 				fixed.get_children().forEach(ch => ch.destroy());
 				clients
