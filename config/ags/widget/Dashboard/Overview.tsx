@@ -104,6 +104,7 @@ const Workspace = (index: number) => {
 				min-width: ${3840 * SCALE}px;
             	min-height: ${2160 * SCALE}px;
 			`}
+			id={index}
 			attribute={(clients) => {
 				fixed.get_children().forEach(ch => ch.destroy());
 				clients
@@ -169,11 +170,16 @@ const Overview = () => (
 				self.children = range(10).map(Workspace);
 				update(self);
 				children(self);
-			});
 
-			self.hook(Hyprland, "event", () => {
-				update(self)
-			})
+				self.children.map(box => {
+					box.visible = Hyprland.workspaces.some(workspace => {
+						if (workspace.id < 10)
+							return workspace.id +1 >= box.id
+
+						return workspace.id >= box.id
+					});
+				});
+			});
 
 			self.hook(Hyprland, "notify::workspaces", () => {
 				children(self)
