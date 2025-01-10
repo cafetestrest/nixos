@@ -1,6 +1,10 @@
 import { App, Astal, Widget } from "astal/gtk3";
 import { scrimWindowNames, transparentScrimWindowNames } from "../lib/variables";
 import { activePopupWindows } from "../lib/utils";
+import { revealLightstripColor } from "../widget/ControlCenter/items/LightstripColor";
+import { revealScreenRecord } from "../widget/ControlCenter/pages/Main";
+import { revealSinks } from "../widget/ControlCenter/items/Volume";
+import { revealScreenShot } from "../widget/ControlCenter/items/ScreenshotMenu";
 
 type PopupWindowProps = {
     scrimType: "transparent" | "opaque";
@@ -32,6 +36,13 @@ const PopupWindow = ({
                 if (activePopupWindows(scrimType).length === 0) {
                     const scrimWindow = App.get_window(`${scrimType}-scrim`);
                     scrimWindow?.set_visible(false);
+
+                    if (self.name === "control-center") {
+                        revealLightstripColor.set(false);
+                        revealScreenRecord.set(false);
+                        revealSinks.set(false);
+                        revealScreenShot.set(false);
+                    }
                 }
             });
 
