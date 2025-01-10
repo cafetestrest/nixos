@@ -5,7 +5,7 @@
         "checkJs": true,
         "experimentalDecorators": true,
         "jsx": "react-jsx",
-        "jsxImportSource": "/home/bajic/.local/share/ags/gtk3",
+        "jsxImportSource": "astal/gtk3",
         "lib": [
             "ES2023"
         ],

@@ -1,5 +1,5 @@
-import { Gdk, Widget, Gtk, App } from "astal/gtk3";
-import { bind, Variable, timeout, Gio, GLib, AstalIO } from "astal";
+import { Gdk, Widget, Gtk } from "astal/gtk3";
+import { bind, Gio } from "astal";
 import AstalTray from "gi://AstalTray";
 
 type TrayItem = ReturnType<ReturnType<typeof AstalTray.Tray.get_default>["get_item"]>;
