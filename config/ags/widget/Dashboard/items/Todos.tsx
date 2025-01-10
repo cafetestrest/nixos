@@ -1,4 +1,4 @@
-import { bind, GLib, readFile, Variable, writeFile } from "astal";
+import { bind, Variable } from "astal";
 import { Gtk,  } from "astal/gtk3";
 import TodosService, { Todo } from "../../../service/LocalTodos";
 import icons from "../../../lib/icons";
@@ -122,7 +122,16 @@ export default () => {
 					t.length > 0 ? "todos" : "placeholder",
 				)}
 			>
-				<scrollable className={"todos__scrollable"} name={"todos"}>
+				<scrollable
+					className={"todos__scrollable"}
+					name={"todos"}
+					css={bind(TodosService, "todos").as((t) => {
+						const baseHeight = 3.5;
+						const maxHeight = 20;
+						const height = Math.min(t.length * baseHeight, maxHeight);
+						return `min-height: ${height}rem;`;
+					})}
+				>
 					<box vertical className={"todos__container"}>
 						{bind(TodosService, "todos").as((t) =>
 							t.map((item, idx) => (
