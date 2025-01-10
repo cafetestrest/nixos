@@ -74,6 +74,8 @@ export const SinkRevealer = () => Audio && (
 export default () => {
 	const speaker = AstalWp.get_default()?.audio.defaultSpeaker!;
 
+	// using custom VolumeSlider from https://github.com/Mabi19/desktop-shell/blob/cd442d22bb44cedcdaf23399e400808df8b2e78d/bar/audio.tsx#L8-L34
+	// only as currently <slider/> does not support onScroll (mouse scrol to change value)
 	const VolumeSlider = ({ device }: { device: AstalWp.Endpoint }) => {
 		const adjustment = new Gtk.Adjustment({
 			lower: 0,

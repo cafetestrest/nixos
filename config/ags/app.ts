@@ -72,6 +72,7 @@ function main() {
 	// monitorDashboard();
 }
 
+// ags config based on https://github.com/PoSayDone/.dotfiles_nix/tree/8647ff23d4522ed1210eb1656580f33f9956dacb
 App.start({
 	css: style,
 	main: main,

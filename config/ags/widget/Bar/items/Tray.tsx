@@ -83,4 +83,7 @@ const setupTray = (box: Widget.Box) => {
 	systemTray.connect("item_removed", (_, id) => removeItem(id));
 };
 
+// using custom tray from https://github.com/gitmeED331/agsv2/blob/3f667521cf36e97fe0ec77b536f15d0352795fbf/modules/Widgets/Tray.tsx
+// used only as example https://github.com/Aylur/astal/blob/ebcccc4ae13f690220374497f932f58ec5fd7cfd/examples/js/simple-bar/widget/Bar.tsx#L11-L25
+// menubutton does not support currently right/middle click and does not update about_to_show() automatically
 export default () => <box className={"tray container"} halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} expand vertical setup={setupTray} />;
