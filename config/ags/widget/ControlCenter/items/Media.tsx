@@ -148,51 +148,51 @@ const Player = ({ player }: PlayerProps) => {
 	// 	return textColor;
 	// }
 
-	function getTextColorFromImage(coverArt: string) {
-		const textColor = 'white';
+	// function getTextColorFromImage(coverArt: string) {
+	// 	const textColor = 'white';
 
-		if (!coverArt) {
-			return textColor;
-		}
+	// 	if (!coverArt) {
+	// 		return textColor;
+	// 	}
 
-		// Load the image
-		const pixbuf = GdkPixbuf.Pixbuf.new_from_file(coverArt);
+	// 	// Load the image
+	// 	const pixbuf = GdkPixbuf.Pixbuf.new_from_file(coverArt);
 
-		if (pixbuf) {
-			const width = pixbuf.get_width();
-			const height = pixbuf.get_height();
-			const pixels = pixbuf.get_pixels();
-			const rowstride = pixbuf.get_rowstride();
-			const nChannels = pixbuf.get_n_channels();
+	// 	if (pixbuf) {
+	// 		const width = pixbuf.get_width();
+	// 		const height = pixbuf.get_height();
+	// 		const pixels = pixbuf.get_pixels();
+	// 		const rowstride = pixbuf.get_rowstride();
+	// 		const nChannels = pixbuf.get_n_channels();
 
-			let totalBrightness = 0;
-			let pixelCount = 0;
+	// 		let totalBrightness = 0;
+	// 		let pixelCount = 0;
 
-			// Iterate over each pixel
-			for (let y = 0; y < height; y++) {
-				for (let x = 0; x < width; x++) {
-					const offset = y * rowstride + x * nChannels;
+	// 		// Iterate over each pixel
+	// 		for (let y = 0; y < height; y++) {
+	// 			for (let x = 0; x < width; x++) {
+	// 				const offset = y * rowstride + x * nChannels;
 
-					const r = pixels[offset];
-					const g = pixels[offset + 1];
-					const b = pixels[offset + 2];
+	// 				const r = pixels[offset];
+	// 				const g = pixels[offset + 1];
+	// 				const b = pixels[offset + 2];
 
-					// Calculate brightness
-					const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
-					totalBrightness += brightness;
-					pixelCount++;
-				}
-			}
+	// 				// Calculate brightness
+	// 				const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
+	// 				totalBrightness += brightness;
+	// 				pixelCount++;
+	// 			}
+	// 		}
 
-			// Average brightness
-			const avgBrightness = totalBrightness / pixelCount;
+	// 		// Average brightness
+	// 		const avgBrightness = totalBrightness / pixelCount;
 
-			// Determine text color
-			return avgBrightness > 128 ? 'black' : 'white';
-		}
+	// 		// Determine text color
+	// 		return avgBrightness > 128 ? 'black' : 'white';
+	// 	}
 
-		return textColor;
-	}
+	// 	return textColor;
+	// }
 
 	return (
 		<box
@@ -201,10 +201,8 @@ const Player = ({ player }: PlayerProps) => {
 			className={`player player-${player.busName}`}
 			vexpand
 			css={bind(player, 'coverArt').as((c) => {
-				const textColor = getTextColorFromImage(c);
-
 				if (c)
-					return `background-image: radial-gradient(circle, rgba(0,0,0, 0.25) 10%, rgba(0,0,0, 0.25)), url("${c}"); color: ${textColor};`;
+					return `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`;
 				return `background-image: none`
 			})}
 			visible={bind(player, "playback_status").as((v) => {
