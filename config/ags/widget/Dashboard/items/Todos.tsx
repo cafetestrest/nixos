@@ -95,6 +95,7 @@ const addNewTodo = (text: string) => {
 
 export default () => {
 	const newTodoText = Variable<string>("");
+	const widgetCounter = Variable<number>(6);
 
 	return (
 		<box vertical className={"todos block"}>
@@ -125,19 +126,20 @@ export default () => {
 				<scrollable
 					className={"todos__scrollable"}
 					name={"todos"}
-					css={bind(TodosService, "todos").as((t) => {
+					css={bind(widgetCounter).as((c) => {
 						const baseHeight = 3.5;
 						const maxHeight = 20;
-						const height = Math.min(t.length * baseHeight, maxHeight);
+						const height = Math.min(c * baseHeight, maxHeight);
 						return `min-height: ${height}rem;`;
 					})}
 				>
 					<box vertical className={"todos__container"}>
-						{bind(TodosService, "todos").as((t) =>
-							t.map((item, idx) => (
+						{bind(TodosService, "todos").as((t) => {
+							widgetCounter.set(t.length)
+							return t.map((item, idx) => (
 								<TodoItem todo={item} idx={idx} />
-							)),
-						)}
+							))
+						})}
 					</box>
 				</scrollable>
 				<box name={"placeholder"}></box>
