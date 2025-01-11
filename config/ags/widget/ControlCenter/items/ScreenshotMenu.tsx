@@ -4,6 +4,7 @@ import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
 import { bash, toggleWindow } from "../../../lib/utils";
 import { Menu } from "../pages/Main";
+import { namespace } from "..";
 
 export const revealScreenShot = Variable(false);
 
@@ -29,7 +30,7 @@ export default ({
 				className={"cotrol-center-menu-button"}
 				onClicked={() => {
 					closeMenu
-					toggleWindow("control-center")
+					toggleWindow(namespace)
 					bash('screenshot')
 				}}
 			>
@@ -47,7 +48,7 @@ export default ({
 				className={"cotrol-center-menu-button"}
 				onClicked={() => {
 					closeMenu
-					toggleWindow("control-center")
+					toggleWindow(namespace)
 					bash('screenshot 1')
 				}}
 			>
@@ -65,7 +66,7 @@ export default ({
 				className={"cotrol-center-menu-button"}
 				onClicked={() => {
 					closeMenu
-					toggleWindow("control-center")
+					toggleWindow(namespace)
 					bash('screenshot 2')
 				}}
 			>

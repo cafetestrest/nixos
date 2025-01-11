@@ -1,9 +1,9 @@
 import { Gtk, Gdk, Widget, Astal } from "astal/gtk3";
 import icons from "../../lib/icons";
 import { Subscribable } from "astal/binding";
-import { controlCenterPage } from ".";
+import { controlCenterPage, namespace } from ".";
 import Network from "gi://AstalNetwork?version=0.1";
-import { showWidgetControlCenter } from "../AppLauncher";
+import { namespace as applaunchernamespace, showWidgetControlCenter } from "../AppLauncher";
 import { toggleWindow } from "../../lib/utils";
 
 type ControlCenterButtonProps = {
@@ -61,8 +61,8 @@ export default ({
 				const key = event.get_keyval()[1];
 				if (menuName && menuName !== 'arrow' && (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter)) {
 					if (showWidgetControlCenter.get()) {
-						toggleWindow('app-launcher')
-						toggleWindow('control-center')
+						toggleWindow(applaunchernamespace)
+						toggleWindow(namespace)
 					}
 					controlCenterPage.set(menuName);
 				} else if (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter) {

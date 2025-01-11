@@ -11,6 +11,7 @@ import { revealScreenShot } from "./items/ScreenshotMenu";
 import { revealLightstripColor } from "./items/LightstripColor";
 import { revealScreenRecord } from "./pages/Main";
 
+export const namespace = "control-center";
 export const controlCenterPage = Variable("main");
 
 export default () => {
@@ -31,8 +32,8 @@ export default () => {
 			scrimType="transparent"
 			visible={false}
 			margin={12}
-			name="control-center"
-			namespace="control-center"
+			name={namespace}
+			namespace={namespace}
 			className="ControlCenter"
 			layer={Astal.Layer.OVERLAY}
 			exclusivity={Astal.Exclusivity.EXCLUSIVE}
@@ -74,7 +75,7 @@ export default () => {
 			}}
 		>
 			<box
-				className="control-center"
+				className={namespace}
 				vertical
 				spacing={spacing}
 				valign={Gtk.Align.START}

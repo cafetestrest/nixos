@@ -13,6 +13,7 @@ import ScreenRecordMenu from "../items/ScreenRecordMenu";
 import ScreenRecordService from "../../../service/ScreenRecord";
 import BluetoothButton from "../items/Bluetooth";
 // import { toggleWindow } from "../../../lib/utils";
+// import { namespace } from "../../Powermenu";
 import NightLight from "../items/NightLight";
 import Idle from "../items/Idle";
 import { Tooltip } from "../../Dashboard/weather";
@@ -249,7 +250,7 @@ export default () => {
 			{/* <box spacing={16} className="control-center__footer">
 				<button
 					className="control-center__powermenu-button"
-					onClick={() => toggleWindow("powermenu")}
+					onClick={() => toggleWindow(namespace)}
 				>
 					<icon icon={icons.powermenu.shutdown} iconSize={16} />
 				</button>

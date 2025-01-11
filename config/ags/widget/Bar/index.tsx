@@ -17,6 +17,9 @@ import icons from "../../lib/icons";
 import { bash, toggleWindow } from "../../lib/utils";
 import Taskbar from "./items/Taskbar";
 import MediaIndicator from "./items/MediaIndicator";
+import { namespace as powermenunamespace } from "../Powermenu";
+
+export const namespace = "bar";
 
 const RamGbUsage = () => {
 	return (
@@ -135,7 +138,7 @@ const PowerMenuButton = () => (
 		onClickRelease={(_, event: Astal.ClickEvent) => {
 			switch (event.button) {
 				case Gdk.BUTTON_PRIMARY:
-					toggleWindow("powermenu")
+					toggleWindow(powermenunamespace)
 					break;
 				case Gdk.BUTTON_SECONDARY:
 					bash('openstartupapps')
@@ -146,7 +149,7 @@ const PowerMenuButton = () => (
 			}
 		}}
 		setup={(self) => {
-			const window = App.get_window("powermenu");
+			const window = App.get_window(powermenunamespace);
 			if (window) {
 				self.hook(window, "notify::visible", () => {
 					self.toggleClassName("active", window.visible);
@@ -226,7 +229,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
 		<window
 			vexpand={true}
 			className="Bar"
-			namespace="bar"
+			namespace={namespace}
 			gdkmonitor={gdkmonitor}
 			exclusivity={Astal.Exclusivity.EXCLUSIVE}
 			anchor={
@@ -236,7 +239,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
 			}
 			application={App}
 		>
-			<centerbox className="bar" valign={Gtk.Align.CENTER}>
+			<centerbox className={namespace} valign={Gtk.Align.CENTER}>
 				<Start />
 				<Center />
 				<End />

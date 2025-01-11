@@ -6,6 +6,8 @@ import { spacing } from "../../lib/variables";
 import PopupWindow from "../../common/PopupWindow";
 import { Subscribable } from "astal/binding";
 
+export const namespace = "notifications";
+
 class NotificationsMap implements Subscribable {
 	private map: Map<number, Gtk.Widget> = new Map();
 	private var: Variable<Array<Gtk.Widget>> = Variable([]);
@@ -109,9 +111,9 @@ export default () => {
 			margin={12}
 			vexpand={true}
 			keymode={Astal.Keymode.EXCLUSIVE}
-			name="notifications"
-			namespace="notifications"
-			className="notifications"
+			name={namespace}
+			namespace={namespace}
+			className={namespace}
 			exclusivity={Astal.Exclusivity.NORMAL}
 			anchor={Astal.WindowAnchor.TOP}
 			application={App}

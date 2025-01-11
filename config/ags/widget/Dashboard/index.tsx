@@ -3,11 +3,13 @@ import PopupWindow from "../../common/PopupWindow";
 import Todos from "./items/Todos";
 import Calendar from "./items/Calendar";
 
+export const namespace = "dashboard";
+
 export default () => {
 	return (
 		<PopupWindow
-			name={"dashboard"}
-			namespace="dashboard"
+			name={namespace}
+			namespace={namespace}
 			scrimType="transparent"
 			anchor={Astal.WindowAnchor.TOP}
 			marginTop={12}
@@ -20,7 +22,7 @@ export default () => {
 				}
 			}}
 		>
-			<box className={"dashboard"} vertical spacing={10}>
+			<box className={namespace} vertical spacing={10}>
 				{Calendar()}
 				{Todos()}
 			</box>

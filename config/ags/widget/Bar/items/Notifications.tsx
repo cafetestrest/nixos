@@ -4,6 +4,7 @@ import BarButton from "../BarButton";
 import Notifications from "gi://AstalNotifd";
 import { toggleWindow } from "../../../lib/utils";
 import icons from "../../../lib/icons";
+import { namespace } from "../../Notifications";
 
 export default () => {
 	const notifications = Notifications.get_default();
@@ -32,10 +33,10 @@ export default () => {
 			<BarButton
 				className={"bar__notifications"}
 				onClicked={() => {
-					toggleWindow("notifications");
+					toggleWindow(namespace);
 				}}
 				setup={(self) => {
-					const notificationsWindow = App.get_window("notifications");
+					const notificationsWindow = App.get_window(namespace);
 					if (notificationsWindow) {
 						self.hook(
 							notificationsWindow,

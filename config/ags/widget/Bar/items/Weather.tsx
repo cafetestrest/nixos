@@ -3,6 +3,7 @@ import { App, Gtk, Gdk } from "astal/gtk3";
 import { weather } from "../../../service/Weather";
 import { toggleWindow } from "../../../lib/utils";
 import BarButton from "../BarButton";
+import { namespace } from "../../Dashboard/weather";
 
 export default () => {
 	const weatherData = bind(weather).as((w) => {
@@ -30,7 +31,7 @@ export default () => {
 			<BarButton
 				className={"weather-button"}
 				onClicked={() => {
-					toggleWindow("weather");
+					toggleWindow(namespace);
 				}}
 				onClickRelease={(self, event) => {
 					switch (event.button) {
@@ -46,7 +47,7 @@ export default () => {
 					}
 				}}
 				setup={(self) => {
-					const window = App.get_window("weather");
+					const window = App.get_window(namespace);
 					if (window) {
 						self.hook(window, "notify::visible", () => {
 							self.toggleClassName("active", window.visible);

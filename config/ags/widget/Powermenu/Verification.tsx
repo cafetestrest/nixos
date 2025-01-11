@@ -6,14 +6,16 @@ import { bind, exec } from "astal";
 import { toggleWindow } from "../../lib/utils";
 import Button from "../../common/Button";
 
+export const namespace = "verification";
+
 export default () => {
 	const button = {};
 
 	return (
 		<PopupWindow
 			scrimType="opaque"
-			name={"verification"}
-			namespace={"verification"}
+			name={namespace}
+			namespace={namespace}
 			onKeyPressEvent={(self, event) => {
 				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					toggleWindow(self.name);
@@ -25,7 +27,7 @@ export default () => {
 				})
 			}
 		>
-			<box spacing={spacing * 2} vertical className={"verification"}>
+			<box spacing={spacing * 2} vertical className={namespace}>
 				<label
 					halign={Gtk.Align.START}
 					className="verification__title"
@@ -40,7 +42,7 @@ export default () => {
 					<Button
 						buttonType="outlined"
 						canFocus
-						onClicked={() => toggleWindow("verification")}
+						onClicked={() => toggleWindow(namespace)}
 					>
 						<label label={"No"} />
 					</Button>
@@ -48,7 +50,7 @@ export default () => {
 						canFocus
 						onClicked={() => {
 							exec(PowermenuService.cmd);
-							toggleWindow("verification");
+							toggleWindow(namespace);
 						}}
 						setup={(self) => (button.ref = self)}
 					>

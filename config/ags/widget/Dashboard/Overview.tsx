@@ -12,7 +12,7 @@ const Hyprland = AstalHyprland.get_default();
 export const ws = Variable<number>(10);
 const SCALE = 0.08;
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
-const namespace = "overview";
+export const namespace = "overview";
 
 /**
   * @param {import('gi://Gtk?version=3.0').default.Widget} widget

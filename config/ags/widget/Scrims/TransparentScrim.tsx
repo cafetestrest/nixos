@@ -1,11 +1,13 @@
 import { App, Astal } from "astal/gtk3";
 import { activePopupWindows, toggleWindow } from "../../lib/utils";
 
+export const namespace = "transparent-scrim";
+
 export default () => (
 	<window
 		visible={false}
-		name="transparent-scrim"
-		namespace="transparent-scrim"
+		name={namespace}
+		namespace={namespace}
 		layer={Astal.Layer.OVERLAY}
 		exclusivity={Astal.Exclusivity.IGNORE}
 		anchor={
@@ -16,7 +18,7 @@ export default () => (
 		}
 		keymode={Astal.Keymode.NONE}
 		application={App}
-		className="transparent-scrim"
+		className={namespace}
 		setup={(self) => {
 			self.hook(self, "notify::visible", () => {
 				if (!self.visible) {

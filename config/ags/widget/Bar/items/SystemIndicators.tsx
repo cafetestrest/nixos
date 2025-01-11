@@ -9,6 +9,7 @@ import AstalNotifd from "gi://AstalNotifd?version=0.1";
 import { toggleWindow } from "../../../lib/utils";
 import NightlightModeService from "../../../service/NightLight";
 import IdleModeService from "../../../service/Idle";
+import { namespace } from "../../ControlCenter";
 
 const NightlightIndicator = () => {
 	if (NightlightModeService) {
@@ -146,7 +147,7 @@ export default () => {
 	return (
 		<BarButton
 			className="bar__system-indicators"
-			onClicked={() => toggleWindow("control-center")}
+			onClicked={() => toggleWindow(namespace)}
 			onScroll={(self, event) => {
 				const defaultSpeaker = Wp.get_default()?.audio.defaultSpeaker;
 				if (defaultSpeaker) {
@@ -164,7 +165,7 @@ export default () => {
 				}
 			}}
 			setup={(self) => {
-				const controlCenterWindow = App.get_window("control-center");
+				const controlCenterWindow = App.get_window(namespace);
 				if (controlCenterWindow) {
 					self.hook(controlCenterWindow, "notify::visible", () => {
 						self.toggleClassName(

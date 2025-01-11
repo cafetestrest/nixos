@@ -2,8 +2,8 @@ import { bind } from "astal";
 import ControlCenterButton from "../ControlCenterButton";
 import Bluetooth from "gi://AstalBluetooth?version=0.1";
 import icons from "../../../lib/icons";
-import { controlCenterPage } from "..";
-import { showWidgetControlCenter } from "../../AppLauncher";
+import { controlCenterPage, namespace } from "..";
+import { namespace as applaunchernamespace, showWidgetControlCenter } from "../../AppLauncher";
 import { toggleWindow } from "../../../lib/utils";
 
 export default () => {
@@ -38,8 +38,8 @@ export default () => {
 				]}
 				onPrimaryClick={() => {
 					if (showWidgetControlCenter.get()) {
-						toggleWindow('app-launcher')
-						toggleWindow('control-center')
+						toggleWindow(applaunchernamespace)
+						toggleWindow(namespace)
 					}
 					controlCenterPage.set("bluetooth");
 				}}

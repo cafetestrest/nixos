@@ -2,6 +2,8 @@ import { App, Astal, Gdk, Widget } from "astal/gtk3";
 import PopupWindow from "../../common/PopupWindow";
 import { weather, TooltipItem } from "../../service/Weather";
 
+export const namespace = "weather";
+
 type TemperatureData = {
 	minTemp: number;
 	maxTemp: number;
@@ -296,7 +298,7 @@ const WeatherInfo = (weatherData: TooltipItem) => (
 );
 
 export const Tooltip = ({ total }: { total: number|null }) => (<box
-	className={"weather"}
+	className={namespace}
 	setup={(self) => {
 		self.hook(weather, () => {
 			let tooltip = weather.get();
@@ -444,8 +446,8 @@ export default () => {
 	return (
 		<PopupWindow
 			className={"weather-popup"}
-			name={"weather"}
-			namespace="weather"
+			name={namespace}
+			namespace={namespace}
 			scrimType="transparent"
 			anchor={Astal.WindowAnchor.TOP}
 			marginTop={12}

@@ -1,22 +1,23 @@
 import { App, Gtk, Gdk } from "astal/gtk3";
 import BarButton from "../BarButton";
 import { toggleWindow } from "../../../lib/utils";
+import { namespace } from "../../AppLauncher";
 
 export default () => (
 	<BarButton
 		className="bar__app-launcher"
 		onClicked={() => {
-			toggleWindow("app-launcher");
+			toggleWindow(namespace);
 		}}
 		onClickRelease={(self, event) => {
 			switch (event.button) {
 				case Gdk.BUTTON_SECONDARY:
-					return toggleWindow("app-launcher");
+					return toggleWindow(namespace);
 				case Gdk.BUTTON_MIDDLE:
-					return toggleWindow("app-launcher");
+					return toggleWindow(namespace);
 		}}}
 		setup={(self) => {
-			const applauncherWindow = App.get_window("app-launcher");
+			const applauncherWindow = App.get_window(namespace);
 			if (applauncherWindow) {
 				self.hook(applauncherWindow, "notify::visible", () => {
 					self.toggleClassName("active", applauncherWindow.visible);

@@ -3,6 +3,7 @@ import { GLib, monitorFile, exec, Gio, execAsync } from "astal";
 import { transparentScrimWindowNames, scrimWindowNames } from "./variables";
 import AstalNotifd from "gi://AstalNotifd?version=0.1";
 import { controlCenterPage } from "../widget/ControlCenter";
+import { namespace } from "../widget/Scrims/TransparentScrim";
 
 export function range(length: number, start = 1) {
 	return Array.from({ length }, (_, i) => i + start);
@@ -37,7 +38,7 @@ export function toggleWindow(windowName: string) {
 				AstalNotifd.get_default().get_notifications().length === 0
 			)
 				return;
-			App.get_window("transparent-scrim")?.set_visible(true);
+			App.get_window(namespace)?.set_visible(true);
 		} else {
 			activePopupWindows("opaque").forEach(
 				(win) => (win.visible = false),

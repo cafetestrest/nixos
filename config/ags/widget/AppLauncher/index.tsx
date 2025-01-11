@@ -15,6 +15,7 @@ import { AllNotifications } from "../Notifications";
 import { FirstPage, SecondPage } from "../ControlCenter/pages/Main";
 
 const apps = new AstalApps.Apps();
+export const namespace = "app-launcher";
 
 const query = Variable<string>("");
 const widget = Variable<string>("");
@@ -147,7 +148,7 @@ export default () => {
 		className: "app-launcher__input",
 		onActivate: () => {
 			items.get()[0]?.app.launch();
-			App.toggle_window("app-launcher");
+			App.toggle_window(namespace);
 		},
 		setup: (self) => {
 			self.hook(self, "notify::text", () => {
@@ -162,8 +163,8 @@ export default () => {
 			visible={false}
 			margin={12}
 			vexpand={true}
-			name="app-launcher"
-			namespace="app-launcher"
+			name={namespace}
+			namespace={namespace}
 			className="AppLauncher"
 			keymode={Astal.Keymode.EXCLUSIVE}
 			exclusivity={Astal.Exclusivity.NORMAL}
@@ -185,7 +186,7 @@ export default () => {
 				});
 			}}
 		>
-			<box className="app-launcher" vertical
+			<box className={namespace} vertical
 				css={bind(items).as((i) => {
 					const queryText = widget.get();
 					if (queryText === '') {

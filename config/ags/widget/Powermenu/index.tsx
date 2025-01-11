@@ -5,6 +5,8 @@ import { ButtonProps } from "astal/gtk3/widget";
 import icons from "../../lib/icons";
 import { toggleWindow } from "../../lib/utils";
 
+export const namespace = "powermenu";
+
 type PowermenuButtonProps = {
 	action: PowerMenuAction;
 	iconName: string;
@@ -49,8 +51,8 @@ export default () => {
 		<PopupWindow
 			application={App}
 			scrimType="opaque"
-			name="powermenu"
-			namespace="powermenu"
+			name={namespace}
+			namespace={namespace}
 			onKeyPressEvent={(self, event) => {
 				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					toggleWindow(self.name);

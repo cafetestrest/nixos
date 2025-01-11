@@ -2,6 +2,7 @@ import { GLib, Variable } from "astal";
 import { App } from "astal/gtk3";
 import BarButton from "../BarButton";
 import { toggleWindow } from "../../../lib/utils";
+import { namespace } from "../../Dashboard";
 
 export default () => {
 	const format = '%a %b %e   %H:%M:%S';
@@ -13,10 +14,10 @@ export default () => {
 		<BarButton
 			className={"clock-bar"}
 			onClicked={() => {
-				toggleWindow("dashboard");
+				toggleWindow(namespace);
 			}}
 			setup={(self) => {
-				const window = App.get_window("dashboard");
+				const window = App.get_window(namespace);
 				if (window) {
 					self.hook(window, "notify::visible", () => {
 						self.toggleClassName("active", window.visible);

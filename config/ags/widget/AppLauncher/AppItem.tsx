@@ -1,5 +1,6 @@
 import { App, Gtk, Widget } from "astal/gtk3";
 import AstalApps from "gi://AstalApps?version=0.1";
+import { namespace } from ".";
 
 export const MathResult = (mathText: string) => {
     return (
@@ -73,7 +74,7 @@ export default (app: AstalApps.Application) => {
 	const AppItem = new Widget.Button({
 		className: "app-launcher__item",
 		on_clicked: () => {
-			App.toggle_window("app-launcher");
+			App.toggle_window(namespace);
 			app.launch();
 		},
 		setup: (self) => {

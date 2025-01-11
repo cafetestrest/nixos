@@ -4,6 +4,7 @@ import { Gtk, Gdk, Astal } from "astal/gtk3";
 import { Subscribable } from "astal/binding";
 import { bind, timeout, Variable } from "astal";
 
+export const namespace = "notifications-popup";
 const TIMEOUT_DELAY = 5000;
 
 class PopupNotificationsMap implements Subscribable {
@@ -65,11 +66,11 @@ export default (monitor: Gdk.Monitor) => {
 			layer={Astal.Layer.OVERLAY}
 			marginTop={20}
 			className="NotificationsPopup"
-			namespace="notifications-popup"
+			namespace={namespace}
 			anchor={Astal.WindowAnchor.TOP}
 			gdkmonitor={monitor}
 		>
-			<box className="notifications-popup" spacing={8} vertical={true}>
+			<box className={namespace} spacing={8} vertical={true}>
 				{bind(notifs)}
 			</box>
 		</window>

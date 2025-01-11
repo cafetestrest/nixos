@@ -194,17 +194,20 @@ in
           f = regex: "blur,${regex}";
         in [
           (f "rofi")
+          "noanim, lockscreen"
           "noanim, app-launcher"
-          "noanim, dashboard"
-          "noanim, weather"
+          "noanim, bar"
           "noanim, control-center"
-          "noanim, powermenu"
+          "noanim, dashboard"
+          "noanim, overview"
+          "noanim, weather"
           "noanim, notifications"
           "noanim, notifications-popup"
           "noanim, osd"
           "noanim, popup-window"
+          "noanim, powermenu"
           "noanim, verification"
-          "noanim, overview"
+          "noanim, transparent-scrim"
         ];
 
         bind = let
