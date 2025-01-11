@@ -23,7 +23,6 @@ export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: st
 
 	icon = substitutions.icons[client.initialClass] || icon;
 
-    console.log("icon " + icon)
 	return Astal.Icon.lookup_icon(icon) ? icon : icons.fallback.executable;
 };
 
