@@ -88,10 +88,17 @@ const Player = ({ player }: PlayerProps) => {
 	)
 
 	function lengthStr(length: number) {
-		const min = Math.floor(length / 60);
-		const sec = Math.floor(length % 60);
-		const sec0 = sec < 10 ? '0' : '';
-		return `${min}:${sec0}${sec}`;
+		const hours = Math.floor(length / 3600);
+		const minutes = Math.floor((length % 3600) / 60);
+		const seconds = Math.floor(length % 60);
+
+		const min0 = minutes < 10 ? '0' : '';
+		const sec0 = seconds < 10 ? '0' : '';
+
+		if (hours > 0) {
+			return `${hours}:${min0}${minutes}:${sec0}${seconds}`;
+		}
+		return `${minutes}:${sec0}${seconds}`;
 	}
 
 	return (
