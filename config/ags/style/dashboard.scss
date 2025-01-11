@@ -2,7 +2,7 @@
 
 .dashboard {
 	border-radius: 2.714rem;
-	min-width: 29rem;
+	// min-width: 29rem;
 	transition:
 		background-color 1s ease-in-out,
 		color 1s ease-in-out;
@@ -16,7 +16,7 @@
 	border: $containerBorder;
 	background: $surface_transparent;
 	border-radius: 2.143rem;
-	padding: 1.429rem;
+	// padding: 1.429rem;
 	transition:
 		background-color 1s ease,
 		color 1s ease;
@@ -56,8 +56,7 @@
 		}
 	}
 
-	margin-top: 0.857rem;
-	padding: 0.714rem;
+	padding: 1rem 0.4rem 0rem 0.4rem;
 }
 
 .calendar__monthyear {
@@ -114,7 +113,7 @@
 	border: $containerBorder;
 
 	min-height: 0;
-	padding: 0.857rem 0.857rem 0;
+	padding: 0.4rem 0.6rem 0.2rem 0.6rem;
 
 	revealer:last-child {
 		.todo {
