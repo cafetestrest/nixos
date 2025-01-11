@@ -55,7 +55,6 @@ function main() {
 		osds.delete(gdkmonitor);
 	});
 
-	// monitorColorsChange();
 	// reloadScss('.config/ags/style/bar.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/controlCenter.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/player.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
@@ -65,7 +64,6 @@ function main() {
 	// reloadScss('.config/ags/style/notificationsWindow.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/notification.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
 	// reloadScss('.config/ags/style/weather.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// monitorDashboard();
 }
 
 // ags config based on https://github.com/PoSayDone/.dotfiles_nix/tree/8647ff23d4522ed1210eb1656580f33f9956dacb

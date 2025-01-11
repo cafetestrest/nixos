@@ -85,18 +85,6 @@ export function monitorColorsChange() {
 		App.apply_css(target);
 	});
 }
-export function monitorDashboard() {
-	monitorFile(
-		`${GLib.getenv("HOME")}/.config/ags/style/dashboard.scss`,
-		() => {
-			const target = "/tmp/astal/style.css";
-			exec(
-				`sass ${GLib.getenv("HOME")}/.config/ags/style/main.scss ${target}`,
-			);
-			App.apply_css(target);
-		},
-	);
-}
 
 export function dependencies(packages: string[]) {
 	for (const pkg of packages) {
