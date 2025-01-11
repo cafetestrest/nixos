@@ -8,8 +8,16 @@
 		color 1s ease-in-out;
 }
 
-.calendar-box-outline {
-	padding-bottom: 0.8rem;
+.calendar__header {
+	padding: 1rem 1rem;
+}
+
+.calendar-weekdays {
+	padding: 0rem 0.4rem;
+}
+
+.calendar-days {
+	padding: 0rem 0.4rem 0.4rem 0.4rem;
 }
 
 .block {
@@ -55,8 +63,6 @@
 			background-color: $hover;
 		}
 	}
-
-	padding: 1rem 0.4rem 0rem 0.4rem;
 }
 
 .calendar__monthyear {

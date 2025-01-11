@@ -126,6 +126,7 @@ export default () => {
 	});
 
 	const calendarDays = new Widget.Box({
+		className: "calendar-days",
 		hexpand: true,
 		vertical: true,
 		setup: (box) => {
@@ -157,6 +158,7 @@ export default () => {
 					children: [
 						calendarHeader,
 						new Widget.Box({
+							className: "calendar-weekdays",
 							homogeneous: true,
 							spacing: 12,
 							children: weekDays.map((day: Day, i) =>
