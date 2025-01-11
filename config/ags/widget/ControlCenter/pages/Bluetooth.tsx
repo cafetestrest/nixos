@@ -1,6 +1,6 @@
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
 import Page from "../Page";
-import { Gtk } from "astal/gtk3";
+import { Gdk, Gtk } from "astal/gtk3";
 import { bind, timeout } from "astal";
 import icons from "../../../lib/icons";
 import { upower } from "../../../lib/variables";
@@ -73,7 +73,7 @@ export default () => {
 			>
 				<eventbox
 					onClickRelease={(_, event) => {
-						if (event.button !== 1) return;
+						if (event.button !== Gdk.BUTTON_PRIMARY) return;
 						bluetooth.toggle();
 					}}
 				>
