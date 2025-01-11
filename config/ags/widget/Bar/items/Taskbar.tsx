@@ -23,12 +23,7 @@ export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: st
 
 	icon = substitutions.icons[client.initialClass] || icon;
 
-    if (icon === 'preferences-desktop-display') {
-        if (iconName === 'Ghostty' || client.initialClass === 'com.mitchellh.ghostty') {
-            icon = client.initialClass;
-        }
-    }
-
+    console.log("icon " + icon)
 	return Astal.Icon.lookup_icon(icon) ? icon : icons.fallback.executable;
 };
 
