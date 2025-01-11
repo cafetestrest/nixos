@@ -94,7 +94,7 @@ const Workspace = (index: number) => {
 		<box
 			className={bind(Hyprland, 'clients').as((clientList) => {
 				for (const client of clientList) {
-					if (client.workspace.id === index)
+					if (client.workspace && client.workspace.id === index)
 						return "active workspace";
 				}
 				return "workspace";
