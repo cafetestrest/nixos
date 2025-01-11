@@ -6,7 +6,7 @@ import Volume, { SinkRevealer, revealSinks } from "../items/Volume";
 import DND from "../items/DND";
 import Microphone from "../items/Microphone";
 import icons from "../../../lib/icons";
-// import Brightness from "../items/Brightness";
+import Brightness from "../items/Brightness";
 import ScreenRecord from "../items/ScreenRecord";
 // import ColorScheme from "../items/ColorScheme";
 import ScreenRecordMenu from "../items/ScreenRecordMenu";
@@ -125,7 +125,6 @@ export const SecondPage = () => (
 		<box className={"control-center-box-space"} />
 
 		<box>
-			{/* {Brightness()} */}
 			<ControlCenterButton
 				className={"lightstrip-color-button toggles"}
 				icon={icons.brightness.indicator}
@@ -246,6 +245,7 @@ export default () => {
 				<SinkButton />
 			</box>
 			<SinkRevealer />
+			{Brightness()}
 
 			{/* <box spacing={16} className="control-center__footer">
 				<button

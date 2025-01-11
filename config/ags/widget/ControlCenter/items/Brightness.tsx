@@ -6,7 +6,7 @@ import BrightnessService from "../../../service/Brightness";
 export default () => {
 	if (BrightnessService)
 		return (
-			<box>
+			<box className={"brightness-box"}>
 				<overlay
 					className={"control-center__volume-slider brightness"}
 					child={
