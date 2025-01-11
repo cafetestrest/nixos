@@ -1,5 +1,5 @@
 import { exec, execAsync, GObject } from "astal";
-// import { dependencies } from "../lib/utils";
+import { dependencies } from "../lib/utils";
 
 export enum NightlightMode {
 	Off = 0,
@@ -13,8 +13,7 @@ const nightlightBinding = {
 	2: "auto",
 };
 
-// const available = dependencies(["wlsunset"]);
-const available = true;
+const available = dependencies(["nightlight"]); // ideally it should be wlsunset, but I have it only as runtimeInputs pkgs
 
 export const profileName = (profile: NightlightMode) => {
 	const profileName = nightlightBinding[profile];
