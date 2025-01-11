@@ -1,8 +1,8 @@
-function checkLeapYear(year) {
+function checkLeapYear(year: number) {
 	return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 }
 
-function getMonthDays(month, year) {
+function getMonthDays(month: number, year: number) {
 	const leapYear = checkLeapYear(year);
 	if ((month <= 7 && month % 2 == 1) || (month >= 8 && month % 2 == 0))
 		return 31;
@@ -11,7 +11,7 @@ function getMonthDays(month, year) {
 	return 30;
 }
 
-function getNextMonthDays(month, year) {
+function getNextMonthDays(month: number, year: number) {
 	const leapYear = checkLeapYear(year);
 	if (month == 1 && leapYear) return 29;
 	if (month == 1 && !leapYear) return 28;
@@ -21,7 +21,7 @@ function getNextMonthDays(month, year) {
 	return 31;
 }
 
-function getPrevMonthDays(month, year) {
+function getPrevMonthDays(month: number, year: number) {
 	const leapYear = checkLeapYear(year);
 	if (month == 3 && leapYear) return 29;
 	if (month == 3 && !leapYear) return 28;

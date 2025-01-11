@@ -1,15 +1,12 @@
 import { AstalIO, execAsync, GLib, GObject, interval } from "astal";
 import { ensureDirectory } from "../lib/utils";
-import AstalHyprland from "gi://AstalHyprland?version=0.1";
 import { bash } from "../lib/utils";
 import { Variable } from "astal";
 
-// export const recordMicrophoneToggle = Variable(false);
 export const recordInternalAudioToggle = Variable(false);
 export const recordOnlySelectedScreenToggle = Variable(false);
 
 const now = () => GLib.DateTime.new_now_local().format("%Y-%m-%d_%H-%M-%S");
-const hypr = AstalHyprland.get_default();
 
 const ScreenRecorderService = GObject.registerClass(
   {
@@ -85,8 +82,6 @@ const ScreenRecorderService = GObject.registerClass(
 
       ensureDirectory(this.#recordings);
       this.#file = `${this.#recordings}/${now()}.mp4`;
-      // const output = hypr.focusedMonitor.name;
-      // const cmd = `wl-screenrec --output ${output} --filename ${this.#file}`;
 
       let cmd = `wf-recorder -c h264_vaapi -f ${this.#file}`;
 

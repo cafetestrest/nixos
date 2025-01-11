@@ -1,9 +1,6 @@
 import { Gtk, Gdk, Widget, App } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland";
 import { toggleWindow } from "../../../lib/utils";
-// import { range } from "../../../lib/utils";
-// import BarItem from "../BarItem";
-// import { bind } from "astal";
 
 export default () => {
 	const hypr = Hyprland.get_default();
@@ -11,7 +8,7 @@ export default () => {
 
 	const dispatch = (command: string) => hypr.dispatch("workspace", command);
 
-// Adding `workspace-tile-focused` to focused worspace
+// Adding `focused` to focused worspace
 const setupWorkspaceTile = (i: number) => (self: Widget.Button) => {
 	self.hook(hypr, "event", () => {
 		self.toggleClassName(

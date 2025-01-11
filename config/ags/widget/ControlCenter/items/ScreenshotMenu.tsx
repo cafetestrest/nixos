@@ -1,5 +1,5 @@
 import { Gtk } from "astal/gtk3";
-import { bind, Binding, Variable } from "astal";
+import { Variable } from "astal";
 import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
 import { bash, toggleWindow } from "../../../lib/utils";
@@ -19,12 +19,7 @@ export default ({
 			vertical
 			className={"control-center__dropdown-menu sink-box qs-menu"}
 			spacing={spacing * 2}
-			// visible={bind(revealMenu)}
 		>
-			{/* <icon
-				icon={icons.screenshot}
-				className={"control-center--button-screenshot-icon"}
-			/> */}
 			<label
 				label={"Screenshot Menu"}
 				className={"control-center__dropdown-menu_title"}

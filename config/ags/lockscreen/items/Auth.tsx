@@ -1,5 +1,5 @@
 import AstalAuth from "gi://AstalAuth";
-import { App, Gtk } from "astal";
+import { App, Gtk } from "astal/gtk3";
 
 export default () => (
 	<box hexpand vexpand halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER}>

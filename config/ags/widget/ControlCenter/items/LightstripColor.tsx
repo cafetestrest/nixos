@@ -19,7 +19,6 @@ export default ({
 			vertical
 			className={"control-center__dropdown-menu lightstrip-color qs-menu"}
 			spacing={spacing * 2}
-			// visible={bind(revealMenu)}
 		>
 			<box>
 				<label

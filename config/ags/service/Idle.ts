@@ -48,13 +48,6 @@ class IdleModeService extends GObject.Object {
 
 		execAsync("toggleidle toggle").catch((err) => {console.error(err)});
 
-		// if (this.#profile === 1) {
-		// 	execAsync("toggleidle toggle").catch((err) => {console.error(err)});
-		// }
-		// if (this.#profile === 0) {
-		// 	execAsync("toggleidle toggle").catch((err) => {console.error(err)});
-		// }
-
 		this.notify("profile");
 	}
 }

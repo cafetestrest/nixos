@@ -11,8 +11,6 @@ import {
 	reloadScss,
 } from "./lib/utils";
 import Scrim from "./widget/Scrims/Scrim";
-// import SinkMenu from "./widget/Popups/menus/Sink";
-// import MixerMenu from "./widget/Popups/menus/Mixer";
 // import Verification from "./widget/Powermenu/Verification";
 import Powermenu from "./widget/Powermenu";
 import ScreenRecordService from "./service/ScreenRecord";
@@ -30,8 +28,6 @@ function main() {
 	AppLauncher();
 	Scrim({ scrimType: "opaque", className: "scrim" });
 	Scrim({ scrimType: "transparent", className: "transparent-scrim" });
-	// SinkMenu();
-	// MixerMenu();
 	// Verification();
 	Powermenu();
 	Dashboard();

@@ -99,11 +99,6 @@ export default () => {
 
 	return (
 		<box vertical className={"todos block"}>
-			{/* <label
-				label={"Todos"}
-				className={"todos__heading"}
-				halign={Gtk.Align.CENTER}
-			/> */}
 			<box className={"todos__input_box"} spacing={24}>
 				<icon icon={icons.todo.checkedAlt} />
 				<entry

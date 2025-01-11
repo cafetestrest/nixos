@@ -6,10 +6,6 @@ import { Astal, Gdk } from "astal/gtk3";
 import { lookUpIcon } from "../../../lib/utils";
 import BarButton from "../BarButton";
 
-type Address = {
-	address: string;
-};
-
 const Hyprland = AstalHyprland.get_default();
 const Applications = AstalApps.Apps.new();
 

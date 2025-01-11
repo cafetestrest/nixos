@@ -56,19 +56,6 @@ class NightlightModeService extends GObject.Object {
 
 		this.notify("profile");
 	}
-
-	// async prevProfile() {
-	// 	this.#profile--;
-	// 	if (this.#profile < 0) this.#profile = 2;
-	// 	exec(`sudo ec_probe write ${NIGHTLIGHT_MODE} ${this.#profile}`);
-	// 	this.notify("profile");
-	// }
-
-	// async setProfile(profile: NightlightMode) {
-	// 	exec(`sudo ec_probe write ${NIGHTLIGHT_MODE} ${profile}`);
-	// 	this.#profile = profile;
-	// 	this.notify("profile");
-	// }
 }
 
 const NightlightModeServiceRegister = GObject.registerClass(

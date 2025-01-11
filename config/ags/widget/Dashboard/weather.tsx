@@ -223,27 +223,25 @@ const WeatherBoxChildWrapper = (w: TooltipItem, temperatureDataPerDay: Record<st
 		className={"qs-weather-box-child-wrapper"}
 		hexpand={true}
 		setup={(self) => {
-			// self.hook(weather, () => {
-				let useTotalInstead = false;
+			let useTotalInstead = false;
 
-				if (totalWeatherForecastDataArray.length) {
-					useTotalInstead = true;
-		
-					totalWeatherForecastDataArray.forEach(totalEl => {
-						self.add(
-							WeatherBoxChild(totalEl),
-						)
-					})
-				}
-		
-				if (false === useTotalInstead && w && temperatureDataPerDay && temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.length) {
-					temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.forEach(el => {
-						self.add(
-							WeatherBoxChild(el),
-						)
-					})            
-				}
-			// });
+			if (totalWeatherForecastDataArray.length) {
+				useTotalInstead = true;
+	
+				totalWeatherForecastDataArray.forEach(totalEl => {
+					self.add(
+						WeatherBoxChild(totalEl),
+					)
+				})
+			}
+	
+			if (false === useTotalInstead && w && temperatureDataPerDay && temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.length) {
+				temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.forEach(el => {
+					self.add(
+						WeatherBoxChild(el),
+					)
+				})            
+			}
 		}}
 	>
 	</box>
@@ -379,7 +377,6 @@ export const Tooltip = ({ total }: { total: number|null }) => (<box
 					if (w.indicator) {
 						continue;
 					}
-					// console.log('loop ' + w.date + ' h ' + w.hour + ' i ' + w.icon )
 	
 					// used to limit forecast to specified amount (if total variable is provided, it will display that amount of forecast widgets on a main one)
 					if (total && total >= 0) {

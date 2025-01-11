@@ -1,13 +1,13 @@
 import PopupWindow from "../../common/PopupWindow";
 import PowermenuService from "../../service/Powermenu";
 import { spacing } from "../../lib/variables";
-import { Gtk, Widget } from "astal/gtk3";
+import { Gtk } from "astal/gtk3";
 import { bind, exec } from "astal";
-import { Ref, toggleWindow } from "../../lib/utils";
+import { toggleWindow } from "../../lib/utils";
 import Button from "../../common/Button";
 
 export default () => {
-	const button: Ref<Widget.Button> = {};
+	const button = {};
 
 	return (
 		<PopupWindow

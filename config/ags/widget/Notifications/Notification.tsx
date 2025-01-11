@@ -164,23 +164,6 @@ export default function Notification(props: NotificationsProps) {
 						/>
 					</box>
 				</box>
-				{/* <revealer
-					visible={notification.body != ""}
-					reveal_child={notification.body != ""}
-				>
-					<label
-						className="notification__description"
-						hexpand={true}
-						useMarkup={true}
-						xalign={0}
-						lines={3}
-						justify={Gtk.Justification.LEFT}
-						truncate={true}
-						maxWidthChars={24}
-						wrap={true}
-						label={notification.body.trim().toString()}
-					/>
-				</revealer> */}
 			</box>
 			<button
 				vexpand={true}

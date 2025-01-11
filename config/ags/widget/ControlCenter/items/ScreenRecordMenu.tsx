@@ -1,5 +1,4 @@
 import { Gtk } from "astal/gtk3";
-// import { Binding, Variable } from "astal";
 import { bind, Binding, Variable } from "astal";
 import icons from "../../../lib/icons";
 import { spacing } from "../../../lib/variables";
@@ -19,7 +18,6 @@ export default ({
 			vertical
 			className={"control-center__dropdown-menu qs-menu"}
 			spacing={spacing * 2}
-			// visible={bind(revealMenu)}
 		>
 			<icon
 				icon={icons.record}

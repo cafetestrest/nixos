@@ -45,9 +45,6 @@ const MixerItem = (stream: AstalWp.Endpoint) => {
 				label: bind(stream, "volume").as(
 					(v) => `${Math.floor(v * 100)}%`,
 				),
-				// label: stream
-				// 	.bind("volume")
-				// 	.transform((v) => `${Math.floor(v * 100)}%`),
 			}),
 		],
 	});

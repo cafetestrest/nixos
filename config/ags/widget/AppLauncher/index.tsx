@@ -9,7 +9,6 @@ import Media from "../ControlCenter/items/Media";
 import Todos from "../Dashboard/items/Todos";
 import { Tooltip } from "../Dashboard/weather";
 import { PowermenuButtons } from "../Powermenu";
-// import { Sinks } from "../Popups/menus/Sink";
 import { MixerMenu } from "../Popups/menus/Mixer";
 import Volume, { SinkRevealer, revealSinks } from "../ControlCenter/items/Volume";
 import { AllNotifications } from "../Notifications";
@@ -130,7 +129,6 @@ export default () => {
 		let mathResult;
 		if (containsMathOperation(query)) {
 			try {
-				// mathResult = eval(query);
 				mathResult = evaluate(query.toString());
 			} catch (error) {
 				// do nothing

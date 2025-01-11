@@ -16,13 +16,6 @@ function OnScreenProgress(window: Astal.Window, vertical: boolean) {
 		icon: bind(speaker, "volumeIcon"),
 	});
 
-	// const pillProgress = Progress({
-	// 	vertical,
-	// 	width: vertical ? 3.429 : 28.571,
-	// 	height: vertical ? 28.571 : 3.429,
-	// 	child: indicator,
-	// });
-
 	const progress = Progress({
 		vertical,
 		width: 14,
