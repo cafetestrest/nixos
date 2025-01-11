@@ -1,4 +1,4 @@
-import { App, Astal, Widget } from "astal/gtk3";
+import { App, Astal, Gdk, Widget } from "astal/gtk3";
 import PopupWindow from "../../common/PopupWindow";
 import { weather, TooltipItem } from "../../service/Weather";
 
@@ -453,8 +453,7 @@ export default () => {
 			exclusivity={Astal.Exclusivity.NORMAL}
 			keymode={Astal.Keymode.EXCLUSIVE}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					App.toggle_window(self.name);
 				}
 			}}

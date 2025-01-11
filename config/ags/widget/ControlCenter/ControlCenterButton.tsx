@@ -58,14 +58,14 @@ export default ({
 						break;
 			}}}
 			onKeyReleaseEvent={(_, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && menuName && menuName !== 'arrow' && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
+				const key = event.get_keyval()[1];
+				if (menuName && menuName !== 'arrow' && (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter)) {
 					if (showWidgetControlCenter.get()) {
 						toggleWindow('app-launcher')
 						toggleWindow('control-center')
 					}
 					controlCenterPage.set(menuName);
-				} else if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) {
+				} else if (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter) {
 					if (onPrimaryClick) {
 						onPrimaryClick();
 					}

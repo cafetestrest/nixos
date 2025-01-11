@@ -1,7 +1,7 @@
 import PopupWindow from "../../common/PopupWindow";
 import PowermenuService from "../../service/Powermenu";
 import { spacing } from "../../lib/variables";
-import { Gtk } from "astal/gtk3";
+import { Gdk, Gtk } from "astal/gtk3";
 import { bind, exec } from "astal";
 import { toggleWindow } from "../../lib/utils";
 import Button from "../../common/Button";
@@ -15,8 +15,7 @@ export default () => {
 			name={"verification"}
 			namespace={"verification"}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					toggleWindow(self.name);
 				}
 			}}

@@ -1,4 +1,4 @@
-import { App, Gtk, Astal, Widget } from "astal/gtk3";
+import { App, Gtk, Gdk, Astal, Widget } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import AstalApps from "gi://AstalApps?version=0.1";
 import AppItem, { MathResult } from "./AppItem";
@@ -170,8 +170,7 @@ export default () => {
 			layer={Astal.Layer.OVERLAY}
 			application={App}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					App.toggle_window(self.name);
 				}
 			}}

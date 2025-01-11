@@ -203,8 +203,7 @@ export default () => {
 			exclusivity={Astal.Exclusivity.NORMAL}
 			keymode={Astal.Keymode.EXCLUSIVE}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					App.toggle_window(self.name);
 				}
 			}}

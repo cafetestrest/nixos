@@ -1,4 +1,4 @@
-import { App, Gtk, Astal } from "astal/gtk3";
+import { App, Gtk, Astal, Gdk } from "astal/gtk3";
 import { bind, timeout, Variable } from "astal";
 import Notifd from "gi://AstalNotifd?version=0.1";
 import Notification from "./Notification";
@@ -116,8 +116,7 @@ export default () => {
 			anchor={Astal.WindowAnchor.TOP}
 			application={App}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					App.toggle_window(self.name);
 				}
 			}}

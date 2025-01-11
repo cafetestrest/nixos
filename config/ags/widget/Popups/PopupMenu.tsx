@@ -1,4 +1,4 @@
-import { App, Astal } from "astal/gtk3";
+import { App, Astal, Gdk } from "astal/gtk3";
 import PopupWindow from "../../common/PopupWindow";
 
 type PopupMenuProps = {
@@ -20,8 +20,7 @@ export default ({ label, child }: PopupMenuProps) => {
 			namespace={"popup-window"}
 			visible={false}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					App.toggle_window(self.name);
 				}
 			}}

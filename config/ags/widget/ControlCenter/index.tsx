@@ -1,4 +1,4 @@
-import { App, Gtk, Astal } from "astal/gtk3";
+import { App, Gtk, Astal, Gdk } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import Main from "./pages/Main";
 import Network from "./pages/Network";
@@ -40,8 +40,7 @@ export default () => {
 			anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
 			application={App}
 			onKeyPressEvent={(self, event) => {
-				const [keyEvent, keyCode] = event.get_keycode();
-				if (keyEvent && keyCode == 9) {
+				if (event.get_keyval()[1] === Gdk.KEY_Escape) {
 					let changed = false;
 
 					if (revealSinks.get()) {

@@ -1,5 +1,5 @@
 import { bind, Variable } from "astal";
-import { Gtk,  } from "astal/gtk3";
+import { Gdk, Gtk,  } from "astal/gtk3";
 import TodosService, { Todo } from "../../../service/LocalTodos";
 import icons from "../../../lib/icons";
 import Pango from "gi://Pango?version=1.0";
@@ -36,9 +36,8 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 					TodosService.toggle(idx);
 				}}
 				onKeyReleaseEvent={(_, event) => {
-					const [keyEvent, keyCode] = event.get_keycode();
-	
-					if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
+					const key = event.get_keyval()[1];
+					if (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter) {
 						TodosService.toggle(idx);
 					}
 				}}
@@ -70,9 +69,8 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 					TodosService.remove(idx);
 				}}
 				onKeyReleaseEvent={(_, event) => {
-					const [keyEvent, keyCode] = event.get_keycode();
-	
-					if (keyEvent && (keyCode === 36 || keyCode === 65 || keyCode === 104)) { //65:space, 36:return, 104:num return
+					const key = event.get_keyval()[1];
+					if (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter) {
 						TodosService.remove(idx);
 					}
 				}}
