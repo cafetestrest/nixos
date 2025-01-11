@@ -34,19 +34,23 @@ const Player = ({ player }: PlayerProps) => {
 		<box className="player-icon-cover-art" css={coverArt} visible={bind(player, 'coverArt').as((c) => c !== '')}/>
 	);
 
-	const Title = new Widget.Label({
-		label: player.get_title(),
-		maxWidthChars: 40,
-		truncate: true,
-		className: "player__title",
-	});
+	const Title = () => (
+		<label
+			className={"player__title"}
+			label={player.get_title()}
+			maxWidthChars={40}
+			truncate={true}
+		/>
+	);
 
-	const Artist = new Widget.Label({
-		label: player.get_artist(),
-		maxWidthChars: 20,
-		truncate: true,
-		className: "player__artist",
-	});
+	const Artist = () => (
+		<label
+			className={"player__artist"}
+			label={player.get_artist()}
+			maxWidthChars={40}
+			truncate={true}
+		/>
+	);
 
 	const ControlButton = ({ icon, onClick, className }: { icon: string; onClick: () => void; className: string }) => (
 		<BarButton onClicked={onClick} className={className}>
@@ -105,18 +109,9 @@ const Player = ({ player }: PlayerProps) => {
 						onClicked={() => player.play_pause()}
 					>
 						<box>
-							<box className="player__title-box"
-							setup={(self) => {
-									self.hook(player, "notify::title", (_) => {
-										self.toggleClassName("dissappear", true);
-										setTimeout(() => {
-											self.toggleClassName("dissappear", false);
-											Title.label = player.title;
-											Artist.label = player.artist;
-										}, 300);
-									});
-								}}
-							>{Title}   {Artist}</box>
+							<box className="player__title-box">
+								<Title/>   <Artist/>
+							</box>
 						</box>
 					</BarButton>
 				</box>
