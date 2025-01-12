@@ -20,23 +20,19 @@ const Player = ({ player }: PlayerProps) => {
 		/>
 	);
 
-	const Title = () => (
-		<label
-			className={"player__title"}
-			label={player.get_title()}
-			truncate={true}
-			halign={Gtk.Align.START}
-		/>
-	);
+	const Title = new Widget.Label({
+		label: player.get_title(),
+		truncate: true,
+		className: "player__title",
+		halign: Gtk.Align.START,
+	});
 
-	const Artist = () => (
-		<label
-			className={"player__artist"}
-			label={player.get_artist()}
-			truncate={true}
-			halign={Gtk.Align.START}
-		/>
-	);
+	const Artist = new Widget.Label({
+		label: player.get_artist(),
+		truncate: true,
+		className: "player__artist",
+		halign: Gtk.Align.START,
+	});
 
 	const ControlButton = ({ icon, onClick, className }: { icon: string; onClick: () => void; className: string }) => (
 		<button hexpand={false} valign={Gtk.Align.CENTER} onClicked={onClick} className={className}>
@@ -126,9 +122,20 @@ const Player = ({ player }: PlayerProps) => {
 			<box className={"cover-box"} vertical={false}>
 				<box vertical>
 					<box>
-						<box vertical halign={Gtk.Align.START} vexpand valign={Gtk.Align.CENTER} className="player__title-box">
-							<Title/>
-							<Artist/>
+						<box vertical halign={Gtk.Align.START} vexpand valign={Gtk.Align.CENTER} className="player__title-box"
+						setup={(self) => {
+								self.hook(player, "notify::title", (_) => {
+									self.toggleClassName("dissappear", true);
+									setTimeout(() => {
+										self.toggleClassName("dissappear", false);
+										Title.label = player.title;
+										Artist.label = player.artist;
+									}, 300);
+								});
+							}}
+						>
+							{Title}
+							{Artist}
 						</box>
 						<box hexpand />
 						<box
