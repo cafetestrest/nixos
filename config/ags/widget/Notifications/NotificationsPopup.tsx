@@ -70,7 +70,7 @@ export default (monitor: Gdk.Monitor) => {
 			anchor={Astal.WindowAnchor.TOP}
 			gdkmonitor={monitor}
 		>
-			<box className={namespace} spacing={8} vertical={true}>
+			<box className={namespace} spacing={8} vertical={true} noImplicitDestroy>
 				{bind(notifs)}
 			</box>
 		</window>

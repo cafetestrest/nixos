@@ -70,6 +70,7 @@ export const NotificationsWindow = ({notifications, notifs}: {notifications: Not
 					spacing={6}
 					vexpand={true}
 					hexpand={true}
+					noImplicitDestroy
 				>
 					{bind(notifs)}
 				</box>
