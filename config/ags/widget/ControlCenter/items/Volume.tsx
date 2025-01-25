@@ -82,7 +82,7 @@ export default () => {
 			upper: 1,
 			value: device.volume,
 			stepIncrement: 0.01,
-			pageIncrement: 0.05,
+			pageIncrement: 0.01,
 		});
 		const scale = new Gtk.Scale({
 			adjustment,
