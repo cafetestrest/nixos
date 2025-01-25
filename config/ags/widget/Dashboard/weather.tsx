@@ -360,12 +360,21 @@ export const Tooltip = ({ total }: { total: number|null }) => (<box
 						temperatureDataPerDay[date].data = weatherForecastDataArray;
 					}
 	
+					// Get the current month (0 = January, 11 = December)
+					const currentMonth = new Date().getMonth();
+
+					// Check if it is winter (December, January, February)
+					const isWinter = currentMonth === 11 || currentMonth === 0 || currentMonth === 1;
+
+					const startHour = 7;
+					const endHour = isWinter ? 15 : 19;
+
 					// add icon to the array in between somewhat sunny hours, used to later get most common icon for main widget days
-					if (Number(w.hour) >= 7 && Number(w.hour) <= 19) {
+					if (Number(w.hour) >= startHour && Number(w.hour) <= endHour) {
 						weatherStatusIconArray.push(w.icon);
 					}
 				});
-	
+
 				// clear for next loop
 				prevDayName = null;
 	
