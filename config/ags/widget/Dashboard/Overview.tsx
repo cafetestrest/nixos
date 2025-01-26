@@ -66,10 +66,7 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 		}}
 	>
 		<icon
-			css={`
-				min-width: ${w * SCALE}px;
-            	min-height: ${h * SCALE}px;
-			`}
+			className={`img${w}${h}`}
 			setup={(self) => {
 				const icon = substitutions.icons[c]
 					? substitutions.icons[c]
@@ -78,6 +75,12 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 						: icons.fallback.executable;
 
 				self.set_icon(getHyprlandClientIcon(c, icon));
+
+				const minWidth = w * (SCALE - 0.001);
+				const minHeight = h * (SCALE - 0.001);
+				if (minWidth && minHeight) {
+					App.apply_css(`.img${w}${h} { min-width: ${minWidth}px; min-height: ${minHeight}px; }`, false);
+				}
 			}}
 		/>
 	</button>
@@ -100,10 +103,6 @@ const Workspace = (index: number) => {
 				return "workspace";
 			})}
 			halign={Gtk.Align.CENTER}
-			css={`
-				min-width: ${3840 * SCALE}px;
-            	min-height: ${2160 * SCALE}px;
-			`}
 			id={index}
 			attribute={(clients) => {
 				fixed.get_children().forEach(ch => ch.destroy());
@@ -116,6 +115,13 @@ const Workspace = (index: number) => {
 					});
 	
 				fixed.show_all();
+			}}
+			setup={() => {
+				const minWidth = Hyprland.get_focused_monitor().width * SCALE;
+				const minHeight = Hyprland.get_focused_monitor().height * SCALE;
+				if (minWidth && minHeight) {
+					App.apply_css(`.workspace { min-width: ${minWidth}px; min-height: ${minHeight}px; }`, false);
+				}
 			}}
 		>
 			<eventbox

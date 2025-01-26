@@ -15,17 +15,6 @@ export const namespace = "control-center";
 export const controlCenterPage = Variable("main");
 
 export default () => {
-	const pageHeight = bind(controlCenterPage).as((v) => {
-		if (v != "main") {
-			return `
-			min-height: 35.714rem;
-			`;
-		} else {
-			return `
-			min-height: 0;`;
-		}
-	});
-
 	return (
 		<PopupWindow
 			valign={Gtk.Align.START}
@@ -85,7 +74,6 @@ export default () => {
 				>
 					<box
 						className="control-center__container"
-						css={pageHeight}
 						valign={Gtk.Align.START}
 					>
 						<stack

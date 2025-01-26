@@ -86,14 +86,14 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 };
 
 const addNewTodo = (text: string) => {
-	if (text.length >= 3) {
+	if (text.length >= 1) {
 		TodosService.add(text);
 	}
 };
 
 export default () => {
 	const newTodoText = Variable<string>("");
-	const widgetCounter = Variable<number>(6);
+	const widgetCounter = Variable<number>(6); // highest value to make it be maxHeight, later set properly in bind(TodosService, "todos")
 
 	return (
 		<box vertical className={"todos block"}>
@@ -117,13 +117,13 @@ export default () => {
 				)}
 			>
 				<scrollable
-					className={"todos__scrollable"}
 					name={"todos"}
-					css={bind(widgetCounter).as((c) => {
+					className={bind(widgetCounter).as((c) => {
 						const baseHeight = 3.5;
 						const maxHeight = 20;
 						const height = Math.min(c * baseHeight, maxHeight);
-						return `min-height: ${height}rem;`;
+						const css = height.toFixed(1).replace(".0", "").replace(".", "-");
+						return `todos__scrollable todos-${css}`
 					})}
 				>
 					<box vertical className={"todos__container"}>

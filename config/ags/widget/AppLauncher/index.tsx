@@ -186,8 +186,10 @@ export default () => {
 				});
 			}}
 		>
-			<box className={namespace} vertical
-				css={bind(items).as((i) => {
+			<box
+				vertical
+				// className={namespace}
+				className={bind(items).as((i) => {
 					const queryText = widget.get();
 					if (queryText === '') {
 						showWidgetPowermenu.set(false);
@@ -203,59 +205,60 @@ export default () => {
 					if (queryText !== '' && queryText.startsWith(":")) {
 						if (queryText.startsWith(":p")) {
 							showWidgetPowermenu.set(true);
-							return "min-height: 11rem;";
+							return `${namespace} ${namespace}-11`;
 						}
 
 						if (queryText.startsWith(":m")) {
 							showWidgetMedia.set(true);
-							return "min-height: 15rem;";
+							return `${namespace} ${namespace}-15`;
 						}
 
 						if (queryText.startsWith(":w")) {
 							showWidgetWeather.set(true);
-							return "min-height: 17rem;";
+							return `${namespace} ${namespace}-17`;
 						}
 
 						if (queryText.startsWith(":cal")) {
 							showWidgetCalendar.set(true);
-							return "min-height: 27.5rem;";
+							return `${namespace} ${namespace}-27-5`;
 						}
 
 						if (queryText.startsWith(":s")) {
 							showWidgetSinks.set(true);
-							return "min-height: 27.5rem;";
+							return `${namespace} ${namespace}-27-5`;
 						}
 
 						if (queryText.startsWith(":todo")) {
 							widgetTodoQuery.set(queryText);
-							return "min-height: 27.5rem;";
+							return `${namespace} ${namespace}-27-5`;
 						}
 
 						if (queryText.startsWith(":qs") || queryText.startsWith(":cc")) {
 							showWidgetControlCenter.set(true);
-							return "min-height: 27.5rem;";
+							return `${namespace} ${namespace}-27-5`;
 						}
 
 						if (queryText.startsWith(":n")) {
 							widgetNotificationsQuery.set(queryText);
-							return "min-height: 27.5rem;";
+							return `${namespace} ${namespace}-27-5`;
 						}
 
-						return "min-height: 27.5rem;";
+						return `${namespace} ${namespace}-27-5`;
 					}
 
 					if (containsMathOperation(query.get()))
-						return "min-height: 4rem;";
+						return `${namespace} ${namespace}-4`;
 
 					if (!i || !Array.isArray(i))
-						return "";
+						return `${namespace} ${namespace}-0`;
 
 					const length = i.length;
+
 					if (length === 0)
-						return "min-height: 0;";
+						return `${namespace} ${namespace}-0`;
 
 					if (length > 7)
-						return "min-height: 27.5rem;";
+						return `${namespace} ${namespace}-27-5`;
 
 					// Calculate proportional height if length <= 7
 					const baseHeight = 7; // Minimum number of items for the max height
@@ -265,7 +268,10 @@ export default () => {
 					// Calculate proportional min-height
 					const heightPerItem = (maxMinHeight - minMinHeight) / baseHeight;
 					const calculatedHeight = minMinHeight + length * heightPerItem;
-					return `min-height: ${calculatedHeight.toFixed(2)}rem;`;
+
+					const css = calculatedHeight.toFixed(1).replace(".0", "").replace(".", "-");
+
+					return `${namespace} ${namespace}-${css}`;
 				})}
 				>
 				<box className="entry-box" >
