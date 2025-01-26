@@ -1,4 +1,4 @@
-import { Widget } from "astal/gtk3";
+import { Widget, App } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import AstalMpris from "gi://AstalMpris?version=0.1";
 import icons from "../../../lib/icons";
@@ -22,16 +22,10 @@ const Player = ({ player }: PlayerProps) => {
 		/>
 	);
 
-	const coverArt = bind(player, 'coverArt').as(
-        (c) => {
-			if (c)
-				return `background-image: url('${c}')`
-			return `background-image: none`
-		},
-    )
-
 	const PlayerIconCover = () => (
-		<box className="player-icon-cover-art" css={coverArt} visible={bind(player, 'coverArt').as((c) => c !== '')}/>
+		<box className={`player-icon-cover-art ${player.identity}`}
+			visible={bind(player, 'coverArt').as((c) => c !== '')}
+		/>
 	);
 
 	const Title = new Widget.Label({

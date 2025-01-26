@@ -1,4 +1,4 @@
-import { Gtk, Gdk, Widget } from "astal/gtk3";
+import { Gtk, Gdk, Widget, App } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import AstalMpris from "gi://AstalMpris?version=0.1";
 import icons from "../../../lib/icons";
@@ -105,13 +105,27 @@ const Player = ({ player }: PlayerProps) => {
 		<box
 			name={player.busName}
 			vertical
-			className={`player player-${player.busName}`}
+			className={`player ${player.identity}`}
 			vexpand
-			css={bind(player, 'coverArt').as((c) => {
-				if (c)
-					return `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`;
-				return `background-image: none`
-			})}
+			setup={(self) => {
+				const updateColors = () => {
+					const coverArt = player.cover_art || "";
+
+					if (!coverArt) {
+						App.apply_css(`.${player.identity} { background-image: none; }`);
+						return;
+					}
+
+					App.apply_css(`.player.${player.identity} { background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${coverArt}"); }`);
+					App.apply_css(`.player-icon-cover-art.${player.identity} { background-image: url("${coverArt}"); }`);
+				};
+
+				updateColors();
+
+				player.connect("notify::cover-art", () => {
+					updateColors();
+				});
+			}}
 			visible={bind(player, "playback_status").as((v) => {
 				if (v != 2) {
 					return true;
