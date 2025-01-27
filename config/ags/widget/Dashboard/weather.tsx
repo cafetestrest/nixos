@@ -29,109 +29,178 @@ function getMostCommon<T>(arr: T[]): T | undefined {
     ).pop();
 }
 
-function weatherIconToClassname(icon: string) {
-	let classname;
-
+function weatherBackgroundStyle(icon: string, box: Widget.Box) {
     switch (icon) {
         case "🌇": {//sunset
-            classname = "sunset";
+            box.css = `
+                background: linear-gradient(to bottom, #ff6f61, #ffca58, #f0e68c);
+                color: #000000;
+            `;
             break;
         }
         case "🌄": {//sunrise   
-            classname = "sunrise";
+            box.css = `
+                background: linear-gradient(to bottom, #ffcc00, #ff6f61, #ff5e62, #d55f74);
+                color: #000000;
+            `;
             break;
         }
         case "🌤": {//few clouds
-            classname = "few-clouds";
+            box.css = `
+                background: linear-gradient(to bottom, #80b3ff, #ffffff, #ffdb4d);
+                color: #000000;
+            `;
             break;
         }
         case "🌩": {//thunderstorm
-            classname = "thunderstorm";
+            box.css = `
+                background: linear-gradient(to bottom, #0c0e23, #1a1c38, #121320, #0c0e23);
+                color: #ffffff;
+            `;
             break;
         }
         case "🌑": {
-            classname = "clear-night";
+            box.css = `
+                background: linear-gradient(to bottom, #2c3e50, #1a2533);
+                color: #ffffff;
+            `;
             break;
         }
         case "🌕": {
-            classname = "clear-night2";
+            box.css = `
+                background: linear-gradient(to bottom, #001f3f, #002f4f, #003f5f, #004f6f, #005f7f);
+                color: #ffffff;
+            `;
             break;
         }
         case "☀️": {
-            classname = "sun";
+            box.css = `
+                background: linear-gradient(to bottom, #ffeb99, #ffe580, #ffd866, #ffcf4c, #ffc333);
+                color: #000000;
+            `;
             break;
         }
         case "☁":
         case "☁️": {//cloudy
-            classname = "cloudy";
+            box.css = `
+                background: linear-gradient(to bottom, #c4c4c4, #d1d1d1, #dedede, #ebebeb, #f8f8f8);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "cloudy-night";
+            box.css = `
+                background: linear-gradient(to bottom, #1c2331, #212a38, #263141, #2b3749, #303d51);
+                color: #ffffff;
+            `;
             break;
         }
         case "": {//fog
-            classname = "fog";
+            box.css = `
+                background: linear-gradient(to bottom, #d8d8d8, #e2e2e2, #ececec, #f6f6f6, #ffffff);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "fog-night";
+            box.css = `
+                background: linear-gradient(to bottom, #1c2331, #1c2331, #1c2331, #293547, #38475f);
+                color: #ffffff;
+            `;
             break;
         }
         case "⛈️": {//heavy rain
-            classname = "heavy-rain";
+            box.css = `
+                background: linear-gradient(to bottom, #2c3e50, #34495e, #2c3e50, #34495e, #2c3e50);
+                color: #000000;
+            `;
             break;
         }
         case "󰙾": {
-            classname = "heavy-rain-night";
+            box.css = `
+                background: linear-gradient(to bottom, #050818, #070b1d, #0a0e22, #0d1126, #10152b);
+                color: #ffffff;
+            `;
             break;
         }
         case "🌦️": {//light rain
-            classname = "light-rain";
+            box.css = `
+                background: linear-gradient(to bottom, #547aad, #6692b8, #78a9c3, #8abfd0, #9cd7dd);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "rain-night";
+            box.css = `
+                background: linear-gradient(to bottom, #0e1620, #121c2a, #162133, #18273c, #1c2c46);
+                color: #ffffff;
+            `;
             break;
         }
         case "⛅": {//partly cloudy
-            classname = "partly-cloudy";
+            box.css = `
+                background: linear-gradient(to bottom, #a8c9f0, #c4dfea, #f0f0cc, #ffd700, #f0f0cc, #c4dfea, #a8c9f0);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "partly-cloudy-night";
+            box.css = `
+                background: linear-gradient(to bottom, #040d1c, #081427, #0c1a32, #101f3d, #142348);
+                color: #ffffff;
+            `;
             break;
         }
         case "🌧️": {//rain showers
-            classname = "rain-showers";
+            box.css = `
+                background: linear-gradient(to bottom, #5e7d99, #6a8ba6, #7698b3, #87a5bf, #97b3cb, #a6c0d8, #b4cedf);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "rainshowers-night";
+            box.css = `
+                background: linear-gradient(to bottom, #050818, #070b1d, #0a0e22, #0d1126, #10152b);
+                color: #ffffff;
+            `;
             break;
         }
         case "🌨": {//snow
-            classname = "snow";
+            box.css = `
+                background: linear-gradient(to bottom, #d0e6ec, #e0f0f5, #f0f5f9, #f5fafd, #ffffff);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "snow-night";
+            box.css = `
+                background: linear-gradient(to bottom, #0e1620, #162133, #1c263f, #232c4c, #293259);
+                color: #ffffff;
+            `;
             break;
         }
         case "🌨️": {//sleet
-            classname = "sleet";
+            box.css = `
+                background: linear-gradient(to bottom, #d0e6ec, #e0f0f5, #f0f5f9, #ffffff, #f0f5f9, #e0f0f5, #d0e6ec);
+                color: #000000;
+            `;
             break;
         }
         case "": {
-            classname = "sleet-night";
+            box.css = `
+                background: linear-gradient(to bottom, #050818, #08142a, #0c1d3b, #101f47, #142556);
+                color: #ffffff;
+            `;
             break;
         }
         default: {
-            classname = "unknown";
+            box.css = `
+                background: red;
+                color: blue;
+            `;
             break;
         }
     }
-	return classname;
 }
 
 const WeatherBoxChild = (w: TooltipItem) => (
@@ -182,7 +251,7 @@ const WeatherBoxChildWrapper = (w: TooltipItem, temperatureDataPerDay: Record<st
 
 const WeatherMainWidget = (widgetIcon: string, widgetDate: string, rain:number, temperatureDataPerDay: Record<string, TemperatureData>, w: TooltipItem, totalWeatherForecastDataArray: TooltipItem[]) => (
 	<box
-		className={`${weatherIconToClassname(widgetIcon)} qsweather-widget`}
+		className={"qsweather-widget"}
 		vertical={true}
 		hexpand={true}
 		children={[
@@ -200,13 +269,16 @@ const WeatherMainWidget = (widgetIcon: string, widgetDate: string, rain:number, 
 			</box>,
 			WeatherBoxChildWrapper(w, temperatureDataPerDay, totalWeatherForecastDataArray)
 		]}
+		setup={(self) => {
+			weatherBackgroundStyle(widgetIcon, self);
+        }}
 	>
 	</box>
 )
 
 const WeatherInfo = (weatherData: TooltipItem) => (
 	<box
-		className={`${weatherIconToClassname(weatherData.icon)} weather-info`}
+		className={"weather-info"}
 		vertical={true}
 		children={[
 			<label label={weatherData.date.substring(0, 3).toUpperCase()}/>,
@@ -218,6 +290,9 @@ const WeatherInfo = (weatherData: TooltipItem) => (
 			<label label={'↑ ' + weatherData.maxTemp} className={"weather-max"}/>,
 			<label label={'↓ ' + weatherData.minTemp} className={"weather-min"}/>,
 		]}
+		setup={(self) => {
+			weatherBackgroundStyle(weatherData.icon, self)
+        }}
 	>
 	</box>
 );
