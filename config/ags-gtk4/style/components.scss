@@ -1,0 +1,34 @@
+@use "./colors.scss" as *;
+
+.material-button {
+	border-radius: 1.714rem;
+	padding: 0.571rem 1.571rem;
+	&:focus {
+		box-shadow: 0 0 0 0.071rem $inverse_surface;
+	}
+	&.filled {
+		background: $primary;
+		color: $on_primary;
+		&:hover,
+		&:focus {
+			background: $primary, $inverse_surface_transparent_variant_overlay;
+		}
+		&:active {
+			background: $on_primary_container,
+				$inverse_surface_transparent_overlay;
+		}
+	}
+
+	&.outlined {
+		background: none;
+		color: $on_surface;
+		border: 0.071rem solid $outline;
+		&:hover,
+		&:focus {
+			background: $inverse_surface_transparent;
+		}
+		&:active {
+			background: $inverse_surface_transparent_variant;
+		}
+	}
+}

@@ -1,0 +1,126 @@
+@use "./colors.scss" as *;
+
+.PopupMenu {
+	background: none;
+}
+
+.popup-menu {
+	min-height: 28.571rem;
+	background: $surface-transparent;
+	border-radius: 2.857rem;
+	padding: 0 1.429rem;
+	&.sink {
+		min-width: 25rem;
+	}
+	&.mixer {
+		min-width: 35.714rem;
+	}
+}
+
+.profiles {
+	min-height: 19.286rem;
+}
+
+.popup-menu__header {
+	margin: 2.143rem 1.143rem;
+	margin-bottom: 0;
+	label {
+		font-size: 1.286rem;
+		font-weight: 600;
+	}
+}
+.popup-menu__content {
+	> * > * {
+		background: none;
+	}
+}
+.popup-menu__item {
+	background: none;
+	padding: 1.286rem;
+	color: $on_surface;
+	border-radius: 7.143rem;
+	transition: background 0.1s ease;
+	label {
+		font-size: 1rem;
+		font-weight: 500;
+	}
+	icon {
+		margin-right: 1.143rem;
+	}
+	&:hover {
+		background-color: $inverse_surface_transparent;
+	}
+	&:last-child {
+		margin-bottom: 1.429rem;
+	}
+}
+
+.mixer__item {
+	icon {
+		font-size: 2.286rem;
+		margin-right: 0;
+	}
+	padding: 0.714rem;
+	&:hover {
+		background: none;
+	}
+}
+
+// .mixer__tooltip {
+// background: $surface_container_high;
+// border-radius: 7.143rem;
+// }
+
+.mixer__slider {
+	padding: 0;
+	margin: 0;
+	trough {
+		margin-top: 0.429rem;
+		border-radius: 7.143rem;
+		background-color: $inverse_surface_transparent;
+		min-height: 1rem;
+
+		highlight,
+		progress {
+			border-radius: 7.143rem;
+			background-color: $primary;
+			box-shadow: inset 1rem 1rem 1rem 1rem $primary;
+			border-radius: 7.143rem;
+		}
+
+		slider {
+			border-radius: 7.143rem;
+			min-height: 1rem;
+			min-width: 1rem;
+			background-color: transparent;
+			box-shadow: none;
+		}
+
+		// different shade when hover/focus - same as in common file - &:hover
+		highlight:hover,
+		highlight:focus {
+			box-shadow: inset 0 0 0 99px $primaryShade;
+		}
+	}
+}
+
+.mixer__value {
+	background: $inverse_surface_transparent;
+	border-radius: 7.143rem;
+	min-width: 4rem;
+}
+
+.bluetooth__percentage {
+	background: $primary_container;
+	color: $on_primary_container;
+	border-radius: 7.143rem;
+	padding: 0 0.857rem;
+	margin-left: 0.857rem;
+}
+
+.mixer-placeholder {
+	margin-top: -3.571rem;
+	label {
+		font-size: 1.286rem;
+	}
+}

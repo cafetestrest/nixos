@@ -1,0 +1,103 @@
+@use "./colors.scss" as *;
+
+.notification {
+	padding: 1rem 1.143rem 0.4rem 1.429rem;
+	color: $on_surface;
+	background-color: $surface_transparent;
+	border-radius: 1.857rem;
+}
+
+.notification-app-icon {
+	min-height: 3rem;
+	min-width: 3rem;
+	margin-right: 1rem;
+	border-radius: 0.8rem;
+}
+
+.notification__icon {
+	min-height: 3rem;
+	min-width: 3rem;
+	margin-right: 1rem;
+	// border-radius: 7.143rem;
+	border-radius: 0.8rem;
+	background: $inverse_surface_transparent;
+}
+
+.notification__icon.telegram {
+	margin-top: 0.571rem;
+}
+
+.notification__title {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.notification__header {
+	// margin-top: 0.429rem;
+	// margin-bottom: 0.714rem;
+}
+
+.notification__app-name,
+.notification__dot,
+.notification__time {
+	color: $on_surface_variant;
+	font-size: 0.857rem;
+	font-weight: 400;
+}
+
+.notification__time {
+	padding-right: 0.5rem;
+}
+
+.notification__description {
+	margin-bottom: 0.571rem;
+	font-size: 0.9rem;
+	font-weight: 400;
+}
+
+.notification__actions {
+	margin-top: 0.571rem;
+}
+
+.notification__action {
+	background: none;
+	transition: color 0.1s ease-in-out;
+	color: $primary;
+	border-radius: 7.143rem;
+	&:hover {
+		color: $on_primary_container;
+		transition: color 0.1s ease-in-out;
+	}
+
+	&:focus {
+		color: $on_primary_container;
+		transition: color 0.1s ease-in-out;
+	}
+
+	&:first-child {
+		margin-left: 0;
+	}
+	&:last-child {
+		margin-right: 0;
+	}
+}
+
+.notification__close-button {
+	padding: 0;
+	min-width: 1.571rem;
+	min-height: 1.571rem;
+	border-radius: 7.143rem;
+	background-color: $surface_container_highest;
+	color: $on_surface;
+	font-size: 1.143rem;
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+	&:hover {
+		background: $primary_fixed;
+		color: $on_primary_fixed;
+	}
+	&:focus {
+		background-color: $hover;
+	}
+}

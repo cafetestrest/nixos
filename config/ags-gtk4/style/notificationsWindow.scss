@@ -1,0 +1,88 @@
+@use "./colors.scss" as *;
+
+.notifications-window {
+	border-radius: 2.143rem;
+	min-width: 28.571rem;
+	min-height: 39.286rem;
+	padding: 0.714rem 0.714rem 0;
+	background: $surface_transparent;
+	transition:
+		background-color 1s ease-in-out,
+		color 1s ease-in-out;
+
+	.notification {
+		border-radius: 0.286rem;
+		transition: 0.2s border-radius ease-in-out;
+		background-color: $inverse_surface_transparent;
+	}
+}
+
+.notifications-window__clear {
+	background: none;
+	padding: 0.429rem 0.5rem;
+	// margin-right: 1.286rem;
+	margin-bottom: 0.5rem;
+	border-radius: 1.2rem;
+
+	// background-color: $surface_container_highest;
+	color: $on_surface;
+	transition:
+		background-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+	&:hover {
+		background: $primary_fixed;
+		color: $on_primary_fixed;
+	}
+	&:focus {
+		background-color: $hover;
+	}
+}
+
+.notifications-window__list {
+	border-radius: 0.8rem;
+
+	revealer .notification{
+		border-radius: 1.2rem;
+	}
+
+	// revealer:first-child {
+	// 	.notification {
+	// 		border-top-left-radius: 1.714rem;
+	// 		border-top-right-radius: 1.714rem;
+	// 	}
+	// }
+
+	// revealer:last-child {
+	// 	.notification {
+	// 		border-bottom-left-radius: 1.714rem;
+	// 		border-bottom-right-radius: 1.714rem;
+	// 		margin-bottom: 0.714rem;
+	// 	}
+	// }
+}
+
+.notifications-scrollable {
+	border-radius: 2.143rem;
+	margin-bottom: 1rem;
+
+	.frame {
+		border-radius: 2.143rem;
+	}
+
+	.overlay-indicator {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.overlay-indicator:hover {
+		background-color: transparent;
+	}
+
+	.bottom {
+		background: transparent;
+	}
+	
+	.top {
+		background: transparent;
+	}
+}

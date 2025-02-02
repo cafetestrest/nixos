@@ -1,0 +1,110 @@
+@use "./colors.scss" as *;
+
+$container0003: rgba(238, 238, 238, 0.03);
+$container0004: rgba(238, 238, 238, 0.04);
+$container0006: rgba(238, 238, 238, 0.06);
+$container0154: rgba(238, 238, 238, 0.154);
+
+.overview {
+    // box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.6);
+    border: 1px solid $container0004;
+    background-color: $surface_transparent;
+    border-radius: 2rem;
+    padding: 0.5rem;
+
+    .active.workspace {
+      border-color: $blue;
+    }
+
+    .eventbox:hover {
+      border-radius: 2em;
+      box-shadow: inset 0 0 5px 5px $container0154;
+    }
+
+    .workspace {
+      transition: 200ms;
+      border-radius: 2em;
+      background-color: $container0006;
+      border: 1px solid $container0003;
+      margin: 0 0.2rem; //adjust if needed more
+    }
+
+    .client {
+      transition: 200ms;
+      background-color: $container0006;
+      box-shadow: inset 0 0 0 1px $container0003;
+      border-radius: 1rem;
+      margin: 0.5rem;
+    }
+
+    .client:focus {
+      background-color: $container0154;
+    }
+
+    .client:hover {
+      background-color: $container0154;
+    }
+
+    .client:active, .client.on, .client.active, .client:checked {
+      background-image: $sliderGradient;
+      background-color: $blue;
+    }
+
+    .client:active:hover, .client.on:hover, .client.active:hover, .client:checked:hover {
+      box-shadow: inset 0 0 0 1px $container0003, inset 0 0 0 99px $container0154;
+    }
+
+    .client:disabled {
+      box-shadow: none;
+      background-color: transparent;
+    }
+
+    .client.hidden {
+      background-color: transparent;
+      background-image: none;
+      border-color: transparent;
+      box-shadow: none;
+      -gtk-icon-transform: scale(0);
+      transition: 0;
+    }
+
+    .client.hidden * {
+      background-color: transparent;
+      background-image: none;
+      border-color: transparent;
+      box-shadow: none;
+      -gtk-icon-transform: scale(0);
+    }
+
+	// .workspace {
+	// 	border-radius: 0.4rem;
+	// 	// border: 1px solid red;
+
+	// 	&.active {
+	// 		// border: 10px solid green;
+	// 	}
+
+	// 	.eventbox {
+	// 		border: 1px solid green;
+
+	// 		#custom-fixed {
+	// 			background-color: #f0f0f0;
+	// 			border: 1px solid #ccc;
+	// 			padding: 10px;
+	// 		}
+			
+	// 		.custom-fixed {
+	// 			background-color: #e0e0ff;
+	// 			border-radius: 8px;
+	// 		}
+
+	// 		.client {
+	// 			// border: 1px solid green;
+	// 			border-radius: 0.4rem;
+	// 			border: 1px solid $accent;
+	// 			// min-width: 10.4rem;
+	// 			// min-height: 5.5rem;
+	// 		}
+	// 	}
+	// }
+}

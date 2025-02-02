@@ -1,0 +1,10 @@
+@use "./colors.scss" as *;
+
+.transparent-scrim {
+	// background: transparent;
+	background-color: #00000001; //https://github.com/wmww/gtk4-layer-shell/issues/60
+}
+
+.scrim {
+	background: $scrim_transparent;
+}

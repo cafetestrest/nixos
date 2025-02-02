@@ -1,0 +1,285 @@
+@use "./colors.scss" as *;
+
+.app-launcher {
+	border: $containerBorder;
+	min-width: 39.3rem;
+	// min-height: 27.5rem;
+	border-radius: 1.2rem;
+	padding: 0;
+	background: $surface_transparent;
+}
+
+.app-launcher__input {
+	background: none;
+	border: none;
+	margin-right: 1rem;
+
+	outline: none;
+	// padding: 0.8rem 1.467rem;
+	border-radius: 0;
+	// border-bottom: 0.133rem solid $inverse_surface_transparent;
+	box-shadow: none;
+
+	icon {
+		margin-right: 1.333rem;
+	}
+}
+
+.app-launcher__list {
+	margin: 0 0.667rem;
+	margin-top: 0.533rem;
+	margin-bottom: 0.667rem;
+}
+
+// .app-launcher__item:first {
+// 	padding-top: 0;
+// 	padding-bottom: 0.3rem;
+// }
+
+.app-launcher__item {
+	all: unset;
+	transition: all 0.2s ease;
+	padding: 0.3rem 0;
+	// padding-top: 0;
+	// padding-bottom: 0.8rem;
+	// padding-right: 0;
+	// padding-left: 0;
+	border-radius: 0.8rem;
+	min-height: 2.4rem;
+
+	label {
+		transition: all 0.2s ease;
+
+		&.title {
+			font-weight: 500;
+			color: $on_surface;
+		}
+
+		&.description {
+			color: $on_surface_transparent;
+		}
+	}
+
+	icon {
+		font-size: 1.7rem;
+		margin-right: 0.1rem;
+		margin-left: 0.667rem;
+	}
+
+	&:hover {
+		background: $inverse_surface_transparent;
+		.title {
+			color: $on_surface;
+		}
+	}
+
+	&:focus {
+		background: $primary;
+		.title {
+			color: $on_primary;
+		}
+		.description {
+			color: $on_primary;
+		}
+
+		icon {
+			-gtk-icon-shadow: 2px 2px $on_primary;
+		}
+	}
+
+	&:active {
+		background: yellow;
+		background-color: $primary_transparent_less;
+		box-shadow: inset 0 0 0 0.067rem $primary;
+
+		.title {
+			color: $on_primary;
+		}
+	}
+}
+
+.app-scroll-list {
+	border-top: 1px solid $hover;
+	// padding: 0.4rem;
+	padding-bottom: 0.4rem;
+}
+
+.app-scroll-list .frame {
+}
+
+.app-scroll-list .overlay-indicator {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-right: 0.3rem;
+}
+
+.app-scroll-list .overlay-indicator:hover {
+	background-color: transparent;
+}
+
+// .app-scroll-list .hovering {
+// }
+
+.app-scroll-list .bottom {
+	background: transparent;
+}
+
+.app-scroll-list .top {
+	background: transparent;
+}
+
+.entry-box {
+	margin-top: 0.333rem;
+	padding: 0.4rem 0;
+}
+
+.entry-icon {
+	margin-left: 1.3rem;
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
+}
+
+.math-query {
+	padding: 0.5rem 1rem 0 1rem;
+	font-size: 1.5rem;
+}
+
+.math-result {
+	padding: 0.5rem 1rem 0 1rem;
+	// font-size: 2.5rem;
+	font-size: 1.5rem;
+}
+
+.app-launcher-todo,
+.app-launcher-calendar {
+	.block {
+		border: none;
+		background: transparent;
+		border-radius: 0;
+		padding: 0;
+	}
+	.calendar-box-outline {
+		padding-bottom: 0;
+	}
+
+	.calendar__header {
+		.sidebar-calendar-monthshift-btn {
+			padding: 0 0.8rem;
+		}
+	
+		.calendar__monthyear {
+			padding: 0.5rem 1rem;
+		}
+	
+		button {
+			padding: 0.4rem;
+		}
+	
+		margin-top: 0;
+		padding: 0;
+	}
+
+	.calendar__button {
+		padding: 0.5rem 1.4rem;
+	}
+}
+
+.app-launcher-powermenu {
+	.powermenu {
+		padding: 0;
+		background: transparent;
+		border: none;
+	}
+
+	.powermenu__button {
+		min-width: 6rem;
+		min-height: 6rem;
+	}
+}
+
+.app-launcher-sinks {
+	.menu.sink-selector .sink-box {
+		padding: 0.8rem;
+		margin-top: 0.5rem;
+	}
+}
+
+.app-launcher-notifications {
+	.notifications-window {
+		border-radius: 0;
+		min-height: 0rem;
+		padding: 0;
+	
+		.notification {
+			padding: 0;
+			background-color: transparent;
+
+			.notification__actions {
+				background-color: $inverse_surface_transparent;
+				border-bottom-left-radius: 1.2rem;
+				border-bottom-right-radius: 1.2rem;
+				margin: 0;
+			}
+		}
+
+	}
+
+	.notifications-window__clear {
+		margin: 0;
+	}
+	.content {
+		border-top-left-radius: 1.2rem;
+		border-top-right-radius: 1.2rem;
+		transition: 0.2s border-radius ease-in-out;
+		background-color: $inverse_surface_transparent;
+		padding: 0.5rem 1rem;
+	}
+}
+
+.app-launcher.app-launcher-27-5 {
+	min-height: 27.5rem;
+}
+
+.app-launcher.app-launcher-24 {
+	min-height: 24rem;
+}
+
+.app-launcher.app-launcher-20-5 {
+	min-height: 20.5rem;
+}
+
+.app-launcher.app-launcher-17 {
+	min-height: 17rem;
+}
+
+.app-launcher.app-launcher-15 {
+	min-height: 15rem;
+}
+
+.app-launcher.app-launcher-13-5 {
+	min-height: 13.5rem;
+}
+
+.app-launcher.app-launcher-11 {
+	min-height: 11rem;
+}
+
+.app-launcher.app-launcher-10 {
+	min-height: 10rem;
+}
+
+.app-launcher.app-launcher-6-5 {
+	min-height: 6.5rem;
+}
+
+.app-launcher.app-launcher-4 {
+	min-height: 4rem;
+}
+
+.app-launcher.app-launcher-3 {
+	min-height: 3rem;
+}
+
+.app-launcher.app-launcher-0 {
+	min-height: 0rem;
+}
