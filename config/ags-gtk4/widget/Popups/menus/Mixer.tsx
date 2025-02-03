@@ -36,7 +36,7 @@ const MixerItem = (stream: AstalWp.Endpoint) => {
 						hexpand: true,
 						drawValue: false,
 						value: bind(stream, "volume"),
-						// onDragged: ({ value }) => (stream.volume = value),//TODOfix
+						onChangeValue: ({ value }) => (stream.volume = value),
 					}),
 				],
 			}),

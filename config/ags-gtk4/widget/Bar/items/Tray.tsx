@@ -93,4 +93,3 @@ const setupTray = (box: Gtk.Box) => {
 // used only as example https://github.com/Aylur/astal/blob/ebcccc4ae13f690220374497f932f58ec5fd7cfd/examples/js/simple-bar/widget/Bar.tsx#L11-L25
 // menubutton does not support currently right/middle click and does not update about_to_show() automatically
 export default () => <box cssClasses={["tray", "container"]} halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER} hexpand vexpand vertical setup={setupTray} />;
-//TODOfix

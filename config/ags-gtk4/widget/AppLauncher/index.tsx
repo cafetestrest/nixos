@@ -143,7 +143,6 @@ export default () => {
 
 	const Entry = Widget.Entry({
 		hexpand: true,
-		// text: bind(query), //TODOfix check if needed?
 		canFocus: true,
 		cssClasses: ["app-launcher__input"],
 		onActivate: () => {

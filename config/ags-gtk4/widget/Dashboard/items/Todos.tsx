@@ -56,8 +56,7 @@ const TodoItem = ({ todo, idx }: { todo: Todo; idx: number }) => {
 				label={todo.content}
 				cssClasses={["todo-label"]}
 				wrap={true}
-				// truncate={todo.content.length > 256 ? true : false} //TODOfix check if this work?
-				ellipsize={todo.content.length > 256 ? Pango.EllipsizeMode.END : Pango.EllipsizeMode.NONE}
+				ellipsize={todo.content.length > 128 ? Pango.EllipsizeMode.END : Pango.EllipsizeMode.NONE}
 				wrapMode={Pango.WrapMode.CHAR}
 				justify={Gtk.Justification.FILL}
 			/>
