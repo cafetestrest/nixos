@@ -7,7 +7,7 @@ import { Gdk } from "astal/gtk4";
 export default ({ onClicked }: { onClicked: () => void }) => {
 	return (
 		<ControlCenterButton
-			className="recorder-indicator" //TODOfix idk toggles classname?
+			className="recorder-indicator"
 			icon={icons.record}
 			label={"Screen record"}
 			onPrimaryClick={onClicked}
