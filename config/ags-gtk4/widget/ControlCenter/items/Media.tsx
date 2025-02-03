@@ -73,15 +73,15 @@ const Player = ({ player }: PlayerProps) => {
 			drawValue={false}
 			hexpand
 			value={bind(player, "position").as((p) => (player.length > 0 ? p / player.length : p * 0.01))}
-			// onDragged={({ value }) => {
-			// 	if (value && value < 0) {
-			// 		player.set_position(0);
-			// 	} else if (value && value > 1) {
-			// 		player.set_position(1);
-			// 	} else if (value) {
-			// 		player.set_position(player.length > 0 ? value * player.length: value * 100);
-			// 	}
-			// }} //TODOfix
+			onChangeValue={({ value }) => {
+				if (value && value < 0) {
+					player.set_position(0);
+				} else if (value && value > 1) {
+					player.set_position(1);
+				} else if (value) {
+					player.set_position(player.length > 0 ? value * player.length: value * 100);
+				}
+			}}
 		/>
 	);
 

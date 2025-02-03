@@ -119,35 +119,18 @@ export default () => {
 		>
 			<overlay
 				cssClasses={["control-center__volume-slider", "volume"]}
-				child={
-					// <slider
-					// 	cssClasses={["volumeslider"]}
-					// 	draw_value={false}
-					// 	hexpand={true}
-					// 	onDragged={({ value }) => {
-					// 		if (value === 0) {
-					// 			speaker.volume = value;
-					// 			speaker.mute = true;
-					// 		} else {
-					// 			speaker.volume = value;
-					// 			speaker.mute = false;
-					// 		}
-					// 	}}
-					// 	value={bind(speaker, "volume")}
-					// />
-					<box cssClasses={["volumeslider-box"]}>
-						<VolumeSlider device={speaker} />
-					</box>
-				}
-				overlay={
-					<image
-						cssClasses={["control-center__slider-icon"]}
-						iconName={bind(speaker, "volumeIcon")}
-						hexpand={false}
-						halign={Gtk.Align.START}
-					/>
-				}
-			/>
+			>
+				<box cssClasses={["volumeslider-box"]}>
+					<VolumeSlider device={speaker} />
+				</box>
+				<image
+					type="overlay"
+					cssClasses={["control-center__slider-icon"]}
+					iconName={bind(speaker, "volumeIcon")}
+					hexpand={false}
+					halign={Gtk.Align.START}
+				/>
+			</overlay>
 		</box>
 	);
 };

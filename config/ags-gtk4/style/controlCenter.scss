@@ -65,7 +65,8 @@ $togglesHeight: 10.7rem;
 		.page-dot {
 			// min-width: 0.371rem;
 			// min-height: 0.371rem;
-			margin: 0.65rem 0.35rem;
+			// margin: 0.65rem 0.35rem; //GTK3
+			margin: 0.65rem;
 			background-color: $inverse_surface_transparent_variant;
 			border-radius: 7.143rem;
 			transition: all 0.3s;
