@@ -59,16 +59,16 @@ function main() {
 	// 	osds.delete(gdkmonitor);
 	// });
 
-	reloadScss('/home/bajic/Public/ags/gtk4/nixos/config/ags/style/colors.scss', '/tmp/astal/style.css', '/home/bajic/Public/ags/gtk4/nixos/config/ags/main.scss');
-	// reloadScss('.config/ags/style/bar.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/controlCenter.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/player.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/dashboard.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/overview.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/appLauncher.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/notificationsWindow.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/notification.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
-	// reloadScss('.config/ags/style/weather.scss', '/tmp/astal/style.css', '.config/ags/style/main.scss');
+	// reloadScss('style/colors.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
+	reloadScss('style/controlCenter.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/player.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/overview.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/appLauncher.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/notificationsWindow.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/weather.scss', '/tmp/astal/style.css', 'style/main.scss');
 }
 
 // ags config based on https://github.com/PoSayDone/.dotfiles_nix/tree/8647ff23d4522ed1210eb1656580f33f9956dacb

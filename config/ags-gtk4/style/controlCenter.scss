@@ -62,11 +62,14 @@ $togglesHeight: 10.7rem;
 	}
 
 	.control-center-page {
+		min-width: 0;
+		min-height: 0;
+		color: transparent; //fix for active (holding) shadow
+
 		.page-dot {
-			// min-width: 0.371rem;
-			// min-height: 0.371rem;
-			// margin: 0.65rem 0.35rem; //GTK3
-			margin: 0.65rem;
+			min-width: 0.4rem;
+			min-height: 0.4rem;
+			margin: 0.65rem 0.4rem;
 			background-color: $inverse_surface_transparent_variant;
 			border-radius: 7.143rem;
 			transition: all 0.3s;
@@ -77,25 +80,23 @@ $togglesHeight: 10.7rem;
 				background-color: $primary_transparent;
 			}
 		}
-	
+
 		&.active,
 		&:active {
 			.page-dot {
+				padding: 0 0.2rem;
 				background-color: $primary;
 			}
 		}
 
 		&:focus {
 			.page-dot {
-				// padding: 0.34rem 1rem;
+				padding: 0 0.2rem;
 				box-shadow: $buttonShadow;
 				background-color: $shadowTransparent;
 			}
 		}
 	}
-
-	// .control-center-page-indicators {
-	// }
 
 	.control-center-box-space {
 		margin-bottom: 0.6rem;
@@ -350,6 +351,14 @@ $togglesHeight: 10.7rem;
 			highlight:focus {
 				box-shadow: $buttonShadow;
 			}
+		}
+	}
+
+	.volumeslider-box scale:focus {
+		// fix for GTK4 scale focus
+		highlight,
+		highlight {
+			box-shadow: $buttonShadow;
 		}
 	}
 
