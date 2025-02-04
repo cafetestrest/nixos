@@ -65,10 +65,11 @@ function main() {
 	// reloadScss('style/player.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/overview.scss', '/tmp/astal/style.css', 'style/main.scss');
-	reloadScss('style/appLauncher.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/appLauncher.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/notificationsWindow.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/weather.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/components.scss', '/tmp/astal/style.css', 'style/main.scss');
 }
 
 // ags config based on https://github.com/PoSayDone/.dotfiles_nix/tree/8647ff23d4522ed1210eb1656580f33f9956dacb

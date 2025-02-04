@@ -13,7 +13,7 @@ export default ({
 	...props
 }: ButtonProps) => (
 	<button
-		cssClasses={["material-button ", `${buttonType}`, `${className}`]}
+		cssClasses={["material-button", `${buttonType}`, `${className}`]}
 		focusOnClick={false}
 		{...props}
 	>

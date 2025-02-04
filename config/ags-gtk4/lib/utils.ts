@@ -72,8 +72,8 @@ export function lookUpIcon(name?: string, size = 16) {
 
 export function reloadScss(monitorFilePath: string, targetPath: string, execSassPath: string) {
 	monitorFile(`${SRC}/${monitorFilePath}`, () => {
-		exec(`sass ${SRC}/${execSassPath} ${SRC}/${targetPath}`);
-		App.apply_css(`${SRC}/${targetPath}`);
+		exec(`sass ${SRC}/${execSassPath} ${targetPath}`);
+		App.apply_css(targetPath);
 	});
 }
 

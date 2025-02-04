@@ -153,7 +153,8 @@ $togglesHeight: 10.7rem;
 	.control-center__button {
 		background-color: $secondary; //button off (not active) color
 		color: $on_surface;
-		padding: 0 0.5rem 0 1rem;
+		// padding: 0 0.5rem 0 1rem; //GTK3
+		padding: 0 0.5rem 0 0.9rem; // if I have it as such it does render border-radius correctly on GTK4
 		border-radius: 7.143rem;
 		min-height: 3.2rem;
 		min-width: 8rem;
