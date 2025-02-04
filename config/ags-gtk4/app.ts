@@ -61,9 +61,9 @@ function main() {
 
 	// reloadScss('style/colors.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
-	reloadScss('style/controlCenter.scss', '/tmp/astal/style.css', 'style/main.scss');
+	// reloadScss('style/controlCenter.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/player.scss', '/tmp/astal/style.css', 'style/main.scss');
-	// reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
+	reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/overview.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/appLauncher.scss', '/tmp/astal/style.css', 'style/main.scss');
 	// reloadScss('style/notificationsWindow.scss', '/tmp/astal/style.css', 'style/main.scss');
