@@ -75,42 +75,6 @@ export const SinkRevealer = () => Audio && (
 export default () => {
 	const speaker = AstalWp.get_default()?.audio.defaultSpeaker!;
 
-	// using custom VolumeSlider from https://github.com/Mabi19/desktop-shell/blob/cd442d22bb44cedcdaf23399e400808df8b2e78d/bar/audio.tsx#L8-L34
-	// only as currently <slider/> does not support onScroll (mouse scrol to change value)
-	const VolumeSlider = ({ device }: { device: AstalWp.Endpoint }) => {
-		const adjustment = new Gtk.Adjustment({
-			lower: 0,
-			upper: 1,
-			value: device.volume,
-			stepIncrement: 0.01,
-			pageIncrement: 0.01,
-		});
-		const scale = new Gtk.Scale({
-			adjustment,
-			hexpand: true,
-			visible: true,
-			draw_value: false,
-		});
-		scale.connect("change-value", (_, type, value) => {
-			value = Math.round(Math.max(0, Math.min(value * 100, 100))) / 100;
-			device.volume = value;
-		});
-		hook(scale, device, "notify::volume", () => {
-			const volume = device.volume;
-			if (Math.abs(adjustment.value - volume) > 0.001) {
-				adjustment.value = volume;
-			}
-
-			if (volume === 0) {
-				device.mute = true;
-			} else if (device.mute) {
-				device.mute = false;
-			}
-		});
-
-		return scale;
-	};
-
 	return (
 		<box
 			cssClasses={bind(speaker, "mute").as((mute) =>
@@ -121,7 +85,22 @@ export default () => {
 				cssClasses={["control-center__volume-slider", "volume"]}
 			>
 				<box cssClasses={["volumeslider-box"]}>
-					<VolumeSlider device={speaker} />
+					<slider
+						cssClasses={["volumeslider"]}
+						draw_value={false}
+						hexpand={true}
+						onChangeValue={(self) => {
+							const value = self.value;
+							if (value === 0) {
+								speaker.volume = value;
+								speaker.mute = true;
+							} else {
+								speaker.volume = value;
+								speaker.mute = false;
+							}
+						}}
+						value={bind(speaker, "volume")}
+					/>
 				</box>
 				<image
 					type="overlay"
