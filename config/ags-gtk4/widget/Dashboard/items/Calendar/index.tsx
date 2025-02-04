@@ -119,33 +119,6 @@ export default () => {
 				],
 			}),
 		]
-		// setup: (box) => {
-		// 	box.pack_start(calendarMonthYear, false, false, 0);
-		// 	box.pack_end(
-		// 		Widget.Box({
-		// 			cssClasses: ["spacing-h-5"],
-		// 			children: [
-		// 				Widget.Button({
-		// 					cssClasses: ["sidebar-calendar-monthshift-btn"],
-		// 					onClicked: () => shiftCalendarXMonths(-1),
-		// 					child: new Gtk.Image({
-		// 						iconName: icons.ui.arrow.left,
-		// 					}),
-		// 				}),
-		// 				Widget.Button({
-		// 					cssClasses: ["sidebar-calendar-monthshift-btn"],
-		// 					onClicked: () => shiftCalendarXMonths(1),
-		// 					child: new Gtk.Image({
-		// 						iconName: icons.ui.arrow.right,
-		// 					}),
-		// 				}),
-		// 			],
-		// 		}),
-		// 		false,
-		// 		false,
-		// 		0,
-		// 	); //TODOfix check?
-		// },
 	});
 
 	const calendarDays = Widget.Box({

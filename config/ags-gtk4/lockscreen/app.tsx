@@ -3,7 +3,7 @@ import style from "../style/main.scss";
 import Auth from "./items/Auth";
 import GLib from "gi://GLib?version=2.0";
 
-const WALLPAPER = `${GLib.getenv("HOME")}/.cache/current_wallpaper`;
+// const WALLPAPER = `${GLib.getenv("HOME")}/.cache/current_wallpaper`;
 export const namespace = "lockscreen";
 
 const GreeterWindow = () => (
@@ -13,6 +13,7 @@ const GreeterWindow = () => (
 		layer={Astal.Layer.OVERLAY}
 		name="greeter"
 		exclusivity={Astal.Exclusivity.IGNORE}
+		cssClasses={[namespace]}
 		anchor={
 			Astal.WindowAnchor.TOP |
 			Astal.WindowAnchor.BOTTOM |
@@ -20,10 +21,12 @@ const GreeterWindow = () => (
 			Astal.WindowAnchor.RIGHT
 		}
 		keymode={Astal.Keymode.EXCLUSIVE}
-		css={`
-			background: url("file://${WALLPAPER}");
-			background-size: cover;
-		`}
+		// setup={() => {
+		// 	App.apply_css(`.${namespace} {
+		// 		background: url("file://${WALLPAPER}");
+		// 		background-size: cover;
+		// 	}`);
+		// }}
 	>
 		<Auth />
 	</window>

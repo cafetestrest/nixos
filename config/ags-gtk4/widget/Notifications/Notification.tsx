@@ -1,4 +1,4 @@
-import { Gtk, Widget } from "astal/gtk4";
+import { Gtk, Widget, App } from "astal/gtk4";
 import { type EventBox } from "astal/gtk4/widget";
 import { timeout, GLib, idle, bind } from "astal";
 import Notifd from "gi://AstalNotifd";
@@ -20,39 +20,23 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
 	if (image) {
 		if (image.includes("file://")) image = image.replace("file://", "");
 
-		if (appName == "Telegram Desktop" || appName == "") {
-			return (
-				<box
-					valign={Gtk.Align.START}
-					hexpand={false}
-					cssClasses={["notification__icon", "telegram"]}
-					css={`
-						background-image: url("file://${image}");
-						background-size: cover;
-						background-repeat: no-repeat;
-						background-position: center;
-						min-width: 3.429rem;
-						min-height: 3.429rem;
-					`}
-				/>
-			);
-		} else {
-			return (
-				<box
-					valign={Gtk.Align.START}
-					hexpand={false}
-					cssClasses={["notification__icon"]}
-					css={`
+		return (
+			<box
+				valign={Gtk.Align.START}
+				hexpand={false}
+				cssClasses={["notification__icon"]}
+				setup={() => {
+					App.apply_css(`.notification__icon {
 						background-image: url("file://${image}");
 						background-size: cover;
 						background-repeat: no-repeat;
 						background-position: center;
 						min-width: 1.286rem;
 						min-height: 1.286rem;
-					`}
-				/>
-			);
-		}
+					}`);
+				}}
+			/>
+		);
 	}
 
 	if (appIcon) {
@@ -61,12 +45,14 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
 				valign={Gtk.Align.START}
 				hexpand={false}
 				cssClasses={["notification-app-icon"]}
-				css={`
-					background-image: url("file://${appIcon}");
-					background-size: cover;
-					background-repeat: no-repeat;
-					background-position: center;
-				`}
+				setup={() => {
+					App.apply_css(`.notification-app-icon {
+						background-image: url("file://${appIcon}");
+						background-size: cover;
+						background-repeat: no-repeat;
+						background-position: center;
+					}`);
+				}}
 			/>
 		);
 	}

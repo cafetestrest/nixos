@@ -82,11 +82,6 @@ export default () => {
 								Gtk.StackTransitionType.SLIDE_LEFT_RIGHT
 							}
 							transitionDuration={200}
-							setup={(self) => {
-								const NetworkWdgt = Network();
-								// if (NetworkWdgt) self.add(NetworkWdgt); //TODOfix this logic down is correct?
-								if (NetworkWdgt) self.add_child(NetworkWdgt);
-							}}
 						>
 							<Main />
 							{Network()}
