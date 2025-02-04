@@ -445,7 +445,7 @@ switch:checked slider {
   border-radius: 0;
   box-shadow: none;
 }
-.app-launcher__input icon {
+.app-launcher__input image {
   margin-right: 1.333rem;
 }
 
@@ -472,8 +472,7 @@ switch:checked slider {
 .app-launcher__item label.description {
   color: rgba(241, 222, 220, 0.7);
 }
-.app-launcher__item icon {
-  font-size: 1.7rem;
+.app-launcher__item image {
   margin-right: 0.1rem;
   margin-left: 0.667rem;
 }
@@ -492,7 +491,7 @@ switch:checked slider {
 .app-launcher__item:focus .description {
   color: #141414;
 }
-.app-launcher__item:focus icon {
+.app-launcher__item:focus image {
   -gtk-icon-shadow: 2px 2px #141414;
 }
 .app-launcher__item:active {

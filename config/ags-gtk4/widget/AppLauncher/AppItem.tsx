@@ -64,6 +64,7 @@ export default (app: AstalApps.Application) => {
 
 	const icon = new Gtk.Image({
 		iconName: app.iconName || "",
+		pixelSize: 25
 	});
 
 	const textBox = Widget.Box({

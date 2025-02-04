@@ -160,13 +160,13 @@ $itemsMinHeight: 1.5rem;
 .bar__active-app {
 	padding-left: 0.857rem;
 	padding-right: 1.143rem;
-	icon {
+	image {
 		min-width: 1.429rem;
 		min-height: 1.429rem;
 		font-size: 1.429rem;
 	}
 	.desktop {
-		icon {
+		image {
 			font-size: 1rem;
 		}
 	}
@@ -241,7 +241,7 @@ $itemsMinHeight: 1.5rem;
 	&:hover {
 		background-color: $hover;
 	}
-	icon {
+	image {
 		font-size: 1.286rem;
 	}
 }
