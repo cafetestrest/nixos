@@ -3,7 +3,6 @@ import { Variable, bind } from "astal"
 import { Astal, Gtk, Gdk } from "astal/gtk3"
 import PopoverCenter from "../popovers/PopoverCenter"
 import Popover from "../popovers/Popover"
-import MprisPlayers from "../media-player/MediaPlayer"
 import Powermenu from "../powermenu/Powermenu"
 import SystemIndicators from "./items/SystemIndicators"
 import Taskbar from "./items/Taskbar"
@@ -16,7 +15,7 @@ import Time from "./items/Time"
 import SysTray from "./items/SysTray"
 import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
-import AudioSlider from "../control-center/items/AudioSlider"
+import ControlCenter from "../control-center/ControlCenter"
 
 const Start = () => {
 	return (
@@ -94,8 +93,7 @@ export default function Bar(monitor: Gdk.Monitor) {
                 <button onClicked={() => visiblePopup.set(false)}>
                     Click me to close the popup
                 </button> */}
-                <AudioSlider/>
-                <MprisPlayers/>
+                <ControlCenter/>
             </box>
         </Popover>
     );

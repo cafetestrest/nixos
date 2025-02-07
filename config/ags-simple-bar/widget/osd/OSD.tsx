@@ -1,7 +1,7 @@
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { timeout } from "astal/time"
 import Variable from "astal/variable"
-// import Brightness from "../../service/brightness"
+// import Brightness from "../../service/BrightnessService"
 import Wp from "gi://AstalWp"
 
 function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {

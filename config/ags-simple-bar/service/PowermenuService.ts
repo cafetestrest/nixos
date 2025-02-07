@@ -1,7 +1,7 @@
 import { GObject, exec } from "astal";
 // import { toggleWindow } from "../lib/utils";
-// import Idle from "./Idle";
 // import { namespace } from "../widget/Powermenu";
+import Idle from "./IdleService";
 
 export type PowerMenuAction = "lock" | "sleep" | "logout" | "reboot" | "shutdown";
 
@@ -44,15 +44,15 @@ const PowerMenuSerivce = GObject.registerClass(
 				shutdown: ["shutdown now", "Shutdown"],
 			}[action];
 
-			// if (action === "lock") {
-			// 	const current = Idle?.currentProfile();
-			// 	if (current === 0) {
-			// 		Idle?.nextProfile();
-			// 		setTimeout(function() {
-			// 			//do nothing, Idle needs to wait small delay for nextProfile to run
-			// 	   }, 1500);
-			// 	}
-			// }
+			if (action === "lock") {
+				const current = Idle?.currentProfile();
+				if (current === 0) {
+					Idle?.nextProfile();
+					setTimeout(function() {
+						//do nothing, Idle needs to wait small delay for nextProfile to run
+				   }, 1500);
+				}
+			}
 
 			this.notify("cmd");
 			this.notify("title");
