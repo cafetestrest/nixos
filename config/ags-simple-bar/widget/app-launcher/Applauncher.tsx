@@ -38,7 +38,7 @@ export default function Applauncher() {
     const width = Variable(1000)
 
     const text = Variable("")
-    const list = text(text => apps.fuzzy_query(text).slice(0, MAX_ITEMS))
+    const list = text(text => apps.fuzzy_query(text))
     const onEnter = () => {
         apps.fuzzy_query(text.get())?.[0].launch()
         hide()
@@ -70,19 +70,23 @@ export default function Applauncher() {
                         onChanged={self => text.set(self.text)}
                         onActivate={onEnter}
                     />
-                    <box spacing={6} vertical>
-                        {list.as(list => list.map(app => (
-                            <AppButton app={app} />
-                        )))}
-                    </box>
-                    <box
-                        halign={CENTER}
-                        className={"not-found"}
-                        vertical
-                        visible={list.as(l => l.length === 0)}>
-                        <icon icon="system-search-symbolic" />
-                        <label label="No match found" />
-                    </box>
+                    <scrollable heightRequest={500}>
+                        <box vertical>
+                            <box spacing={6} vertical>
+                                {list.as(list => list.map(app => (
+                                    <AppButton app={app} />
+                                )))}
+                            </box>
+                            <box
+                                halign={CENTER}
+                                className={"not-found"}
+                                vertical
+                                visible={list.as(l => l.length === 0)}>
+                                <icon icon="system-search-symbolic" />
+                                <label label="No match found" />
+                            </box>
+                        </box>
+                    </scrollable>
                 </box>
                 <eventbox expand onClick={hide} />
             </box>

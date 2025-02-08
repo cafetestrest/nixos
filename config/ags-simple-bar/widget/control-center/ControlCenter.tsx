@@ -1,8 +1,7 @@
 import { bind, Variable } from "astal"
 import { App, Gtk, Astal, Gdk } from "astal/gtk3";
 import QSMainPage from "./pages/QSMainPage";
-
-export const qsPage = Variable("main");
+import { qsPage } from "../common/Variables";
 
 export default () => {
     return (

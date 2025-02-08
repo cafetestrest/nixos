@@ -5,6 +5,7 @@ import Applauncher from "./widget/app-launcher/Applauncher";
 import OSD from "./widget/osd/OSD";
 import NotificationPopups from "./widget/notifications/NotificationPopups";
 import Dashboard from "./widget/dashboard/Dashboard";
+import { visibleQSMainPage, visiblePowermenu } from "./widget/common/Variables";
 
 function main() {
 	const bars = new Map<Gdk.Monitor, Gtk.Widget>();
@@ -23,10 +24,30 @@ function main() {
 
 App.start({
     css: style,
-    instanceName: "js",
-    requestHandler(request, res) {
-        print(request)
-        res("ok")
+    // instanceName: "js",
+    requestHandler(request: string, res: (response: any) => void) {
+		const args = request.split(" ");
+		if (args[0] == "toggle" && args[1]) {
+            switch (args[1]) {
+                case "control-center":
+                case "quicksettings":
+                    visibleQSMainPage.set(!visibleQSMainPage.get());
+                    break;
+            
+                case "powermenu":
+                    visiblePowermenu.set(!visiblePowermenu.get());
+                    break;
+                default:
+                    print("Unknown request:", request);
+                    return res("Unknown request")
+            }
+            return res("ok");
+        } else {
+            return res("Unknown request");
+        }
+
+        print(request);
+        res("ok");
     },
     main: main,
 })

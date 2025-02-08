@@ -1,0 +1,19 @@
+.control-center {
+    .qs-main-page {
+        .qs-toggles {
+            .qs-page {
+                .toggles-space {
+                }
+
+                .toggles-box-space {
+                }
+
+                .toggles {
+                    &.active {
+                        background-color: rgba(0, 183, 255, 0.538);
+                    }
+                }
+            }
+        }
+    }
+}

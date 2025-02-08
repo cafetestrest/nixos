@@ -16,6 +16,7 @@ import SysTray from "./items/SysTray"
 import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
 import ControlCenter from "../control-center/ControlCenter"
+import { visibleQSMainPage, visiblePowermenu } from "../common/Variables"
 
 const Start = () => {
 	return (
@@ -74,14 +75,12 @@ const End = ({powermenu, systemIndicators}) => {
 
 export default function Bar(monitor: Gdk.Monitor) {
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
-    const visiblePopupCenter = Variable(false);
-    const visiblePopup = Variable(false);
 
-    const _popover = (
+    const _qsPagePopover = (
         <Popover
             className={"Popup"}
-            onClose={() => visiblePopup.set(false)}
-            visible={visiblePopup()}
+            onClose={() => visibleQSMainPage.set(false)}
+            visible={visibleQSMainPage()}
             marginTop={36}
             marginRight={60}
             valign={Gtk.Align.START}
@@ -90,7 +89,7 @@ export default function Bar(monitor: Gdk.Monitor) {
             <box className={"popup"} vertical>
                 {/* maxWidthChars is needed to make wrap work */}
                 {/* <label label={"lorem2"} wrap maxWidthChars={8} />
-                <button onClicked={() => visiblePopup.set(false)}>
+                <button onClicked={() => visibleQSMainPage.set(false)}>
                     Click me to close the popup
                 </button> */}
                 <ControlCenter/>
@@ -101,12 +100,12 @@ export default function Bar(monitor: Gdk.Monitor) {
     const _powermenuPopover = (
         <PopoverCenter
             className={"Popup"}
-            onClose={() => visiblePopupCenter.set(false)}
-            visible={visiblePopupCenter()}
+            onClose={() => visiblePowermenu.set(false)}
+            visible={visiblePowermenu()}
         >
             <box className={"popup"} vertical>
                 {/* maxWidthChars is needed, wrap will work as intended */}
-                <Powermenu onClicked={() => visiblePopupCenter.set(false)} />
+                <Powermenu onClicked={() => visiblePowermenu.set(false)} />
             </box>
         </PopoverCenter>
     );
@@ -117,7 +116,7 @@ export default function Bar(monitor: Gdk.Monitor) {
             onClickRelease={(_, event: Astal.ClickEvent) => {
                 switch (event.button) {
                     case Gdk.BUTTON_PRIMARY:
-                        visiblePopupCenter.set(true);
+                        visiblePowermenu.set(true);
                         break;
                     case Gdk.BUTTON_SECONDARY:
                         // bash('openstartupapps')//todo
@@ -135,7 +134,7 @@ export default function Bar(monitor: Gdk.Monitor) {
     );
 
     const sysIndicatorsButton = (
-        <SystemIndicators onClicked={() => visiblePopup.set(true)}/>
+        <SystemIndicators onClicked={() => visibleQSMainPage.set(true)}/>
     );
 
     return <window
