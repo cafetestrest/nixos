@@ -87,9 +87,30 @@ export default () => {
       </stack>
       <box
         halign={Gtk.Align.CENTER}
+        className={"qs-pages-box"} 
       >
-        <button label={"."} onClicked={() => qsTogglesPage.set("qs-page-first")}/>
-        <button label={"."} onClicked={() => qsTogglesPage.set("qs-page-second")}/>
+        <button
+          className={bind(qsTogglesPage).as((page) => {
+            if (page === "qs-page-first") {
+              return "workspace-button active";
+            }
+            return "workspace-button";
+          })}
+          onClicked={() => qsTogglesPage.set("qs-page-first")}
+        >
+          <box className={"workspace-dot"} />
+        </button>
+        <button
+          className={bind(qsTogglesPage).as((page) => {
+            if (page === "qs-page-second") {
+              return "workspace-button active";
+            }
+            return "workspace-button";
+          })}
+          onClicked={() => qsTogglesPage.set("qs-page-second")}
+        >
+          <box className={"workspace-dot"} />
+        </button>
       </box>
     </box>
   );

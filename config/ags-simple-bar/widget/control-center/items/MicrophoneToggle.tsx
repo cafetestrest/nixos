@@ -2,7 +2,6 @@ import { bind } from "astal"
 import icons from "../../../lib/icons";
 import { Gtk } from "astal/gtk3";
 import Wp from "gi://AstalWp";
-import { referenceWord, padLength } from "../../common/Variables";
 
 export default () => {
 	const mic = Wp.get_default()?.audio.defaultMicrophone!;
@@ -27,7 +26,7 @@ export default () => {
                 />
                 <label
                     halign={Gtk.Align.START}
-                    label={mute.as((muted) => muted ? padLength(referenceWord, "Muted") : padLength(referenceWord, "Unmuted"))}
+                    label={mute.as((muted) => muted ? "Muted" : "Unmuted")}
                     hexpand
                 />
                 {hasArrow && (

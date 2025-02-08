@@ -17,52 +17,7 @@ window.Bar {
     button {
         min-height: $barHeight;
         padding: 0rem 0.4rem;
-    }
-
-    .Workspaces {
-        transition: all 0.3s;
-        border-radius: $radius;
-
-        &:hover {
-            background-color: color.adjust($fg-color, $alpha: -0.8);
-        }
-
-        .workspace-button {
-            &:first-child {
-                padding-left: 0.5rem;
-            }
-
-            &:last-child {
-                padding-right: 0.3rem;
-            }
-
-            transition: all 0.3s;
-            padding: 0;
-            background: transparent;
-            box-shadow: none;
-        }
-
-        .workspace-button:hover .workspace-dot{
-            background-color: $accent_transparent;
-        }
-
-        .workspace-button.occupied .workspace-dot{
-            background-color: $fg-color;
-        }
-
-        .workspace-button.active .workspace-dot {
-            background-color: $accent;
-            margin: 0.6rem 0;
-            padding: 0 1rem;
-        }
-
-        .workspace-dot {
-            transition: all 0.3s;
-            margin: 0.7rem 0.35rem;
-            padding: 0;
-            background-color: gray;//todo
-            border-radius: $radius;
-        }
+        background-color: transparent;
     }
 
     .SysTray {
@@ -125,7 +80,7 @@ window.Bar {
         border-radius: $radius;
 
         &.active {
-            background-color: lightblue;
+            background-color: $accent_transparent;
         }
     }
 
@@ -133,10 +88,16 @@ window.Bar {
     .app-launcher-button {
         padding-left: 0.2rem;
         padding-right: 0.6rem;
+
+        // fix as it does not work with background-color: transparent;
+        &:hover {
+            background-color: color.adjust($bg-color, $alpha: -0.8);
+        }
     }
 
     .powermenu-button {
         padding-left: 0.6rem;
+    	color: $red_transparent;
     }
 
     .system-indicator {
@@ -149,5 +110,21 @@ window.Bar {
         &:first-child {
             // padding-left: 0rem;
         }
+    }
+
+    .bt-indicator-icon {
+        color: $accent;
+    }
+
+    .mic-indicator-icon {
+        color: greenyellow;
+    }
+
+    .mic-indicator-icon-mute {
+        color: $red_transparent;
+    }
+
+    .app-launcher-button {
+    	color: $accent;
     }
 }

@@ -3,7 +3,16 @@
 $bg-color: #171717;
 $fg-color: #f1f1f1;
 $accent: #51a4e7;
+$error: red;
+$red: #e55f86;
+$shadowColor: #eeeeee;
 $accent_transparent: color.adjust($accent, $alpha: -0.4);
+$hover: color.adjust($shadowColor, $alpha: -0.80);
+$buttonShadow: inset 0 0 0 1px $hover, inset 0 0 0 99px $hover;
+$sliderGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
+$osd: color.adjust(gray, $alpha: -0.30);
+$red_transparent: color.adjust($red, $alpha: -0.3);
+$shadowTransparent: color.adjust($shadowColor, $alpha: -0.50);
 
 $radius: 1.5rem;
 $height: 1.2rem;

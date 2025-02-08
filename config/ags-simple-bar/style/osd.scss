@@ -5,7 +5,7 @@
 
 window.OSD {
     box.OSD {
-        border-radius: 100px;
+        border-radius: $radius;
         background-color: $bg-color;
         padding: 13px 16px;
         margin: 13px;

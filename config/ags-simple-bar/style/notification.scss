@@ -8,7 +8,6 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
 // $fg-color: #{"@theme_fg_color"};
 // $bg-color: #{"@theme_bg_color"};
-$error: red;
 
 window.NotificationPopups {
     all: unset;
@@ -27,7 +26,7 @@ eventbox.Notification {
     // eventboxes can not take margins so we style its inner box instead
     >box {
         min-width: 400px;
-        border-radius: 13px;
+        border-radius: $radius;
         background-color: $bg-color;
         margin: .5rem 1rem .5rem 1rem;
         box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);
@@ -99,7 +98,7 @@ eventbox.Notification {
         .image {
             border: 1px solid gtkalpha($fg-color, .02);
             margin-right: .5rem;
-            border-radius: 9px;
+            border-radius: $radius;
             min-width: 100px;
             min-height: 100px;
             background-size: cover;

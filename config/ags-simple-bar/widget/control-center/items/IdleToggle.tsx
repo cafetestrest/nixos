@@ -2,7 +2,6 @@ import { bind } from "astal"
 import IdleModeService, { profileName } from "../../../service/IdleService";
 import icons from "../../../lib/icons";
 import { Gtk } from "astal/gtk3";
-import { referenceWord, padLength } from "../../common/Variables";
 
 export default () => {
     if (IdleModeService) {
@@ -27,7 +26,7 @@ export default () => {
                     />
                     <label
                         halign={Gtk.Align.START}
-                        label={profile.as((p) => padLength(referenceWord, profileName(p)))}
+                        label={profile.as((p) => profileName(p))}
                         hexpand
                     />
                     {hasArrow && (

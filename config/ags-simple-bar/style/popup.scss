@@ -4,8 +4,7 @@
 .Popup .dashboard,
 .Popup .popup {
     background-color: $bg-color;
-    background-color: black;
     box-shadow: 2px 3px 7px 0 rgba(0,0,0,0.4);
-    border-radius: 12px;
+    border-radius: $radius;
     padding: 12px;
 }

@@ -11,15 +11,9 @@ window {
 box.MediaPlayer {
     padding: .6rem;
     background-color: $bg-color;
-
-    box.cover-art {
-        min-width: 120px;
-        min-height: 120px;
-        border-radius: 9px;
-        margin-right: .6rem;
-        background-size: contain;
-        background-position: center;
-    }
+    border-radius: $radius;
+    background-size: cover;
+    background-position: center;
 
     box.title {
         label {

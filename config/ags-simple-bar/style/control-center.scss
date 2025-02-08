@@ -1,21 +1,85 @@
 @use "./colors.scss" as *;
 
 .control-center {
+    button {
+        border-radius: $radius;
+    }
+
     .qs-main-page {
         .qs-toggles {
             .qs-page {
                 .toggles-space {
+                    min-width: 0.2rem;
                 }
 
                 .toggles-box-space {
+                    min-height: 0.2rem;
                 }
 
                 .toggles {
+                    min-width: 10.7rem;
+
                     &.active {
-                        background-color: rgba(0, 183, 255, 0.538);
+                        background-color: $accent;
                     }
                 }
             }
+
+            .qs-pages-box {
+                .workspace-dot {
+                    margin-top: 0.65rem;
+                    margin-bottom: 0.65rem;
+                }
+
+                .workspace-button.active .workspace-dot {
+                    padding-left: 0.05rem;
+                    padding-right: 0.05rem;
+                    margin-top: 0.55rem;
+                    margin-bottom: 0.55rem;
+                }
+            }
         }
+
+        // .AudioSlider {
+        //     * {
+        //         padding: 0;
+        //         margin: 0;
+        //         border: none;
+        //     }
+    
+        //     .control-center__slider-icon {
+        //         color: red;
+        //         margin-left: 0.8rem;
+        //     }
+    
+        //     trough {
+        //         transition:
+        //             background-color 0.3s ease-in-out,
+        //             color 0.3s ease-in-out;
+        //         border-radius: 7.143rem;
+        //         background-color: green;
+        //         // min-height: calc($buttonMinHeight * 7 / 8);
+    
+        //         highlight {
+        //             // min-width: calc($buttonMinHeight * 7 / 8);
+        //             border-radius: 7.143rem;
+        //             background-color: $accent;
+        //             border-radius: 7.143rem;
+                    
+        //         }
+    
+        //         slider {
+        //             // min-width: calc($buttonMinHeight * 7 / 8);
+        //             // min-height: calc($buttonMinHeight * 7 / 8);
+        //             border-radius: 7.143rem;
+        //             background-color: transparent;
+        //             box-shadow: none;
+    
+        //             transition:
+        //                 background-color 0.3s ease-in-out,
+        //                 color 0.3s ease-in-out;
+        //         }
+        //     }
+        // }
     }
 }

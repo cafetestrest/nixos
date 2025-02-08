@@ -81,8 +81,8 @@ export default function Bar(monitor: Gdk.Monitor) {
             className={"Popup"}
             onClose={() => visibleQSMainPage.set(false)}
             visible={visibleQSMainPage()}
-            marginTop={36}
-            marginRight={60}
+            marginTop={38}
+            marginRight={12}
             valign={Gtk.Align.START}
             halign={Gtk.Align.END}
         >

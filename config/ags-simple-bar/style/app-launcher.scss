@@ -6,15 +6,15 @@
 }
 
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
+// $fg-color: #{"@theme_fg_color"};
+// $bg-color: #{"@theme_bg_color"};
 
 window#launcher {
     all: unset;
 
     box.Applauncher {
         background-color: $bg-color;
-        border-radius: 11px;
+        border-radius: $radius;
         margin: 1rem;
         padding: .8rem;
         box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);

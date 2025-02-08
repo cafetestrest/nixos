@@ -2,7 +2,6 @@ import { bind } from "astal"
 import icons from "../../../lib/icons";
 import { Gtk } from "astal/gtk3";
 import AstalNotifd from "gi://AstalNotifd";
-import { referenceWord } from "../../common/Variables";
 
 export default () => {
 	const notifications = AstalNotifd.get_default();
@@ -27,7 +26,7 @@ export default () => {
                 />
                 <label
                     halign={Gtk.Align.START}
-                    label={referenceWord}
+                    label={"Do not disturb"}
                     hexpand
                 />
                 {hasArrow && (

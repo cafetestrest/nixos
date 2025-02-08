@@ -3,12 +3,18 @@ import Mpris from "gi://AstalMpris"
 import { bind } from "astal"
 
 function lengthStr(length: number) {
-    const min = Math.floor(length / 60)
-    const sec = Math.floor(length % 60)
-    const sec0 = sec < 10 ? "0" : ""
-    return `${min}:${sec0}${sec}`
-}
+    const hours = Math.floor(length / 3600);
+    const minutes = Math.floor((length % 3600) / 60);
+    const seconds = Math.floor(length % 60);
 
+    const min0 = minutes < 10 ? '0' : '';
+    const sec0 = seconds < 10 ? '0' : '';
+
+    if (hours > 0) {
+        return `${hours}:${min0}${minutes}:${sec0}${seconds}`;
+    }
+    return `${minutes}:${sec0}${seconds}`;
+}
 
 function MediaPlayer({ player }: { player: Mpris.Player }) {
     const { START, END } = Gtk.Align
@@ -20,7 +26,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
         a || "Unknown Artist")
 
     const coverArt = bind(player, "coverArt").as(c =>
-        `background-image: url('${c}')`)
+        `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`)
 
     // const playerIcon = bind(player, "entry").as(e =>
     //     Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic")
@@ -36,11 +42,10 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             : "media-playback-start-symbolic"
     )
 
-    return <box className={"MediaPlayer"}>
-        <box className={"cover-art"} css={coverArt} />
+    return <box className={"MediaPlayer"} css={coverArt}>
         <box vertical>
             <box className={"title"}>
-                <label truncate hexpand halign={START} label={title} />
+                <label truncate hexpand halign={START} label={title} maxWidthChars={36} />
                 <icon icon={playerIcon} />
             </box>
             <label
@@ -49,6 +54,8 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                 // vexpand
                 wrap
                 label={artist}
+                truncate
+                maxWidthChars={20}
             />
             <slider
                 visible={bind(player, "length").as(l => l > 0)}
