@@ -114,10 +114,12 @@ const AudioIndicator = ({ speaker }) => {
     const volumePercentage = bind(speaker, "volume").as(
         (v) => Math.round(v * 100).toString() + "%",
     );
+	const icon = bind(speaker, "icon");
 
 	return (
 		<box
             className={"system-indicator"}
+			spacing={4}
         >
 			<icon
 				tooltipText={volumePercentage}
@@ -126,12 +128,12 @@ const AudioIndicator = ({ speaker }) => {
 			<label className={"volume-percentage"} label={volumePercentage} />
 			<icon
 				className={"headset-icon"}
-				visible={bind(speaker, 'icon').as((icon) => {
+				visible={icon.as((icon) => {
 					if (icon === 'audio-headset-bluetooth' || icon === 'audio-headset-analog-usb' || icon === 'audio-card-analog-usb')
 						return true;
 					return false;
 				})}
-				icon={bind(speaker, 'icon').as((icon) => {
+				icon={icon.as((icon) => {
 					if (icon === 'audio-headset-bluetooth' || icon === 'audio-headset-analog-usb' || icon === 'audio-card-analog-usb')
 						return icons.audio.type.headset;
 					return icons.audio.type.card;
@@ -166,6 +168,7 @@ export default ({className, onClicked}) => {
         >
             <box
                 className={"system-indicators-box"}
+				spacing={4}
             >
                 <DNDIndicator />
                 {/* <IdleIndicator /> */}

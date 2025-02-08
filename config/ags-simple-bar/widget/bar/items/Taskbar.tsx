@@ -42,29 +42,32 @@ export default () => {
                             : icons.fallback.executable;
 
                     return (
-                        <button
-                            onClicked={() => {
-                                const address = client.get_address();
-                                focus(address);
-                            }}
-                            onClickRelease={(self, event) => {
-                                const address = client.get_address();
-                                if (!address) {
-                                    return;
-                                }
-                                switch (event.button) {
-                                    case Gdk.BUTTON_SECONDARY:
-                                        return close(address);
-                                    case Gdk.BUTTON_MIDDLE:
-                                        return close(address);
-                            }}}
-                        >
-                            <icon
-                                setup={(self) => {
-                                    self.set_icon(getHyprlandClientIcon(client, icon));
+                        <box>
+                            <button
+                                className={"bar-button taskbar"}
+                                onClicked={() => {
+                                    const address = client.get_address();
+                                    focus(address);
                                 }}
-                            />
-                        </button>
+                                onClickRelease={(self, event) => {
+                                    const address = client.get_address();
+                                    if (!address) {
+                                        return;
+                                    }
+                                    switch (event.button) {
+                                        case Gdk.BUTTON_SECONDARY:
+                                            return close(address);
+                                        case Gdk.BUTTON_MIDDLE:
+                                            return close(address);
+                                }}}
+                            >
+                                <icon
+                                    setup={(self) => {
+                                        self.set_icon(getHyprlandClientIcon(client, icon));
+                                    }}
+                                />
+                            </button>
+                        </box>
                     );
                 })
                 .filter((item) => item !== undefined),

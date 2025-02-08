@@ -3,18 +3,27 @@
 $bg: #212223;
 $fg: #f1f1f1;
 $accent: #378DF7;
-$radius: 7px;
+$radius: 1.5rem;
+$height: 1.2rem;
+$width: 1.2rem;
+$barHeight: 27px;
 
 window.Bar {
     border: none;
     box-shadow: none;
     background-color: $bg;
     color: $fg;
-    font-size: 1.1em;
-    font-weight: bold;
+    // font-size: 1.1em;
+    // font-weight: bold;
 
-    label {
-        margin: 0 8px;
+    // label {
+    //     margin: 0 8px;
+    // }
+
+    // this removes top and botton padding that is there on buttons in bar, controls bar height
+    button {
+        min-height: $barHeight;
+        padding: 0rem 0.4rem;
     }
 
     .Workspaces  {
@@ -52,10 +61,10 @@ window.Bar {
     }
 
     .SysTray {
-        margin-right: 8px;
+        margin-right: 0.5rem;
 
         button {
-            padding: 0 4px;
+            padding: 0 0.5rem;
         }
     }
 
@@ -64,8 +73,8 @@ window.Bar {
     }
 
     .Media .Cover {
-        min-height: 1.2em;
-        min-width: 1.2em;
+        min-height: $height;
+        min-width: $width;
         border-radius: $radius;
         background-position: center;
         background-size: contain;
@@ -110,10 +119,23 @@ window.Bar {
     }
 
     .bar-button {
+        border-radius: $radius;
+
         &.active {
             background-color: lightblue;
         }
     }
+
+    // first button, it is not centered otherwise
+    .app-launcher-button {
+        padding-left: 0.2rem;
+        padding-right: 0.6rem;
+    }
+
+    // .taskbar {
+    //     padding: 0rem 0.5rem;
+    //     margin: 0rem 0.2rem;
+    // }
 
     .system-indicator {
         padding: 0rem 0.25rem;

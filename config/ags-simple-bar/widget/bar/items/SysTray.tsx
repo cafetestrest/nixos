@@ -8,6 +8,7 @@ export default () => {
         <box className={"SysTray"}>
             {bind(tray, "items").as(items => items.map(item => (
                 <menubutton
+                    className={"bar-button"}
                     tooltipMarkup={bind(item, "tooltipMarkup")}
                     usePopover={false}
                     actionGroup={bind(item, "actionGroup").as(ag => ["dbusmenu", ag])}

@@ -16,6 +16,7 @@ export default () => {
                 <box>
                     <button
                         onClicked={() => ps[0].play_pause()}
+                        className={"bar-button"}
                     >
                         <box>
                             <box
@@ -35,11 +36,13 @@ export default () => {
                     <button
                         onClicked={() => ps[0].previous()}
                         visible={bind(ps[0], "canGoPrevious")}
+                        className={"bar-button"}
                     >
                         <icon icon={icons.media.goprev} />
                     </button>
                     <button
                         onClicked={() => ps[0].play_pause()}
+                        className={"bar-button"}
                     >
                         <icon icon={bind(ps[0], "playbackStatus").as((status) =>
                             status === Mpris.PlaybackStatus.PLAYING ? icons.media.playing : icons.media.stopped
@@ -48,6 +51,7 @@ export default () => {
                     <button
                         onClicked={() => ps[0].next()}
                         visible={bind(ps[0], "canGoNext")}
+                        className={"bar-button"}
                     >
                         <icon icon={icons.media.gonext} />
                     </button>

@@ -6,6 +6,7 @@ import OSD from "./widget/osd/OSD";
 import NotificationPopups from "./widget/notifications/NotificationPopups";
 import Dashboard from "./widget/dashboard/Dashboard";
 import { visibleQSMainPage, visiblePowermenu } from "./widget/common/Variables";
+import { reloadScss } from "./lib/utils";
 
 function main() {
 	const bars = new Map<Gdk.Monitor, Gtk.Widget>();
@@ -14,6 +15,7 @@ function main() {
 
     Applauncher();
     Dashboard();
+    reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
 
     for (const gdkmonitor of App.get_monitors()) {
 		bars.set(gdkmonitor, Bar(gdkmonitor));
@@ -24,7 +26,7 @@ function main() {
 
 App.start({
     css: style,
-    // instanceName: "js",
+    instanceName: "js",
     requestHandler(request: string, res: (response: any) => void) {
 		const args = request.split(" ");
 		if (args[0] == "toggle" && args[1]) {
