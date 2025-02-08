@@ -1,10 +1,11 @@
-import { bind } from "astal"
+import { bind, Variable } from "astal"
 import { Gtk } from "astal/gtk3"
 import Mpris from "gi://AstalMpris"
 import icons from "../../../lib/icons"
 
 export default () => {
     const mpris = Mpris.get_default()
+    const revealMedia = Variable(true);
 
     const truncateString = (str: string, maxLength: number = 40): string => {
         return str.length > maxLength ? str.slice(0, maxLength) : str;
@@ -15,24 +16,38 @@ export default () => {
             {bind(mpris, "players").as(ps => ps[0] ? (
                 <box>
                     <button
-                        onClicked={() => ps[0].play_pause()}
+                        onClicked={() => revealMedia.set(!revealMedia.get())}
                         className={"bar-button"}
                     >
-                        <box>
-                            <box
-                                className={"Cover"}
-                                valign={Gtk.Align.CENTER}
-                                css={bind(ps[0], "coverArt").as(cover =>
-                                    `background-image: url('${cover}');`
-                                )}
-                            />
-                            <label
-                                label={bind(ps[0], "metadata").as(() => {
-                                    return `${truncateString(ps[0].title)}   ${truncateString(ps[0].artist, 20)}`
-                                })}
-                            />
-                        </box>
+                        <box
+                            className={"Cover"}
+                            valign={Gtk.Align.CENTER}
+                            css={bind(ps[0], "coverArt").as(cover =>
+                                `background-image: url('${cover}');`
+                            )}
+                        />
                     </button>
+
+                    <revealer
+                        className={"media-revealer"}
+                        revealChild={bind(revealMedia)}
+                        visible={bind(revealMedia)}
+                    >
+                        <box>
+                            <button
+                                onClicked={() => ps[0].play_pause()}
+                                className={"bar-button"}
+                            >
+                                <box>
+                                    <label
+                                        label={bind(ps[0], "metadata").as(() => {
+                                            return `${truncateString(ps[0].title)}   ${truncateString(ps[0].artist, 20)}`
+                                        })}
+                                    />
+                                </box>
+                            </button>
+                        </box>
+                    </revealer>
                     <button
                         onClicked={() => ps[0].previous()}
                         visible={bind(ps[0], "canGoPrevious")}

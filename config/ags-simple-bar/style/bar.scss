@@ -140,14 +140,14 @@ window.Bar {
     }
 
     .system-indicator {
-        padding: 0rem 0.25rem;
+        // padding: 0rem 0.25rem;
 
         &:last-child {
-            padding-right: 0rem;
+            // padding-right: 0rem;
         }
     
         &:first-child {
-            padding-left: 0rem;
+            // padding-left: 0rem;
         }
     }
 }

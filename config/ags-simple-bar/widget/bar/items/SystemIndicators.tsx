@@ -5,34 +5,36 @@ import Network from "gi://AstalNetwork";
 import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import AstalNotifd from "gi://AstalNotifd";
-// import NightlightModeService from "../../../service/NightLight";
-// import IdleModeService from "../../../service/Idle";
+import NightlightModeService from "../../../service/NightLightService";
+import IdleModeService from "../../../service/IdleService";
 
-// const NightlightIndicator = () => {
-// 	if (NightlightModeService) {
-// 		const profile = bind(NightlightModeService, "profile");
-// 		return (
-// 			<icon
-// 				icon={profile.as((p) => icons.nightlight[p])}
-// 			/>
-// 		);	
-// 	} else {
-// 		return <icon visible={false}/>
-// 	}
-// };
+const NightlightIndicator = () => {
+	if (NightlightModeService) {
+		const profile = bind(NightlightModeService, "profile");
+		return (
+			<icon
+	            className={"system-indicator"}
+				icon={profile.as((p) => icons.nightlight[p])}
+			/>
+		);	
+	} else {
+		return <icon visible={false}/>
+	}
+};
 
-// const IdleIndicator = () => {
-// 	if (IdleModeService) {
-// 		const profile = bind(IdleModeService, "profile");
-// 		return (
-// 			<icon
-// 				icon={profile.as((p) => icons.idle[p])}
-// 			/>
-// 		);	
-// 	} else {
-// 		return <icon visible={false}/>
-// 	}
-// };
+const IdleIndicator = () => {
+	if (IdleModeService) {
+		const profile = bind(IdleModeService, "profile");
+		return (
+			<icon
+				className={"system-indicator"}
+				icon={profile.as((p) => icons.idle[p])}
+			/>
+		);	
+	} else {
+		return <icon visible={false}/>
+	}
+};
 
 const BluetoothIndicator = () => {
 	const bluetooth = Bluetooth.get_default();
@@ -168,11 +170,11 @@ export default ({className, onClicked}) => {
         >
             <box
                 className={"system-indicators-box"}
-				spacing={4}
+				spacing={5}
             >
                 <DNDIndicator />
-                {/* <IdleIndicator /> */}
-                {/* <NightlightIndicator /> */}
+                <IdleIndicator />
+                <NightlightIndicator />
                 <BluetoothIndicator />
                 <NetworkIndicator />
                 <MicMuteIndicator />
