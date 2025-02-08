@@ -1,0 +1,11 @@
+@use 'sass:color' as color;
+
+$bg-color: #171717;
+$fg-color: #f1f1f1;
+$accent: #51a4e7;
+$accent_transparent: color.adjust($accent, $alpha: -0.4);
+
+$radius: 1.5rem;
+$height: 1.2rem;
+$width: 1.2rem;
+$barHeight: 27px;

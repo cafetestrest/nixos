@@ -7,6 +7,7 @@ export const numOfWS = Variable(0);
 
 type WsButtonProps = Widget.ButtonProps & {
     ws: Hyprland.Workspace;
+    attribute?: number;
 };
 
 function WorkspaceButton({ ws, ...props }: WsButtonProps) {
@@ -36,50 +37,37 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
         valign={Gtk.Align.CENTER}
         halign={Gtk.Align.CENTER}
         onClicked={() => ws.focus()}
+				attribute={ws.id}
         {...props}
-      />
+      >
+        <box className={"workspace-dot"} />
+      </button>
     );
   }
 
   export default () => {
     const hyprland = Hyprland.get_default();
 
-    Variable.derive(
-      [bind(hyprland, "focusedWorkspace"), bind(hyprland, "workspaces")],
-      (fws, workspaces) => {
-        let highestOccupied = 0;
-      
-        for (const ws of workspaces) {
-          if (ws?.get_clients().length > 0 && ws.id > highestOccupied) {
-            highestOccupied = ws.id;
-          }
-        }
-      
-        if (fws.id > 9) {
-          numOfWS.set(9);
-          return 9;
-        }
-      
-        if (highestOccupied > fws.id) {
-          const highestOccupiedNum = Math.max(1, Math.min(highestOccupied, 9));
-          numOfWS.set(highestOccupiedNum);
-          return highestOccupiedNum;
-        }
-      
-        const wsnum = Math.max(1, Math.min(fws.id, 9));
-        numOfWS.set(wsnum);
-        return wsnum;
-      }
-    );
-
     return (
-      <box className={"Workspaces"} spacing={4}
+      <eventbox
+        className={"Workspaces"}
       >
-        {bind(numOfWS).as((w) => {
-            return range(w).map((i) => (
-                <WorkspaceButton ws={Hyprland.Workspace.dummy(i + 1, null)} label={i+1+""}/>
-            ))
-        })}
-      </box>
+        <box className={"workspaces-box"}
+          setup={(self) => {
+            self.hook(hyprland, "event", () => self.children.map(btn => {
+              btn.visible = hyprland.workspaces.some(ws => {
+                if (ws.id < 10)
+                  return ws.id +1 >= btn.attribute
+  
+                return ws.id >= btn.attribute
+              });
+            }));
+          }}
+        >
+          {range(10).map((i) => (
+              <WorkspaceButton ws={Hyprland.Workspace.dummy(i + 1, null)}/>
+          ))}
+        </box>
+      </eventbox>
     );
 }

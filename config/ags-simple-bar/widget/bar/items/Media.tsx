@@ -28,7 +28,7 @@ export default () => {
                             />
                             <label
                                 label={bind(ps[0], "metadata").as(() => {
-                                    return `${truncateString(ps[0].title)} - ${truncateString(ps[0].artist, 20)}`
+                                    return `${truncateString(ps[0].title)}   ${truncateString(ps[0].artist, 20)}`
                                 })}
                             />
                         </box>

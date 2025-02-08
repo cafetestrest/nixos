@@ -1,7 +1,9 @@
+@use "./colors.scss" as *;
+
 .Popup .quicksettings,
 .Popup .dashboard,
 .Popup .popup {
-    // background-color: @theme_bg_color;
+    background-color: $bg-color;
     background-color: black;
     box-shadow: 2px 3px 7px 0 rgba(0,0,0,0.4);
     border-radius: 12px;

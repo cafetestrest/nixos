@@ -1,18 +1,11 @@
 @use "sass:color";
-
-$bg: #212223;
-$fg: #f1f1f1;
-$accent: #378DF7;
-$radius: 1.5rem;
-$height: 1.2rem;
-$width: 1.2rem;
-$barHeight: 27px;
+@use "./colors.scss" as *;
 
 window.Bar {
     border: none;
     box-shadow: none;
-    background-color: $bg;
-    color: $fg;
+    background-color: $bg-color;
+    color: $fg-color;
     // font-size: 1.1em;
     // font-weight: bold;
 
@@ -26,43 +19,53 @@ window.Bar {
         padding: 0rem 0.4rem;
     }
 
-    .Workspaces  {
-        button {
-            all: unset;
-            background-color: transparent;
+    .Workspaces {
+        transition: all 0.3s;
+        border-radius: $radius;
 
-            &:hover label {
-                background-color: color.adjust($fg, $alpha: -0.84);
-                border-color: color.adjust($accent, $alpha: -0.8);
-            }
-
-            &.occupied label {
-                // background-color: color.adjust(red, $alpha: -0.8);
-                border: 1px solid white;
-            }
-
-            &.active label {
-                background-color: color.adjust($fg, $alpha: -0.8)
-            }
+        &:hover {
+            background-color: color.adjust($fg-color, $alpha: -0.8);
         }
 
-        label {
-            transition: 200ms;
-            padding: 0 8px;
-            margin: 2px;
+        .workspace-button {
+            &:first-child {
+                padding-left: 0.5rem;
+            }
+
+            &:last-child {
+                padding-right: 0.3rem;
+            }
+
+            transition: all 0.3s;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .workspace-button:hover .workspace-dot{
+            background-color: $accent_transparent;
+        }
+
+        .workspace-button.occupied .workspace-dot{
+            background-color: $fg-color;
+        }
+
+        .workspace-button.active .workspace-dot {
+            background-color: $accent;
+            margin: 0.6rem 0;
+            padding: 0 1rem;
+        }
+
+        .workspace-dot {
+            transition: all 0.3s;
+            margin: 0.7rem 0.35rem;
+            padding: 0;
+            background-color: gray;//todo
             border-radius: $radius;
-            border: 1pt solid transparent;
-        }
-
-        .focused label {
-            color: $accent;
-            border-color: $accent;
         }
     }
 
     .SysTray {
-        margin-right: 0.5rem;
-
         button {
             padding: 0 0.5rem;
         }
@@ -99,7 +102,7 @@ window.Bar {
         }
 
         trough {
-            background-color: color.adjust($fg, $alpha: -0.8);
+            background-color: color.adjust($fg-color, $alpha: -0.8);
             border-radius: $radius;
         }
 
@@ -110,7 +113,7 @@ window.Bar {
         }
 
         slider {
-            background-color: $fg;
+            background-color: $fg-color;
             border-radius: $radius;
             min-height: 1em;
             min-width: 1em;
@@ -132,10 +135,9 @@ window.Bar {
         padding-right: 0.6rem;
     }
 
-    // .taskbar {
-    //     padding: 0rem 0.5rem;
-    //     margin: 0rem 0.2rem;
-    // }
+    .powermenu-button {
+        padding-left: 0.6rem;
+    }
 
     .system-indicator {
         padding: 0rem 0.25rem;
