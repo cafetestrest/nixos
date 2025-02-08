@@ -27,7 +27,12 @@ window.Bar {
                 border-color: color.adjust($accent, $alpha: -0.8);
             }
 
-            &:active label {
+            &.occupied label {
+                // background-color: color.adjust(red, $alpha: -0.8);
+                border: 1px solid white;
+            }
+
+            &.active label {
                 background-color: color.adjust($fg, $alpha: -0.8)
             }
         }
@@ -101,6 +106,12 @@ window.Bar {
             min-height: 1em;
             min-width: 1em;
             margin: -.2em;
+        }
+    }
+
+    .bar-button {
+        &.active {
+            background-color: lightblue;
         }
     }
 

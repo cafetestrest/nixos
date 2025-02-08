@@ -112,7 +112,12 @@ export default function Bar(monitor: Gdk.Monitor) {
 
     const powermenuButton = (
         <button
-    		className={"powermenu-button"}
+    		className={bind(visiblePowermenu).as((v) => {
+                if (v) {
+                    return "powermenu-button bar-button active";
+                }
+                return "powermenu-button bar-button";
+            })}
             onClickRelease={(_, event: Astal.ClickEvent) => {
                 switch (event.button) {
                     case Gdk.BUTTON_PRIMARY:
@@ -134,7 +139,12 @@ export default function Bar(monitor: Gdk.Monitor) {
     );
 
     const sysIndicatorsButton = (
-        <SystemIndicators onClicked={() => visibleQSMainPage.set(true)}/>
+        <SystemIndicators className={bind(visibleQSMainPage).as((v) => {
+            if (v) {
+                return "system-indicators bar-button active";
+            }
+            return "system-indicators bar-button";
+        })} onClicked={() => visibleQSMainPage.set(true)}/>
     );
 
     return <window

@@ -141,12 +141,12 @@ const AudioIndicator = ({ speaker }) => {
 	);
 };
 
-export default ({onClicked}) => {
+export default ({className, onClicked}) => {
     const defaultSpeaker = Wp.get_default()?.audio.defaultSpeaker;
 
     return (
         <button
-            className={"system-indicators"}
+            className={className}
             onClicked={onClicked}
             onScroll={(_, event: Astal.ScrollEvent) => {
 				if (defaultSpeaker) {
