@@ -31,8 +31,8 @@ window.Bar {
     }
 
     .Media .Cover {
-        min-height: $height;
-        min-width: $width;
+        min-height: $barMediaCoverHeight;
+        min-width: $barMediaCoverWidth;
         border-radius: $radius;
         background-position: center;
         background-size: contain;

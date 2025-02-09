@@ -8,13 +8,18 @@ export default () => {
     const revealMedia = Variable(true);
 
     const truncateString = (str: string, maxLength: number = 40): string => {
+        if (!str) {
+            return str;
+        }
         return str.length > maxLength ? str.slice(0, maxLength) : str;
     };
 
     return (
         <box className={"Media"}>
             {bind(mpris, "players").as(ps => ps[0] ? (
-                <box>
+                <box
+                    visible={bind(ps[0], "playback_status").as((status) => status != Mpris.PlaybackStatus.STOPPED)}
+                >
                     <button
                         onClicked={() => revealMedia.set(!revealMedia.get())}
                         className={"bar-button"}
