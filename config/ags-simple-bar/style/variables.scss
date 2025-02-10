@@ -6,13 +6,19 @@ $accent: #51a4e7;
 $error: red;
 $red: #e55f86;
 $shadowColor: #eeeeee;
-$accent_transparent: color.adjust($accent, $alpha: -0.4);
+
+$accentTransparent: color.adjust($accent, $alpha: -0.4);
 $hover: color.adjust($shadowColor, $alpha: -0.80);
-$buttonShadow: inset 0 0 0 1px $hover, inset 0 0 0 99px $hover;
-$sliderGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
 $osd: color.adjust(gray, $alpha: -0.30);
-$red_transparent: color.adjust($red, $alpha: -0.3);
-$shadowTransparent: color.adjust($shadowColor, $alpha: -0.50);
+$redTransparent: color.adjust($red, $alpha: -0.3);
+$shadowTransparent: color.adjust($shadowColor, $alpha: -0.5);
+
+$accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
+
+// $buttonShadow: inset 0 0 0 1px $hover, inset 0 0 0 99px $hover;
+// $togglesShadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+$togglesHoverShadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.2);
+$togglesShadowActive: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
 
 $radius: 1.5rem;
 
@@ -22,4 +28,15 @@ $barMediaCoverWidth: 1.2rem;
 $barHeight: 27px;
 
 // qs
+$togglesSpace: 0 0.2rem;
+$togglesBoxSpace: 0.4rem;
+
+// qs toggles
 $qsTogglesWidth: 10.7rem;
+$qsTogglesHeight: 2.2rem;
+$qsTogglesIconMarginLeft: 0.6rem;
+$qsTogglesLabelMarginLeft: 0.6rem;
+
+// qs volume slider
+$qsSliderHighlightWidth: 2.2rem;
+$qsSliderIconMarginLeft: 0.6rem;

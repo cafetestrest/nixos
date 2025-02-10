@@ -42,7 +42,11 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             : "media-playback-start-symbolic"
     )
 
-    return <box className={"MediaPlayer"} css={coverArt}>
+    return <box
+            className={"MediaPlayer"}
+            css={coverArt}
+            visible={bind(player, "playback_status").as((status) => status != Mpris.PlaybackStatus.STOPPED)}
+        >
         <box vertical>
             <box className={"title"}>
                 <label truncate hexpand halign={START} label={title} maxWidthChars={36} />

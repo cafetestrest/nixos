@@ -9,18 +9,36 @@
         .qs-toggles {
             .qs-page {
                 .toggles-space {
-                    min-width: 0.2rem;
+                    margin: $togglesSpace;
                 }
 
                 .toggles-box-space {
-                    min-height: 0.2rem;
+                    margin-bottom: $togglesBoxSpace;
                 }
 
                 .toggles {
                     min-width: $qsTogglesWidth;
+                    min-height: $qsTogglesHeight;
+      
+                    icon {
+                        margin-left: $qsTogglesIconMarginLeft;
+                    }
+
+                    label {
+                        margin-left: $qsTogglesLabelMarginLeft;
+                    }
 
                     &.active {
-                        background-color: $accent;
+                        background: $accentGradient;
+                        color: $bg-color;
+
+                        &:hover {
+                            box-shadow: $togglesHoverShadow;
+                        }
+
+                        &:focus {
+                            box-shadow: $togglesShadowActive;
+                        }
                     }
                 }
             }
@@ -40,46 +58,43 @@
             }
         }
 
-        // .AudioSlider {
-        //     * {
-        //         padding: 0;
-        //         margin: 0;
-        //         border: none;
-        //     }
-    
-        //     .control-center__slider-icon {
-        //         color: red;
-        //         margin-left: 0.8rem;
-        //     }
-    
-        //     trough {
-        //         transition:
-        //             background-color 0.3s ease-in-out,
-        //             color 0.3s ease-in-out;
-        //         border-radius: 7.143rem;
-        //         background-color: green;
-        //         // min-height: calc($buttonMinHeight * 7 / 8);
-    
-        //         highlight {
-        //             // min-width: calc($buttonMinHeight * 7 / 8);
-        //             border-radius: 7.143rem;
-        //             background-color: $accent;
-        //             border-radius: 7.143rem;
-                    
-        //         }
-    
-        //         slider {
-        //             // min-width: calc($buttonMinHeight * 7 / 8);
-        //             // min-height: calc($buttonMinHeight * 7 / 8);
-        //             border-radius: 7.143rem;
-        //             background-color: transparent;
-        //             box-shadow: none;
-    
-        //             transition:
-        //                 background-color 0.3s ease-in-out,
-        //                 color 0.3s ease-in-out;
-        //         }
-        //     }
-        // }
+        .volume-slider-overlay {
+            * {
+                padding: 0;
+                margin: 0;
+                border: none;
+                box-shadow: none;
+                border-radius: $radius;
+                color: $bg-color;
+            }
+
+            .slider-volume-icon {
+                margin-left: $qsSliderIconMarginLeft;
+            }
+
+            trough {
+                highlight,
+                progress {
+                    background: $accentGradient;
+                }
+
+                highlight:hover {
+                    box-shadow: $togglesHoverShadow;
+                }
+
+                highlight:focus {
+                    box-shadow: $togglesShadowActive;
+                }
+
+                highlight {
+                    min-width: $qsSliderHighlightWidth;
+                    background: $accentGradient;
+                }
+
+                slider {
+                    background: transparent;
+                }
+            }
+        }
     }
 }

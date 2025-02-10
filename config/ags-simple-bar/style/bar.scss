@@ -80,7 +80,7 @@ window.Bar {
         border-radius: $radius;
 
         &.active {
-            background-color: $accent_transparent;
+            background-color: $accentTransparent;
         }
     }
 
@@ -97,7 +97,7 @@ window.Bar {
 
     .powermenu-button {
         padding-left: 0.6rem;
-    	color: $red_transparent;
+    	color: $redTransparent;
     }
 
     .system-indicator {
@@ -121,7 +121,7 @@ window.Bar {
     }
 
     .mic-indicator-icon-mute {
-        color: $red_transparent;
+        color: $redTransparent;
     }
 
     .app-launcher-button {

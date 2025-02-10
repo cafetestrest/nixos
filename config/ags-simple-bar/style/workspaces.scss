@@ -25,8 +25,13 @@
         box-shadow: none;
     }
 
+    .workspace-button.active:hover .workspace-dot,
+    .workspace-button:focus .workspace-dot{
+        box-shadow: $togglesShadowActive;
+    }
+
     .workspace-button:hover .workspace-dot{
-        background-color: $accent_transparent;
+        background-color: $accentTransparent;
     }
 
     .workspace-button.occupied .workspace-dot{
@@ -34,7 +39,7 @@
     }
 
     .workspace-button.active .workspace-dot {
-        background-color: $accent;
+        background: $accentGradient;
         margin: 0.6rem 0;
         padding: 0 1rem;
     }
@@ -43,7 +48,7 @@
         transition: all 0.3s;
         margin: 0.7rem 0.35rem;
         padding: 0;
-        background-color: gray;//todo
+        background-color: $shadowTransparent;
         border-radius: $radius;
     }
 }

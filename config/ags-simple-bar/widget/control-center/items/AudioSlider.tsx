@@ -42,8 +42,10 @@ export default () => {
     return (
         <box className={"AudioSlider"}>
 			<overlay
+                className={"volume-slider-overlay"}
                 overlay={
                     <icon
+                        className={"slider-volume-icon"}
                         icon={bind(speaker, "volumeIcon")}
 						halign={Gtk.Align.START}
                         hexpand={false}
