@@ -5,6 +5,7 @@ import IdleToggle from "./IdleToggle";
 import { qsTogglesPage } from "../../common/Variables";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
+import BluetoothToggle from "./BluetoothToggle";
 
 function QSSpaceBetweenToggles() {
   return (
@@ -18,6 +19,12 @@ function QSSpaceBetweenToggleBoxes() {
   );
 }
 
+function QSEmptyButton() {
+  return (
+    <box className={"toggles empty"}/>
+  );
+}
+
 function FirstPage() {
   return (
     <box
@@ -26,9 +33,7 @@ function FirstPage() {
       vertical
     >
       <box>
-        <IdleToggle />
-        {/* todo move later */}
-        {/* <BluetoothToggle /> */}
+        <BluetoothToggle />
         <QSSpaceBetweenToggles/>
         <NightlightToggle />
       </box>
@@ -44,7 +49,9 @@ function FirstPage() {
       <QSSpaceBetweenToggleBoxes/>
 
       <box>
+        <IdleToggle />
         <QSSpaceBetweenToggles/>
+        <QSEmptyButton />
         {/* <ScreenRecordToggle /> */}
       </box>
     </box>

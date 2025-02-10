@@ -5,6 +5,21 @@
         border-radius: $radius;
     }
 
+	.control-center__page_header_button {
+		background: $inverse_surface_transparent;
+		color: $on_surface;
+		min-width: $buttonMinHeight;
+		min-height: $buttonMinHeight;
+		border-radius: 7.143rem;
+		&:hover {
+			background-color: $inverse_surface_transparent_variant;
+		}
+
+		&:focus {
+			box-shadow: $buttonShadow;
+		}
+	}
+
     .qs-main-page {
         .qs-toggles {
             .qs-page {
@@ -17,6 +32,10 @@
                 }
 
                 .toggles {
+                    &.empty {
+                        min-width: $qsTogglesEmptyWidth;
+                    }
+
                     min-width: $qsTogglesWidth;
                     min-height: $qsTogglesHeight;
       
