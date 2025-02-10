@@ -15,6 +15,11 @@ $red_transparent: color.adjust($red, $alpha: -0.3);
 $shadowTransparent: color.adjust($shadowColor, $alpha: -0.50);
 
 $radius: 1.5rem;
+
+// bar
 $barMediaCoverHeight: 1.2rem;
 $barMediaCoverWidth: 1.2rem;
 $barHeight: 27px;
+
+// qs
+$qsTogglesWidth: 10.7rem;

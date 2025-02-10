@@ -1,6 +1,7 @@
 import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { Variable } from "astal"
+import { applauncherWidth, applauncherBoxTopMargin, applauncherContentWidth, applauncherScrollableHeight } from "../common/Variables"
 
 const MAX_ITEMS = 8
 
@@ -35,7 +36,6 @@ function AppButton({ app }: { app: Apps.Application }) {
 export default function Applauncher() {
     const { CENTER } = Gtk.Align
     const apps = new Apps.Apps()
-    const width = Variable(1000)
 
     const text = Variable("")
     const list = text(text => apps.fuzzy_query(text))
@@ -53,24 +53,24 @@ export default function Applauncher() {
         visible={false}
         onShow={(self) => {
             text.set("")
-            width.set(self.get_current_monitor().workarea.width)
+            applauncherWidth.set(self.get_current_monitor().workarea.width)
         }}
         onKeyPressEvent={function (self, event: Gdk.Event) {
             if (event.get_keyval()[1] === Gdk.KEY_Escape)
                 self.hide()
         }}>
         <box>
-            <eventbox widthRequest={width(w => w / 2)} expand onClick={hide} />
+            <eventbox widthRequest={applauncherWidth(w => w / 2)} expand onClick={hide} />
             <box hexpand={false} vertical>
-                <eventbox heightRequest={100} onClick={hide} />
-                <box widthRequest={500} className={"Applauncher"} vertical>
+                <eventbox heightRequest={applauncherBoxTopMargin} onClick={hide} />
+                <box widthRequest={applauncherContentWidth} className={"Applauncher"} vertical>
                     <entry
                         placeholderText="Search"
                         text={text()}
                         onChanged={self => text.set(self.text)}
                         onActivate={onEnter}
                     />
-                    <scrollable heightRequest={500}>
+                    <scrollable heightRequest={applauncherScrollableHeight}>
                         <box vertical>
                             <box spacing={6} vertical>
                                 {list.as(list => list.map(app => (
@@ -90,7 +90,7 @@ export default function Applauncher() {
                 </box>
                 <eventbox expand onClick={hide} />
             </box>
-            <eventbox widthRequest={width(w => w / 2)} expand onClick={hide} />
+            <eventbox widthRequest={applauncherWidth(w => w / 2)} expand onClick={hide} />
         </box>
     </window>
 }

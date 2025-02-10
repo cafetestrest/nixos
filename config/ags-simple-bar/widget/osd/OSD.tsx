@@ -3,6 +3,7 @@ import { timeout } from "astal/time"
 import Variable from "astal/variable"
 // import Brightness from "../../service/BrightnessService"
 import Wp from "gi://AstalWp"
+import { osdLevelbarWidth } from "../common/Variables"
 
 function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
     // const brightness = Brightness.get_default()
@@ -47,7 +48,7 @@ function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
         >
             <box className={"OSD"}>
                 <icon icon={iconName()} />
-                <levelbar valign={Gtk.Align.CENTER} widthRequest={100} value={value()} />
+                <levelbar valign={Gtk.Align.CENTER} widthRequest={osdLevelbarWidth} value={value()} />
                 <label label={value(v => `${Math.floor(v * 100)}%`)} />
             </box>
         </revealer>
