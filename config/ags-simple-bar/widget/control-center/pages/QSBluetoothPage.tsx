@@ -119,7 +119,7 @@ function BluetoothPageContent() {
 }
 
 export default () => {
-    const name = "bluetooth";
+    const name = "Bluetooth";
 
 	return (
         <QSPage label={name}>

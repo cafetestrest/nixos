@@ -11,8 +11,8 @@ type PageProps = {
 export default ({ label, child, refresh = undefined }: PageProps) => {
 	return (
 		<box
-			name={label}
-			className={`qs-page ${label}`}
+			name={label.toLowerCase()}
+			className={`qs-page ${label.toLowerCase()}`}
 			vertical={true}
 		>
 			<centerbox className="qs-page-header" spacing={12}>
