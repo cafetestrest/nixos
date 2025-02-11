@@ -5,24 +5,66 @@
         border-radius: $radius;
     }
 
-	.control-center__page_header_button {
-		background: $inverse_surface_transparent;
-		color: $on_surface;
-		min-width: $buttonMinHeight;
-		min-height: $buttonMinHeight;
-		border-radius: 7.143rem;
-		&:hover {
-			background-color: $inverse_surface_transparent_variant;
-		}
+    .qs-page {
+        .qs-page-content {
+            // scrolled window, scrollbar, removing frame
+            .frame {
+                border: unset;
+            }
 
-		&:focus {
-			box-shadow: $buttonShadow;
-		}
-	}
+            // removing top and bottom backround - on scroll
+            .top,
+            .bottom {
+                background: transparent;
+            }
+        }
+
+        .qs-page-content {
+            padding-top: 1rem;
+            min-height: $qsPagesHeight;
+        }
+
+        .qs-page-header {
+    		margin-top: 0.5rem;
+        }
+
+        .qspage-item-header {
+            padding: 1rem;
+            border-radius: $radius;
+    		background: $inverseSurfaceTransparent;
+
+            &.active {
+                background: $primaryContainer;
+            }
+
+            icon {
+                margin-right: 1rem;
+            }
+        }
+
+        .qs-page-item {
+            padding: 1rem;
+            border-radius: 0;
+
+            &:first-child {
+                border-top-left-radius: $radius * 0.6;
+                border-top-right-radius: $radius * 0.6;
+            }
+
+            &:last-child {
+                border-bottom-left-radius: $radius * 0.6;
+                border-bottom-right-radius: $radius * 0.6;
+            }
+
+            icon {
+                margin-right: 1rem;
+            }
+        }
+    }
 
     .qs-main-page {
         .qs-toggles {
-            .qs-page {
+            .qs-toggles-page {
                 .toggles-space {
                     margin: $togglesSpace;
                 }
@@ -92,6 +134,8 @@
             }
 
             trough {
+                background: $inverseSurfaceTransparent;
+
                 highlight,
                 progress {
                     background: $accentGradient;

@@ -28,7 +28,7 @@ function QSEmptyButton() {
 function FirstPage() {
   return (
     <box
-      className={"qs-page"}
+      className={"qs-toggles-page"}
       name={"qs-page-first"}
       vertical
     >
@@ -61,7 +61,7 @@ function FirstPage() {
 function SecondPage() {
   return (
     <box
-      className={"qs-page"}
+      className={"qs-toggles-page"}
       name={"qs-page-second"}
       vertical
     >

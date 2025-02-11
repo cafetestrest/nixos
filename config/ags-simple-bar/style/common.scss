@@ -1,0 +1,18 @@
+@use "./variables.scss" as *;
+
+switch {
+    padding: 5px;
+
+    &:checked {
+        background-color: $accent;
+    }
+}
+
+switch slider {
+    background-color: $bg-color;
+    box-shadow: none;
+}
+
+switch:checked slider {
+    background-color: $bg-color;
+}

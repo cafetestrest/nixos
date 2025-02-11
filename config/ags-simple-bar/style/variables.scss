@@ -6,12 +6,15 @@ $accent: #51a4e7;
 $error: red;
 $red: #e55f86;
 $shadowColor: #eeeeee;
+$primaryContainer: #73342c;
+$inverseSurface: #f1dedc;
 
 $accentTransparent: color.adjust($accent, $alpha: -0.4);
 $hover: color.adjust($shadowColor, $alpha: -0.80);
 $osd: color.adjust(gray, $alpha: -0.30);
 $redTransparent: color.adjust($red, $alpha: -0.3);
 $shadowTransparent: color.adjust($shadowColor, $alpha: -0.5);
+$inverseSurfaceTransparent: color.adjust($inverseSurface, $alpha: -0.92);
 
 $accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
 
@@ -41,3 +44,7 @@ $qsTogglesLabelMarginLeft: 0.6rem;
 // qs volume slider
 $qsSliderHighlightWidth: 2.2rem;
 $qsSliderIconMarginLeft: 0.6rem;
+
+// qs pages min-height
+// $qsPagesHeight: 20rem;
+$qsPagesHeight: 0rem;

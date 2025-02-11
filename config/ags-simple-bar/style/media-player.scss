@@ -9,6 +9,8 @@ window {
 }
 
 box.MediaPlayer {
+    margin-top: 1rem;
+
     padding: .6rem;
     background-color: $bg-color;
     border-radius: $radius;
@@ -28,20 +30,33 @@ box.MediaPlayer {
 
         trough {
             min-height: 8px;
+            border-radius: $radius;
+        }
+
+        progress {
+            border-radius: $radius;
         }
 
         highlight {
             background-color: $fg-color;
+            border-radius: $radius;
+
+            &:hover {
+                box-shadow: $togglesHoverShadow;
+            }
+
+            &:focus {
+                box-shadow: $togglesShadowActive;
+            }
         }
 
         slider {
             all: unset;
+            border-radius: $radius;
         }
     }
 
     centerbox.actions {
-        min-width: 220px;
-
         button {
             min-width: 0;
             min-height: 0;

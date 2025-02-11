@@ -1,33 +1,31 @@
 import { Gtk } from "astal/gtk3";
-import { Binding } from "astal";
 import { qsPage } from "../../common/Variables";
 import icons from "../../../lib/icons";
 
 type PageProps = {
 	label: string;
 	child?: JSX.Element;
-	scanning?: Binding<boolean>;
 	refresh?: () => void;
 };
 
-export default ({ label, child, scanning, refresh = undefined }: PageProps) => {
+export default ({ label, child, refresh = undefined }: PageProps) => {
 	return (
 		<box
-			name={label.toLowerCase()}
-			className={`control-center__page ${label.toLowerCase()}`}
+			name={label}
+			className={`qs-page ${label}`}
 			vertical={true}
 		>
-			<centerbox className="control-center__page_header" spacing={12}>
+			<centerbox className="qs-page-header" spacing={12}>
 				<button
 					hexpand={false}
 					halign={Gtk.Align.START}
-					className="control-center__page_header_button"
-					onClicked={() => controlCenterPage.set("main")}
+					className="qs-page-header-button"
+					onClicked={() => qsPage.set("main")}
 				>
 					<icon icon={icons.ui.arrow.left} className={"page-icon"} />
 				</button>
 				<label
-					className="control-center__page_header_title"
+					className="qs-page-header-title"
 					halign={Gtk.Align.CENTER}
 					hexpand={true}
 					label={label}
@@ -36,16 +34,16 @@ export default ({ label, child, scanning, refresh = undefined }: PageProps) => {
 					<button
 						halign={Gtk.Align.END}
 						hexpand={false}
-						className="control-center__page_header_button"
+						className="qs-page-header-button"
 						onClicked={refresh}
 					>
 						<icon hexpand={false} icon={icons.ui.refresh} className={"page-icon"} />
 					</button>
 				) : (
-					<box />
+					<box visible={false}/>
 				)}
 			</centerbox>
-			<scrollable vexpand={true} className="control-center__page_content">
+			<scrollable vexpand={true} className="qs-page-content">
 				{child}
 			</scrollable>
 		</box>

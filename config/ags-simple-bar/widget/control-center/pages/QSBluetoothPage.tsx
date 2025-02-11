@@ -2,88 +2,128 @@ import { Gdk, Gtk } from "astal/gtk3";
 import { bind, timeout } from "astal";
 import Bluetooth from "gi://AstalBluetooth"
 import icons from "../../../lib/icons";
-import { qsPage } from "../../common/Variables";
+import QSPage from "./QSPage";
 
-function BluetoothPage() {
+type DeviceItemProps = {
+	device: Bluetooth.Device;
+    bluetooth: Bluetooth.Bluetooth;
+};
+
+const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
+	return (
+		<button
+			className="qs-page-item"
+			on_clicked={() => {
+				if (!bluetooth.isPowered) {
+					bluetooth.toggle();
+				}
+				timeout(100, () => {
+					device.connect_device(() => {});
+				});
+			}}
+			visible={device.name !== null}
+		>
+			<box>
+				<icon icon={device.icon === null ? icons.bluetooth.enabled : device.icon + "-symbolic"} />
+				<label label={device.name} />
+
+				<label
+					className="bluetooth-device-percentage"
+					// label={power.as((arr) => {
+					// 	const upowerData = arr.find(item => item.model === device.name) || false
+					// 	if (upowerData && upowerData?.batteryPercentage) {
+					// 		return upowerData.batteryPercentage + "%";
+					// 	}
+					// 	return "";
+					// })}
+					// visible={power.as((arr) => {
+					// 	const upowerData = arr.find(item => item.model === device.name) || false
+					// 	if (upowerData && upowerData?.batteryPercentage) {
+					// 		return true;
+					// 	}
+					// 	return false;
+					// })}
+				/>
+				<box hexpand />
+				{/* {
+					<Spinner visible={bind(device, "connecting")} />
+				} */}
+				<icon
+					icon={icons.ui.tick}
+					visible={bind(device, "connected").as(
+						(connected) => connected,
+					)}
+				/>
+			</box>
+		</button>
+	);
+};
+
+function BluetoothPageContent() {
     const bluetooth = Bluetooth.get_default();
+    const isPowered = bind(bluetooth, "isPowered");
 
 	return (
-        <eventbox
-            onClickRelease={(_, event) => {
-                if (event.button !== Gdk.BUTTON_PRIMARY) return;
-                // bluetooth.toggle();
-            }}
+        <box
+            vertical
+            spacing={8}
+            className={"qspage-scrollable-content"}
         >
-            <box>
-                <icon
-                    icon={bind(bluetooth, "isPowered").as((status) =>
-                        status
-                            ? icons.bluetooth.enabled
-                            : icons.bluetooth.disabled,
-                    )}
-                />
-                <label
-                    label={bind(bluetooth, "isPowered").as((status) =>
-                        status ? "On" : "Off",
-                    )}
-                    hexpand
-                    halign={Gtk.Align.START}
-                />
-                <switch
-                    hexpand={false}
-                    halign={Gtk.Align.END}
-                    valign={Gtk.Align.CENTER}
-                    active={bind(bluetooth, "isPowered")}
-                    onActivate={({ active }) =>
-                        (bluetooth.isPowered = active)
-                    }
-                />
+            <eventbox
+                onClickRelease={(_, event) => {
+                    if (event.button !== Gdk.BUTTON_PRIMARY) return;
+                    bluetooth.toggle();
+                }}
+                className={"qspage-eventbox"}
+            >
+                <box
+                    className={isPowered.as((status) => {
+                        if (status) {
+                            return "qspage-item-header active";
+                        }
+                        return "qspage-item-header";
+                    })}
+                >
+                    <icon
+                        icon={isPowered.as((status) =>
+                            status
+                                ? icons.bluetooth.enabled
+                                : icons.bluetooth.disabled,
+                        )}
+                    />
+                    <label
+                        label={isPowered.as((status) =>
+                            status ? "On" : "Off",
+                        )}
+                        hexpand
+                        halign={Gtk.Align.START}
+                    />
+                    <switch
+                        hexpand={false}
+                        halign={Gtk.Align.END}
+                        valign={Gtk.Align.CENTER}
+                        active={isPowered}
+                        onActivate={({ active }) =>
+                            (bluetooth.isPowered = active)
+                        }
+                    />
+                </box>
+            </eventbox>
+            <box vertical spacing={4}>
+                {bind(bluetooth, "devices").as((devices) =>
+                    devices.map((device) => <DeviceItem device={device} bluetooth={bluetooth} />),
+                )}
             </box>
-        </eventbox>
+        </box>
     );
 }
 
 export default () => {
     const name = "bluetooth";
-    const refresh = false;
 
 	return (
-        <box
-			name={name}
-			className="qs-bluetooth-page"
-            vertical={true}
-        >
-			<centerbox className="qs-page-header" spacing={12}>
-            <button
-					hexpand={false}
-					halign={Gtk.Align.START}
-					className="qs-page-header-button"
-					onClicked={() => qsPage.set("main")}
-				>
-					<icon icon={icons.ui.arrow.left} className={"page-icon"} />
-				</button>
-                <label
-					className="qs-page-header-title"
-					halign={Gtk.Align.CENTER}
-					hexpand={true}
-					label={name}
-				/>
-                {refresh ? (
-					<button
-						halign={Gtk.Align.END}
-						hexpand={false}
-						className="qs-page-header-button"
-						// onClicked={refresh}
-					>
-						<icon hexpand={false} icon={icons.ui.refresh} className={"page-icon"} />
-					</button>
-				) : (
-					<box visible={false}/>
-				)}
-            </centerbox>
-            <scrollable vexpand={true} className="control-center__page_content">
-                <BluetoothPage/>
-			</scrollable>
-        </box>
+        <QSPage label={name}>
+            <BluetoothPageContent />
+        </QSPage>
     );
 }
