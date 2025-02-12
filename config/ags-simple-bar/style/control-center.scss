@@ -72,6 +72,34 @@
             background: $inverseSurfaceTransparent;
             border-radius: $radius * 1.5;
 
+            .qs-menu-icon {
+                color: red;
+            }
+
+            .qs-menu-screen-record-content {
+                icon {
+                    margin-right: 1rem;
+                }
+            }
+
+            .menu-button {
+                padding: 0.5rem 1.5rem;
+                &.filled {
+                    background: $accentGradient;
+                    color: $bg-color;
+                }
+
+                &.outlined {
+                    background: none;
+                    border: 1px solid $shadowTransparent;
+                }
+
+                &:hover,
+                &:focus {
+                    box-shadow: $togglesHoverShadow;
+                }
+            }
+
             button {
                 background: $bg-color;
 

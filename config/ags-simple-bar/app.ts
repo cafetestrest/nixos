@@ -16,7 +16,8 @@ function main() {
     Applauncher();
     Dashboard();
     // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
-    reloadScss('style/control-center.scss', '/tmp/astal/style.css', 'style/main.scss');
+    reloadScss('style/common.scss', '/tmp/astal/style.css', 'style/main.scss');
+    // reloadScss('style/control-center.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/workspaces.scss', '/tmp/astal/style.css', 'style/main.scss');
 
     for (const gdkmonitor of App.get_monitors()) {

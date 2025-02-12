@@ -5,8 +5,10 @@ import IdleToggle from "./IdleToggle";
 import { qsTogglesPage } from "../../common/Variables";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
-import BluetoothToggle from "./BluetoothToggle";
 import { QSSpaceBetweenToggleBoxes, QSSpaceBetweenToggles } from "../pages/QSMainPage";
+import BluetoothToggle from "./BluetoothToggle";
+import ScreenRecordToggle from "./ScreenRecordToggle";
+import QSScreenRecordMenu from "../menu/QSScreenRecordMenu";
 
 function QSEmptyButton() {
   return (
@@ -40,8 +42,8 @@ function FirstPage() {
       <box>
         <IdleToggle />
         <QSSpaceBetweenToggles/>
-        <QSEmptyButton />
-        {/* <ScreenRecordToggle /> */}
+        {/* <QSEmptyButton /> */}
+        <ScreenRecordToggle />
       </box>
     </box>
   );
@@ -81,6 +83,9 @@ export default () => {
         <FirstPage />
         <SecondPage />
       </stack>
+
+      <QSScreenRecordMenu />
+
       <box
         halign={Gtk.Align.CENTER}
         className={"qs-pages-box"} 

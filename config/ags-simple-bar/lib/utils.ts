@@ -21,3 +21,23 @@ export function reloadScss(monitorFilePath: string, targetPath: string, execSass
 		App.apply_css(targetPath);
 	});
 }
+
+export function ensureDirectory(path: string) {
+	if (!GLib.file_test(path, GLib.FileTest.EXISTS))
+		Gio.File.new_for_path(path).make_directory_with_parents(null);
+}
+
+export async function bash(
+	strings: TemplateStringsArray | string,
+	...values: unknown[]
+) {
+	const cmd =
+		typeof strings === "string"
+			? strings
+			: strings.flatMap((str, i) => str + `${values[i] ?? ""}`).join("");
+
+	return execAsync(["bash", "-c", cmd]).catch((err) => {
+		console.error(cmd, err);
+		return "";
+	});
+}

@@ -9,6 +9,15 @@ export const qsTogglesPage = Variable("qs-page-first");
 export const qsPage = Variable("main");
 export const qsRevealSinksButton = Variable(false);
 export const qsRevealSinksSpacing = 16;
+export const qsRevealScreenRecord = Variable(false);
+export const qsRevealScreenRecordSpacing = 16;
+
+// screen record
+export const recordInternalAudioToggle = Variable(false);
+export const recordOnlySelectedScreenToggle = Variable(false);
+export const recordSaveDateFormat = "%Y-%m-%d_%H-%M-%S";
+export const recordScreenrecordsDir = "/Videos/Screenrecords";
+export const recordScreenshotsDir = "/Pictures/Screenshots";
 
 // dashboard
 export const dashboardWidth = Variable(1000);

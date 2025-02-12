@@ -1,104 +1,99 @@
+import { Gtk } from "astal/gtk3";
 import { bind } from "astal";
-import { qsRevealSinksButton, qsRevealSinksSpacing } from "../../common/Variables";
 import icons from "../../../lib/icons";
-import QSMenu from "./QSMenu";
-import AstalWp from "gi://AstalWp";
+import QSMenu, { MenuButton } from "./QSMenu";
+import {
+	qsRevealScreenRecord,
+	qsRevealScreenRecordSpacing,
+	recordInternalAudioToggle,
+	recordOnlySelectedScreenToggle
+} from "../../common/Variables";
+import ScreenRecordService from "../../../service/ScreenRecordService";
 
-let WireplumberService: AstalWp.Wp | null;
-try {
-	WireplumberService = AstalWp.get_default();
-} catch (_) {
-	WireplumberService = null;
+export default () => {
+	return (
+		<QSMenu
+			classname="screen-record"
+			bindVariable={qsRevealScreenRecord}
+			content={[
+				<ScreenRecordMenu />
+			]}
+		/>
+	);
 }
 
-const Audio = WireplumberService && WireplumberService.audio;
+const ScreenRecordMenu = () => {
+	return (
+		<box
+            vertical={true}
+			spacing={qsRevealScreenRecordSpacing}
+		>
+			<icon
+				icon={icons.record}
+				className={"qs-menu-icon"}
+			/>
+             <label
+                 label={"Start recording?"}
+                 className={"qs-menu-label"}
+             />
+			 <box
+	            vertical={true}
+				className={"qs-menu-screen-record-content"}
+			 >
+				<box>
+					<icon icon={icons.audio.mic.high} />
+					<label label={"Record audio"} />
+					<switch
+						hexpand
+						halign={Gtk.Align.END}
+						active={false}
+						setup={(self) => {
+							self.connect('notify::active', () => {
+								ScreenRecordService.setAudioRecord(self.active)
+							});
 
-export const ScreenRecordButton = () => {
-    return (
-        <button
-            className={"qs-screen-record-button"}
-            onClicked={() => {
-    			qsRevealSinksButton.set(!qsRevealSinksButton.get())
-            }}
-        >
-            <icon
-                icon={icons.record}
-            />
-        </button>
-    );
-}
+							self.hook(recordInternalAudioToggle, () => {
+								self.active = false;
+							})
+						}}
+					/>
+				</box>
+				<box>
+					<icon icon={icons.select} />
+					<label label={"Record only selected size"} />
+					<switch
+						hexpand
+						halign={Gtk.Align.END}
+						active={false}
+						setup={(self) => {
+							self.connect('notify::active', () => {
+								ScreenRecordService.setRecordSelected(self.active)
+							});
 
-// const SinkMenu = () => {
-// 	const speaker = AstalWp.get_default()?.audio.defaultSpeaker!;
-
-//     return (
-//         <box
-//             vertical={true}
-//             spacing={qsRevealSinksSpacing}
-//             // className={"sink-box"}
-//         >
-//             <label
-//                 label={"Audio source"}
-//                 className={"qs-menu-label"}
-//             />
-//             {bind(Audio, "speakers").as((speakers) => {
-//                 return speakers.map((speaker) => {
-//                     return (
-//                         <button
-//                             onClicked={() => {
-//                                 speaker.set_is_default(true);
-//                             }}
-//                         >
-//                             <box>
-//                                 <icon
-//                                     icon={bind(speaker, "icon").as((icon) => {
-// 										switch (icon) {
-// 											case 'audio-headset-bluetooth':
-// 											case 'audio-headset-analog-usb':
-// 												return icons.audio.type.headset;
-// 											case 'audio-card-analog-usb':
-// 												return icons.audio.type.speaker;
-// 											case 'audio-card-analog-pci':
-// 												return icons.audio.volume.high;
-// 											default:
-// 												return icons.audio.type.card;
-// 										}
-//                                     })}
-//                                 />
-//                                 <box hexpand />
-//                                 <label
-//                                     label={bind(speaker, "description").as((desc) => {
-//                                         if (desc.includes("HDMI Audio"))
-// 											return "HDMI Audio";
-
-// 										if (desc.includes("USB"))
-// 											return "USB Audio";
-
-// 										return desc;
-//                                     })}
-//                                     truncate
-//                                     maxWidthChars={40}
-//                                 />
-//                                 <box hexpand />
-//                                 <icon
-//                                     visible={bind(speaker, "is_default")}
-//                                     icon={icons.ui.tick}
-//                                 />
-//                             </box>
-//                         </button>
-//                     );
-//                 })
-//             })}
-//         </box>
-//     );
-// };
-
-// export const SinkRevealer = () => Audio && (
-//     <QSMenu
-//         classname="sink-selector"
-//         bindVariable={qsRevealSinksButton}
-//         content={[
-//             <SinkMenu />
-//         ]}
-//     />
-// );
+							self.hook(recordOnlySelectedScreenToggle, () => {
+								self.active = false;
+							})
+						}}
+					/>
+				</box>
+			</box>
+			<box
+				spacing={qsRevealScreenRecordSpacing * 0.5}
+				hexpand
+				halign={Gtk.Align.END}
+			>
+				<MenuButton buttonType="outlined" onClicked={() => qsRevealScreenRecord.set(false)}>
+					Cancel
+				</MenuButton>
+				<MenuButton
+					onClicked={() => {
+						qsRevealScreenRecord.set(false);
+						ScreenRecordService.start();
+					}}
+				>
+					Start
+				</MenuButton>
+			</box>
+		</box>
+	);
+};

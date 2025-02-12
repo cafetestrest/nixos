@@ -6,6 +6,11 @@ switch {
     &:checked {
         background-color: $accent;
     }
+
+    &:focus,
+    &:hover {
+        box-shadow: $togglesHoverShadow;
+    }
 }
 
 switch slider {

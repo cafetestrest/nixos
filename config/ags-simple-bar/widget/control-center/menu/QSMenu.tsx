@@ -1,5 +1,10 @@
-import { Gtk } from "astal/gtk3";
+import { Gtk, Widget } from "astal/gtk3";
 import { bind, Variable } from "astal";
+
+type ButtonProps = Widget.ButtonProps & {
+	buttonType?: "filled" | "tonal" | "outlined" | "text";
+	child?: JSX.Element; // when only one child is passed
+};
 
 export default ({
     classname,
@@ -19,3 +24,19 @@ export default ({
         </revealer>
     );
 }
+
+export const MenuButton = ({
+	className,
+	buttonType = "filled",
+	child,
+	focusOnClick,
+	...props
+}: ButtonProps) => (
+	<button
+		className={`menu-button ${buttonType} ${className}`}
+		focusOnClick={false}
+		{...props}
+	>
+		{child}
+	</button>
+);
