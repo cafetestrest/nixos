@@ -22,6 +22,7 @@ $accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
 // $togglesShadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
 $togglesHoverShadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.2);
 $togglesShadowActive: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+$buttonShadowActive: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
 
 $radius: 1.5rem;
 
@@ -33,6 +34,7 @@ $barHeight: 27px;
 // qs
 $togglesSpace: 0 0.2rem;
 $togglesBoxSpace: 0.4rem;
+$qsElementsTopMargin: 0.5rem;
 
 // qs toggles
 $qsTogglesWidth: 10.7rem;
@@ -44,3 +46,6 @@ $qsTogglesLabelMarginLeft: 0.6rem;
 // qs volume slider
 $qsSliderHighlightWidth: 2.2rem;
 $qsSliderIconMarginLeft: 0.6rem;
+
+// qs menu
+$qsMenuPadding: 1.5rem;

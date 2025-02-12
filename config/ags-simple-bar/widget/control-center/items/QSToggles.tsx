@@ -6,18 +6,7 @@ import { qsTogglesPage } from "../../common/Variables";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
 import BluetoothToggle from "./BluetoothToggle";
-
-function QSSpaceBetweenToggles() {
-  return (
-    <box className={"toggles-space"} />
-  );
-}
-
-function QSSpaceBetweenToggleBoxes() {
-  return (
-    <box className={"toggles-box-space"} />
-  );
-}
+import { QSSpaceBetweenToggleBoxes, QSSpaceBetweenToggles } from "../pages/QSMainPage";
 
 function QSEmptyButton() {
   return (

@@ -7,6 +7,8 @@ export const visibleQSMainPage = Variable(false);
 // qs
 export const qsTogglesPage = Variable("qs-page-first");
 export const qsPage = Variable("main");
+export const qsRevealSinksButton = Variable(false);
+export const qsRevealSinksSpacing = 16;
 
 // dashboard
 export const dashboardWidth = Variable(1000);

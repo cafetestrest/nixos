@@ -9,7 +9,7 @@ window {
 }
 
 box.MediaPlayer {
-    margin-top: 1rem;
+    margin-top: $qsElementsTopMargin;
 
     padding: .6rem;
     background-color: $bg-color;

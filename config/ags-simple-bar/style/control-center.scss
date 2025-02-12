@@ -66,16 +66,40 @@
     }
 
     .qs-main-page {
+        .menu {
+            margin-top: $qsElementsTopMargin;
+            padding: $qsMenuPadding;
+            background: $inverseSurfaceTransparent;
+            border-radius: $radius * 1.5;
+
+            button {
+                background: $bg-color;
+
+                &:hover {
+                    box-shadow: $togglesHoverShadow;
+                }
+
+                &:focus {
+                    box-shadow: $buttonShadowActive;
+                }
+            }
+
+            .qs-menu-label {
+                font-size: 1.3rem;
+                font-weight: 600;
+            }
+        }
+
+        .toggles-space {
+            margin: $togglesSpace;
+        }
+
+        .toggles-box-space {
+            margin-bottom: $togglesBoxSpace;
+        }
+
         .qs-toggles {
             .qs-toggles-page {
-                .toggles-space {
-                    margin: $togglesSpace;
-                }
-
-                .toggles-box-space {
-                    margin-bottom: $togglesBoxSpace;
-                }
-
                 .toggles {
                     &.empty {
                         min-width: $qsTogglesEmptyWidth;
