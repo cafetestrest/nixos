@@ -62,7 +62,7 @@ export default function OSD(monitor: Gdk.Monitor) {
         <window
             gdkmonitor={monitor}
             className={"OSD"}
-            namespace="osd"
+            namespace={"osd"}
             application={App}
             layer={Astal.Layer.OVERLAY}
             keymode={Astal.Keymode.ON_DEMAND}

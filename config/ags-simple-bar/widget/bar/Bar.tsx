@@ -79,6 +79,7 @@ export default function Bar(monitor: Gdk.Monitor) {
     const _qsPagePopover = (
         <Popover
             name={"quicksettings"}
+            namespace={"control-center"}
             className={"Popup"}
             onClose={() => visibleQSMainPage.set(false)}
             visible={visibleQSMainPage()}
@@ -101,6 +102,7 @@ export default function Bar(monitor: Gdk.Monitor) {
     const _powermenuPopover = (
         <PopoverCenter
             name={"powermenu"}
+            namespace={"powermenu"}
             className={"Popup"}
             onClose={() => visiblePowermenu.set(false)}
             visible={visiblePowermenu()}
@@ -151,6 +153,7 @@ export default function Bar(monitor: Gdk.Monitor) {
 
     return <window
         className={"Bar"}
+        namespace={"bar"}
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}>

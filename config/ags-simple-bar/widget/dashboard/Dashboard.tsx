@@ -8,6 +8,7 @@ function hide() {
 export default function Dashboard() {
     return <window
         name="dashboard"
+        namespace={"dashboard"}
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.IGNORE}
         keymode={Astal.Keymode.ON_DEMAND}
