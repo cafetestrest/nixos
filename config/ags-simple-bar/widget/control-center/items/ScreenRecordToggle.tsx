@@ -16,6 +16,7 @@ export default () => {
             icon={icons.record}
             label={"Screen record"}
             hasArrow={true}
+            revelaer="screen-record"
         />
     );
 }

@@ -16,6 +16,9 @@ export const qsRevealScreenshotSpacing = 16;
 export const qsRevealLightstrip = Variable(false);
 export const qsRevealLightstripSpacing = 16;
 
+// weather
+export const qsWeatherScheduleDays = 5;
+
 // screen record
 export const recordInternalAudioToggle = Variable(false);
 export const recordOnlySelectedScreenToggle = Variable(false);
@@ -39,3 +42,22 @@ export const osdLevelbarWidth = 100;
 
 // wifi
 export const hasWifi = false;
+
+// function to close all revealers when hitting any button in qs
+export function qsRevertRevealerStatus(str: string) {
+    if (str !== "screen-record") {
+        qsRevealScreenRecord.set(false);
+    }
+
+    if (str !== "screenshot") {
+        qsRevealScreenshot.set(false);
+    }
+
+    if (str !== "lightstrip") {
+        qsRevealLightstrip.set(false);
+    }
+
+    if (str !== "sinks") {
+        qsRevealSinksButton.set(false);
+    }
+}

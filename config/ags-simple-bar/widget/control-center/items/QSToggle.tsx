@@ -2,6 +2,7 @@ import { Gtk, Gdk, Widget, Astal } from "astal/gtk3";
 import { Subscribable} from "astal/binding";
 import { Binding } from "astal";
 import icons from "../../../lib/icons";
+import { qsRevertRevealerStatus } from "../../common/Variables";
 
 type QSToggleProps = {
 	icon: Widget.IconProps["icon"] | Binding<string>;
@@ -9,6 +10,7 @@ type QSToggleProps = {
 	onPrimaryClick?: () => void;
 	className?: [Subscribable<unknown>, () => string] | Binding<string>;
     hasArrow?: boolean;
+    revelaer?: string;
 } & Widget.ButtonProps;
 
 export default ({
@@ -17,6 +19,7 @@ export default ({
     icon,
 	label,
     hasArrow,
+    revelaer,
 	...props
 }: QSToggleProps) => {
     return (
@@ -28,6 +31,7 @@ export default ({
 					case Gdk.BUTTON_SECONDARY:
 					case Gdk.BUTTON_MIDDLE:
                         if (onPrimaryClick) {
+                            qsRevertRevealerStatus(revelaer ?? "");
 							onPrimaryClick();
 						}
 						break;

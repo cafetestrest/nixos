@@ -66,6 +66,14 @@
     }
 
     .qs-main-page {
+        .weather {
+            margin-top: $qsElementsTopMargin;
+        }
+
+        box.MediaPlayer {
+            margin-top: $qsElementsTopMargin * 1.25;
+        }
+
         .menu {
             margin-top: $qsElementsTopMargin;
             padding: $qsMenuPadding;

@@ -1,5 +1,5 @@
 import { bind } from "astal";
-import { qsRevealSinksButton, qsRevealSinksSpacing } from "../../common/Variables";
+import { qsRevealSinksButton, qsRevealSinksSpacing, qsRevertRevealerStatus } from "../../common/Variables";
 import icons from "../../../lib/icons";
 import QSMenu from "./QSMenu";
 import AstalWp from "gi://AstalWp";
@@ -18,6 +18,7 @@ export const SinkButton = () => {
         <button
             className={"qs-sink-button"}
             onClicked={() => {
+                qsRevertRevealerStatus("sinks");
     			qsRevealSinksButton.set(!qsRevealSinksButton.get())
             }}
         >

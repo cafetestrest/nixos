@@ -1,0 +1,104 @@
+@use "./variables.scss" as *;
+
+.weather-info {
+    border-radius: 1.067rem;
+    padding: 0.55em;
+}
+
+.weather-temperature {
+    margin-bottom: 0.6em;
+}
+
+//main popup box
+.weather-popup-box {
+	padding: 0.8rem;
+}
+
+.weather {
+	//weather popup
+	.weather-info {
+		.weather-icon{
+			font-size: 1.5em;
+			margin-top: 0.3em;
+			margin-bottom: 0.15em;
+		}
+
+		.weather-temperature {
+			all: unset;
+			font-size: 1.2em;
+			margin-left: 0.5em;
+		}
+	}
+
+	.weather-spacing {
+		padding-left: 0.6rem;
+	}
+
+	.qs-weather-box-child {
+		.weather-icon {
+			font-size: 1.5em;
+		}
+	}
+
+	.qsweather-widget {
+		margin: 0;
+		padding: 0;
+		border-radius: 1.067rem;
+	}
+
+	.qs-weather-box-main {
+		margin: 0.5em;
+
+		.weather-icon {
+			font-size: 2.42em;
+			margin-left: 0.5em;
+		}
+
+		.weather-temperature {
+			all: unset;
+			font-size: 1.6em;
+		}
+
+		.weather-rain {
+			margin-left: 1.2em;
+		}
+
+		.weather-hour {
+			margin-right: 1em;
+		}
+	}
+
+	.qs-weather-box-child {
+		padding-bottom: 0.7em;
+
+		.weather-icon {
+			margin-top: 0.3em;
+			font-size: 1.6rem;
+		}
+
+		.weather-temperature {
+			all: unset;
+			margin-bottom: 0.2em;
+			font-size: 1.333rem;
+		}
+	}
+}
+
+// fix to keep topbar on the correct height
+// TODO make min width and height part of variables
+.weather.panel-button label{
+    font-size: 1.067rem;
+}
+
+.weather-popup .qs-weather-box-main {
+	min-width: 16.5em;
+}
+
+.weather-popup .weather-info {
+    min-width: 5em;
+    min-height: 10em;
+}
+
+.weather-popup .qs-weather-box-child {
+	min-width: 5em;
+}

@@ -16,6 +16,7 @@ export default () => {
             icon={icons.screenshot}
             label={"Screenshot"}
             hasArrow={true}
+            revelaer="screenshot"
         />
     );
 }

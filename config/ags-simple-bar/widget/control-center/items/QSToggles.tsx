@@ -2,7 +2,7 @@ import { bind, Variable } from "astal"
 import { App, Gtk, Astal, Gdk } from "astal/gtk3";
 import NightlightToggle from "./NightlightToggle";
 import IdleToggle from "./IdleToggle";
-import { qsTogglesPage } from "../../common/Variables";
+import { qsTogglesPage, qsRevertRevealerStatus } from "../../common/Variables";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
 import { QSSpaceBetweenToggleBoxes, QSSpaceBetweenToggles } from "../pages/QSMainPage";
@@ -108,7 +108,10 @@ export default () => {
             }
             return "workspace-button";
           })}
-          onClicked={() => qsTogglesPage.set("qs-page-first")}
+          onClicked={() => {
+            qsRevertRevealerStatus("");
+            qsTogglesPage.set("qs-page-first");
+          }}
         >
           <box className={"workspace-dot"} />
         </button>
@@ -119,7 +122,10 @@ export default () => {
             }
             return "workspace-button";
           })}
-          onClicked={() => qsTogglesPage.set("qs-page-second")}
+          onClicked={() => {
+            qsRevertRevealerStatus("");
+            qsTogglesPage.set("qs-page-second");
+          }}
         >
           <box className={"workspace-dot"} />
         </button>

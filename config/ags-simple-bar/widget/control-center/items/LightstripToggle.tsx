@@ -16,6 +16,7 @@ export default () => {
             icon={icons.brightness.indicator}
             label={"Lightstrip"}
             hasArrow={true}
+            revelaer="lightstrip"
         />
     );
 }
