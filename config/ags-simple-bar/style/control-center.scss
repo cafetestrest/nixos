@@ -72,6 +72,12 @@
             background: $inverseSurfaceTransparent;
             border-radius: $radius * 1.5;
 
+            .qs-menu-content {
+                label {
+                    margin-left: 1rem;                    
+                }
+            }
+
             .qs-menu-icon {
                 color: red;
             }

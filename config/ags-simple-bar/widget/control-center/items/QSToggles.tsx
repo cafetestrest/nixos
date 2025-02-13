@@ -9,6 +9,11 @@ import { QSSpaceBetweenToggleBoxes, QSSpaceBetweenToggles } from "../pages/QSMai
 import BluetoothToggle from "./BluetoothToggle";
 import ScreenRecordToggle from "./ScreenRecordToggle";
 import QSScreenRecordMenu from "../menu/QSScreenRecordMenu";
+import NetworkToggle from "./NetworkToggle";
+import ScreenshotToggle from "./ScreenshotToggle";
+import QSScreenshotMenu from "../menu/QSScreenshotMenu";
+import LightstripToggle from "./LightstripToggle";
+import QSLightstripMenu from "../menu/QSLightstripMenu";
 
 function QSEmptyButton() {
   return (
@@ -42,7 +47,6 @@ function FirstPage() {
       <box>
         <IdleToggle />
         <QSSpaceBetweenToggles/>
-        {/* <QSEmptyButton /> */}
         <ScreenRecordToggle />
       </box>
     </box>
@@ -57,15 +61,22 @@ function SecondPage() {
       vertical
     >
       <box>
-        <button label={"11"} onClicked={() => qsTogglesPage.set("qs-page-first")}/>
-        <button label={"22"}/>
-        <button label={"33"}/>
+        <NetworkToggle />
+        <QSSpaceBetweenToggles/>
+        {/* <QSEmptyButton /> */}
+        <ScreenshotToggle />
       </box>
+      <QSScreenshotMenu />
+
+      <QSSpaceBetweenToggleBoxes/>
+
       <box>
-        <button label={"44"}/>
-        <button label={"55"}/>
-        <button label={"66"}/>
+        <LightstripToggle />
+        <QSSpaceBetweenToggles/>
+        <QSEmptyButton />
       </box>
+
+      <QSLightstripMenu />
     </box>
   );
 }

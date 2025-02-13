@@ -11,6 +11,10 @@ export const qsRevealSinksButton = Variable(false);
 export const qsRevealSinksSpacing = 16;
 export const qsRevealScreenRecord = Variable(false);
 export const qsRevealScreenRecordSpacing = 16;
+export const qsRevealScreenshot = Variable(false);
+export const qsRevealScreenshotSpacing = 16;
+export const qsRevealLightstrip = Variable(false);
+export const qsRevealLightstripSpacing = 16;
 
 // screen record
 export const recordInternalAudioToggle = Variable(false);
