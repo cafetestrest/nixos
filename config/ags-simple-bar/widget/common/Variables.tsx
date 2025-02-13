@@ -36,3 +36,6 @@ export const applauncherScrollableHeight = 500;
 
 // osd
 export const osdLevelbarWidth = 100;
+
+// wifi
+export const hasWifi = false;

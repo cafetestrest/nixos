@@ -1,8 +1,8 @@
-import { bind, Variable } from "astal"
-import { App, Gtk, Astal, Gdk } from "astal/gtk3";
+import { Gtk } from "astal/gtk3";
 import QSMainPage from "./pages/QSMainPage";
 import QSBluetoothPage from "./pages/QSBluetoothPage";
 import { qsPage } from "../common/Variables";
+import QSNetworkPage from "./pages/QSNetworkPage";
 
 export default () => {
     return (
@@ -13,9 +13,7 @@ export default () => {
             >
                 <QSMainPage />
                 <QSBluetoothPage />
-                {/* <BatteryPage /> */}
-                {/* <SpeakerPage /> */}
-                {/* <WifiPage /> */}
+                <QSNetworkPage />
             </stack>
         </box>
     );
