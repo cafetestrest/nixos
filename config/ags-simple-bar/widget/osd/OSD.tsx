@@ -71,7 +71,6 @@ export default function OSD(monitor: Gdk.Monitor) {
             application={App}
             layer={Astal.Layer.OVERLAY}
             keymode={Astal.Keymode.ON_DEMAND}
-            // anchor={Astal.WindowAnchor.BOTTOM}
         >
             <eventbox onClick={() => visible.set(false)}>
                 <OnScreenProgress visible={visible} />

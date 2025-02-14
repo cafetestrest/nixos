@@ -34,7 +34,7 @@ export const dashboardContentWidth = 200;
 // applauncher
 export const namespaceApplauncher = "launcher";
 export const applauncherWidth = Variable(1000);
-export const applauncherBoxTopMargin = 900;
+export const applauncherBoxTopMargin = 800;
 export const applauncherContentWidth = 500;
 export const applauncherScrollableHeight = 370;
 export const applauncherSingleItemHeight = 50;

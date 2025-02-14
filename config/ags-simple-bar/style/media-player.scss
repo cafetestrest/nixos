@@ -36,8 +36,8 @@ box.MediaPlayer {
         }
 
         highlight {
-            background-color: $fg-color;
             border-radius: $radius;
+            background: $accentGradient;
 
             &:hover {
                 box-shadow: $togglesHoverShadow;

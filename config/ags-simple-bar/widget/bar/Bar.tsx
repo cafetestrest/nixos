@@ -17,6 +17,7 @@ import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
 import ControlCenter from "../control-center/ControlCenter"
 import { visibleQSMainPage, visiblePowermenu, qsRevertRevealerStatus } from "../common/Variables"
+import GTop from "gi://GTop";
 
 const Start = () => {
 	return (
