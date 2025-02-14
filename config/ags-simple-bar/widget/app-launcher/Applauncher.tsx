@@ -1,19 +1,26 @@
 import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { Variable } from "astal"
-import { applauncherWidth, applauncherBoxTopMargin, applauncherContentWidth, applauncherScrollableHeight } from "../common/Variables"
+import {
+    applauncherWidth,
+    applauncherBoxTopMargin,
+    applauncherContentWidth,
+    applauncherScrollableHeight,
+    namespaceApplauncher
+} from "../common/Variables"
+import icons from "../../lib/icons"
 
-const MAX_ITEMS = 8
+// const MAX_ITEMS = 8
 
 function hide() {
-    App.get_window("launcher")!.hide()
+    App.get_window(namespaceApplauncher)!.hide()
 }
 
 function AppButton({ app }: { app: Apps.Application }) {
     return <button
         className={"AppButton"}
         onClicked={() => { hide(); app.launch() }}>
-        <box>
+        <box className={"app-button-content"}>
             <icon icon={app.iconName} />
             <box valign={Gtk.Align.CENTER} vertical>
                 <label
@@ -45,7 +52,7 @@ export default function Applauncher() {
     }
 
     return <window
-        name="launcher"
+        name={namespaceApplauncher}
         namespace={"app-launcher"}
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.IGNORE}
@@ -65,27 +72,23 @@ export default function Applauncher() {
             <box hexpand={false} vertical>
                 <eventbox heightRequest={applauncherBoxTopMargin} onClick={hide} />
                 <box widthRequest={applauncherContentWidth} className={"Applauncher"} vertical>
-                    <entry
-                        placeholderText="Search"
-                        text={text()}
-                        onChanged={self => text.set(self.text)}
-                        onActivate={onEnter}
-                    />
-                    <scrollable heightRequest={applauncherScrollableHeight}>
-                        <box vertical>
-                            <box spacing={6} vertical>
-                                {list.as(list => list.map(app => (
-                                    <AppButton app={app} />
-                                )))}
-                            </box>
-                            <box
-                                halign={CENTER}
-                                className={"not-found"}
-                                vertical
-                                visible={list.as(l => l.length === 0)}>
-                                <icon icon="system-search-symbolic" />
-                                <label label="No match found" />
-                            </box>
+                    <box className={"app-launcher-header"}>
+                        <icon
+                            icon={icons.apps.search}
+                        />
+                        <entry
+                            placeholderText="Search"
+                            text={text()}
+                            onChanged={self => text.set(self.text)}
+                            onActivate={onEnter}
+                            hexpand
+                        />
+                    </box>
+                    <scrollable heightRequest={applauncherScrollableHeight} className={"app-launcher-scrollable"}>
+                        <box spacing={6} vertical hexpand>
+                            {list.as(list => list.map(app => (
+                                <AppButton app={app} />
+                            )))}
                         </box>
                     </scrollable>
                 </box>

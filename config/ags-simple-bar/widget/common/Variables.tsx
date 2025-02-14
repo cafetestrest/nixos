@@ -32,10 +32,11 @@ export const dashboardBoxTopMargin = 35;
 export const dashboardContentWidth = 200;
 
 // applauncher
+export const namespaceApplauncher = "launcher";
 export const applauncherWidth = Variable(1000);
-export const applauncherBoxTopMargin = 100;
+export const applauncherBoxTopMargin = 900;
 export const applauncherContentWidth = 500;
-export const applauncherScrollableHeight = 500;
+export const applauncherScrollableHeight = 370;
 
 // osd
 export const osdLevelbarWidth = 100;

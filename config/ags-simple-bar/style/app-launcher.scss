@@ -15,33 +15,9 @@ window#launcher {
     box.Applauncher {
         background-color: $bg-color;
         border-radius: $radius;
-        margin: 1rem;
-        padding: .8rem;
+        // margin: 1rem;
+        // padding: .8rem;
         box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);
-
-        entry {
-            margin-bottom: .8rem;
-        }
-
-        button {
-            min-width: 0;
-            min-height: 0;
-            padding: .5rem;
-
-            icon {
-                font-size: 3em;
-                margin-right: .3rem;
-            }
-
-            label.name {
-                font-weight: bold;
-                font-size: 1.1em
-            }
-
-            label.description {
-                color: gtkalpha($fg-color, .8);
-            }
-        }
 
         box.not-found {
             padding: 1rem;
@@ -54,6 +30,68 @@ window#launcher {
             label {
                 color: gtkalpha($fg-color, .9);
                 font-size: 1.2em;
+            }
+        }
+
+        .app-launcher-header {
+            margin: $appLauncherHeaderMargin;
+
+            icon {
+                margin: $appLauncherEntryMargin;
+                font-size: $appLauncherEntryIconSize;
+            }
+
+            entry {
+                background: none;
+            	box-shadow: none;
+            }
+        }
+
+        .app-launcher-scrollable {
+            border-top: 1px solid $hover;
+            padding: $appLauncherScrollablePadding;
+
+            .frame {
+                border: unset;
+            }
+
+            .top,
+            .bottom {
+                background: transparent;
+            }
+
+            .AppButton {
+                min-width: 0;
+                min-height: 0;
+                padding: $appLauncherButtonPadding;
+                background: unset;
+                border-radius: $radius * 0.4;
+                margin: 0 0.4rem;
+
+                .app-button-content {
+                }
+
+                &:focus {
+                    background: $accent;
+                    color: $bg-color;
+
+                    icon {
+            			-gtk-icon-shadow: 2px 2px $bg-color;
+                    }
+                }
+
+                &:hover {
+                }
+
+                icon {
+                    font-size: $appLauncherButtonIconSize;
+                    margin-right: 1rem;
+                }
+    
+                label.description {
+                    font-weight: 300;
+                    color: gtkalpha($fg-color, .8);
+                }
             }
         }
     }

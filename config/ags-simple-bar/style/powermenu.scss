@@ -4,10 +4,10 @@ window#powermenu {
     .powermenu {
         .powermenu-button {
             padding: 0;
-            margin: 0.5rem;
-            min-width: 7rem;
-            min-height: 7rem;
-            border-radius: 50%;
+            margin: $powermenuButtonMargin;
+            min-width: $powermenuButtonWidth;
+            min-height: $powermenuButtonHeight;
+            border-radius: $powermenuButtonRadius;
 
             &:focus {
                 background: $accentGradient;
