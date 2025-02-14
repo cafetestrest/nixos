@@ -16,8 +16,11 @@ import SysTray from "./items/SysTray"
 import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
 import ControlCenter from "../control-center/ControlCenter"
-import { visibleQSMainPage, visiblePowermenu, qsRevertRevealerStatus } from "../common/Variables"
-import GTop from "gi://GTop";
+import { visibleQSMainPage, visiblePowermenu, qsRevertRevealerStatus, barUsageSpacing } from "../common/Variables"
+import CpuUsage from "../usage/CpuUsage"
+import RamUsage from "../usage/RamUsage"
+import DiskUsage from "../usage/DiskUsage"
+import WeatherButton from "./items/WeatherButton"
 
 const Start = () => {
 	return (
@@ -47,17 +50,17 @@ const End = ({powermenu, systemIndicators}) => {
 	return (
 		<box>
 			<box halign={Gtk.Align.START}>
-				{/* <Weather /> */}
+				<WeatherButton />
 				{/* <Notifications /> */}
 			</box>
 			<box halign={Gtk.Align.END} hexpand>
 				<box className={"recording-box"}>
 					{/* <RecordingIndicator /> */}
 				</box>
-				<box className={"usage-box"}>
-					{/* <CpuUsage /> */}
-					{/* <RamGbUsage /> */}
-					{/* <DiskUsage /> */}
+				<box className={"usage-box"} spacing={barUsageSpacing}>
+					<CpuUsage />
+					<RamUsage />
+					<DiskUsage />
 					{/* <BluetoothPowerUsage /> */}
 				</box>
 				{/* <NoteButton /> */}
@@ -141,7 +144,7 @@ export default function Bar(monitor: Gdk.Monitor) {
             }}
         >
             <box>
-    			<icon icon={icons.powermenu.shutdown} iconSize={45} />
+    			<icon icon={icons.powermenu.shutdown} />
             </box>
         </button>
     );

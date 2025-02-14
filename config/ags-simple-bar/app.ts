@@ -7,6 +7,7 @@ import NotificationPopups from "./widget/notifications/NotificationPopups";
 import Dashboard from "./widget/dashboard/Dashboard";
 import { visibleQSMainPage, visiblePowermenu } from "./widget/common/Variables";
 import { reloadScss } from "./lib/utils";
+import WeatherPopup from "./widget/weather/WeatherPopup";
 
 function main() {
 	const bars = new Map<Gdk.Monitor, Gtk.Widget>();
@@ -15,6 +16,8 @@ function main() {
 
     Applauncher();
     Dashboard();
+    WeatherPopup();
+
     // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/common.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/control-center.scss', '/tmp/astal/style.css', 'style/main.scss');

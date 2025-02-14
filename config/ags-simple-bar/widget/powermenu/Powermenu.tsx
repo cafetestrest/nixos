@@ -2,8 +2,6 @@ import PowermenuService, { PowerMenuAction } from "../../service/PowermenuServic
 import { Widget } from "astal/gtk3"
 import icons from "../../lib/icons";
 
-export const namespacePowermenu = "powermenu";
-
 type PowermenuButtonProps = {
 	action: PowerMenuAction;
 	iconName: string;

@@ -10,9 +10,8 @@
 }
 
 //main popup box
-.weather-popup-box {
-	padding: 0.8rem;
-}
+// .weather-popup-box {
+// }
 
 .weather {
 	//weather popup
@@ -90,15 +89,15 @@
     font-size: 1.067rem;
 }
 
-.weather-popup .qs-weather-box-main {
+window#weather .qs-weather-box-main {
 	min-width: 16.5em;
 }
 
-.weather-popup .weather-info {
+window#weather .weather-info {
     min-width: 5em;
     min-height: 10em;
 }
 
-.weather-popup .qs-weather-box-child {
+window#weather .qs-weather-box-child {
 	min-width: 5em;
 }

@@ -209,7 +209,6 @@ const WeatherBoxChild = (w: TooltipItem) => (
 			<label label={w.hour + "h"} className={"weather-hour"} />,
 			<label label={w.icon} className={"weather-icon"} />,
 			<label label={w.temperature} className={"weather-temperature"} />,
-			<box vexpand={true} />,
 			w.rain != '0 mm' ? <label label={w.rain} className={"weather-rain"} /> : <label />,
 			<label label={"  " + Math.round(Number(w.wind.replace(/kph$/, ''))) + ' kph'} className={"weather-wind"} />,
 		]}
@@ -280,9 +279,9 @@ const WeatherInfo = (weatherData: TooltipItem) => (
 		children={[
 			<label label={weatherData.date.substring(0, 3).toUpperCase()}/>,
 			<label label={weatherData.hour + 'h'}/>,
+			<label />,
 			<label label={weatherData.icon} className={"weather-icon"}/>,
 			<label label={weatherData.temperature} className={"weather-temperature"}/>,
-			<box vexpand={true} />,
 			weatherData.rain != '0 mm' ? <label label={weatherData.rain} /> : <label />,
 			<label label={'↑ ' + weatherData.maxTemp} className={"weather-max"}/>,
 			<label label={'↓ ' + weatherData.minTemp} className={"weather-min"}/>,

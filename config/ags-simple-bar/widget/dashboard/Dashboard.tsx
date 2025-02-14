@@ -1,14 +1,14 @@
 import { App, Astal, Gdk } from "astal/gtk3"
 import { Calendar } from "./calendar/calendar"
-import { dashboardBoxTopMargin, dashboardContentWidth, dashboardWidth } from "../common/Variables"
+import { dashboardBoxTopMargin, dashboardContentWidth, dashboardWidth, namespaceDashboard } from "../common/Variables"
 function hide() {
-    App.get_window("dashboard")!.hide()
+    App.get_window(namespaceDashboard)!.hide()
 }
 
 export default function Dashboard() {
     return <window
-        name="dashboard"
-        namespace={"dashboard"}
+        name={namespaceDashboard}
+        namespace={namespaceDashboard}
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.IGNORE}
         keymode={Astal.Keymode.ON_DEMAND}
