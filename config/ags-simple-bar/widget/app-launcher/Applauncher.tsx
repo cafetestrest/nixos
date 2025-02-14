@@ -1,11 +1,12 @@
 import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
-import { Variable } from "astal"
+import { Variable, bind } from "astal"
 import {
     applauncherWidth,
     applauncherBoxTopMargin,
     applauncherContentWidth,
     applauncherScrollableHeight,
+    applauncherSingleItemHeight,
     namespaceApplauncher
 } from "../common/Variables"
 import icons from "../../lib/icons"
@@ -51,6 +52,8 @@ export default function Applauncher() {
         hide()
     }
 
+    const items = bind(list);
+
     return <window
         name={namespaceApplauncher}
         namespace={"app-launcher"}
@@ -84,7 +87,13 @@ export default function Applauncher() {
                             hexpand
                         />
                     </box>
-                    <scrollable heightRequest={applauncherScrollableHeight} className={"app-launcher-scrollable"}>
+                    <scrollable
+                        heightRequest={items.as((l) => {
+                            return Math.min(l.length * applauncherSingleItemHeight, applauncherScrollableHeight);
+                        })}
+                        visible={items.as((l) => l.length > 0 ? true : false)}
+                        className={"app-launcher-scrollable"}
+                    >
                         <box spacing={6} vertical hexpand>
                             {list.as(list => list.map(app => (
                                 <AppButton app={app} />
