@@ -46,6 +46,7 @@ in
         inputs.ags.packages.${pkgs.system}.mpris
         inputs.ags.packages.${pkgs.system}.bluetooth
         # inputs.ags.packages.${pkgs.system}.auth
+        pkgs.libgtop
       ];
     };
 
