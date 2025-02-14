@@ -5,8 +5,11 @@
 
 window.OSD {
     box.OSD {
+        min-width: $osdMinWidth;
+        min-height: $osdMinWidth;
+
         border-radius: $radius;
-        background-color: $bg-color;
+        background-color: $osd;
         padding: 13px 16px;
         margin: 13px;
         box-shadow: 3px 3px 7px 0 rgba(0,0,0,0.4);
@@ -14,6 +17,10 @@ window.OSD {
 
     icon {
         font-size: 4rem;
+
+        &.muted {
+            color: $bg-color;
+        }
     }
 
     label {
@@ -22,11 +29,22 @@ window.OSD {
 
     levelbar {
         trough {
-            margin: 1px .6rem;
+            border-radius: $radius;
+            background-color: $black;
+            margin: 1px 0;
+
+            .filled {
+                background-color: $shadowColor;
+            }
+
+            .low {
+                min-width: $osdLevelbarLowWidth;
+            }
         }
 
         block {
-            min-height: 2rem;
+            min-height: $osdLevelbarHeight;
+            border-radius: $radius;
         }
     }
 }

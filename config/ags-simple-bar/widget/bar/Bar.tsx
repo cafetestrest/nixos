@@ -16,7 +16,7 @@ import SysTray from "./items/SysTray"
 import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
 import ControlCenter from "../control-center/ControlCenter"
-import { visibleQSMainPage, visiblePowermenu } from "../common/Variables"
+import { visibleQSMainPage, visiblePowermenu, qsRevertRevealerStatus } from "../common/Variables"
 
 const Start = () => {
 	return (
@@ -81,7 +81,10 @@ export default function Bar(monitor: Gdk.Monitor) {
             name={"quicksettings"}
             namespace={"control-center"}
             className={"Popup"}
-            onClose={() => visibleQSMainPage.set(false)}
+            onClose={() => {
+                qsRevertRevealerStatus("");
+                visibleQSMainPage.set(false);
+            }}
             visible={visibleQSMainPage()}
             marginTop={38}
             marginRight={12}

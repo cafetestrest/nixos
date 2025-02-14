@@ -1,5 +1,6 @@
 @use 'sass:color' as color;
 
+$black: #000000;
 $bg-color: #171717;
 $fg-color: #f1f1f1;
 $accent: #51a4e7;
@@ -9,6 +10,7 @@ $shadowColor: #eeeeee;
 $primaryContainer: #73342c;
 $inverseSurface: #f1dedc;
 
+$popupTransparent: color.adjust($black, $alpha: -0.68);
 $accentTransparent: color.adjust($accent, $alpha: -0.4);
 $hover: color.adjust($shadowColor, $alpha: -0.80);
 $osd: color.adjust(gray, $alpha: -0.30);
@@ -49,3 +51,12 @@ $qsSliderIconMarginLeft: 0.6rem;
 
 // qs menu
 $qsMenuPadding: 1.5rem;
+
+// osd
+$osdMinWidth: 12rem;
+$osdLevelbarHeight: 0.8rem;
+$osdLevelbarLowWidth: 0.8rem;
+
+// powermenu
+$powermenuButtonRadius: 100rem;
+$powermenuButtonPadding: 3rem;

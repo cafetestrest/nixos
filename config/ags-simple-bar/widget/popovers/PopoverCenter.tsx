@@ -32,7 +32,6 @@ export default function Popover({
         <window
             {...props}
             setup={self => win = self}
-            css="background-color: transparent"
             keymode={Astal.Keymode.EXCLUSIVE}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
             exclusivity={Astal.Exclusivity.IGNORE}

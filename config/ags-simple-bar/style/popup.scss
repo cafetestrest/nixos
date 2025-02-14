@@ -8,3 +8,7 @@
     border-radius: $radius;
     padding: 12px;
 }
+
+window#powermenu.Popup {
+    background: $popupTransparent;
+}
