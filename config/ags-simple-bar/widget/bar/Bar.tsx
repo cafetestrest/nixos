@@ -30,6 +30,7 @@ import ColorPickerButton from "./items/ColorPickerButton"
 import { bash } from "../../lib/utils"
 import NotificationsRevealerButton from "./items/NotificationsRevealerButton"
 import BluetoothPowerUsage from "../usage/BluetoothPowerUsage"
+import RecordingIndicatorButton from "./items/RecordingIndicatorButton"
 
 const Start = () => {
 	return (
@@ -64,7 +65,7 @@ const End = ({powermenu, systemIndicators}) => {
 			</box>
 			<box halign={Gtk.Align.END} hexpand>
 				<box className={"recording-box"}>
-					{/* <RecordingIndicator /> */}
+					<RecordingIndicatorButton />
 				</box>
 				<box className={"usage-box"} spacing={barUsageSpacing}>
 					<CpuUsage />
@@ -81,6 +82,7 @@ const End = ({powermenu, systemIndicators}) => {
                 {/* <AudioSlider /> */}
                 {/* <Wifi /> */}
                 {/* <BatteryLevel /> */}
+                {/* todo add css to BatteryLevel */}
                 {systemIndicators}
                 {powermenu}
 			</box>

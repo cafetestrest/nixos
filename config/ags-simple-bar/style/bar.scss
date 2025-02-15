@@ -131,4 +131,33 @@ window.Bar {
     .app-launcher-button {
     	color: $accent;
     }
+
+    .bar-notifications-icon,
+    .bar-notifications-label,
+    .bar-last-notification-label {
+    	color: $yellow;
+    }
+
+    .bar-notifications-label {
+        margin-left: 0.2rem;
+    }
+
+    .bar-last-notification-label {
+        margin-left: 0.5rem;
+    }
+
+    .recording-box {
+        margin-right: 0.5rem;
+
+        .recording-indicator-button {
+            padding: 0 0.5rem;
+			background: $error_container;
+			color: $on_error_container;
+
+			&:hover {
+				color: $error_container;
+				background: $on_error_container;
+			}
+		}
+    }
 }

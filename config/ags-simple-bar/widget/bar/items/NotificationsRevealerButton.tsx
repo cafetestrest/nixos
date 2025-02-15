@@ -36,7 +36,7 @@ export default () => {
                 )}
             />
             <label
-                className="bar__notifications_label"
+                className="bar-notifications-label"
                 visible={notifs.as((n) => n.length > 1)}
                 label={notifs.as((n) => n.length > 1 ? n.length + "" : "")}
             />

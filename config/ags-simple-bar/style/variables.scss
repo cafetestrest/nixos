@@ -5,10 +5,13 @@ $bg-color: #171717;
 $fg-color: #f1f1f1;
 $accent: #51a4e7;
 $error: red;
+$error_container: #93000a;
+$on_error_container: #ffdad6;
 $red: #e55f86;
 $shadowColor: #eeeeee;
 $primaryContainer: #73342c;
 $inverseSurface: #f1dedc;
+$yellow: #EBFF71;
 
 $bgTransparent: color.adjust($bg-color, $alpha: -0.05);
 $popupTransparent: color.adjust($black, $alpha: -0.68);
