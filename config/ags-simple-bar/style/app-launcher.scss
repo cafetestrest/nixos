@@ -15,8 +15,6 @@ window#launcher {
     box.Applauncher {
         background: $bgTransparent;
         border-radius: $appLauncherRadius;
-        // margin: 1rem;
-        // padding: .8rem;
         box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);
 
         box.not-found {
@@ -55,6 +53,10 @@ window#launcher {
                 border: unset;
             }
 
+            .overlay-indicator {
+                border-radius: $radius;
+            }
+
             .top,
             .bottom {
                 background: transparent;
@@ -68,9 +70,6 @@ window#launcher {
                 border-radius: $appLauncherRadius;
                 margin: 0 0.4rem;
 
-                .app-button-content {
-                }
-
                 &:focus {
                     background: $accent;
                     color: $bg-color;
@@ -78,9 +77,6 @@ window#launcher {
                     icon {
             			-gtk-icon-shadow: 2px 2px $bg-color;
                     }
-                }
-
-                &:hover {
                 }
 
                 icon {
