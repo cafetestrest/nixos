@@ -74,3 +74,39 @@ export function qsRevertRevealerStatus(str: string) {
         qsRevealSinksButton.set(false);
     }
 }
+
+export function qsToggleRevealer(str: string) {
+    switch (str) {
+        case "screen-record":
+            qsRevealScreenRecord.set(!qsRevealScreenRecord.get());
+            break;
+        case "screenshot":
+            qsRevealScreenshot.set(!qsRevealScreenshot.get());
+            break;
+        case "lightstrip":
+            qsRevealLightstrip.set(!qsRevealLightstrip.get());
+            break;
+        case "sinks":
+            qsRevealSinksButton.set(!qsRevealSinksButton.get());
+            break;
+    }
+}
+
+export function isQSRevealerOpen(): boolean {
+    if (qsRevealScreenRecord.get()) {
+        return true;
+    }
+
+    if (qsRevealScreenshot.get()) {
+        return true;
+    }
+
+    if (qsRevealLightstrip.get()) {
+        return true;
+    }
+
+    if (qsRevealSinksButton.get()) {
+        return true;
+    }
+    return false;
+}

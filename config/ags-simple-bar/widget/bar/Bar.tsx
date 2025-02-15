@@ -16,7 +16,13 @@ import SysTray from "./items/SysTray"
 import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
 import ControlCenter from "../control-center/ControlCenter"
-import { visibleQSMainPage, visiblePowermenu, qsRevertRevealerStatus, barUsageSpacing } from "../common/Variables"
+import {
+    visibleQSMainPage,
+    visiblePowermenu,
+    qsRevertRevealerStatus,
+    barUsageSpacing,
+    isQSRevealerOpen
+} from "../common/Variables"
 import CpuUsage from "../usage/CpuUsage"
 import RamUsage from "../usage/RamUsage"
 import DiskUsage from "../usage/DiskUsage"
@@ -86,7 +92,6 @@ export default function Bar(monitor: Gdk.Monitor) {
             namespace={"control-center"}
             className={"Popup"}
             onClose={() => {
-                qsRevertRevealerStatus("");
                 visibleQSMainPage.set(false);
             }}
             visible={visibleQSMainPage()}

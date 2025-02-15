@@ -10,6 +10,7 @@ $shadowColor: #eeeeee;
 $primaryContainer: #73342c;
 $inverseSurface: #f1dedc;
 
+$bgTransparent: color.adjust($bg-color, $alpha: -0.05);
 $popupTransparent: color.adjust($black, $alpha: -0.68);
 $accentTransparent: color.adjust($accent, $alpha: -0.4);
 $hover: color.adjust($shadowColor, $alpha: -0.80);

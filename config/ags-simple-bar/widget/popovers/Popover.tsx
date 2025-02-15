@@ -1,5 +1,5 @@
 import { Astal, Gdk, Gtk, Widget } from "astal/gtk3"
-
+import { isQSRevealerOpen, qsRevertRevealerStatus, qsPage } from "../common/Variables"
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
 
 type PopoverProps = Pick<
@@ -66,9 +66,26 @@ export default function Popover({
             }}
             // close when hitting Escape
             onKeyPressEvent={(self, event: Gdk.Event) => {
-                if (event.get_keyval()[1] === Gdk.KEY_Escape) {
-                    self.visible = false
+                if (event.get_keyval()[1] !== Gdk.KEY_Escape) {
+                    return;
                 }
+
+                if (self.name !== "quicksettings") {
+                    self.visible = false;
+                    return;
+                }
+
+                if (qsPage.get() !== "main") {
+                    qsPage.set("main");
+                    return;
+                }
+
+                if (isQSRevealerOpen()) {
+                    qsRevertRevealerStatus("");
+                    return;
+                }
+
+                self.visible = false;
             }}
         >
             <box

@@ -13,7 +13,7 @@ window#launcher {
     all: unset;
 
     box.Applauncher {
-        background-color: $bg-color;
+        background: $bgTransparent;
         border-radius: $appLauncherRadius;
         // margin: 1rem;
         // padding: .8rem;

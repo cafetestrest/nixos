@@ -2,7 +2,7 @@ import { Gtk, Gdk, Widget, Astal } from "astal/gtk3";
 import { Subscribable} from "astal/binding";
 import { Binding } from "astal";
 import icons from "../../../lib/icons";
-import { qsRevertRevealerStatus } from "../../common/Variables";
+import { qsRevertRevealerStatus, qsToggleRevealer } from "../../common/Variables";
 
 type QSToggleProps = {
 	icon: Widget.IconProps["icon"] | Binding<string>;
@@ -36,6 +36,17 @@ export default ({
 						}
 						break;
 			}}}
+            onKeyReleaseEvent={(_, event) => {
+				const key = event.get_keyval()[1];
+				if (revelaer && (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter)) {
+                    qsRevertRevealerStatus("");
+                    qsToggleRevealer(revelaer);
+				} else if (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter) {
+					if (onPrimaryClick) {
+						onPrimaryClick();
+					}
+				}
+			}}
             {...props}
         >
             <box
