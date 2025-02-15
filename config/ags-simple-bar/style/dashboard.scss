@@ -1,0 +1,44 @@
+@use "./variables.scss" as *;
+
+@mixin calendar {
+    button {
+        border-radius: $radius;
+    }
+
+    .calendar__button,
+    .calendar-weekdays button {
+        background-color: unset;
+    }
+
+    .calendar__button__today {
+        background: $accentGradient;
+
+        &:hover {
+            box-shadow: $togglesHoverShadow;
+        }
+
+        &:focus {
+            box-shadow: $togglesShadowActive;
+        }
+    }
+
+    .calendar__button__other-month {
+        color: $shadowTransparent;
+    }
+
+    .calendar-weekdays {
+        margin-top: $calendarWeekdaysTopMargin;
+    }
+
+    .calendar__header button {
+        background-color: $inverseSurfaceTransparent;
+    }
+}
+
+window#dashboard .Popup {
+    .dashboard {
+        .calendar {
+            @include calendar;
+        }
+    }
+}

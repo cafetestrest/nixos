@@ -1,5 +1,6 @@
 import { App, Astal, Gdk } from "astal/gtk3"
-import { Calendar } from "./calendar/calendar"
+import Calendar from "./calendar/Calendar"
+
 import { dashboardBoxTopMargin, dashboardContentWidth, dashboardWidth, namespaceDashboard } from "../common/Variables"
 function hide() {
     App.get_window(namespaceDashboard)!.hide()
