@@ -4,7 +4,8 @@ import { namespaceWeather } from "../../common/Variables"
 import { weather } from "../../../service/WeatherService"
 
 export default () => {
-    const weatherData = bind(weather).as((w) => {
+    const weatherBind = bind(weather);
+    const weatherData = weatherBind.as((w) => {
 		let tooltip = weather.get();
 		let indicator = "";
 
@@ -33,6 +34,7 @@ export default () => {
         className={"weather bar-button"}
         onDestroy={() => weather.drop()}
         label={weatherData}
+        visible={weatherBind.as((w) => w && w.length > 0)}
         setup={(self) => {
             const window = App.get_window(namespaceWeather);
             if (window) {

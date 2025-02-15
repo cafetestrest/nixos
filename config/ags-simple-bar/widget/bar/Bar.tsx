@@ -1,5 +1,4 @@
-import { App } from "astal/gtk3"
-import { Variable, bind } from "astal"
+import { bind } from "astal"
 import { Astal, Gtk, Gdk } from "astal/gtk3"
 import PopoverCenter from "../popovers/PopoverCenter"
 import Popover from "../popovers/Popover"
@@ -19,14 +18,18 @@ import ControlCenter from "../control-center/ControlCenter"
 import {
     visibleQSMainPage,
     visiblePowermenu,
-    qsRevertRevealerStatus,
     barUsageSpacing,
-    isQSRevealerOpen
 } from "../common/Variables"
 import CpuUsage from "../usage/CpuUsage"
 import RamUsage from "../usage/RamUsage"
 import DiskUsage from "../usage/DiskUsage"
 import WeatherButton from "./items/WeatherButton"
+import NoteButton from "./items/NoteButton"
+import ScreenshotButton from "./items/ScreenshotButton"
+import ColorPickerButton from "./items/ColorPickerButton"
+import { bash } from "../../lib/utils"
+import NotificationsRevealerButton from "./items/NotificationsRevealerButton"
+import BluetoothPowerUsage from "../usage/BluetoothPowerUsage"
 
 const Start = () => {
 	return (
@@ -57,7 +60,7 @@ const End = ({powermenu, systemIndicators}) => {
 		<box>
 			<box halign={Gtk.Align.START}>
 				<WeatherButton />
-				{/* <Notifications /> */}
+				<NotificationsRevealerButton />
 			</box>
 			<box halign={Gtk.Align.END} hexpand>
 				<box className={"recording-box"}>
@@ -67,11 +70,13 @@ const End = ({powermenu, systemIndicators}) => {
 					<CpuUsage />
 					<RamUsage />
 					<DiskUsage />
-					{/* <BluetoothPowerUsage /> */}
+					<BluetoothPowerUsage />
 				</box>
-				{/* <NoteButton /> */}
-				{/* <ScreenshotButton /> */}
-				{/* <ColorPickerButton /> */}
+                <box className={"bar-buttons"}>
+    				<NoteButton />
+                    <ScreenshotButton />
+				    <ColorPickerButton />
+                </box>
                 <SysTray />
                 {/* <AudioSlider /> */}
                 {/* <Wifi /> */}
@@ -140,10 +145,10 @@ export default function Bar(monitor: Gdk.Monitor) {
                         visiblePowermenu.set(true);
                         break;
                     case Gdk.BUTTON_SECONDARY:
-                        // bash('openstartupapps')//todo
+                        bash('openstartupapps');
                         break;
                     case Gdk.BUTTON_MIDDLE:
-                        // bash('openstartupapps')
+                        bash('openstartupapps');
                         break;
                 }
             }}

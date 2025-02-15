@@ -1,4 +1,4 @@
-import { GObject, exec } from "astal";
+import { GObject, exec, timeout } from "astal";
 // import { toggleWindow } from "../lib/utils";
 // import { namespace } from "../widget/Powermenu";
 import Idle from "./IdleService";
@@ -48,9 +48,9 @@ const PowerMenuSerivce = GObject.registerClass(
 				const current = Idle?.currentProfile();
 				if (current === 0) {
 					Idle?.nextProfile();
-					setTimeout(function() {
-						//do nothing, Idle needs to wait small delay for nextProfile to run
-				   }, 1500);
+					timeout(1500, () => {
+						// do nothing, Idle needs to wait small delay for nextProfile to run
+					});
 				}
 			}
 

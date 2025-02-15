@@ -80,20 +80,19 @@
 }
 
 // fix to keep topbar on the correct height
-// TODO make min width and height part of variables
 .weather.panel-button label{
     font-size: 1.067rem;
 }
 
 window#weather .qs-weather-box-main {
-	min-width: 16.5em;
+	min-width: $weatherMainBoxMinWidth;
 }
 
 window#weather .weather-info {
-    min-width: 5em;
-    min-height: 10em;
+    min-width: $weatherweatherInfoMinWidth;
+    min-height: $weatherweatherInfoMinHeight;
 }
 
 window#weather .qs-weather-box-child {
-	min-width: 5em;
+	min-width: $weatherChildBoxMinWidth;
 }

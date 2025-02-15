@@ -1,7 +1,7 @@
 import { bind, Variable } from "astal";
 import { diskUsageSpacing } from "../common/Variables";
 
-export const disk = Variable<string>("").poll(
+const disk = Variable<string>("").poll(
 	600_000,
 	"df -h /",
 	(out) => {
