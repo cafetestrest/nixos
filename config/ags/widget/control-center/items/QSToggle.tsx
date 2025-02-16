@@ -39,7 +39,7 @@ export default ({
             onKeyReleaseEvent={(_, event) => {
 				const key = event.get_keyval()[1];
 				if (revelaer && (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter)) {
-                    qsRevertRevealerStatus("");
+                    qsRevertRevealerStatus(revelaer ?? "");
                     qsToggleRevealer(revelaer);
 				} else if (key === Gdk.KEY_Return || key === Gdk.KEY_space || key === Gdk.KEY_KP_Enter) {
 					if (onPrimaryClick) {
