@@ -37,7 +37,6 @@ eventbox.Notification {
         min-width: $notificationMinWidth;
         border-radius: $radius;
         background-color: $bgColor;
-        // box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);//todo
         border: 1pt solid gtkalpha($fgColor, .03);
     }
 

@@ -84,7 +84,7 @@ export default {
 		enabled: "bluetooth-active-symbolic",
 		disabled: "bluetooth-disabled-symbolic",
 	},
-	todo: {
+	reminder: {
 		checkedAlt: "selection-mode-symbolic",
 		checked: "radio-checked-symbolic",
 		unchecked: "radio-symbolic",
