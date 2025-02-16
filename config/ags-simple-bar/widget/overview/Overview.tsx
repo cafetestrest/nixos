@@ -68,8 +68,8 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 	>
 		<icon
 			css={`
-				min-width: ${w * overviewScale}px;
-            	min-height: ${h * overviewScale}px;
+				min-width: ${w * overviewScale - 20}px;
+            	min-height: ${h * overviewScale - 13}px;
 			`}
 			setup={(self) => {
                 const cls = c;
@@ -103,8 +103,8 @@ const Workspace = (index: number) => {
 			})}
 			halign={Gtk.Align.CENTER}
 			css={`
-				min-width: ${3840 * overviewScale}px;
-            	min-height: ${2160 * overviewScale}px;
+				min-width: ${Hyprland.get_focused_monitor().width * overviewScale}px;
+            	min-height: ${Hyprland.get_focused_monitor().height * overviewScale}px;
 			`}
 			id={index}
 			attribute={(clients) => {
@@ -123,7 +123,6 @@ const Workspace = (index: number) => {
 			<eventbox
 				className={"eventbox"}
 				hexpand
-				// vexpand
 				onClick={() => {
 					workspace(index)
 				}}

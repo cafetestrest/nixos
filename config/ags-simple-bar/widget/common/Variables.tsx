@@ -66,7 +66,7 @@ export const workspaces = 10;
 export const overviewWidth = Variable(1000);
 export const overviewBoxTopMargin = 35;
 export const overviewContentWidth = 200;
-export const overviewScale = 0.08;
+export const overviewScale = 0.06;
 
 // osd
 export const osdLevelbarWidth = 100;
