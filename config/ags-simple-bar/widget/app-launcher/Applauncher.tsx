@@ -10,8 +10,8 @@ import {
     namespaceApplauncher
 } from "../common/Variables"
 import icons from "../../lib/icons"
-
-// const MAX_ITEMS = 8
+import { containsMathOperation } from "./Math"
+import { MathResult } from "./MathResult"
 
 function hide() {
     App.get_window(namespaceApplauncher)!.hide()
@@ -42,12 +42,18 @@ function AppButton({ app }: { app: Apps.Application }) {
 }
 
 export default function Applauncher() {
-    const { CENTER } = Gtk.Align
     const apps = new Apps.Apps()
 
     const text = Variable("")
-    const list = text(text => apps.fuzzy_query(text))
+    const list = text(text => apps.fuzzy_query(text));
+    const listMath = text(text => text);
+
     const onEnter = () => {
+        if (containsMathOperation(text.get())) {
+            hide();
+            return;
+        }
+
         apps.fuzzy_query(text.get())?.[0].launch()
         hide()
     }
@@ -100,6 +106,17 @@ export default function Applauncher() {
                             )))}
                         </box>
                     </scrollable>
+                    <box
+                        halign={Gtk.Align.CENTER}
+                        visible={bind(text).as(text => {
+                            if (containsMathOperation(text)) {
+                                return true;
+                            }
+                            return false;
+                        })}
+                    >
+                        {listMath.as(text => MathResult(text))}
+                    </box>
                 </box>
                 <eventbox expand onClick={hide} />
             </box>

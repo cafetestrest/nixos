@@ -41,7 +41,7 @@ const Client = ({ address, size: [w, h], class: c, title }) => (
 	<button
 		className={"client"}
 		tooltipText={`${title}`}
-		onClickRelease={(self, event) => {
+		onClickRelease={(_, event) => {
 			if (!address) {
 				return;
 			}
