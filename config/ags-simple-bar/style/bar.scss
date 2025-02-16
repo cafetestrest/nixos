@@ -160,4 +160,17 @@ window.Bar {
 			}
 		}
     }
+
+    .battery-levelbar {
+        trough {
+            border-radius: $radius;
+            min-width: 5rem;
+
+            block {
+                min-height: 1rem;
+                border-radius: $radius;
+                margin: 0 0.5rem;
+            }
+        }
+    }
 }
