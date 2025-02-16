@@ -54,8 +54,12 @@ export default function Applauncher() {
             return;
         }
 
-        apps.fuzzy_query(text.get())?.[0].launch()
-        hide()
+        try {
+            apps.fuzzy_query(text.get())?.[0].launch();
+            hide();
+        } catch (error) {
+            // do nothing
+        }
     }
 
     const items = bind(list);
