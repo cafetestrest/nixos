@@ -82,7 +82,6 @@ const End = ({powermenu, systemIndicators}) => {
                 {/* <AudioSlider /> */}
                 {/* <Wifi /> */}
                 {/* <BatteryLevel /> */}
-                {/* todo add css to BatteryLevel */}
                 {systemIndicators}
                 {powermenu}
 			</box>
