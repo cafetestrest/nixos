@@ -56,7 +56,8 @@ export const notificationWidth = Variable(1000);
 export const notificationBoxTopMargin = 35;
 export const notificationContentWidth = 500;
 export const notificationScrollableMaxHeight = 500;
-export const notificationHeight = 100;
+export const notificationHeight = 150;
+export const notificationContentHeight = 50;
 export const notificationSpacing = 10;
 
 // osd

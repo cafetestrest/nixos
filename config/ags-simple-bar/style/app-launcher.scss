@@ -1,5 +1,6 @@
 @use "sass:string";
 @use "./variables.scss" as *;
+@use "./scrollable.scss" as scrollable;
 
 @function gtkalpha($c, $a) {
     @return string.unquote("alpha(#{$c},#{$a})");
@@ -45,22 +46,11 @@ window#launcher {
             }
         }
 
+        @include scrollable.scrollable;
+
         .app-launcher-scrollable {
             border-top: 1px solid $hover;
             padding: $appLauncherScrollablePadding;
-
-            .frame {
-                border: unset;
-            }
-
-            .overlay-indicator {
-                border-radius: $radius;
-            }
-
-            .top,
-            .bottom {
-                background: transparent;
-            }
 
             .AppButton {
                 min-width: 0;

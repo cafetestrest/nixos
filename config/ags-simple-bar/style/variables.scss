@@ -1,7 +1,7 @@
 @use 'sass:color' as color;
 
 $black: #000000;
-$bg-color: #171717;
+$bg-color: #171717;//todo change name with -
 $fg-color: #f1f1f1;
 $accent: #51a4e7;
 $error: red;
@@ -12,6 +12,8 @@ $shadowColor: #eeeeee;
 $primaryContainer: #73342c;
 $inverseSurface: #f1dedc;
 $yellow: #EBFF71;
+$surface_container_highest: #3d3231;//todo change all names with _
+$notificationBackground: #282626;
 
 $bgTransparent: color.adjust($bg-color, $alpha: -0.05);
 $popupTransparent: color.adjust($black, $alpha: -0.68);
@@ -21,6 +23,7 @@ $osd: color.adjust(gray, $alpha: -0.30);
 $redTransparent: color.adjust($red, $alpha: -0.3);
 $shadowTransparent: color.adjust($shadowColor, $alpha: -0.5);
 $inverseSurfaceTransparent: color.adjust($inverseSurface, $alpha: -0.92);
+$closeRedTransparent: color.adjust($surface_container_highest, $alpha: -0.5);
 
 $accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
 
@@ -93,3 +96,4 @@ $notificationIconMinWidth: 3rem;
 $notificationIconMinHeight: 3rem;
 $notificationIconRadius: $radius * 0.6;
 $notificationIconMargin: 0 0 0 1rem;
+$notificationMinWidth: 400px;

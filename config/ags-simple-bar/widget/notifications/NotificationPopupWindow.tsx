@@ -137,6 +137,7 @@ const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Not
 				notifications.get_notifications().forEach((n) => {
 					timeout(150, () => n.dismiss());
 				});
+                hide();
 			}}
 			>
 			<label

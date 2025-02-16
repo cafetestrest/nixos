@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "./scrollable.scss" as scrollable;
 
 .control-center {
     button {
@@ -10,18 +11,7 @@
             font-size: 1.2rem;
         }
 
-        .qs-page-content {
-            // scrolled window, scrollbar, removing frame
-            .frame {
-                border: unset;
-            }
-
-            // removing top and bottom backround - on scroll
-            .top,
-            .bottom {
-                background: transparent;
-            }
-        }
+        @include scrollable.scrollable;
 
         .qs-page-content {
             padding-top: 1rem;
