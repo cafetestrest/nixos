@@ -9,6 +9,7 @@ import { visibleQSMainPage, visiblePowermenu } from "./widget/common/Variables";
 import { reloadScss } from "./lib/utils";
 import WeatherPopup from "./widget/weather/WeatherPopup";
 import NotificationPopupWindow from "./widget/notifications/NotificationPopupWindow";
+import OverviewPopupWindow from "./widget/overview/OverviewPopupWindow";
 
 function main() {
 	const bars = new Map<Gdk.Monitor, Gtk.Widget>();
@@ -19,6 +20,7 @@ function main() {
     Dashboard();
     WeatherPopup();
     NotificationPopupWindow();
+    OverviewPopupWindow();
 
     // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/common.scss', '/tmp/astal/style.css', 'style/main.scss');
@@ -27,7 +29,8 @@ function main() {
     // reloadScss('style/powermenu.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/app-launcher.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
-    reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
+    // reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
+    reloadScss('style/overview.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/workspaces.scss', '/tmp/astal/style.css', 'style/main.scss');
 
     for (const gdkmonitor of App.get_monitors()) {

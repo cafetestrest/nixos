@@ -36,9 +36,7 @@
 }
 
 window#dashboard .Popup {
-    .dashboard {
-        .calendar {
-            @include calendar;
-        }
+    .calendar {
+        @include calendar;
     }
 }

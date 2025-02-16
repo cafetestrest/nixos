@@ -31,7 +31,7 @@ export default function WeatherPopup() {
             <eventbox widthRequest={weatherWidth(w => w / 2)} expand onClick={hide} />
             <box hexpand={false} vertical>
                 <eventbox heightRequest={weatherBoxTopMargin} onClick={hide} />
-                <box widthRequest={weatherContentWidth} className={"dashboard"} vertical>
+                <box widthRequest={weatherContentWidth} className={"popup-box"} vertical>
                     <box className={"weather-popup-box"}>
                         <WeatherSchedule days={null} />
                     </box>

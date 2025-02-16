@@ -1,7 +1,7 @@
 @use "./variables.scss" as *;
 
 .Popup .quicksettings,
-.Popup .dashboard,
+.Popup .popup-box,
 .Popup .popup {
     background-color: $bgColor;
     box-shadow: 2px 3px 7px 0 rgba(0,0,0,0.4);

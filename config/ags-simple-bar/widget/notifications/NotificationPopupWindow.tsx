@@ -176,7 +176,7 @@ export default function NotificationPopupWindow() {
             <eventbox widthRequest={notificationWidth(w => w / 2)} expand onClick={hide} />
             <box hexpand={false} vertical>
                 <eventbox heightRequest={notificationBoxTopMargin} onClick={hide} />
-                <box widthRequest={notificationContentWidth} className={"dashboard"} vertical>
+                <box widthRequest={notificationContentWidth} className={"popup-box"} vertical>
                     <AllNotifications />
                 </box>
                 <eventbox expand onClick={hide} />

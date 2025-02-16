@@ -26,7 +26,7 @@ export default function Dashboard() {
             <eventbox widthRequest={dashboardWidth(w => w / 2)} expand onClick={hide} />
             <box hexpand={false} vertical>
                 <eventbox heightRequest={dashboardBoxTopMargin} onClick={hide} />
-                <box widthRequest={dashboardContentWidth} className={"dashboard"} vertical>
+                <box widthRequest={dashboardContentWidth} className={"popup-box"} vertical>
                     <Calendar />
                 </box>
                 <eventbox expand onClick={hide} />

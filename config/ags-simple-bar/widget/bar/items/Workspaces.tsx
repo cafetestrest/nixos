@@ -2,7 +2,7 @@ import { bind, Variable } from "astal"
 import { App, Gdk, Gtk, Widget } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland"
 import { range } from "../../../lib/utils";
-import { namespaceOverview } from "../../common/Variables";
+import { namespaceOverview, workspaces } from "../../common/Variables";
 
 export const numOfWS = Variable(0);
 
@@ -38,12 +38,6 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
         valign={Gtk.Align.CENTER}
         halign={Gtk.Align.CENTER}
         onClicked={() => ws.focus()}
-        // onClickRelease={(_, event) => {
-        //   switch (event.button) {
-        //     case Gdk.BUTTON_SECONDARY:
-        //     case Gdk.BUTTON_MIDDLE:
-        //       return App.get_window(namespaceOverview);
-        // }}}
 				attribute={ws.id}
         {...props}
       >
@@ -58,12 +52,18 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
     return (
       <eventbox
         className={"Workspaces"}
+        onClickRelease={(_, event) => {
+          switch (event.button) {
+            case Gdk.BUTTON_SECONDARY:
+            case Gdk.BUTTON_MIDDLE:
+              return App.toggle_window(namespaceOverview);
+        }}}
       >
         <box className={"workspaces-box"}
           setup={(self) => {
             self.hook(hyprland, "event", () => self.children.map(btn => {
               btn.visible = hyprland.workspaces.some(ws => {
-                if (ws.id < 10)
+                if (ws.id < workspaces)
                   return ws.id +1 >= btn.attribute
   
                 return ws.id >= btn.attribute
@@ -71,7 +71,7 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
             }));
           }}
         >
-          {range(10).map((i) => (
+          {range(workspaces).map((i) => (
               <WorkspaceButton ws={Hyprland.Workspace.dummy(i + 1, null)}/>
           ))}
         </box>
