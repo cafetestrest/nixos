@@ -2,6 +2,7 @@ import { bind, Variable } from "astal"
 import { App, Gdk, Gtk, Widget } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland"
 import { range } from "../../../lib/utils";
+import { namespaceOverview } from "../../common/Variables";
 
 export const numOfWS = Variable(0);
 
@@ -37,6 +38,12 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
         valign={Gtk.Align.CENTER}
         halign={Gtk.Align.CENTER}
         onClicked={() => ws.focus()}
+        // onClickRelease={(_, event) => {
+        //   switch (event.button) {
+        //     case Gdk.BUTTON_SECONDARY:
+        //     case Gdk.BUTTON_MIDDLE:
+        //       return App.get_window(namespaceOverview);
+        // }}}
 				attribute={ws.id}
         {...props}
       >

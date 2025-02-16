@@ -1,7 +1,7 @@
 @use "./variables.scss" as *;
 
-// $fg-color: #{"@theme_fg_color"};
-// $bg-color: #{"@theme_bg_color"};
+// $fgColor: #{"@theme_fg_color"};
+// $bgColor: #{"@theme_bg_color"};
 
 window.OSD {
     box.OSD {
@@ -19,7 +19,7 @@ window.OSD {
         font-size: 4rem;
 
         &.muted {
-            color: $bg-color;
+            color: $bgColor;
         }
     }
 

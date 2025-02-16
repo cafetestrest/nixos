@@ -7,7 +7,7 @@
     border-radius: $radius;
 
     &:hover {
-        background-color: color.adjust($fg-color, $alpha: -0.8);
+        background-color: color.adjust($fgColor, $alpha: -0.8);
     }
 
     .workspace-button {
@@ -27,7 +27,7 @@
 
     .workspace-button.active:hover .workspace-dot,
     .workspace-button:focus .workspace-dot{
-        box-shadow: $togglesShadowActive;
+        box-shadow: $focusShadow;
     }
 
     .workspace-button:hover .workspace-dot{
@@ -35,7 +35,7 @@
     }
 
     .workspace-button.occupied .workspace-dot{
-        background-color: $fg-color;
+        background-color: $fgColor;
     }
 
     .workspace-button.active .workspace-dot {

@@ -4,8 +4,8 @@
 window.Bar {
     border: none;
     box-shadow: none;
-    background-color: $bg-color;
-    color: $fg-color;
+    background-color: $bgColor;
+    color: $fgColor;
     // font-size: 1.1em;
     // font-weight: bold;
 
@@ -57,7 +57,7 @@ window.Bar {
         }
 
         trough {
-            background-color: color.adjust($fg-color, $alpha: -0.8);
+            background-color: color.adjust($fgColor, $alpha: -0.8);
             border-radius: $radius;
         }
 
@@ -68,7 +68,7 @@ window.Bar {
         }
 
         slider {
-            background-color: $fg-color;
+            background-color: $fgColor;
             border-radius: $radius;
             min-height: 1em;
             min-width: 1em;
@@ -91,7 +91,7 @@ window.Bar {
 
         // fix as it does not work with background-color: transparent;
         &:hover {
-            background-color: color.adjust($bg-color, $alpha: -0.8);
+            background-color: color.adjust($bgColor, $alpha: -0.8);
         }
     }
 
@@ -151,12 +151,12 @@ window.Bar {
 
         .recording-indicator-button {
             padding: 0 0.5rem;
-			background: $error_container;
-			color: $on_error_container;
+			background: $redRecording;
+			color: $redRecordingText;
 
 			&:hover {
-				color: $error_container;
-				background: $on_error_container;
+				color: $redRecording;
+				background: $redRecordingText;
 			}
 		}
     }

@@ -90,7 +90,7 @@
                 padding: 0.5rem 1.5rem;
                 &.filled {
                     background: $accentGradient;
-                    color: $bg-color;
+                    color: $bgColor;
                 }
 
                 &.outlined {
@@ -100,19 +100,19 @@
 
                 &:hover,
                 &:focus {
-                    box-shadow: $togglesHoverShadow;
+                    box-shadow: $hoverShadow;
                 }
             }
 
             button {
-                background: $bg-color;
+                background: $bgColor;
 
                 &:hover {
-                    box-shadow: $togglesHoverShadow;
+                    box-shadow: $hoverShadow;
                 }
 
                 &:focus {
-                    box-shadow: $buttonShadowActive;
+                    box-shadow: $focusShadowTransparent;
                 }
             }
 
@@ -150,14 +150,14 @@
 
                     &.active {
                         background: $accentGradient;
-                        color: $bg-color;
+                        color: $bgColor;
 
                         &:hover {
-                            box-shadow: $togglesHoverShadow;
+                            box-shadow: $hoverShadow;
                         }
 
                         &:focus {
-                            box-shadow: $togglesShadowActive;
+                            box-shadow: $focusShadow;
                         }
                     }
                 }
@@ -185,7 +185,7 @@
                 border: none;
                 box-shadow: none;
                 border-radius: $radius;
-                color: $bg-color;
+                color: $bgColor;
             }
 
             .slider-volume-icon {
@@ -201,11 +201,11 @@
                 }
 
                 highlight:hover {
-                    box-shadow: $togglesHoverShadow;
+                    box-shadow: $hoverShadow;
                 }
 
                 highlight:focus {
-                    box-shadow: $togglesShadowActive;
+                    box-shadow: $focusShadow;
                 }
 
                 highlight {

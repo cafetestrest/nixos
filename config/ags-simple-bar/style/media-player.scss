@@ -1,8 +1,8 @@
 @use "./variables.scss" as *;
 
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-// $fg-color: #{"@theme_fg_color"};
-// $bg-color: #{"@theme_bg_color"};
+// $fgColor: #{"@theme_fg_color"};
+// $bgColor: #{"@theme_bg_color"};
 
 window {
     all: unset;
@@ -10,7 +10,7 @@ window {
 
 box.MediaPlayer {
     padding: .6rem;
-    background-color: $bg-color;
+    background-color: $bgColor;
     border-radius: $radius;
     background-size: cover;
     background-position: center;
@@ -40,11 +40,11 @@ box.MediaPlayer {
             background: $accentGradient;
 
             &:hover {
-                box-shadow: $togglesHoverShadow;
+                box-shadow: $hoverShadow;
             }
 
             &:focus {
-                box-shadow: $togglesShadowActive;
+                box-shadow: $focusShadow;
             }
         }
 

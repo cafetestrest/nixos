@@ -9,15 +9,15 @@ switch {
 
     &:focus,
     &:hover {
-        box-shadow: $togglesHoverShadow;
+        box-shadow: $hoverShadow;
     }
 }
 
 switch slider {
-    background-color: $bg-color;
+    background-color: $bgColor;
     box-shadow: none;
 }
 
 switch:checked slider {
-    background-color: $bg-color;
+    background-color: $bgColor;
 }

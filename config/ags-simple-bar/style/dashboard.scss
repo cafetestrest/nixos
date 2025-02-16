@@ -14,11 +14,11 @@
         background: $accentGradient;
 
         &:hover {
-            box-shadow: $togglesHoverShadow;
+            box-shadow: $hoverShadow;
         }
 
         &:focus {
-            box-shadow: $togglesShadowActive;
+            box-shadow: $focusShadow;
         }
     }
 

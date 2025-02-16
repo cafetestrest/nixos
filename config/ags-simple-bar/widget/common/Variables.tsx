@@ -60,6 +60,12 @@ export const notificationHeight = 150;
 export const notificationContentHeight = 50;
 export const notificationSpacing = 10;
 
+// overview
+export const namespaceOverview = "overview";
+export const overviewWidth = Variable(1000);
+export const overviewBoxTopMargin = 35;
+export const overviewContentWidth = 200;
+
 // osd
 export const osdLevelbarWidth = 100;
 
