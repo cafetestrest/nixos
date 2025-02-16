@@ -15,7 +15,11 @@ window#overview .overview {
         border-radius: $radius;
         background-color: $overview;
         border: 1px solid $popupTransparent;
-        margin: 0 0.2rem; //adjust if needed more
+        margin-right: 0.4rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
     }
 
     .client {
