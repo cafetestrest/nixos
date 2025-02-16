@@ -26,7 +26,8 @@ function main() {
     // reloadScss('style/osd.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/powermenu.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/app-launcher.scss', '/tmp/astal/style.css', 'style/main.scss');
-    reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
+    // reloadScss('style/dashboard.scss', '/tmp/astal/style.css', 'style/main.scss');
+    reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/workspaces.scss', '/tmp/astal/style.css', 'style/main.scss');
 
     for (const gdkmonitor of App.get_monitors()) {

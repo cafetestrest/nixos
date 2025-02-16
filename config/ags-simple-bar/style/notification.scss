@@ -14,6 +14,14 @@ window.NotificationPopups {
 }
 
 eventbox.Notification {
+    .notification-icon,
+    .notification-image {
+        margin: $notificationIconMargin;
+        min-width: $notificationIconMinWidth;
+        min-height: $notificationIconMinHeight;
+        border-radius: $notificationIconRadius;
+        background: $inverseSurfaceTransparent;
+    }
 
     &:first-child>box {
         margin-top: 1rem;
