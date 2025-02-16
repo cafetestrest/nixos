@@ -21,7 +21,7 @@ $bgTransparent: color.adjust($bgColor, $alpha: -0.05);
 $popupTransparent: color.adjust($black, $alpha: -0.68);
 $accentTransparent: color.adjust($accent, $alpha: -0.4);
 $hover: color.adjust($shadowColor, $alpha: -0.80);
-$osd: color.adjust(gray, $alpha: -0.30);
+$osd: color.adjust(gray, $alpha: -0.10);
 $redTransparent: color.adjust($red, $alpha: -0.3);
 $shadowTransparent: color.adjust($shadowColor, $alpha: -0.5);
 $inverseSurfaceTransparent: color.adjust($inverseSurface, $alpha: -0.92);
