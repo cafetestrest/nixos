@@ -2,6 +2,7 @@ import { bind, Variable } from "astal";
 import { App, Gtk } from "astal/gtk3";
 import icons from "../../../lib/icons"
 import Notifications from "gi://AstalNotifd";
+import { namespaceNotification } from "../../common/Variables";
 
 export default () => {
 	const notifications = Notifications.get_default();
@@ -10,23 +11,24 @@ export default () => {
 
     return (
         <button
-        // onClicked={() => toggleWindow(namespace)}
+        onClicked={() => App.toggle_window(namespaceNotification)}
         className={"bar-button"}
-        // setup={(self) => {
-        // 	const notificationsWindow = App.get_window(namespace);
-        // 	if (notificationsWindow) {
-        // 		self.hook(
-        // 			notificationsWindow,
-        // 			"notify::visible",
-        // 			() => {
-        // 				self.toggleClassName(
-        // 					"active",
-        // 					notificationsWindow.visible,
-        // 				);
-        // 			},
-        // 		);
-        // 	}
-        // }}//todo
+        visible={notifs.as(n => n.length > 0)}
+        setup={(self) => {
+        	const notificationsWindow = App.get_window(namespaceNotification);
+        	if (notificationsWindow) {
+        		self.hook(
+        			notificationsWindow,
+        			"notify::visible",
+        			() => {
+        				self.toggleClassName(
+        					"active",
+        					notificationsWindow.visible,
+        				);
+        			},
+        		);
+        	}
+        }}
     >
         <box>
             <icon

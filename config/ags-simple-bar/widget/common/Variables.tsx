@@ -50,6 +50,15 @@ export const applauncherContentWidth = 500;
 export const applauncherScrollableHeight = 370;
 export const applauncherSingleItemHeight = 50;
 
+// notification popup window
+export const namespaceNotification = "notification";
+export const notificationWidth = Variable(1000);
+export const notificationBoxTopMargin = 35;
+export const notificationContentWidth = 500;
+export const notificationScrollableMaxHeight = 500;
+export const notificationHeight = 100;
+export const notificationSpacing = 10;
+
 // osd
 export const osdLevelbarWidth = 100;
 
