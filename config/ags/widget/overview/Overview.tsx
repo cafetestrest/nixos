@@ -11,6 +11,7 @@ import {
 } from "../common/Variables";
 import { hideOverview } from "./OverviewPopupWindow";
 import { getHyprlandClientIcon } from "../bar/items/Taskbar";
+import WorkspaceBox, { WorkspaceBox as WorkspaceBoxClass } from "./WorkspaceBox";
 
 const Hyprland = AstalHyprland.get_default();
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
@@ -93,7 +94,7 @@ const Workspace = (index: number) => {
 		Hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:${address}`);
 
 	return (
-		<box
+		<WorkspaceBox
 			className={bind(Hyprland, 'clients').as((clientList) => {
 				for (const client of clientList) {
 					if (client.workspace && client.workspace.id === index)
@@ -106,7 +107,7 @@ const Workspace = (index: number) => {
 				min-width: ${Hyprland.get_focused_monitor().width * overviewScale}px;
             	min-height: ${Hyprland.get_focused_monitor().height * overviewScale}px;
 			`}
-			id={index} // todo
+			id={index}
 			attribute={(clients) => {
 				fixed.get_children().forEach(ch => ch.destroy());
 				clients
@@ -135,7 +136,7 @@ const Workspace = (index: number) => {
 			>
 				{fixed}
 			</eventbox>
-		</box>
+		</WorkspaceBox>
 	)
 }
 
@@ -172,7 +173,7 @@ const Overview = () => (
 				update(self);
 				children(self);
 
-				self.children.map(box => {
+				self.children.map((box: WorkspaceBoxClass) => {
 					box.visible = Hyprland.workspaces.some(workspace => {
                         if (box.id === 0) {
                             return false;
