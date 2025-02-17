@@ -190,25 +190,25 @@ in
           (f "Rofi")
         ];
 
-        layerrule = let
-          f = regex: "blur,${regex}";
-        in [
-          (f "rofi")
-          "noanim, lockscreen"
-          "noanim, app-launcher"
-          "noanim, bar"
-          "noanim, control-center"
-          "noanim, dashboard"
-          "noanim, overview"
-          "noanim, weather"
-          "noanim, notifications"
-          "noanim, notifications-popup"
-          "noanim, osd"
-          "noanim, popup-window"
-          "noanim, powermenu"
-          "noanim, verification"
-          "noanim, transparent-scrim"
-        ];
+        # layerrule = let
+        #   f = regex: "blur,${regex}";
+        # in [
+        #   (f "rofi")
+        #   "noanim, lockscreen"
+        #   "noanim, app-launcher"
+        #   "noanim, bar"
+        #   "noanim, control-center"
+        #   "noanim, dashboard"
+        #   "noanim, overview"
+        #   "noanim, weather"
+        #   "noanim, notifications"
+        #   "noanim, notifications-popup"
+        #   "noanim, osd"
+        #   "noanim, popup-window"
+        #   "noanim, powermenu"
+        #   "noanim, verification"
+        #   "noanim, transparent-scrim"
+        # ];
 
         bind = let
           binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
