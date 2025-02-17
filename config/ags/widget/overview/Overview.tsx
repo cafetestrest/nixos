@@ -117,7 +117,7 @@ const Workspace = (index: number) => {
 						c.at[1] -= Hyprland.get_monitor(c.monitor)?.y || 0;
 						c.mapped && fixed.put(Client(c), c.at[0] * overviewScale, c.at[1] * overviewScale);
 					});
-	
+
 				fixed.show_all();
 			}}
 		>
@@ -149,7 +149,7 @@ const update = (box) => {
 
 		if (!clients)
 			return
-	
+
 		box.children.forEach(ws => {
 			ws.attribute(JSON.parse(clients));
 		});

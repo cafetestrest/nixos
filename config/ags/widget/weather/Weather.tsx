@@ -35,7 +35,7 @@ function weatherBackgroundStyle(icon: string, box: Widget.Box) {
             `;
             break;
         }
-        case "🌄": {//sunrise   
+        case "🌄": {//sunrise
             box.css = `
                 background: linear-gradient(to bottom, #ffcc00, #ff6f61, #ff5e62, #d55f74);
                 color: #000000;
@@ -225,20 +225,20 @@ const WeatherBoxChildWrapper = (w: TooltipItem, temperatureDataPerDay: Record<st
 
 			if (totalWeatherForecastDataArray.length) {
 				useTotalInstead = true;
-	
+
 				totalWeatherForecastDataArray.forEach(totalEl => {
 					self.add(
 						WeatherBoxChild(totalEl),
 					)
 				})
 			}
-	
+
 			if (false === useTotalInstead && w && temperatureDataPerDay && temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.length) {
 				temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].data.forEach(el => {
 					self.add(
 						WeatherBoxChild(el),
 					)
-				})            
+				})
 			}
 		}}
 	>
@@ -300,16 +300,16 @@ export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 			let tooltip = weather.get();
 			if (tooltip) {
 				self.get_children().forEach(ch => ch.destroy());
-	
+
 				let prevDayName: string|null = null;
 				let temperatureDataPerDay: Record<string, IconTemperatureData> = {};
 				let weatherStatusIconArray: string[] = [];
 				let weatherForecastDataArray: TooltipItem[] = [];
 				let totalWeatherForecastDataArray: TooltipItem[] = [];
-	
+
 				let totalWeatherForecastsCounter = days;
 				let forecastWidgetsNumber = 0;
-	
+
 				tooltip.forEach(w => {
 					if (w.indicator) {
 						return;
@@ -321,21 +321,21 @@ export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 						forecastWidgetsNumber = 0;
 						weatherForecastDataArray = [];
 					}
-	
+
 					// used to retrieve min/max temp per day
 					const date = w.date.substring(0, 3).toUpperCase();
 					const temperature = parseInt(w.temperature);
-	
+
 					const rain = w.rain.replace(/ mm$/, '');
 					forecastWidgetsNumber = forecastWidgetsNumber + 1;
-	
+
 					weatherForecastDataArray.push(w);
-	
+
 					if (days && totalWeatherForecastsCounter && totalWeatherForecastsCounter > 0) {
 						totalWeatherForecastDataArray.push(w);
 						totalWeatherForecastsCounter = totalWeatherForecastsCounter - 1;
 					}
-	
+
 					// If the date is not already in the object, initialize it
 					if (!temperatureDataPerDay[date]) {
 						temperatureDataPerDay[date] = {
@@ -355,7 +355,7 @@ export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 						temperatureDataPerDay[date].widgetsNumber = forecastWidgetsNumber;
 						temperatureDataPerDay[date].data = weatherForecastDataArray;
 					}
-	
+
 					// Get the current month (0 = January, 11 = December)
 					const currentMonth = new Date().getMonth();
 
@@ -373,10 +373,10 @@ export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 
 				// clear for next loop
 				prevDayName = null;
-	
+
 				let widgetIcon = null;
 				let widgetDate = null;
-	
+
 				let w = null;
 				for (let i = 0; i < tooltip.length; i++) {
 					w = tooltip[i];
@@ -384,26 +384,26 @@ export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 					if (w.indicator) {
 						continue;
 					}
-	
+
 					// used to limit forecast to specified amount (if total variable is provided, it will display that amount of forecast widgets on a main one)
 					if (days && days >= 0) {
-	
+
 						if (!widgetIcon) {
 							widgetIcon = w.icon;
 						}
-	
+
 						if (!widgetDate) {
 							widgetDate = w.date;
 						}
-	
+
 						const rain = temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].rain;
-	
+
 						self.add(
 							WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, totalWeatherForecastDataArray)
 						);
 						break;
 					}
-	
+
 					// if provided date differs to previous day name, by default prevDayName is null
 					if (w.date !== prevDayName && i > 0) {
 						// adds spacing to the widgets
@@ -413,32 +413,32 @@ export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 							</box>
 						);
 					}
-	
+
 					// logic that determines if the widget contains just 1 forecast widget, if so it will display it in a smaller widget - like the one for the forecast days
 					if (temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].widgetsNumber === 1) {
 						prevDayName = w.date;
-	
+
 						self.add(WeatherInfo(w));
 						continue;
 					}
-	
+
 					// this one creates main one - wide weather widget that contains smaller forecast widgets
 					if (w.date !== prevDayName) {
 						const rain = temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].rain;
 						let icon = getMostCommon(temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].icons);
 						widgetDate = w.date;
-	
+
 						if (!icon) {
 							icon = w.icon;
 						}
-	
+
 						widgetIcon = icon;
-	
+
 						self.add(
 							WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, [])
 						);
 					}
-	
+
 					prevDayName = w.date;
 				};
 			}

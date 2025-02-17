@@ -98,7 +98,7 @@ export default () => {
 
       <box
         halign={Gtk.Align.CENTER}
-        className={"qs-pages-box"} 
+        className={"qs-pages-box"}
       >
         <button
           className={bind(qsTogglesPage).as((page) => {

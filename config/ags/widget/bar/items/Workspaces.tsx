@@ -13,12 +13,12 @@ function WorkspaceButton({ ws, ...props }) {
       [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
       (fws, _) => {
         let classes = "workspace-button";
-  
+
         const active = fws.id == ws.id;
         if (active) {
             classes = `${classes} active`;
         }
-  
+
         const occupied = hyprland.get_workspace(ws.id)?.get_clients().length > 0;
         if (occupied) {
             classes = `${classes} occupied`;
@@ -26,7 +26,7 @@ function WorkspaceButton({ ws, ...props }) {
         return classes;
       },
     );
-  
+
     return (
       <WorkspaceButtonAstal
         className={classNames()}
@@ -61,7 +61,7 @@ function WorkspaceButton({ ws, ...props }) {
               btn.visible = hyprland.workspaces.some(ws => {
                 if (ws.id < workspaces)
                   return ws.id +1 >= btn.id
-  
+
                 return ws.id >= btn.id
               });
             }));

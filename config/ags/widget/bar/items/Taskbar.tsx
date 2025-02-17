@@ -13,7 +13,7 @@ export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: st
 	let icon = "";
 	if (iconName)
 		icon = iconName;
-  
+
 	if ((!icon || icon === "") && client.initialClass !== "")
 	  icon = Applications.exact_query(client.initialClass)[0]?.iconName;
 	if ((!icon || icon === "") && client.initialTitle !== "")

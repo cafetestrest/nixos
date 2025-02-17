@@ -16,7 +16,7 @@ const NightlightIndicator = () => {
 	            className={"system-indicator"}
 				icon={profile.as((p) => icons.nightlight[p])}
 			/>
-		);	
+		);
 	} else {
 		return <icon visible={false}/>
 	}
@@ -30,7 +30,7 @@ const IdleIndicator = () => {
 				className={"system-indicator"}
 				icon={profile.as((p) => icons.idle[p])}
 			/>
-		);	
+		);
 	} else {
 		return <icon visible={false}/>
 	}

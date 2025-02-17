@@ -21,7 +21,7 @@ export default () => {
                         )}
                         css={batteryLevel.as((p) => {
                             const percentage = Math.floor(p * 100);
-    
+
                             switch (true) {
                                 case percentage <= 40:
                                     return `color: white; text-shadow: 1px 1px 1px black;`;

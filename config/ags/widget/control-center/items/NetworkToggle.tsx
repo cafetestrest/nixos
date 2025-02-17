@@ -26,7 +26,7 @@ export default () => {
                     return "toggles control-center-button";
                 }))}
             />
-        );        
+        );
     }
 
     const primary = bind(network, "primary");
