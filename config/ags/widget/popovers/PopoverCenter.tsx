@@ -52,13 +52,13 @@ export default function Popover({
             }}
         >
             <box>
-                <eventbox widthRequest={width(w => w / 2)} expand onClick={hide} />
-                <box hexpand={false} vertical>
-                    <eventbox expand onClick={hide} />
+                <eventbox widthRequest={width(w => w / 2)} expand={true} onClick={hide} />
+                <box hexpand={false} vertical={true}>
+                    <eventbox expand={true} onClick={hide} />
                     {child}
-                    <eventbox expand onClick={hide} />
+                    <eventbox expand={true} onClick={hide} />
                 </box>
-                <eventbox widthRequest={width(w => w / 2)} expand onClick={hide} />
+                <eventbox widthRequest={width(w => w / 2)} expand={true} onClick={hide} />
             </box>
         </window>
     )

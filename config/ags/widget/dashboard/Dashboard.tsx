@@ -23,15 +23,15 @@ export default function Dashboard() {
                 self.hide()
         }}>
         <box className={"Popup"}>
-            <eventbox widthRequest={dashboardWidth(w => w / 2)} expand onClick={hide} />
-            <box hexpand={false} vertical>
+            <eventbox widthRequest={dashboardWidth(w => w / 2)} expand={true} onClick={hide} />
+            <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={dashboardBoxTopMargin} onClick={hide} />
-                <box widthRequest={dashboardContentWidth} className={"popup-box"} vertical>
+                <box widthRequest={dashboardContentWidth} className={"popup-box"} vertical={true}>
                     <Calendar />
                 </box>
-                <eventbox expand onClick={hide} />
+                <eventbox expand={true} onClick={hide} />
             </box>
-            <eventbox widthRequest={dashboardWidth(w => w / 2)} expand onClick={hide} />
+            <eventbox widthRequest={dashboardWidth(w => w / 2)} expand={true} onClick={hide} />
         </box>
     </window>
 }

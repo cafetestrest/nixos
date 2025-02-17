@@ -28,15 +28,15 @@ export default function OverviewPopupWindow() {
                 self.hide()
         }}>
         <box className={"Popup"}>
-            <eventbox widthRequest={overviewWidth(w => w / 2)} expand onClick={hideOverview} />
-            <box hexpand={false} vertical>
+            <eventbox widthRequest={overviewWidth(w => w / 2)} expand={true} onClick={hideOverview} />
+            <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={overviewBoxTopMargin} onClick={hideOverview} />
-                <box widthRequest={overviewContentWidth} className={"popup-box"} vertical>
+                <box widthRequest={overviewContentWidth} className={"popup-box"} vertical={true}>
                     <Overview />
                 </box>
-                <eventbox expand onClick={hideOverview} />
+                <eventbox expand={true} onClick={hideOverview} />
             </box>
-            <eventbox widthRequest={overviewWidth(w => w / 2)} expand onClick={hideOverview} />
+            <eventbox widthRequest={overviewWidth(w => w / 2)} expand={true} onClick={hideOverview} />
         </box>
     </window>
 }

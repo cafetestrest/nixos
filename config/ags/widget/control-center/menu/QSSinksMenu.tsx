@@ -65,7 +65,7 @@ const SinkMenu = () => {
 										}
                                     })}
                                 />
-                                <box hexpand />
+                                <box hexpand={true} />
                                 <label
                                     label={bind(speaker, "description").as((desc) => {
                                         if (desc.includes("HDMI Audio"))
@@ -76,10 +76,10 @@ const SinkMenu = () => {
 
 										return desc;
                                     })}
-                                    truncate
+                                    truncate={true}
                                     maxWidthChars={40}
                                 />
-                                <box hexpand />
+                                <box hexpand={true} />
                                 <icon
                                     visible={bind(speaker, "is_default")}
                                     icon={icons.ui.tick}

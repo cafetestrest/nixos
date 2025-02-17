@@ -54,7 +54,7 @@ export default () => {
                     }
                 />
                 {/* <slider
-                    hexpand
+                    hexpand={true}
                     onDragged={({ value }) => speaker.volume = value}
                     value={bind(speaker, "volume")}
                 /> */}

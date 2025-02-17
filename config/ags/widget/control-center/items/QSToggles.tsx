@@ -26,7 +26,7 @@ function FirstPage() {
     <box
       className={"qs-toggles-page"}
       name={"qs-page-first"}
-      vertical
+      vertical={true}
     >
       <box>
         <BluetoothToggle />
@@ -58,7 +58,7 @@ function SecondPage() {
     <box
       className={"qs-toggles-page"}
       name={"qs-page-second"}
-      vertical
+      vertical={true}
     >
       <box>
         <NetworkToggle />
@@ -84,7 +84,7 @@ export default () => {
   return (
     <box
       className={"qs-toggles"}
-      vertical
+      vertical={true}
     >
       <stack
         visibleChildName={qsTogglesPage()}

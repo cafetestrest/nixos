@@ -98,7 +98,7 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
         >
             <icon
                 icon={icon}
-                expand
+                expand={true}
                 halign={CENTER}
                 valign={CENTER}
             />
@@ -126,11 +126,11 @@ export default function Notification(props: Props) {
         className={`Notification ${urgency(n)}`}
         setup={setup}
         onHoverLost={onHoverLost}>
-        <box vertical className={"notification-box"}>
+        <box vertical={true} className={"notification-box"}>
             <box>
                 <NotificationIcon notification={n} />
 
-                <box vertical heightRequest={notificationContentHeight}>
+                <box vertical={true} heightRequest={notificationContentHeight}>
                     <box className={"header"}>
                         {n.image && (n.appIcon || n.desktopEntry) && <icon
                             className={"app-icon"}
@@ -140,7 +140,7 @@ export default function Notification(props: Props) {
                         {/* <label
                             className={"app-name"}
                             halign={START}
-                            truncate
+                            truncate={true}
                             label={getAppName(n.appName || "Unknown")}
                         /> */}
                         <label
@@ -148,11 +148,11 @@ export default function Notification(props: Props) {
                             halign={START}
                             xalign={0}
                             label={n.summary}
-                            truncate
+                            truncate={true}
                         />
                         <label
                             className={"time"}
-                            hexpand
+                            hexpand={true}
                             halign={END}
                             label={time(n.time)}
                         />
@@ -160,16 +160,16 @@ export default function Notification(props: Props) {
                             <icon icon="window-close-symbolic" />
                         </button>
                     </box>
-                    {/* <Gtk.Separator visible /> */}
+                    {/* <Gtk.Separator visible={true} /> */}
                     <box className={"content"} visible={n.body.length > 0}>
-                        <box vertical>
+                        <box vertical={true}>
                             {n.body && <label
                                 className={"body"}
-                                wrap
-                                useMarkup
+                                wrap={true}
+                                useMarkup={true}
                                 halign={START}
                                 xalign={0}
-                                justifyFill
+                                justifyFill={true}
                                 wrapMode={Pango.WrapMode.CHAR}
                                 label={n.body}
                             />}
@@ -181,7 +181,7 @@ export default function Notification(props: Props) {
                 {n.get_actions().map(({ label, id }) => (
                     <button
                         onClicked={() => n.invoke(id)}>
-                        <label label={label} halign={CENTER} hexpand />
+                        <label label={label} halign={CENTER} hexpand={true} />
                     </button>
                 ))}
             </box>}

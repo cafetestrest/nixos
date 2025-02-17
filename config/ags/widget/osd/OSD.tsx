@@ -59,7 +59,7 @@ function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
                         return "osd-icon muted";
                     }
                     return "osd-icon";
-                })} valign={Gtk.Align.CENTER} vexpand/>
+                })} valign={Gtk.Align.CENTER} vexpand={true}/>
                 <levelbar valign={Gtk.Align.CENTER} widthRequest={osdLevelbarWidth} value={value()}/>
             </box>
         </revealer>

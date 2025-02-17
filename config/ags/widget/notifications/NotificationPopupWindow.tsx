@@ -95,7 +95,7 @@ function hide() {
 }
 
 const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Notifd, notifs: NotifiationMap}) => (
-	<box vertical className={"notifications-window"} spacing={notificationSpacing}>
+	<box vertical={true} className={"notifications-window"} spacing={notificationSpacing}>
 		<box className={"notification-scroll-box"}>
 			<scrollable
                 className={"notifications-scrollable"}
@@ -109,7 +109,7 @@ const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Not
 					orientation={Gtk.Orientation.VERTICAL}
 					spacing={6}
 					hexpand={true}
-					noImplicitDestroy
+					noImplicitDestroy={true}
 				>
 					{bind(notifs)}
 				</box>
@@ -163,15 +163,15 @@ export default function NotificationPopupWindow() {
                 self.hide()
         }}>
         <box className={"Popup"}>
-            <eventbox widthRequest={notificationWidth(w => w / 2)} expand onClick={hide} />
-            <box hexpand={false} vertical>
+            <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
+            <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={notificationBoxTopMargin} onClick={hide} />
-                <box widthRequest={notificationContentWidth} className={"popup-box"} vertical>
+                <box widthRequest={notificationContentWidth} className={"popup-box"} vertical={true}>
                     <AllNotifications />
                 </box>
-                <eventbox expand onClick={hide} />
+                <eventbox expand={true} onClick={hide} />
             </box>
-            <eventbox widthRequest={notificationWidth(w => w / 2)} expand onClick={hide} />
+            <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
         </box>
     </window>
 }

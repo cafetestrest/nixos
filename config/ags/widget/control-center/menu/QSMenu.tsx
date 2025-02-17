@@ -20,7 +20,7 @@ export default ({
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
             revealChild={bind(bindVariable)}
         >
-            <box className={`menu ${classname}`} vertical children={content} />
+            <box className={`menu ${classname}`} vertical={true} children={content} />
         </revealer>
     );
 }

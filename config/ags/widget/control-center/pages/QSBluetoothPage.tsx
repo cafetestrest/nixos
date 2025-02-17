@@ -47,7 +47,7 @@ const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
 						return false;
 					})}
 				/>
-				<box hexpand />
+				<box hexpand={true} />
 				{/* {
 					<Spinner visible={bind(device, "connecting")} />
 				} */}
@@ -68,7 +68,7 @@ function BluetoothPageContent() {
 
 	return (
         <box
-            vertical
+            vertical={true}
             spacing={8}
             className={"qspage-scrollable-content"}
         >
@@ -98,7 +98,7 @@ function BluetoothPageContent() {
                         label={isPowered.as((status) =>
                             status ? "On" : "Off",
                         )}
-                        hexpand
+                        hexpand={true}
                         halign={Gtk.Align.START}
                     />
                     <switch
@@ -112,7 +112,7 @@ function BluetoothPageContent() {
                     />
                 </box>
             </eventbox>
-            <box vertical spacing={4}>
+            <box vertical={true} spacing={4}>
                 {bind(bluetooth, "devices").as((devices) =>
                     devices.map((device) => <DeviceItem device={device} bluetooth={bluetooth} />),
                 )}

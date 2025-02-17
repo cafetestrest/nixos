@@ -28,17 +28,17 @@ export default function WeatherPopup() {
                 self.hide()
         }}>
         <box className={"Popup"}>
-            <eventbox widthRequest={weatherWidth(w => w / 2)} expand onClick={hide} />
-            <box hexpand={false} vertical>
+            <eventbox widthRequest={weatherWidth(w => w / 2)} expand={true} onClick={hide} />
+            <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={weatherBoxTopMargin} onClick={hide} />
-                <box widthRequest={weatherContentWidth} className={"popup-box"} vertical>
+                <box widthRequest={weatherContentWidth} className={"popup-box"} vertical={true}>
                     <box className={"weather-popup-box"}>
                         <WeatherSchedule days={null} />
                     </box>
                 </box>
-                <eventbox expand onClick={hide} />
+                <eventbox expand={true} onClick={hide} />
             </box>
-            <eventbox widthRequest={weatherWidth(w => w / 2)} expand onClick={hide} />
+            <eventbox widthRequest={weatherWidth(w => w / 2)} expand={true} onClick={hide} />
         </box>
     </window>
 }

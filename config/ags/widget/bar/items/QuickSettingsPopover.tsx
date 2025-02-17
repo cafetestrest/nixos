@@ -18,9 +18,9 @@ export default () => {
             valign={Gtk.Align.START}
             halign={Gtk.Align.END}
         >
-            <box className={"popup"} vertical>
+            <box className={"popup"} vertical={true}>
                 {/* maxWidthChars is needed to make wrap work */}
-                {/* <label label={"lorem2"} wrap maxWidthChars={8} />
+                {/* <label label={"lorem2"} wrap={true} maxWidthChars={8} />
                 <button onClicked={() => visibleQSMainPage.set(false)}>
                     Click me to close the popup
                 </button> */}

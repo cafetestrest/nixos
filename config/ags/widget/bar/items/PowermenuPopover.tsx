@@ -11,7 +11,7 @@ export default () => {
             onClose={() => visiblePowermenu.set(false)}
             visible={visiblePowermenu()}
         >
-            <box className={"popup"} vertical>
+            <box className={"popup"} vertical={true}>
                 {/* maxWidthChars is needed, wrap will work as intended */}
                 <Powermenu onClicked={() => visiblePowermenu.set(false)} />
             </box>

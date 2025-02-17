@@ -6,7 +6,7 @@ import QSNetworkPage from "./pages/QSNetworkPage";
 
 export default () => {
     return (
-        <box className={"control-center"} vertical>
+        <box className={"control-center"} vertical={true}>
             <stack
                 visibleChildName={qsPage()}
                 transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}

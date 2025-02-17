@@ -30,7 +30,7 @@ const Start = () => {
 				<Taskbar />
 				<Workspaces />
 			</box>
-			<box halign={Gtk.Align.END} hexpand>
+			<box halign={Gtk.Align.END} hexpand={true}>
                 <Media />
 			</box>
 		</box>
@@ -52,7 +52,7 @@ const End = ({powermenu, systemIndicators}) => {
 				<WeatherButton />
 				<NotificationsRevealerButton />
 			</box>
-			<box halign={Gtk.Align.END} hexpand>
+			<box halign={Gtk.Align.END} hexpand={true}>
 				<box className={"recording-box"}>
 					<RecordingIndicatorButton />
 				</box>

@@ -123,7 +123,7 @@ const Workspace = (index: number) => {
 		>
 			<eventbox
 				className={"eventbox"}
-				hexpand
+				hexpand={true}
 				onClick={() => {
 					workspace(index)
 				}}

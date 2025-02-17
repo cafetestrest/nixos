@@ -25,7 +25,7 @@ export default ({ onClicked }) => {
         <box
             className={"powermenu"}
             homogeneous
-            hexpand
+            hexpand={true}
         >
             <PowermenuButton
                 action="lock"

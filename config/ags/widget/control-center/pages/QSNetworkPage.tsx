@@ -16,7 +16,7 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
 
 	return (
         <box
-            vertical
+            vertical={true}
             spacing={8}
             className={"qspage-scrollable-content"}
         >
@@ -45,7 +45,7 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
                     />
                     <label
                         label={"Wi-Fi"}
-                        hexpand
+                        hexpand={true}
                         halign={Gtk.Align.START}
                     />
                     <switch
@@ -59,7 +59,7 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
                     />
                 </box>
             </eventbox>
-            <box vertical spacing={4}>
+            <box vertical={true} spacing={4}>
                 {bind(wifi, "accessPoints").as((points) =>
                     points.map((ap) => (
                         <button
@@ -77,7 +77,7 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
                                         "activeAccessPoint",
                                     ).as((aap) => aap === ap)}
                                     icon={icons.ui.tick}
-                                    hexpand
+                                    hexpand={true}
                                     halign={Gtk.Align.END}
                                 />
                             </box>

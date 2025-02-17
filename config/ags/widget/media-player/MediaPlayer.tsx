@@ -47,17 +47,17 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             css={coverArt}
             visible={bind(player, "playback_status").as((status) => status != Mpris.PlaybackStatus.STOPPED)}
         >
-        <box vertical>
+        <box vertical={true}>
             <box className={"title"}>
-                <label truncate hexpand halign={START} label={title} maxWidthChars={36} />
+                <label truncate={true} hexpand={true} halign={START} label={title} maxWidthChars={36} />
                 <icon icon={playerIcon} />
             </box>
             <label
                 halign={START}
                 valign={START}
-                wrap
+                wrap={true}
                 label={artist}
-                truncate
+                truncate={true}
                 maxWidthChars={20}
             />
             <slider
@@ -67,7 +67,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             />
             <centerbox className={"actions"}>
                 <label
-                    hexpand
+                    hexpand={true}
                     className={"position"}
                     halign={START}
                     visible={bind(player, "length").as(l => l > 0)}
@@ -92,7 +92,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
                 </box>
                 <label
                     className={"length"}
-                    hexpand
+                    hexpand={true}
                     halign={END}
                     visible={bind(player, "length").as(l => l > 0)}
                     label={bind(player, "length").as(l => l > 0 ? lengthStr(l) : "0:00")}
@@ -104,7 +104,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 
 export default function MprisPlayers() {
     const mpris = Mpris.get_default()
-    return <box vertical>
+    return <box vertical={true}>
         {bind(mpris, "players").as(arr => arr.map(player => (
             <MediaPlayer player={player} />
         )))}

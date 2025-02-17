@@ -23,16 +23,16 @@ function AppButton({ app }: { app: Apps.Application }) {
         onClicked={() => { hide(); app.launch() }}>
         <box className={"app-button-content"}>
             <icon icon={app.iconName} />
-            <box valign={Gtk.Align.CENTER} vertical>
+            <box valign={Gtk.Align.CENTER} vertical={true}>
                 <label
                     className={"name"}
-                    truncate
+                    truncate={true}
                     xalign={0}
                     label={app.name}
                 />
                 {app.description && <label
                     className={"description"}
-                    wrap
+                    wrap={true}
                     xalign={0}
                     label={app.description}
                 />}
@@ -81,10 +81,10 @@ export default function Applauncher() {
                 self.hide()
         }}>
         <box>
-            <eventbox widthRequest={applauncherWidth(w => w / 2)} expand onClick={hide} />
-            <box hexpand={false} vertical>
+            <eventbox widthRequest={applauncherWidth(w => w / 2)} expand={true} onClick={hide} />
+            <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={applauncherBoxTopMargin} onClick={hide} />
-                <box widthRequest={applauncherContentWidth} className={"Applauncher"} vertical>
+                <box widthRequest={applauncherContentWidth} className={"Applauncher"} vertical={true}>
                     <box className={"app-launcher-header"}>
                         <icon
                             icon={icons.apps.search}
@@ -94,7 +94,7 @@ export default function Applauncher() {
                             text={text()}
                             onChanged={self => text.set(self.text)}
                             onActivate={onEnter}
-                            hexpand
+                            hexpand={true}
                         />
                     </box>
                     <scrollable
@@ -104,7 +104,7 @@ export default function Applauncher() {
                         visible={items.as((l) => l.length > 0 ? true : false)}
                         className={"app-launcher-scrollable"}
                     >
-                        <box spacing={6} vertical hexpand>
+                        <box spacing={6} vertical={true} hexpand={true}>
                             {list.as(list => list.map(app => (
                                 <AppButton app={app} />
                             )))}
@@ -122,9 +122,9 @@ export default function Applauncher() {
                         {listMath.as(text => MathResult(text))}
                     </box>
                 </box>
-                <eventbox expand onClick={hide} />
+                <eventbox expand={true} onClick={hide} />
             </box>
-            <eventbox widthRequest={applauncherWidth(w => w / 2)} expand onClick={hide} />
+            <eventbox widthRequest={applauncherWidth(w => w / 2)} expand={true} onClick={hide} />
         </box>
     </window>
 }

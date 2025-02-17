@@ -96,7 +96,7 @@ export default function Popover({
                 // make sure click event does not bubble up
                 onButtonPressEvent={() => true}
                 // child can be positioned with `halign` `valign` and margins
-                expand
+                expand={true}
                 halign={halign}
                 valign={valign}
                 marginBottom={marginBottom}

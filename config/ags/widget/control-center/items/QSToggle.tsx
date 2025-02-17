@@ -59,7 +59,7 @@ export default ({
                     <label
                         halign={Gtk.Align.START}
                         label={label}
-                        hexpand
+                        hexpand={true}
                     />
                 )}
                 {hasArrow && (

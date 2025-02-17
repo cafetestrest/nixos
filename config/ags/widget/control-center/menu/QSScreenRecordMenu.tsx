@@ -43,7 +43,7 @@ const ScreenRecordMenu = () => {
 					<icon icon={icons.audio.mic.high} />
 					<label label={"Record audio"} />
 					<switch
-						hexpand
+						hexpand={true}
 						halign={Gtk.Align.END}
 						active={false}
 						setup={(self) => {
@@ -61,7 +61,7 @@ const ScreenRecordMenu = () => {
 					<icon icon={icons.select} />
 					<label label={"Record only selected size"} />
 					<switch
-						hexpand
+						hexpand={true}
 						halign={Gtk.Align.END}
 						active={false}
 						setup={(self) => {
@@ -78,7 +78,7 @@ const ScreenRecordMenu = () => {
 			</box>
 			<box
 				spacing={qsRevealScreenRecordSpacing * 0.5}
-				hexpand
+				hexpand={true}
 				halign={Gtk.Align.END}
 			>
 				<MenuButton buttonType="outlined" onClicked={() => qsRevealScreenRecord.set(false)}>
