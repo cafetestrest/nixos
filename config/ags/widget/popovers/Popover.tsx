@@ -88,6 +88,9 @@ export default function Popover({
 
                 self.visible = false;
             }}
+            setup={(self) => {
+                self.set_click_through(true);
+            }}
         >
             <box
                 // make sure click event does not bubble up

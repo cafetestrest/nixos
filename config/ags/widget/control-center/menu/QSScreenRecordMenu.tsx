@@ -12,7 +12,7 @@ import ScreenRecordService from "../../../service/ScreenRecordService";
 export default () => {
 	return (
 		<QSMenu
-			classname="screen-record"
+			classname={"screen-record"}
 			bindVariable={qsRevealScreenRecord}
 			content={[
 				<ScreenRecordMenu />

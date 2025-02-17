@@ -15,7 +15,7 @@ const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
 
 	return (
 		<button
-			className="qs-page-item"
+			className={"qs-page-item"}
 			on_clicked={() => {
 				if (!bluetooth.isPowered) {
 					bluetooth.toggle();
@@ -31,7 +31,7 @@ const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
 				<label label={device.name} />
 
 				<label
-					className="bluetooth-device-percentage"
+					className={"bluetooth-device-percentage"}
 					label={power.as((arr) => {
 						const upowerData = arr.find(item => item.model === device.name) || false
 						if (upowerData && upowerData?.batteryPercentage) {

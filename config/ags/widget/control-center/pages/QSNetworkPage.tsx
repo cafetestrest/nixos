@@ -63,7 +63,7 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
                 {bind(wifi, "accessPoints").as((points) =>
                     points.map((ap) => (
                         <button
-                            className="qs-page-item"
+                            className={"qs-page-item"}
                             onClicked={() => {
                                 nmClient.activate_connection_async()
                             }}

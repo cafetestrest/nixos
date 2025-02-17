@@ -15,17 +15,17 @@ export default ({ label, child, refresh = undefined }: PageProps) => {
 			className={`qs-page ${label.toLowerCase()}`}
 			vertical={true}
 		>
-			<centerbox className="qs-page-header" spacing={12}>
+			<centerbox className={"qs-page-header"} spacing={12}>
 				<button
 					hexpand={false}
 					halign={Gtk.Align.START}
-					className="qs-page-header-button"
+					className={"qs-page-header-button"}
 					onClicked={() => qsPage.set("main")}
 				>
 					<icon icon={icons.ui.arrow.left} className={"page-icon"} />
 				</button>
 				<label
-					className="qs-page-header-title"
+					className={"qs-page-header-title"}
 					halign={Gtk.Align.CENTER}
 					hexpand={true}
 					label={label}
@@ -34,7 +34,7 @@ export default ({ label, child, refresh = undefined }: PageProps) => {
 					<button
 						halign={Gtk.Align.END}
 						hexpand={false}
-						className="qs-page-header-button"
+						className={"qs-page-header-button"}
 						onClicked={refresh}
 					>
 						<icon hexpand={false} icon={icons.ui.refresh} className={"page-icon"} />
@@ -43,7 +43,7 @@ export default ({ label, child, refresh = undefined }: PageProps) => {
 					<box visible={false}/>
 				)}
 			</centerbox>
-			<scrollable vexpand={true} className="qs-page-content">
+			<scrollable vexpand={true} className={"qs-page-content"}>
 				{child}
 			</scrollable>
 		</box>

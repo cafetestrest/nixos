@@ -77,7 +77,7 @@ const LightstripMenu = () => {
 export default () => {
 	return (
 		<QSMenu
-			classname="screenshot"
+			classname={"screenshot"}
 			bindVariable={qsRevealLightstrip}
 			content={[
 				<LightstripMenu />

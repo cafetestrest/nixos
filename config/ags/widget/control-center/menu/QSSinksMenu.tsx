@@ -95,7 +95,7 @@ const SinkMenu = () => {
 
 export const SinkRevealer = () => Audio && (
     <QSMenu
-        classname="sink-selector"
+        classname={"sink-selector"}
         bindVariable={qsRevealSinksButton}
         content={[
             <SinkMenu />

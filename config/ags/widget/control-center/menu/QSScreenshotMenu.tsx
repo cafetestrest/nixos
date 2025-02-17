@@ -70,7 +70,7 @@ const ScreenShotMenu = () => {
 export default () => {
 	return (
 		<QSMenu
-			classname="screenshot"
+			classname={"screenshot"}
 			bindVariable={qsRevealScreenshot}
 			content={[
 				<ScreenShotMenu />

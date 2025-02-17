@@ -22,7 +22,7 @@ export default () => {
 	return (
 		<box
 			name="main"
-			className="qs-main-page"
+			className={"qs-main-page"}
             vertical={true}
 		>
             <QSToggles />

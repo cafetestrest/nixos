@@ -38,7 +38,7 @@ export default () => {
                 )}
             />
             <label
-                className="bar-notifications-label"
+                className={"bar-notifications-label"}
                 visible={notifs.as((n) => n.length > 1)}
                 label={notifs.as((n) => n.length > 1 ? n.length + "" : "")}
             />
@@ -63,7 +63,7 @@ export default () => {
                 }}
             >
                 <label
-                    className="bar-last-notification-label"
+                    className={"bar-last-notification-label"}
                     maxWidthChars={40}
                     label={bind(notifications, "notifications").as(n => n.reverse()[0]?.summary || "")}
                 />
