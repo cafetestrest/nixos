@@ -3,6 +3,7 @@ import { bind, timeout } from "astal";
 import Bluetooth from "gi://AstalBluetooth"
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
+import { upower } from "../../usage/BluetoothPowerUsage";
 
 type DeviceItemProps = {
 	device: Bluetooth.Device;
@@ -10,6 +11,8 @@ type DeviceItemProps = {
 };
 
 const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
+    const power = bind(upower);
+
 	return (
 		<button
 			className="qs-page-item"
@@ -29,20 +32,20 @@ const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
 
 				<label
 					className="bluetooth-device-percentage"
-					// label={power.as((arr) => {
-					// 	const upowerData = arr.find(item => item.model === device.name) || false
-					// 	if (upowerData && upowerData?.batteryPercentage) {
-					// 		return upowerData.batteryPercentage + "%";
-					// 	}
-					// 	return "";
-					// })}
-					// visible={power.as((arr) => {
-					// 	const upowerData = arr.find(item => item.model === device.name) || false
-					// 	if (upowerData && upowerData?.batteryPercentage) {
-					// 		return true;
-					// 	}
-					// 	return false;
-					// })}
+					label={power.as((arr) => {
+						const upowerData = arr.find(item => item.model === device.name) || false
+						if (upowerData && upowerData?.batteryPercentage) {
+							return upowerData.batteryPercentage + "%";
+						}
+						return "";
+					})}
+					visible={power.as((arr) => {
+						const upowerData = arr.find(item => item.model === device.name) || false
+						if (upowerData && upowerData?.batteryPercentage) {
+							return true;
+						}
+						return false;
+					})}
 				/>
 				<box hexpand />
 				{/* {

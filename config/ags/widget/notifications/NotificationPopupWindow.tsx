@@ -10,7 +10,8 @@ import {
     notificationContentWidth,
     notificationSpacing,
     notificationScrollableMaxHeight,
-    notificationHeight
+    notificationHeight,
+    removeAllPreviousNotificationOnStart
 } from "../common/Variables"
 
 // The purpose if this class is to replace Variable<Array<Widget>>
@@ -89,21 +90,6 @@ class NotifiationMap implements Subscribable {
     }
 }
 
-// export default function NotificationPopupWindow(gdkmonitor: Gdk.Monitor) {
-//     const { TOP, RIGHT } = Astal.WindowAnchor
-//     const notifs = new NotifiationMap()
-
-//     return <window
-//         className={"NotificationPopups"}
-//         namespace={"notifications-popup"}
-//         gdkmonitor={gdkmonitor}
-//         anchor={TOP}>
-//         <box vertical noImplicitDestroy>
-//             {bind(notifs)}
-//         </box>
-//     </window>
-// }
-
 function hide() {
     App.get_window(namespaceNotification)!.hide()
 }
@@ -151,7 +137,11 @@ const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Not
 export const AllNotifications = () => {
 	const notifs = new NotifiationMap();
 	const notifications = Notifd.get_default();
-	notifications.get_notifications().forEach((n) => n.dismiss()); // This will remove all existing notifications on startup
+
+    if (removeAllPreviousNotificationOnStart) {
+        // This will remove all existing notifications on startup
+        notifications.get_notifications().forEach((n) => n.dismiss());
+    }
 
 	return(<NotificationsWindow notifs={notifs} notifications={notifications} />)
 };

@@ -36,7 +36,6 @@ const SinkMenu = () => {
         <box
             vertical={true}
             spacing={qsRevealSinksSpacing}
-            // className={"sink-box"}
         >
             <label
                 label={"Audio source"}

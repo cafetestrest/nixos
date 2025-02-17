@@ -1,6 +1,4 @@
 import { GObject, exec, timeout } from "astal";
-// import { toggleWindow } from "../lib/utils";
-// import { namespace } from "../widget/Powermenu";
 import Idle from "./IdleService";
 
 export type PowerMenuAction = "lock" | "sleep" | "logout" | "reboot" | "shutdown";
@@ -56,8 +54,6 @@ const PowerMenuSerivce = GObject.registerClass(
 
 			this.notify("cmd");
 			this.notify("title");
-			// toggleWindow(namespace);
-			// toggleWindow(verificationnamespace);
 			exec(this.#cmd);
 		}
 	},

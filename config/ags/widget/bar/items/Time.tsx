@@ -1,4 +1,4 @@
-import { Variable, GLib, bind } from "astal"
+import { Variable, GLib } from "astal"
 import { App } from "astal/gtk3"
 import { namespaceDashboard } from "../../common/Variables"
 

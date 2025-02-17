@@ -6,7 +6,7 @@ type UpowerProps = {
 	batteryPercentage: number;
 };
 
-const upower = Variable<Array<UpowerProps>>([]).poll(
+export const upower = Variable<Array<UpowerProps>>([]).poll(
 	5000,
 	"upower -d",
 	(out) => {

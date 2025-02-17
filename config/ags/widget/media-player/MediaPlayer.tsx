@@ -1,4 +1,4 @@
-import { Astal, Gtk } from "astal/gtk3"
+import { Gtk } from "astal/gtk3"
 import Mpris from "gi://AstalMpris"
 import { bind } from "astal"
 
@@ -55,7 +55,6 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             <label
                 halign={START}
                 valign={START}
-                // vexpand
                 wrap
                 label={artist}
                 truncate

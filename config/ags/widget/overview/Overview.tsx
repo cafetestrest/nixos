@@ -1,5 +1,5 @@
-import { App, Astal, Gtk, Gdk, Widget } from "astal/gtk3";
-import { Variable, bind } from "astal";
+import { Astal, Gtk, Gdk } from "astal/gtk3";
+import { bind } from "astal";
 import { range } from "../../lib/utils";
 import AstalHyprland from "gi://AstalHyprland";
 import icons, { substitutions } from "../../lib/icons";
@@ -106,7 +106,7 @@ const Workspace = (index: number) => {
 				min-width: ${Hyprland.get_focused_monitor().width * overviewScale}px;
             	min-height: ${Hyprland.get_focused_monitor().height * overviewScale}px;
 			`}
-			id={index}
+			id={index} // todo
 			attribute={(clients) => {
 				fixed.get_children().forEach(ch => ch.destroy());
 				clients

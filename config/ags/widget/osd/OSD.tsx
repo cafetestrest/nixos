@@ -1,12 +1,17 @@
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { timeout } from "astal/time"
 import { Variable, bind } from "astal"
-// import Brightness from "../../service/BrightnessService"
+import Brightness from "../../service/BrightnessService"
 import Wp from "gi://AstalWp"
-import { osdLevelbarWidth } from "../common/Variables"
+import { osdLevelbarWidth, hasBrightness } from "../common/Variables"
 
 function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
-    // const brightness = Brightness.get_default()
+    let brightness = null;
+
+    if (hasBrightness) {
+        brightness = Brightness.get_default()
+    }
+
     const speaker = Wp.get_default()!.get_default_speaker()
 
     const iconName = Variable("")
@@ -28,9 +33,11 @@ function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
     return (
         <revealer
             setup={(self) => {
-                // self.hook(brightness, "notify::screen", () =>
-                //     show(brightness.screen, "display-brightness-symbolic"),
-                // )
+                if (brightness) {
+                    self.hook(brightness, "notify::screen", () =>
+                        show(brightness.screen, "display-brightness-symbolic"),
+                    )
+                }
 
                 if (speaker) {
                     self.hook(speaker, "notify::volume", () => {
@@ -54,7 +61,6 @@ function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
                     return "osd-icon";
                 })} valign={Gtk.Align.CENTER} vexpand/>
                 <levelbar valign={Gtk.Align.CENTER} widthRequest={osdLevelbarWidth} value={value()}/>
-                {/* <label label={value(v => `${Math.floor(v * 100)}%`)} /> */}
             </box>
         </revealer>
     )

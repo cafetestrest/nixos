@@ -6,6 +6,18 @@
         border-radius: $radius;
     }
 
+    .bluetooth-device-percentage {
+        background: $primaryContainer;
+        color: $redRecordingText;
+        border-radius: $radius;
+        margin-left: 0.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .brightness-slider {
+        margin-top: 0.4rem;
+    }
+
     .qs-page {
         .qs-page-header-title {
             font-size: 1.2rem;
@@ -178,6 +190,7 @@
             }
         }
 
+        .brightness-slider-overlay,
         .volume-slider-overlay {
             * {
                 padding: 0;
@@ -188,6 +201,7 @@
                 color: $bgColor;
             }
 
+            .slider-brightness-icon,
             .slider-volume-icon {
                 margin-left: $qsSliderIconMarginLeft;
             }

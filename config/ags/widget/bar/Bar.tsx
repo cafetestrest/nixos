@@ -8,9 +8,7 @@ import Taskbar from "./items/Taskbar"
 import icons from "../../lib/icons"
 import Workspaces from "./items/Workspaces"
 import Time from "./items/Time"
-// import FocusedClient from "./items/FocusedClient"
 // import BatteryLevel from "./items/BatteryLevel"
-// import Wifi from "./items/Wifi"
 import SysTray from "./items/SysTray"
 import Media from "./items/Media"
 import AppLauncher from "./items/AppLauncher"
@@ -37,7 +35,6 @@ const Start = () => {
 		<box>
 			<box halign={Gtk.Align.START}>
 				<AppLauncher />
-                {/* <FocusedClient /> */}
 				<Taskbar />
 				<Workspaces />
 			</box>
@@ -79,8 +76,6 @@ const End = ({powermenu, systemIndicators}) => {
 				    <ColorPickerButton />
                 </box>
                 <SysTray />
-                {/* <AudioSlider /> */}
-                {/* <Wifi /> */}
                 {/* <BatteryLevel /> */}
                 {systemIndicators}
                 {powermenu}

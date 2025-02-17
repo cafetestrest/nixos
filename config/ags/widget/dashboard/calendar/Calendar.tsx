@@ -11,7 +11,7 @@ type Day = {
 let calendarJson = getCalendarLayout(undefined, true);
 let monthshift = 0;
 
-const { CENTER, START, END } = Gtk.Align;
+const { CENTER } = Gtk.Align;
 
 function getDateInXMonthsTime(x: number) {
 	var currentDate = new Date(); // Get the current date
@@ -32,7 +32,7 @@ function getDateInXMonthsTime(x: number) {
 }
 
 const weekDays = [
-	// MONDAY IS THE FIRST DAY OF THE WEEK :HESRIGHTYOUKNOW:
+	// MONDAY IS THE FIRST DAY OF THE WEEK
 	{ day: "Mo", today: 0 },
 	{ day: "Tu", today: 0 },
 	{ day: "We", today: 0 },

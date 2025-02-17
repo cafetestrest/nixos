@@ -1,4 +1,4 @@
-import { Gtk, App } from "astal/gtk3";
+import { App } from "astal/gtk3";
 import { GLib, monitorFile, exec, Gio, execAsync } from "astal";
 
 export function dependencies(packages: string[]) {

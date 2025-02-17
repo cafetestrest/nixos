@@ -51,6 +51,7 @@ export const applauncherScrollableHeight = 370;
 export const applauncherSingleItemHeight = 50;
 
 // notification popup window
+export const removeAllPreviousNotificationOnStart = true;
 export const namespaceNotification = "notification";
 export const notificationWidth = Variable(1000);
 export const notificationBoxTopMargin = 35;
@@ -73,6 +74,9 @@ export const osdLevelbarWidth = 100;
 
 // wifi
 export const hasWifi = false;
+
+// brightness
+export const hasBrightness = false;
 
 // function to close all revealers when hitting any button in qs
 export function qsRevertRevealerStatus(str: string) {

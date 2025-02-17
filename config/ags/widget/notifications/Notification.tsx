@@ -1,4 +1,4 @@
-import { bind, GLib } from "astal"
+import { GLib } from "astal"
 import { Gtk, Astal } from "astal/gtk3"
 import { type EventBox } from "astal/gtk3/widget"
 import Notifd from "gi://AstalNotifd"
@@ -18,7 +18,6 @@ const time = (time: number, format = "%H:%M") => GLib.DateTime
 
 const urgency = (n: Notifd.Notification) => {
     const { LOW, NORMAL, CRITICAL } = Notifd.Urgency
-    // match operator when?
     switch (n.urgency) {
         case LOW: return "low"
         case CRITICAL: return "critical"

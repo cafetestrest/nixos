@@ -5,7 +5,7 @@ import {
   recordOnlySelectedScreenToggle,
   recordSaveDateFormat,
   recordScreenrecordsDir,
-  recordScreenshotsDir
+  // recordScreenshotsDir
 } from "../widget/common/Variables";
 
 const now = () => GLib.DateTime.new_now_local().format(recordSaveDateFormat);
@@ -48,7 +48,7 @@ const ScreenRecorderService = GObject.registerClass(
   class Recorder extends GObject.Object {
     #recorder: AstalIO.Process | null = null;
     #recordings = GLib.getenv("HOME") + recordScreenrecordsDir;
-    #screenshots = GLib.getenv("HOME") + recordScreenshotsDir;
+    // #screenshots = GLib.getenv("HOME") + recordScreenshotsDir;
     #file = "";
     #interval: AstalIO.Time | null = null;
 

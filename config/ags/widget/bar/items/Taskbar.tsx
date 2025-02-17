@@ -1,5 +1,5 @@
-import { App, Gtk, Gdk, Widget, Astal } from "astal/gtk3";
-import { bind, timeout, Variable } from "astal";
+import { Gdk, Astal } from "astal/gtk3";
+import { bind } from "astal";
 import icons, { substitutions } from "../../../lib/icons";
 import AstalHyprland from "gi://AstalHyprland";
 import AstalApps from "gi://AstalApps"

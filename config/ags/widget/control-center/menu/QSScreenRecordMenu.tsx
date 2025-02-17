@@ -1,5 +1,4 @@
 import { Gtk } from "astal/gtk3";
-import { bind } from "astal";
 import icons from "../../../lib/icons";
 import QSMenu, { MenuButton } from "./QSMenu";
 import {
@@ -83,7 +82,7 @@ const ScreenRecordMenu = () => {
 				halign={Gtk.Align.END}
 			>
 				<MenuButton buttonType="outlined" onClicked={() => qsRevealScreenRecord.set(false)}>
-					Cancel
+					<label label={"Cancel"}/>
 				</MenuButton>
 				<MenuButton
 					onClicked={() => {
@@ -91,7 +90,7 @@ const ScreenRecordMenu = () => {
 						ScreenRecordService.start();
 					}}
 				>
-					Start
+					<label label={"Start"}/>
 				</MenuButton>
 			</box>
 		</box>

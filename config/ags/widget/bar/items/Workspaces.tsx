@@ -64,7 +64,7 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
             self.hook(hyprland, "event", () => self.children.map(btn => {
               btn.visible = hyprland.workspaces.some(ws => {
                 if (ws.id < workspaces)
-                  return ws.id +1 >= btn.attribute
+                  return ws.id +1 >= btn.attribute //todo add type
   
                 return ws.id >= btn.attribute
               });

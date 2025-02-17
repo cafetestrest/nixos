@@ -44,6 +44,21 @@ function main() {
 		notificationsPopups.set(gdkmonitor, NotificationPopups(gdkmonitor));
 		osds.set(gdkmonitor, OSD(gdkmonitor));
 	}
+
+    App.connect("monitor-added", (_, gdkmonitor) => {
+		bars.set(gdkmonitor, Bar(gdkmonitor));
+		notificationsPopups.set(gdkmonitor, NotificationPopups(gdkmonitor));
+		osds.set(gdkmonitor, OSD(gdkmonitor));
+	});
+
+	App.connect("monitor-removed", (_, gdkmonitor) => {
+		bars.get(gdkmonitor)?.destroy();
+		notificationsPopups.get(gdkmonitor)?.destroy();
+		osds.get(gdkmonitor)?.destroy();
+		bars.delete(gdkmonitor);
+		notificationsPopups.delete(gdkmonitor);
+		osds.delete(gdkmonitor);
+	});
 }
 
 App.start({

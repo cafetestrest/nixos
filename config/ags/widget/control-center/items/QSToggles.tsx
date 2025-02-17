@@ -1,5 +1,5 @@
-import { bind, Variable } from "astal"
-import { App, Gtk, Astal, Gdk } from "astal/gtk3";
+import { bind } from "astal"
+import { Gtk } from "astal/gtk3";
 import NightlightToggle from "./NightlightToggle";
 import IdleToggle from "./IdleToggle";
 import { qsTogglesPage, qsRevertRevealerStatus } from "../../common/Variables";
@@ -63,7 +63,6 @@ function SecondPage() {
       <box>
         <NetworkToggle />
         <QSSpaceBetweenToggles/>
-        {/* <QSEmptyButton /> */}
         <ScreenshotToggle />
       </box>
       <QSScreenshotMenu />
