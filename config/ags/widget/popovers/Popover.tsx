@@ -36,13 +36,14 @@ export default function Popover({
     marginRight,
     halign = Gtk.Align.CENTER,
     valign = Gtk.Align.CENTER,
+    className,
     onClose,
     ...props
 }: PopoverProps) {
     return (
         <window
+            className={`popover ${className}`}
             {...props}
-            css="background-color: transparent"
             keymode={Astal.Keymode.EXCLUSIVE}
             anchor={TOP | BOTTOM | LEFT | RIGHT}
             exclusivity={Astal.Exclusivity.IGNORE}

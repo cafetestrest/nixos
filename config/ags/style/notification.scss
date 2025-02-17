@@ -22,6 +22,9 @@ eventbox.Notification {
         min-height: $notificationIconMinHeight;
         border-radius: $notificationIconRadius;
         background: $inverseSurfaceTransparent;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     &:first-child>box {

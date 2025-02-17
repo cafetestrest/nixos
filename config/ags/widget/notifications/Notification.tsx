@@ -61,9 +61,6 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
                 className={"notification-image"}
                 css={`
                     background-image: url("file://${image}");
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
                 `}
             />
         );
@@ -85,9 +82,6 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
                 className={"notification-icon"}
                 css={`
                     background-image: url("file://${icon}");
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
                 `}
             />
         );
