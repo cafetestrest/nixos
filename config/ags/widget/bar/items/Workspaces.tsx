@@ -1,17 +1,13 @@
 import { bind, Variable } from "astal"
-import { App, Gdk, Gtk, Widget } from "astal/gtk3";
+import { App, Gdk, Gtk } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland"
 import { range } from "../../../lib/utils";
 import { namespaceOverview, workspaces } from "../../common/Variables";
+import WorkspaceButtonAstal, { WorkspaceButtonClass } from "../../overview/WorkspaceButton";
 
 export const numOfWS = Variable(0);
 
-type WsButtonProps = Widget.ButtonProps & {
-    ws: Hyprland.Workspace;
-    attribute?: number;
-};
-
-function WorkspaceButton({ ws, ...props }: WsButtonProps) {
+function WorkspaceButton({ ws, ...props }) {
     const hyprland = Hyprland.get_default();
     const classNames = Variable.derive(
       [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
@@ -32,17 +28,17 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
     );
   
     return (
-      <button
+      <WorkspaceButtonAstal
         className={classNames()}
         onDestroy={() => classNames.drop()}
         valign={Gtk.Align.CENTER}
         halign={Gtk.Align.CENTER}
         onClicked={() => ws.focus()}
-				attribute={ws.id}
+				id={ws.id}
         {...props}
       >
         <box className={"workspace-dot"} />
-      </button>
+      </WorkspaceButtonAstal>
     );
   }
 
@@ -61,12 +57,12 @@ function WorkspaceButton({ ws, ...props }: WsButtonProps) {
       >
         <box className={"workspaces-box"}
           setup={(self) => {
-            self.hook(hyprland, "event", () => self.children.map(btn => {
+            self.hook(hyprland, "event", () => self.children.map((btn: WorkspaceButtonClass) => {
               btn.visible = hyprland.workspaces.some(ws => {
                 if (ws.id < workspaces)
-                  return ws.id +1 >= btn.attribute //todo add type
+                  return ws.id +1 >= btn.id
   
-                return ws.id >= btn.attribute
+                return ws.id >= btn.id
               });
             }));
           }}

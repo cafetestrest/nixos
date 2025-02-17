@@ -11,7 +11,7 @@ import {
 } from "../common/Variables";
 import { hideOverview } from "./OverviewPopupWindow";
 import { getHyprlandClientIcon } from "../bar/items/Taskbar";
-import WorkspaceBox, { WorkspaceBox as WorkspaceBoxClass } from "./WorkspaceBox";
+import WorkspaceBoxAstal, { WorkspaceBoxClass } from "./WorkspaceBox";
 
 const Hyprland = AstalHyprland.get_default();
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
@@ -94,7 +94,7 @@ const Workspace = (index: number) => {
 		Hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:${address}`);
 
 	return (
-		<WorkspaceBox
+		<WorkspaceBoxAstal
 			className={bind(Hyprland, 'clients').as((clientList) => {
 				for (const client of clientList) {
 					if (client.workspace && client.workspace.id === index)
@@ -136,7 +136,7 @@ const Workspace = (index: number) => {
 			>
 				{fixed}
 			</eventbox>
-		</WorkspaceBox>
+		</WorkspaceBoxAstal>
 	)
 }
 

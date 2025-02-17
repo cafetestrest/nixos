@@ -2,12 +2,11 @@ import { Astal, astalify, type ConstructProps } from "astal/gtk3";
 import { property } from "astal/gobject";
 import GObject from "gi://GObject"
 
-interface WorkspaceBoxConstructorProps extends Astal.Box.ConstructorProps {
+interface WorkspaceButtonConstructorProps extends Astal.Button.ConstructorProps {
     id: number;
-    attribute?: (clients: any) => void;
 }
 
-export class WorkspaceBoxClass extends Astal.Box {
+export class WorkspaceButtonClass extends Astal.Button {
     #id!: number;
 
     @property(Number)
@@ -21,13 +20,13 @@ export class WorkspaceBoxClass extends Astal.Box {
     static { GObject.registerClass(this) }
 
     constructor(props: ConstructProps<
-        WorkspaceBoxClass,
-        WorkspaceBoxConstructorProps
+        WorkspaceButtonClass,
+        WorkspaceButtonConstructorProps
     >) {
         super(props as any)
     }
 }
 
-const WorkspaceBoxAstal = astalify(WorkspaceBoxClass);
+const WorkspaceButtonAstal = astalify(WorkspaceButtonClass);
 
-export default WorkspaceBoxAstal;
+export default WorkspaceButtonAstal;
