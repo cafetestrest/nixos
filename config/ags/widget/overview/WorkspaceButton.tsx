@@ -1,6 +1,6 @@
 import { Astal, astalify, type ConstructProps } from "astal/gtk3";
 import { property } from "astal/gobject";
-import GObject from "gi://GObject"
+import GObject from "gi://GObject";
 
 interface WorkspaceButtonConstructorProps extends Astal.Button.ConstructorProps {
     id: number;

@@ -1,11 +1,11 @@
-import { App, Astal, Gdk } from "astal/gtk3"
+import { App, Astal, Gdk } from "astal/gtk3";
 import {
     weatherBoxTopMargin,
     weatherContentWidth,
     weatherWidth,
     namespaceWeather
-} from "../common/Variables"
-import { WeatherSchedule } from "./Weather"
+} from "../common/Variables";
+import { WeatherSchedule } from "./Weather";
 
 function hide() {
     App.get_window(namespaceWeather)!.hide()

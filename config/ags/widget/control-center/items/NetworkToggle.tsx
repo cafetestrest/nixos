@@ -1,4 +1,4 @@
-import { bind, Variable } from "astal"
+import { bind, Variable } from "astal";
 import icons from "../../../lib/icons";
 import { qsPage } from "../../common/Variables";
 import QSToggle from "./QSToggle";

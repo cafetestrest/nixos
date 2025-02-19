@@ -1,10 +1,10 @@
-import { GLib } from "astal"
-import { Gtk, Astal } from "astal/gtk3"
-import { type EventBox } from "astal/gtk3/widget"
-import Notifd from "gi://AstalNotifd"
-import icons from "../../lib/icons"
+import { GLib } from "astal";
+import { Gtk, Astal } from "astal/gtk3";
+import { type EventBox } from "astal/gtk3/widget";
+import Notifd from "gi://AstalNotifd";
+import icons from "../../lib/icons";
 import Pango from "gi://Pango";
-import { notificationContentHeight } from "../common/Variables"
+import { notificationContentHeight } from "../common/Variables";
 
 const isIcon = (icon: string) =>
     !!Astal.Icon.lookup_icon(icon)

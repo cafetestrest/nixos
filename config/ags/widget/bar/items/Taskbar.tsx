@@ -2,7 +2,7 @@ import { Gdk, Astal } from "astal/gtk3";
 import { bind } from "astal";
 import icons, { substitutions } from "../../../lib/icons";
 import AstalHyprland from "gi://AstalHyprland";
-import AstalApps from "gi://AstalApps"
+import AstalApps from "gi://AstalApps";
 
 const hyprland = AstalHyprland.get_default();
 const Applications = new AstalApps.Apps();

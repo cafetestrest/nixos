@@ -1,4 +1,4 @@
-import { App, Gtk } from "astal/gtk3"
+import { App, Gtk } from "astal/gtk3";
 import { namespaceApplauncher } from "../../common/Variables";
 
 export default () => {

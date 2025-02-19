@@ -1,5 +1,5 @@
-import { bind } from "astal"
-import Tray from "gi://AstalTray"
+import { bind } from "astal";
+import Tray from "gi://AstalTray";
 
 export default () => {
     const tray = Tray.get_default()

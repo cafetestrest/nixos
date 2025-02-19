@@ -1,4 +1,4 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import icons from "../../../lib/icons";
 import Wp from "gi://AstalWp";
 import QSToggle from "./QSToggle";

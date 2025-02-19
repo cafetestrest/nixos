@@ -1,4 +1,4 @@
-import { Gtk } from "astal/gtk3"
+import { Gtk } from "astal/gtk3";
 import Popover from "../../popovers/Popover";
 import { visibleQSMainPage } from "../../common/Variables";
 import ControlCenter from "../../control-center/ControlCenter";

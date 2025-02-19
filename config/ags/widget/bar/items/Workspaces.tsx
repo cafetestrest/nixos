@@ -1,6 +1,6 @@
-import { bind, Variable } from "astal"
+import { bind, Variable } from "astal";
 import { App, Gdk, Gtk } from "astal/gtk3";
-import Hyprland from "gi://AstalHyprland"
+import Hyprland from "gi://AstalHyprland";
 import { range } from "../../../lib/utils";
 import { namespaceOverview, workspaces } from "../../common/Variables";
 import WorkspaceButtonAstal, { WorkspaceButtonClass } from "../../overview/WorkspaceButton";

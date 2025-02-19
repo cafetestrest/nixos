@@ -1,5 +1,5 @@
-import { Astal, Gdk, Widget } from "astal/gtk3"
-import Variable from "astal/variable"
+import { Astal, Gdk, Widget } from "astal/gtk3";
+import Variable from "astal/variable";
 
 type PopoverProps = Pick<
     Widget.WindowProps,

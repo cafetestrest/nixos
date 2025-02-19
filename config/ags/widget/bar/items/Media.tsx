@@ -1,7 +1,7 @@
-import { bind, Variable } from "astal"
-import { Gtk } from "astal/gtk3"
-import Mpris from "gi://AstalMpris"
-import icons from "../../../lib/icons"
+import { bind, Variable } from "astal";
+import { Gtk } from "astal/gtk3";
+import Mpris from "gi://AstalMpris";
+import icons from "../../../lib/icons";
 
 export default () => {
     const mpris = Mpris.get_default()

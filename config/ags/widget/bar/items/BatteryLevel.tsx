@@ -1,6 +1,6 @@
-import { Gtk } from "astal/gtk3"
-import { bind } from "astal"
-import Battery from "gi://AstalBattery"
+import { Gtk } from "astal/gtk3";
+import { bind } from "astal";
+import Battery from "gi://AstalBattery";
 
 export default () => {
     const battery = Battery.get_default()

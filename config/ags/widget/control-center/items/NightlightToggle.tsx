@@ -1,4 +1,4 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import NightlightModeService, { profileName } from "../../../service/NightLightService";
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";

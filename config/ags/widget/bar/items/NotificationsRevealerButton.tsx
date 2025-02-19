@@ -1,6 +1,6 @@
 import { bind, Variable } from "astal";
 import { App, Gtk } from "astal/gtk3";
-import icons from "../../../lib/icons"
+import icons from "../../../lib/icons";
 import Notifications from "gi://AstalNotifd";
 import { namespaceNotification } from "../../common/Variables";
 

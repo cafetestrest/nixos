@@ -1,4 +1,4 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import IdleModeService, { profileName } from "../../../service/IdleService";
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";

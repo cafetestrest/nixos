@@ -1,4 +1,4 @@
-import { Variable } from "astal"
+import { Variable } from "astal";
 
 // bar
 export const visiblePowermenu = Variable(false);

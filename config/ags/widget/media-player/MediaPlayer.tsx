@@ -1,6 +1,6 @@
-import { Gtk } from "astal/gtk3"
-import Mpris from "gi://AstalMpris"
-import { bind } from "astal"
+import { Gtk } from "astal/gtk3";
+import Mpris from "gi://AstalMpris";
+import { bind } from "astal";
 
 function lengthStr(length: number) {
     const hours = Math.floor(length / 3600);

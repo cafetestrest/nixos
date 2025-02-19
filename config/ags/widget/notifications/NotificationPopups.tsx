@@ -1,8 +1,8 @@
-import { Astal, Gtk, Gdk } from "astal/gtk3"
-import Notifd from "gi://AstalNotifd"
-import Notification from "./Notification"
-import { type Subscribable } from "astal/binding"
-import { Variable, bind, timeout } from "astal"
+import { Astal, Gtk, Gdk } from "astal/gtk3";
+import Notifd from "gi://AstalNotifd";
+import Notification from "./Notification";
+import { type Subscribable } from "astal/binding";
+import { Variable, bind, timeout } from "astal";
 
 // see comment below in constructor
 const TIMEOUT_DELAY = 5000

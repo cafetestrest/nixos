@@ -1,4 +1,4 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";
 import { qsRevealLightstrip } from "../../common/Variables";

@@ -1,5 +1,5 @@
-import { bash } from "../../../lib/utils"
-import icons from "../../../lib/icons"
+import { bash } from "../../../lib/utils";
+import icons from "../../../lib/icons";
 
 export default () => {
     return <button

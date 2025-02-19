@@ -1,6 +1,6 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import icons from "../../../lib/icons";
-import Bluetooth from "gi://AstalBluetooth"
+import Bluetooth from "gi://AstalBluetooth";
 import { qsPage } from "../../common/Variables";
 import QSToggle from "./QSToggle";
 

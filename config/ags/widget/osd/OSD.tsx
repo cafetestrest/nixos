@@ -1,9 +1,9 @@
-import { App, Astal, Gdk, Gtk } from "astal/gtk3"
-import { timeout } from "astal/time"
-import { Variable, bind } from "astal"
-import Brightness from "../../service/BrightnessService"
-import Wp from "gi://AstalWp"
-import { osdLevelbarWidth, hasBrightness } from "../common/Variables"
+import { App, Astal, Gdk, Gtk } from "astal/gtk3";
+import { timeout } from "astal/time";
+import { Variable, bind } from "astal";
+import Brightness from "../../service/BrightnessService";
+import Wp from "gi://AstalWp";
+import { osdLevelbarWidth, hasBrightness } from "../common/Variables";
 
 function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
     let brightness = null;

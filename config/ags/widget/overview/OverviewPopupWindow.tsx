@@ -1,11 +1,11 @@
-import { App, Astal, Gdk } from "astal/gtk3"
+import { App, Astal, Gdk } from "astal/gtk3";
 import {
     overviewBoxTopMargin,
     overviewContentWidth,
     overviewWidth,
     namespaceOverview
-} from "../common/Variables"
-import Overview from "./Overview"
+} from "../common/Variables";
+import Overview from "./Overview";
 
 export function hideOverview() {
     App.get_window(namespaceOverview)!.hide()

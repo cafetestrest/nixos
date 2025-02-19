@@ -1,6 +1,6 @@
 import { Gdk, Gtk } from "astal/gtk3";
 import { bind, timeout } from "astal";
-import Bluetooth from "gi://AstalBluetooth"
+import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
 import { upower } from "../../usage/BluetoothPowerUsage";

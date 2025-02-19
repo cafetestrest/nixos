@@ -1,6 +1,6 @@
-import Apps from "gi://AstalApps"
-import { App, Astal, Gdk, Gtk } from "astal/gtk3"
-import { Variable, bind } from "astal"
+import Apps from "gi://AstalApps";
+import { App, Astal, Gdk, Gtk } from "astal/gtk3";
+import { Variable, bind } from "astal";
 import {
     applauncherWidth,
     applauncherBoxTopMargin,
@@ -8,10 +8,10 @@ import {
     applauncherScrollableHeight,
     applauncherSingleItemHeight,
     namespaceApplauncher
-} from "../common/Variables"
-import icons from "../../lib/icons"
-import { containsMathOperation } from "./Math"
-import { MathResult } from "./MathResult"
+} from "../common/Variables";
+import icons from "../../lib/icons";
+import { containsMathOperation } from "./Math";
+import { MathResult } from "./MathResult";
 
 function hide() {
     App.get_window(namespaceApplauncher)!.hide()

@@ -1,4 +1,4 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import { Gtk } from "astal/gtk3";
 import NightlightToggle from "./NightlightToggle";
 import IdleToggle from "./IdleToggle";

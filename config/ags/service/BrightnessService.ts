@@ -1,6 +1,6 @@
-import GObject, { register, property } from "astal/gobject"
-import { monitorFile, readFileAsync } from "astal/file"
-import { exec, execAsync } from "astal/process"
+import GObject, { register, property } from "astal/gobject";
+import { monitorFile, readFileAsync } from "astal/file";
+import { exec, execAsync } from "astal/process";
 
 const get = (args: string) => Number(exec(`brightnessctl ${args}`))
 const screen = exec(`bash -c "ls -w1 /sys/class/backlight | head -1"`)

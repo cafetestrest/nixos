@@ -1,5 +1,5 @@
 import PowermenuService, { PowerMenuAction } from "../../service/PowermenuService";
-import { Widget } from "astal/gtk3"
+import { Widget } from "astal/gtk3";
 import icons from "../../lib/icons";
 
 type PowermenuButtonProps = {

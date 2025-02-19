@@ -1,5 +1,5 @@
-import { bind } from "astal"
-import Hyprland from "gi://AstalHyprland"
+import { bind } from "astal";
+import Hyprland from "gi://AstalHyprland";
 
 export default () => {
     const hypr = Hyprland.get_default()

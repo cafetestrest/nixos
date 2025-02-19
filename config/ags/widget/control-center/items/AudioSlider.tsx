@@ -1,6 +1,6 @@
-import { bind } from "astal"
+import { bind } from "astal";
 import { Gtk, hook } from "astal/gtk3";
-import Wp from "gi://AstalWp"
+import Wp from "gi://AstalWp";
 
 const VolumeSlider = ({ device }: { device: Wp.Endpoint }) => {
     const adjustment = new Gtk.Adjustment({

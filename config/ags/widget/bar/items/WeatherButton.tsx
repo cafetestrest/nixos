@@ -1,7 +1,7 @@
-import { bind } from "astal"
-import { App, Gdk } from "astal/gtk3"
-import { namespaceWeather } from "../../common/Variables"
-import { weather } from "../../../service/WeatherService"
+import { bind } from "astal";
+import { App, Gdk } from "astal/gtk3";
+import { namespaceWeather } from "../../common/Variables";
+import { weather } from "../../../service/WeatherService";
 
 export default () => {
     const weatherBind = bind(weather);

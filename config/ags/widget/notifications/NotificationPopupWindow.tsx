@@ -1,8 +1,8 @@
-import { Astal, Gtk, Gdk, App } from "astal/gtk3"
-import Notifd from "gi://AstalNotifd"
-import Notification from "./Notification"
-import { type Subscribable } from "astal/binding"
-import { Variable, bind, timeout } from "astal"
+import { Astal, Gtk, Gdk, App } from "astal/gtk3";
+import Notifd from "gi://AstalNotifd";
+import Notification from "./Notification";
+import { type Subscribable } from "astal/binding";
+import { Variable, bind, timeout } from "astal";
 import {
     namespaceNotification,
     notificationWidth,
@@ -12,7 +12,7 @@ import {
     notificationScrollableMaxHeight,
     notificationHeight,
     removeAllPreviousNotificationOnStart
-} from "../common/Variables"
+} from "../common/Variables";
 
 // The purpose if this class is to replace Variable<Array<Widget>>
 // with a Map<number, Widget> type in order to track notification widgets

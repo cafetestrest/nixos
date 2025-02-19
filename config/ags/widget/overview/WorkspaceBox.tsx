@@ -1,6 +1,6 @@
 import { Astal, astalify, type ConstructProps } from "astal/gtk3";
 import { property } from "astal/gobject";
-import GObject from "gi://GObject"
+import GObject from "gi://GObject";
 
 interface WorkspaceBoxConstructorProps extends Astal.Box.ConstructorProps {
     id: number;

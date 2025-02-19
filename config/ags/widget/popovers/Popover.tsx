@@ -1,5 +1,6 @@
-import { Astal, Gdk, Gtk, Widget } from "astal/gtk3"
-import { isQSRevealerOpen, qsRevertRevealerStatus, qsPage } from "../common/Variables"
+import { Astal, Gdk, Gtk, Widget } from "astal/gtk3";
+import { isQSRevealerOpen, qsRevertRevealerStatus, qsPage } from "../common/Variables";
+
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
 
 type PopoverProps = Pick<
