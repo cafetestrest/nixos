@@ -1,8 +1,8 @@
 import { bind, Variable } from "astal";
-import { diskUsageSpacing } from "../common/Variables";
+import { diskUsageSpacing, diskUsagePoolRate } from "../common/Variables";
 
 const disk = Variable<string>("").poll(
-	600_000,
+	diskUsagePoolRate,
 	"df -h /",
 	(out) => {
 	const lines = out.split('\n');

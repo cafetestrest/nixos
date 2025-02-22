@@ -1,9 +1,9 @@
 import Variable from 'astal/variable';
 import GTop from "gi://GTop";
-import { cpuUsageSpacing } from '../common/Variables';
+import { cpuUsageSpacing, cpuUsagePoolRate, cpuUsageDecimals } from '../common/Variables';
 
 const cpu = Variable({ cpu: new GTop.glibtop_cpu(), load: 0 }).poll(
-	2000,
+	cpuUsagePoolRate,
 	({ cpu: lastCpu }) => {
 		const cpu = new GTop.glibtop_cpu();
 		GTop.glibtop_get_cpu(cpu);
@@ -27,7 +27,7 @@ export default () => {
         <box className={"cpu usage"} spacing={cpuUsageSpacing}>
             <label className={"cpu icon"} label="" />
             <label
-                label={cpu(cpu => `${(cpu.load * 100).toFixed(1)}%`)}
+                label={cpu(cpu => `${(cpu.load * 100).toFixed(cpuUsageDecimals)}%`)}
             />
         </box>
     );

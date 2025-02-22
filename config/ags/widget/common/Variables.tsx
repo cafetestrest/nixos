@@ -7,8 +7,13 @@ export const visibleQSMainPage = Variable(false);
 // usage
 export const barUsageSpacing = 10;
 export const diskUsageSpacing = 12;
+export const diskUsagePoolRate = 600000;
 export const ramUsageSpacing = 12;
+export const ramUsageDecimals = 1;
+export const ramUsagePoolRate = 2000;
 export const cpuUsageSpacing = 12;
+export const cpuUsagePoolRate = 2000;
+export const cpuUsageDecimals = 1;
 
 // qs
 export const qsTogglesPage = Variable("qs-page-first");
