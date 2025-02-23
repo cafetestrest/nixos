@@ -3,6 +3,7 @@ import { Variable } from "astal";
 // bar
 export const visiblePowermenu = Variable(false);
 export const visibleQSMainPage = Variable(false);
+export const enableBarButtons = false;
 
 // usage
 export const barUsageSpacing = 10;

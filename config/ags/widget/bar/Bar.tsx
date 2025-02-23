@@ -10,9 +10,6 @@ import CpuUsage from "../usage/CpuUsage";
 import RamUsage from "../usage/RamUsage";
 import DiskUsage from "../usage/DiskUsage";
 import WeatherButton from "./items/WeatherButton";
-import NoteButton from "./items/NoteButton";
-import ScreenshotButton from "./items/ScreenshotButton";
-import ColorPickerButton from "./items/ColorPickerButton";
 import NotificationsRevealerButton from "./items/NotificationsRevealerButton";
 import BluetoothPowerUsage from "../usage/BluetoothPowerUsage";
 import RecordingIndicatorButton from "./items/RecordingIndicatorButton";
@@ -21,6 +18,7 @@ import PowermenuPopover from "./items/PowermenuPopover";
 import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
 import { barUsageSpacing } from "../common/Variables";
+import BarButtons from "./items/BarButtons";
 
 const Start = () => {
 	return (
@@ -62,11 +60,7 @@ const End = ({powermenu, systemIndicators}) => {
 					<DiskUsage />
 					<BluetoothPowerUsage />
 				</box>
-                <box className={"bar-buttons"}>
-    				<NoteButton />
-                    <ScreenshotButton />
-				    <ColorPickerButton />
-                </box>
+				<BarButtons />
                 <SysTray />
                 {/* <BatteryLevel /> */}
                 {systemIndicators}
