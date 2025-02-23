@@ -8,7 +8,7 @@ type QSToggleProps = {
 	icon: Widget.IconProps["icon"] | Binding<string>;
 	label?: Widget.LabelProps["label"] | [Subscribable<unknown>, () => string];
 	onPrimaryClick?: () => void;
-	className?: [Subscribable<unknown>, () => string] | Binding<string>;
+	className?: [Subscribable<unknown>, () => string] | Binding<string> | string;
     hasArrow?: boolean;
     revelaer?: string;
 } & Widget.ButtonProps;

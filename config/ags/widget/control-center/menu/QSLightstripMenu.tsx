@@ -1,5 +1,11 @@
 import { Gtk } from "astal/gtk3";
-import { qsRevealLightstrip, qsRevealLightstripSpacing } from "../../common/Variables";
+import {
+    qsRevealLightstrip,
+    qsRevealLightstripSpacing,
+    commandGetLightstripIp,
+    commandTurnOnLightstrip,
+    commandTurnOffLightstrip
+} from "../../common/Variables";
 import icons from "../../../lib/icons";
 import QSMenu from "./QSMenu";
 import { bash } from "../../../lib/utils";
@@ -20,7 +26,7 @@ const LightstripMenu = () => {
                 <button
                     className={"fetch-new-ip-button"}
                     onClicked={() => {
-    					bash('getyeelightip')
+    					bash(commandGetLightstripIp)
                     }}
 					halign={Gtk.Align.END}
                 >
@@ -38,7 +44,7 @@ const LightstripMenu = () => {
             >
                 <button
                     onClicked={() => {
-    					bash('~/.config/scripts/yeelight/yeelight-scene.sh 0 On')
+    					bash(commandTurnOnLightstrip)
                     }}
                 >
                     <box
@@ -55,7 +61,7 @@ const LightstripMenu = () => {
 
                 <button
                     onClicked={() => {
-                        bash('~/.config/scripts/yeelight/yeelight-scene.sh 0 Off')
+                        bash(commandTurnOffLightstrip)
                     }}
                 >
                     <box

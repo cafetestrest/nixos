@@ -1,4 +1,10 @@
-import { qsRevealScreenshot, qsRevealScreenshotSpacing } from "../../common/Variables";
+import {
+    qsRevealScreenshot,
+    qsRevealScreenshotSpacing,
+    commandScreenshotSelectRegion,
+    commandScreenshotSelectWindow,
+    commandScreenshotWholeDisplay
+} from "../../common/Variables";
 import icons from "../../../lib/icons";
 import QSMenu from "./QSMenu";
 import { bash } from "../../../lib/utils";
@@ -20,7 +26,7 @@ const ScreenShotMenu = () => {
             >
                 <button
                     onClicked={() => {
-    					bash('screenshot')
+    					bash(commandScreenshotWholeDisplay)
                     }}
                 >
                     <box>
@@ -35,7 +41,7 @@ const ScreenShotMenu = () => {
 
                 <button
                     onClicked={() => {
-    					bash('screenshot 1')
+    					bash(commandScreenshotSelectRegion)
                     }}
                 >
                     <box>
@@ -50,7 +56,7 @@ const ScreenShotMenu = () => {
 
                 <button
                     onClicked={() => {
-    					bash('screenshot 2')
+    					bash(commandScreenshotSelectWindow)
                     }}
                 >
                     <box>

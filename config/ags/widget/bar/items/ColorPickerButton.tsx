@@ -1,10 +1,11 @@
 import { bash } from "../../../lib/utils";
 import icons from "../../../lib/icons";
+import { commandColorPicker } from "../../common/Variables";
 
 export default () => {
     return <button
         onClicked={() => {
-            bash('hyprpicker -a')
+            bash(commandColorPicker)
         }}
         className={"color-picker-button bar-button"}
     >

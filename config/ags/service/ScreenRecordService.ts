@@ -5,6 +5,8 @@ import {
   recordOnlySelectedScreenToggle,
   recordSaveDateFormat,
   recordScreenrecordsDir,
+  commandSelectRegion,
+  commandStartScreenRecord,
   // recordScreenshotsDir
 } from "../widget/common/Variables";
 
@@ -85,10 +87,10 @@ const ScreenRecorderService = GObject.registerClass(
       ensureDirectory(this.#recordings);
       this.#file = `${this.#recordings}/${now()}.mp4`;
 
-      let cmd = `wf-recorder -c h264_vaapi -f ${this.#file}`;
+      let cmd = `${commandStartScreenRecord} ${this.#file}`;
 
       if (this.#recordSelectRegion) {
-        cmd += ` -g "${await bash("slurp")}"`;
+        cmd += ` -g "${await bash(commandSelectRegion)}"`;
       }
 
       if (this.#recordAudio) {

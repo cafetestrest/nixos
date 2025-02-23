@@ -1,6 +1,6 @@
 import { bind } from "astal";
-import { Astal, Gtk, Gdk } from "astal/gtk3";
-import { visiblePowermenu } from "../../common/Variables";
+import { Astal, Gdk } from "astal/gtk3";
+import { visiblePowermenu, commandOpenStartupApps } from "../../common/Variables";
 import icons from "../../../lib/icons";
 import { bash } from "../../../lib/utils";
 
@@ -19,10 +19,10 @@ export default () => {
                         visiblePowermenu.set(true);
                         break;
                     case Gdk.BUTTON_SECONDARY:
-                        bash('openstartupapps');
+                        bash(commandOpenStartupApps);
                         break;
                     case Gdk.BUTTON_MIDDLE:
-                        bash('openstartupapps');
+                        bash(commandOpenStartupApps);
                         break;
                 }
             }}

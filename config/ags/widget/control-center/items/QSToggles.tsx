@@ -14,6 +14,8 @@ import ScreenshotToggle from "./ScreenshotToggle";
 import QSScreenshotMenu from "../menu/QSScreenshotMenu";
 import LightstripToggle from "./LightstripToggle";
 import QSLightstripMenu from "../menu/QSLightstripMenu";
+import ColorPickerToggle from "./ColorPickerToggle";
+import NoteToggle from "./NoteToggle";
 
 function QSEmptyButton() {
   return (
@@ -39,15 +41,16 @@ function FirstPage() {
       <box>
         <MicrophoneToggle />
         <QSSpaceBetweenToggles/>
-        <DNDToggle />
+        <ScreenshotToggle />
       </box>
+      <QSScreenshotMenu />
 
       <QSSpaceBetweenToggleBoxes/>
 
       <box>
         <IdleToggle />
         <QSSpaceBetweenToggles/>
-        <ScreenRecordToggle />
+        <LightstripToggle />
       </box>
     </box>
   );
@@ -63,19 +66,25 @@ function SecondPage() {
       <box>
         <NetworkToggle />
         <QSSpaceBetweenToggles/>
-        <ScreenshotToggle />
+        <ScreenRecordToggle />
       </box>
-      <QSScreenshotMenu />
+      <QSScreenRecordMenu />
 
       <QSSpaceBetweenToggleBoxes/>
 
       <box>
-        <LightstripToggle />
+        <DNDToggle />
+        <QSSpaceBetweenToggles/>
+        <ColorPickerToggle />
+      </box>
+
+      <QSSpaceBetweenToggleBoxes/>
+
+      <box>
+        <NoteToggle />
         <QSSpaceBetweenToggles/>
         <QSEmptyButton />
       </box>
-
-      <QSLightstripMenu />
     </box>
   );
 }
@@ -94,7 +103,7 @@ export default () => {
         <SecondPage />
       </stack>
 
-      <QSScreenRecordMenu />
+      <QSLightstripMenu />
 
       <box
         halign={Gtk.Align.CENTER}

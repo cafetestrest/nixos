@@ -83,6 +83,20 @@ export const hasWifi = false;
 // brightness
 export const hasBrightness = false;
 
+// common
+export const commandOpenNote = "codium ~/Documents/note.md";
+export const commandSelectRegion = "slurp";
+export const commandStartScreenRecord = "wf-recorder -c h264_vaapi -f";
+export const commandColorPicker = "hyprpicker -a";
+export const commandOpenStartupApps = "openstartupapps";
+export const commandScreenshotWholeDisplay = "screenshot";
+export const commandScreenshotSelectRegion = "screenshot 1";
+export const commandScreenshotSelectWindow = "screenshot 2";
+export const commandGetLightstripIp = "getyeelightip";
+const commandLightstrip = "~/.config/scripts/yeelight/yeelight-scene.sh 0";
+export const commandTurnOnLightstrip = `${commandLightstrip} On`;
+export const commandTurnOffLightstrip = `${commandLightstrip} Off`;
+
 // function to close all revealers when hitting any button in qs
 export function qsRevertRevealerStatus(str: string) {
     if (str !== "screen-record") {
