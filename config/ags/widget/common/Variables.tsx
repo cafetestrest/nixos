@@ -4,6 +4,7 @@ import { Variable } from "astal";
 export const visiblePowermenu = Variable(false);
 export const visibleQSMainPage = Variable(false);
 export const enableBarButtons = false;
+export const enableBarUsage = true;
 
 // usage
 export const barUsageSpacing = 10;

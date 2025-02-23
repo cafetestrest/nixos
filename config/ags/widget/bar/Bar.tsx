@@ -6,19 +6,15 @@ import Time from "./items/Time";
 import SysTray from "./items/SysTray";
 import Media from "./items/Media";
 import AppLauncher from "./items/AppLauncher";
-import CpuUsage from "../usage/CpuUsage";
-import RamUsage from "../usage/RamUsage";
-import DiskUsage from "../usage/DiskUsage";
 import WeatherButton from "./items/WeatherButton";
 import NotificationsRevealerButton from "./items/NotificationsRevealerButton";
-import BluetoothPowerUsage from "../usage/BluetoothPowerUsage";
 import RecordingIndicatorButton from "./items/RecordingIndicatorButton";
 import QuickSettingsPopover from "./items/QuickSettingsPopover";
 import PowermenuPopover from "./items/PowermenuPopover";
 import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
-import { barUsageSpacing } from "../common/Variables";
 import BarButtons from "./items/BarButtons";
+import UsageBox from "./items/UsageBox";
 
 const Start = () => {
 	return (
@@ -54,12 +50,7 @@ const End = ({powermenu, systemIndicators}) => {
 				<box className={"recording-box"}>
 					<RecordingIndicatorButton />
 				</box>
-				<box className={"usage-box"} spacing={barUsageSpacing}>
-					<CpuUsage />
-					<RamUsage />
-					<DiskUsage />
-					<BluetoothPowerUsage />
-				</box>
+				<UsageBox />
 				<BarButtons />
                 <SysTray />
                 {/* <BatteryLevel /> */}
