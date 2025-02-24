@@ -12,6 +12,7 @@
 
     .calendar__button__today {
         background: $accentGradient;
+        color: $bgColor;
 
         &:hover {
             box-shadow: $hoverShadow;
