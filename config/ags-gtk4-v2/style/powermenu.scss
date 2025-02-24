@@ -1,0 +1,22 @@
+@use "./variables.scss" as *;
+
+window#powermenu {
+    .powermenu {
+        .powermenu-button {
+            padding: 0;
+            margin: $powermenuButtonMargin;
+            min-width: $powermenuButtonWidth;
+            min-height: $powermenuButtonHeight;
+            border-radius: $powermenuButtonRadius;
+
+            &:focus {
+                background: $accentGradient;
+                color: $bgColor;
+            }
+
+            .powermenu-icon {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

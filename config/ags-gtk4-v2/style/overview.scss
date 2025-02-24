@@ -1,0 +1,41 @@
+@use "./variables.scss" as *;
+
+window#overview .overview {
+    .active.workspace {
+        border-color: $accent;
+    }
+
+    .eventbox:hover {
+        border-radius: $radius;
+        box-shadow: inset 0 0 5px 5px $hover;
+    }
+
+    .workspace {
+        transition: 200ms;
+        border-radius: $radius;
+        background-color: $overview;
+        border: 1px solid $popupTransparent;
+        margin-right: 0.4rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .client {
+        transition: 200ms;
+        background-color: $overview;
+        box-shadow: inset 0 0 0 1px $popupTransparent;
+        border-radius: $overviewAppRadius;
+        margin: 0.5rem;
+    }
+
+    .client:hover,
+    .client:focus {
+        background-color: $hover;
+    }
+
+    .client:active, .client.on, .client.active, .client:checked {
+        background-color: $accent;
+    }
+}
