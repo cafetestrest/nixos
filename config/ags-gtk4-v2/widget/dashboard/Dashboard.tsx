@@ -21,22 +21,22 @@ export default function Dashboard() {
         application={App}
         visible={false}
         onShow={(self) => {
-            dashboardWidth.set(self.get_current_monitor().workarea.width)
+            dashboardWidth.set(self.get_current_monitor().geometry.width);
         }}
         onKeyPressed={(_, keyval: number) => {
             if (keyval === Gdk.KEY_Escape)
                 hide()
         }}>
         <box cssClasses={["Popup"]}>
-            <box widthRequest={dashboardWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={dashboardWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
             <box hexpand={false} vertical={true}>
-                <box heightRequest={dashboardBoxTopMargin} onClick={hide} />
+                <box heightRequest={dashboardBoxTopMargin} onButtonPressed={hide} />
                 <box widthRequest={dashboardContentWidth} cssClasses={["popup-box"]} vertical={true}>
                     <Calendar />
                 </box>
-                <box hexpand={true} vexpand={true} onClick={hide} />
+                <box hexpand={true} vexpand={true} onButtonPressed={hide} />
             </box>
-            <box widthRequest={dashboardWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={dashboardWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
         </box>
     </window>
 }

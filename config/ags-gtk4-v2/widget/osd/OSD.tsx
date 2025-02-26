@@ -77,8 +77,9 @@ export default function OSD(monitor: Gdk.Monitor) {
             application={App}
             layer={Astal.Layer.OVERLAY}
             keymode={Astal.Keymode.ON_DEMAND}
+            visible={bind(visible)} // TODO maybe something else, as with this revealer animation does not show up
         >
-            <box onClick={() => visible.set(false)}>
+            <box onButtonPressed={() => visible.set(false)}>
                 <OnScreenProgress visible={visible} />
             </box>
         </window>

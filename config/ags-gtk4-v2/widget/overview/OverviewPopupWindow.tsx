@@ -21,22 +21,22 @@ export default function OverviewPopupWindow() {
         application={App}
         visible={false}
         onShow={(self) => {
-            overviewWidth.set(self.get_current_monitor().workarea.width)
+            overviewWidth.set(self.get_current_monitor().geometry.width);
         }}
         onKeyPressed={(_, keyval: number) => {
             if (keyval === Gdk.KEY_Escape)
                 hideOverview()
         }}>
         <box cssClasses={["Popup"]}>
-            <box widthRequest={overviewWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hideOverview} />
+            <box widthRequest={overviewWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hideOverview} />
             <box hexpand={false} vertical={true}>
-                <box heightRequest={overviewBoxTopMargin} onClick={hideOverview} />
+                <box heightRequest={overviewBoxTopMargin} onButtonPressed={hideOverview} />
                 <box widthRequest={overviewContentWidth} cssClasses={["popup-box"]} vertical={true}>
                     <Overview />
                 </box>
-                <box hexpand={true} vexpand={true} onClick={hideOverview} />
+                <box hexpand={true} vexpand={true} onButtonPressed={hideOverview} />
             </box>
-            <box widthRequest={overviewWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hideOverview} />
+            <box widthRequest={overviewWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hideOverview} />
         </box>
     </window>
 }

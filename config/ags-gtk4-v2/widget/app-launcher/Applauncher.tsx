@@ -75,16 +75,17 @@ export default function Applauncher() {
         visible={false}
         onShow={(self) => {
             text.set("")
-            applauncherWidth.set(self.get_current_monitor().workarea.width)
+            applauncherWidth.set(self.get_current_monitor().geometry.width);
+
         }}
         onKeyPressed={(_, keyval: number) => {
             if (keyval === Gdk.KEY_Escape)
                 hide()
         }}>
         <box>
-            <box widthRequest={applauncherWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={applauncherWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
             <box hexpand={false} vertical={true}>
-                <box heightRequest={applauncherBoxTopMargin} onClick={hide} />
+                <box heightRequest={applauncherBoxTopMargin} onButtonPressed={hide} />
                 <box widthRequest={applauncherContentWidth} cssClasses={["Applauncher"]} vertical={true}>
                     <box cssClasses={["app-launcher-header"]}>
                         <image
@@ -92,25 +93,28 @@ export default function Applauncher() {
                         />
                         <entry
                             placeholderText="Search"
-                            text={text()}
+                            // text={text()} // in GTK 4 this causes recursion
                             onChanged={self => text.set(self.text)}
                             onActivate={onEnter}
                             hexpand={true}
                         />
                     </box>
-                    <Gtk.ScrolledWindow
+                    <box
                         heightRequest={items.as((l) => {
                             return Math.min(l.length * applauncherSingleItemHeight, applauncherScrollableHeight);
                         })}
                         visible={items.as((l) => l.length > 0 ? true : false)}
-                        cssClasses={["app-launcher-scrollable"]}
                     >
-                        <box spacing={6} vertical={true} hexpand={true}>
-                            {list.as(list => list.map(app => (
-                                <AppButton app={app} />
-                            )))}
-                        </box>
-                    </Gtk.ScrolledWindow>
+                        <Gtk.ScrolledWindow
+                            cssClasses={["app-launcher-scrollable"]}
+                        >
+                            <box spacing={6} vertical={true} hexpand={true}>
+                                {list.as(list => list.map(app => (
+                                    <AppButton app={app} />
+                                )))}
+                            </box>
+                        </Gtk.ScrolledWindow>
+                    </box>
                     <box
                         halign={Gtk.Align.CENTER}
                         visible={bind(text).as(text => {
@@ -123,9 +127,9 @@ export default function Applauncher() {
                         {listMath.as(text => MathResult(text))}
                     </box>
                 </box>
-                <box hexpand={true} vexpand={true} onClick={hide} />
+                <box hexpand={true} vexpand={true} onButtonPressed={hide} />
             </box>
-            <box widthRequest={applauncherWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={applauncherWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
         </box>
     </window>
 }

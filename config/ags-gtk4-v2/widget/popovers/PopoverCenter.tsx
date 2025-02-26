@@ -39,8 +39,7 @@ export default function Popover({
                 // instead of anchoring to all sides we set the width explicitly
                 // otherwise label wrapping won't work correctly without setting their width
                 if (self.visible) {
-                    width.set(3840)
-                    // width.set(self.get_current_monitor().workarea.width)//todo
+                    width.set(self.get_current_monitor().geometry.width);
                 } else {
                     onClose?.(self)
                 }

@@ -1,6 +1,5 @@
-import { Gdk, Gtk, Widget } from "astal/gtk4";
+import { Astal, Gdk, Gtk, Widget } from "astal/gtk4";
 import { getCalendarLayout } from "./Layout";
-import { Box, Label, Button } from "astal/gtk4/widget";
 import icons from "../../../lib/icons";
 
 type Day = {
@@ -43,36 +42,36 @@ const weekDays = [
 ];
 
 const CalendarDay = (day: string, today: number) =>
-	new Widget.Button({
-		className: `calendar__button ${today == 1 ? "calendar__button__today" : today == -1 ? "calendar__button__other-month" : ""}`,
-		child: new Box({
+	Widget.Button({
+		cssClasses: [`calendar__button`, `${today == 1 ? "calendar__button__today" : today == -1 ? "calendar__button__other-month" : ""}`],
+		child: Widget.Box({
 			halign: CENTER,
-			child: new Label({
+			child: Widget.Label({
 				halign: CENTER,
-				className: "calendar__button_text",
+				cssClasses: ["calendar__button_text"],
 				label: String(day),
 			}),
 		})
 	});
 
 export default () => {
-	const calendarMonthYear = new Widget.Button({
-		className: "calendar__monthyear",
+	const calendarMonthYear = Widget.Button({
+		cssClasses: ["calendar__monthyear"],
 		onClicked: () => shiftCalendarXMonths(0),
 		setup: (button) => {
 			button.label = `${new Date().toLocaleString("default", { month: "long" })} ${new Date().getFullYear()}`;
 		},
 	});
 
-	const addCalendarChildren = (box: Widget.Box, calendarJson) => {
+	const addCalendarChildren = (box: Astal.Box, calendarJson) => {
 		const children = box.get_children();
 		for (let i = 0; i < children.length; i++) {
 			const child = children[i];
-			child.destroy();
+			child.unparent();
 		}
 		box.children = calendarJson.map(
 			(row: Array<Day>) =>
-				new Widget.Box({
+				Widget.Box({
 					spacing: 18,
 					children: row.map((day) =>
 						CalendarDay(day.day, day.today),
@@ -93,41 +92,37 @@ export default () => {
 		addCalendarChildren(calendarDays, calendarJson);
 	}
 
-	const calendarHeader = new Widget.Box({
-		className: "calendar__header",
+	const calendarHeader = Widget.Box({
+		cssClasses: ["calendar__header"],
 		spacing: 8,
-		setup: (box) => {
-			box.pack_start(calendarMonthYear, false, false, 0);
-			box.pack_end(
-				new Widget.Box({
-					className: "spacing-h-5",
-                    spacing: 10,
-					children: [
-						new Button({
-							className: "sidebar-calendar-monthshift-btn",
-							onClicked: () => shiftCalendarXMonths(-1),
-							child: new Widget.Icon({
-								icon: icons.ui.arrow.left,
-							}),
+		children: [
+			calendarMonthYear,
+			Widget.Box({ hexpand: true }),
+			Widget.Box({
+				cssClasses: ["spacing-h-5"],
+				spacing: 10,
+				children: [
+					Widget.Button({
+						cssClasses: ["sidebar-calendar-monthshift-btn"],
+						onClicked: () => shiftCalendarXMonths(-1),
+						child: Widget.Image({
+							iconName: icons.ui.arrow.left,
 						}),
-						new Button({
-							className: "sidebar-calendar-monthshift-btn",
-							onClicked: () => shiftCalendarXMonths(1),
-							child: new Widget.Icon({
-								icon: icons.ui.arrow.right,
-							}),
+					}),
+					Widget.Button({
+						cssClasses: ["sidebar-calendar-monthshift-btn"],
+						onClicked: () => shiftCalendarXMonths(1),
+						child: Widget.Image({
+							iconName: icons.ui.arrow.right,
 						}),
-					],
-				}),
-				false,
-				false,
-				0,
-			);
-		},
+					}),
+				],
+			}),
+		]
 	});
 
-	const calendarDays = new Widget.Box({
-		className: "calendar-days",
+	const calendarDays = Widget.Box({
+		cssClasses: ["calendar-days"],
 		hexpand: true,
 		vertical: true,
 		setup: (box) => {
@@ -135,11 +130,11 @@ export default () => {
 		},
 	});
 
-	return new Widget.EventBox({
-		className: "calendar block",
-		onScroll: (self, event) =>
+	return Widget.Box({
+		cssClasses: ["calendar", "block"],
+		onScroll: (self, dx: number, dy: number) =>
 			shiftCalendarXMonths(
-				event.direction === Gdk.ScrollDirection.UP ? 1 : -1,
+				dy === Gdk.ScrollDirection.UP ? 1 : -1,
 			),
 		setup: (self) => {
 			// Connect to the "map" signal to refresh the calendar on visibility
@@ -149,17 +144,17 @@ export default () => {
 				addCalendarChildren(calendarDays, calendarJson);
 			});
 		},
-		child: new Widget.Box({
+		child: Widget.Box({
 			halign: CENTER,
 			children: [
-				new Widget.Box({
-					className: "calendar-box-outline",
+				Widget.Box({
+					cssClasses: ["calendar-box-outline"],
 					hexpand: true,
 					vertical: true,
 					children: [
 						calendarHeader,
-						new Widget.Box({
-							className: "calendar-weekdays",
+						Widget.Box({
+							cssClasses: ["calendar-weekdays"],
 							homogeneous: true,
 							spacing: 12,
 							children: weekDays.map((day: Day, i) =>

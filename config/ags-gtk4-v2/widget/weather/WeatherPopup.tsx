@@ -21,24 +21,24 @@ export default function WeatherPopup() {
         application={App}
         visible={false}
         onShow={(self) => {
-            weatherWidth.set(self.get_current_monitor().workarea.width)
+            weatherWidth.set(self.get_current_monitor().geometry.width);
         }}
         onKeyPressed={(_, keyval: number) => {
             if (keyval === Gdk.KEY_Escape)
                 hide()
         }}>
         <box cssClasses={["Popup"]}>
-            <box widthRequest={weatherWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={weatherWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
             <box hexpand={false} vertical={true}>
-                <box heightRequest={weatherBoxTopMargin} onClick={hide} />
+                <box heightRequest={weatherBoxTopMargin} onButtonPressed={hide} />
                 <box widthRequest={weatherContentWidth} cssClasses={["popup-box"]} vertical={true}>
                     <box cssClasses={["weather-popup-box"]}>
                         <WeatherSchedule days={null} />
                     </box>
                 </box>
-                <box hexpand={true} vexpand={true} onClick={hide} />
+                <box hexpand={true} vexpand={true} onButtonPressed={hide} />
             </box>
-            <box widthRequest={weatherWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={weatherWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
         </box>
     </window>
 }
