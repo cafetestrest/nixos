@@ -20,18 +20,18 @@ import { reloadScss } from "./lib/utils";
 function makeWindowsForMonitor(monitor: Gdk.Monitor) {
 	return [
 		Bar(monitor),
-		// OSD(monitor),
-		// NotificationsPopup(monitor)
+		OSD(monitor),
+		NotificationPopups(monitor)
 	] as Astal.Window[];
 }
 
 function main() {
 	const bars = new Map<Gdk.Monitor, Astal.Window[]>();
 
-    // Applauncher();
-    // Dashboard();
-    // WeatherPopup();
-    // NotificationPopupWindow();
+    Applauncher();
+    Dashboard();
+    WeatherPopup();
+    NotificationPopupWindow();
     // OverviewPopupWindow();
 
     // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');

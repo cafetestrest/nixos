@@ -1,13 +1,12 @@
 import { GLib } from "astal";
 import { Gtk, Astal } from "astal/gtk4";
-import { type EventBox } from "astal/gtk4/widget";
 import Notifd from "gi://AstalNotifd";
 import icons from "../../lib/icons";
 import Pango from "gi://Pango";
-import { notificationContentHeight } from "../common/Variables";
+import { notificationContentHeight, notificationPopupMaxWidthChars } from "../common/Variables";
 
 const isIcon = (icon: string) =>
-    !!Astal.Icon.lookup_icon(icon)
+    !!Gtk.Image.lookup_icon(icon)
 
 const fileExists = (path: string) =>
     GLib.file_test(path, GLib.FileTest.EXISTS)
@@ -27,8 +26,8 @@ const urgency = (n: Notifd.Notification) => {
 }
 
 type Props = {
-    setup(self: EventBox): void
-    onHoverLeave(self: EventBox): void
+    setup(self: Astal.Box): void
+    onHoverLeave(self: Astal.Box): void
     notification: Notifd.Notification
 }
 
@@ -41,9 +40,9 @@ const isImage = (image: string) => {
         return true;
     }
 
-    if (isIcon(image)) {
-        return true;
-    }
+    // if (isIcon(image)) {
+    //     return true;
+    // }//todo
 
     return false;
 };
@@ -89,17 +88,12 @@ const NotificationIcon = ({ notification }: NotificationIconProps) => {
 
     return (
         <box
-            cssClasses={["notification-icon"]}
             halign={CENTER}
             valign={CENTER}
         >
             <image
+                cssClasses={["notification-icon"]}
                 iconName={icon}
-                // expand={true} //todo check if both is OK here?
-                hexpand={true}
-                vexpand={true}
-                halign={CENTER}
-                valign={CENTER}
             />
         </box>
     );
@@ -168,9 +162,10 @@ export default function Notification(props: Props) {
                                 useMarkup={true}
                                 halign={START}
                                 xalign={0}
-                                justifyFill={true}
+                                justify={Gtk.Justification.FILL}
                                 wrapMode={Pango.WrapMode.CHAR}
                                 label={n.body}
+                                maxWidthChars={notificationPopupMaxWidthChars}
                             />}
                         </box>
                     </box>

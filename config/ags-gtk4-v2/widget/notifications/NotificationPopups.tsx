@@ -66,6 +66,8 @@ class NotifiationMap implements Subscribable {
     }
 
     private set(key: number, value: Gtk.Widget) {
+        windowVisible.set(true);
+
         // in case of replacecment destroy previous widget
         this.map.get(key)?.unparent()
         this.map.set(key, value)
@@ -73,6 +75,8 @@ class NotifiationMap implements Subscribable {
     }
 
     private delete(key: number) {
+        windowVisible.set(false);
+
         this.map.get(key)?.unparent()
         this.map.delete(key)
         this.notifiy()
@@ -89,11 +93,14 @@ class NotifiationMap implements Subscribable {
     }
 }
 
+const windowVisible = Variable(false);
+
 export default function NotificationPopups(gdkmonitor: Gdk.Monitor) {
-    const { TOP, RIGHT } = Astal.WindowAnchor
+    const { TOP } = Astal.WindowAnchor
     const notifs = new NotifiationMap()
 
     return <window
+        visible={bind(windowVisible)}
         cssClasses={["NotificationPopups"]}
         namespace={"notifications-popup"}
         gdkmonitor={gdkmonitor}

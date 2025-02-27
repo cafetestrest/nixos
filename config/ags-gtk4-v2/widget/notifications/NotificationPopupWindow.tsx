@@ -96,20 +96,21 @@ function hide() {
 
 const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Notifd, notifs: NotifiationMap}) => (
 	<box vertical={true} cssClasses={["notifications-window"]} spacing={notificationSpacing}>
-		<box cssClasses={["notification-scroll-box"]}>
+		<box
+            cssClasses={["notification-scroll-box"]}
+            heightRequest={bind(notifications, "notifications").as(n => {
+                return Math.min(n.length * notificationHeight, notificationScrollableMaxHeight);
+            })}
+        >
 			<Gtk.ScrolledWindow
                 cssClasses={["notifications-scrollable"]}
-                heightRequest={bind(notifications, "notifications").as(n => {
-                    return Math.min(n.length * notificationHeight, notificationScrollableMaxHeight);
-                })}
             >
 				<box
 					cssClasses={["notifications-window-list"]}
-					visible={true}
-					orientation={Gtk.Orientation.VERTICAL}
+                    vertical
 					spacing={6}
 					hexpand={true}
-					noImplicitDestroy={true}
+					// noImplicitDestroy={true} // todo
 				>
 					{bind(notifs)}
 				</box>
@@ -156,22 +157,22 @@ export default function NotificationPopupWindow() {
         application={App}
         visible={false}
         onShow={(self) => {
-            notificationWidth.set(self.get_current_monitor().workarea.width)
+            notificationWidth.set(self.get_current_monitor().geometry.width);
         }}
         onKeyPressed={(_, keyval: number) => {
             if (keyval === Gdk.KEY_Escape)
                 hide()
         }}>
         <box cssClasses={["Popup"]}>
-            <box widthRequest={notificationWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={notificationWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
             <box hexpand={false} vertical={true}>
-                <box heightRequest={notificationBoxTopMargin} onClick={hide} />
+                <box heightRequest={notificationBoxTopMargin} onButtonPressed={hide} />
                 <box widthRequest={notificationContentWidth} cssClasses={["popup-box"]} vertical={true}>
                     <AllNotifications />
                 </box>
-                <box hexpand={true} vexpand={true} onClick={hide} />
+                <box hexpand={true} vexpand={true} onButtonPressed={hide} />
             </box>
-            <box widthRequest={notificationWidth(w => w / 2)} hexpand={true} vexpand={true} onClick={hide} />
+            <box widthRequest={notificationWidth(w => w / 2)} hexpand={true} vexpand={true} onButtonPressed={hide} />
         </box>
     </window>
 }

@@ -68,6 +68,7 @@ export const notificationScrollableMaxHeight = 500;
 export const notificationHeight = 400;
 export const notificationContentHeight = 60;
 export const notificationSpacing = 10;
+export const notificationPopupMaxWidthChars = 48;
 
 // overview
 export const namespaceOverview = "overview";
