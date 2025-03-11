@@ -18,7 +18,7 @@ export function evaluate(expr: string): string {
     const toPostfix = (infix: string): string[] => {
         const output: string[] = [];
         const stack: string[] = [];
-        const tokens = infix.match(/(\d+(\.\d+)?|\+|\-|\*|\/|\^|\(|\))/g);
+        const tokens = infix.match(/(\d*\.\d+|\d+|\+|\-|\*|\/|\^|\(|\))/g);
 
         if (!tokens) throw new Error("Invalid expression");
 
