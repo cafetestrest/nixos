@@ -16,6 +16,7 @@ import LightstripToggle from "./LightstripToggle";
 import QSLightstripMenu from "../menu/QSLightstripMenu";
 import ColorPickerToggle from "./ColorPickerToggle";
 import NoteToggle from "./NoteToggle";
+import ColorToggle from "./ColorToggle";
 
 function QSEmptyButton() {
   return (
@@ -83,7 +84,8 @@ function SecondPage() {
       <box>
         <NoteToggle />
         <QSSpaceBetweenToggles/>
-        <QSEmptyButton />
+        <ColorToggle />
+        {/* <QSEmptyButton /> */}
       </box>
     </box>
   );

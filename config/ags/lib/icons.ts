@@ -74,6 +74,10 @@ export default {
 		dark: "night-light-symbolic",
 		light: "night-light-symbolic",
 	},
+	colormode: {
+		0: "radio-symbolic",
+		1: "media-record-symbolic",
+	},
 	record: "media-record-symbolic",
 	powerprofile: {
 		0: "power-profile-balanced-symbolic",
