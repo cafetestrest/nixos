@@ -44,12 +44,12 @@ const weekDays = [
 
 const CalendarDay = (day: string, today: number) =>
 	new Widget.Button({
-		className: `calendar__button ${today == 1 ? "calendar__button__today" : today == -1 ? "calendar__button__other-month" : ""}`,
+		className: `calendar-button ${today == 1 ? "calendar-button-today" : today == -1 ? "calendar-button-other-month" : ""}`,
 		child: new Box({
 			halign: CENTER,
 			child: new Label({
 				halign: CENTER,
-				className: "calendar__button_text",
+				className: "calendar-button_text",
 				label: String(day),
 			}),
 		})
@@ -57,7 +57,7 @@ const CalendarDay = (day: string, today: number) =>
 
 export default () => {
 	const calendarMonthYear = new Widget.Button({
-		className: "calendar__monthyear",
+		className: "calendar-monthyear",
 		onClicked: () => shiftCalendarXMonths(0),
 		setup: (button) => {
 			button.label = `${new Date().toLocaleString("default", { month: "long" })} ${new Date().getFullYear()}`;
@@ -94,7 +94,7 @@ export default () => {
 	}
 
 	const calendarHeader = new Widget.Box({
-		className: "calendar__header",
+		className: "calendar-header",
 		spacing: 8,
 		setup: (box) => {
 			box.pack_start(calendarMonthYear, false, false, 0);

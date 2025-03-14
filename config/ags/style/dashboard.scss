@@ -5,13 +5,13 @@
         border-radius: $radius;
     }
 
-    .calendar__button,
+    .calendar-button,
     .calendar-weekdays button {
         background-color: unset;
         color: $fgColor;
     }
 
-    .calendar__button__today {
+    .calendar-button-today {
         background: $accentGradient;
         color: $bgColor;
 
@@ -24,7 +24,7 @@
         }
     }
 
-    .calendar__button__other-month {
+    .calendar-button-other-month {
         color: $shadowTransparent;
     }
 
@@ -33,7 +33,7 @@
         color: $fgColor;
     }
 
-    .calendar__header button {
+    .calendar-header button {
         background-color: $inverseSurfaceTransparent;
         color: $fgColor;
     }
