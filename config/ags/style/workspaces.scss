@@ -26,15 +26,19 @@
     }
 
     .workspace-button.active:hover .workspace-dot,
-    .workspace-button:focus .workspace-dot{
+    .workspace-button:focus .workspace-dot {
         box-shadow: $focusShadow;
     }
 
-    .workspace-button:hover .workspace-dot{
+    .workspace-button:hover .workspace-dot {
         background-color: $accentTransparent;
     }
 
-    .workspace-button.occupied .workspace-dot{
+    .workspace-button.occupied:hover .workspace-dot {
+        background-color: $accentTransparent;
+    }
+
+    .workspace-button.occupied .workspace-dot {
         background-color: $fgColor;
     }
 
