@@ -1,8 +1,8 @@
 
 # Variables
 IP_PREFIX="192.168.0"
-INITIAL_START_IP=20
-INITIAL_END_IP=30
+INITIAL_START_IP=22
+INITIAL_END_IP=31
 IP_FILE=~/.config/scripts/yeelight/yeelight-ips
 
 if [[ $# -ge 3 ]]; then
