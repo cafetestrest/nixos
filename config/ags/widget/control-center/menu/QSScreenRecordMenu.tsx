@@ -29,7 +29,7 @@ const ScreenRecordMenu = () => {
 		>
 			<icon
 				icon={icons.record}
-				className={"qs-menu-icon"}
+				className={"qs-menu-icon-record"}
 			/>
              <label
                  label={"Start recording?"}

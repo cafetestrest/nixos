@@ -4,6 +4,7 @@
 .control-center {
     button {
         border-radius: $radius;
+        color: $fgColor;
     }
 
     .bluetooth-device-percentage {
@@ -37,6 +38,7 @@
             padding: 1rem;
             border-radius: $radius;
     		background: $inverseSurfaceTransparent;
+            color: $fgColor;
 
             &.active {
                 background: $primaryContainer;
@@ -81,6 +83,7 @@
             padding: $qsMenuPadding;
             background: $inverseSurfaceTransparent;
             border-radius: $radius * 1.5;
+            color: $fgColor;
 
             .qs-menu-content {
                 label {
@@ -88,7 +91,7 @@
                 }
             }
 
-            .qs-menu-icon {
+            .qs-menu-icon-record {
                 color: red;
             }
 

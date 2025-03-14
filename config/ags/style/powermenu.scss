@@ -8,6 +8,7 @@ window#powermenu {
             min-width: $powermenuButtonWidth;
             min-height: $powermenuButtonHeight;
             border-radius: $powermenuButtonRadius;
+            color: $fgColor;
 
             &:focus {
                 background: $accentGradient;

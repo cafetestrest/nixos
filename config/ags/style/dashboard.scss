@@ -8,6 +8,7 @@
     .calendar__button,
     .calendar-weekdays button {
         background-color: unset;
+        color: $fgColor;
     }
 
     .calendar__button__today {
@@ -29,10 +30,12 @@
 
     .calendar-weekdays {
         margin-top: $calendarWeekdaysTopMargin;
+        color: $fgColor;
     }
 
     .calendar__header button {
         background-color: $inverseSurfaceTransparent;
+        color: $fgColor;
     }
 }
 

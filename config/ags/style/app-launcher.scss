@@ -13,6 +13,13 @@
 window#launcher {
     all: unset;
 
+    button,
+    icon,
+    entry,
+    label {
+        color: $fgColor;
+    }
+
     box.Applauncher {
         background: $bgTransparent;
         border-radius: $appLauncherRadius;

@@ -146,6 +146,20 @@ window#notification {
         >box {
             background-color: $notificationBackground;
         }
+
+        .header {
+            color: gtkalpha($bgColor, 0.5);
+        }
+
+        .content {
+            .summary {
+                color: $bgColor;
+            }
+    
+            .body {
+                color: gtkalpha($bgColor, 0.8);
+            }
+        }
     }
 
     .notifications-window-clear {
@@ -153,6 +167,7 @@ window#notification {
         margin: 0;
         background-color: unset;
         border-radius: $radius;
+        color: $fgColor;
     }
     @include scrollable.scrollable;
 }
