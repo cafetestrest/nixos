@@ -10,12 +10,12 @@ $redRecordingText: #ffdad6;
 $red: #e55f86;
 $closeRed: #3d3231;
 $primaryContainer: #73342c;
-$shadowColor: #1a1a1a;
-$inverseSurface: #24110f;
+$shadowColor: #333333;
+$inverseSurface: #f1dedc;
 $yellow: #EBFF71;
-$notificationBackground: #dad8d8;
+$notificationBackground: #282626;
 
-$overview: rgba(238, 238, 238, 0.9);
+$overview: rgba(238, 238, 238, 0.06);
 
 $bgTransparent: color.adjust($bgColor, $alpha: -0.05);
 $popupTransparent: color.adjust($black, $alpha: -0.68);
@@ -29,9 +29,9 @@ $closeRedTransparent: color.adjust($closeRed, $alpha: -0.5);
 
 $accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
 
-$hoverShadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.2);
-$focusShadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
-$focusShadowTransparent: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+$hoverShadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.2);
+$focusShadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4);
+$focusShadowTransparent: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
 
 $radius: 1.5rem;
 

@@ -96,6 +96,7 @@ export default function NotificationPopups(gdkmonitor: Gdk.Monitor) {
     return <window
         className={"NotificationPopups"}
         namespace={"notifications-popup"}
+        name={"notifications-popup"}
         gdkmonitor={gdkmonitor}
         anchor={TOP}>
         <box vertical={true} noImplicitDestroy={true}>

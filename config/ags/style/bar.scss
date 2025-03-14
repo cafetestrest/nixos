@@ -78,6 +78,7 @@ window.Bar {
 
     .bar-button {
         border-radius: $radius;
+        color: $fgColor;
 
         &.active {
             background-color: $accentTransparent;

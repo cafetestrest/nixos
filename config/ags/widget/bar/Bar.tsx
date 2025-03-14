@@ -72,6 +72,7 @@ export default function Bar(monitor: Gdk.Monitor) {
     return <window
         className={"Bar"}
         namespace={"bar"}
+        name={"bar"}
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}>

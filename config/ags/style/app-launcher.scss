@@ -16,7 +16,7 @@ window#launcher {
     box.Applauncher {
         background: $bgTransparent;
         border-radius: $appLauncherRadius;
-        box-shadow: 2px 3px 8px 0 gtkalpha(black, .4);
+        box-shadow: 2px 3px 8px 0 gtkalpha($black, .4);
 
         box.not-found {
             padding: 1rem;

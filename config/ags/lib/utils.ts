@@ -28,13 +28,14 @@ export const gsettings = new Gio.Settings({
 	schema: "org.gnome.desktop.interface",
 });
 
+const tmp = GLib.get_tmp_dir();
+const pathSuffix = "/ags/style/";
+
 export async function toggleColorMode() {
 	const mode = gsettings.get_string("color-scheme") == "prefer-light" ? "light" : "dark" as ThemeMode;;
 
 	let reloadScss = false;
-	const tmp = GLib.get_tmp_dir();
 	const styleDir = `${SRC}/style/`;
-	const pathSuffix = "/ags/style/";
 
 	await bash(`mkdir -p ${tmp}${pathSuffix}`);
 
@@ -63,11 +64,31 @@ export async function toggleColorMode() {
 		const preferMode = mode === "dark" ? "light" : "dark";
 		gsettings.set_string("color-scheme", `prefer-${preferMode}`);
 
-		const scss = `${tmp}${pathSuffix}main.scss`;
-		const css = `${GLib.get_tmp_dir()}/styles.css`;
-		await bash(`sass ${scss} ${css}`);
-		App.apply_css(css, true);
+		await applyColorMode(false);
 	}
+}
+
+export async function applyColorMode(checkTmpFiles: boolean) {
+	const css = `${GLib.get_tmp_dir()}/styles.css`;
+	const scss = `${tmp}${pathSuffix}main.scss`;
+
+	if (checkTmpFiles) {
+		const tmpCssFileContent = await readFileAsync(css).catch(console.error);
+		const tmpMainFileContent = await readFileAsync(scss).catch(console.error);
+
+		if (tmpCssFileContent === undefined) {
+			console.log(`Can't apply color mode, there is no css file under: ${tmpCssFileContent}`)
+			return;
+		}
+
+		if (tmpMainFileContent === undefined) {
+			console.log(`Can't apply color mode, there is no scss file under: ${tmpMainFileContent}`)
+			return;
+		}
+	}
+
+	await bash(`sass ${scss} ${css}`);
+	App.apply_css(css, true);
 }
 
 export function ensureDirectory(path: string) {

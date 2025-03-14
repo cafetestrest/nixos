@@ -1,5 +1,5 @@
 import { GObject } from "astal";
-import { gsettings, toggleColorMode } from "../lib/utils";
+import { gsettings, toggleColorMode, applyColorMode } from "../lib/utils";
 
 export enum ColorMode {
 	Light = 0,
@@ -74,6 +74,8 @@ const ColorModeServiceRegister = GObject.registerClass(
 var service: ColorModeService | null = null;
 
 if (available) {
+	applyColorMode(true);
+
 	service = new ColorModeServiceRegister();
 }
 
