@@ -1,7 +1,9 @@
 import { App } from "astal/gtk3";
 import { GLib, monitorFile, exec, Gio, execAsync, readFileAsync, writeFileAsync } from "astal";
 
-type ThemeMode = "dark" | "light";
+const DARK = "dark";
+const LIGHT = "light";
+type ThemeMode = typeof DARK | typeof LIGHT;
 
 export function dependencies(packages: string[]) {
 	for (const pkg of packages) {
@@ -32,7 +34,7 @@ const tmp = GLib.get_tmp_dir();
 const pathSuffix = "/ags/style/";
 
 export async function toggleColorMode() {
-	const mode = gsettings.get_string("color-scheme") == "prefer-light" ? "light" : "dark" as ThemeMode;;
+	const mode = gsettings.get_string("color-scheme") == `prefer-${LIGHT}` ? LIGHT : DARK as ThemeMode;
 
 	let reloadScss = false;
 	const styleDir = `${SRC}/style/`;
@@ -41,27 +43,25 @@ export async function toggleColorMode() {
 
 	const styleFiles = await bash(`find ${styleDir} -name "*.scss"`);
 	const files = styleFiles.split(/\s+/)
+	const preferMode = mode === DARK ? LIGHT : DARK;
 
 	for (const file of files) {
 		const fileName = file.split(pathSuffix)[1];
 		const targetDir = `${tmp}${pathSuffix}${fileName}`;
 
-		let styleContent;
-		if (fileName === "variables.scss") {
-			const variablesFileName = mode === "dark" ? "variables-light.scss" : "variables-dark.scss";
-			styleContent = `@forward "./${variablesFileName}";`;
-			reloadScss = true;
-		} else {
-			styleContent = await readFileAsync(file).catch(console.error);
-		}
+		let styleContent = await readFileAsync(file).catch(console.error);
 
 		if (styleContent) {
+			if (fileName === "variables.scss") {
+				styleContent = styleContent.replace(new RegExp(`-${mode}\\.scss`, "g"), `-${preferMode}.scss`);
+				reloadScss = true;
+			}
+
 			await writeFileAsync(targetDir, styleContent).catch(console.error);
 		}
 	}
 
 	if (reloadScss) {
-		const preferMode = mode === "dark" ? "light" : "dark";
 		gsettings.set_string("color-scheme", `prefer-${preferMode}`);
 
 		await applyColorMode(false);
