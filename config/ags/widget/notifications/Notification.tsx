@@ -5,12 +5,10 @@ import Notifd from "gi://AstalNotifd";
 import icons from "../../lib/icons";
 import Pango from "gi://Pango";
 import { notificationContentHeight } from "../common/Variables";
+import { fileExists } from "../../lib/utils";
 
 const isIcon = (icon: string) =>
     !!Astal.Icon.lookup_icon(icon)
-
-const fileExists = (path: string) =>
-    GLib.file_test(path, GLib.FileTest.EXISTS)
 
 const time = (time: number, format = "%H:%M") => GLib.DateTime
     .new_from_unix_local(time)

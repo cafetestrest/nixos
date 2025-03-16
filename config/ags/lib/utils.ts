@@ -5,6 +5,11 @@ const DARK = "dark";
 const LIGHT = "light";
 type ThemeMode = typeof DARK | typeof LIGHT;
 
+const tmp = GLib.get_tmp_dir();
+const pathSuffix = "/ags/style/";
+const colorsPathSuffix = "colors";
+const scss = `${tmp}${pathSuffix}main.scss`;
+
 export function dependencies(packages: string[]) {
 	for (const pkg of packages) {
 		const result = GLib.find_program_in_path(pkg);
@@ -31,17 +36,13 @@ export const gsettings = new Gio.Settings({
 	schema: "org.gnome.desktop.interface",
 });
 
-const tmp = GLib.get_tmp_dir();
-const pathSuffix = "/ags/style/";
-const colorsPathSuffix = "colors";
-
 export async function toggleColorMode() {
 	const mode = gsettings.get_string("color-scheme") == `prefer-${LIGHT}` ? LIGHT : DARK as ThemeMode;
 
 	let reloadScss = false;
 	const styleDir = `${SRC}/style/`;
 
-	await bash(`mkdir -p ${tmp}${pathSuffix}${colorsPathSuffix}`);
+	ensureDirectory(`${tmp}${pathSuffix}${colorsPathSuffix}`);
 
 	const styleFiles = await bash(`find ${styleDir} -name "*.scss"`);
 	const files = styleFiles.split(/\s+/)
@@ -72,19 +73,16 @@ export async function toggleColorMode() {
 
 export async function applyColorMode(checkTmpFiles: boolean) {
 	const css = `${GLib.get_tmp_dir()}/styles.css`;
-	const scss = `${tmp}${pathSuffix}main.scss`;
 
 	if (checkTmpFiles) {
-		const tmpCssFileContent = await readFileAsync(css).catch(console.error);
-		const tmpMainFileContent = await readFileAsync(scss).catch(console.error);
-
-		if (tmpCssFileContent === undefined) {
-			console.log(`Can't apply color mode, there is no css file under: ${tmpCssFileContent}`)
+		if (fileExists(css) !== true) {
+			console.log(`Can't apply color mode, there is no css file under: ${css}`);
+			console.log("If this is first time you are running ags, please ignore this message.");
 			return;
 		}
 
-		if (tmpMainFileContent === undefined) {
-			console.log(`Can't apply color mode, there is no scss file under: ${tmpMainFileContent}`)
+		if (fileExists(scss) !== true) {
+			console.log(`Can't apply color mode, there is no scss file under: ${scss}`);
 			return;
 		}
 	}
@@ -97,6 +95,9 @@ export function ensureDirectory(path: string) {
 	if (!GLib.file_test(path, GLib.FileTest.EXISTS))
 		Gio.File.new_for_path(path).make_directory_with_parents(null);
 }
+
+export const fileExists = (path: string) =>
+    GLib.file_test(path, GLib.FileTest.EXISTS);
 
 export async function bash(
 	strings: TemplateStringsArray | string,
