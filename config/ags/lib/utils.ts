@@ -32,6 +32,7 @@ export const gsettings = new Gio.Settings({
 
 const tmp = GLib.get_tmp_dir();
 const pathSuffix = "/ags/style/";
+const colorsPathSuffix = "colors";
 
 export async function toggleColorMode() {
 	const mode = gsettings.get_string("color-scheme") == `prefer-${LIGHT}` ? LIGHT : DARK as ThemeMode;
@@ -39,7 +40,7 @@ export async function toggleColorMode() {
 	let reloadScss = false;
 	const styleDir = `${SRC}/style/`;
 
-	await bash(`mkdir -p ${tmp}${pathSuffix}`);
+	await bash(`mkdir -p ${tmp}${pathSuffix}${colorsPathSuffix}`);
 
 	const styleFiles = await bash(`find ${styleDir} -name "*.scss"`);
 	const files = styleFiles.split(/\s+/)
@@ -53,7 +54,7 @@ export async function toggleColorMode() {
 
 		if (styleContent) {
 			if (fileName === "variables.scss") {
-				styleContent = styleContent.replace(new RegExp(`-${mode}\\.scss`, "g"), `-${preferMode}.scss`);
+				styleContent = styleContent.replace(new RegExp(`/${colorsPathSuffix}/${mode}\\.scss`, "g"), `/${colorsPathSuffix}/${preferMode}.scss`);
 				reloadScss = true;
 			}
 
