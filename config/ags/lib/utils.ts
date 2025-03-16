@@ -22,6 +22,7 @@ export function range(max: number) {
 export function reloadScss(monitorFilePath: string, targetPath: string, execSassPath: string) {
 	monitorFile(`${SRC}/${monitorFilePath}`, () => {
 		exec(`sass ${SRC}/${execSassPath} ${targetPath}`);
+        App.reset_css(); // Have to reset the whole CSS before applying new one
 		App.apply_css(targetPath);
 	});
 }
