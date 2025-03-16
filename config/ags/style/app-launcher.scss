@@ -61,7 +61,7 @@ window#launcher {
 
             .AppButton {
                 min-width: 0;
-                min-height: 0;
+                min-height: $appLauncherButtonMinHeight;
                 padding: $appLauncherButtonPadding;
                 background: unset;
                 border-radius: $appLauncherRadius;
