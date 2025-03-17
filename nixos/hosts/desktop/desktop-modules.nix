@@ -132,6 +132,7 @@ rec {
         git.enable = true;
         terminator.enable = false;
         chrome.enable = false;
+        librewolf.enable = true;
         xterm.enable = false;
         mpv.enable = true;
         fastfetch.enable = true;

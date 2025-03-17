@@ -71,6 +71,7 @@
     ./fonts/montserrat.nix
     ./fonts/cantarell-fonts.nix
     ./chrome.nix
+    ./librewolf.nix
     ./terminator.nix                        # terminal config
     ./xterm.nix
     ./mpv.nix                               # mpv video player and its config
@@ -131,6 +132,7 @@
       terminator.enable = (vars.modules.home-manager.packages.terminator.enable or false);
       git.enable = (vars.modules.home-manager.packages.git.enable or false);
       chrome.enable = (vars.modules.home-manager.packages.chrome.enable or false);
+      librewolf.enable = (vars.modules.home-manager.packages.librewolf.enable or false);
       xterm.enable = (vars.modules.home-manager.packages.xterm.enable or false);
       mpv.enable = (vars.modules.home-manager.packages.mpv.enable or false);
       fastfetch.enable = (vars.modules.home-manager.packages.fastfetch.enable or false);
