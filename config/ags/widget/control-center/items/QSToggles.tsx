@@ -2,10 +2,16 @@ import { bind } from "astal";
 import { Gtk } from "astal/gtk3";
 import NightlightToggle from "./NightlightToggle";
 import IdleToggle from "./IdleToggle";
-import { qsTogglesPage, qsRevertRevealerStatus } from "../../common/Variables";
+import {
+  qsTogglesPage,
+  qsRevertRevealerStatus,
+  qsTogglesSpacing,
+  qsRowSpacing,
+  maxItemsPerRowQSToggles,
+  maxItemsPerColumnQSToggles
+} from "../../common/Variables";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
-import { QSSpaceBetweenToggleBoxes, QSSpaceBetweenToggles } from "../pages/QSMainPage";
 import BluetoothToggle from "./BluetoothToggle";
 import ScreenRecordToggle from "./ScreenRecordToggle";
 import QSScreenRecordMenu from "../menu/QSScreenRecordMenu";
@@ -24,122 +30,159 @@ function QSEmptyButton() {
   );
 }
 
-function FirstPage() {
+const allToggles = [
+  { "BluetoothToggle": BluetoothToggle() },
+  { "NightlightToggle": NightlightToggle() },
+  { "MicrophoneToggle": MicrophoneToggle() },
+  { "ScreenshotToggle": ScreenshotToggle(), "QSScreenshotMenu": QSScreenshotMenu() },
+  { "IdleToggle": IdleToggle() },
+  { "LightstripToggle": LightstripToggle(), "QSLightstripMenu": QSLightstripMenu() },
+  { "NetworkToggle": NetworkToggle() },
+  { "ScreenRecordToggle": ScreenRecordToggle(), "QSScreenRecordMenu": QSScreenRecordMenu() },
+  { "DNDToggle": DNDToggle() },
+  { "ColorPickerToggle": ColorPickerToggle() },
+  { "NoteToggle": NoteToggle() },
+  { "ColorToggle": ColorToggle() },
+  // { "QSEmptyButton": QSEmptyButton() }, // enable if you have odd number of toggles
+];
+
+// Function to split the array into rows
+const splitIntoRows = (toggles, itemsPerRow) => {
+  const rows = [];
+  for (let i = 0; i < toggles.length; i += itemsPerRow) {
+    rows.push(toggles.slice(i, i + itemsPerRow));
+  }
+
+  return rows;
+};
+
+// Function to split the array into pages
+const splitIntoPages = (toggles, itemsPerPage) => {
+  const pages = [];
+  for (let i = 0; i < toggles.length; i += itemsPerPage) {
+    pages.push(toggles.slice(i, i + itemsPerPage));
+  }
+
+  return pages;
+};
+
+// Split toggles into rows and pages
+const toggleRows = splitIntoRows(allToggles, maxItemsPerRowQSToggles);
+const togglePages = splitIntoPages(toggleRows, maxItemsPerColumnQSToggles);
+
+// Render a single row of toggles
+const renderRow = (rowToggles) => {
+  return (
+    <box
+      spacing={qsTogglesSpacing}
+    >
+      {rowToggles.map((toggle) => {
+        const toggleIdentifier = Object.keys(toggle)[0];
+        return toggle[toggleIdentifier];
+      })}
+    </box>
+  );
+};
+
+// menus that are inside pages
+const renderMenu = (rowToggles, rowIndex) => {
+  return (
+    <box vertical={true}>
+      {rowToggles.map((toggle) => {
+        const keys = Object.keys(toggle);
+        if (keys.length > 1 && rowIndex !== maxItemsPerColumnQSToggles - 1) {
+          const toggleIdentifier = Object.keys(toggle)[1];
+          return toggle[toggleIdentifier];
+        }
+      })}
+    </box>
+  );
+};
+
+// menus that are outside pages, last item on the page
+const renderMenuOutsideToggles = (pageRows) => {
+  return pageRows.map((rowToggles, rowIndex) => {
+    return (
+      <box
+        vertical={true}
+      >
+        {rowToggles.map((toggle) => {
+          const keys = Object.keys(toggle);
+          if (keys.length > 1 && rowIndex === maxItemsPerColumnQSToggles - 1) {
+            const toggleIdentifier = Object.keys(toggle)[1];
+            return toggle[toggleIdentifier];
+          }
+        })}
+      </box>
+    );
+  });
+};
+
+// Render a single page of toggles
+const renderPage = (pageRows, pageIndex) => {
   return (
     <box
       className={"qs-toggles-page"}
-      name={"qs-page-first"}
+      name={`qs-page-${pageIndex}`}
       vertical={true}
+      spacing={qsRowSpacing}
     >
-      <box>
-        <BluetoothToggle />
-        <QSSpaceBetweenToggles/>
-        <NightlightToggle />
-      </box>
-
-      <QSSpaceBetweenToggleBoxes/>
-
-      <box>
-        <MicrophoneToggle />
-        <QSSpaceBetweenToggles/>
-        <ScreenshotToggle />
-      </box>
-      <QSScreenshotMenu />
-
-      <QSSpaceBetweenToggleBoxes/>
-
-      <box>
-        <IdleToggle />
-        <QSSpaceBetweenToggles/>
-        <LightstripToggle />
-      </box>
+      {pageRows.map((row, rowIndex) => {
+        return (
+          <box
+            vertical={true}
+            children={[
+              renderRow(row),
+              renderMenu(row, rowIndex),
+            ]}
+          />
+        );
+      })}
     </box>
   );
-}
+};
 
-function SecondPage() {
-  return (
-    <box
-      className={"qs-toggles-page"}
-      name={"qs-page-second"}
-      vertical={true}
-    >
-      <box>
-        <NetworkToggle />
-        <QSSpaceBetweenToggles/>
-        <ScreenRecordToggle />
-      </box>
-      <QSScreenRecordMenu />
-
-      <QSSpaceBetweenToggleBoxes/>
-
-      <box>
-        <DNDToggle />
-        <QSSpaceBetweenToggles/>
-        <ColorPickerToggle />
-      </box>
-
-      <QSSpaceBetweenToggleBoxes/>
-
-      <box>
-        <NoteToggle />
-        <QSSpaceBetweenToggles/>
-        <ColorToggle />
-        {/* <QSEmptyButton /> */}
-      </box>
-    </box>
-  );
-}
-
-export default () => {
+const QSToggles = () => {
   return (
     <box
       className={"qs-toggles"}
       vertical={true}
     >
       <stack
-        visibleChildName={qsTogglesPage()}
+        visibleChildName={bind(qsTogglesPage)}
         transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
-      >
-        <FirstPage />
-        <SecondPage />
-      </stack>
+        children={
+          togglePages.map((page, pageIndex) => {
+            return renderPage(page, pageIndex);
+          })
+        }
+      />
 
-      <QSLightstripMenu />
+      {renderMenuOutsideToggles(toggleRows)}
 
       <box
         halign={Gtk.Align.CENTER}
         className={"qs-pages-box"}
       >
-        <button
-          className={bind(qsTogglesPage).as((page) => {
-            if (page === "qs-page-first") {
-              return "workspace-button active";
-            }
-            return "workspace-button";
-          })}
-          onClicked={() => {
-            qsRevertRevealerStatus("");
-            qsTogglesPage.set("qs-page-first");
-          }}
-        >
-          <box className={"workspace-dot"} />
-        </button>
-        <button
-          className={bind(qsTogglesPage).as((page) => {
-            if (page === "qs-page-second") {
-              return "workspace-button active";
-            }
-            return "workspace-button";
-          })}
-          onClicked={() => {
-            qsRevertRevealerStatus("");
-            qsTogglesPage.set("qs-page-second");
-          }}
-        >
-          <box className={"workspace-dot"} />
-        </button>
+        {togglePages.map((_, pageIndex) => {
+          const pageName = `qs-page-${pageIndex}`;
+          return (
+            <button
+              className={bind(qsTogglesPage).as((page) => {
+                return page === pageName ? "workspace-button active" : "workspace-button";
+              })}
+              onClicked={() => {
+                qsRevertRevealerStatus("");
+                qsTogglesPage.set(pageName);
+              }}
+            >
+              <box className={"workspace-dot"}/>
+            </button>
+          );
+        })}
       </box>
     </box>
   );
-}
+};
+
+export default QSToggles;

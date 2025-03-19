@@ -18,7 +18,11 @@ export const cpuUsagePoolRate = 2000;
 export const cpuUsageDecimals = 1;
 
 // qs
-export const qsTogglesPage = Variable("qs-page-first");
+export const qsTogglesSpacing = 4;
+export const qsRowSpacing = 5;
+export const maxItemsPerRowQSToggles = 2;
+export const maxItemsPerColumnQSToggles = 3;
+export const qsTogglesPage = Variable("qs-page-0");
 export const qsPage = Variable("main");
 export const qsRevealSinksButton = Variable(false);
 export const qsRevealSinksSpacing = 16;

@@ -12,12 +12,6 @@ export function QSSpaceBetweenToggles() {
     );
 }
 
-export function QSSpaceBetweenToggleBoxes() {
-    return (
-        <box className={"toggles-box-space"} />
-    );
-}
-
 export default () => {
 	return (
 		<box
