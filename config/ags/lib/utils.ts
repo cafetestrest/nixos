@@ -36,6 +36,15 @@ export const gsettings = new Gio.Settings({
 	schema: "org.gnome.desktop.interface",
 });
 
+export async function applyStyles() {
+	const variablesFileName = "variables.scss";
+	const tmpVariablesFile = `${tmp}${pathSuffix}${variablesFileName}`;
+
+	if (!fileExists(tmpVariablesFile)) {
+		toggleColorMode(false);
+	}
+}
+
 export async function toggleColorMode(toggle: boolean) {
 	const mode = gsettings.get_string("color-scheme") == `prefer-${LIGHT}` ? LIGHT : DARK as ThemeMode;
 

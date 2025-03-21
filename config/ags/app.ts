@@ -12,7 +12,7 @@ import {
     namespaceNotification,
     namespaceWeather
 } from "./widget/common/Variables";
-import { reloadScss, toggleColorMode } from "./lib/utils";
+import { reloadScss, applyStyles } from "./lib/utils";
 import WeatherPopup from "./widget/weather/WeatherPopup";
 import NotificationPopupWindow from "./widget/notifications/NotificationPopupWindow";
 import OverviewPopupWindow from "./widget/overview/OverviewPopupWindow";
@@ -38,6 +38,8 @@ function main() {
     // reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/overview.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/workspaces.scss', '/tmp/astal/style.css', 'style/main.scss');
+
+    applyStyles();
 
     for (const gdkmonitor of App.get_monitors()) {
 		bars.set(gdkmonitor, Bar(gdkmonitor));
@@ -87,7 +89,6 @@ App.start({
                     break;
                 case "powermenu":
                     visiblePowermenu.set(!visiblePowermenu.get());
-                    toggleColorMode(false);
                     break;
                 case "weather":
                     App.toggle_window(namespaceWeather);
