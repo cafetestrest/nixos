@@ -1,107 +1,107 @@
 import { Variable } from "astal";
+import { config } from "./Config";
 
 // bar
-export const visiblePowermenu = Variable(false);
-export const visibleQSMainPage = Variable(false);
-export const enableBarButtons = false;
-export const enableBarUsage = true;
+export const visiblePowermenu = Variable(config.bar.visiblePowermenu);
+export const visibleQSMainPage = Variable(config.bar.visibleQSMainPage);
+export const enableBarButtons = config.bar.enableBarButtons;
+export const enableBarUsage = config.bar.enableBarUsage;
 
 // usage
-export const barUsageSpacing = 10;
-export const diskUsageSpacing = 12;
-export const diskUsagePoolRate = 600000;
-export const ramUsageSpacing = 12;
-export const ramUsageDecimals = 1;
-export const ramUsagePoolRate = 2000;
-export const cpuUsageSpacing = 12;
-export const cpuUsagePoolRate = 2000;
-export const cpuUsageDecimals = 1;
+export const barUsageSpacing = config.usage.barUsageSpacing;
+export const diskUsageSpacing = config.usage.diskUsageSpacing;
+export const diskUsagePoolRate = config.usage.diskUsagePoolRate;
+export const ramUsageSpacing = config.usage.ramUsageSpacing;
+export const ramUsageDecimals = config.usage.ramUsageDecimals;
+export const ramUsagePoolRate = config.usage.ramUsagePoolRate;
+export const cpuUsageSpacing = config.usage.cpuUsageSpacing;
+export const cpuUsagePoolRate = config.usage.cpuUsagePoolRate;
+export const cpuUsageDecimals = config.usage.cpuUsageDecimals;
 
 // qs
-export const qsTogglesSpacing = 4;
-export const qsRowSpacing = 5;
-export const maxItemsPerRowQSToggles = 2;
-export const maxItemsPerColumnQSToggles = 3;
-export const qsTogglesPage = Variable("qs-page-0");
-export const qsPage = Variable("main");
-export const qsRevealSinksButton = Variable(false);
-export const qsRevealSinksSpacing = 16;
-export const qsRevealScreenRecord = Variable(false);
-export const qsRevealScreenRecordSpacing = 16;
-export const qsRevealScreenshot = Variable(false);
-export const qsRevealScreenshotSpacing = 16;
-export const qsRevealLightstrip = Variable(false);
-export const qsRevealLightstripSpacing = 16;
+export const qsTogglesSpacing = config.qs.qsTogglesSpacing;
+export const qsRowSpacing = config.qs.qsRowSpacing;
+export const maxItemsPerRowQSToggles = config.qs.maxItemsPerRowQSToggles;
+export const maxItemsPerColumnQSToggles = config.qs.maxItemsPerColumnQSToggles;
+export const qsTogglesPage = Variable(config.qs.qsTogglesPage);
+export const qsPage = Variable(config.qs.qsPage);
+export const qsRevealSinksButton = Variable(config.qs.qsRevealSinksButton);
+export const qsRevealSinksSpacing = config.qs.qsRevealSinksSpacing;
+export const qsRevealScreenRecord = Variable(config.qs.qsRevealScreenRecord);
+export const qsRevealScreenRecordSpacing = config.qs.qsRevealScreenRecordSpacing;
+export const qsRevealScreenshot = Variable(config.qs.qsRevealScreenshot);
+export const qsRevealScreenshotSpacing = config.qs.qsRevealScreenshotSpacing;
+export const qsRevealLightstrip = Variable(config.qs.qsRevealLightstrip);
+export const qsRevealLightstripSpacing = config.qs.qsRevealLightstripSpacing;
 
 // weather
-export const namespaceWeather = "weather";
-export const qsWeatherScheduleDays = 5;
-export const weatherWidth = Variable(1000);
-export const weatherBoxTopMargin = 35;
-export const weatherContentWidth = 200;
+export const namespaceWeather = config.weather.namespaceWeather;
+export const qsWeatherScheduleDays = config.weather.qsWeatherScheduleDays;
+export const weatherWidth = Variable(config.weather.weatherWidth);
+export const weatherBoxTopMargin = config.weather.weatherBoxTopMargin;
+export const weatherContentWidth = config.weather.weatherContentWidth;
 
 // screen record
-export const recordInternalAudioToggle = Variable(false);
-export const recordOnlySelectedScreenToggle = Variable(false);
-export const recordSaveDateFormat = "%Y-%m-%d_%H-%M-%S";
-export const recordScreenrecordsDir = "/Videos/Screenrecords";
-export const recordScreenshotsDir = "/Pictures/Screenshots";
+export const recordInternalAudioToggle = Variable(config.screenRecord.recordInternalAudioToggle);
+export const recordOnlySelectedScreenToggle = Variable(config.screenRecord.recordOnlySelectedScreenToggle);
+export const recordSaveDateFormat = config.screenRecord.recordSaveDateFormat;
+export const recordScreenrecordsDir = config.screenRecord.recordScreenrecordsDir;
+export const recordScreenshotsDir = config.screenRecord.recordScreenshotsDir;
 
 // dashboard
-export const namespaceDashboard = "dashboard";
-export const dashboardWidth = Variable(1000);
-export const dashboardBoxTopMargin = 35;
-export const dashboardContentWidth = 200;
+export const namespaceDashboard = config.dashboard.namespaceDashboard;
+export const dashboardWidth = Variable(config.dashboard.dashboardWidth);
+export const dashboardBoxTopMargin = config.dashboard.dashboardBoxTopMargin;
+export const dashboardContentWidth = config.dashboard.dashboardContentWidth;
 
 // applauncher
-export const namespaceApplauncher = "launcher";
-export const applauncherWidth = Variable(1000);
-export const applauncherBoxTopMargin = 800;
-export const applauncherContentWidth = 500;
-export const applauncherScrollableHeight = 370;
-export const applauncherSingleItemHeight = 50;
+export const namespaceApplauncher = config.applauncher.namespaceApplauncher;
+export const applauncherWidth = Variable(config.applauncher.applauncherWidth);
+export const applauncherBoxTopMargin = config.applauncher.applauncherBoxTopMargin;
+export const applauncherContentWidth = config.applauncher.applauncherContentWidth;
+export const applauncherScrollableHeight = config.applauncher.applauncherScrollableHeight;
+export const applauncherSingleItemHeight = config.applauncher.applauncherSingleItemHeight;
 
 // notification popup window
-export const removeAllPreviousNotificationOnStart = true;
-export const namespaceNotification = "notification";
-export const notificationWidth = Variable(1000);
-export const notificationBoxTopMargin = 35;
-export const notificationContentWidth = 450;
-export const notificationScrollableMaxHeight = 500;
-export const notificationHeight = 400;
-export const notificationContentHeight = 60;
-export const notificationSpacing = 10;
+export const removeAllPreviousNotificationOnStart = config.notificationPopupWindow.removeAllPreviousNotificationOnStart;
+export const namespaceNotification = config.notificationPopupWindow.namespaceNotification;
+export const notificationWidth = Variable(config.notificationPopupWindow.notificationWidth);
+export const notificationBoxTopMargin = config.notificationPopupWindow.notificationBoxTopMargin;
+export const notificationContentWidth = config.notificationPopupWindow.notificationContentWidth;
+export const notificationScrollableMaxHeight = config.notificationPopupWindow.notificationScrollableMaxHeight;
+export const notificationHeight = config.notificationPopupWindow.notificationHeight;
+export const notificationContentHeight = config.notificationPopupWindow.notificationContentHeight;
+export const notificationSpacing = config.notificationPopupWindow.notificationSpacing;
 
 // overview
-export const namespaceOverview = "overview";
-export const workspaces = 10;
-export const overviewWidth = Variable(1000);
-export const overviewBoxTopMargin = 35;
-export const overviewContentWidth = 200;
-export const overviewScale = 0.06;
+export const namespaceOverview = config.overview.namespaceOverview;
+export const workspaces = config.overview.workspaces;
+export const overviewWidth = Variable(config.overview.overviewWidth);
+export const overviewBoxTopMargin = config.overview.overviewBoxTopMargin;
+export const overviewContentWidth = config.overview.overviewContentWidth;
+export const overviewScale = config.overview.overviewScale;
 
 // osd
-export const osdLevelbarWidth = 100;
+export const osdLevelbarWidth = config.osd.osdLevelbarWidth;
 
 // wifi
-export const hasWifi = false;
+export const hasWifi = config.wifi.hasWifi;
 
 // brightness
-export const hasBrightness = false;
+export const hasBrightness = config.brightness.hasBrightness;
 
 // common
-export const commandOpenNote = "codium ~/Documents/note.md";
-export const commandSelectRegion = "slurp";
-export const commandStartScreenRecord = "wf-recorder -c h264_vaapi -f";
-export const commandColorPicker = "hyprpicker -a";
-export const commandOpenStartupApps = "openstartupapps";
-export const commandScreenshotWholeDisplay = "screenshot";
-export const commandScreenshotSelectRegion = "screenshot 1";
-export const commandScreenshotSelectWindow = "screenshot 2";
-export const commandGetLightstripIp = "getyeelightip";
-const commandLightstrip = "~/.config/scripts/yeelight/yeelight-scene.sh 0";
-export const commandTurnOnLightstrip = `${commandLightstrip} On`;
-export const commandTurnOffLightstrip = `${commandLightstrip} Off`;
+export const commandOpenNote = config.common.commandOpenNote;
+export const commandSelectRegion = config.common.commandSelectRegion;
+export const commandStartScreenRecord = config.common.commandStartScreenRecord;
+export const commandColorPicker = config.common.commandColorPicker;
+export const commandOpenStartupApps = config.common.commandOpenStartupApps;
+export const commandScreenshotWholeDisplay = config.common.commandScreenshotWholeDisplay;
+export const commandScreenshotSelectRegion = config.common.commandScreenshotSelectRegion;
+export const commandScreenshotSelectWindow = config.common.commandScreenshotSelectWindow;
+export const commandGetLightstripIp = config.common.commandGetLightstripIp;
+export const commandTurnOnLightstrip = config.common.commandTurnOnLightstrip;
+export const commandTurnOffLightstrip = config.common.commandTurnOffLightstrip;
 
 // function to close all revealers when hitting any button in qs
 export function qsRevertRevealerStatus(str: string) {
