@@ -25,111 +25,111 @@ interface Bar {
 }
 
 interface Usage {
-    barUsageSpacing: number;
-    diskUsageSpacing: number;
-    diskUsagePoolRate: number;
-    ramUsageSpacing: number;
-    ramUsageDecimals: number;
-    ramUsagePoolRate: number;
-    cpuUsageSpacing: number;
-    cpuUsagePoolRate: number;
-    cpuUsageDecimals: number;
+    barUsageSpacing: number; // usage-box, for all usage widgets spacing={}
+    diskUsageSpacing: number; // disk usage spacing={}
+    diskUsagePoolRate: number; // pool rate to fetch disk usage
+    ramUsageSpacing: number; // ram usage spacing={}
+    ramUsageDecimals: number; // decimals to show for ram usage %
+    ramUsagePoolRate: number; // pool rate to fetch ram usage
+    cpuUsageSpacing: number; // cpu usage spacing={}
+    cpuUsagePoolRate: number; // pool rate to fetch cpu usage
+    cpuUsageDecimals: number; // decimals to show for cpu usage %
 }
 
 interface QS {
-    qsTogglesSpacing: number;
-    qsRowSpacing: number;
-    maxItemsPerRowQSToggles: number;
-    maxItemsPerColumnQSToggles: number;
-    qsTogglesPage: string;
-    qsPage: string;
-    qsRevealSinksButton: boolean;
-    qsRevealSinksSpacing: number;
-    qsRevealScreenRecord: boolean;
-    qsRevealScreenRecordSpacing: number;
-    qsRevealScreenshot: boolean;
-    qsRevealScreenshotSpacing: number;
-    qsRevealLightstrip: boolean;
-    qsRevealLightstripSpacing: number;
+    qsTogglesSpacing: number; // QS toggles row spacing={}
+    qsRowSpacing: number; // QS toggles page spacing={}
+    maxItemsPerRowQSToggles: number; // max items per row in QS toggles (ex. 2)
+    maxItemsPerColumnQSToggles: number; // max items per column in QS toggles (ex. 3)
+    qsTogglesPage: string; // used to control QS Toggles Page state
+    qsPage: string; // used to control QS Page state
+    qsRevealSinksButton: boolean; // used to control Sinks button state
+    qsRevealSinksSpacing: number; // QS reveal Sinks spacing={}
+    qsRevealScreenRecord: boolean; // used to control Screenrecord button state
+    qsRevealScreenRecordSpacing: number; // QS reveal Screenrecord spacing={}
+    qsRevealScreenshot: boolean; // used to control Screenshot button state
+    qsRevealScreenshotSpacing: number; // QS reveal Screenshot spacing={}
+    qsRevealLightstrip: boolean; // used to control Lightstrip button state
+    qsRevealLightstripSpacing: number; // QS reveal Lightstrip spacing={}
 }
 
 interface Weather {
-    namespaceWeather: string;
-    qsWeatherScheduleDays: number;
-    weatherWidth: number;
-    weatherBoxTopMargin: number;
-    weatherContentWidth: number;
+    namespaceWeather: string; // Weather namespace
+    qsWeatherScheduleDays: number; // number of days to render for QS widget
+    weatherWidth: number; // width for popup
+    weatherBoxTopMargin: number; // top margin between topbar
+    weatherContentWidth: number; // content (widget) width
 }
 
 interface ScreenRecord {
-    recordInternalAudioToggle: boolean;
-    recordOnlySelectedScreenToggle: boolean;
-    recordSaveDateFormat: string;
-    recordScreenrecordsDir: string;
-    recordScreenshotsDir: string;
+    recordInternalAudioToggle: boolean; // used to control internal audio toggle state
+    recordOnlySelectedScreenToggle: boolean; // used to control record selected area toggle state
+    recordSaveDateFormat: string; // file name to make it unique (date format)
+    recordScreenrecordsDir: string; // screenrecord save directory
+    recordScreenshotsDir: string; // screenshot save directory
 }
 
 interface Dashboard {
-    namespaceDashboard: string;
-    dashboardWidth: number;
-    dashboardBoxTopMargin: number;
-    dashboardContentWidth: number;
+    namespaceDashboard: string; // Dashboard namespace
+    dashboardWidth: number; // width for popup
+    dashboardBoxTopMargin: number; // top margin between topbar
+    dashboardContentWidth: number; // content (widget) width
 }
 
 interface Applauncher {
-    namespaceApplauncher: string;
-    applauncherWidth: number;
-    applauncherBoxTopMargin: number;
-    applauncherContentWidth: number;
-    applauncherScrollableHeight: number;
-    applauncherSingleItemHeight: number;
+    namespaceApplauncher: string; // Applauncher namespace
+    applauncherWidth: number; // width for popup
+    applauncherBoxTopMargin: number; // top margin between topbar
+    applauncherContentWidth: number; // content (widget) width
+    applauncherScrollableHeight: number; // scrollable max heightRequest, used for calculation
+    applauncherSingleItemHeight: number; // height of single item, used to calculate scrollable heightRequest
 }
 
 interface NotificationPopupWindow {
-    removeAllPreviousNotificationOnStart: boolean;
-    namespaceNotification: string;
-    notificationWidth: number;
-    notificationBoxTopMargin: number;
-    notificationContentWidth: number;
-    notificationScrollableMaxHeight: number;
-    notificationHeight: number;
-    notificationContentHeight: number;
-    notificationSpacing: number;
+    removeAllPreviousNotificationOnStart: boolean; // enable to remove all previous notification on ags start (unread)
+    namespaceNotification: string; // Notification namespace
+    notificationWidth: number; // width for popup
+    notificationBoxTopMargin: number; // top margin between topbar
+    notificationContentWidth: number; // content (widget) width
+    notificationScrollableMaxHeight: number; // scrollable max heightRequest, Math.min(n.length * notificationHeight, notificationScrollableMaxHeight)
+    notificationHeight: number; // height of single notification, used to calculate scrollable heightRequest
+    notificationContentHeight: number; // height of Notification area (not including NotificationIcon or Actions), not just popup
+    notificationSpacing: number; // NotificationsWindow spacing={} for AllNotifications
 }
 
 interface Overview {
-    namespaceOverview: string;
-    workspaces: number;
-    overviewWidth: number;
-    overviewBoxTopMargin: number;
-    overviewContentWidth: number;
-    overviewScale: number;
+    namespaceOverview: string; // Overview namespace
+    workspaces: number; // overview in topbar total workspaces to render (ex. 10)
+    overviewWidth: number; // width for popup
+    overviewBoxTopMargin: number; // top margin between topbar
+    overviewContentWidth: number; // content (widget) width
+    overviewScale: number; // scale factor for overview icons and boxes
 }
 
 interface OSD {
-    osdLevelbarWidth: number;
+    osdLevelbarWidth: number; // width of OSD levelbar
 }
 
 interface Wifi {
-    hasWifi: boolean;
+    hasWifi: boolean; // enable if device has wifi for qs tile and qs page
 }
 
 interface Brightness {
-    hasBrightness: boolean;
+    hasBrightness: boolean; // enable if device has brightness for OSD and Brightness slider
 }
 
 interface Common {
-    commandOpenNote: string;
-    commandSelectRegion: string;
-    commandStartScreenRecord: string;
-    commandColorPicker: string;
-    commandOpenStartupApps: string;
-    commandScreenshotWholeDisplay: string;
-    commandScreenshotSelectRegion: string;
-    commandScreenshotSelectWindow: string;
-    commandGetLightstripIp: string;
-    commandTurnOnLightstrip: string;
-    commandTurnOffLightstrip: string;
+    commandOpenNote: string; // command to open note.md file (Open Note tile or bar button)
+    commandSelectRegion: string; // command to select region for screenshot
+    commandStartScreenRecord: string; // command to start screen recording
+    commandColorPicker: string; // command to open color picker
+    commandOpenStartupApps: string; // command to open startup apps (pre-defined layout of apps)
+    commandScreenshotWholeDisplay: string; // command to take whole screen screenshot
+    commandScreenshotSelectRegion: string; // command to take selected region screenshot
+    commandScreenshotSelectWindow: string; // command to take selected window screenshot
+    commandGetLightstripIp: string; // command to retrieve new ip for lightstrip
+    commandTurnOnLightstrip: string; // command to turn on lightstrip
+    commandTurnOffLightstrip: string; // command to turn off lightstrip
 }
 
 const configDefaults: Config = {
