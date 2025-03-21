@@ -36,10 +36,12 @@ export const gsettings = new Gio.Settings({
 	schema: "org.gnome.desktop.interface",
 });
 
-export async function toggleColorMode() {
+export async function toggleColorMode(toggle: boolean) {
 	const mode = gsettings.get_string("color-scheme") == `prefer-${LIGHT}` ? LIGHT : DARK as ThemeMode;
 
 	let reloadScss = false;
+	let reloadColorMode = false;
+	let useOverrideVariables = false;
 	const styleDir = `${SRC}/style/`;
 
 	ensureDirectory(`${tmp}${pathSuffix}${colorsPathSuffix}`);
@@ -47,6 +49,14 @@ export async function toggleColorMode() {
 	const styleFiles = await bash(`find ${styleDir} -name "*.scss"`);
 	const files = styleFiles.split(/\s+/)
 	const preferMode = mode === DARK ? LIGHT : DARK;
+	const variablesFileName = "variables.scss";
+
+	const config = GLib.get_user_config_dir();
+	const variablesOverrideFile = `${config}/.ags-override/${variablesFileName}`;
+
+	if (fileExists(variablesOverrideFile)) {
+		useOverrideVariables = true;
+	}
 
 	for (const file of files) {
 		const fileName = file.split(pathSuffix)[1];
@@ -54,19 +64,26 @@ export async function toggleColorMode() {
 
 		let styleContent = await readFileAsync(file).catch(console.error);
 
+		if (fileName === variablesFileName && useOverrideVariables) {
+			styleContent = await readFileAsync(variablesOverrideFile).catch(console.error);
+		}
+
 		if (styleContent) {
-			if (fileName === "variables.scss") {
+			if (toggle && fileName === variablesFileName) {
 				styleContent = styleContent.replace(new RegExp(`/${colorsPathSuffix}/${mode}\\.scss`, "g"), `/${colorsPathSuffix}/${preferMode}.scss`);
-				reloadScss = true;
+				reloadColorMode = true;
 			}
 
+			reloadScss = true;
 			await writeFileAsync(targetDir, styleContent).catch(console.error);
 		}
 	}
 
-	if (reloadScss) {
+	if (toggle && reloadColorMode) {
 		gsettings.set_string("color-scheme", `prefer-${preferMode}`);
+	}
 
+	if (reloadScss) {
 		await applyColorMode(false);
 	}
 }

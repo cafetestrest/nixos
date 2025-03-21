@@ -46,7 +46,7 @@ class ColorModeService extends GObject.Object {
 		this.#profile++;
 		if (this.#profile > 1) this.#profile = 0;
 
-		toggleColorMode();
+		toggleColorMode(true);
 
 		this.notify("profile");
 	}
