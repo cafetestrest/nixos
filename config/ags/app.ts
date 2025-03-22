@@ -12,12 +12,15 @@ import {
     namespaceNotification,
     namespaceWeather
 } from "./widget/common/Variables";
-import { reloadScss, applyStyles } from "./lib/utils";
+import { reloadScss } from "./lib/utils";
 import WeatherPopup from "./widget/weather/WeatherPopup";
 import NotificationPopupWindow from "./widget/notifications/NotificationPopupWindow";
 import OverviewPopupWindow from "./widget/overview/OverviewPopupWindow";
+import { initScss } from "./widget/common/Config";
 
 function main() {
+    initScss();
+
 	const bars = new Map<Gdk.Monitor, Gtk.Widget>();
 	const notificationsPopups = new Map<Gdk.Monitor, Gtk.Widget>();
 	const osds = new Map<Gdk.Monitor, Gtk.Widget>();
@@ -38,8 +41,6 @@ function main() {
     // reloadScss('style/notification.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/overview.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/workspaces.scss', '/tmp/astal/style.css', 'style/main.scss');
-
-    applyStyles();
 
     for (const gdkmonitor of App.get_monitors()) {
 		bars.set(gdkmonitor, Bar(gdkmonitor));

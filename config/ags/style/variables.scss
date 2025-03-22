@@ -1,44 +1,55 @@
-@forward "./colors/dark.scss";
-
+@use 'sass:color' as color;
+$black: #000000;
+$bgColor: #171717;
+$fgColor: #f1f1f1;
+$accent: #51a4e7;
+$error: red;
+$redRecording: #93000a;
+$redRecordingText: #ffdad6;
+$red: #e55f86;
+$closeRed: #3d3231;
+$primaryContainer: #73342c;
+$shadowColor: #eeeeee;
+$inverseSurface: #f1dedc;
+$yellow: #EBFF71;
+$notificationBackground: #282626;
+$mediaPlayerActionIcon: #ffffff;
+$overview: rgba(238, 238, 238, 0.06);
+$bgTransparent: color.adjust($bgColor, $alpha: -0.05);
+$popupTransparent: color.adjust($black, $alpha: -0.68);
+$accentTransparent: color.adjust($accent, $alpha: -0.4);
+$hover: color.adjust($shadowColor, $alpha: -0.80);
+$osd: color.adjust(gray, $alpha: -0.10);
+$redTransparent: color.adjust($red, $alpha: -0.3);
+$shadowTransparent: color.adjust($shadowColor, $alpha: -0.5);
+$inverseSurfaceTransparent: color.adjust($inverseSurface, $alpha: -0.92);
+$closeRedTransparent: color.adjust($closeRed, $alpha: -0.5);
+$accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
+$hoverShadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.2);
+$focusShadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+$focusShadowTransparent: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
 $radius: 1.5rem;
-
-// bar
 $barMediaCoverHeight: 1.2rem;
 $barMediaCoverWidth: 1.2rem;
 $barHeight: 27px;
-
-// qs
 $togglesSpace: 0 0.2rem;
 $qsElementsTopMargin: 0.5rem;
-
-// qs toggles
 $qsTogglesWidth: 10.7rem;
 $qsTogglesEmptyWidth: 10.7rem * 1.11;
 $qsTogglesHeight: 2.2rem;
 $qsTogglesIconMarginLeft: 0.6rem;
 $qsTogglesLabelMarginLeft: 0.6rem;
-
-// qs volume slider
 $qsSliderHighlightWidth: 2.2rem;
 $qsSliderIconMarginLeft: 0.6rem;
-
-// qs menu
 $qsMenuPadding: 1.5rem;
-
-// osd
 $osdMinWidth: 12rem;
 $osdLevelbarHeight: 0.8rem;
 $osdLevelbarLowWidth: 0.8rem;
-
-// powermenu
-$powermenuButtonRadius: 100rem;
+$powermenuButtonRadius: 50%;
 $powermenuButtonPadding: 3rem;
 $powermenuButtonWidth: 7rem;
 $powermenuButtonHeight: 7rem;
 $powermenuButtonMargin: 0.5rem;
-$powermenuButtonRadius: 50%;
-
-// app-launcher
 $appLauncherRadius: $radius * 0.6;
 $appLauncherEntryIconSize: 1.2rem;
 $appLauncherHeaderMargin: 0.3rem 0.8rem 0.3rem 0.8rem;
@@ -47,23 +58,14 @@ $appLauncherScrollablePadding: 0.3rem 0 0.5rem 0;
 $appLauncherButtonIconSize: 1.8rem;
 $appLauncherButtonPadding: 0.2rem 1rem 0.2rem 0.6rem;
 $appLauncherButtonMinHeight: 2.5rem;
-
-// dashboard
-// calendar
 $calendarWeekdaysTopMargin: 0.8rem;
-
-// weather
 $weatherMainBoxMinWidth: 16.5em;
 $weatherweatherInfoMinWidth: 5em;
 $weatherweatherInfoMinHeight: 10em;
 $weatherChildBoxMinWidth: 5em;
-
-// notification
 $notificationIconMinWidth: 3rem;
 $notificationIconMinHeight: 3rem;
 $notificationIconRadius: $radius * 0.6;
 $notificationIconMargin: 0 0 0 1rem;
 $notificationMinWidth: 400px;
-
-// overview
 $overviewAppRadius: $radius * 0.6;

@@ -1,5 +1,5 @@
 import { GLib, readFileAsync } from "astal";
-import { fileExists } from "../../lib/utils";
+import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorScheme } from "../../lib/utils";
 
 interface Config {
     bar: Bar;
@@ -15,6 +15,9 @@ interface Config {
     wifi: Wifi;
     brightness: Brightness;
     common: Common;
+    themeVariables: ThemeVariables;
+    theme_dark: ThemeColors;
+    theme_light: ThemeColors;
 }
 
 interface Bar {
@@ -132,6 +135,82 @@ interface Common {
     commandTurnOffLightstrip: string; // command to turn off lightstrip
 }
 
+interface ThemeVariables {
+    radius: string;
+    barMediaCoverHeight: string; // bar
+    barMediaCoverWidth: string;
+    barHeight: string;
+    togglesSpace: string; // qs
+    qsElementsTopMargin: string;
+    qsTogglesWidth: string; // qs toggles
+    qsTogglesEmptyWidth: string;
+    qsTogglesHeight: string;
+    qsTogglesIconMarginLeft: string;
+    qsTogglesLabelMarginLeft: string;
+    qsSliderHighlightWidth: string; // qs volume slider
+    qsSliderIconMarginLeft: string;
+    qsMenuPadding: string; // qs menu
+    osdMinWidth: string; // osd
+    osdLevelbarHeight: string;
+    osdLevelbarLowWidth: string;
+    powermenuButtonRadius: string; // powermenu
+    powermenuButtonPadding: string;
+    powermenuButtonWidth: string;
+    powermenuButtonHeight: string;
+    powermenuButtonMargin: string;
+    appLauncherRadius: string; // app-launcher
+    appLauncherEntryIconSize: string;
+    appLauncherHeaderMargin: string;
+    appLauncherEntryMargin: string;
+    appLauncherScrollablePadding: string;
+    appLauncherButtonIconSize: string;
+    appLauncherButtonPadding: string;
+    appLauncherButtonMinHeight: string;
+    calendarWeekdaysTopMargin: string; // dashboard - calendar
+    weatherMainBoxMinWidth: string; // weather
+    weatherweatherInfoMinWidth: string;
+    weatherweatherInfoMinHeight: string;
+    weatherChildBoxMinWidth: string;
+    notificationIconMinWidth: string; // notification
+    notificationIconMinHeight: string;
+    notificationIconRadius: string;
+    notificationIconMargin: string;
+    notificationMinWidth: string;
+    overviewAppRadius: string; // overview
+}
+
+interface ThemeColors {
+    black: string;
+    bgColor: string;
+    fgColor: string;
+    accent: string;
+    error: string;
+    redRecording: string;
+    redRecordingText: string;
+    red: string;
+    closeRed: string;
+    primaryContainer: string;
+    shadowColor: string;
+    inverseSurface: string;
+    yellow: string;
+    notificationBackground: string;
+    mediaPlayerActionIcon: string;
+    overview: string;
+    bgTransparent: string;
+    popupTransparent: string;
+    accentTransparent: string;
+    hover: string;
+    osd: string;
+    redTransparent: string;
+    shadowTransparent: string;
+    inverseSurfaceTransparent: string;
+    closeRedTransparent: string;
+    accentGradient: string;
+    hoverShadow: string;
+    focusShadow: string;
+    focusShadowTransparent: string;
+}
+
 const configDefaults: Config = {
     bar: {
         visiblePowermenu: false,
@@ -235,6 +314,111 @@ const configDefaults: Config = {
         commandTurnOnLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 On`,
         commandTurnOffLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 Off`,
     },
+    themeVariables: {
+        radius: "1.5rem",
+        barMediaCoverHeight: "1.2rem",
+        barMediaCoverWidth: "1.2rem",
+        barHeight: "27px",
+        togglesSpace: "0 0.2rem",
+        qsElementsTopMargin: "0.5rem",
+        qsTogglesWidth: "10.7rem",
+        qsTogglesEmptyWidth: "10.7rem * 1.11",
+        qsTogglesHeight: "2.2rem",
+        qsTogglesIconMarginLeft: "0.6rem",
+        qsTogglesLabelMarginLeft: "0.6rem",
+        qsSliderHighlightWidth: "2.2rem",
+        qsSliderIconMarginLeft: "0.6rem",
+        qsMenuPadding: "1.5rem",
+        osdMinWidth: "12rem",
+        osdLevelbarHeight: "0.8rem",
+        osdLevelbarLowWidth: "0.8rem",
+        powermenuButtonRadius: "50%",
+        powermenuButtonPadding: "3rem",
+        powermenuButtonWidth: "7rem",
+        powermenuButtonHeight: "7rem",
+        powermenuButtonMargin: "0.5rem",
+        appLauncherRadius: "$radius * 0.6",
+        appLauncherEntryIconSize: "1.2rem",
+        appLauncherHeaderMargin: "0.3rem 0.8rem 0.3rem 0.8rem",
+        appLauncherEntryMargin: "0 0.7rem 0 0.5rem",
+        appLauncherScrollablePadding: "0.3rem 0 0.5rem 0",
+        appLauncherButtonIconSize: "1.8rem",
+        appLauncherButtonPadding: "0.2rem 1rem 0.2rem 0.6rem",
+        appLauncherButtonMinHeight: "2.5rem",
+        calendarWeekdaysTopMargin: "0.8rem",
+        weatherMainBoxMinWidth: "16.5em",
+        weatherweatherInfoMinWidth: "5em",
+        weatherweatherInfoMinHeight: "10em",
+        weatherChildBoxMinWidth: "5em",
+        notificationIconMinWidth: "3rem",
+        notificationIconMinHeight: "3rem",
+        notificationIconRadius: "$radius * 0.6",
+        notificationIconMargin: "0 0 0 1rem",
+        notificationMinWidth: "400px",
+        overviewAppRadius: "$radius * 0.6",
+    },
+    theme_dark: {
+        black: "#000000",
+        bgColor: "#171717",
+        fgColor: "#f1f1f1",
+        accent: "#51a4e7",
+        error: "red",
+        redRecording: "#93000a",
+        redRecordingText: "#ffdad6",
+        red: "#e55f86",
+        closeRed: "#3d3231",
+        primaryContainer: "#73342c",
+        shadowColor: "#eeeeee",
+        inverseSurface: "#f1dedc",
+        yellow: "#EBFF71",
+        notificationBackground: "#282626",
+        mediaPlayerActionIcon: "#ffffff",
+        overview: "rgba(238, 238, 238, 0.06)",
+        bgTransparent: "color.adjust($bgColor, $alpha: -0.05)",
+        popupTransparent: "color.adjust($black, $alpha: -0.68)",
+        accentTransparent: "color.adjust($accent, $alpha: -0.4)",
+        hover: "color.adjust($shadowColor, $alpha: -0.80)",
+        osd: "color.adjust(gray, $alpha: -0.10)",
+        redTransparent: "color.adjust($red, $alpha: -0.3)",
+        shadowTransparent: "color.adjust($shadowColor, $alpha: -0.5)",
+        inverseSurfaceTransparent: "color.adjust($inverseSurface, $alpha: -0.92)",
+        closeRedTransparent: "color.adjust($closeRed, $alpha: -0.5)",
+        accentGradient: "linear-gradient(to right, #51a4e7, #6cb2eb)",
+        hoverShadow: "inset 0 0 0 9999px rgba(255, 255, 255, 0.2)",
+        focusShadow: "inset 0 0 0 2px rgba(255, 255, 255, 0.4)",
+        focusShadowTransparent: "inset 0 0 0 2px rgba(255, 255, 255, 0.2)",
+    },
+    theme_light: {
+        black: "#ffffff",
+        bgColor: "#f9f9f9",
+        fgColor: "#171717",
+        accent: "#51a4e7",
+        error: "red",
+        redRecording: "#93000a",
+        redRecordingText: "#93000a",
+        red: "#e55f86",
+        closeRed: "#3d3231",
+        primaryContainer: "#ffccbc",
+        shadowColor: "#333333",
+        inverseSurface: "#333333",
+        yellow: "gray",
+        notificationBackground: "#e0e0e0",
+        mediaPlayerActionIcon: "#ffffff",
+        overview: "rgba(51, 51, 51, 0.06)",
+        bgTransparent: "color.adjust($bgColor, $alpha: -0.05)",
+        popupTransparent: "color.adjust($black, $alpha: -0.68)",
+        accentTransparent: "color.adjust($accent, $alpha: -0.4)",
+        hover: "color.adjust($shadowColor, $alpha: -0.80)",
+        osd: "color.adjust(gray, $alpha: -0.10)",
+        redTransparent: "color.adjust($red, $alpha: -0.3)",
+        shadowTransparent: "color.adjust($shadowColor, $alpha: -0.5)",
+        inverseSurfaceTransparent: "color.adjust($inverseSurface, $alpha: -0.92)",
+        closeRedTransparent: "color.adjust($closeRed, $alpha: -0.5)",
+        accentGradient: "linear-gradient(to right, #51a4e7, #6cb2eb)",
+        hoverShadow: "inset 0 0 0 9999px rgba(0, 0, 0, 0.2)",
+        focusShadow: "inset 0 0 0 2px rgba(0, 0, 0, 0.4)",
+        focusShadowTransparent: "inset 0 0 0 2px rgba(0, 0, 0, 0.2)",
+    },
 };
 
 export const config: Config = configDefaults;
@@ -253,4 +437,46 @@ try {
     }
 } catch (e) {
     console.log("Error loading config file.", e);
+}
+
+export async function initScss(themeMode?: ThemeMode) {
+	const color = getThemeColor(themeMode);
+
+	const theme = config[`theme_${color}`];
+
+	if (!theme) {
+		console.log("Error no theme defined");
+		return;
+	}
+
+	const scssColorVariables = [
+        "@use 'sass:color' as color;"
+    ];
+
+	Object.entries(theme).forEach(([key, value]) => {
+		scssColorVariables.push(`$${key}: ${value};`);
+	});
+
+	if (scssColorVariables.length <= 1) {
+		console.log("Error no theme colors defined");
+		return;
+	}
+
+	const themeVariables = config.themeVariables;
+
+    Object.entries(themeVariables).forEach(([key, value]) => {
+		scssColorVariables.push(`$${key}: ${value};`);
+	});
+
+    if (scssColorVariables.length <= 1) {
+		console.log("Error no theme variables defined");
+		return;
+	}
+
+    await syncVariablesToTmp(scssColorVariables);
+}
+
+export async function toggleColorMode() {
+    toggleColorScheme();
+    await initScss();
 }

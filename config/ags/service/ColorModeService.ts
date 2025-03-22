@@ -1,5 +1,6 @@
 import { GObject } from "astal";
-import { gsettings, toggleColorMode, applyColorMode } from "../lib/utils";
+import { gsettings, applyColorMode } from "../lib/utils";
+import { toggleColorMode } from "../widget/common/Config";
 
 export enum ColorMode {
 	Light = 0,
