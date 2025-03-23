@@ -33,6 +33,10 @@ export const qsRevealScreenshot = Variable(config.qs.qsRevealScreenshot);
 export const qsRevealScreenshotSpacing = config.qs.qsRevealScreenshotSpacing;
 export const qsRevealLightstrip = Variable(config.qs.qsRevealLightstrip);
 export const qsRevealLightstripSpacing = config.qs.qsRevealLightstripSpacing;
+export const qsShowMediaPlayer = config.qs.qsShowMediaPlayer;
+export const qsShowWeatherSchedule = config.qs.qsShowWeatherSchedule;
+export const qsShowSinksRevealerButton = config.qs.qsShowSinksRevealerButton;
+export const qsShowAudioSlider = config.qs.qsShowAudioSlider;
 
 // weather
 export const namespaceWeather = config.weather.namespaceWeather;

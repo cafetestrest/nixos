@@ -54,6 +54,10 @@ interface QS {
     qsRevealScreenshotSpacing: number; // QS reveal Screenshot spacing={}
     qsRevealLightstrip: boolean; // used to control Lightstrip button state
     qsRevealLightstripSpacing: number; // QS reveal Lightstrip spacing={}
+    qsShowMediaPlayer: boolean; // show / hide media player in QS
+    qsShowWeatherSchedule: boolean; // show / hide weather schedule widget in QS
+    qsShowSinksRevealerButton: boolean; // show / hide sinks revealer button in QS
+    qsShowAudioSlider: boolean; // show / hide volume widget (Audio Slider) in QS
 }
 
 interface Weather {
@@ -244,6 +248,10 @@ const configDefaults: Config = {
         qsRevealScreenshotSpacing: 16,
         qsRevealLightstrip: false,
         qsRevealLightstripSpacing: 16,
+        qsShowMediaPlayer: true,
+        qsShowWeatherSchedule: true,
+        qsShowSinksRevealerButton: true,
+        qsShowAudioSlider: false,
     },
     weather: {
         namespaceWeather: "weather",

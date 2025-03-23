@@ -1,5 +1,5 @@
 import { bind } from "astal";
-import { qsRevealSinksButton, qsRevealSinksSpacing, qsRevertRevealerStatus } from "../../common/Variables";
+import { qsRevealSinksButton, qsRevealSinksSpacing, qsRevertRevealerStatus, qsShowSinksRevealerButton } from "../../common/Variables";
 import icons from "../../../lib/icons";
 import QSMenu from "./QSMenu";
 import AstalWp from "gi://AstalWp";
@@ -14,6 +14,12 @@ try {
 const Audio = WireplumberService && WireplumberService.audio;
 
 export const SinkButton = () => {
+    if (qsShowSinksRevealerButton === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     return (
         <button
             className={"qs-sink-button"}
@@ -93,12 +99,20 @@ const SinkMenu = () => {
     );
 };
 
-export const SinkRevealer = () => Audio && (
-    <QSMenu
-        classname={"sink-selector"}
-        bindVariable={qsRevealSinksButton}
-        content={[
-            <SinkMenu />
-        ]}
-    />
-);
+export const SinkRevealer = () => {
+    if (qsShowSinksRevealerButton === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
+    return Audio && (
+        <QSMenu
+            classname={"sink-selector"}
+            bindVariable={qsRevealSinksButton}
+            content={[
+                <SinkMenu />
+            ]}
+        />
+    );
+};

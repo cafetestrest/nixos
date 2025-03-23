@@ -1,6 +1,7 @@
 import { Gtk } from "astal/gtk3";
 import Mpris from "gi://AstalMpris";
 import { bind } from "astal";
+import { qsShowMediaPlayer } from "../common/Variables";
 
 function lengthStr(length: number) {
     const hours = Math.floor(length / 3600);
@@ -103,10 +104,19 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 }
 
 export default function MprisPlayers() {
-    const mpris = Mpris.get_default()
-    return <box vertical={true}>
-        {bind(mpris, "players").as(arr => arr.map(player => (
-            <MediaPlayer player={player} />
-        )))}
-    </box>
+    if (qsShowMediaPlayer === false) {
+        return (
+            <box visible={false}/>
+        );
+    }
+
+    const mpris = Mpris.get_default();
+
+    return (
+        <box vertical={true}>
+            {bind(mpris, "players").as(arr => arr.map(player => (
+                <MediaPlayer player={player} />
+            )))}
+        </box>
+    );
 }
