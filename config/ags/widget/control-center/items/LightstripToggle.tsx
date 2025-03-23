@@ -16,6 +16,12 @@ export default () => {
             icon={icons.brightness.indicator}
             label={"Lightstrip"}
             hasArrow={true}
+            arrowIcon={bind(qsRevealLightstrip).as((p) => {
+                if (p) {
+                    return icons.ui.arrow.down;
+                }
+                return icons.ui.arrow.right;
+            })}
             revelaer="lightstrip"
         />
     );

@@ -10,6 +10,7 @@ type QSToggleProps = {
 	onPrimaryClick?: () => void;
 	className?: [Subscribable<unknown>, () => string] | Binding<string> | string;
     hasArrow?: boolean;
+    arrowIcon?: Widget.IconProps["icon"] | Binding<string>;
     revelaer?: string;
 } & Widget.ButtonProps;
 
@@ -19,9 +20,14 @@ export default ({
     icon,
 	label,
     hasArrow,
+    arrowIcon,
     revelaer,
 	...props
 }: QSToggleProps) => {
+    if (arrowIcon === undefined) {
+        arrowIcon = icons.ui.arrow.right;
+    }
+
     return (
         <button
             className={className}
@@ -65,7 +71,7 @@ export default ({
                 {hasArrow && (
                     <icon
                         halign={Gtk.Align.END}
-                        icon={icons.ui.arrow.right}
+                        icon={arrowIcon}
                     />
                 )}
             </box>

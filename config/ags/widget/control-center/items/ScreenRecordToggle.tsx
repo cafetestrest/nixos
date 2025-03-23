@@ -16,6 +16,12 @@ export default () => {
             icon={icons.record}
             label={"Screen record"}
             hasArrow={true}
+            arrowIcon={bind(qsRevealScreenRecord).as((p) => {
+                if (p) {
+                    return icons.ui.arrow.down;
+                }
+                return icons.ui.arrow.right;
+            })}
             revelaer="screen-record"
         />
     );

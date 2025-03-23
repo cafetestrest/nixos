@@ -16,6 +16,12 @@ export default () => {
             icon={icons.screenshot}
             label={"Screenshot"}
             hasArrow={true}
+            arrowIcon={bind(qsRevealScreenshot).as((p) => {
+                if (p) {
+                    return icons.ui.arrow.down;
+                }
+                return icons.ui.arrow.right;
+            })}
             revelaer="screenshot"
         />
     );
