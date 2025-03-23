@@ -24,7 +24,25 @@ interface Bar {
     visiblePowermenu: boolean; // powermenu visible by default (used to control powermenu state)
     visibleQSMainPage: boolean; // qs main page visible by default (used to control qs main page state)
     enableBarButtons: boolean; // enables buttons in bar
-    enableBarUsage: boolean; // enables usage (cpu, ram, disk ) widgets
+    enableBarUsage: boolean; // enables usage (cpu, ram, disk, bt %) all widgets
+    enableBarApplauncher: boolean; // enables Applauncher widget
+    applauncherIcon: string; // Applauncher widget icon (string)
+    enableBarTaskbar: boolean; // enables Taskbar widget
+    enableBarWorkspaces: boolean; // enables Workspaces widget
+    enableBarMediaIndicator: boolean; // enables Media Indicator widget
+    enableBarDateTime: boolean; // enables Date and Time widget
+    dateTimeFormat: string; // date and time format
+    enableBarWeather: boolean; // enables Weather widget
+    enableBarNotifications: boolean; // enables Notifications Revealer widget
+    enableBarRecordingIndicator: boolean; // enables Recording Indicator widget
+    enableBarUsageCpu: boolean; // enables CPU % usage widget
+    enableBarUsageRam: boolean; // enables RAM GB usage widget
+    enableBarUsageDisk: boolean; // enables DISK % usage widget
+    enableBarUsageBluetooth: boolean; // enables Bluetooth % usage widget
+    enableBarSysTray: boolean; // enables SysTray widget
+    enableBarSystemIndicators: boolean; // enables System Indicators widget
+    enableBarPowermenu: boolean; // enables Powermenu widget
+    enableCommandOpenStartupApps: boolean; // enables command to open startup apps
 }
 
 interface Usage {
@@ -223,6 +241,24 @@ const configDefaults: Config = {
         visibleQSMainPage: false,
         enableBarButtons: false,
         enableBarUsage: true,
+        enableBarApplauncher: true,
+        applauncherIcon: "",
+        enableBarTaskbar: true,
+        enableBarWorkspaces: true,
+        enableBarMediaIndicator: true,
+        enableBarDateTime: true,
+        dateTimeFormat: "%a %b %e   %H:%M:%S",
+        enableBarWeather: true,
+        enableBarNotifications: true,
+        enableBarRecordingIndicator: true,
+        enableBarUsageCpu: true,
+        enableBarUsageRam: true,
+        enableBarUsageDisk: true,
+        enableBarUsageBluetooth: true,
+        enableBarSysTray: true,
+        enableBarSystemIndicators: true,
+        enableBarPowermenu: true,
+        enableCommandOpenStartupApps: true,
     },
     usage: {
         barUsageSpacing: 10,

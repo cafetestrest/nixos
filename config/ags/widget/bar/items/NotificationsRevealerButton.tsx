@@ -2,9 +2,15 @@ import { bind, Variable } from "astal";
 import { App, Gtk } from "astal/gtk3";
 import icons from "../../../lib/icons";
 import Notifications from "gi://AstalNotifd";
-import { namespaceNotification } from "../../common/Variables";
+import { enableBarNotifications, namespaceNotification } from "../../common/Variables";
 
 export default () => {
+    if (enableBarNotifications === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
 	const notifications = Notifications.get_default();
     const revealerVisible = Variable(false);
     const notifs = bind(notifications, "notifications");

@@ -1,7 +1,14 @@
 import { bind } from "astal";
 import Tray from "gi://AstalTray";
+import { enableBarSysTray } from "../../common/Variables";
 
 export default () => {
+    if (enableBarSysTray === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     const tray = Tray.get_default()
 
     return (

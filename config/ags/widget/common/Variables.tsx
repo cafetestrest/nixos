@@ -6,6 +6,24 @@ export const visiblePowermenu = Variable(config.bar.visiblePowermenu);
 export const visibleQSMainPage = Variable(config.bar.visibleQSMainPage);
 export const enableBarButtons = config.bar.enableBarButtons;
 export const enableBarUsage = config.bar.enableBarUsage;
+export const enableBarApplauncher = config.bar.enableBarApplauncher;
+export const applauncherIcon = config.bar.applauncherIcon;
+export const enableBarTaskbar = config.bar.enableBarTaskbar;
+export const enableBarWorkspaces = config.bar.enableBarWorkspaces;
+export const enableBarMediaIndicator = config.bar.enableBarMediaIndicator;
+export const enableBarDateTime = config.bar.enableBarDateTime;
+export const dateTimeFormat = config.bar.dateTimeFormat;
+export const enableBarWeather = config.bar.enableBarWeather;
+export const enableBarNotifications = config.bar.enableBarNotifications;
+export const enableBarRecordingIndicator = config.bar.enableBarRecordingIndicator;
+export const enableBarUsageCpu = config.bar.enableBarUsageCpu;
+export const enableBarUsageRam = config.bar.enableBarUsageRam;
+export const enableBarUsageDisk = config.bar.enableBarUsageDisk;
+export const enableBarUsageBluetooth = config.bar.enableBarUsageBluetooth;
+export const enableBarSysTray = config.bar.enableBarSysTray;
+export const enableBarSystemIndicators = config.bar.enableBarSystemIndicators;
+export const enableBarPowermenu = config.bar.enableBarPowermenu;
+export const enableCommandOpenStartupApps = config.bar.enableCommandOpenStartupApps;
 
 // usage
 export const barUsageSpacing = config.usage.barUsageSpacing;

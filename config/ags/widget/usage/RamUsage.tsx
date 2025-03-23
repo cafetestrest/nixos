@@ -1,6 +1,6 @@
 import Variable from 'astal/variable';
 import GTop from "gi://GTop";
-import { ramUsageSpacing, ramUsagePoolRate, ramUsageDecimals } from '../common/Variables';
+import { ramUsageSpacing, ramUsagePoolRate, ramUsageDecimals, enableBarUsageRam } from '../common/Variables';
 
 const memory = Variable(new GTop.glibtop_mem()).poll(ramUsagePoolRate, () => {
 	const memory = new GTop.glibtop_mem();
@@ -20,6 +20,12 @@ export function formatSize(bytes: number) {
 
 // cpu and ram usage from: https://github.com/coffeeispower/ags-desktop
 export default () => {
+    if (enableBarUsageRam === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     return (
         <box className={"ram usage"} spacing={ramUsageSpacing}>
             <label className={"ram icon"} label="" />

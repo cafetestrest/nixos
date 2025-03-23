@@ -1,4 +1,5 @@
 import { bind, Variable } from "astal";
+import { enableBarUsageBluetooth } from "../common/Variables";
 
 type UpowerProps = {
 	model: string;
@@ -62,6 +63,12 @@ export const upower = Variable<Array<UpowerProps>>([]).poll(
 });
 
 export default () => {
+    if (enableBarUsageBluetooth === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
 	return (
         <box className={"btwrapper"} spacing={5}>
             {bind(upower).as(arr => arr.map(power => {

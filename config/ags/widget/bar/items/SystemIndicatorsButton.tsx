@@ -1,8 +1,14 @@
 import { bind } from "astal";
-import { visibleQSMainPage } from "../../common/Variables";
+import { enableBarSystemIndicators, visibleQSMainPage } from "../../common/Variables";
 import SystemIndicators from "./SystemIndicators";
 
 export default () => {
+    if (enableBarSystemIndicators === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     return (
         <SystemIndicators className={bind(visibleQSMainPage).as((v) => {
             if (v) {

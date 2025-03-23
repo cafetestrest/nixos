@@ -1,5 +1,5 @@
 import { bind, Variable } from "astal";
-import { diskUsageSpacing, diskUsagePoolRate } from "../common/Variables";
+import { diskUsageSpacing, diskUsagePoolRate, enableBarUsageDisk } from "../common/Variables";
 
 const disk = Variable<string>("").poll(
 	diskUsagePoolRate,
@@ -12,6 +12,12 @@ const disk = Variable<string>("").poll(
 });
 
 export default () => {
+    if (enableBarUsageDisk === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
 	return (
 		<box className={"disk usage"} spacing={diskUsageSpacing}>
 			<label label={""} className={"disk icon"}/>

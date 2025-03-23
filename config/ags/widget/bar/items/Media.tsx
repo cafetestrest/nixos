@@ -2,8 +2,15 @@ import { bind, Variable } from "astal";
 import { Gtk } from "astal/gtk3";
 import Mpris from "gi://AstalMpris";
 import icons from "../../../lib/icons";
+import { enableBarMediaIndicator } from "../../common/Variables";
 
 export default () => {
+    if (enableBarMediaIndicator === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     const mpris = Mpris.get_default()
     const revealMedia = Variable(true);
 

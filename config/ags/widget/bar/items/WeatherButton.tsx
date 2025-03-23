@@ -1,9 +1,15 @@
 import { bind } from "astal";
 import { App, Gdk } from "astal/gtk3";
-import { namespaceWeather } from "../../common/Variables";
+import { enableBarWeather, namespaceWeather } from "../../common/Variables";
 import { weather } from "../../../service/WeatherService";
 
 export default () => {
+    if (enableBarWeather === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     const weatherBind = bind(weather);
     const weatherData = weatherBind.as((w) => {
 		let tooltip = weather.get();

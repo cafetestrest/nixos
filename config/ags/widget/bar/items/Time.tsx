@@ -1,8 +1,18 @@
 import { Variable, GLib } from "astal";
 import { App } from "astal/gtk3";
-import { namespaceDashboard } from "../../common/Variables";
+import { dateTimeFormat, enableBarDateTime, namespaceDashboard } from "../../common/Variables";
 
 export default ({ format = "%a %b %e   %H:%M:%S" }) => {
+    if (enableBarDateTime === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
+    if (dateTimeFormat) {
+        format = dateTimeFormat;
+    }
+
     const time = Variable<string>("").poll(1000, () =>
         GLib.DateTime.new_now_local().format(format)!)
 

@@ -2,7 +2,7 @@ import { bind, Variable } from "astal";
 import { Astal, App, Gdk, Gtk } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland";
 import { range } from "../../../lib/utils";
-import { namespaceOverview, workspaces } from "../../common/Variables";
+import { enableBarWorkspaces, namespaceOverview, workspaces } from "../../common/Variables";
 import WorkspaceButtonAstal, { WorkspaceButtonClass } from "../../overview/WorkspaceButton";
 
 const hyprland = Hyprland.get_default();
@@ -43,6 +43,12 @@ function WorkspaceButton({ ws, ...props }) {
 }
 
 export default () => {
+  if (enableBarWorkspaces === false) {
+    return (
+        <box visible={false} />
+    );
+  }
+
   return (
     <eventbox
       className={"Workspaces"}

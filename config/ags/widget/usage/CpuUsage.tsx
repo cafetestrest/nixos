@@ -1,6 +1,6 @@
 import Variable from 'astal/variable';
 import GTop from "gi://GTop";
-import { cpuUsageSpacing, cpuUsagePoolRate, cpuUsageDecimals } from '../common/Variables';
+import { cpuUsageSpacing, cpuUsagePoolRate, cpuUsageDecimals, enableBarUsageCpu } from '../common/Variables';
 
 const cpu = Variable({ cpu: new GTop.glibtop_cpu(), load: 0 }).poll(
 	cpuUsagePoolRate,
@@ -23,6 +23,12 @@ const cpu = Variable({ cpu: new GTop.glibtop_cpu(), load: 0 }).poll(
 );
 
 export default () => {
+    if (enableBarUsageCpu === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     return (
         <box className={"cpu usage"} spacing={cpuUsageSpacing}>
             <label className={"cpu icon"} label="" />

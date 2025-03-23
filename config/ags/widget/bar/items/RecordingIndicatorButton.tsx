@@ -2,8 +2,15 @@ import { bind, Variable } from "astal";
 import { Gtk } from "astal/gtk3";
 import icons from "../../../lib/icons";
 import ScreenRecordService from "../../../service/ScreenRecordService";
+import { enableBarRecordingIndicator } from "../../common/Variables";
 
 export default () => {
+    if (enableBarRecordingIndicator === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
 	const revealTimer = Variable(false);
 
     return <button

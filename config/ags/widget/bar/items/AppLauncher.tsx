@@ -1,7 +1,13 @@
 import { App, Gtk } from "astal/gtk3";
-import { namespaceApplauncher } from "../../common/Variables";
+import { enableBarApplauncher, namespaceApplauncher, applauncherIcon } from "../../common/Variables";
 
 export default () => {
+    if (enableBarApplauncher === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     return (
         <button
             className={"app-launcher-button bar-button"}
@@ -16,7 +22,7 @@ export default () => {
                 }
             }}
         >
-            <label label={""}/>
+            <label label={applauncherIcon}/>
         </button>
     );
 }
