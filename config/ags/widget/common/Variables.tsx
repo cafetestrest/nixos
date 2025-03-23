@@ -57,6 +57,7 @@ export const qsShowSinksRevealerButton = config.qs.qsShowSinksRevealerButton;
 export const qsShowAudioSlider = config.qs.qsShowAudioSlider;
 export const qsShowBrightnessSlider = config.qs.qsShowBrightnessSlider;
 export const qsShowToggles = config.qs.qsShowToggles;
+export const qsToggles = config.qs.qsToggles;
 
 // weather
 export const namespaceWeather = config.weather.namespaceWeather;

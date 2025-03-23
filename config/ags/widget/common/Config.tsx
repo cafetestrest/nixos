@@ -78,6 +78,7 @@ interface QS {
     qsShowAudioSlider: boolean; // show / hide volume widget (Audio Slider) in QS
     qsShowBrightnessSlider: boolean; // show / hide brightness widget (Brightness Slider) in QS
     qsShowToggles: boolean; // show / hide toggles in QS
+    qsToggles: string[]; // qs toggles keys (order to be created in)
 }
 
 interface Weather {
@@ -292,6 +293,21 @@ const configDefaults: Config = {
         qsShowAudioSlider: true,
         qsShowBrightnessSlider: true,
         qsShowToggles: true,
+        qsToggles: [
+            "BluetoothToggle",
+            "NightlightToggle",
+            "MicrophoneToggle",
+            "ScreenshotToggle",
+            "IdleToggle",
+            "LightstripToggle",
+            "NetworkToggle",
+            "ScreenRecordToggle",
+            "DNDToggle",
+            "ColorPickerToggle",
+            "NoteToggle",
+            "ColorToggle",
+            // "QSEmptyButton"
+        ],
     },
     weather: {
         namespaceWeather: "weather",
