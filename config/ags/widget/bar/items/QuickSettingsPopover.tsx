@@ -1,6 +1,6 @@
 import { Gtk } from "astal/gtk3";
 import Popover from "../../popovers/Popover";
-import { visibleQSMainPage } from "../../common/Variables";
+import { visibleQSMainPage, qsRevertRevealerStatus } from "../../common/Variables";
 import ControlCenter from "../../control-center/ControlCenter";
 
 export default () => {
@@ -11,6 +11,7 @@ export default () => {
             className={"Popup"}
             onClose={() => {
                 visibleQSMainPage.set(false);
+                qsRevertRevealerStatus("");
             }}
             visible={visibleQSMainPage()}
             marginTop={38}
