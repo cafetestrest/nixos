@@ -58,6 +58,8 @@ interface QS {
     qsShowWeatherSchedule: boolean; // show / hide weather schedule widget in QS
     qsShowSinksRevealerButton: boolean; // show / hide sinks revealer button in QS
     qsShowAudioSlider: boolean; // show / hide volume widget (Audio Slider) in QS
+    qsShowBrightnessSlider: boolean; // show / hide brightness widget (Brightness Slider) in QS
+    qsShowToggles: boolean; // show / hide toggles in QS
 }
 
 interface Weather {
@@ -251,7 +253,9 @@ const configDefaults: Config = {
         qsShowMediaPlayer: true,
         qsShowWeatherSchedule: true,
         qsShowSinksRevealerButton: true,
-        qsShowAudioSlider: false,
+        qsShowAudioSlider: true,
+        qsShowBrightnessSlider: true,
+        qsShowToggles: true,
     },
     weather: {
         namespaceWeather: "weather",

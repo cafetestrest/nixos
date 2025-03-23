@@ -8,7 +8,8 @@ import {
   qsTogglesSpacing,
   qsRowSpacing,
   maxItemsPerRowQSToggles,
-  maxItemsPerColumnQSToggles
+  maxItemsPerColumnQSToggles,
+  qsShowToggles
 } from "../../common/Variables";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
@@ -143,6 +144,12 @@ const renderPage = (pageRows, pageIndex) => {
 };
 
 const QSToggles = () => {
+  if (qsShowToggles === false) {
+    return (
+        <box visible={false} />
+    );
+  }
+
   return (
     <box
       className={"qs-toggles"}

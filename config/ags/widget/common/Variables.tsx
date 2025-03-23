@@ -37,6 +37,8 @@ export const qsShowMediaPlayer = config.qs.qsShowMediaPlayer;
 export const qsShowWeatherSchedule = config.qs.qsShowWeatherSchedule;
 export const qsShowSinksRevealerButton = config.qs.qsShowSinksRevealerButton;
 export const qsShowAudioSlider = config.qs.qsShowAudioSlider;
+export const qsShowBrightnessSlider = config.qs.qsShowBrightnessSlider;
+export const qsShowToggles = config.qs.qsShowToggles;
 
 // weather
 export const namespaceWeather = config.weather.namespaceWeather;

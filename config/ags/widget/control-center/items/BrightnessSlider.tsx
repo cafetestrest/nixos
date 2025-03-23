@@ -1,7 +1,7 @@
 import { Gtk, hook } from "astal/gtk3";
 import Brightness from "../../../service/BrightnessService";
 import icons from "../../../lib/icons";
-import { hasBrightness } from "../../common/Variables";
+import { hasBrightness, qsShowBrightnessSlider } from "../../common/Variables";
 
 const VolumeSlider = ({ device }: { device: Brightness }) => {
     const adjustment = new Gtk.Adjustment({
@@ -28,6 +28,12 @@ const VolumeSlider = ({ device }: { device: Brightness }) => {
 };
 
 export default () => {
+    if (qsShowBrightnessSlider === false) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     let brightness = null;
 
     if (hasBrightness) {
