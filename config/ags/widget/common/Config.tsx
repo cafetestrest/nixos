@@ -397,7 +397,7 @@ let configDefaults: Config = {
         osdLevelbarHeight: "0.8rem",
         osdLevelbarLowWidth: "0.8rem",
         powermenuButtonRadius: "50%",
-        powermenuButtonPadding: "3rem",
+        powermenuButtonPadding: "0rem",
         powermenuButtonWidth: "7rem",
         powermenuButtonHeight: "7rem",
         powermenuButtonMargin: "0.5rem",
