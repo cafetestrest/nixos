@@ -236,7 +236,7 @@ interface ThemeColors {
     focusShadowTransparent: string; // qs-main-page button :focus color, transparent version of focusShadow
 }
 
-const configDefaults: Config = {
+let configDefaults: Config = {
     bar: {
         visiblePowermenu: false,
         visibleQSMainPage: false,
@@ -485,6 +485,17 @@ const configDefaults: Config = {
     },
 };
 
+// Override config defaults with user's options
+function overrideConfigRecursive(target: Config, source: {}) {
+    for (const key of Object.keys(source)) {
+        if (source[key] instanceof Object && key in target) {
+            overrideConfigRecursive(target[key], source[key]);
+        } else {
+            target[key] = source[key];
+        }
+    }
+}
+
 export const config: Config = configDefaults;
 
 try {
@@ -494,9 +505,9 @@ try {
 
     if (fileExists(configFileOverride)) {
         const configOverrideContent = await readFileAsync(configFileOverride).catch(console.error);
-
         if (configOverrideContent) {
-            Object.assign(config, JSON.parse(configOverrideContent));
+            overrideConfigRecursive(configDefaults, JSON.parse(configOverrideContent));
+            Object.assign(config, configDefaults);
         }
     }
 } catch (e) {
