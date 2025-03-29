@@ -205,35 +205,35 @@ interface ThemeVariables {
 }
 
 interface ThemeColors {
-    black: string;
-    bgColor: string;
-    fgColor: string;
-    accent: string;
-    error: string;
-    redRecording: string;
-    redRecordingText: string;
-    red: string;
-    closeRed: string;
-    primaryContainer: string;
-    shadowColor: string;
-    inverseSurface: string;
-    yellow: string;
-    notificationBackground: string;
-    mediaPlayerActionIcon: string;
-    overview: string;
-    bgTransparent: string;
-    popupTransparent: string;
-    accentTransparent: string;
-    hover: string;
-    osd: string;
-    redTransparent: string;
-    shadowTransparent: string;
-    inverseSurfaceTransparent: string;
-    closeRedTransparent: string;
-    accentGradient: string;
-    hoverShadow: string;
-    focusShadow: string;
-    focusShadowTransparent: string;
+    black: string; // used when needed pure black / white color depending on the theme (ex. applauncher box-shadow, osd levelbar trough background-color)
+    bgColor: string; // used to set background Color
+    fgColor: string; // used to set foreground Color
+    accent: string; // accent color
+    error: string; // error color for notifications - critical
+    redRecording: string; // recording indicator button color
+    redRecordingText: string; // recording indicator text color
+    red: string; // used to create redTransparent color
+    closeRed: string; // used to create closeRedTransparent color
+    primaryContainer: string; // qs menu active (toggle on) color, bluetooth battery label in QS bt menu
+    shadowColor: string; // osd levelbar trough filled, used to create hover, shadowTransparent color
+    inverseSurface: string; // used to create inverseSurfaceTransparent color
+    yellow: string; // bar notifications icon and label
+    notificationBackground: string; // Notification background color
+    mediaPlayerActionIcon: string; // media player action color
+    overview: string; // overview - workspace and client color
+    bgTransparent: string; // Applauncher background color
+    popupTransparent: string; // Popup powermenu background (used for overview - shadow and workspace border colors)
+    accentTransparent: string; // bar active button and workspace dot color
+    hover: string; // :hover color
+    osd: string; // osd background-color
+    redTransparent: string; // powermenu-button and mic-indicator-icon-mute color
+    shadowTransparent: string; // transparent shadowColor (qs menu-button outline, calendar-button-other-month, workspace-dot bg color)
+    inverseSurfaceTransparent: string; // used when needed default button background color
+    closeRedTransparent: string; // notification close button red color
+    accentGradient: string; // used mostly for accents (gradient is plus over pure accent color)
+    hoverShadow: string; // :hover box-shadow color
+    focusShadow: string; // :focus box-shadow color
+    focusShadowTransparent: string; // qs-main-page button :focus color, transparent version of focusShadow
 }
 
 const configDefaults: Config = {
