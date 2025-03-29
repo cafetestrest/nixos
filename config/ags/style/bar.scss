@@ -82,6 +82,7 @@ window.Bar {
 
         &.active {
             background-color: $accentTransparent;
+            color: $bgColor;
         }
     }
 
