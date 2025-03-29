@@ -3,7 +3,7 @@
 window#powermenu {
     .powermenu {
         .powermenu-button {
-            padding: 0;
+            padding: $powermenuButtonPadding;
             margin: $powermenuButtonMargin;
             min-width: $powermenuButtonWidth;
             min-height: $powermenuButtonHeight;

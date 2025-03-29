@@ -161,47 +161,47 @@ interface Common {
 }
 
 interface ThemeVariables {
-    radius: string;
-    barMediaCoverHeight: string; // bar
-    barMediaCoverWidth: string;
-    barHeight: string;
-    togglesSpace: string; // qs
-    qsElementsTopMargin: string;
-    qsTogglesWidth: string; // qs toggles
-    qsTogglesEmptyWidth: string;
-    qsTogglesHeight: string;
-    qsTogglesIconMarginLeft: string;
-    qsTogglesLabelMarginLeft: string;
-    qsSliderHighlightWidth: string; // qs volume slider
-    qsSliderIconMarginLeft: string;
-    qsMenuPadding: string; // qs menu
-    osdMinWidth: string; // osd
-    osdLevelbarHeight: string;
-    osdLevelbarLowWidth: string;
-    powermenuButtonRadius: string; // powermenu
-    powermenuButtonPadding: string;
-    powermenuButtonWidth: string;
-    powermenuButtonHeight: string;
-    powermenuButtonMargin: string;
-    appLauncherRadius: string; // app-launcher
-    appLauncherEntryIconSize: string;
-    appLauncherHeaderMargin: string;
-    appLauncherEntryMargin: string;
-    appLauncherScrollablePadding: string;
-    appLauncherButtonIconSize: string;
-    appLauncherButtonPadding: string;
-    appLauncherButtonMinHeight: string;
-    calendarWeekdaysTopMargin: string; // dashboard - calendar
-    weatherMainBoxMinWidth: string; // weather
-    weatherweatherInfoMinWidth: string;
-    weatherweatherInfoMinHeight: string;
-    weatherChildBoxMinWidth: string;
-    notificationIconMinWidth: string; // notification
-    notificationIconMinHeight: string;
-    notificationIconRadius: string;
-    notificationIconMargin: string;
-    notificationMinWidth: string;
-    overviewAppRadius: string; // overview
+    radius: string; // border-radius used across all widgets
+    barMediaCoverHeight: string; // min-height of bar media Cover image
+    barMediaCoverWidth: string; // min-width of bar media Cover image
+    barHeight: string; // controls bar height
+    togglesSpace: string; // qs space between SinkButton and AudioSlider
+    qsElementsTopMargin: string; // qs-main-page (weather, MediaPlayer and menu) top margin to separate it from other elements
+    qsTogglesWidth: string; // qs toggles min-width
+    qsTogglesEmptyWidth: string; // qs empty toggle min-width
+    qsTogglesHeight: string; // qs toggles min-height
+    qsTogglesIconMarginLeft: string; // qs toggles Icon margin-left to space out icon from toggle
+    qsTogglesLabelMarginLeft: string; // qs toggles Label margin-left to space out text from icon
+    qsSliderHighlightWidth: string; // qs volume slider min-width
+    qsSliderIconMarginLeft: string; // qs volume/brightness Icon margin-left
+    qsMenuPadding: string; // qs menu padding
+    osdMinWidth: string; // osd min-width
+    osdLevelbarHeight: string; // osd levelbar min-height
+    osdLevelbarLowWidth: string; // osd levelbar when Low (ex. low volume) min-width
+    powermenuButtonRadius: string; // powermenu buttons border-radius
+    powermenuButtonPadding: string; // powermenu buttons padding
+    powermenuButtonWidth: string; // powermenu buttons min-width
+    powermenuButtonHeight: string; // powermenu buttons min-height
+    powermenuButtonMargin: string; // powermenu buttons margin
+    appLauncherRadius: string; // app-launcher border-radius
+    appLauncherEntryIconSize: string; // app-launcher Icon font-size
+    appLauncherHeaderMargin: string; // app-launcher Header margin
+    appLauncherEntryMargin: string; // app-launcher Entry margin (header icon)
+    appLauncherScrollablePadding: string; // app-launcher Scrollable padding
+    appLauncherButtonIconSize: string; // app-launcher button Icon font-size
+    appLauncherButtonPadding: string; // app-launcher button padding
+    appLauncherButtonMinHeight: string; // app-launcher button min-height
+    calendarWeekdaysTopMargin: string; // dashboard - calendar - weekdays top-margin
+    weatherMainBoxMinWidth: string; // weather - main box min-width
+    weatherInfoMinWidth: string; // weather - weather-info min-width
+    weatherInfoMinHeight: string; // weather - weather-info min-height
+    weatherChildBoxMinWidth: string; // weather - qs-weather-box-child min-width
+    notificationIconMinWidth: string; // notification - icon/image min-width
+    notificationIconMinHeight: string; // notification - icon/image min-height
+    notificationIconRadius: string; // notification - icon/image border-radius
+    notificationIconMargin: string; // notification - icon/image margin
+    notificationMinWidth: string; // notification min-width
+    overviewAppRadius: string; // overview border-radius
 }
 
 interface ThemeColors {
@@ -411,8 +411,8 @@ const configDefaults: Config = {
         appLauncherButtonMinHeight: "2.5rem",
         calendarWeekdaysTopMargin: "0.8rem",
         weatherMainBoxMinWidth: "16.5em",
-        weatherweatherInfoMinWidth: "5em",
-        weatherweatherInfoMinHeight: "10em",
+        weatherInfoMinWidth: "5em",
+        weatherInfoMinHeight: "10em",
         weatherChildBoxMinWidth: "5em",
         notificationIconMinWidth: "3rem",
         notificationIconMinHeight: "3rem",
