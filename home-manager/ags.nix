@@ -31,11 +31,6 @@ in
       enable = true;
       configDir = ../config/ags;
       extraPackages = [
-        pkgs.libsoup_3
-        pkgs.gtksourceview
-        pkgs.libnotify
-        pkgs.webkitgtk_4_1
-        pkgs.gst_all_1.gstreamer
         inputs.ags.packages.${pkgs.system}.apps
         # inputs.ags.packages.${pkgs.system}.battery
         inputs.ags.packages.${pkgs.system}.hyprland
@@ -45,8 +40,13 @@ in
         inputs.ags.packages.${pkgs.system}.notifd
         inputs.ags.packages.${pkgs.system}.mpris
         inputs.ags.packages.${pkgs.system}.bluetooth
+        # inputs.ags.packages.${pkgs.system}.cava
         # inputs.ags.packages.${pkgs.system}.auth
         pkgs.libgtop
+        inputs.kompass.packages.${pkgs.system}.libkompass
+        inputs.ags.packages.${pkgs.system}.river # needed for libKompass
+        inputs.ags.packages.${pkgs.system}.astal4 # needed for libKompass
+        pkgs.libadwaita # needed for libKompass
       ];
     };
 

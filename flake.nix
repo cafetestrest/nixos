@@ -9,8 +9,21 @@
     # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # nur.url = "github:nix-community/NUR";
-    ags.url = "github:Aylur/ags";
     ghostty.url = "github:ghostty-org/ghostty";
+
+    astal = {
+      url = "github:Aylur/astal";
+    };
+
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.astal.follows = "astal";
+    };
+
+    kompass = {
+      url = "github:kotontrion/kompass";
+      inputs.astal.follows = "astal";
+    };
 
     rooter = {
       url = "github:run-as-root/rooter";
