@@ -50,6 +50,22 @@ monthlyAuto() {
 
 monthlyManual() {
     current_month=$(date +'%m')
+    current_day=$(date +'%d')
+    current_year=$(date +'%Y')
+
+    # Get the last Sunday of March (DST start) and last Sunday of October (DST end)
+    last_sunday_march=$(date -d "$current_year-03-31 -$(date -d "$current_year-03-31" +%u) days" +%d)
+    last_sunday_october=$(date -d "$current_year-10-31 -$(date -d "$current_year-10-31" +%u) days" +%d)
+
+    # If between March last Sunday and end of March, treat as April
+    if [[ "$current_month" == "03" && "$current_day" -ge "$last_sunday_march" ]]; then
+        current_month="04"
+    fi
+
+    # If between October last Sunday and end of October, treat as November
+    if [[ "$current_month" == "10" && "$current_day" -ge "$last_sunday_october" ]]; then
+        current_month="11"
+    fi
 
     case $current_month in
         01) manual 2700 6500 07:50 16:00 1800;;
