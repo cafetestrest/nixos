@@ -24,6 +24,10 @@ export const enableBarSysTray = config.bar.enableBarSysTray;
 export const enableBarSystemIndicators = config.bar.enableBarSystemIndicators;
 export const enableBarPowermenu = config.bar.enableBarPowermenu;
 export const enableCommandOpenStartupApps = config.bar.enableCommandOpenStartupApps;
+export const barMarginTop = config.bar.barMarginTop;
+export const barMarginBottom = config.bar.barMarginBottom;
+export const barMarginLeft = config.bar.barMarginLeft;
+export const barMarginRight = config.bar.barMarginRight;
 
 // usage
 export const barUsageSpacing = config.usage.barUsageSpacing;

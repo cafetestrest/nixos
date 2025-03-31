@@ -15,6 +15,7 @@ import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
 import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
+import { barMarginTop, barMarginBottom, barMarginLeft, barMarginRight } from "../common/Variables";
 
 const Start = () => {
 	return (
@@ -75,7 +76,12 @@ export default function Bar(monitor: Gdk.Monitor) {
         name={"bar"}
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
-        anchor={TOP | LEFT | RIGHT}>
+        anchor={TOP | LEFT | RIGHT}
+		marginTop={barMarginTop}
+		marginBottom={barMarginBottom}
+		marginLeft={barMarginLeft}
+		marginRight={barMarginRight}
+	>
         <centerbox>
             <Start />
             <Center/>

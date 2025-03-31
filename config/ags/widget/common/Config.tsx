@@ -43,6 +43,10 @@ interface Bar {
     enableBarSystemIndicators: boolean; // enables System Indicators widget
     enableBarPowermenu: boolean; // enables Powermenu widget
     enableCommandOpenStartupApps: boolean; // enables command to open startup apps
+    barMarginTop: number; // to make topbar floating, margin-top
+    barMarginBottom: number; // to make topbar floating, margin-bottom
+    barMarginLeft: number; // to make topbar floating, margin-left
+    barMarginRight: number; // to make topbar floating, margin-right
 }
 
 interface Usage {
@@ -162,6 +166,7 @@ interface Common {
 
 interface ThemeVariables {
     radius: string; // border-radius used across all widgets
+    barRadius: string; // border-radius used for bar (useful for floating bar)
     barMediaCoverHeight: string; // min-height of bar media Cover image
     barMediaCoverWidth: string; // min-width of bar media Cover image
     barHeight: string; // controls bar height
@@ -260,6 +265,10 @@ let configDefaults: Config = {
         enableBarSystemIndicators: true,
         enableBarPowermenu: true,
         enableCommandOpenStartupApps: true,
+        barMarginTop: 0,
+        barMarginBottom: 0,
+        barMarginLeft: 0,
+        barMarginRight: 0,
     },
     usage: {
         barUsageSpacing: 10,
@@ -380,6 +389,7 @@ let configDefaults: Config = {
     },
     themeVariables: {
         radius: "1.5rem",
+        barRadius: "0rem",
         barMediaCoverHeight: "1.2rem",
         barMediaCoverWidth: "1.2rem",
         barHeight: "27px",
