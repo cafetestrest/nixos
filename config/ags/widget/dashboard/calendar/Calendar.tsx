@@ -14,16 +14,16 @@ let monthshift = 0;
 const { CENTER } = Gtk.Align;
 
 function getDateInXMonthsTime(x: number) {
-	var currentDate = new Date(); // Get the current date
-	var targetMonth = currentDate.getMonth() + x; // Calculate the target month
-	var targetYear = currentDate.getFullYear(); // Get the current year
+	const currentDate = new Date(); // Get the current date
+	let targetMonth = currentDate.getMonth() + x; // Calculate the target month
+	let targetYear = currentDate.getFullYear(); // Get the current year
 
 	// Adjust the year and month if necessary
 	targetYear += Math.floor(targetMonth / 12);
 	targetMonth = ((targetMonth % 12) + 12) % 12;
 
 	// Create a new date object with the target year and month
-	var targetDate = new Date(targetYear, targetMonth, 1);
+	let targetDate = new Date(targetYear, targetMonth, 1);
 
 	// Set the day to the last day of the month to get the desired date
 	// targetDate.setDate(0);
@@ -84,7 +84,7 @@ export default () => {
 	function shiftCalendarXMonths(x: number) {
 		if (x == 0) monthshift = 0;
 		else monthshift += x;
-		var newDate;
+		let newDate;
 		if (monthshift == 0) newDate = new Date();
 		else newDate = getDateInXMonthsTime(monthshift);
 
@@ -147,6 +147,7 @@ export default () => {
 				const newDate = new Date();
 				calendarJson = getCalendarLayout(newDate, true); // Recalculate for the current month
 				addCalendarChildren(calendarDays, calendarJson);
+				shiftCalendarXMonths(0);
 			});
 		},
 		child: new Widget.Box({

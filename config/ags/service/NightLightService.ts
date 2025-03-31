@@ -76,7 +76,7 @@ const NightlightModeServiceRegister = GObject.registerClass(
 	NightlightModeService,
 );
 
-var service: NightlightModeService | null = null;
+let service: NightlightModeService | null = null;
 
 if (available) {
 	service = new NightlightModeServiceRegister();

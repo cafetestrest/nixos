@@ -72,7 +72,7 @@ const ColorModeServiceRegister = GObject.registerClass(
 	ColorModeService,
 );
 
-var service: ColorModeService | null = null;
+let service: ColorModeService | null = null;
 
 if (available) {
 	applyColorMode(true);

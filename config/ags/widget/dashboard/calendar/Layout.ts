@@ -43,8 +43,8 @@ export function getCalendarLayout(dateObject: Date|undefined, highlight: boolean
 	const daysInPrevMonth = getPrevMonthDays(month, year);
 
 	// Fill
-	var monthDiff = weekdayOfMonthFirst == 0 ? 0 : -1;
-	var toFill, dim;
+	let monthDiff = weekdayOfMonthFirst == 0 ? 0 : -1;
+	let toFill, dim;
 	if (weekdayOfMonthFirst == 0) {
 		toFill = 1;
 		dim = daysInMonth;
@@ -52,8 +52,8 @@ export function getCalendarLayout(dateObject: Date|undefined, highlight: boolean
 		toFill = daysInPrevMonth - (weekdayOfMonthFirst - 1);
 		dim = daysInPrevMonth;
 	}
-	var calendar = [...Array(6)].map(() => Array(7));
-	var i = 0,
+	let calendar = [...Array(6)].map(() => Array(7));
+	let i = 0,
 		j = 0;
 	while (i < 6 && j < 7) {
 		calendar[i][j] = {

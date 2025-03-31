@@ -70,7 +70,7 @@ const IdleModeServiceRegister = GObject.registerClass(
 	IdleModeService,
 );
 
-var service: IdleModeService | null = null;
+let service: IdleModeService | null = null;
 
 if (available) {
 	service = new IdleModeServiceRegister();
