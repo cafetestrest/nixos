@@ -7,15 +7,14 @@ export enum IdleMode {
 }
 
 const idleBinding = {
-	0: "off",
-	1: "on",
+	0: "Idle Off",
+	1: "Idle On",
 };
 
 const available = dependencies(["toggleidle"]); // ideally it should be hypridle, but I have it only as runtimeInputs pkgs
 
 export const profileName = (profile: IdleMode) => {
-	const profileName = idleBinding[profile];
-	return profileName.charAt(0).toUpperCase() + profileName.slice(1);
+	return idleBinding[profile];
 };
 
 class IdleModeService extends GObject.Object {

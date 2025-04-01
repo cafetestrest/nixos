@@ -8,16 +8,15 @@ export enum NightlightMode {
 }
 
 const nightlightBinding = {
-	0: "off",
-	1: "on",
-	2: "auto",
+	0: "Nightlight Off",
+	1: "Nightlight On",
+	2: "Nightlight Auto",
 };
 
 const available = dependencies(["nightlight"]); // ideally it should be wlsunset, but I have it only as runtimeInputs pkgs
 
 export const profileName = (profile: NightlightMode) => {
-	const profileName = nightlightBinding[profile];
-	return profileName.charAt(0).toUpperCase() + profileName.slice(1);
+	return nightlightBinding[profile];
 };
 
 class NightlightModeService extends GObject.Object {
