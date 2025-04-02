@@ -1,5 +1,5 @@
 import { Gdk, Gtk } from "astal/gtk3";
-import { bind, timeout } from "astal";
+import { bind, timeout, Variable } from "astal";
 import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
@@ -65,6 +65,8 @@ const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
 function BluetoothPageContent() {
     const bluetooth = Bluetooth.get_default();
     const isPowered = bind(bluetooth, "isPowered");
+    const isDiscovering = bind(bluetooth.adapter, "discovering");
+    const isRefreshing = Variable(false);
 
 	return (
         <box
@@ -72,47 +74,75 @@ function BluetoothPageContent() {
             spacing={8}
             className={"qspage-scrollable-content"}
         >
-            <eventbox
-                onClickRelease={(_, event) => {
-                    if (event.button !== Gdk.BUTTON_PRIMARY) return;
-                    bluetooth.toggle();
-                }}
-                className={"qspage-eventbox"}
+            <box
+                className={isPowered.as((status) => {
+                    if (status) {
+                        return "qspage-item-header active";
+                    }
+                    return "qspage-item-header";
+                })}
             >
-                <box
-                    className={isPowered.as((status) => {
-                        if (status) {
-                            return "qspage-item-header active";
+                <icon
+                    icon={isPowered.as((status) =>
+                        status
+                            ? icons.bluetooth.enabled
+                            : icons.bluetooth.disabled,
+                    )}
+                />
+                <label
+                    label={isPowered.as((status) =>
+                        status ? "On" : "Off",
+                    )}
+                    hexpand={true}
+                    halign={Gtk.Align.START}
+                />
+                <button
+                    hexpand={false}
+                    halign={Gtk.Align.END}
+                    visible={bind(isPowered)}
+                    label={bind(isDiscovering).as((d) => {
+                        if (d) {
+                            return "Searching";
                         }
-                        return "qspage-item-header";
+                        return "Refresh";
                     })}
-                >
-                    <icon
-                        icon={isPowered.as((status) =>
-                            status
-                                ? icons.bluetooth.enabled
-                                : icons.bluetooth.disabled,
-                        )}
-                    />
-                    <label
-                        label={isPowered.as((status) =>
-                            status ? "On" : "Off",
-                        )}
-                        hexpand={true}
-                        halign={Gtk.Align.START}
-                    />
-                    <switch
-                        hexpand={false}
-                        halign={Gtk.Align.END}
-                        valign={Gtk.Align.CENTER}
-                        active={isPowered}
-                        onActivate={({ active }) =>
-                            (bluetooth.isPowered = active)
+                    onClicked={() => {
+                        const refreshingState = isRefreshing.get();
+                        isRefreshing.set(!refreshingState);
+
+                        if (!bluetooth.adapter.discovering) {
+                            try {
+                                bluetooth.adapter.start_discovery();
+
+                                timeout(15000, () => {
+                                    if (bluetooth.adapter.discovering) {
+                                        bluetooth.adapter.stop_discovery();
+                                    }
+                                });
+                            } catch (error) {
+                                console.error("Failed to start bluetooth discovery. Error: ", error);
+                            }
+                        } else if (bluetooth.adapter.discovering) {
+                            bluetooth.adapter.stop_discovery();
                         }
-                    />
-                </box>
-            </eventbox>
-            <box vertical={true} spacing={4}>
+                    }}
+                />
+                <switch
+                    hexpand={false}
+                    halign={Gtk.Align.END}
+                    valign={Gtk.Align.CENTER}
+                    active={isPowered}
+                    onActivate={({ active }) =>
+                        (bluetooth.isPowered = active)
+                    }
+                    setup={(self) => {
+                        self.connect("state-set", (_, state) => {
+                            bluetooth.toggle()
+                        });
+                    }}
+                />
+            </box>
+            <box vertical={true} spacing={4} visible={bind(isPowered)}>
                 {bind(bluetooth, "devices").as((devices) =>
                     devices.map((device) => <DeviceItem device={device} bluetooth={bluetooth} />),
                 )}
