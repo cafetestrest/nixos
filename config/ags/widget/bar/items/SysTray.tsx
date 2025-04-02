@@ -12,7 +12,7 @@ export default () => {
     const tray = Tray.get_default()
 
     return (
-        <box className={"SysTray"}>
+        <box className={"systray"}>
             {bind(tray, "items").as(items => items.map(item => (
                 <menubutton
                     className={"bar-button"}
