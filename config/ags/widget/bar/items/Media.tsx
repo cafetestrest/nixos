@@ -32,7 +32,7 @@ export default () => {
                         className={"bar-button"}
                     >
                         <box
-                            className={"Cover"}
+                            className={"cover"}
                             valign={Gtk.Align.CENTER}
                             css={bind(ps[0], "coverArt").as(cover =>
                                 `background-image: url('${cover}');`
