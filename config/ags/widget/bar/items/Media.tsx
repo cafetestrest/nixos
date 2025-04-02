@@ -22,7 +22,7 @@ export default () => {
     };
 
     return (
-        <box className={"Media"}>
+        <box className={"media"}>
             {bind(mpris, "players").as(ps => ps[0] ? (
                 <box
                     visible={bind(ps[0], "playback_status").as((status) => status != Mpris.PlaybackStatus.STOPPED)}
