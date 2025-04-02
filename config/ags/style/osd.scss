@@ -3,8 +3,8 @@
 // $fgColor: #{"@theme_fg_color"};
 // $bgColor: #{"@theme_bg_color"};
 
-window.OSD {
-    box.OSD {
+window.osd {
+    box.osd-box {
         min-width: $osdMinWidth;
         min-height: $osdMinWidth;
 

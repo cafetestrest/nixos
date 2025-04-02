@@ -44,7 +44,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
     )
 
     return <box
-            className={"MediaPlayer"}
+            className={"media-player"}
             css={coverArt}
             visible={bind(player, "playback_status").as((status) => status != Mpris.PlaybackStatus.STOPPED)}
         >

@@ -53,7 +53,7 @@ function OnScreenProgress({ visible }: { visible: Variable<boolean> }) {
             revealChild={visible()}
             transitionType={Gtk.RevealerTransitionType.SLIDE_UP}
         >
-            <box className={"OSD"} vertical={true}>
+            <box className={"osd-box"} vertical={true}>
                 <icon icon={iconName()} className={bind(iconName).as((icon) => {
                     if (icon === "audio-volume-muted-symbolic") {
                         return "osd-icon muted";
@@ -72,7 +72,7 @@ export default function OSD(monitor: Gdk.Monitor) {
     return (
         <window
             gdkmonitor={monitor}
-            className={"OSD"}
+            className={"osd"}
             namespace={"osd"}
             name={"osd"}
             application={App}
