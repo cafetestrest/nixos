@@ -121,7 +121,7 @@ export default function Notification(props: Props) {
     }
 
     return <eventbox
-        className={`Notification ${urgency(n)}`}
+        className={`notification ${urgency(n)}`}
         setup={setup}
         onHoverLost={onHoverLost}>
         <box vertical={true} className={"notification-box"}>
