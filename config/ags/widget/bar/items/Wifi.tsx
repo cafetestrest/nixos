@@ -10,7 +10,7 @@ export default () => {
             {wifi.as(wifi => wifi && (
                 <icon
                     tooltipText={bind(wifi, "ssid").as(String)}
-                    className={"Wifi"}
+                    className={"wifi"}
                     icon={bind(wifi, "iconName")}
                 />
             ))}

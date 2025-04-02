@@ -18,7 +18,7 @@ export default ({ format = "%a %b %e   %H:%M:%S" }) => {
 
     return <button
         onClicked={() => App.toggle_window(namespaceDashboard)}
-        className={"Time bar-button"}
+        className={"bar-button"}
         onDestroy={() => time.drop()}
         label={time()}
         setup={(self) => {
