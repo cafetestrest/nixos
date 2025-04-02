@@ -6,7 +6,7 @@ export default () => {
     const focused = bind(hypr, "focusedClient")
 
     return <box
-        className={"Focused"}
+        className={"focused-client"}
         visible={focused.as(Boolean)}>
         {focused.as(client => (
             client && <label label={bind(client, "title").as(String)} />
