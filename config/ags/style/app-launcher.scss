@@ -20,7 +20,7 @@ window#launcher {
         color: $fgColor;
     }
 
-    box.Applauncher {
+    box.app-launcher {
         background: $bgTransparent;
         border-radius: $appLauncherRadius;
         box-shadow: 2px 3px 8px 0 gtkalpha($black, .4);

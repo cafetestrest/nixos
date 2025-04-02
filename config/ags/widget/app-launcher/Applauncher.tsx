@@ -84,7 +84,7 @@ export default function Applauncher() {
             <eventbox widthRequest={applauncherWidth(w => w / 2)} expand={true} onClick={hide} />
             <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={applauncherBoxTopMargin} onClick={hide} />
-                <box widthRequest={applauncherContentWidth} className={"Applauncher"} vertical={true}>
+                <box widthRequest={applauncherContentWidth} className={"app-launcher"} vertical={true}>
                     <box className={"app-launcher-header"}>
                         <icon
                             icon={icons.apps.search}
