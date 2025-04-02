@@ -142,7 +142,7 @@ eventbox.notification {
 }
 
 window#notification {
-    .Notification {
+    .notification {
         >box {
             background-color: $notificationBackground;
         }
