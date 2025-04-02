@@ -94,7 +94,7 @@ export default function NotificationPopups(gdkmonitor: Gdk.Monitor) {
     const notifs = new NotifiationMap()
 
     return <window
-        className={"NotificationPopups"}
+        className={"notification-popups"}
         namespace={"notifications-popup"}
         name={"notifications-popup"}
         gdkmonitor={gdkmonitor}
