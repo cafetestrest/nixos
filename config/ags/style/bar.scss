@@ -39,7 +39,7 @@ window.Bar {
         background-size: contain;
     }
 
-    .Battery label {
+    .battery label {
         padding-left: 0;
         margin-left: 0;
     }
@@ -164,7 +164,7 @@ window.Bar {
 		}
     }
 
-    .Battery {
+    .battery {
         .battery-levelbar {
             trough {
                 border-radius: $radius;

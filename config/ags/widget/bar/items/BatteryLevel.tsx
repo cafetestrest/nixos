@@ -9,7 +9,7 @@ export default () => {
     const batteryLevel = bind(battery, "percentage");
 
     return (
-        <box className={"Battery"}
+        <box className={"battery"}
             visible={bind(battery, "isPresent")}
         >
             <overlay
