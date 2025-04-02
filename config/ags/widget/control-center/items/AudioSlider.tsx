@@ -47,7 +47,7 @@ export default () => {
     const speaker = Wp.get_default()?.audio.defaultSpeaker!
 
     return (
-        <box className={"AudioSlider"}>
+        <box className={"audio-slider"}>
 			<overlay
                 className={"volume-slider-overlay"}
                 overlay={
