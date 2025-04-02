@@ -12,53 +12,55 @@ type DeviceItemProps = {
 
 const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
     const power = bind(upower);
+    const isConnected = bind(device, "connected");
 
 	return (
-		<button
-			className={"qs-page-item"}
-			on_clicked={() => {
-				if (!bluetooth.isPowered) {
-					bluetooth.toggle();
-				}
-				timeout(100, () => {
-					device.connect_device(() => {});
-				});
-			}}
-			visible={device.name !== null}
-		>
-			<box>
-				<icon icon={device.icon === null ? icons.bluetooth.enabled : device.icon + "-symbolic"} />
-				<label label={device.name} />
+        <box className={"qs-page-item"} visible={device.name !== null}>
+            <icon icon={device.icon === null ? icons.bluetooth.enabled : device.icon + "-symbolic"} className={"device-icon"}/>
+            <label label={device.name} />
 
-				<label
-					className={"bluetooth-device-percentage"}
-					label={power.as((arr) => {
-						const upowerData = arr.find(item => item.model === device.name) || false
-						if (upowerData && upowerData?.batteryPercentage) {
-							return upowerData.batteryPercentage + "%";
-						}
-						return "";
-					})}
-					visible={power.as((arr) => {
-						const upowerData = arr.find(item => item.model === device.name) || false
-						if (upowerData && upowerData?.batteryPercentage) {
-							return true;
-						}
-						return false;
-					})}
-				/>
-				<box hexpand={true} />
-				{/* {
-					<Spinner visible={bind(device, "connecting")} />
-				} */}
-				<icon
-					icon={icons.ui.tick}
-					visible={bind(device, "connected").as(
-						(connected) => connected,
-					)}
-				/>
-			</box>
-		</button>
+            <label
+                className={"bluetooth-device-percentage"}
+                label={power.as((arr) => {
+                    const upowerData = arr.find(item => item.model === device.name) || false
+                    if (upowerData && upowerData?.batteryPercentage) {
+                        return upowerData.batteryPercentage + "%";
+                    }
+                    return "";
+                })}
+                visible={power.as((arr) => {
+                    const upowerData = arr.find(item => item.model === device.name) || false
+                    if (upowerData && upowerData?.batteryPercentage) {
+                        return true;
+                    }
+                    return false;
+                })}
+            />
+            <box hexpand={true} />
+            {/* {
+                <Spinner visible={bind(device, "connecting")} />
+            } */}
+            <icon
+                icon={icons.ui.tick}
+                visible={isConnected.as(
+                    (connected) => connected,
+                )}
+            />
+            <switch
+                hexpand={false}
+                active={isConnected}
+                setup={(self) => {
+                    self.connect("state-set", (_, state) => {
+                        console.log("state", state);
+
+                        if (state) {
+                            return device.connect_device(() => {});
+                        }
+                        return device.disconnect_device(device.get_address);
+                    });
+                }}
+            />
+        </box>
 	);
 };
 
@@ -99,8 +101,8 @@ function BluetoothPageContent() {
                 <button
                     hexpand={false}
                     halign={Gtk.Align.END}
-                    visible={bind(isPowered)}
-                    label={bind(isDiscovering).as((d) => {
+                    visible={isPowered}
+                    label={isDiscovering.as((d) => {
                         if (d) {
                             return "Searching";
                         }
@@ -142,7 +144,7 @@ function BluetoothPageContent() {
                     }}
                 />
             </box>
-            <box vertical={true} spacing={4} visible={bind(isPowered)}>
+            <box vertical={true} spacing={4} visible={isPowered}>
                 {bind(bluetooth, "devices").as((devices) =>
                     devices.map((device) => <DeviceItem device={device} bluetooth={bluetooth} />),
                 )}

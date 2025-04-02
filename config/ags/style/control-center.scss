@@ -11,7 +11,7 @@
         background: $primaryContainer;
         color: $redRecordingText;
         border-radius: $radius;
-        margin-left: 0.5rem;
+        margin: 0.7rem;
         padding: 0 0.5rem;
     }
 
@@ -50,8 +50,13 @@
         }
 
         .qs-page-item {
-            padding: 1rem;
+            background-color: $inverseSurfaceTransparent;
+            padding: 0.5rem;
             border-radius: 0;
+
+            .device-icon {
+                margin-left: 0.5rem;
+            }
 
             &:first-child {
                 border-top-left-radius: $radius * 0.6;
