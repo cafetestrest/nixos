@@ -27,7 +27,7 @@ export default function OverviewPopupWindow() {
             if (event.get_keyval()[1] === Gdk.KEY_Escape)
                 self.hide()
         }}>
-        <box className={"Popup"}>
+        <box className={"popover"}>
             <eventbox widthRequest={overviewWidth(w => w / 2)} expand={true} onClick={hideOverview} />
             <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={overviewBoxTopMargin} onClick={hideOverview} />

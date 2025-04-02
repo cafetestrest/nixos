@@ -1,15 +1,15 @@
 @use "./variables.scss" as *;
 
-.Popup .quicksettings,
-.Popup .popup-box,
-.Popup .popup {
+.popover .quicksettings,
+.popover .popup-box,
+.popover .popup {
     background-color: $bgColor;
     box-shadow: 2px 3px 7px 0 rgba(0,0,0,0.4);
     border-radius: $radius;
     padding: 8px;
 }
 
-window#powermenu.Popup {
+window#powermenu.popover {
     background: $popupTransparent;
 }
 

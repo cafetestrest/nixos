@@ -8,7 +8,7 @@ export default () => {
         <Popover
             name={"quicksettings"}
             namespace={"control-center"}
-            className={"Popup"}
+            className={"popover"}
             onClose={() => {
                 visibleQSMainPage.set(false);
                 qsRevertRevealerStatus("");

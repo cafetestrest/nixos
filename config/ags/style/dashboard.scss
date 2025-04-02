@@ -39,7 +39,7 @@
     }
 }
 
-window#dashboard .Popup {
+window#dashboard .popover {
     .calendar {
         @include calendar;
     }

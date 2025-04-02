@@ -7,7 +7,7 @@ export default () => {
         <PopoverCenter
             name={"powermenu"}
             namespace={"powermenu"}
-            className={"Popup"}
+            className={"popover"}
             onClose={() => visiblePowermenu.set(false)}
             visible={visiblePowermenu()}
         >

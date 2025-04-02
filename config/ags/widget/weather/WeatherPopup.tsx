@@ -27,7 +27,7 @@ export default function WeatherPopup() {
             if (event.get_keyval()[1] === Gdk.KEY_Escape)
                 self.hide()
         }}>
-        <box className={"Popup"}>
+        <box className={"popover"}>
             <eventbox widthRequest={weatherWidth(w => w / 2)} expand={true} onClick={hide} />
             <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={weatherBoxTopMargin} onClick={hide} />

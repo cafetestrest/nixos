@@ -27,7 +27,7 @@ export default function Dashboard() {
             if (event.get_keyval()[1] === Gdk.KEY_Escape)
                 self.hide()
         }}>
-        <box className={"Popup"}>
+        <box className={"popover"}>
             <eventbox widthRequest={dashboardWidth(w => w / 2)} expand={true} onClick={hide} />
             <box hexpand={false} vertical={true}>
                 <eventbox heightRequest={dashboardBoxTopMargin} onClick={hide} />
