@@ -51,7 +51,7 @@ export default () => {
 
   return (
     <eventbox
-      className={"Workspaces"}
+      className={"workspaces"}
       onClickRelease={(_, event) => {
         switch (event.button) {
           case Gdk.BUTTON_SECONDARY:
