@@ -19,7 +19,7 @@ function hide() {
 
 function AppButton({ app }: { app: Apps.Application }) {
     return <button
-        className={"AppButton"}
+        className={"app-button"}
         onClicked={() => { hide(); app.launch() }}>
         <box className={"app-button-content"}>
             <icon icon={app.iconName} />

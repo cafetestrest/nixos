@@ -59,7 +59,7 @@ window#launcher {
             border-top: 1px solid $hover;
             padding: $appLauncherScrollablePadding;
 
-            .AppButton {
+            .app-button {
                 min-width: 0;
                 min-height: $appLauncherButtonMinHeight;
                 padding: $appLauncherButtonPadding;
