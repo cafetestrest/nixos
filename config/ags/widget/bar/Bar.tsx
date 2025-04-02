@@ -71,7 +71,7 @@ export default function Bar(monitor: Gdk.Monitor) {
     const sysIndicatorsButton = (<SystemIndicatorsButton/>);
 
     return <window
-        className={"Bar"}
+        className={"bar"}
         namespace={"bar"}
         name={"bar"}
         gdkmonitor={monitor}
