@@ -45,7 +45,7 @@ export default function Applauncher() {
     const apps = new Apps.Apps()
 
     const text = Variable("")
-    const list = text(text => apps.fuzzy_query(text));
+    const list = text(text => apps.fuzzy_query(text).sort((a, b) => a.name.localeCompare(b.name)));
     const listMath = text(text => text);
 
     const onEnter = () => {
