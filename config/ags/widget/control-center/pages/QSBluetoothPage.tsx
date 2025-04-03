@@ -51,12 +51,10 @@ const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
                 active={isConnected}
                 setup={(self) => {
                     self.connect("state-set", (_, state) => {
-                        console.log("state", state);
-
                         if (state) {
                             return device.connect_device(() => {});
                         }
-                        return device.disconnect_device(device.get_address);
+                        return device.disconnect_device(() => {});
                     });
                 }}
             />
