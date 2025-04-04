@@ -2,7 +2,7 @@ import { bind, Variable } from "astal";
 import { Astal, App, Gdk, Gtk } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland";
 import { range } from "../../../lib/utils";
-import { enableBarWorkspaces, namespaceOverview, workspaces } from "../../common/Variables";
+import { enableBarWorkspaces, namespaceOverview, workspaces, overviewEnabled } from "../../common/Variables";
 import WorkspaceButtonAstal, { WorkspaceButtonClass } from "../../overview/WorkspaceButton";
 
 const hyprland = Hyprland.get_default();
@@ -53,6 +53,10 @@ export default () => {
     <eventbox
       className={"workspaces"}
       onClickRelease={(_, event) => {
+        if (!overviewEnabled) {
+          return false;
+        }
+
         switch (event.button) {
           case Gdk.BUTTON_SECONDARY:
           case Gdk.BUTTON_MIDDLE:

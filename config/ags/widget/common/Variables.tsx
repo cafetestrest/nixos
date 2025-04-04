@@ -103,6 +103,7 @@ export const notificationContentHeight = config.notificationPopupWindow.notifica
 export const notificationSpacing = config.notificationPopupWindow.notificationSpacing;
 
 // overview
+export const overviewEnabled = config.overview.overviewEnabled;
 export const namespaceOverview = config.overview.namespaceOverview;
 export const workspaces = config.overview.workspaces;
 export const overviewWidth = Variable(config.overview.overviewWidth);

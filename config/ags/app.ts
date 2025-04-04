@@ -10,7 +10,8 @@ import {
     visiblePowermenu,
     namespaceApplauncher,
     namespaceNotification,
-    namespaceWeather
+    namespaceWeather,
+    overviewEnabled
 } from "./widget/common/Variables";
 import { reloadScss } from "./lib/utils";
 import WeatherPopup from "./widget/weather/WeatherPopup";
@@ -29,7 +30,10 @@ function main() {
     Dashboard();
     WeatherPopup();
     NotificationPopupWindow();
-    OverviewPopupWindow();
+
+    if (overviewEnabled) {
+        OverviewPopupWindow();
+    }
 
     // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
     // reloadScss('style/common.scss', '/tmp/astal/style.css', 'style/main.scss');

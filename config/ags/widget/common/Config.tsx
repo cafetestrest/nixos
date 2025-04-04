@@ -130,6 +130,7 @@ interface NotificationPopupWindow {
 }
 
 interface Overview {
+    overviewEnabled: boolean; // enable Overview widget
     namespaceOverview: string; // Overview namespace
     workspaces: number; // overview in topbar total workspaces to render (ex. 10)
     overviewWidth: number; // width for popup
@@ -358,6 +359,7 @@ let configDefaults: Config = {
         notificationSpacing: 10,
     },
     overview: {
+        overviewEnabled: false,
         namespaceOverview: "overview",
         workspaces: 10,
         overviewWidth: 1000,
