@@ -1,17 +1,15 @@
-import { Gdk, Gtk } from "astal/gtk3";
+import { Gtk } from "astal/gtk3";
 import { bind, timeout, Variable } from "astal";
 import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
 import { upower } from "../../usage/BluetoothPowerUsage";
-import { MenuButton } from "../menu/QSMenu";
 
 type DeviceItemProps = {
 	device: Bluetooth.Device;
-    bluetooth: Bluetooth.Bluetooth;
 };
 
-const DeviceItem = ({ device, bluetooth }: DeviceItemProps) => {
+const DeviceItem = ({ device }: DeviceItemProps) => {
     const power = bind(upower);
     const isConnected = bind(device, "connected");
 
@@ -155,7 +153,7 @@ function BluetoothPageContent() {
             </box>
             <box vertical={true} spacing={4} visible={isPowered}>
                 {bind(bluetooth, "devices").as((devices) =>
-                    devices.map((device) => <DeviceItem device={device} bluetooth={bluetooth} />),
+                    devices.map((device) => <DeviceItem device={device} />),
                 )}
             </box>
         </box>

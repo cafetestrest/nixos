@@ -177,7 +177,7 @@ rec {
         ngrokwarden.enable = modules.virtualisation.docker.warden.enable;
         headset.enable = true;
         monitor.enable = true;
-        resetbluetoothags.enable = true;
+        resetbluetoothags.enable = false;
         sys.enable = true;
         clipboardtoggle.enable = false;
         sync.enable = true;

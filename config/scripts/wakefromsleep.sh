@@ -1,10 +1,10 @@
 
-RUN_REFRESH_BT=1
+# RUN_REFRESH_BT=1
 RUN_NIGHTLIGHT=1
 RUN_WEATHER=1
 
 if [[ $# -eq 0 ]] ; then
-  RUN_REFRESH_BT=0
+  # RUN_REFRESH_BT=0
   RUN_NIGHTLIGHT=0
   RUN_WEATHER=0
 else
@@ -12,13 +12,13 @@ else
     case "$1" in
       ags|a|--ags|--a)
         shift;
-        RUN_REFRESH_BT=0
+        # RUN_REFRESH_BT=0
         RUN_WEATHER=0
         ;;
-      bluetooth|bt|b|--bluetooth|--bt|--b)
-        shift;
-        RUN_REFRESH_BT=0
-        ;;
+      # bluetooth|bt|b|--bluetooth|--bt|--b)
+      #   shift;
+      #   RUN_REFRESH_BT=0
+      #   ;;
       nightlight|nl|wlsunset|n|--nightlight|--nl|--wlsunset|--n)
         shift;
         RUN_NIGHTLIGHT=0
@@ -35,14 +35,14 @@ else
   done
 fi
 
-function refresh_ags_bluetooth_connected_devices() {
-  if [[ "$RUN_REFRESH_BT" == "0" ]]; then
-    if pgrep ags; then
-      ags -r "$(cat "$HOME"/.config/scripts/resetbluetoothags.js)"
-      RUN_REFRESH_BT=1
-    fi
-  fi
-}
+# function refresh_ags_bluetooth_connected_devices() {
+#   if [[ "$RUN_REFRESH_BT" == "0" ]]; then
+#     if pgrep ags; then
+#       ags -r "$(cat "$HOME"/.config/scripts/resetbluetoothags.js)"
+#       RUN_REFRESH_BT=1
+#     fi
+#   fi
+# }
 
 function refresh_ags_weather_info() {
   if [[ "$RUN_WEATHER" == "0" ]]; then
@@ -76,7 +76,7 @@ while [ "$elapsed" -lt "$max_duration" ]; do
 
     refresh_nightlight
 
-    refresh_ags_bluetooth_connected_devices
+    # refresh_ags_bluetooth_connected_devices
     break
   fi
 
