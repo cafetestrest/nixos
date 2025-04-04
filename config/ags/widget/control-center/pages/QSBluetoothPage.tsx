@@ -4,6 +4,7 @@ import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
 import { upower } from "../../usage/BluetoothPowerUsage";
+import { MenuButton } from "../menu/QSMenu";
 
 type DeviceItemProps = {
 	device: Bluetooth.Device;
@@ -81,6 +82,7 @@ function BluetoothPageContent() {
                     }
                     return "qspage-item-header";
                 })}
+                spacing={4}
             >
                 <icon
                     icon={isPowered.as((status) =>
@@ -97,15 +99,13 @@ function BluetoothPageContent() {
                     halign={Gtk.Align.START}
                 />
                 <button
-                    hexpand={false}
-                    halign={Gtk.Align.END}
-                    visible={isPowered}
-                    label={isDiscovering.as((d) => {
-                        if (d) {
-                            return "Searching";
+                    className={isDiscovering.as(p => {
+                        if (p) {
+                            return "menu-button filled";
                         }
-                        return "Refresh";
+                        return "menu-button outlined";
                     })}
+                    visible={isPowered}
                     onClicked={() => {
                         const refreshingState = isRefreshing.get();
                         isRefreshing.set(!refreshingState);
@@ -126,21 +126,32 @@ function BluetoothPageContent() {
                             bluetooth.adapter.stop_discovery();
                         }
                     }}
-                />
-                <switch
-                    hexpand={false}
-                    halign={Gtk.Align.END}
-                    valign={Gtk.Align.CENTER}
-                    active={isPowered}
-                    onActivate={({ active }) =>
-                        (bluetooth.isPowered = active)
-                    }
-                    setup={(self) => {
-                        self.connect("state-set", (_, state) => {
-                            bluetooth.toggle()
-                        });
-                    }}
-                />
+                >
+					<label
+                        label={isDiscovering.as((d) => {
+                            if (d) {
+                                return "Searching...";
+                            }
+                            return "Refresh";
+                        })}
+                    />
+				</button>
+                <button
+                    onClicked={() => bluetooth.toggle()}
+                    className={isPowered.as(p => {
+                        if (p) {
+                            return "menu-button outlined";
+                        }
+                        return "menu-button filled";
+                    })}
+                >
+					<label label={isPowered.as(p => {
+                        if (p) {
+                            return "Toggle Off";
+                        }
+                        return "Toggle On";
+                    })}/>
+				</button>
             </box>
             <box vertical={true} spacing={4} visible={isPowered}>
                 {bind(bluetooth, "devices").as((devices) =>

@@ -74,6 +74,24 @@
         }
     }
 
+    .qs-main-page .menu .menu-button,
+    .menu-button {
+        &.filled {
+            background: $accentGradient;
+            color: $bgColor;
+        }
+
+        &.outlined {
+            background: none;
+            border: 1px solid $shadowTransparent;
+        }
+
+        &:hover,
+        &:focus {
+            box-shadow: $hoverShadow;
+        }
+    }
+
     .qs-main-page {
         .weather {
             margin-top: $qsElementsTopMargin;
@@ -90,6 +108,10 @@
             border-radius: $radius * 1.5;
             color: $fgColor;
 
+            .menu-button {
+                padding: 0.5rem 1.5rem;
+            }
+
             .qs-menu-content {
                 label {
                     margin-left: 1rem;
@@ -103,24 +125,6 @@
             .qs-menu-screen-record-content {
                 icon {
                     margin-right: 1rem;
-                }
-            }
-
-            .menu-button {
-                padding: 0.5rem 1.5rem;
-                &.filled {
-                    background: $accentGradient;
-                    color: $bgColor;
-                }
-
-                &.outlined {
-                    background: none;
-                    border: 1px solid $shadowTransparent;
-                }
-
-                &:hover,
-                &:focus {
-                    box-shadow: $hoverShadow;
                 }
             }
 
