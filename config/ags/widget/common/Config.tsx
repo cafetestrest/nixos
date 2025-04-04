@@ -102,6 +102,7 @@ interface ScreenRecord {
 }
 
 interface Dashboard {
+    enableDashboard: boolean; // enable Dashboard
     namespaceDashboard: string; // Dashboard namespace
     dashboardWidth: number; // width for popup
     dashboardBoxTopMargin: number; // top margin between topbar
@@ -118,6 +119,7 @@ interface Applauncher {
 }
 
 interface NotificationPopupWindow {
+    enableNotificationPopups: boolean; // enable notifications popups
     removeAllPreviousNotificationOnStart: boolean; // enable to remove all previous notification on ags start (unread)
     namespaceNotification: string; // Notification namespace
     notificationWidth: number; // width for popup
@@ -140,6 +142,7 @@ interface Overview {
 }
 
 interface OSD {
+    enableOsd: boolean; // enables osd
     osdLevelbarWidth: number; // width of OSD levelbar
 }
 
@@ -334,6 +337,7 @@ let configDefaults: Config = {
         recordScreenshotsDir: "/Pictures/Screenshots",
     },
     dashboard: {
+        enableDashboard: true,
         namespaceDashboard: "dashboard",
         dashboardWidth: 1000,
         dashboardBoxTopMargin: 35,
@@ -348,6 +352,7 @@ let configDefaults: Config = {
         applauncherSingleItemHeight: 50,
     },
     notificationPopupWindow: {
+        enableNotificationPopups: true,
         removeAllPreviousNotificationOnStart: true,
         namespaceNotification: "notification",
         notificationWidth: 1000,
@@ -368,6 +373,7 @@ let configDefaults: Config = {
         overviewScale: 0.06,
     },
     osd: {
+        enableOsd: true,
         osdLevelbarWidth: 100,
     },
     wifi: {

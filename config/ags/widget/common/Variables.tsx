@@ -78,6 +78,7 @@ export const recordScreenrecordsDir = config.screenRecord.recordScreenrecordsDir
 export const recordScreenshotsDir = config.screenRecord.recordScreenshotsDir;
 
 // dashboard
+export const enableDashboard = config.dashboard.enableDashboard;
 export const namespaceDashboard = config.dashboard.namespaceDashboard;
 export const dashboardWidth = Variable(config.dashboard.dashboardWidth);
 export const dashboardBoxTopMargin = config.dashboard.dashboardBoxTopMargin;
@@ -92,6 +93,7 @@ export const applauncherScrollableHeight = config.applauncher.applauncherScrolla
 export const applauncherSingleItemHeight = config.applauncher.applauncherSingleItemHeight;
 
 // notification popup window
+export const enableNotificationPopups = config.notificationPopupWindow.enableNotificationPopups;
 export const removeAllPreviousNotificationOnStart = config.notificationPopupWindow.removeAllPreviousNotificationOnStart;
 export const namespaceNotification = config.notificationPopupWindow.namespaceNotification;
 export const notificationWidth = Variable(config.notificationPopupWindow.notificationWidth);
@@ -112,6 +114,7 @@ export const overviewContentWidth = config.overview.overviewContentWidth;
 export const overviewScale = config.overview.overviewScale;
 
 // osd
+export const enableOsd = config.osd.enableOsd;
 export const osdLevelbarWidth = config.osd.osdLevelbarWidth;
 
 // wifi

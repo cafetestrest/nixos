@@ -11,13 +11,19 @@ import {
     namespaceApplauncher,
     namespaceNotification,
     namespaceWeather,
-    overviewEnabled
+    overviewEnabled,
+    enableBarApplauncher,
+    enableBarWeather,
+    enableBarNotifications,
+    enableDashboard,
+    enableNotificationPopups,
+    enableOsd,
 } from "./widget/common/Variables";
-import { reloadScss } from "./lib/utils";
 import WeatherPopup from "./widget/weather/WeatherPopup";
 import NotificationPopupWindow from "./widget/notifications/NotificationPopupWindow";
 import OverviewPopupWindow from "./widget/overview/OverviewPopupWindow";
 import { initScss } from "./widget/common/Config";
+import { reloadScss } from "./lib/utils";
 
 function main() {
     initScss();
@@ -26,13 +32,24 @@ function main() {
 	const notificationsPopups = new Map<Gdk.Monitor, Gtk.Widget>();
 	const osds = new Map<Gdk.Monitor, Gtk.Widget>();
 
-    Applauncher();
-    Dashboard();
-    WeatherPopup();
-    NotificationPopupWindow();
+    if (enableBarApplauncher) {
+        Applauncher();
+    }
+
+    if (enableBarWeather) {
+        WeatherPopup();
+    }
+
+    if (enableBarNotifications) {
+        NotificationPopupWindow();
+    }
 
     if (overviewEnabled) {
         OverviewPopupWindow();
+    }
+
+    if (enableDashboard) {
+        Dashboard();
     }
 
     // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
@@ -48,15 +65,27 @@ function main() {
 
     for (const gdkmonitor of App.get_monitors()) {
 		bars.set(gdkmonitor, Bar(gdkmonitor));
-		notificationsPopups.set(gdkmonitor, NotificationPopups(gdkmonitor));
-		osds.set(gdkmonitor, OSD(gdkmonitor));
+
+        if (enableNotificationPopups) {
+            notificationsPopups.set(gdkmonitor, NotificationPopups(gdkmonitor));
+        }
+
+        if (enableOsd) {
+            osds.set(gdkmonitor, OSD(gdkmonitor));
+        }
 	}
 
     App.connect("monitor-added", (_, gdkmonitor) => {
         console.log("monitor added");
 		bars.set(gdkmonitor, Bar(gdkmonitor));
-		notificationsPopups.set(gdkmonitor, NotificationPopups(gdkmonitor));
-		osds.set(gdkmonitor, OSD(gdkmonitor));
+
+        if (enableNotificationPopups) {
+            notificationsPopups.set(gdkmonitor, NotificationPopups(gdkmonitor));
+        }
+
+        if (enableOsd) {
+            osds.set(gdkmonitor, OSD(gdkmonitor));
+        }
 	});
 
 	App.connect("monitor-removed", (_, gdkmonitor) => {
@@ -65,11 +94,15 @@ function main() {
 		bars.get(gdkmonitor)?.destroy();
 		bars.delete(gdkmonitor);
 
-        notificationsPopups.get(gdkmonitor)?.destroy();
-		notificationsPopups.delete(gdkmonitor);
+        if (enableNotificationPopups) {
+            notificationsPopups.get(gdkmonitor)?.destroy();
+            notificationsPopups.delete(gdkmonitor);
+        }
 
-        osds.get(gdkmonitor)?.destroy();
-		osds.delete(gdkmonitor);
+        if (enableOsd) {
+            osds.get(gdkmonitor)?.destroy();
+            osds.delete(gdkmonitor);
+        }
 	});
 }
 
