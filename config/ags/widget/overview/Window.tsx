@@ -65,8 +65,8 @@ export default ({ address, size: [w, h], class: c, title }) => (
 	>
 		<icon
 			css={`
-				min-width: ${w * overviewScale - 20}px;
-            	min-height: ${h * overviewScale - 13}px;
+				min-width: ${w * overviewScale * 0.82}px;
+            	min-height: ${h * overviewScale * 0.82}px;
 			`}
 			setup={(self) => {
                 const cls = c;

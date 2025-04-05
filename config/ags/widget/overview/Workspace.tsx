@@ -66,7 +66,7 @@ export default (id: number) => {
         <box
 			tooltipText={`${id}`}
 			className={"workspace"}
-			valign={Gtk.Align.CENTER}
+			// valign={Gtk.Align.CENTER}
 			css={`
 				min-width: ${focusedMonitor.width * overviewScale}px;
 				min-height: ${focusedMonitor.height * overviewScale}px;
