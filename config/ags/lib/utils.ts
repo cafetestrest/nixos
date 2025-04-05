@@ -57,7 +57,7 @@ export function dependencies(packages: string[]) {
 }
 
 export function range(max: number) {
-	return Array.from({ length: max + 1 }, (_, i) => i);
+	return Array.from({ length: max }, (_, i) => i + 1);
 }
 
 export function reloadScss(monitorFilePath: string, targetPath: string, execSassPath: string) {

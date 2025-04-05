@@ -364,7 +364,7 @@ let configDefaults: Config = {
         notificationSpacing: 10,
     },
     overview: {
-        overviewEnabled: false,
+        overviewEnabled: true,
         namespaceOverview: "overview",
         workspaces: 10,
         overviewWidth: 1000,

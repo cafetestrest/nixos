@@ -9,10 +9,8 @@ const hyprland = Hyprland.get_default();
 const dispatch = (command: string) => hyprland.dispatch("workspace", command);
 
 function WorkspaceButton({ ws, ...props }) {
-  const classNames = Variable.derive(
-    [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
-    (fws, _) => {
-      let classes = "workspace-button";
+  const classNames = bind(hyprland, "focusedWorkspace").as(fws => {
+    let classes = "workspace-button";
 
       const active = fws.id == ws.id;
       if (active) {
@@ -24,13 +22,11 @@ function WorkspaceButton({ ws, ...props }) {
           classes = `${classes} occupied`;
       }
       return classes;
-    },
-  );
+  })
 
   return (
     <WorkspaceButtonAstal
-      className={classNames()}
-      onDestroy={() => classNames.drop()}
+      className={classNames}
       valign={Gtk.Align.CENTER}
       halign={Gtk.Align.CENTER}
       onClicked={() => ws.focus()}
@@ -79,7 +75,7 @@ export default () => {
         }}
       >
         {range(workspaces).map((i) => (
-            <WorkspaceButton ws={Hyprland.Workspace.dummy(i + 1, null)}/>
+            <WorkspaceButton ws={Hyprland.Workspace.dummy(i, null)}/>
         ))}
       </box>
     </eventbox>
