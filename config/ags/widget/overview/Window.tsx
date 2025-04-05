@@ -7,6 +7,7 @@ import {
 } from "../common/Variables";
 import AstalHyprland from "gi://AstalHyprland";
 import { hideOverview } from "./OverviewPopupWindow";
+import WorkspaceButton from "./WorkspaceButton";
 
 const Hyprland = AstalHyprland.get_default();
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
@@ -34,15 +35,15 @@ const focus = (address: string) => Hyprland.dispatch("focuswindow", `address:${a
 const close = (address: string) => Hyprland.dispatch("closewindow", `address:${address}`);
 
 export default ({ address, size: [w, h], class: c, title }) => (
-	<button
+	<WorkspaceButton
 		className={"client"}
 		tooltipText={`${title}`}
-		onClickRelease={(_, event) => {
+		onButtonPressEvent={(_, event) => {
 			if (!address) {
 				return;
 			}
 
-			switch (event.button) {
+			switch (event.get_button()[1]) {
 				case Gdk.BUTTON_PRIMARY:
 					focus(address)
 					return hideOverview();
@@ -65,8 +66,8 @@ export default ({ address, size: [w, h], class: c, title }) => (
 	>
 		<icon
 			css={`
-				min-width: ${w * overviewScale * 0.82}px;
-            	min-height: ${h * overviewScale * 0.82}px;
+				min-width: ${w * overviewScale - 20}px;
+				min-height: ${h * overviewScale - 13}px;
 			`}
 			setup={(self) => {
                 const cls = c;
@@ -79,5 +80,5 @@ export default ({ address, size: [w, h], class: c, title }) => (
 				self.set_icon(getHyprlandClientIcon(c, icon));
 			}}
 		/>
-	</button>
+	</WorkspaceButton>
 );

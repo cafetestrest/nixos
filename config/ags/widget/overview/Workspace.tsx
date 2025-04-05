@@ -28,9 +28,9 @@ export default (id: number) => {
 			JSON.parse(clients)
 				.filter(({ workspace }) => workspace.id === id)
 				.forEach(c => {
-					const x = c.at[0] - (Hyprland.get_monitor(focusedMonitor.id)?.x || 0)
-					const y = c.at[1] - (Hyprland.get_monitor(focusedMonitor.id)?.y || 0)
-					c.mapped && fixed.put(Window(c), x * overviewScale, y * overviewScale)
+					c.at[0] -= Hyprland.get_monitor(c.monitor)?.x || 0;
+					c.at[1] -= Hyprland.get_monitor(c.monitor)?.y || 0;
+					c.mapped && fixed.put(Window(c), c.at[0] * overviewScale, c.at[1] * overviewScale);
 				})
 			fixed.show_all();
 		})

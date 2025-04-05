@@ -1,4 +1,4 @@
-import { Astal, astalify, Widget, Gtk, type ConstructProps } from "astal/gtk3";
+import { astalify, Gtk, type ConstructProps } from "astal/gtk3";
 import { property } from "astal/gobject";
 import GObject from "gi://GObject";
 
@@ -6,7 +6,7 @@ interface WorkspaceBoxConstructorProps extends Gtk.Box.ConstructorProps {
     attribute: number;
 }
 
-export class WorkspaceBoxClass extends astalify(Gtk.Box) {
+class WorkspaceBoxClass extends astalify(Gtk.Box) {
     #attribute!: number;
 
     @property(Number)
