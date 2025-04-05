@@ -3,13 +3,23 @@ import {
     overviewBoxTopMargin,
     overviewContentWidth,
     overviewWidth,
-    namespaceOverview
+    namespaceOverview,
+    workspaces
 } from "../common/Variables";
-import Overview from "./Overview";
+// import Overview from "./Overview";
+import { range } from "../../lib/utils";
+import Workspace from "./Workspace";
 
 export function hideOverview() {
     App.get_window(namespaceOverview)!.hide()
 }
+
+const Overview = () => (
+	<box
+		className={namespaceOverview}
+		children={range(workspaces).map(Workspace)}
+	/>
+);
 
 export default function OverviewPopupWindow() {
     return <window
