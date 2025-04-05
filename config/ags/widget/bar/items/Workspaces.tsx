@@ -14,12 +14,12 @@ function workspace(id: number) {
 
   return Variable(get())
       .observe(hyprland, "workspace-added", get)
-      .observe(hyprland, "workspace-removed", get)
+      .observe(hyprland, "workspace-removed", get);
 }
 
 function Workspace({ id }: { id: number }) {
-  const hyprland = Hyprland.get_default()
-  const ws = workspace(id)
+  const hyprland = Hyprland.get_default();
+  const ws = workspace(id);
 
   const className = Variable.derive([
       bind(hyprland, "focusedWorkspace"),
@@ -35,7 +35,7 @@ function Workspace({ id }: { id: number }) {
       return `${classes} occupied`;
     }
     return classes;
-  })
+  });
 
   const largestWorkspaceId = Variable.derive([
     bind(hyprland, "focusedWorkspace"),
@@ -43,8 +43,8 @@ function Workspace({ id }: { id: number }) {
   ], (focused, clients) => {
     const focusedId = focused.id;
 
-    if (focusedId >= 10) {
-      return 10;
+    if (focusedId >= workspaces) {
+      return workspaces;
     }
 
     const maxClientWorkspaceId = clients.reduce((maxId, client) => {
@@ -53,11 +53,11 @@ function Workspace({ id }: { id: number }) {
 
     const max = Math.max(focusedId, maxClientWorkspaceId);
 
-    if (max > 10) {
-      return 10;
+    if (max > workspaces) {
+      return workspaces;
     }
     return max;
-  })
+  });
 
   return <button
       onDestroy={() => {

@@ -1,8 +1,9 @@
 import { Gtk, Gdk } from "astal/gtk3";
-import { Variable } from "astal";
+import { Variable, bind } from "astal";
 import AstalHyprland from "gi://AstalHyprland";
 import {
     overviewScale,
+	workspaces,
 } from "../common/Variables";
 import Window from "./Window";
 
@@ -38,6 +39,28 @@ export default (id: number) => {
 	const movetoworkspacesilent = (workspace: number, address: string) =>
 		Hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:${address}`);
 
+	const largestWorkspaceId = Variable.derive([
+		bind(Hyprland, "focusedWorkspace"),
+		bind(Hyprland, "clients"),
+	  ], (focused, clients) => {
+		const focusedId = focused.id;
+	
+		if (focusedId >= workspaces) {
+		  return workspaces;
+		}
+	
+		const maxClientWorkspaceId = clients.reduce((maxId, client) => {
+		  return client.workspace.id > maxId ? client.workspace.id : maxId;
+		}, 0);
+	
+		const max = Math.max(focusedId, maxClientWorkspaceId);
+	
+		if (max > workspaces) {
+		  return workspaces;
+		}
+		return max;
+	});
+
     return (
         <box
 			tooltipText={`${id}`}
@@ -55,6 +78,12 @@ export default (id: number) => {
 				box.hook(Hyprland, "client-moved", update)
 			}}
 			attribute={id}
+			visible={bind(largestWorkspaceId).as(ws => {
+				if (id > ws + 1) {
+				  return false;
+				}
+				return true;
+			})}
 		>
 			<eventbox
 				className={"eventbox"}

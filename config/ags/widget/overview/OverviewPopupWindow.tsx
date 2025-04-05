@@ -22,16 +22,16 @@ const Overview = () => (
 	<box
 		className={namespaceOverview}
 		children={range(workspaces).map(Workspace)}
-        setup={(self) => {
-            self.hook(Hyprland, "event", () => self.children.map((btn) => {
-              btn.visible = Hyprland.workspaces.some(ws => {
-                if (ws.id < workspaces)
-                  return ws.id +1 >= btn.attribute
+        // setup={(self) => {
+        //     self.hook(Hyprland, "event", () => self.children.map((btn) => {
+        //       btn.visible = Hyprland.workspaces.some(ws => {
+        //         if (ws.id < workspaces)
+        //           return ws.id +1 >= btn.attribute
 
-                return ws.id >= btn.attribute
-              });
-            }));
-        }}
+        //         return ws.id >= btn.attribute
+        //       });
+        //     }));
+        // }}
 	/>
 );
 
