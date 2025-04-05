@@ -61,8 +61,8 @@ export default () => {
                 return "toggles control-center-button";
             })}
             onPrimaryClick={() => qsPage.set("network")}
-            icon={bind(icon)}
-            label={bind(label)}
+            icon={icon()}
+            label={label()}
             hasArrow={true}
             onDestroy={() => {
                 icon.drop();
