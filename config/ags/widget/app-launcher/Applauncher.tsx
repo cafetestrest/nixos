@@ -92,7 +92,10 @@ export default function Applauncher() {
                         <entry
                             placeholderText="Search"
                             text={text()}
-                            onChanged={self => text.set(self.text)}
+                            onChanged={self => {
+                                text.set(self.text)
+                                self.grab_focus();
+                            }}
                             onActivate={onEnter}
                             hexpand={true}
                         />
