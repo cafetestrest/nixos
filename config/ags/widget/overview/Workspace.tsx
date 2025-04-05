@@ -27,7 +27,7 @@ export default (id: number) => {
 				.forEach(c => {
 					const x = c.at[0] - (Hyprland.get_monitor(c.monitor.id)?.x || 0)
 					const y = c.at[1] - (Hyprland.get_monitor(c.monitor.id)?.y || 0)
-					c.mapped && fixed.put(Window(c), x * overviewScale, y * overviewScale)
+					c.mapped && fixed.put(Window(c), x * overviewScale * 0.9, y * overviewScale * 0.9)
 				})
 			fixed.show_all();
 		})
