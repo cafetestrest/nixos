@@ -13,6 +13,8 @@ const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 export default (id: number) => {
     const fixed = Gtk.Fixed.new();
 
+	const focusedMonitor = Hyprland.get_focused_monitor();
+
 	async function update() {
 		Hyprland.message_async("j/clients", (_, res) => {
 			const clients = Hyprland.message_finish(res);
@@ -25,15 +27,14 @@ export default (id: number) => {
 			JSON.parse(clients)
 				.filter(({ workspace }) => workspace.id === id)
 				.forEach(c => {
-					const x = c.at[0] - (Hyprland.get_monitor(c.monitor.id)?.x || 0)
-					const y = c.at[1] - (Hyprland.get_monitor(c.monitor.id)?.y || 0)
-					c.mapped && fixed.put(Window(c), x * overviewScale * 0.9, y * overviewScale * 0.9)
+					const x = c.at[0] - (Hyprland.get_monitor(focusedMonitor.id)?.x || 0)
+					const y = c.at[1] - (Hyprland.get_monitor(focusedMonitor.id)?.y || 0)
+					c.mapped && fixed.put(Window(c), x * overviewScale, y * overviewScale)
 				})
 			fixed.show_all();
 		})
 	}
 
-	const focusedMonitor = Hyprland.get_focused_monitor();
 	const scaleVar = Variable(overviewScale);
 	const workspace = (index: number) => Hyprland.dispatch("workspace", `${index}`);
 	const movetoworkspacesilent = (workspace: number, address: string) =>
