@@ -84,6 +84,7 @@ export default (id: number) => {
 				}
 				return true;
 			})}
+			onDestroy={() => largestWorkspaceId.drop()}
 		>
 			<eventbox
 				className={"eventbox"}
