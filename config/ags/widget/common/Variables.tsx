@@ -29,6 +29,13 @@ export const barMarginBottom = config.bar.barMarginBottom;
 export const barMarginLeft = config.bar.barMarginLeft;
 export const barMarginRight = config.bar.barMarginRight;
 
+// bar layour
+export const barLayoutStartLeft = config.barLayout.startLeft;
+export const barLayoutStartRight = config.barLayout.startRight;
+export const barLayoutCenter = config.barLayout.center;
+export const barLayoutEndLeft = config.barLayout.endLeft;
+export const barLayoutEndRight = config.barLayout.endRight;
+
 // usage
 export const barUsageSpacing = config.usage.barUsageSpacing;
 export const diskUsageSpacing = config.usage.diskUsageSpacing;

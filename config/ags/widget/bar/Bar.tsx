@@ -15,18 +15,48 @@ import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
 import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
-import { barMarginTop, barMarginBottom, barMarginLeft, barMarginRight } from "../common/Variables";
+import {
+	barMarginTop,
+	barMarginBottom,
+	barMarginLeft,
+	barMarginRight,
+	barLayoutStartLeft,
+	barLayoutStartRight,
+	barLayoutCenter,
+	barLayoutEndLeft,
+	barLayoutEndRight,
+} from "../common/Variables";
+
+const widgetMap: Record<string, () => Gtk.Widget> = {
+    AppLauncher,
+    Taskbar,
+    Workspaces,
+    Media,
+    Time,
+    WeatherButton,
+    NotificationsRevealerButton,
+    RecordingIndicatorButton,
+    UsageBox,
+    BarButtons,
+    SysTray,
+};
+
+const renderWidgets = (widgetKeys: string[]) =>
+    widgetKeys.map(key => {
+        const widget = widgetMap[key];
+        return widget ? widget() : null;
+});
 
 const Start = () => {
+
+
 	return (
 		<box>
 			<box halign={Gtk.Align.START}>
-				<AppLauncher />
-				<Taskbar />
-				<Workspaces />
+				{renderWidgets(barLayoutStartLeft)}
 			</box>
 			<box halign={Gtk.Align.END} hexpand={true}>
-                <Media />
+				{renderWidgets(barLayoutStartRight)}
 			</box>
 		</box>
 	);
@@ -35,28 +65,22 @@ const Start = () => {
 const Center = () => {
 	return (
 		<box>
-			<Time />
+			{renderWidgets(barLayoutCenter)}
 		</box>
 	);
 };
 
 const End = ({powermenu, systemIndicators}) => {
+	widgetMap.powermenu = () => powermenu;
+    widgetMap.systemIndicators = () => systemIndicators;
+
 	return (
 		<box>
 			<box halign={Gtk.Align.START}>
-				<WeatherButton />
-				<NotificationsRevealerButton />
+				{renderWidgets(barLayoutEndLeft)}
 			</box>
 			<box halign={Gtk.Align.END} hexpand={true}>
-				<box className={"recording-box"}>
-					<RecordingIndicatorButton />
-				</box>
-				<UsageBox />
-				<BarButtons />
-                <SysTray />
-                {/* <BatteryLevel /> */}
-                {systemIndicators}
-                {powermenu}
+				{renderWidgets(barLayoutEndRight)}
 			</box>
 		</box>
 	);

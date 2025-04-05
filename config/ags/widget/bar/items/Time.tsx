@@ -2,13 +2,14 @@ import { Variable, GLib } from "astal";
 import { App } from "astal/gtk3";
 import { dateTimeFormat, enableBarDateTime, namespaceDashboard } from "../../common/Variables";
 
-export default ({ format = "%a %b %e   %H:%M:%S" }) => {
+export default () => {
     if (enableBarDateTime === false) {
         return (
             <box visible={false} />
         );
     }
 
+    let format = "%a %b %e   %H:%M:%S";
     if (dateTimeFormat) {
         format = dateTimeFormat;
     }

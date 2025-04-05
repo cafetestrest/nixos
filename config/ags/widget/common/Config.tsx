@@ -3,6 +3,7 @@ import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorSc
 
 interface Config {
     bar: Bar;
+    barLayout: BarLayout;
     usage: Usage;
     qs: QS;
     weather: Weather;
@@ -47,6 +48,14 @@ interface Bar {
     barMarginBottom: number; // to make topbar floating, margin-bottom
     barMarginLeft: number; // to make topbar floating, margin-left
     barMarginRight: number; // to make topbar floating, margin-right
+}
+
+interface BarLayout {
+    startLeft: string[]; // bar widgets start-left (most left)
+    startRight: string[]; // bar widgets start-right (left before center)
+    center: string[]; // bar widgets in center
+    endLeft: string[]; // bar widgets end-left (left after center)
+    endRight: string[]; // bar widgets end-right (most right)
 }
 
 interface Usage {
@@ -273,6 +282,32 @@ let configDefaults: Config = {
         barMarginBottom: 0,
         barMarginLeft: 0,
         barMarginRight: 0,
+    },
+    barLayout: {
+        startLeft: [
+            "AppLauncher",
+            "Taskbar",
+            "Workspaces",
+        ],
+        startRight: [
+            "Media",
+        ],
+        center: [
+            "Time",
+        ],
+        endLeft: [
+            "WeatherButton",
+            "NotificationsRevealerButton",
+        ],
+        endRight: [
+            "RecordingIndicatorButton",
+            "UsageBox",
+            "BarButtons",
+            "SysTray",
+            // "BatteryLevel",
+            "systemIndicators",
+            "powermenu",
+        ],
     },
     usage: {
         barUsageSpacing: 10,
