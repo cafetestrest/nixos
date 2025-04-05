@@ -108,6 +108,7 @@ const NetworkIndicator = () => {
             className={"system-indicator"}
 			tooltipText={bind(network.wifi, "ssid").as(String)}
 			icon={bind(icon)}
+			onDestroy={() => icon.drop()}
 		/>
 	);
 };

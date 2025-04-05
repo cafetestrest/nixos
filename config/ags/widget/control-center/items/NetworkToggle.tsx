@@ -64,6 +64,10 @@ export default () => {
             icon={bind(icon)}
             label={bind(label)}
             hasArrow={true}
+            onDestroy={() => {
+                icon.drop();
+                label.drop();
+            }}
         />
     )
 }
