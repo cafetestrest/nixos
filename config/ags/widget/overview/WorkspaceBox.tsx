@@ -1,21 +1,20 @@
-import { Astal, astalify, type ConstructProps } from "astal/gtk3";
+import { Astal, astalify, Widget, Gtk, type ConstructProps } from "astal/gtk3";
 import { property } from "astal/gobject";
 import GObject from "gi://GObject";
 
-interface WorkspaceBoxConstructorProps extends Astal.Box.ConstructorProps {
-    id: number;
-    attribute?: (clients: any) => void;
+interface WorkspaceBoxConstructorProps extends Gtk.Box.ConstructorProps {
+    attribute: number;
 }
 
-export class WorkspaceBoxClass extends Astal.Box {
-    #id!: number;
+export class WorkspaceBoxClass extends astalify(Gtk.Box) {
+    #attribute!: number;
 
     @property(Number)
-    set id(value: number) {
-        this.#id = value;
+    set attribute(value: number) {
+        this.#attribute = value;
     }
-    get id() {
-        return this.#id;
+    get attribute() {
+        return this.#attribute;
     }
 
     static { GObject.registerClass(this) }
@@ -28,6 +27,6 @@ export class WorkspaceBoxClass extends Astal.Box {
     }
 }
 
-const WorkspaceBoxAstal = astalify(WorkspaceBoxClass);
+const WorkspaceBox = astalify(WorkspaceBoxClass);
 
-export default WorkspaceBoxAstal;
+export default WorkspaceBox;

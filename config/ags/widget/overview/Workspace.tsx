@@ -6,6 +6,7 @@ import {
 	workspaces,
 } from "../common/Variables";
 import Window from "./Window";
+import WorkspaceBox from "./WorkspaceBox";
 
 const Hyprland = AstalHyprland.get_default();
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
@@ -63,10 +64,9 @@ export default (id: number) => {
 	});
 
     return (
-        <box
+        <WorkspaceBox
 			tooltipText={`${id}`}
 			className={"workspace"}
-			// valign={Gtk.Align.CENTER}
 			css={`
 				min-width: ${focusedMonitor.width * overviewScale}px;
 				min-height: ${focusedMonitor.height * overviewScale}px;
@@ -104,6 +104,6 @@ export default (id: number) => {
 			>
 				{fixed}
 			</eventbox>
-		</box>
+		</WorkspaceBox>
     );
 }
