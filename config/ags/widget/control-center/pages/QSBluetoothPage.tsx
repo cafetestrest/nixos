@@ -27,6 +27,7 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
                     }
                     return "";
                 })}
+                onDestroy={() => upower.drop()}
                 visible={power.as((arr) => {
                     const upowerData = arr.find(item => item.model === device.name) || false
                     if (upowerData && upowerData?.batteryPercentage) {

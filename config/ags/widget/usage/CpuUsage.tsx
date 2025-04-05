@@ -34,6 +34,7 @@ export default () => {
             <label className={"cpu icon"} label="" />
             <label
                 label={cpu(cpu => `${(cpu.load * 100).toFixed(cpuUsageDecimals)}%`)}
+                onDestroy={() => cpu.drop()}
             />
         </box>
     );

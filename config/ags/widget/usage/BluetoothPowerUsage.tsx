@@ -70,7 +70,7 @@ export default () => {
     }
 
 	return (
-        <box className={"btwrapper"} spacing={5}>
+        <box className={"btwrapper"} spacing={5} onDestroy={() => upower.drop()}>
             {bind(upower).as(arr => arr.map(power => {
                 if (!power.model || !power.batteryPercentage || !power.iconName) {
                     return "";

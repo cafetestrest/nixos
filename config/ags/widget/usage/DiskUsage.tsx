@@ -21,7 +21,10 @@ export default () => {
 	return (
 		<box className={"disk usage"} spacing={diskUsageSpacing}>
 			<label label={""} className={"disk icon"}/>
-			<label label={bind(disk)}/>
+			<label
+				label={bind(disk)}
+                onDestroy={() => disk.drop()}
+			/>
 		</box>
 	);
 };

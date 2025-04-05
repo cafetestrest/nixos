@@ -34,6 +34,7 @@ export default () => {
                     memory =>
                         `${formatSize(memory.user)}`,
                 )}
+                onDestroy={() => memory.drop()}
             />
         </box>
     );
