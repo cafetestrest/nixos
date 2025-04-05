@@ -36,9 +36,6 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
                 })}
             />
             <box hexpand={true} />
-            {/* {
-                <Spinner visible={bind(device, "connecting")} />
-            } */}
             <icon
                 icon={icons.ui.tick}
                 visible={isConnected.as(

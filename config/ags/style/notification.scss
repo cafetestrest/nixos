@@ -6,10 +6,6 @@
     @return string.unquote("alpha(#{$c},#{$a})");
 }
 
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-// $fgColor: #{"@theme_fg_color"};
-// $bgColor: #{"@theme_bg_color"};
-
 window.notification-popups {
     all: unset;
 }
@@ -25,14 +21,6 @@ eventbox.notification {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-    }
-
-    &:first-child>box {
-        // margin-top: 1rem;
-    }
-
-    &:last-child>box {
-        // margin-bottom: 1rem;
     }
 
     // eventboxes can not take margins so we style its inner box instead
@@ -129,14 +117,6 @@ eventbox.notification {
             border-radius: $radius;
             font-size: 0.9rem;
             color: $accent;
-
-            // &:first-child {
-            //     margin-left: 0;
-            // }
-
-            // &:last-child {
-            //     margin-right: 0;
-            // }
         }
     }
 }

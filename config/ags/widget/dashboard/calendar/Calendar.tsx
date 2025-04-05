@@ -32,8 +32,7 @@ function getDateInXMonthsTime(x: number) {
 }
 
 const weekDays = [
-	// MONDAY IS THE FIRST DAY OF THE WEEK
-	{ day: "Mo", today: 0 },
+	{ day: "Mo", today: 0 }, // first day of the week
 	{ day: "Tu", today: 0 },
 	{ day: "We", today: 0 },
 	{ day: "Th", today: 0 },

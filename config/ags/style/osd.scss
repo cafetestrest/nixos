@@ -1,8 +1,5 @@
 @use "./variables.scss" as *;
 
-// $fgColor: #{"@theme_fg_color"};
-// $bgColor: #{"@theme_bg_color"};
-
 window.osd {
     box.osd-box {
         min-width: $osdMinWidth;

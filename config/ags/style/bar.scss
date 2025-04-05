@@ -7,12 +7,6 @@ window.bar {
     background-color: $bgColor;
     color: $fgColor;
     border-radius: $barRadius;
-    // font-size: 1.1em;
-    // font-weight: bold;
-
-    // label {
-    //     margin: 0 8px;
-    // }
 
     // this removes top and botton padding that is there on buttons in bar, controls bar height
     button {
@@ -105,18 +99,6 @@ window.bar {
     .powermenu-button {
         padding-left: 0.6rem;
     	color: $redTransparent;
-    }
-
-    .system-indicator {
-        // padding: 0rem 0.25rem;
-
-        &:last-child {
-            // padding-right: 0rem;
-        }
-
-        &:first-child {
-            // padding-left: 0rem;
-        }
     }
 
     .bt-indicator-icon {

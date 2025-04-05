@@ -20,11 +20,6 @@ export default () => {
             halign={Gtk.Align.END}
         >
             <box className={"popup"} vertical={true}>
-                {/* maxWidthChars is needed to make wrap work */}
-                {/* <label label={"lorem2"} wrap={true} maxWidthChars={8} />
-                <button onClicked={() => visibleQSMainPage.set(false)}>
-                    Click me to close the popup
-                </button> */}
                 <ControlCenter/>
             </box>
         </Popover>
