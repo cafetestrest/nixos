@@ -3,39 +3,80 @@ import { Astal, App, Gdk, Gtk } from "astal/gtk3";
 import Hyprland from "gi://AstalHyprland";
 import { range } from "../../../lib/utils";
 import { enableBarWorkspaces, namespaceOverview, workspaces, overviewEnabled } from "../../common/Variables";
-import WorkspaceButtonAstal, { WorkspaceButtonClass } from "../../overview/WorkspaceButton";
 
 const hyprland = Hyprland.get_default();
 const dispatch = (command: string) => hyprland.dispatch("workspace", command);
 
-function WorkspaceButton({ ws, ...props }) {
-  const classNames = bind(hyprland, "focusedWorkspace").as(fws => {
-    let classes = "workspace-button";
+function workspace(id: number) {
+  const hyprland = Hyprland.get_default()
+  const get = () => hyprland.get_workspace(id)
+      || Hyprland.Workspace.dummy(id, null)
 
-      const active = fws.id == ws.id;
-      if (active) {
-          classes = `${classes} active`;
-      }
+  return Variable(get())
+      .observe(hyprland, "workspace-added", get)
+      .observe(hyprland, "workspace-removed", get)
+}
 
-      const occupied = hyprland.get_workspace(ws.id)?.get_clients().length > 0;
-      if (occupied) {
-          classes = `${classes} occupied`;
-      }
-      return classes;
+function Workspace({ id }: { id: number }) {
+  const hyprland = Hyprland.get_default()
+  const ws = workspace(id)
+
+  const className = Variable.derive([
+      bind(hyprland, "focusedWorkspace"),
+      bind(hyprland, "clients"),
+      ws,
+  ], (focused, clients, ws) => {
+    const classes = "workspace-button";
+
+    if (focused === ws) {
+      return `${classes} active`;
+    }
+    if (clients.filter(c => c.workspace == ws).length > 0) {
+      return `${classes} occupied`;
+    }
+    return classes;
   })
 
-  return (
-    <WorkspaceButtonAstal
-      className={classNames}
+  const largestWorkspaceId = Variable.derive([
+    bind(hyprland, "focusedWorkspace"),
+    bind(hyprland, "clients"),
+  ], (focused, clients) => {
+    const focusedId = focused.id;
+
+    if (focusedId >= 10) {
+      return 10;
+    }
+
+    const maxClientWorkspaceId = clients.reduce((maxId, client) => {
+      return client.workspace.id > maxId ? client.workspace.id : maxId;
+    }, 0);
+
+    const max = Math.max(focusedId, maxClientWorkspaceId);
+
+    if (max > 10) {
+      return 10;
+    }
+    return max;
+  })
+
+  return <button
+      onDestroy={() => {
+          className.drop()
+          ws.drop()
+          largestWorkspaceId.drop()
+      }}
+      onClicked={() => dispatch(`${id}`)}
       valign={Gtk.Align.CENTER}
-      halign={Gtk.Align.CENTER}
-      onClicked={() => ws.focus()}
-      id={ws.id}
-      {...props}
-    >
-      <box className={"workspace-dot"} />
-    </WorkspaceButtonAstal>
-  );
+      className={className()}
+      visible={bind(largestWorkspaceId).as(ws => {
+        if (id > ws + 1) {
+          return false;
+        }
+        return true;
+      })}
+  >
+    <box className={"workspace-dot"} />
+  </button>
 }
 
 export default () => {
@@ -62,20 +103,11 @@ export default () => {
         event.delta_y < 0 ? dispatch('+1') : dispatch('-1');
       }}
     >
-      <box className={"workspaces-box"}
-        setup={(self) => {
-          self.hook(hyprland, "event", () => self.children.map((btn: WorkspaceButtonClass) => {
-            btn.visible = hyprland.workspaces.some(ws => {
-              if (ws.id < workspaces)
-                return ws.id +1 >= btn.id
-
-              return ws.id >= btn.id
-            });
-          }));
-        }}
-      >
-        {range(workspaces).map((i) => (
-            <WorkspaceButton ws={Hyprland.Workspace.dummy(i, null)}/>
+      <box className={"workspaces-box"}>
+        {range(workspaces).map(ws => (
+          <Workspace
+            id={ws}
+          />
         ))}
       </box>
     </eventbox>
