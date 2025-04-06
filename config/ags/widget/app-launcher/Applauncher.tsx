@@ -94,7 +94,9 @@ export default function Applauncher() {
                             text={text()}
                             onChanged={self => {
                                 text.set(self.text)
-                                self.grab_focus();
+                                if (!self.text) {
+                                    self.grab_focus();
+                                }
                             }}
                             onActivate={onEnter}
                             hexpand={true}
