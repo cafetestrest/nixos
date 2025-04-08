@@ -1,5 +1,5 @@
 import { Gdk, Gtk } from "astal/gtk3";
-import { bind, timeout } from "astal";
+import { bind, execAsync, timeout } from "astal";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
 import { hasWifi } from "../../common/Variables";
@@ -65,7 +65,8 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
                         <button
                             className={"qs-page-item"}
                             onClicked={() => {
-                                nmClient.activate_connection_async()
+                                execAsync(`nmcli device wifi connect ${ap.bssid}`)
+                                // nmClient.activate_connection_async()
                             }}
                         >
                             <box>
