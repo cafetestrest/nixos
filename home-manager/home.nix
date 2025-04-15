@@ -201,7 +201,10 @@
       hyprcursors.enable = (vars.modules.home-manager.hypr.hyprcursors.enable or false);
     };
     bar = {
-      ags.enable = (vars.modules.home-manager.bar.ags.enable or false);
+      ags = {
+        enable = (vars.modules.home-manager.bar.ags.enable or false);
+        libkompass.enable = (vars.modules.home-manager.bar.ags.libkompass.enable or false);
+      };
       waybar.enable = (vars.modules.home-manager.bar.waybar.enable or false);
     };
     screen-locker = {

@@ -228,7 +228,10 @@ rec {
         hyprcursors.enable = false;
       };
       bar = {
-        ags.enable = modules.bar.ags.enable;
+        ags = {
+          enable = modules.bar.ags.enable;
+          libkompass.enable = false; # https://github.com/kotontrion/kompass
+        };
         waybar.enable = modules.bar.waybar.enable;
       };
       screen-locker = {

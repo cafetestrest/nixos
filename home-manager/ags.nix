@@ -7,10 +7,12 @@ let
   cfgBashrc = config.module.shell.bash.bashrc;
   cfgBash = config.module.shell.bash;
   cfgFish = config.module.shell.fish;
+  cfgLibKompass = config.module.bar.ags.libkompass;
 in
 {
   options = {
     module.bar.ags.enable = mkEnableOption "Enables AGS";
+    module.bar.ags.libkompass.enable = mkEnableOption "Enables libKompass used for app-launcher widget";
   };
 
   imports = [
@@ -43,10 +45,11 @@ in
         # inputs.ags.packages.${pkgs.system}.cava
         # inputs.ags.packages.${pkgs.system}.auth
         pkgs.libgtop
+      ] ++ lib.optionals cfgLibKompass.enable [
         inputs.kompass.packages.${pkgs.system}.libkompass
-        inputs.ags.packages.${pkgs.system}.river # needed for libKompass
-        inputs.ags.packages.${pkgs.system}.astal4 # needed for libKompass
-        pkgs.libadwaita # needed for libKompass
+        inputs.ags.packages.${pkgs.system}.river
+        inputs.ags.packages.${pkgs.system}.astal4
+        pkgs.libadwaita
       ];
     };
 
