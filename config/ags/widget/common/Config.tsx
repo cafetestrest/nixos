@@ -412,7 +412,7 @@ let configDefaults: Config = {
         osdLevelbarWidth: 100,
     },
     wifi: {
-        hasWifi: false,
+        hasWifi: true,
     },
     brightness: {
         hasBrightness: false,
