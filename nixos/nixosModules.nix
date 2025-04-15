@@ -46,10 +46,12 @@
     ./numlock-on-tty.nix                            # enables numlock on TTY
     ./nix-diff.nix                                  # enables nix-diff on rebuild
     ./nh.nix                                        # nh os rebuild command
+    ./wifi.nix                                      # wifi hotfix
   ];
 
   module = {
     configuration.enable = (vars.modules.configuration.enable or true);  # default value true for configuration.nix
+    wifi.enable = (vars.modules.wifi.enable or true);
     overlay = {
       pkgs.enable = (vars.modules.overlay.pkgs.enable or true); # default value true for pkgs overlays (stable, unstable, old...)
     };

@@ -31,6 +31,7 @@ rec {
   };
   modules = {
     configuration.enable = true;  # use default configuration.nix file
+    wifi.enable = true; # enable wifi hotfix (disable scanRandMacAddress)
     overlay = {
       pkgs.enable = true; # nix pkgs overlays
     };
@@ -73,7 +74,7 @@ rec {
       };
       plasma6.enable = false;
       gnome = {
-        enable = false;
+        enable = true;
         auto-login.enable = false;
       };
       cosmic.enable = false;
