@@ -11,6 +11,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.networkmanager.wifi.scanRandMacAddress = false;  # hotfix to make wifi work properly
+    networking = {
+      networkmanager = {
+        enable = true;
+        wifi = {
+          scanRandMacAddress = false; # Can help with faster reconnection
+          powersave = false; # Disable power saving for faster connections
+        };
+      };
+    };
   };
 }
