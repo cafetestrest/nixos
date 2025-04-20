@@ -47,6 +47,7 @@
     ./nix-diff.nix                                  # enables nix-diff on rebuild
     ./nh.nix                                        # nh os rebuild command
     ./wifi.nix                                      # wifi hotfix
+    ./openrazer.nix                                 # razer devices support
   ];
 
   module = {
@@ -142,6 +143,7 @@
       ydotool.enable = (vars.modules.programs.ydotool.enable or false);
       extraHosts = (vars.modules.programs.extraHosts or "");
       nh.enable = (vars.modules.programs.nh.enable or false);
+      openrazer.enable = (vars.modules.programs.openrazer.enable or false);
     };
   };
 }

@@ -120,6 +120,7 @@ rec {
       copyq.enable = true;
       ydotool.enable = modules.programs.copyq.enable;
       nh.enable = false;
+      openrazer.enable = false;
       extraHosts = ''
         127.0.0.1 ::1 magento2.rooter.test
         127.0.0.1 ::1 test.rooter.test
