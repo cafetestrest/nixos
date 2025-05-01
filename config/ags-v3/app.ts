@@ -5,8 +5,10 @@ import Applauncher from "./widget/app-launcher/Applauncher";
 import GLib from "gi://GLib";
 import Gtk from "gi://Gtk?version=4.0";
 import { config } from "./lib/config";
+import QSMain from "./widget/quick-settings/QSMain2";
 
 let applauncher: Gtk.Window
+let quickSettings: Gtk.Window
 
 app.start({
     css: style,
@@ -24,6 +26,9 @@ app.start({
             case "launcher":
                 applauncher.visible = !applauncher.visible
                 return res("ok")
+            case "control-center":
+            case "quicksettings":
+                quickSettings.visible = !quickSettings.visible
             default:
                 return res("unknown command")
         }
@@ -33,6 +38,9 @@ app.start({
             applauncher = Applauncher() as Gtk.Window
             app.add_window(applauncher)
             // applauncher.present()            
+
+            quickSettings = QSMain() as Gtk.Window
+            app.add_window(quickSettings)
         }
 
         app.get_monitors().map(Bar)

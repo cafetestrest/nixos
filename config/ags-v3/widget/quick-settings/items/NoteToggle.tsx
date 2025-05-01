@@ -10,7 +10,6 @@ export default () => {
             label={"Open Note"}
             clicked={() => {
                 execAsync(["bash", "-c", "codium ~/Documents/note.md"])
-                    .then((out) => console.log(out))
                     .catch((err) => console.error(err))
             }}
         />

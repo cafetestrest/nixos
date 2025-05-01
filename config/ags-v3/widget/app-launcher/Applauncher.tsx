@@ -62,6 +62,8 @@ export default function Applauncher() {
     }
   }
 
+  // todo move (launcher) to conifg
+
   return (
     <window
       $={(ref) => (win = ref)}

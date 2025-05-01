@@ -1,5 +1,6 @@
 @use "./variables.scss" as *;
 
+// popover
 .quick-settings {
   .toggles {
     &.active {
@@ -9,5 +10,17 @@
     &.inactive {
       // background-color: red;
     }
+  }
+}
+
+// window
+window#quicksettings {
+  background: transparent;
+  color: $fgColor;
+
+  box#quicksettings-content {
+    background: $bgColor;
+    border-radius: 12px;
+    padding: 6px;
   }
 }

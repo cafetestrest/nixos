@@ -1,6 +1,7 @@
 import GLib from "gi://GLib";
 import { readFileAsync } from "ags/file";
 import { fileExists } from "./utils";
+import { State } from "ags/state";
 
 interface Config {
     bar: Bar;
@@ -21,6 +22,7 @@ interface Config {
     // themeVariables: ThemeVariables;
     // theme_dark: ThemeColors;
     // theme_light: ThemeColors;
+    quickSettings: QuickSettings;
     powermenu: Powermenu;
     substitutions: Substitutions;
     systemIndicators: SystemIndicators;
@@ -125,6 +127,19 @@ interface Substitutions {
 
 interface SystemIndicators {
     layout: SysIndicatorWidgets[],
+}
+
+export type QuickSettingsWidgets =
+    | "noteToggle"
+    | "nightLightToggle"
+    | "idleToggle"
+    | "microphoneToggle"
+    | "dndToggle"
+    | "screenshotToggle"
+    | "colorPickerToggle"
+
+interface QuickSettings {
+    layout: QuickSettingsWidgets[][],
 }
 
 let configDefaults: Config = {
@@ -245,6 +260,14 @@ let configDefaults: Config = {
             "micMuteIndicator",
             "audioIndicator",
         ],
+    },
+    quickSettings: {
+        layout: [
+            ["noteToggle", "nightLightToggle"],
+            ["idleToggle", "microphoneToggle"],
+            ["dndToggle", "screenshotToggle"],
+            ["colorPickerToggle"],
+        ]
     }
 };
 
@@ -288,3 +311,5 @@ try {
 } catch (e) {
     print("Error loading config file", e)
 }
+
+export const qsRevealScreenshot = new State<boolean>(false);

@@ -222,7 +222,7 @@ export default () => {
       </box>
       <popover>
         <box>
-          <QSMain />
+          {/* <QSMain /> */}
         </box>
       </popover>
     </menubutton>
