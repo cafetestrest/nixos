@@ -1,0 +1,28 @@
+@use "./variables.scss" as *;
+
+window#bar {
+  background: transparent;
+  color: $fgColor;
+  font-weight: bold;
+
+  > box {
+    background: $bgColor;
+    border-radius: 10px;
+    margin: 8px;
+  }
+
+  button {
+    border-radius: 8px;
+    margin: 2px;
+    min-height: 0;
+    padding: 4px 8px;
+
+    &.focused image {
+      -gtk-icon-shadow: 0 0 0.5rem $accent;
+    }
+  }
+
+  .powermenu {
+    color: $redTransparent;
+  }
+}

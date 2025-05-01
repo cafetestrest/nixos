@@ -1,0 +1,13 @@
+@use "./variables.scss" as *;
+
+window#launcher {
+  background: transparent;
+  color: $fgColor;
+
+  box#launcher-content {
+    background: $bgColor;
+    min-width: 400px;
+    border-radius: 12px;
+    padding: 6px;
+  }
+}

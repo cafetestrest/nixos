@@ -1,0 +1,13 @@
+@use "./variables.scss" as *;
+
+.quick-settings {
+  .toggles {
+    &.active {
+      // background-color: blue;
+    }
+
+    &.inactive {
+      // background-color: red;
+    }
+  }
+}
