@@ -1,7 +1,6 @@
 import GLib from "gi://GLib?version=2.0";
 import { ensureDirectory } from "../lib/utils";
 import { execAsync } from "ags/process";
-import GObject from "gi://GObject?version=2.0";
 import { interval } from "ags/time";
 import AstalIO from "gi://AstalIO?version=0.1";
 import {
@@ -9,6 +8,7 @@ import {
   recordOnlySelectedScreenToggle,
   config
 } from "../lib/config";
+import GObject from "ags/gobject";
 
 const now = () => GLib.DateTime.new_now_local().format(config.screenRecord.recordSaveDateFormat);
 

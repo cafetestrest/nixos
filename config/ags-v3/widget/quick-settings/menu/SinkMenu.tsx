@@ -1,11 +1,34 @@
 import icons from "../../../lib/icons";
 import { bind } from "ags/state";
-import { qsRevealScreenshot, qsRevealSinksButton } from "../../../lib/config";
+import { config, qsRevealSinksButton } from "../../../lib/config";
 import { Gtk } from "ags/gtk4";
-import { config } from "../../../lib/config";
-import { execAsync } from "ags/process";
 import AstalWp from "gi://AstalWp";
 import { For } from "ags/gtk4"
+import Pango from "gi://Pango?version=1.0";
+
+function getProperAudioIcon(icon: string) {
+    switch (icon) {
+        case 'audio-headset-bluetooth':
+        case 'audio-headset-analog-usb':
+            return icons.audio.type.headset;
+        case 'audio-card-analog-usb':
+            return icons.audio.type.speaker;
+        case 'audio-card-analog-pci':
+            return icons.audio.volume.high;
+        default:
+            return icons.audio.type.card;
+    }
+}
+
+function getProperAudioDescription(description: string) {
+    if (description.includes("HDMI Audio"))
+        return "HDMI Audio";
+
+    if (description.includes("USB"))
+        return "USB Audio";
+
+    return description;
+}
 
 export default () => {
 	const audio = AstalWp.get_default()?.audio!;
@@ -36,60 +59,24 @@ export default () => {
                                     $clicked={() => speaker.set_is_default(true)}
                                 >
                                     <box>
-                                        <image iconName={speaker.icon === "audio-headset-bluetooth" ? icons.audio.type.headset : speaker.icon} />
-                                        <label label={speaker.description}/>
+                                        <image
+                                            iconName={getProperAudioIcon(speaker.icon)}
+                                        />
+                                        <label
+                                            label={getProperAudioDescription(speaker.description)}
+                                            ellipsize={Pango.EllipsizeMode.END}
+                                            maxWidthChars={40}
+                                            hexpand={true}
+                                        />
+                                        <image
+                                            iconName={icons.ui.tick}
+                                            visible={speaker.isDefault}
+                                        />
                                     </box>
                                 </button>
                             );
                         }}
                     </For>
-                    {/* <button
-                        $clicked={() => {
-                            execAsync(["bash", "-c", config.common.commandScreenshotWholeDisplay])
-                                .catch((err) => console.error(err));
-                        }}
-                    >
-                        <box>
-                            <image
-                                iconName={icons.screenshot}
-                            />
-                            <label
-                                label={"Full display"}
-                            />
-                        </box>
-                    </button>
-
-                    <button
-                        $clicked={() => {
-                            execAsync(["bash", "-c", config.common.commandScreenshotSelectRegion])
-                                .catch((err) => console.error(err));
-                        }}
-                    >
-                        <box>
-                            <image
-                                iconName={icons.select}
-                            />
-                            <label
-                                label={"Select region"}
-                            />
-                        </box>
-                    </button>
-
-                    <button
-                        $clicked={() => {
-                            execAsync(["bash", "-c", config.common.commandScreenshotSelectWindow])
-                                .catch((err) => console.error(err));
-                        }}
-                    >
-                        <box>
-                            <image
-                                iconName={icons.window}
-                            />
-                            <label
-                                label={"Select window"}
-                            />
-                        </box>
-                    </button> */}
                 </box>
             </box>
         </revealer>
