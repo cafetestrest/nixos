@@ -5,7 +5,7 @@ import Applauncher from "./widget/app-launcher/Applauncher";
 import GLib from "gi://GLib";
 import Gtk from "gi://Gtk?version=4.0";
 import { config } from "./lib/config";
-import QSMain from "./widget/quick-settings/QSMain2";
+import QSMain from "./widget/quick-settings/QSMain";
 
 let applauncher: Gtk.Window
 let quickSettings: Gtk.Window

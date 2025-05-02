@@ -152,7 +152,7 @@ interface SystemIndicators {
     layout: SysIndicatorWidgets[],
 }
 
-export type QuickSettingsWidgets =
+export type QuickSettingsToggleWidgets =
     | "noteToggle"
     | "nightLightToggle"
     | "idleToggle"
@@ -165,7 +165,7 @@ export type QuickSettingsWidgets =
 interface QuickSettings {
     rowsPerPage: number,
     menuSpacing: number,
-    layout: QuickSettingsWidgets[][],
+    togglesLayout: QuickSettingsToggleWidgets[][],
 }
 
 let configDefaults: Config = {
@@ -310,7 +310,7 @@ let configDefaults: Config = {
     quickSettings: {
         rowsPerPage: 3,
         menuSpacing: 16,
-        layout: [
+        togglesLayout: [
             ["noteToggle", "nightLightToggle"],
             ["idleToggle", "microphoneToggle"],
             ["dndToggle", "screenshotToggle"],
@@ -360,6 +360,8 @@ try {
     print("Error loading config file", e)
 }
 
+export const qsPopupActive = new State(false);
+export const qsRevealSinksButton = new State<boolean>(false);
 export const qsRevealScreenshot = new State<boolean>(false);
 export const qsRevealScreenRecord = new State<boolean>(false);
 export const recordInternalAudioToggle = new State<boolean>(config.screenRecord.recordInternalAudioToggle);

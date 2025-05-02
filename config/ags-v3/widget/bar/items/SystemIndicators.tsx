@@ -1,18 +1,20 @@
-import { bind, State } from "ags/state";
+import { bind } from "ags/state";
 import Gtk from "gi://Gtk?version=4.0";
 import AstalNotifd from "gi://AstalNotifd";
 import AstalPowerProfiles from "gi://AstalPowerProfiles";
 import icons from "../../../lib/icons";
 import AstalWp from "gi://AstalWp";
-import { config, SysIndicatorWidgets } from "../../../lib/config";
+import {
+  config,
+  SysIndicatorWidgets,
+  qsPopupActive
+} from "../../../lib/config";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
 import AstalNetwork from "gi://AstalNetwork";
 import { With } from "ags/gtk4";
 import IdleService from "../../../service/IdleService";
 import NightLightService from "../../../service/NightLightService";
-import QSMain from "../../quick-settings/QSMain";
-
-export const qsPopupActive = new State(false);
+import app from "ags/gtk4/app";
 
 const DNDIndicator = () => {
 	const notifd = AstalNotifd.get_default();
@@ -190,8 +192,12 @@ export default () => {
   });
 
   return (
-    <menubutton
-      active={qsPopupActive()}
+    <button
+      cssClasses={bind(qsPopupActive).as(a => a ? ["system-indicators", "bar-button", "active"] : ["system-indicators", "bar-button", "inactive"])}
+      $clicked={() => {
+        app.toggle_window("quicksettings");
+        qsPopupActive.set(true);
+      }}
       $={self => {
         scrollController.connect('scroll', (_, dx, dy) => {
           if (!speaker) return;
@@ -220,11 +226,6 @@ export default () => {
       >
         {renderWidgets(config.systemIndicators.layout)}
       </box>
-      <popover>
-        <box>
-          {/* <QSMain /> */}
-        </box>
-      </popover>
-    </menubutton>
+    </button>
   );
 }

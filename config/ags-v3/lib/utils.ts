@@ -1,7 +1,5 @@
 import GLib from "gi://GLib";
 import Gio from "gi://Gio?version=2.0";
-import { monitorFile } from "ags/file";
-import { readFileAsync, writeFileAsync } from "ags/file";
 
 export function dependencies(packages: string[]) {
 	for (const pkg of packages) {

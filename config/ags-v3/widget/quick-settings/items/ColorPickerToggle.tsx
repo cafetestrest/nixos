@@ -2,7 +2,6 @@ import { execAsync } from "ags/process";
 import icons from "../../../lib/icons";
 import QSToggleBlueprint from "../items/QSToggleBlueprint";
 import { timeout } from "ags/time";
-import { qsPopupActive } from "../../bar/items/SystemIndicators";
 import app from "ags/gtk4/app";
 
 export default () => {

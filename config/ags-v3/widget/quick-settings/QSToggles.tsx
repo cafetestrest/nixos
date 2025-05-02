@@ -9,11 +9,11 @@ import ScreenshotToggle from "./items/ScreenshotToggle";
 import ScreenrecordToggle from "./items/ScreenrecordToggle";
 import ScreenshotMenu from "./menu/ScreenshotMenu";
 import ScreenrecordMenu from "./menu/ScreenrecordMenu";
-import { config, QuickSettingsWidgets } from "../../lib/config";
+import { config, QuickSettingsToggleWidgets } from "../../lib/config";
 import { State } from "ags/state";
 import { chunk } from "../../lib/utils";
 
-const widgetMap: Record<QuickSettingsWidgets, JSX.Element> = {
+const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
     noteToggle: NoteToggle(),
     nightLightToggle: NightLightToggle(),
     idleToggle: IdleToggle(),
@@ -24,12 +24,12 @@ const widgetMap: Record<QuickSettingsWidgets, JSX.Element> = {
     colorPickerToggle: ColorPickerToggle(),
 };
 
-const menuWidgets: Partial<Record<QuickSettingsWidgets, JSX.Element>> = {
+const menuWidgets: Partial<Record<QuickSettingsToggleWidgets, JSX.Element>> = {
     screenshotToggle: ScreenshotMenu(),
     screenrecordToggle: ScreenrecordMenu(),
 };
 
-const renderQuickSettings = (layout: QuickSettingsWidgets[][], rowsPerPage: number) =>
+const renderQuickSettings = (layout: QuickSettingsToggleWidgets[][], rowsPerPage: number) =>
     chunk(layout, rowsPerPage).flatMap((pageRows, pageIndex) => {
         const pageRowBoxes = pageRows.map((row) => {
             const rowWidgets = row.map(widget => widgetMap[widget] || null);
@@ -55,7 +55,7 @@ const renderQuickSettings = (layout: QuickSettingsWidgets[][], rowsPerPage: numb
 
 export default () => {
     const visible = new State<string>("page0");
-    const pages = chunk(config.quickSettings.layout, config.quickSettings.rowsPerPage);
+    const pages = chunk(config.quickSettings.togglesLayout, config.quickSettings.rowsPerPage);
     const totalPages = pages.length;
 
     return (
@@ -65,7 +65,7 @@ export default () => {
             <stack
                 visibleChildName={visible()}
             >
-                {renderQuickSettings(config.quickSettings.layout, config.quickSettings.rowsPerPage)}
+                {renderQuickSettings(config.quickSettings.togglesLayout, config.quickSettings.rowsPerPage)}
             </stack>
             <box>
                 {[...Array(totalPages).keys()].map(i =>
