@@ -4,15 +4,16 @@ import { fileExists } from "./utils";
 import { State } from "ags/state";
 
 interface Config {
+    applauncher: Applauncher;
     bar: Bar;
     barLayout: BarLayout;
+    common: Common;
     hyprland: Hyprland;
     // usage: Usage;
     // qs: QS;
     // weather: Weather;
-    // screenRecord: ScreenRecord;
+    screenRecord: ScreenRecord;
     // dashboard: Dashboard;
-    applauncher: Applauncher;
     // notificationPopupWindow: NotificationPopupWindow;
     // overview: Overview;
     // osd: OSD;
@@ -75,6 +76,20 @@ interface BarLayout {
     endRight: BarWidgets[]; // bar widgets end-right (most right)
 }
 
+interface Common {
+    commandOpenNote: string; // command to open note.md file (Open Note tile or bar button)
+    commandSelectRegion: string; // command to select region for screenshot
+    commandStartScreenRecord: string; // command to start screen recording
+    commandColorPicker: string; // command to open color picker
+    commandOpenStartupApps: string; // command to open startup apps (pre-defined layout of apps)
+    commandScreenshotWholeDisplay: string; // command to take whole screen screenshot
+    commandScreenshotSelectRegion: string; // command to take selected region screenshot
+    commandScreenshotSelectWindow: string; // command to take selected window screenshot
+    commandGetLightstripIp: string; // command to retrieve new ip for lightstrip
+    commandTurnOnLightstrip: string; // command to turn on lightstrip
+    commandTurnOffLightstrip: string; // command to turn off lightstrip
+}
+
 interface Hyprland {
     enabled: boolean,
     numberOfWorkspaces: number,
@@ -120,6 +135,14 @@ interface Powermenu {
     shutdownCommand: string, // command used to power off PC
 }
 
+interface ScreenRecord {
+    recordInternalAudioToggle: boolean; // used to control internal audio toggle state
+    recordOnlySelectedScreenToggle: boolean; // used to control record selected area toggle state
+    recordSaveDateFormat: string; // file name to make it unique (date format)
+    recordScreenrecordsDir: string; // screenrecord save directory
+    recordScreenshotsDir: string; // screenshot save directory
+}
+
 interface Substitutions {
     icons: Record<string, string>;
     titles: Record<string, string>;
@@ -137,8 +160,11 @@ export type QuickSettingsWidgets =
     | "dndToggle"
     | "screenshotToggle"
     | "colorPickerToggle"
+    | "screenrecordToggle"
 
 interface QuickSettings {
+    rowsPerPage: number,
+    menuSpacing: number,
     layout: QuickSettingsWidgets[][],
 }
 
@@ -170,6 +196,19 @@ let configDefaults: Config = {
             "Powermenu",
         ],
     },
+    common: {
+        commandOpenNote: "codium ~/Documents/note.md",
+        commandSelectRegion: "slurp",
+        commandStartScreenRecord: "wf-recorder -c h264_vaapi -f",
+        commandColorPicker: "hyprpicker -a",
+        commandOpenStartupApps: "openstartupapps",
+        commandScreenshotWholeDisplay: "screenshot",
+        commandScreenshotSelectRegion: "screenshot 1",
+        commandScreenshotSelectWindow: "screenshot 2",
+        commandGetLightstripIp: "getyeelightip",
+        commandTurnOnLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 On`,
+        commandTurnOffLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 Off`,
+    },
     hyprland: {
         enabled: true,
         numberOfWorkspaces: 10,
@@ -187,6 +226,13 @@ let configDefaults: Config = {
         logoutCommand: "hyprctl dispatch exit",
         rebootCommand: "systemctl reboot",
         shutdownCommand: "shutdown now",
+    },
+    screenRecord: {
+        recordInternalAudioToggle: false,
+        recordOnlySelectedScreenToggle: false,
+        recordSaveDateFormat: "%Y-%m-%d_%H-%M-%S",
+        recordScreenrecordsDir: "/Videos/Screenrecords",
+        recordScreenshotsDir: "/Pictures/Screenshots",
     },
     substitutions: {
         icons: {
@@ -262,11 +308,13 @@ let configDefaults: Config = {
         ],
     },
     quickSettings: {
+        rowsPerPage: 3,
+        menuSpacing: 16,
         layout: [
             ["noteToggle", "nightLightToggle"],
             ["idleToggle", "microphoneToggle"],
             ["dndToggle", "screenshotToggle"],
-            ["colorPickerToggle"],
+            ["colorPickerToggle", "screenrecordToggle"],
         ]
     }
 };
@@ -313,3 +361,6 @@ try {
 }
 
 export const qsRevealScreenshot = new State<boolean>(false);
+export const qsRevealScreenRecord = new State<boolean>(false);
+export const recordInternalAudioToggle = new State<boolean>(config.screenRecord.recordInternalAudioToggle);
+export const recordOnlySelectedScreenToggle = new State<boolean>(config.screenRecord.recordOnlySelectedScreenToggle);

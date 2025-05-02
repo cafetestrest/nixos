@@ -2,17 +2,18 @@ import icons from "../../../lib/icons";
 import { bind } from "ags/state";
 import { qsRevealScreenshot } from "../../../lib/config";
 import { Gtk } from "ags/gtk4";
+import { config } from "../../../lib/config";
+import { execAsync } from "ags/process";
 
 export default () => {
-    const active = bind(qsRevealScreenshot);
-
     return (
         <revealer
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
-            revealChild={active}
+            revealChild={bind(qsRevealScreenshot)}
         >
             <box
                 cssClasses={["qs-menu"]}
+                spacing={config.quickSettings.menuSpacing}
                 orientation={Gtk.Orientation.VERTICAL}
             >
                 <label
@@ -20,13 +21,14 @@ export default () => {
                     cssClasses={["qs-menu-label"]}
                 />
                 <box
-                    orientation={Gtk.Orientation.VERTICAL}
-                    // spacing={qsRevealScreenshotSpacing}
                     cssClasses={["qs-menu-content"]}
+                    spacing={config.quickSettings.menuSpacing}
+                    orientation={Gtk.Orientation.VERTICAL}
                 >
                     <button
                         $clicked={() => {
-                            // bash(commandScreenshotWholeDisplay)
+                            execAsync(["bash", "-c", config.common.commandScreenshotWholeDisplay])
+                                .catch((err) => console.error(err));
                         }}
                     >
                         <box>
@@ -41,7 +43,8 @@ export default () => {
 
                     <button
                         $clicked={() => {
-                            // bash(commandScreenshotSelectRegion)
+                            execAsync(["bash", "-c", config.common.commandScreenshotSelectRegion])
+                                .catch((err) => console.error(err));
                         }}
                     >
                         <box>
@@ -56,7 +59,8 @@ export default () => {
 
                     <button
                         $clicked={() => {
-                            // bash(commandScreenshotSelectWindow)
+                            execAsync(["bash", "-c", config.common.commandScreenshotSelectWindow])
+                                .catch((err) => console.error(err));
                         }}
                     >
                         <box>
