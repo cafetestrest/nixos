@@ -22,5 +22,24 @@ window#quicksettings {
     background: $bgColor;
     border-radius: 12px;
     padding: 6px;
+
+    button {
+      border-radius: $radius;
+      color: $fgColor;
+    }
+
+    .toggles {
+      min-width: $qsTogglesWidth;
+      min-height: $qsTogglesHeight;
+
+      image {
+        margin: $qsTogglesMargin;
+      }
+
+      &.active {
+        background: $accentGradient;
+        color: $bgColor;
+      }
+    }
   }
 }

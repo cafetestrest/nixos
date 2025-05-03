@@ -29,16 +29,51 @@ const menuWidgets: Partial<Record<QuickSettingsToggleWidgets, JSX.Element>> = {
     screenrecordToggle: ScreenrecordMenu(),
 };
 
-const renderQuickSettings = (layout: QuickSettingsToggleWidgets[][], rowsPerPage: number) =>
-    chunk(layout, rowsPerPage).flatMap((pageRows, pageIndex) => {
-        const pageRowBoxes = pageRows.map((row) => {
-            const rowWidgets = row.map(widget => widgetMap[widget] || null);
-            return <box cssClasses={["qs-row"]}>{...rowWidgets}</box>;
-        });
+// const renderQuickSettings = (layout: QuickSettingsToggleWidgets[][], rowsPerPage: number) =>
+//     chunk(layout, rowsPerPage).flatMap((pageRows, pageIndex) => {
+//         const pageRowBoxes = pageRows.map((row) => {
+//             const rowWidgets = row.map(widget => widgetMap[widget] || null);
+//             return <box cssClasses={["qs-row"]}>{...rowWidgets}</box>;
+//         });
 
-        const extraMenus = pageRows
-            .flatMap(row => row.map(widget => menuWidgets[widget]))
-            .filter(menu => menu != null);
+//         const extraMenus = pageRows
+//             .flatMap(row => row.map(widget => menuWidgets[widget]))
+//             .filter(menu => menu != null);
+
+//         return [
+//             <box
+//                 cssClasses={["qs-page"]}
+//                 name={`page${pageIndex}`}
+//                 _type="named"
+//                 orientation={Gtk.Orientation.VERTICAL}
+//                 spacing={4} //todo add to config
+//             >
+//                 {...pageRowBoxes}
+//             </box>,
+//             ...extraMenus,
+//         ];
+//     });
+
+const renderQuickSettings = (
+    layout: QuickSettingsToggleWidgets[][],
+    rowsPerPage: number
+) =>
+    chunk(layout, rowsPerPage).flatMap((pageRows, pageIndex) => {
+        // Build the page content row by row
+        const pageContent = pageRows.flatMap((row) => {
+            const rowWidgets = row.map(widget => widgetMap[widget] || null);
+
+            const rowMenus = row
+                .map(widget => menuWidgets[widget])
+                .filter(menu => menu != null);
+
+            return [
+                <box cssClasses={["qs-row"]}>
+                    {...rowWidgets}
+                </box>,
+                ...rowMenus,
+            ];
+        });
 
         return [
             <box
@@ -46,10 +81,10 @@ const renderQuickSettings = (layout: QuickSettingsToggleWidgets[][], rowsPerPage
                 name={`page${pageIndex}`}
                 _type="named"
                 orientation={Gtk.Orientation.VERTICAL}
+                spacing={4} // keep this configurable if needed
             >
-                {...pageRowBoxes}
-            </box>,
-            ...extraMenus,
+                {...pageContent}
+            </box>
         ];
     });
 
@@ -67,7 +102,9 @@ export default () => {
             >
                 {renderQuickSettings(config.quickSettings.togglesLayout, config.quickSettings.rowsPerPage)}
             </stack>
-            <box>
+            <box
+                halign={Gtk.Align.CENTER}
+            >
                 {[...Array(totalPages).keys()].map(i =>
                     <button
                         label={String(i)}

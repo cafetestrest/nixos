@@ -6,6 +6,7 @@ import GLib from "gi://GLib";
 import Gtk from "gi://Gtk?version=4.0";
 import { config } from "./lib/config";
 import QSMain from "./widget/quick-settings/QSMain";
+import { reloadScss } from "./lib/utils";
 
 let applauncher: Gtk.Window
 let quickSettings: Gtk.Window
@@ -35,14 +36,17 @@ app.start({
     },
     main() {
         if (config.applauncher.enabled) {
-            applauncher = Applauncher() as Gtk.Window
-            app.add_window(applauncher)
-            // applauncher.present()            
-
-            quickSettings = QSMain() as Gtk.Window
-            app.add_window(quickSettings)
+            applauncher = Applauncher() as Gtk.Window;
+            app.add_window(applauncher);
+            // applauncher.present();
         }
 
-        app.get_monitors().map(Bar)
+        quickSettings = QSMain() as Gtk.Window;
+        app.add_window(quickSettings);
+
+        // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
+        reloadScss('style/quick-settings.scss', '/tmp/astal/style.css', 'style/main.scss');
+
+        app.get_monitors().map(Bar);
     },
 })

@@ -1,5 +1,8 @@
 import GLib from "gi://GLib";
 import Gio from "gi://Gio?version=2.0";
+import { monitorFile } from "ags/file";
+import app from "ags/gtk4/app";
+import { exec } from "ags/process";
 
 export function dependencies(packages: string[]) {
 	for (const pkg of packages) {
@@ -45,4 +48,12 @@ export function getMostCommon<T>(arr: T[]): T | undefined {
         arr.filter(v => v===a).length
         - arr.filter(v => v===b).length
     ).pop();
+}
+
+export function reloadScss(monitorFilePath: string, targetPath: string, execSassPath: string) {
+	monitorFile(`${SRC}/${monitorFilePath}`, () => {
+		exec(`sass ${SRC}/${execSassPath} ${targetPath}`);
+        app.reset_css(); // Have to reset the whole CSS before applying new one
+		app.apply_css(targetPath);
+	});
 }
