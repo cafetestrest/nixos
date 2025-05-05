@@ -76,8 +76,9 @@ function WorkspaceButton({ id }: { id: number }) {
             valign={Gtk.Align.CENTER}
             $clicked={() => dispatch(`${id}`)}
         >
-            <label label={`${id}`} />
-            {/* <box className={"workspace-dot"} /> TODO add this instead of label */}
+            <box
+                cssClasses={["workspace-dot"]}
+            />
         </button>
     );
 }

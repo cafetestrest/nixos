@@ -10,7 +10,7 @@ import ScreenrecordToggle from "./items/ScreenrecordToggle";
 import ScreenshotMenu from "./menu/ScreenshotMenu";
 import ScreenrecordMenu from "./menu/ScreenrecordMenu";
 import { config, QuickSettingsToggleWidgets } from "../../lib/config";
-import { State } from "ags/state";
+import { bind, State } from "ags/state";
 import { chunk } from "../../lib/utils";
 
 const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
@@ -28,31 +28,6 @@ const menuWidgets: Partial<Record<QuickSettingsToggleWidgets, JSX.Element>> = {
     screenshotToggle: ScreenshotMenu(),
     screenrecordToggle: ScreenrecordMenu(),
 };
-
-// const renderQuickSettings = (layout: QuickSettingsToggleWidgets[][], rowsPerPage: number) =>
-//     chunk(layout, rowsPerPage).flatMap((pageRows, pageIndex) => {
-//         const pageRowBoxes = pageRows.map((row) => {
-//             const rowWidgets = row.map(widget => widgetMap[widget] || null);
-//             return <box cssClasses={["qs-row"]}>{...rowWidgets}</box>;
-//         });
-
-//         const extraMenus = pageRows
-//             .flatMap(row => row.map(widget => menuWidgets[widget]))
-//             .filter(menu => menu != null);
-
-//         return [
-//             <box
-//                 cssClasses={["qs-page"]}
-//                 name={`page${pageIndex}`}
-//                 _type="named"
-//                 orientation={Gtk.Orientation.VERTICAL}
-//                 spacing={4} //todo add to config
-//             >
-//                 {...pageRowBoxes}
-//             </box>,
-//             ...extraMenus,
-//         ];
-//     });
 
 const renderQuickSettings = (
     layout: QuickSettingsToggleWidgets[][],
@@ -104,12 +79,18 @@ export default () => {
             </stack>
             <box
                 halign={Gtk.Align.CENTER}
+                cssClasses={["qs-pages-box"]}
             >
                 {[...Array(totalPages).keys()].map(i =>
                     <button
-                        label={String(i)}
                         $clicked={() => visible.set(`page${i}`)}
-                    />
+                        valign={Gtk.Align.CENTER}
+                        cssClasses={bind(visible).as(p => p === `page${i}` ? ["workspace-button", "active"] : ["workspace-button"])}
+                    >
+                        <box
+                            cssClasses={["workspace-dot"]}
+                        />
+                    </button>
                 )}
             </box>
         </box>

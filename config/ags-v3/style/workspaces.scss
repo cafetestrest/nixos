@@ -1,0 +1,60 @@
+@use "sass:color";
+@use "./variables.scss" as *;
+
+window#bar .workspaces,
+window#quicksettings .qs-pages-box {
+    transition: all 0.3s;
+    border-radius: $radius;
+
+    // &:hover {
+    //     background-color: color.adjust($fgColor, $alpha: -0.8);
+    // }
+
+    .workspace-button {
+        // &:first-child {
+        //     padding-left: 0.5rem;
+        // }
+
+        // &:last-child {
+        //     padding-right: 0.3rem;
+        // }
+
+        transition: all 0.3s;
+        background: transparent;
+        box-shadow: none;
+        min-height: 0.35rem;
+        min-width: 0.35rem;
+        border-radius: 0px;
+        margin: 0;
+        padding: 0.6rem 0.25rem;
+    }
+
+    .workspace-button.active:hover .workspace-dot,
+    .workspace-button:focus .workspace-dot{
+        box-shadow: $focusShadow;
+    }
+
+    .workspace-button:hover .workspace-dot{
+        background-color: $accentTransparent;
+    }
+
+    .workspace-button.occupied .workspace-dot{
+        background-color: $fgColor;
+    }
+
+    .workspace-button.occupied:hover .workspace-dot{
+        background-color: $accentTransparent;
+    }
+
+    .workspace-button.active .workspace-dot {
+        background: $accentGradient;
+        min-width: 1.5rem;
+        min-height: 0.6rem;
+    }
+
+    .workspace-dot {
+        transition: all 0.3s;
+        background-color: $shadowTransparent;
+        border-radius: $radius;
+    }
+}
