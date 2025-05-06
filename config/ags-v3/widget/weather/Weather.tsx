@@ -289,6 +289,7 @@ const WeatherInfo = (weatherData: TooltipItem) => (
 
 export const WeatherSchedule = ({ days }: { days: number|null }) => (<box
 	cssClasses={["weather"]}
+	$destroy={() => weather.destroy()}
 	$={(self) => {
 		weather.subscribe(() => {
 			let tooltip = weather.get();

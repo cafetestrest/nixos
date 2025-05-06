@@ -25,8 +25,8 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
     return (
         <box
             cssClasses={["media-player"]}
-            css={bind(player, "coverArt").as(c =>
-                `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`)}
+            // css={bind(player, "coverArt").as(c =>
+            //     `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`)}
             visible={bind(player, "playback_status").as((status) => status != AstalMpris.PlaybackStatus.STOPPED)}
             orientation={Gtk.Orientation.VERTICAL}
         >

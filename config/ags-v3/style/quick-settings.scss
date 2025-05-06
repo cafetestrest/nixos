@@ -41,5 +41,13 @@ window#quicksettings {
         color: $bgColor;
       }
     }
+
+    .media-player-image {
+      // border-radius: $radius;
+      background-size: cover;
+      // background-repeat: repeat;
+      border: 1px solid red;
+      // background-position: center;
+    }
   }
 }

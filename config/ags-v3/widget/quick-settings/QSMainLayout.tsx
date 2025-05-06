@@ -8,15 +8,15 @@ import MediaPlayer from "./items/MediaPlayer";
 import { WeatherSchedule } from "../weather/Weather";
 
 export default () => {
-  const weatherWidget = true ? <WeatherSchedule days={5} /> : <box visible={false} />
-
   return (
     <box
       cssClasses={["qs-main-page"]}
       orientation={Gtk.Orientation.VERTICAL}
     >
       <QSToggles/>
-      <box>
+      <box
+        spacing={4} //todo
+      >
         <AudioSlider />
         <SinkButton />
       </box>
@@ -24,7 +24,8 @@ export default () => {
         <BrightnessSlider />
       </box>
       <SinkMenu />
-      {weatherWidget}
+      <WeatherSchedule days={5} />
+      {/* todo X days in config */}
       <MediaPlayer />
     </box>
   )

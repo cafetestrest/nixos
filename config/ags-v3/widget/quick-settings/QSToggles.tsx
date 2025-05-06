@@ -43,7 +43,10 @@ const renderQuickSettings = (
                 .filter(menu => menu != null);
 
             return [
-                <box cssClasses={["qs-row"]}>
+                <box
+                    cssClasses={["qs-row"]}
+                    spacing={4} //todo
+                >
                     {...rowWidgets}
                 </box>,
                 ...rowMenus,

@@ -1,0 +1,46 @@
+@use "./variables.scss" as *;
+
+window#quicksettings box#quicksettings-content {
+  .brightness-slider-overlay,
+  .volume-slider-overlay {
+    * {
+      padding: 0;
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      border-radius: $radius;
+      color: $bgColor;
+    }
+
+    .slider-brightness-icon,
+    .slider-volume-icon {
+      margin-left: $qsSliderIconMarginLeft;
+    }
+
+    trough {
+      background: $inverseSurfaceTransparent;
+
+      highlight,
+      progress {
+        background: $accentGradient;
+      }
+
+      highlight:hover {
+        box-shadow: $hoverShadow;
+      }
+
+      highlight:focus {
+        box-shadow: $focusShadow;
+      }
+
+      highlight {
+        min-width: $qsSliderHighlightWidth;
+        background: $accentGradient;
+      }
+
+      slider {
+        background: transparent;
+      }
+    }
+  }
+}
