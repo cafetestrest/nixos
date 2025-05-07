@@ -6,6 +6,39 @@ import SinkMenu from "./menu/SinkMenu";
 import BrightnessSlider from "./items/BrightnessSlider";
 import MediaPlayer from "./items/MediaPlayer";
 import { WeatherSchedule } from "../weather/Weather";
+import { QuickSettingsWidgets, config } from "../../lib/config";
+
+function AudioSliderBox() {
+  return (
+    <box
+      spacing={config.quickSettings.sliderSpacing}
+    >
+      <AudioSlider />
+      <SinkButton />
+    </box>
+  );
+}
+
+function BrightnessSliderBox() {
+  return (
+    <box
+      spacing={config.quickSettings.sliderSpacing}
+    >
+      <BrightnessSlider />
+    </box>
+  );
+}
+
+const widgetMap: Record<QuickSettingsWidgets, JSX.Element> = {
+  QSToggles: QSToggles(),
+  AudioSliderBox: AudioSliderBox(),
+  BrightnessSliderBox: BrightnessSliderBox(),
+  SinkMenu: SinkMenu(),
+  WeatherSchedule: WeatherSchedule({ days: config.weather.days }),
+  MediaPlayer: MediaPlayer(),
+};
+
+const renderWidgets = (widgetKeys: QuickSettingsWidgets[]) => widgetKeys.map(key => widgetMap[key] || null);
 
 export default () => {
   return (
@@ -13,20 +46,7 @@ export default () => {
       cssClasses={["qs-main-page"]}
       orientation={Gtk.Orientation.VERTICAL}
     >
-      <QSToggles/>
-      <box
-        spacing={4} //todo
-      >
-        <AudioSlider />
-        <SinkButton />
-      </box>
-      <box>
-        <BrightnessSlider />
-      </box>
-      <SinkMenu />
-      <WeatherSchedule days={5} />
-      {/* todo X days in config */}
-      <MediaPlayer />
+      {renderWidgets(config.quickSettings.layout)}
     </box>
   )
 }

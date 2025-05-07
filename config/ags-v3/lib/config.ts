@@ -27,6 +27,7 @@ interface Config {
     powermenu: Powermenu;
     substitutions: Substitutions;
     systemIndicators: SystemIndicators;
+    weather: Weather;
 }
 
 interface Applauncher {
@@ -91,8 +92,8 @@ interface Common {
 }
 
 interface Hyprland {
-    enabled: boolean,
-    numberOfWorkspaces: number,
+    enabled: boolean, // enable / disable hyprland widgets
+    numberOfWorkspaces: number, // number of workspaces to be rendered
 }
 
 export type BarWidgets =
@@ -144,12 +145,12 @@ interface ScreenRecord {
 }
 
 interface Substitutions {
-    icons: Record<string, string>;
-    titles: Record<string, string>;
+    icons: Record<string, string>; // icons used to substitute strings if they cannot be found from hyprland classname
+    titles: Record<string, string>; // titles used to substitute strings if they cannot be found
 }
 
 interface SystemIndicators {
-    layout: SysIndicatorWidgets[],
+    layout: SysIndicatorWidgets[], // layout of system indicators icons in bar
 }
 
 export type QuickSettingsToggleWidgets =
@@ -162,10 +163,24 @@ export type QuickSettingsToggleWidgets =
     | "colorPickerToggle"
     | "screenrecordToggle"
 
+export type QuickSettingsWidgets =
+    | "QSToggles"
+    | "AudioSliderBox"
+    | "BrightnessSliderBox"
+    | "SinkMenu"
+    | "WeatherSchedule"
+    | "MediaPlayer"
+
 interface QuickSettings {
-    rowsPerPage: number,
-    menuSpacing: number,
-    togglesLayout: QuickSettingsToggleWidgets[][],
+    rowsPerPage: number, // qs widget rows per page
+    menuSpacing: number, // qs spacing of menu widgets
+    sliderSpacing: number, // qs spacing of slider boxes (audio, brightness)
+    layout: QuickSettingsWidgets[], // qs widget layout
+    togglesLayout: QuickSettingsToggleWidgets[][], // qs toggles widget layout
+}
+
+interface Weather {
+    days: number; // number of days rendered in weather widget
 }
 
 let configDefaults: Config = {
@@ -310,12 +325,24 @@ let configDefaults: Config = {
     quickSettings: {
         rowsPerPage: 3,
         menuSpacing: 16,
+        sliderSpacing: 4,
+        layout: [
+            "QSToggles",
+            "AudioSliderBox",
+            "BrightnessSliderBox",
+            "SinkMenu",
+            "WeatherSchedule",
+            "MediaPlayer",
+        ],
         togglesLayout: [
             ["noteToggle", "nightLightToggle"],
             ["idleToggle", "microphoneToggle"],
             ["dndToggle", "screenshotToggle"],
             ["colorPickerToggle", "screenrecordToggle"],
-        ]
+        ],
+    },
+    weather: {
+        days: 5,
     }
 };
 

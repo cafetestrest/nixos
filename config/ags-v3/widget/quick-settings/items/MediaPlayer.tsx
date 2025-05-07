@@ -44,7 +44,7 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                 halign={START}
                 valign={START}
                 wrap={true}
-                label={bind(player, "artist")}
+                label={bind(player, "artist").as(a => a !== null ? a : "")}
                 ellipsize={Pango.EllipsizeMode.END}
                 maxWidthChars={20}
             />

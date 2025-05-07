@@ -31,7 +31,10 @@ export default () => {
                     orientation={Gtk.Orientation.VERTICAL}
                   >
                     <label xalign={0} label={bind(player, "title")} />
-                    <label xalign={0} label={bind(player, "artist")} />
+                    <label
+                      xalign={0}
+                      label={bind(player, "artist").as(a => a !== null ? a : "")}
+                    />
                   </box>
                   <box hexpand halign={Gtk.Align.END}>
                     <button
