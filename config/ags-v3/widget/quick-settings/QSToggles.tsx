@@ -45,7 +45,7 @@ const renderQuickSettings = (
             return [
                 <box
                     cssClasses={["qs-row"]}
-                    spacing={4} //todo
+                    spacing={config.quickSettings.rowSpacing}
                 >
                     {...rowWidgets}
                 </box>,
@@ -59,7 +59,7 @@ const renderQuickSettings = (
                 name={`page${pageIndex}`}
                 _type="named"
                 orientation={Gtk.Orientation.VERTICAL}
-                spacing={4} // keep this configurable if needed
+                spacing={config.quickSettings.pageSpacing}
             >
                 {...pageContent}
             </box>

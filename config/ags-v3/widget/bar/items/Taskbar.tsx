@@ -4,6 +4,10 @@ import { For } from "ags/gtk4";
 import { config } from "../../../lib/config";
 
 export default () => {
+    if (!config.hyprland.enabled) {
+        return <box visible={false} />
+    };
+
     const hyprland = AstalHyprland.get_default();
     const substitutions = config.substitutions.icons;
 

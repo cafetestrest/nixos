@@ -3,6 +3,7 @@ import AstalMpris from "gi://AstalMpris";
 import { bind } from "ags/state";
 import { For } from "ags/gtk4";
 import Pango from "gi://Pango?version=1.0";
+import Gio from "gi://Gio?version=2.0";
 
 function lengthStr(length: number) {
     const hours = Math.floor(length / 3600);
@@ -21,77 +22,97 @@ function lengthStr(length: number) {
 function MediaPlayer({ player }: { player: AstalMpris.Player }) {
     const { START, END } = Gtk.Align;
     const playerIcon = "audio-x-generic-symbolic";
+    const coverArt = bind(player, "coverArt").as(c => Gio.file_new_for_path(c));
+
+    const PlayerArt = () => (
+        <Gtk.ScrolledWindow
+           canFocus={false}
+           cssClasses={["mediaplayer-art"]}
+           heightRequest={100}
+           opacity={0.3}
+        >
+            <Gtk.Picture
+                file={coverArt}
+                contentFit={Gtk.ContentFit.COVER}
+                cssClasses={["mediaplayer-art-picture"]}
+            />
+        </Gtk.ScrolledWindow>
+    )
 
     return (
-        <box
+        <overlay
             cssClasses={["media-player"]}
-            // css={bind(player, "coverArt").as(c =>
-            //     `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`)}
             visible={bind(player, "playback_status").as((status) => status != AstalMpris.PlaybackStatus.STOPPED)}
-            orientation={Gtk.Orientation.VERTICAL}
         >
-            <box cssClasses={["title"]}>
-                <label
-                    ellipsize={Pango.EllipsizeMode.END}
-                    hexpand={true}
-                    halign={START}
-                    label={bind(player, "title")}
-                    maxWidthChars={36}
-                />
-                <image iconName={playerIcon} />
-            </box>
-            <label
-                halign={START}
-                valign={START}
-                wrap={true}
-                label={bind(player, "artist").as(a => a !== null ? a : "")}
-                ellipsize={Pango.EllipsizeMode.END}
-                maxWidthChars={20}
-            />
-            <slider
-                visible={bind(player, "length").as(l => l > 0)}
-                // onDragged={({ value }) => player.position = value * player.length} TODO
-                value={bind(player, "position").as(p => player.length > 0 ? p / player.length : 0)}
-            />
-            <centerbox
-                cssClasses={["actions"]}
+            <box
+                _type="overlay"
+                cssClasses={["player-content"]}
+                orientation={Gtk.Orientation.VERTICAL}
             >
-                <label
-                    hexpand={true}
-                    cssClasses={["position"]}
-                    halign={START}
-                    visible={bind(player, "length").as(l => l > 0)}
-                    label={bind(player, "position").as(lengthStr)}
-                />
-                <box>
-                    <button
-                        $clicked={() => player.previous()}
-                        visible={bind(player, "canGoPrevious")}
-                    >
-                        <image iconName="media-skip-backward-symbolic" />
-                    </button>
-                    <button
-                        $clicked={() => player.play_pause()}
-                        visible={bind(player, "canControl")}
-                    >
-                        <image iconName={bind(player, "playbackStatus").as(s => s === AstalMpris.PlaybackStatus.PLAYING ? "media-playback-pause-symbolic" : "media-playback-start-symbolic" )} />
-                    </button>
-                    <button
-                        $clicked={() => player.next()}
-                        visible={bind(player, "canGoNext")}
-                    >
-                        <image iconName="media-skip-forward-symbolic" />
-                    </button>
+                <box cssClasses={["title"]}>
+                    <label
+                        ellipsize={Pango.EllipsizeMode.END}
+                        hexpand={true}
+                        halign={START}
+                        label={bind(player, "title")}
+                        maxWidthChars={36}
+                    />
+                    <image iconName={playerIcon} />
                 </box>
                 <label
-                    cssClasses={["length"]}
-                    hexpand={true}
-                    halign={END}
-                    visible={bind(player, "length").as(l => l > 0)}
-                    label={bind(player, "length").as(l => l > 0 ? lengthStr(l) : "0:00")}
+                    halign={START}
+                    valign={START}
+                    wrap={true}
+                    label={bind(player, "artist").as(a => a !== null ? a : "")}
+                    ellipsize={Pango.EllipsizeMode.END}
+                    maxWidthChars={20}
                 />
-            </centerbox>
-        </box>
+                <slider
+                    visible={bind(player, "length").as(l => l > 0)}
+                    // onDragged={({ value }) => player.position = value * player.length} TODO
+                    value={bind(player, "position").as(p => player.length > 0 ? p / player.length : 0)}
+                />
+                <box
+                    cssClasses={["actions"]}
+                >
+                    <label
+                        hexpand={true}
+                        cssClasses={["position"]}
+                        halign={START}
+                        visible={bind(player, "length").as(l => l > 0)}
+                        label={bind(player, "position").as(lengthStr)}
+                    />
+                    <box>
+                        <button
+                            $clicked={() => player.previous()}
+                            visible={bind(player, "canGoPrevious")}
+                        >
+                            <image iconName="media-skip-backward-symbolic" />
+                        </button>
+                        <button
+                            $clicked={() => player.play_pause()}
+                            visible={bind(player, "canControl")}
+                        >
+                            <image iconName={bind(player, "playbackStatus").as(s => s === AstalMpris.PlaybackStatus.PLAYING ? "media-playback-pause-symbolic" : "media-playback-start-symbolic" )} />
+                        </button>
+                        <button
+                            $clicked={() => player.next()}
+                            visible={bind(player, "canGoNext")}
+                        >
+                            <image iconName="media-skip-forward-symbolic" />
+                        </button>
+                    </box>
+                    <label
+                        cssClasses={["length"]}
+                        hexpand={true}
+                        halign={END}
+                        visible={bind(player, "length").as(l => l > 0)}
+                        label={bind(player, "length").as(l => l > 0 ? lengthStr(l) : "0:00")}
+                    />
+                </box>
+            </box>
+            <PlayerArt/>
+        </overlay>
     );
 }
 

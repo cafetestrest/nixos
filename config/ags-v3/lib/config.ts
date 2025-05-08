@@ -173,8 +173,12 @@ export type QuickSettingsWidgets =
 
 interface QuickSettings {
     rowsPerPage: number, // qs widget rows per page
+    rowSpacing: number, // qs spacing between row widgets
+    pageSpacing: number, // qs spacing between page widgets
     menuSpacing: number, // qs spacing of menu widgets
     sliderSpacing: number, // qs spacing of slider boxes (audio, brightness)
+    marginTop: number, // qs window margin top
+    marginEnd: number, // qs window margin right
     layout: QuickSettingsWidgets[], // qs widget layout
     togglesLayout: QuickSettingsToggleWidgets[][], // qs toggles widget layout
 }
@@ -324,8 +328,12 @@ let configDefaults: Config = {
     },
     quickSettings: {
         rowsPerPage: 3,
+        rowSpacing: 4,
+        pageSpacing: 4,
         menuSpacing: 16,
         sliderSpacing: 4,
+        marginTop: 38,
+        marginEnd: 12,
         layout: [
             "QSToggles",
             "AudioSliderBox",

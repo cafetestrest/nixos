@@ -3,6 +3,7 @@ import Gtk from "gi://Gtk?version=4.0";
 import Gdk from "gi://Gdk?version=4.0";
 import Graphene from "gi://Graphene";
 import QSMainLayout from "./QSMainLayout";
+import { config } from "../../lib/config";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -54,9 +55,9 @@ export default () => {
         name="quicksettings-content"
         valign={Gtk.Align.START}
         halign={Gtk.Align.END}
-        marginTop={38}
-        // todo add this in config (halign, valign, marginTop, marginEnd)
-        marginEnd={12}
+        marginTop={config.quickSettings.marginTop}
+        // todo add this in config (halign, valign)
+        marginEnd={config.quickSettings.marginEnd}
         orientation={Gtk.Orientation.VERTICAL}
       >
         <QSMainLayout />

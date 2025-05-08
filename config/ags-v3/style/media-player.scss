@@ -1,0 +1,61 @@
+@use "./variables.scss" as *;
+
+overlay.media-player .player-content {
+    padding: 0.4rem;
+    border-radius: $radius;
+    background-size: cover;
+    background-position: center;
+
+    box.title {
+        label {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+    }
+
+    scale {
+        padding: 0;
+        margin: .4rem 0;
+
+        trough {
+            min-height: 8px;
+            border-radius: $radius;
+        }
+
+        progress {
+            border-radius: $radius;
+        }
+
+        highlight {
+            border-radius: $radius;
+            background: $accentGradient;
+
+            &:hover {
+                box-shadow: $hoverShadow;
+            }
+
+            &:focus {
+                box-shadow: $focusShadow;
+            }
+        }
+
+        slider {
+            all: unset;
+            border-radius: $radius;
+        }
+    }
+
+    .actions {
+        button {
+            min-width: 0;
+            min-height: 0;
+            padding: .4rem;
+            margin: 0 .2rem;
+            color: $mediaPlayerActionIcon;
+        }
+    }
+}
+
+.mediaplayer-art-picture {
+    border-radius: $radius / 2;
+}
