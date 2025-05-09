@@ -45,8 +45,8 @@ app.start({
         app.add_window(quickSettings);
 
         // reloadScss('style/bar.scss', '/tmp/astal/style.css', 'style/main.scss');
-        reloadScss('style/media-player.scss', '/tmp/astal/style.css', 'style/main.scss');
-        // reloadScss('style/quick-settings.scss', '/tmp/astal/style.css', 'style/main.scss');
+        // reloadScss('style/media-player.scss', '/tmp/astal/style.css', 'style/main.scss');
+        reloadScss('style/quick-settings.scss', '/tmp/astal/style.css', 'style/main.scss');
         // reloadScss('style/workspaces.scss', '/tmp/astal/style.css', 'style/main.scss');
 
         app.get_monitors().map(Bar);

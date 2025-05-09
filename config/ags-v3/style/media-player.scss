@@ -1,7 +1,7 @@
 @use "./variables.scss" as *;
 
 overlay.media-player .player-content {
-    padding: 0.4rem;
+    padding: 0.5rem;
     border-radius: $radius;
     background-size: cover;
     background-position: center;
@@ -57,5 +57,5 @@ overlay.media-player .player-content {
 }
 
 .mediaplayer-art-picture {
-    border-radius: $radius / 2;
+    border-radius: $radius;
 }

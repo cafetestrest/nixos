@@ -12,6 +12,7 @@ function AudioSliderBox() {
   return (
     <box
       spacing={config.quickSettings.sliderSpacing}
+      cssClasses={["audio-sliders-box-es"]}
     >
       <AudioSlider />
       <SinkButton />
@@ -29,16 +30,57 @@ function BrightnessSliderBox() {
   );
 }
 
+function WeatherScheduleBox() {
+  return (
+    <box
+      marginBottom={config.quickSettings.sliderSpacing}
+    >
+      <WeatherSchedule days={config.weather.days} />
+    </box>
+  );
+}
+
 const widgetMap: Record<QuickSettingsWidgets, JSX.Element> = {
   QSToggles: QSToggles(),
   AudioSliderBox: AudioSliderBox(),
   BrightnessSliderBox: BrightnessSliderBox(),
   SinkMenu: SinkMenu(),
-  WeatherSchedule: WeatherSchedule({ days: config.weather.days }),
+  WeatherSchedule: WeatherScheduleBox(),
   MediaPlayer: MediaPlayer(),
 };
 
-const renderWidgets = (widgetKeys: QuickSettingsWidgets[]) => widgetKeys.map(key => widgetMap[key] || null);
+const widgetsWithoutSpacings: QuickSettingsWidgets[] = [
+  "WeatherSchedule",
+  "MediaPlayer",
+];
+
+const renderWidgets = (widgetKeys: QuickSettingsWidgets[]) => {
+  return widgetKeys.map((key, index) => {
+    const element = widgetMap[key];
+    if (!element) return null;
+
+    if (widgetsWithoutSpacings.includes(key)) return element;
+
+    const isFirst = index === 0;
+    const isLast = index === widgetKeys.length - 1;
+    const hasBefore = index > 0;
+    const hasAfter = index < widgetKeys.length - 1;
+
+    const spacing = config.quickSettings.qsLayoutMarginSpacing;
+
+    const marginTop = !isFirst && hasBefore ? spacing : 0;
+    const marginBottom = !isLast && hasAfter ? spacing : 0;
+
+    return (
+      <box
+        marginTop={marginTop}
+        marginBottom={marginBottom}
+      >
+        {element}
+      </box>
+    );
+  });
+};
 
 export default () => {
   return (

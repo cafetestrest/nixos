@@ -18,7 +18,7 @@ window#quicksettings {
   background: transparent;
   color: $fgColor;
 
-  box#quicksettings-content {
+  box.content {
     background: $bgColor;
     border-radius: 12px;
     padding: 6px;
@@ -40,10 +40,6 @@ window#quicksettings {
         background: $accentGradient;
         color: $bgColor;
       }
-    }
-
-    .media-player-image {
-      border: 1px solid red;
     }
   }
 }

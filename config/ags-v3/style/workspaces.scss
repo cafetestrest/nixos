@@ -11,6 +11,8 @@ window#quicksettings .qs-pages-box {
     // }
 
     .workspace-button {
+        padding: 0.4rem 0.2rem;
+
         // &:first-child {
         //     padding-left: 0.5rem;
         // }
@@ -26,7 +28,6 @@ window#quicksettings .qs-pages-box {
         min-width: 0.35rem;
         border-radius: 0px;
         margin: 0;
-        padding: 0.6rem 0.15rem;
     }
 
     .workspace-button.active:hover .workspace-dot,

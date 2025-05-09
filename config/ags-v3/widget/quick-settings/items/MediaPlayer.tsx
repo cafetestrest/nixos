@@ -4,6 +4,7 @@ import { bind } from "ags/state";
 import { For } from "ags/gtk4";
 import Pango from "gi://Pango?version=1.0";
 import Gio from "gi://Gio?version=2.0";
+import { config } from "../../../lib/config";
 
 function lengthStr(length: number) {
     const hours = Math.floor(length / 3600);
@@ -22,7 +23,7 @@ function lengthStr(length: number) {
 function MediaPlayer({ player }: { player: AstalMpris.Player }) {
     const { START, END } = Gtk.Align;
     const playerIcon = "audio-x-generic-symbolic";
-    const coverArt = bind(player, "coverArt").as(c => Gio.file_new_for_path(c));
+    const coverArt = bind(player, "coverArt").as(c => c && Gio.file_new_for_path(c));
 
     const PlayerArt = () => (
         <Gtk.ScrolledWindow
@@ -32,7 +33,7 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
            opacity={0.3}
         >
             <Gtk.Picture
-                file={coverArt}
+                file={coverArt} //todo add default blank image file path
                 contentFit={Gtk.ContentFit.COVER}
                 cssClasses={["mediaplayer-art-picture"]}
             />
@@ -43,6 +44,7 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
         <overlay
             cssClasses={["media-player"]}
             visible={bind(player, "playback_status").as((status) => status != AstalMpris.PlaybackStatus.STOPPED)}
+            marginTop={config.quickSettings.qsLayoutMarginSpacing}
         >
             <box
                 _type="overlay"
@@ -111,7 +113,7 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                     />
                 </box>
             </box>
-            <PlayerArt/>
+            {coverArt && <PlayerArt/>}
         </overlay>
     );
 }

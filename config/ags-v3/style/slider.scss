@@ -1,6 +1,6 @@
 @use "./variables.scss" as *;
 
-window#quicksettings box#quicksettings-content {
+window#quicksettings box.content {
   .brightness-slider-overlay,
   .volume-slider-overlay {
     * {

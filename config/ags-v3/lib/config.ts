@@ -3,6 +3,55 @@ import { readFileAsync } from "ags/file";
 import { fileExists } from "./utils";
 import { State } from "ags/state";
 
+export type BarWidgets =
+    | "Launcher"
+    | "Mpris"
+    | "Taskbar"
+    | "Workspaces"
+    | "Clock"
+    | "BluetoothPowerUsage"
+    | "Tray"
+    | "Wireless"
+    | "Battery"
+    | "SystemIndicators"
+    | "Powermenu"
+
+export type PowermenuWidgets =
+    | "lock"
+    | "sleep"
+    | "logout"
+    | "reboot"
+    | "shutdown"
+
+export type SysIndicatorWidgets =
+    | "dndIndicator"
+    | "idleIndicator"
+    | "nightlightIndicator"
+    | "powerProfileIndicator"
+    | "bluetoothIndicator"
+    | "wifiIndicator"
+    | "wiredIndicator"
+    | "micMuteIndicator"
+    | "audioIndicator"
+
+export type QuickSettingsToggleWidgets =
+    | "noteToggle"
+    | "nightLightToggle"
+    | "idleToggle"
+    | "microphoneToggle"
+    | "dndToggle"
+    | "screenshotToggle"
+    | "colorPickerToggle"
+    | "screenrecordToggle"
+
+export type QuickSettingsWidgets =
+    | "QSToggles"
+    | "AudioSliderBox"
+    | "BrightnessSliderBox"
+    | "SinkMenu"
+    | "WeatherSchedule"
+    | "MediaPlayer"
+
 interface Config {
     applauncher: Applauncher;
     bar: Bar;
@@ -96,37 +145,6 @@ interface Hyprland {
     numberOfWorkspaces: number, // number of workspaces to be rendered
 }
 
-export type BarWidgets =
-    | "Launcher"
-    | "Mpris"
-    | "Taskbar"
-    | "Workspaces"
-    | "Clock"
-    | "BluetoothPowerUsage"
-    | "Tray"
-    | "Wireless"
-    | "Battery"
-    | "SystemIndicators"
-    | "Powermenu"
-
-export type PowermenuWidgets =
-    | "lock"
-    | "sleep"
-    | "logout"
-    | "reboot"
-    | "shutdown"
-
-export type SysIndicatorWidgets =
-    | "dndIndicator"
-    | "idleIndicator"
-    | "nightlightIndicator"
-    | "powerProfileIndicator"
-    | "bluetoothIndicator"
-    | "wifiIndicator"
-    | "wiredIndicator"
-    | "micMuteIndicator"
-    | "audioIndicator"
-
 interface Powermenu {
     layout: PowermenuWidgets[], // layout of icons and commands that will appear on powermenu popup
     lockCommand: string, // command used to lock PC
@@ -153,32 +171,15 @@ interface SystemIndicators {
     layout: SysIndicatorWidgets[], // layout of system indicators icons in bar
 }
 
-export type QuickSettingsToggleWidgets =
-    | "noteToggle"
-    | "nightLightToggle"
-    | "idleToggle"
-    | "microphoneToggle"
-    | "dndToggle"
-    | "screenshotToggle"
-    | "colorPickerToggle"
-    | "screenrecordToggle"
-
-export type QuickSettingsWidgets =
-    | "QSToggles"
-    | "AudioSliderBox"
-    | "BrightnessSliderBox"
-    | "SinkMenu"
-    | "WeatherSchedule"
-    | "MediaPlayer"
-
 interface QuickSettings {
     rowsPerPage: number, // qs widget rows per page
     rowSpacing: number, // qs spacing between row widgets
     pageSpacing: number, // qs spacing between page widgets
     menuSpacing: number, // qs spacing of menu widgets
     sliderSpacing: number, // qs spacing of slider boxes (audio, brightness)
+    qsLayoutMarginSpacing: number; // qs spacing marginTop and marginBottom spacing for widget layout
     marginTop: number, // qs window margin top
-    marginEnd: number, // qs window margin right
+    marginRight: number, // qs window margin right
     layout: QuickSettingsWidgets[], // qs widget layout
     togglesLayout: QuickSettingsToggleWidgets[][], // qs toggles widget layout
 }
@@ -332,8 +333,9 @@ let configDefaults: Config = {
         pageSpacing: 4,
         menuSpacing: 16,
         sliderSpacing: 4,
+        qsLayoutMarginSpacing: 1,
         marginTop: 38,
-        marginEnd: 12,
+        marginRight: 12,
         layout: [
             "QSToggles",
             "AudioSliderBox",
