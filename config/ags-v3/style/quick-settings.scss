@@ -26,6 +26,10 @@ window#quicksettings {
         background: $accentGradient;
         color: $bgColor;
       }
+
+      &.emptyToggle {
+        margin: $qsTogglesMargin; // same as toggle with image margin
+      }
     }
 
     .qs-menu {

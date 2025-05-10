@@ -12,8 +12,19 @@ import ScreenrecordMenu from "./menu/ScreenrecordMenu";
 import { config, QuickSettingsToggleWidgets } from "../../lib/config";
 import { bind, State } from "ags/state";
 import { chunk } from "../../lib/utils";
+import WifiToggle from "./items/WifiToggle";
+import WifiMenu from "./menu/WifiMenu";
 
+function EmptyToggle() {
+    return (
+        <box
+            cssClasses={["toggles", "control-center-button", "emptyToggle"]}
+            hexpand={true}
+        />
+    );
+}
 const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
+    wifiToggle: WifiToggle(),
     noteToggle: NoteToggle(),
     nightLightToggle: NightLightToggle(),
     idleToggle: IdleToggle(),
@@ -22,11 +33,13 @@ const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
     screenshotToggle: ScreenshotToggle(),
     screenrecordToggle: ScreenrecordToggle(),
     colorPickerToggle: ColorPickerToggle(),
+    emptyToggle: EmptyToggle(),
 };
 
 const menuWidgets: Partial<Record<QuickSettingsToggleWidgets, JSX.Element>> = {
     screenshotToggle: ScreenshotMenu(),
     screenrecordToggle: ScreenrecordMenu(),
+    wifiToggle: WifiMenu(),
 };
 
 const renderQuickSettings = (

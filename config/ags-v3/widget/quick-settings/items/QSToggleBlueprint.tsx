@@ -27,10 +27,12 @@ export default ({ className, icon, label, clicked, arrowIcon }: ToggleProps) => 
                     <label
                         label={label}
                     />
+                    <box
+                        hexpand={true}
+                    />
                     {arrowIcon && (
                         <image
                             halign={Gtk.Align.END}
-                            hexpand={true}
                             iconName={arrowIcon}
                         />
                     )}

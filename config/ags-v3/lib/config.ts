@@ -35,6 +35,7 @@ export type SysIndicatorWidgets =
     | "audioIndicator"
 
 export type QuickSettingsToggleWidgets =
+    | "wifiToggle"
     | "noteToggle"
     | "nightLightToggle"
     | "idleToggle"
@@ -43,6 +44,7 @@ export type QuickSettingsToggleWidgets =
     | "screenshotToggle"
     | "colorPickerToggle"
     | "screenrecordToggle"
+    | "emptyToggle"
 
 export type QuickSettingsWidgets =
     | "QSToggles"
@@ -345,10 +347,11 @@ let configDefaults: Config = {
             "MediaPlayer",
         ],
         togglesLayout: [
-            ["noteToggle", "nightLightToggle"],
+            ["wifiToggle", "nightLightToggle"],
             ["idleToggle", "microphoneToggle"],
             ["dndToggle", "screenshotToggle"],
             ["colorPickerToggle", "screenrecordToggle"],
+            ["noteToggle", "emptyToggle"],
         ],
     },
     weather: {
@@ -401,5 +404,6 @@ export const qsPopupActive = new State(false);
 export const qsRevealSinksButton = new State<boolean>(false);
 export const qsRevealScreenshot = new State<boolean>(false);
 export const qsRevealScreenRecord = new State<boolean>(false);
+export const qsRevealWifi = new State<boolean>(false);
 export const recordInternalAudioToggle = new State<boolean>(config.screenRecord.recordInternalAudioToggle);
 export const recordOnlySelectedScreenToggle = new State<boolean>(config.screenRecord.recordOnlySelectedScreenToggle);

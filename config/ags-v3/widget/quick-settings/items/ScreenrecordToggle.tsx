@@ -8,7 +8,7 @@ export default () => {
 
     return (
         <QSToggleBlueprint
-            className={active.as((a) => a ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "inactive"])}
+            className={active.as((a) => a ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "screenrec"])}
             icon={icons.record}
             label={"Screen record"}
             clicked={() => {
