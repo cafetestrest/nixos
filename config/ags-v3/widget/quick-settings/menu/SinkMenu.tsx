@@ -42,6 +42,7 @@ export default () => {
                 cssClasses={["qs-menu"]}
                 spacing={config.quickSettings.menuSpacing}
                 orientation={Gtk.Orientation.VERTICAL}
+                marginBottom={config.quickSettings.sliderSpacing}
             >
                 <label
                     label={"Audio source"}

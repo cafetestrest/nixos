@@ -52,6 +52,7 @@ const widgetMap: Record<QuickSettingsWidgets, JSX.Element> = {
 const widgetsWithoutSpacings: QuickSettingsWidgets[] = [
   "WeatherSchedule",
   "MediaPlayer",
+  "SinkMenu",
 ];
 
 const renderWidgets = (widgetKeys: QuickSettingsWidgets[]) => {

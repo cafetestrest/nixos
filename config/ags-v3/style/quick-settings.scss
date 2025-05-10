@@ -1,19 +1,5 @@
 @use "./variables.scss" as *;
 
-// popover
-.quick-settings {
-  .toggles {
-    &.active {
-      // background-color: blue;
-    }
-
-    &.inactive {
-      // background-color: red;
-    }
-  }
-}
-
-// window
 window#quicksettings {
   background: transparent;
   color: $fgColor;
@@ -39,6 +25,71 @@ window#quicksettings {
       &.active {
         background: $accentGradient;
         color: $bgColor;
+      }
+    }
+
+    .qs-menu {
+      padding: $qsMenuPadding;
+      background: $inverseSurfaceTransparent;
+      border-radius: $radius * 1.5;
+      color: $fgColor;
+
+      .menu-button {
+        // padding: 0.5rem 1.5rem;
+        padding: 0;
+        margin: 0;
+
+        &.filled {
+          background: $accentGradient;
+          color: $bgColor;
+        }
+
+        &.outlined {
+          background: none;
+          border: 1px solid $shadowTransparent;
+        }
+
+        &:hover,
+        &:focus {
+          box-shadow: $hoverShadow;
+        }
+      }
+
+      .qs-menu-content {
+        label {
+          margin-left: 1rem;
+        }
+
+        button image {
+          padding: 0rem 0.5rem;
+        }
+      }
+
+      .qs-menu-icon-record {
+        color: red;
+      }
+
+      .qs-menu-screen-record-content {
+        image {
+          margin-right: 1rem;
+        }
+      }
+
+      button {
+        background: $bgColor;
+
+        &:hover {
+          box-shadow: $hoverShadow;
+        }
+
+        &:focus {
+          box-shadow: $focusShadowTransparent;
+        }
+      }
+
+      .qs-menu-label {
+        font-size: 1.3rem;
+        font-weight: 600;
       }
     }
   }

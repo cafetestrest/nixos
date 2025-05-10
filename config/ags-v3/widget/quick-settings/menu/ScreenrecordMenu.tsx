@@ -70,7 +70,11 @@ export default () => {
                                 qsRevealScreenRecord.set(false);
                             }}
                         >
-                            <label label={"Cancel"} />
+                            <label
+                                halign={Gtk.Align.CENTER}
+                                valign={Gtk.Align.CENTER}
+                                label={"Cancel"}
+                            />
                         </button>
                         <button
                             cssClasses={["menu-button", "filled"]}
@@ -80,7 +84,11 @@ export default () => {
                                 ScreenRecordService.start();
                             }}
                         >
-                            <label label={"Start"} />
+                            <label
+                                halign={Gtk.Align.CENTER}
+                                valign={Gtk.Align.CENTER}
+                                label={"Start"}
+                            />
                         </button>
                     </box>
                 </box>
