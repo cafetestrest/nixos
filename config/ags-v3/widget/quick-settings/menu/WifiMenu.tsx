@@ -29,7 +29,7 @@ export default () => {
             revealChild={bind(qsRevealWifi)}
         >
             <box
-                marginBottom={config.quickSettings.sliderSpacing}
+                marginTop={config.quickSettings.sliderSpacing}
                 visible={wifi.as(Boolean)}
             >
                 <With value={bind(network, "wifi")}>
@@ -71,31 +71,6 @@ export default () => {
                     )
                 }
                 </With>
-                    {/* <For each={bind(audio, "speakers")}>
-                        {(speaker) => {
-                            return (
-                                <button
-                                    $clicked={() => speaker.set_is_default(true)}
-                                >
-                                    <box>
-                                        <image
-                                            iconName={getProperAudioIcon(speaker.icon)}
-                                        />
-                                        <label
-                                            label={getProperAudioDescription(speaker.description)}
-                                            ellipsize={Pango.EllipsizeMode.END}
-                                            maxWidthChars={40}
-                                            hexpand={true}
-                                        />
-                                        <image
-                                            iconName={icons.ui.tick}
-                                            visible={speaker.isDefault}
-                                        />
-                                    </box>
-                                </button>
-                            );
-                        }}
-                    </For> */}
             </box>
         </revealer>
     );

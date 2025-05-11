@@ -8,7 +8,7 @@ window#bar {
   > box {
     background: $bgColor;
     border-radius: 10px;
-    margin: 8px;
+    // margin: 8px; // makes it floating bar
   }
 
   button {

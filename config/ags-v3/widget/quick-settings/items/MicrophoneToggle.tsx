@@ -16,7 +16,7 @@ export default () => {
 
     return (
         <QSToggleBlueprint
-            className={mute.as((muted) => muted ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "inactive"])}
+            className={mute.as((muted) => !muted ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "inactive"])}
             icon={mute.as((muted) => icons.audio.mic[muted ? "muted" : "high"])}
             label={mute.as((muted) => muted ? "Muted" : "Unmuted")}
             clicked={() => {

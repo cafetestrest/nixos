@@ -14,6 +14,7 @@ export default () => {
                 cssClasses={["qs-menu"]}
                 spacing={config.quickSettings.menuSpacing}
                 orientation={Gtk.Orientation.VERTICAL}
+                marginTop={config.quickSettings.sliderSpacing}
             >
                 <image
                     iconName={icons.record}

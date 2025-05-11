@@ -57,12 +57,20 @@ const renderQuickSettings = (
 
             return [
                 <box
-                    cssClasses={["qs-row"]}
-                    spacing={config.quickSettings.rowSpacing}
+                    orientation={Gtk.Orientation.VERTICAL}
                 >
-                    {...rowWidgets}
-                </box>,
-                ...rowMenus,
+                    <box
+                        cssClasses={["qs-row"]}
+                        spacing={config.quickSettings.rowSpacing}
+                    >
+                        {rowWidgets}
+                    </box>
+                    <box
+                        orientation={Gtk.Orientation.VERTICAL}
+                    >
+                        {rowMenus}
+                    </box>
+                </box>
             ];
         });
 
@@ -74,7 +82,7 @@ const renderQuickSettings = (
                 orientation={Gtk.Orientation.VERTICAL}
                 spacing={config.quickSettings.pageSpacing}
             >
-                {...pageContent}
+                {pageContent}
             </box>
         ];
     });
