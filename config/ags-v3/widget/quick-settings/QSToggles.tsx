@@ -12,7 +12,7 @@ import ScreenrecordMenu from "./menu/ScreenrecordMenu";
 import { config, QuickSettingsToggleWidgets } from "../../lib/config";
 import { bind, State } from "ags/state";
 import { chunk } from "../../lib/utils";
-import WifiToggle from "./items/WifiToggle";
+import NetworkToggle from "./items/NetworkToggle";
 import WifiMenu from "./menu/WifiMenu";
 
 function EmptyToggle() {
@@ -24,7 +24,7 @@ function EmptyToggle() {
     );
 }
 const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
-    wifiToggle: WifiToggle(),
+    networkToggle: NetworkToggle(),
     noteToggle: NoteToggle(),
     nightLightToggle: NightLightToggle(),
     idleToggle: IdleToggle(),
@@ -39,7 +39,7 @@ const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
 const menuWidgets: Partial<Record<QuickSettingsToggleWidgets, JSX.Element>> = {
     screenshotToggle: ScreenshotMenu(),
     screenrecordToggle: ScreenrecordMenu(),
-    wifiToggle: WifiMenu(),
+    networkToggle: WifiMenu(),
 };
 
 const renderQuickSettings = (

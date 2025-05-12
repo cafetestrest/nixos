@@ -25,10 +25,19 @@ window#quicksettings {
       &.active {
         background: $accentGradient;
         color: $bgColor;
+
+        &:focus {
+          box-shadow: $focusShadow;
+        }
+
+        &:hover {
+          box-shadow: $hoverShadow;
+        }
       }
 
       &.emptyToggle {
-        margin: $qsTogglesMargin; // same as toggle with image margin
+        border-radius: 1.5rem;
+        margin: 0;
       }
     }
 

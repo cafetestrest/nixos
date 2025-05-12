@@ -25,7 +25,7 @@ $shadowTransparent: color.adjust($shadowColor, $alpha: -0.5);
 $inverseSurfaceTransparent: color.adjust($inverseSurface, $alpha: -0.92);
 // $closeRedTransparent: color.adjust($closeRed, $alpha: -0.5);
 $accentGradient: linear-gradient(to right, #51a4e7, #6cb2eb);
-$hoverShadow: inset 0 0 0 9999px rgba(255, 255, 255, 0.2);
+$hoverShadow: inset 25px 25px 0 1.6rem rgba(255, 255, 255, 0.2);
 $focusShadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
 $focusShadowTransparent: inset 0 0 0 2px rgba(255, 255, 255, 0.2);
 $radius: 1.5rem;

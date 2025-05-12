@@ -35,7 +35,7 @@ export type SysIndicatorWidgets =
     | "audioIndicator"
 
 export type QuickSettingsToggleWidgets =
-    | "wifiToggle"
+    | "networkToggle"
     | "noteToggle"
     | "nightLightToggle"
     | "idleToggle"
@@ -347,11 +347,11 @@ let configDefaults: Config = {
             "MediaPlayer",
         ],
         togglesLayout: [
-            ["wifiToggle", "nightLightToggle"],
+            ["noteToggle", "nightLightToggle"],
             ["idleToggle", "microphoneToggle"],
             ["dndToggle", "screenshotToggle"],
-            ["colorPickerToggle", "screenrecordToggle"],
-            ["noteToggle", "emptyToggle"],
+            ["networkToggle", "screenrecordToggle"],
+            ["colorPickerToggle", "emptyToggle"],
         ],
     },
     weather: {
