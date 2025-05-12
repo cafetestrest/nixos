@@ -80,7 +80,7 @@ export default () => {
                     return (
                         <box
                             cssClasses={["bt-usage"]}
-                            // spacing={5}
+                            spacing={5} // todo
                         >
                             <image
                                 cssClasses={["bt-icon"]}

@@ -223,6 +223,7 @@ export default () => {
     >
       <box
         halign={Gtk.Align.CENTER}
+        spacing={3} // todo
       >
         {renderWidgets(config.systemIndicators.layout)}
       </box>

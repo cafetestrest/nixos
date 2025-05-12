@@ -13,6 +13,8 @@ import Battery from "./items/Battery";
 import BluetoothPowerUsage from "./items/BluetoothPowerUsage";
 import SystemIndicators from "./items/SystemIndicators";
 import { config, BarWidgets } from "../../lib/config";
+import MediaPlayer from "./items/MediaPlayer";
+import { Gtk } from "ags/gtk4";
 
 const widgetMap: Record<BarWidgets, JSX.Element> = {
   Launcher: Launcher(),
@@ -20,6 +22,7 @@ const widgetMap: Record<BarWidgets, JSX.Element> = {
   Taskbar: Taskbar(),
   Workspaces: Workspaces(),
   Clock: Clock(),
+  MediaPlayer: MediaPlayer(),
   BluetoothPowerUsage: BluetoothPowerUsage(),
   Tray: Tray(),
   Wireless: Wireless(),
@@ -44,7 +47,15 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
     >
       <centerbox>
         <box _type="start">
-  				{renderWidgets(config.barLayout.startLeft)}
+          <box>
+            {renderWidgets(config.barLayout.startLeft)}
+          </box>
+          <box
+            halign={Gtk.Align.END}
+            hexpand={true}
+          >
+            {renderWidgets(config.barLayout.startRight)}
+          </box>
         </box>
         <box _type="center">
   				{renderWidgets(config.barLayout.center)}

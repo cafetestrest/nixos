@@ -15,6 +15,7 @@ export type BarWidgets =
     | "Battery"
     | "SystemIndicators"
     | "Powermenu"
+    | "MediaPlayer"
 
 export type PowermenuWidgets =
     | "lock"
@@ -204,7 +205,9 @@ let configDefaults: Config = {
             "Taskbar",
             "Workspaces",
         ],
-        startRight: [],
+        startRight: [
+            "MediaPlayer",
+        ],
         center: [
             "Clock",
         ],
