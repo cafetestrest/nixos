@@ -1,6 +1,6 @@
 import AstalMpris from "gi://AstalMpris";
 import AstalApps from "gi://AstalApps";
-import { For } from "ags/gtk4";
+import { For, Gtk } from "ags/gtk4";
 import { bind, State } from "ags/state";
 import icons from "../../../lib/icons";
 
@@ -28,11 +28,12 @@ export default () => {
                 $clicked={() => revealMedia.set(!revealMedia.get())}
                 cssClasses={["bar-button"]}
               >
-                <box
+                <image
                   cssClasses={["cover"]}
-                >
-                  <label label={"cover"}/>
-                </box>
+                  css="border-radius: 1.5rem;"
+                  pixelSize={18}
+                  file={bind(player, "coverArt")}
+                />
               </button>
 
               <revealer
