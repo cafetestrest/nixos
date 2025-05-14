@@ -24,7 +24,7 @@ rec {
     favoriteApps = [ "kitty.desktop" "brave-browser.desktop" "org.gnome.Nautilus.desktop" "org.gnome.TextEditor.desktop" ];
   };
   hash = {
-    wardenSha256 = "sha256-lu3SoQzCxPGtexDXQmjx59vD667/yeWnKUXR1xSmopY="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"
+    wardenSha256 = "sha256-ZwxuftNOjB7Snp3+RKJq1ucarIki1OHqgrkJRzmnKHM="; #nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/wardenenv/warden --quiet --rev refs/heads/main | jq -r '.sha256')"
   };
   commit = {
     yeelightShellScriptsGitRev = "d8b463dea258b4f1fdf4277dd5b37ca8bebad3ee";  #https://github.com/darth-hp/yeelight-shell-scripts/commits/main/
