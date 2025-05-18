@@ -14,6 +14,8 @@ import { bind, State } from "ags/state";
 import { chunk } from "../../lib/utils";
 import NetworkToggle from "./items/NetworkToggle";
 import WifiMenu from "./menu/WifiMenu";
+import BluetoothToggle from "./items/BluetoothToggle";
+import BluetoothMenu from "./menu/BluetoothMenu";
 
 function EmptyToggle() {
     return (
@@ -24,6 +26,7 @@ function EmptyToggle() {
     );
 }
 const widgetMap: Record<QuickSettingsToggleWidgets, JSX.Element> = {
+    bluetoothToggle: BluetoothToggle(),
     networkToggle: NetworkToggle(),
     noteToggle: NoteToggle(),
     nightLightToggle: NightLightToggle(),
@@ -40,6 +43,7 @@ const menuWidgets: Partial<Record<QuickSettingsToggleWidgets, JSX.Element>> = {
     screenshotToggle: ScreenshotMenu(),
     screenrecordToggle: ScreenrecordMenu(),
     networkToggle: WifiMenu(),
+    bluetoothToggle: BluetoothMenu(),
 };
 
 const renderQuickSettings = (
