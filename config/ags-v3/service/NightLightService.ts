@@ -1,6 +1,6 @@
 import { execAsync, exec } from "ags/process";
 import { dependencies } from "../lib/utils";
-import GObject from "ags/gobject";
+import GObject from "gi://GObject"
 
 export enum NightlightMode {
 	Off = 0,

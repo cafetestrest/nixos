@@ -202,7 +202,7 @@ let configDefaults: Config = {
     barLayout: {
         startLeft: [
             "Launcher",
-            "Mpris",
+            // "Mpris",
             "Taskbar",
             "Workspaces",
         ],
@@ -216,8 +216,8 @@ let configDefaults: Config = {
         endRight: [
             "BluetoothPowerUsage",
             "Tray",
-            "Wireless",
-            "Battery",
+            // "Wireless",
+            // "Battery",
             "SystemIndicators",
             "Powermenu",
         ],
@@ -388,9 +388,7 @@ function overrideConfigRecursive<T extends object>(
 }
 
 try {
-    const variablesConfigFile = "config.jsosn";
-    const configDir = GLib.get_user_config_dir();
-	const configFileOverride = `${configDir}/.ags-override/${variablesConfigFile}`;
+	const configFileOverride = GLib.get_user_config_dir() + `/.ags-override/config.jsosn`; // todo rename TO config.json
 
     if (fileExists(configFileOverride)) {
         const configOverrideContent = await readFileAsync(configFileOverride).catch(err => print(err));

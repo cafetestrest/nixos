@@ -8,7 +8,7 @@ import {
   recordOnlySelectedScreenToggle,
   config
 } from "../lib/config";
-import GObject from "ags/gobject";
+import GObject from "gi://GObject"
 
 const now = () => GLib.DateTime.new_now_local().format(config.screenRecord.recordSaveDateFormat);
 

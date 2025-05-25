@@ -1,14 +1,13 @@
 import { execAsync, exec } from "ags/process";
 import { monitorFile, readFileAsync } from "ags/file";
-import GObject, { register, property } from "ags/gobject";
 import { dependencies } from "../lib/utils";
+import GObject from "gi://GObject"
 
 const get = (args: string) => Number(exec(`brightnessctl ${args}`))
 const screen = exec(`bash -c "ls -w1 /sys/class/backlight | head -1"`)
 
 const available = dependencies(["brightnessctl"]);
 
-@register({ GTypeName: "Brightness" })
 class Brightness extends GObject.Object {
     static instance: Brightness
     static get_default() {
@@ -21,7 +20,6 @@ class Brightness extends GObject.Object {
     #screenMax = get("max")
     #screen = get("get") / (get("max") || 1)
 
-    @property(Number)
     get screen() { return this.#screen }
 
     set screen(percent) {

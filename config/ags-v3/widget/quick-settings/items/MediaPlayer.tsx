@@ -38,7 +38,7 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                 cssClasses={["mediaplayer-art-picture"]}
             />
         </Gtk.ScrolledWindow>
-    )
+    );
 
     return (
         <overlay

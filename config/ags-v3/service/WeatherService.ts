@@ -1,4 +1,4 @@
-import { State, Poll } from "ags/state";
+import { Poll } from "ags/state";
 
 export type TooltipItem = {
       date: string;
