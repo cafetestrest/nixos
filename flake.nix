@@ -2,13 +2,11 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    # nixpkgs-old.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    # nur.url = "github:nix-community/NUR";
     ghostty.url = "github:ghostty-org/ghostty";
 
     astal = {
@@ -38,7 +36,7 @@
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
-      ref = "refs/tags/v0.45.2";
+      ref = "refs/tags/v0.49.0";
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -46,7 +44,7 @@
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
 
     home-manager = {
-      url = github:nix-community/home-manager/release-24.11;
+      url = github:nix-community/home-manager/release-25.05;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

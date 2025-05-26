@@ -4,6 +4,7 @@ with lib;
 
 let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  portalPkgs = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
   mediaControl = "${pkgs.playerctl}/bin/playerctl";
   lock = "${pkgs.hyprlock}/bin/hyprlock";
@@ -54,6 +55,7 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       package = hyprland;
+      portalPackage = portalPkgs;
       #package = hyprland.override { debug = true; };
       systemd.enable = true;
       xwayland.enable = true;
@@ -158,36 +160,34 @@ in
         windowrule = let
           f = regex: "float, ^(${regex})$";
         in [
-          (f "org.gnome.Calculator")
-          # (f "org.gnome.Nautilus")
-          (f "pavucontrol")
-          (f "nm-connection-editor")
-          (f "blueberry.py")
-          (f "org.gnome.Settings")
-          (f "org.gnome.design.Palette")
-          (f "Color Picker")
-          (f "xdg-desktop-portal")
-          (f "xdg-desktop-portal-gnome")
-          (f "transmission-gtk")
-          (f "com.github.Aylur.ags")
-          (f "com.github.hluk.copyq")
-          (f "copyq")
-          (f "jetbrains-phpstorm")
-          "float,Rofi"
-          # "workspace 7, title:Spotify"
-          "opacity 0.85,terminator"
-          "move cursor -50% -20%,^(com.github.hluk.copyq)$"
-          "move cursor -50% -20%,^(copyq)$"
-          "size 350 200,^(com.github.hluk.copyq)$"
-          "size 350 200,^(copyq)$"
+          "opacity 0.85,class:terminator"
+          "move cursor -50% -20%,class:com.github.hluk.copyq"
+          "move cursor -50% -20%,class:copyq"
+          "size 350 200,class:com.github.hluk.copyq"
+          "size 350 200,class:copyq"
         ];
 
         windowrulev2 = let
-          f = regex: "stayfocused,class:${regex}";
+          stayfocused = regex: "stayfocused,class:${regex}";
+          float = regex: "float,class:${regex}";
         in [
-          (f "com.github.hluk.copyq")
-          (f "copyq")
-          (f "Rofi")
+          (stayfocused "com.github.hluk.copyq")
+          (stayfocused "copyq")
+          (stayfocused "Rofi")
+          (float "org.gnome.Calculator")
+          (float "pavucontrol")
+          (float "nm-connection-editor")
+          (float "blueberry.py")
+          (float "org.gnome.Settings")
+          (float "org.gnome.design.Palette")
+          (float "Color Picker")
+          (float "xdg-desktop-portal")
+          (float "xdg-desktop-portal-gnome")
+          (float "transmission-gtk")
+          (float "com.github.Aylur.ags")
+          (float "com.github.hluk.copyq")
+          (float "copyq")
+          (float "jetbrains-phpstorm")
         ];
 
         # layerrule = let

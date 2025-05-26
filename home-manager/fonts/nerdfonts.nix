@@ -3,15 +3,6 @@
 with lib;
 
 let
-  nerdfonts = (pkgs.nerdfonts.override { fonts = [
-    "Ubuntu"
-    "UbuntuMono"
-    "CascadiaCode"
-    "FantasqueSansMono"
-    "FiraCode"
-    "Mononoki"
-  ]; });
-
   cfg = config.module.fonts.nerdfonts;
 in
 {
@@ -20,8 +11,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      nerdfonts
+    home.packages = with pkgs.nerd-fonts; [
+      ubuntu
+      ubuntu-mono
+      caskaydia-cove
     ];
   };
 }
