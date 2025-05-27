@@ -19,6 +19,7 @@ export const substitutions: substitutions = {
 		"": "preferences-desktop-display",
 		"chromium-browser": "chromium",
 		"VSCodium": "vscodium",
+		"codium": "vscodium",
 		"codium-url-handler": "vscodium",
 		"jetbrains-phpstorm": "phpstorm",
 		"org.kde.kdeconnect.app": "kdeconnect",
