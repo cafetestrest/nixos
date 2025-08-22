@@ -28,7 +28,7 @@ function open_startup_apps() {
 
     # startup_app_class_names (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
     # startup_app_class_names (left)          (right-upper)   (right-lower)
-    startup_app_class_names=("Brave-browser" "codium-url-handler" "kitty")
+    startup_app_class_names=("brave-browser" "codium" "kitty")
     # startup_app_class_names=("Chromium-browser" "terminator")
     sleep_time
     sleep_time
@@ -148,7 +148,7 @@ check_apps_running() {
         fi
 
         #focus on the current class_name:
-        hyprctl dispatch focuswindow "$class_name"
+        hyprctl dispatch focuswindow class:"$class_name"
         sleep_time
 
         class_at=$(echo "$classWindowInfo" | grep "at:" | awk '{print $2}' | head -1)
