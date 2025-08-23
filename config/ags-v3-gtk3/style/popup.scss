@@ -1,0 +1,18 @@
+@use "./variables.scss" as *;
+
+.popover .quicksettings,
+.popover .popup-box,
+.popover .popup {
+    background-color: $bgColor;
+    box-shadow: 2px 3px 7px 0 rgba(0,0,0,0.4);
+    border-radius: $radius;
+    padding: 8px;
+}
+
+window#powermenu.popover {
+    background: $popupTransparent;
+}
+
+.popover {
+    background-color: transparent;
+}
