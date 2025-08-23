@@ -1,7 +1,7 @@
 import icons from "../../../lib/icons";
 import QSToggleBlueprint from "../items/QSToggleBlueprint";
 import AstalWp from "gi://AstalWp?version=0.1";
-import { bind } from "ags/state";
+import { createBinding } from "ags";
 
 export default () => {
     const { defaultMicrophone: mic } = AstalWp.get_default()!;
@@ -12,7 +12,7 @@ export default () => {
         );
     }
 
-    const mute = bind(mic, "mute");
+    const mute = createBinding(mic, "mute");
 
     return (
         <QSToggleBlueprint

@@ -1,6 +1,6 @@
 import AstalWp from "gi://AstalWp";
-import { bind } from "ags/state";
 import Gtk from "gi://Gtk?version=4.0";
+import { createBinding } from "ags";
 
 export default () => {
     const { defaultSpeaker: speaker } = AstalWp.get_default()!;
@@ -14,15 +14,15 @@ export default () => {
             >
                 <image
                     cssClasses={["slider-volume-icon"]}
-                    iconName={bind(speaker, "volumeIcon")}
+                    iconName={createBinding(speaker, "volumeIcon")}
                     halign={Gtk.Align.START}
                     hexpand={false}
-                    _type="overlay"
+                    $type="overlay"
                 />
                 <slider
                     hexpand={true}
-                    value={bind(speaker, "volume")}
-                    $changeValue={({ value }) => {
+                    value={createBinding(speaker, "volume")}
+                    onValueChanged={({ value }) => {
                         speaker.set_volume(value)
 
                         if (speaker.volume === 0) {

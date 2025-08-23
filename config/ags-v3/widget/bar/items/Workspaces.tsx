@@ -1,8 +1,8 @@
 import AstalHyprland from "gi://AstalHyprland";
-import { State, bind, derive } from "ags/state";
 import { config } from "../../../lib/config";
-import Gtk from "gi://Gtk?version=4.0";
 import { range, throttle } from "../../../lib/utils";
+import { createState, createBinding, createComputed } from "ags";
+import { Gtk } from "ags/gtk4";
 
 const workspaces = config.hyprland.numberOfWorkspaces;
 
@@ -12,10 +12,10 @@ function workspace(id: number) {
     const get = () => hyprland.get_workspace(id)
         || AstalHyprland.Workspace.dummy(id, null);
 
-    const state = new State(get())
+    const [state, setState] = createState(get())
 
-    hyprland.connect("workspace-added", () => state.value = get())
-    hyprland.connect("workspace-removed", () => state.value = get())
+    hyprland.connect("workspace-added", () => setState(get()))
+    hyprland.connect("workspace-removed", () => setState(get()))
 
     return state
 }
@@ -25,8 +25,8 @@ function WorkspaceButton({ id }: { id: number }) {
     const ws = workspace(id);
     const dispatch = (command: string) => hyprland.dispatch("workspace", command);
 
-    const largestWorkspaceId: State<number> = derive(
-        [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients")],
+    const largestWorkspaceId = createComputed(
+        [createBinding(hyprland, "focusedWorkspace"), createBinding(hyprland, "clients")],
         (focused, clients) => {
             const focusedId = focused.id;
 
@@ -47,8 +47,8 @@ function WorkspaceButton({ id }: { id: number }) {
         },
     );
 
-    const classNames: State<string[]> = derive(
-        [bind(hyprland, "focusedWorkspace"), bind(hyprland, "clients"), bind(ws)],
+    const classNames = createComputed(
+        [createBinding(hyprland, "focusedWorkspace"), createBinding(hyprland, "clients"), ws],
         (focused, clients, ws) => {
             const classes = ["workspace-button"];
 
@@ -66,15 +66,10 @@ function WorkspaceButton({ id }: { id: number }) {
 
     return (
         <button
-            cssClasses={classNames()}
-            $destroy={() => {
-                classNames.destroy();
-                ws.destroy();
-                largestWorkspaceId.destroy();
-            }}
-            visible={bind(largestWorkspaceId).as(ws => id <= ws + 1)}
+            cssClasses={classNames}
+            visible={largestWorkspaceId.as(ws => id <= ws + 1)}
             valign={Gtk.Align.CENTER}
-            $clicked={() => dispatch(`${id}`)}
+            onClicked={() => dispatch(`${id}`)}
         >
             <box
                 cssClasses={["workspace-dot"]}

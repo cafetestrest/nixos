@@ -1,24 +1,25 @@
-import { For } from "ags/gtk4";
-import { bind } from "ags/state";
-import Gtk from "gi://Gtk?version=4.0";
 import AstalTray from "gi://AstalTray";
+import { For, createBinding } from "ags";
+import { Gtk } from "ags/gtk4";
 
 export default () => {
   const tray = AstalTray.get_default();
+  const items = createBinding(tray, "items")
+
   const init = (btn: Gtk.MenuButton, item: AstalTray.TrayItem) => {
     btn.menuModel = item.menuModel
     btn.insert_action_group("dbusmenu", item.actionGroup)
-    bind(item, "actionGroup").subscribe(btn, () => {
+    item.connect("notify::action-group", () => {
       btn.insert_action_group("dbusmenu", item.actionGroup)
     })
-  };
+  }
 
   return (
     <box>
-      <For each={bind(tray, "items")}>
+      <For each={items}>
         {(item) => (
           <menubutton $={(self) => init(self, item)}>
-            <image gicon={bind(item, "gicon")} />
+            <image gicon={createBinding(item, "gicon")} />
           </menubutton>
         )}
       </For>

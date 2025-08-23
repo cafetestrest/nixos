@@ -12,10 +12,28 @@ window#bar {
   }
 
   button {
-    border-radius: 8px;
-    margin: 2px;
+    // background-color: transparent;
+    // border-radius: 8px;
+    margin: 0px 2px;
     min-height: 0;
-    padding: 4px 8px;
+    // padding: 4px 8px;
+
+    &:first-child {
+      margin: 0px;
+    }
+
+    &:last-child {
+      margin: 0px;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      border-radius: $radius;
+      background-color: $hover;
+    }
 
     &.focused image {
       -gtk-icon-shadow: 0 0 0.5rem $accent;
@@ -25,4 +43,20 @@ window#bar {
   .powermenu {
     color: $redTransparent;
   }
+
+  // .media button.bar-button-cover {
+  //   // padding: 0px;
+  //   // margin: px;
+  //   // min-height: 0px;
+  //   // min-width: 0px;
+  //   padding: 0px;
+  //   margin: 0px 0px;
+  //   border-radius: 900px;
+
+  //   .mediaplayer-art-picture {
+  //     // border: 1px solid red;
+  //     padding: 0px;
+  //     margin: 4px;
+  //   }
+  // }
 }

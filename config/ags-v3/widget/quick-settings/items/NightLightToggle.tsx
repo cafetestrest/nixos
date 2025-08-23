@@ -1,7 +1,7 @@
 import icons from "../../../lib/icons";
 import QSToggleBlueprint from "../items/QSToggleBlueprint";
 import Service, { profileName } from "../../../service/NightLightService";
-import { bind } from "ags/state";
+import { createBinding } from "ags";
 
 export default () => {
     if (!Service) {
@@ -10,7 +10,7 @@ export default () => {
         );
     }
 
-    const profile = bind(Service, "profile");
+    const profile = createBinding(Service, "profile");
 
     return (
         <QSToggleBlueprint

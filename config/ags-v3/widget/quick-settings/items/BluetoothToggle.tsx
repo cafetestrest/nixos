@@ -1,22 +1,23 @@
 import icons from "../../../lib/icons";
 import QSToggleBlueprint from "./QSToggleBlueprint";
-import { bind } from "ags/state";
-import { qsRevealBluetooth } from "../../../lib/config";
+import { qsRevealBluetooth, setQsRevealBluetooth } from "../../../lib/config";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
+import { createBinding, createState } from "ags";
 
 export default () => {
     const bluetooth = AstalBluetooth.get_default();
-    const isPowered = bind(bluetooth, "isPowered");
-    const active = bind(qsRevealBluetooth);
+    const isPowered = createBinding(bluetooth, "isPowered");
+    // const active = createBinding(qsRevealBluetooth);
+    const [active, setActive] = createState(qsRevealBluetooth);
 
     return (
         <QSToggleBlueprint
             className={isPowered.as(p => p ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "inactive"])}
             clicked={() => {
-                qsRevealBluetooth.set(!qsRevealBluetooth.get())
+                setQsRevealBluetooth(!qsRevealBluetooth)
             }}
             icon={isPowered.as(p => icons.bluetooth[p ? "enabled" : "disabled"])}
-            label={bind(bluetooth, "isConnected").as(c => {
+            label={createBinding(bluetooth, "isConnected").as(c => {
                 if (c) {
                     const devices = bluetooth.get_devices();
                     const connectedDevices = devices.filter(
@@ -32,7 +33,8 @@ export default () => {
                 }
                 return "Bluetooth";
             })}
-            arrowIcon={active.as(a => a ? icons.ui.arrow.down : icons.ui.arrow.right)}
+            // arrowIcon={active.as(a => a ? icons.ui.arrow.down : icons.ui.arrow.right)}
+            arrowIcon={!active ? icons.ui.arrow.right : icons.ui.arrow.down}
         />
     );
 }

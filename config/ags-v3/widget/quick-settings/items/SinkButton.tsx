@@ -1,18 +1,17 @@
 import icons from "../../../lib/icons";
-import { qsRevealSinksButton } from "../../../lib/config";
-import { bind } from "ags/state";
+import { qsRevealSinksButton, setQsRevealSinksButton } from "../../../lib/config";
 
 export default () => {
     return (
         <button
             cssClasses={["qs-sink-button"]}
-            $clicked={() => {
+            onClicked={() => {
                 // qsRevertRevealerStatus("sinks");
-    			qsRevealSinksButton.set(!qsRevealSinksButton.get())
+    			setQsRevealSinksButton(!qsRevealSinksButton.get())
             }}
         >
             <image
-                iconName={bind(qsRevealSinksButton).as(a => a ? icons.ui.arrow.up : icons.ui.arrow.down)}
+                iconName={qsRevealSinksButton.as(a => a ? icons.ui.arrow.up : icons.ui.arrow.down)}
             />
         </button>
     );

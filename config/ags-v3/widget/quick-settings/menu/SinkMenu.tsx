@@ -1,42 +1,43 @@
 import icons from "../../../lib/icons";
-import { bind } from "ags/state";
+import { createBinding, For } from "ags";
 import { config, qsRevealSinksButton } from "../../../lib/config";
 import { Gtk } from "ags/gtk4";
 import AstalWp from "gi://AstalWp";
-import { For } from "ags/gtk4"
 import Pango from "gi://Pango?version=1.0";
 
-function getProperAudioIcon(icon: string) {
-    switch (icon) {
-        case 'audio-headset-bluetooth':
-        case 'audio-headset-analog-usb':
-            return icons.audio.type.headset;
-        case 'audio-card-analog-usb':
-            return icons.audio.type.speaker;
-        case 'audio-card-analog-pci':
-            return icons.audio.volume.high;
-        default:
-            return icons.audio.type.card;
-    }
-}
-
-function getProperAudioDescription(description: string) {
-    if (description.includes("HDMI Audio"))
-        return "HDMI Audio";
-
-    if (description.includes("USB"))
-        return "USB Audio";
-
-    return description;
-}
-
 export default () => {
+    function getProperAudioIcon(icon: string) {
+        switch (icon) {
+            case 'audio-headset-bluetooth':
+            case 'audio-headset-analog-usb':
+                return icons.audio.type.headset;
+            case 'audio-card-analog-usb':
+                return icons.audio.type.speaker;
+            case 'audio-card-analog-pci':
+                return icons.audio.volume.high;
+            default:
+                return icons.audio.type.card;
+        }
+    }
+
+    function getProperAudioDescription(description: string) {
+        if (description.includes("HDMI Audio"))
+            return "HDMI Audio";
+
+        if (description.includes("USB"))
+            return "USB Audio";
+
+        return description;
+    }
+
 	const audio = AstalWp.get_default()?.audio!;
+
+    return null;//todo fix
 
     return (
         <revealer
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
-            revealChild={bind(qsRevealSinksButton)}
+            revealChild={qsRevealSinksButton}
         >
             <box
                 cssClasses={["qs-menu"]}
@@ -53,11 +54,11 @@ export default () => {
                     spacing={config.quickSettings.menuSpacing}
                     orientation={Gtk.Orientation.VERTICAL}
                 >
-                    <For each={bind(audio, "speakers")}>
+                    <For each={createBinding(audio, "speakers")}>
                         {(speaker) => {
                             return (
                                 <button
-                                    $clicked={() => speaker.set_is_default(true)}
+                                    onClicked={() => speaker.set_is_default(true)}
                                 >
                                     <box>
                                         <image

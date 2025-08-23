@@ -1,11 +1,11 @@
 import icons from "../../../lib/icons";
 import QSToggleBlueprint from "../items/QSToggleBlueprint";
-import { bind } from "ags/state";
+import { createBinding } from "ags";
 import AstalNotifd from "gi://AstalNotifd";
 
 export default () => {
 	const notifd = AstalNotifd.get_default();
-    const dnd = bind(notifd, "dontDisturb");
+    const dnd = createBinding(notifd, "dontDisturb");
 
     return (
         <QSToggleBlueprint

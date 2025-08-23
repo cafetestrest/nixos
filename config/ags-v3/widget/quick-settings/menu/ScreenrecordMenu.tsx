@@ -1,6 +1,5 @@
 import icons from "../../../lib/icons";
-import { bind, hook } from "ags/state";
-import { qsRevealScreenRecord, config } from "../../../lib/config";
+import { qsRevealScreenRecord, setQsRevealScreenRecord, config } from "../../../lib/config";
 import { Gtk } from "ags/gtk4";
 import ScreenRecordService from "../../../service/ScreenRecordService";
 
@@ -8,7 +7,7 @@ export default () => {
     return (
         <revealer
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
-            revealChild={bind(qsRevealScreenRecord)}
+            revealChild={qsRevealScreenRecord}
         >
             <box
                 cssClasses={["qs-menu"]}
@@ -36,7 +35,7 @@ export default () => {
                             hexpand={true}
                             halign={Gtk.Align.END}
                             active={false}
-                            $$active={(self) => ScreenRecordService.setAudioRecord(self.active)}
+                            onNotifyActive={(self) => ScreenRecordService.setAudioRecord(self.active)}
                             $={self => {
                                 qsRevealScreenRecord.subscribe(() => {
                                     self.active = false;
@@ -51,7 +50,7 @@ export default () => {
                             hexpand={true}
                             halign={Gtk.Align.END}
                             active={false}
-                            $$active={(self) => ScreenRecordService.setRecordSelected(self.active)}
+                            onNotifyActive={(self) => ScreenRecordService.setRecordSelected(self.active)}
                             $={self => {
                                 qsRevealScreenRecord.subscribe(() => {
                                     self.active = false;
@@ -67,8 +66,8 @@ export default () => {
                         <button
                             cssClasses={["menu-button", "outlined"]}
                             focusOnClick={false}
-                            $clicked={() => {
-                                qsRevealScreenRecord.set(false);
+                            onClicked={() => {
+                                setQsRevealScreenRecord(false);
                             }}
                         >
                             <label
@@ -80,8 +79,8 @@ export default () => {
                         <button
                             cssClasses={["menu-button", "filled"]}
                             focusOnClick={false}
-                            $clicked={() => {
-                                qsRevealScreenRecord.set(false);
+                            onClicked={() => {
+                                setQsRevealScreenRecord(false);
                                 ScreenRecordService.start();
                             }}
                         >

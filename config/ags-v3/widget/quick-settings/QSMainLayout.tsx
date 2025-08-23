@@ -33,7 +33,7 @@ function BrightnessSliderBox() {
 function WeatherScheduleBox() {
   return (
     <box
-      marginBottom={config.quickSettings.sliderSpacing}
+      // marginBottom={config.quickSettings.sliderSpacing}
     >
       <WeatherSchedule days={config.weather.days} />
     </box>

@@ -1,27 +1,26 @@
 import { Gtk } from "ags/gtk4";
-import { Binding } from "ags/state";
 import Pango from "gi://Pango?version=1.0";
 
-type ToggleProps = {
-    className: string | Binding<string[]> | string[];
-    icon: string | Binding<string>;
-    label: string | Binding<string>;
-    clicked?: () => void;
-    onDestory?: () => void;
-    arrowIcon?: string | Binding<string>;
-}
+// type ToggleProps = {
+//     className: string | Binding<string[]> | string[];
+//     icon: string | Binding<string>;
+//     label: string | Binding<string>;
+//     clicked?: () => void;
+//     onDestory?: () => void;
+//     arrowIcon?: string | Binding<string>;
+// }
 
-export default ({ className, icon, label, clicked, arrowIcon, onDestory }: ToggleProps) => {
+export default ({ className, icon, label, clicked, arrowIcon, onDestory }) => {
     return (
         <box>
             <button
                 cssClasses={typeof className === "string" ? ["toggles", "control-center-button", `${className}`] : className}
-                $clicked={() => {
+                onClicked={() => {
                     if (clicked) {
                         clicked()
                     }
                 }}
-                $destroy={() => {
+                onDestroy={() => {
                     if (onDestory) {
                         onDestory()
                     }

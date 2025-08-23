@@ -73,8 +73,8 @@ export default ({
     //     else searchentry.set_text("")
     //   }}
     >
-      <Gtk.EventControllerKey $key-pressed={onKey} />
-      <Gtk.GestureClick $pressed={onClick} />
+      <Gtk.EventControllerKey onKeyPressed={onKey} />
+      <Gtk.GestureClick onPressed={onClick} />
       <box
         $={(ref) => (contentbox = ref)}
         cssClasses={["content"]}

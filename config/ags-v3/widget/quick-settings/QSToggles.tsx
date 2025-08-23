@@ -10,12 +10,12 @@ import ScreenrecordToggle from "./items/ScreenrecordToggle";
 import ScreenshotMenu from "./menu/ScreenshotMenu";
 import ScreenrecordMenu from "./menu/ScreenrecordMenu";
 import { config, QuickSettingsToggleWidgets } from "../../lib/config";
-import { bind, State } from "ags/state";
 import { chunk } from "../../lib/utils";
 import NetworkToggle from "./items/NetworkToggle";
 import WifiMenu from "./menu/WifiMenu";
 import BluetoothToggle from "./items/BluetoothToggle";
 import BluetoothMenu from "./menu/BluetoothMenu";
+import { createState } from "ags"
 
 function EmptyToggle() {
     return (
@@ -82,7 +82,7 @@ const renderQuickSettings = (
             <box
                 cssClasses={["qs-page"]}
                 name={`page${pageIndex}`}
-                _type="named"
+                $type="named"
                 orientation={Gtk.Orientation.VERTICAL}
                 spacing={config.quickSettings.pageSpacing}
             >
@@ -92,7 +92,7 @@ const renderQuickSettings = (
     });
 
 export default () => {
-    const visible = new State<string>("page0");
+    const [visible, setVisible] = createState<string>("page0");
     const pages = chunk(config.quickSettings.togglesLayout, config.quickSettings.rowsPerPage);
     const totalPages = pages.length;
 
@@ -101,7 +101,7 @@ export default () => {
             orientation={Gtk.Orientation.VERTICAL}
         >
             <stack
-                visibleChildName={visible()}
+                visibleChildName={visible}
             >
                 {renderQuickSettings(config.quickSettings.togglesLayout, config.quickSettings.rowsPerPage)}
             </stack>
@@ -111,9 +111,9 @@ export default () => {
             >
                 {[...Array(totalPages).keys()].map(i =>
                     <button
-                        $clicked={() => visible.set(`page${i}`)}
+                        onClicked={() => setVisible(`page${i}`)}
                         valign={Gtk.Align.CENTER}
-                        cssClasses={bind(visible).as(p => p === `page${i}` ? ["workspace-button", "active"] : ["workspace-button"])}
+                        cssClasses={visible.as(p => p === `page${i}` ? ["workspace-button", "active"] : ["workspace-button"])}
                     >
                         <box
                             cssClasses={["workspace-dot"]}

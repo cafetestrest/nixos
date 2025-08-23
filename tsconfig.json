@@ -1,7 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "experimentalDecorators": true,
     "jsx": "react-jsx",
     "jsxImportSource": "ags/gtk4",
     "module": "ES2022",

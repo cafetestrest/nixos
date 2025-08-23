@@ -1,4 +1,4 @@
-import { Poll } from "ags/state";
+import { createPoll } from "ags/time";
 
 export type TooltipItem = {
       date: string;
@@ -13,7 +13,7 @@ export type TooltipItem = {
       indicator: string;
 };
 
-export const weather = new Poll(
+export const weather = createPoll(
       [],
       600_000,
       "bash -c 'openweathermap'",

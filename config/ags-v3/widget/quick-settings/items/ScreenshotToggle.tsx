@@ -1,20 +1,17 @@
 import icons from "../../../lib/icons";
 import QSToggleBlueprint from "../items/QSToggleBlueprint";
-import { bind } from "ags/state";
-import { qsRevealScreenshot } from "../../../lib/config";
+import { qsRevealScreenshot, setQsRevealScreenshot } from "../../../lib/config";
 
 export default () => {
-    const active = bind(qsRevealScreenshot);
-
     return (
         <QSToggleBlueprint
-            className={active.as((a) => a ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "inactive"])}
+            className={qsRevealScreenshot.as((a) => a ? ["toggles", "control-center-button", "active"] : ["toggles", "control-center-button", "inactive"])}
             icon={icons.screenshot}
             label={"Screenshot"}
             clicked={() => {
-                qsRevealScreenshot.set(!qsRevealScreenshot.get())
+                setQsRevealScreenshot(!qsRevealScreenshot)
             }}
-            arrowIcon={active.as(a => a ? icons.ui.arrow.down : icons.ui.arrow.right)}
+            arrowIcon={qsRevealScreenshot.as(a => a ? icons.ui.arrow.down : icons.ui.arrow.right)}
         />
     );
 }

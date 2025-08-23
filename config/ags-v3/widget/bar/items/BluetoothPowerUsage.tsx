@@ -1,7 +1,7 @@
-import { For } from "ags/gtk4"
-import { bind, Poll } from "ags/state";
+import { createBinding, For } from "ags"
+import { createPoll } from "ags/time";
 
-export const upower = new Poll(
+export const upower = createPoll(
     [{
         model: "string",
         iconName: "string",
@@ -67,9 +67,8 @@ export default () => {
         <box
             cssClasses={["btwrapper"]}
             // spacing={5}
-            $destroy={() => upower.destroy()}
         >
-            <For each={bind(upower)}>
+            <For each={upower}>
                 {(power) => {
                     if (!power.model || !power.batteryPercentage || !power.iconName) {
                         return (

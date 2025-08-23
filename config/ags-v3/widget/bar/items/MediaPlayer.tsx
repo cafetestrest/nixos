@@ -1,12 +1,31 @@
 import AstalMpris from "gi://AstalMpris";
-import AstalApps from "gi://AstalApps";
-import { For, Gtk } from "ags/gtk4";
-import { bind, State } from "ags/state";
+import { For, createState, createBinding } from "ags"
+import { Gtk } from "ags/gtk4"
 import icons from "../../../lib/icons";
+import Gio from "gi://Gio?version=2.0";
+
+function MediaCover({ player }: { player: AstalMpris.Player }) {
+  const coverArt = createBinding(player, "coverArt").as(c => c && Gio.file_new_for_path(c));
+
+  return (
+      <Gtk.ScrolledWindow
+         canFocus={false}
+         cssClasses={["mediaplayer-art"]}
+         widthRequest={1}
+         heightRequest={1}
+      >
+          <Gtk.Picture
+              file={coverArt} //todo add default blank image file path
+              contentFit={Gtk.ContentFit.COVER}
+              cssClasses={["mediaplayer-art-picture"]}
+          />
+      </Gtk.ScrolledWindow>
+  );
+}
 
 export default () => {
     const mpris = AstalMpris.get_default();
-    const revealMedia = new State<boolean>(false);
+    const revealMedia = createState<boolean>(true);
 
     const truncateString = (str: string, maxLength: number = 40): string => {
       if (!str) {
@@ -19,20 +38,23 @@ export default () => {
       <box
         cssClasses={["media"]}
       >
-        <For each={bind(mpris, "players")}>
+        <For each={createBinding(mpris, "players")}>
           {(player) => (
             <box
-              visible={bind(player, "playbackStatus").as(p => p !== AstalMpris.PlaybackStatus.STOPPED)}
+              visible={createBinding(player, "playbackStatus").as(p => p !== AstalMpris.PlaybackStatus.STOPPED)}
             >
               <button
-                $clicked={() => revealMedia.set(!revealMedia.get())}
-                cssClasses={["bar-button"]}
+                onClicked={() => revealMedia.set(!revealMedia.get())}
+                cssClasses={["bar-button", "bar-button-cover"]}
               >
-                <image
+                {/* <image
                   cssClasses={["cover"]}
-                  css="border-radius: 1.5rem;"
-                  pixelSize={18}
                   file={bind(player, "coverArt")}
+                /> */}
+                <Gtk.Picture
+                    file={createBinding(player, "coverArt").as(c => c && Gio.file_new_for_path(c))} //todo add default blank image file path
+                    contentFit={Gtk.ContentFit.COVER}
+                    cssClasses={["mediaplayer-art-picture"]}
                 />
               </button>
 
@@ -42,33 +64,33 @@ export default () => {
                 visible={revealMedia()}
               >
                 <button
-                  $clicked={() => player.play_pause()}
-                  visible={bind(player, "metadata").as(t => t ? true : false)}
+                  onClicked={() => player.play_pause()}
+                  visible={createBinding(player, "metadata").as(t => t ? true : false)}
                   cssClasses={["bar-button"]}
                 >
                   <label
-                    label={bind(player, "metadata").as(() => `${truncateString(player.title)}   ${truncateString(player.artist, 20)}`)}
+                    label={createBinding(player, "metadata").as(() => `${truncateString(player.title)}   ${truncateString(player.artist, 20)}`)}
                   />
                 </button>
               </revealer>
 
               <button
-                $clicked={() => player.previous()}
-                visible={bind(player, "canGoPrevious")}
+                onClicked={() => player.previous()}
+                visible={createBinding(player, "canGoPrevious")}
                 cssClasses={["bar-button"]}
               >
                 <image iconName={icons.media.goprev} />
               </button>
               <button
-                $clicked={() => player.play_pause()}
-                visible={bind(player, "canControl")}
+                onClicked={() => player.play_pause()}
+                visible={createBinding(player, "canControl")}
                 cssClasses={["bar-button"]}
               >
-                <image iconName={bind(player, "playbackStatus").as(p => p === AstalMpris.PlaybackStatus.PLAYING ? icons.media.playing : icons.media.paused)} />
+                <image iconName={createBinding(player, "playbackStatus").as(p => p === AstalMpris.PlaybackStatus.PLAYING ? icons.media.playing : icons.media.paused)} />
               </button>
               <button
-                $clicked={() => player.next()}
-                visible={bind(player, "canGoNext")}
+                onClicked={() => player.next()}
+                visible={createBinding(player, "canGoNext")}
                 cssClasses={["bar-button"]}
               >
                 <image iconName={icons.media.gonext} />

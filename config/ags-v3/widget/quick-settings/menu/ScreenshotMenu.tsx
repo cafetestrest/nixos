@@ -1,5 +1,4 @@
 import icons from "../../../lib/icons";
-import { bind } from "ags/state";
 import { qsRevealScreenshot } from "../../../lib/config";
 import { Gtk } from "ags/gtk4";
 import { config } from "../../../lib/config";
@@ -9,7 +8,7 @@ export default () => {
     return (
         <revealer
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
-            revealChild={bind(qsRevealScreenshot)}
+            revealChild={qsRevealScreenshot}
         >
             <box
                 cssClasses={["qs-menu"]}
@@ -27,7 +26,7 @@ export default () => {
                     orientation={Gtk.Orientation.VERTICAL}
                 >
                     <button
-                        $clicked={() => {
+                        onClicked={() => {
                             execAsync(["bash", "-c", config.common.commandScreenshotWholeDisplay])
                                 .catch((err) => console.error(err));
                         }}
@@ -43,7 +42,7 @@ export default () => {
                     </button>
 
                     <button
-                        $clicked={() => {
+                        onClicked={() => {
                             execAsync(["bash", "-c", config.common.commandScreenshotSelectRegion])
                                 .catch((err) => console.error(err));
                         }}
@@ -59,7 +58,7 @@ export default () => {
                     </button>
 
                     <button
-                        $clicked={() => {
+                        onClicked={() => {
                             execAsync(["bash", "-c", config.common.commandScreenshotSelectWindow])
                                 .catch((err) => console.error(err));
                         }}

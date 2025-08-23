@@ -1,10 +1,9 @@
 import Gtk from "gi://Gtk?version=4.0";
 import AstalMpris from "gi://AstalMpris";
-import { bind } from "ags/state";
-import { For } from "ags/gtk4";
 import Pango from "gi://Pango?version=1.0";
 import Gio from "gi://Gio?version=2.0";
 import { config } from "../../../lib/config";
+import { createBinding, For } from "ags";
 
 function lengthStr(length: number) {
     const hours = Math.floor(length / 3600);
@@ -23,7 +22,7 @@ function lengthStr(length: number) {
 function MediaPlayer({ player }: { player: AstalMpris.Player }) {
     const { START, END } = Gtk.Align;
     const playerIcon = "audio-x-generic-symbolic";
-    const coverArt = bind(player, "coverArt").as(c => c && Gio.file_new_for_path(c));
+    const coverArt = createBinding(player, "coverArt").as(c => c && Gio.file_new_for_path(c));
 
     const PlayerArt = () => (
         <Gtk.ScrolledWindow
@@ -43,11 +42,11 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
     return (
         <overlay
             cssClasses={["media-player"]}
-            visible={bind(player, "playback_status").as((status) => status != AstalMpris.PlaybackStatus.STOPPED)}
+            visible={createBinding(player, "playback_status").as((status) => status != AstalMpris.PlaybackStatus.STOPPED)}
             marginTop={config.quickSettings.qsLayoutMarginSpacing}
         >
             <box
-                _type="overlay"
+                $type="overlay"
                 cssClasses={["player-content"]}
                 orientation={Gtk.Orientation.VERTICAL}
             >
@@ -56,7 +55,7 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                         ellipsize={Pango.EllipsizeMode.END}
                         hexpand={true}
                         halign={START}
-                        label={bind(player, "title")}
+                        label={createBinding(player, "title")}
                         maxWidthChars={36}
                     />
                     <image iconName={playerIcon} />
@@ -65,14 +64,14 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                     halign={START}
                     valign={START}
                     wrap={true}
-                    label={bind(player, "artist").as(a => a !== null ? a : "")}
+                    label={createBinding(player, "artist").as(a => a !== null ? a : "")}
                     ellipsize={Pango.EllipsizeMode.END}
                     maxWidthChars={20}
                 />
                 <slider
-                    visible={bind(player, "length").as(l => l > 0)}
+                    visible={createBinding(player, "length").as(l => l > 0)}
                     // onDragged={({ value }) => player.position = value * player.length} TODO
-                    value={bind(player, "position").as(p => player.length > 0 ? p / player.length : 0)}
+                    value={createBinding(player, "position").as(p => player.length > 0 ? p / player.length : 0)}
                 />
                 <box
                     cssClasses={["actions"]}
@@ -81,25 +80,25 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                         hexpand={true}
                         cssClasses={["position"]}
                         halign={START}
-                        visible={bind(player, "length").as(l => l > 0)}
-                        label={bind(player, "position").as(lengthStr)}
+                        visible={createBinding(player, "length").as(l => l > 0)}
+                        label={createBinding(player, "position").as(lengthStr)}
                     />
                     <box>
                         <button
-                            $clicked={() => player.previous()}
-                            visible={bind(player, "canGoPrevious")}
+                            onClicked={() => player.previous()}
+                            visible={createBinding(player, "canGoPrevious")}
                         >
                             <image iconName="media-skip-backward-symbolic" />
                         </button>
                         <button
-                            $clicked={() => player.play_pause()}
-                            visible={bind(player, "canControl")}
+                            onClicked={() => player.play_pause()}
+                            visible={createBinding(player, "canControl")}
                         >
-                            <image iconName={bind(player, "playbackStatus").as(s => s === AstalMpris.PlaybackStatus.PLAYING ? "media-playback-pause-symbolic" : "media-playback-start-symbolic" )} />
+                            <image iconName={createBinding(player, "playbackStatus").as(s => s === AstalMpris.PlaybackStatus.PLAYING ? "media-playback-pause-symbolic" : "media-playback-start-symbolic" )} />
                         </button>
                         <button
-                            $clicked={() => player.next()}
-                            visible={bind(player, "canGoNext")}
+                            onClicked={() => player.next()}
+                            visible={createBinding(player, "canGoNext")}
                         >
                             <image iconName="media-skip-forward-symbolic" />
                         </button>
@@ -108,8 +107,8 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
                         cssClasses={["length"]}
                         hexpand={true}
                         halign={END}
-                        visible={bind(player, "length").as(l => l > 0)}
-                        label={bind(player, "length").as(l => l > 0 ? lengthStr(l) : "0:00")}
+                        visible={createBinding(player, "length").as(l => l > 0)}
+                        label={createBinding(player, "length").as(l => l > 0 ? lengthStr(l) : "0:00")}
                     />
                 </box>
             </box>
@@ -121,11 +120,12 @@ function MediaPlayer({ player }: { player: AstalMpris.Player }) {
 export default () => {
     const mpris = AstalMpris.get_default();
 
+    return null;//todo fix
     return (
         <box
             orientation={Gtk.Orientation.VERTICAL}
         >
-            <For each={bind(mpris, "players")}>
+            <For each={createBinding(mpris, "players")}>
                 {(player) => {
                     return <MediaPlayer player={player} />
                 }}

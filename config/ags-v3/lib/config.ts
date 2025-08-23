@@ -1,7 +1,7 @@
 import GLib from "gi://GLib";
 import { readFileAsync } from "ags/file";
 import { fileExists } from "./utils";
-import { State } from "ags/state";
+import { createState } from "ags"
 
 export type BarWidgets =
     | "Launcher"
@@ -271,6 +271,7 @@ let configDefaults: Config = {
             "": "preferences-desktop-display",
             "chromium-browser": "chromium",
             "VSCodium": "vscodium",
+            "codium": "vscodium",
             "codium-url-handler": "vscodium",
             "jetbrains-phpstorm": "phpstorm",
             "org.kde.kdeconnect.app": "kdeconnect",
@@ -402,11 +403,11 @@ try {
     print("Error loading config file", e)
 }
 
-export const qsPopupActive = new State(false);
-export const qsRevealSinksButton = new State<boolean>(false);
-export const qsRevealScreenshot = new State<boolean>(false);
-export const qsRevealScreenRecord = new State<boolean>(false);
-export const qsRevealWifi = new State<boolean>(false);
-export const qsRevealBluetooth = new State<boolean>(false);
-export const recordInternalAudioToggle = new State<boolean>(config.screenRecord.recordInternalAudioToggle);
-export const recordOnlySelectedScreenToggle = new State<boolean>(config.screenRecord.recordOnlySelectedScreenToggle);
+export const [qsPopupActive, setQsPopupActive] = createState(false);
+export const [qsRevealSinksButton, setQsRevealSinksButton] = createState<boolean>(false);
+export const [qsRevealScreenshot, setQsRevealScreenshot] = createState<boolean>(false);
+export const [qsRevealScreenRecord, setQsRevealScreenRecord] = createState<boolean>(false);
+export const [qsRevealWifi, setQsRevealWifi] = createState<boolean>(false);
+export const [qsRevealBluetooth, setQsRevealBluetooth] = createState<boolean>(false);
+export const [recordInternalAudioToggle, setRecordInternalAudioToggle] = createState<boolean>(config.screenRecord.recordInternalAudioToggle);
+export const [recordOnlySelectedScreenToggle, setRecordOnlySelectedScreenToggle] = createState<boolean>(config.screenRecord.recordOnlySelectedScreenToggle);

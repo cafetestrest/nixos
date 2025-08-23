@@ -1,12 +1,12 @@
-import { bind } from "ags/state";
+import { createBinding, For, With } from "ags";
 import { config, qsRevealWifi } from "../../../lib/config";
 import AstalNetwork from "gi://AstalNetwork";
-import { Gtk, For, With } from "ags/gtk4";
+import { Gtk } from "ags/gtk4";
 import { execAsync } from "ags/process";
 
 export default () => {
     const network = AstalNetwork.get_default();
-    const wifi = bind(network, "wifi");
+    const wifi = createBinding(network, "wifi");
 
     const sorted = (arr: Array<AstalNetwork.AccessPoint>) => {
         return arr.filter((ap) => !!ap.ssid).sort((a, b) => b.strength - a.strength)
@@ -22,17 +22,18 @@ export default () => {
           console.error(error);
         }
     };
+    return null; //todo fix
 
     return (
         <revealer
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
-            revealChild={bind(qsRevealWifi)}
+            revealChild={qsRevealWifi}
         >
             <box
                 marginTop={config.quickSettings.sliderSpacing}
                 visible={wifi.as(Boolean)}
             >
-                <With value={bind(network, "wifi")}>
+                <With value={wifi}>
                     {(wifi) =>
                     wifi && (
                         <box
@@ -50,20 +51,20 @@ export default () => {
                                 spacing={config.quickSettings.menuSpacing}
                                 orientation={Gtk.Orientation.VERTICAL}
                             >
-                                <For each={bind(wifi, "accessPoints").as(sorted)}>
-                                    {(ap) => (
-                                    <button $clicked={() => connect(ap)}>
-                                        <box spacing={4}>
-                                        <image iconName={bind(ap, "iconName")} />
-                                        <label label={bind(ap, "ssid")} hexpand={true}/>
-                                        <image
-                                            iconName="object-select-symbolic"
-                                            visible={bind(wifi, "activeAccessPoint").as(
-                                            (active) => active === ap,
-                                            )}
-                                        />
-                                        </box>
-                                    </button>
+                                <For each={createBinding(wifi, "accessPoints")(sorted)}>
+                                    {(ap: AstalNetwork.AccessPoint) => (
+                                        <button onClicked={() => connect(ap)}>
+                                            <box spacing={4}>
+                                            <image iconName={createBinding(ap, "iconName")} />
+                                            <label label={createBinding(ap, "ssid")} hexpand={true}/>
+                                            <image
+                                                iconName="object-select-symbolic"
+                                                visible={createBinding(wifi, "activeAccessPoint").as(
+                                                (active) => active === ap,
+                                                )}
+                                            />
+                                            </box>
+                                        </button>
                                     )}
                                 </For>
                             </box>

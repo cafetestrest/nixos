@@ -1,17 +1,17 @@
 import icons from "../../lib/icons";
 import { execAsync } from "ags/process";
 import { config, PowermenuWidgets } from "../../lib/config";
-import { CCProps, Gtk } from "ags/gtk4";
+import { Gtk } from "ags/gtk4";
 
-type PowermenuButtonProps = {
-    action: string;
-    iconName: string;
-} & CCProps<Gtk.Button, Gtk.Button.ConstructorProps>;
+// type PowermenuButtonProps = {
+//     action: string;
+//     iconName: string;
+// } & CCProps<Gtk.Button, Gtk.Button.ConstructorProps>;
 
-const PowermenuButton = ({ action, iconName }: PowermenuButtonProps) => (
+const PowermenuButton = ({ action, iconName }) => (
 	<button
         cssClasses={["powermenu-button"]}
-        $clicked={() => {
+        onClicked={() => {
             execAsync(action);
         }}
 	>

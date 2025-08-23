@@ -16,24 +16,24 @@ import { config, BarWidgets } from "../../lib/config";
 import MediaPlayer from "./items/MediaPlayer";
 import { Gtk } from "ags/gtk4";
 
-const widgetMap: Record<BarWidgets, JSX.Element> = {
-  Launcher: Launcher(),
-  Mpris: Mpris(),
-  Taskbar: Taskbar(),
-  Workspaces: Workspaces(),
-  Clock: Clock(),
-  MediaPlayer: MediaPlayer(),
-  BluetoothPowerUsage: BluetoothPowerUsage(),
-  Tray: Tray(),
-  Wireless: Wireless(),
-  Battery: Battery(),
-  SystemIndicators: SystemIndicators(),
-  Powermenu: Powermenu(),
-};
-
-const renderWidgets = (widgetKeys: BarWidgets[]) => widgetKeys.map(key => widgetMap[key] || null);
-
 export default function Bar(gdkmonitor: Gdk.Monitor) {
+  const widgetMap: Record<BarWidgets, JSX.Element> = {
+    Launcher: Launcher(),
+    Mpris: Mpris(),
+    Taskbar: Taskbar(),
+    Workspaces: Workspaces(),
+    Clock: Clock(),
+    MediaPlayer: MediaPlayer(),
+    BluetoothPowerUsage: BluetoothPowerUsage(),
+    Tray: Tray(),
+    Wireless: Wireless(),
+    Battery: Battery(),
+    SystemIndicators: SystemIndicators(),
+    Powermenu: Powermenu(),
+  };
+
+  const renderWidgets = (widgetKeys: BarWidgets[]) => widgetKeys.map(key => widgetMap[key] || null);
+
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
   return (
@@ -46,7 +46,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       application={app}
     >
       <centerbox>
-        <box _type="start">
+        <box $type="start">
           <box>
             {renderWidgets(config.barLayout.startLeft)}
           </box>
@@ -57,10 +57,10 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
             {renderWidgets(config.barLayout.startRight)}
           </box>
         </box>
-        <box _type="center">
+        <box $type="center">
   				{renderWidgets(config.barLayout.center)}
         </box>
-        <box _type="end">
+        <box $type="end">
   				{renderWidgets(config.barLayout.endRight)}
         </box>
       </centerbox>

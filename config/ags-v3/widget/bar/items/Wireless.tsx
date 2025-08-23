@@ -1,12 +1,11 @@
-import { bind } from "ags/state";
 import Gtk from "gi://Gtk?version=4.0";
 import AstalNetwork from "gi://AstalNetwork";
 import { execAsync } from "ags/process";
-import { For, With } from "ags/gtk4";
+import { createBinding, For, With } from "ags";
 
 export default () => {
   const network = AstalNetwork.get_default();
-  const wifi = bind(network, "wifi");
+  const wifi = createBinding(network, "wifi");
 
   const sorted = (arr: Array<AstalNetwork.AccessPoint>) => {
     return arr.filter((ap) => !!ap.ssid).sort((a, b) => b.strength - a.strength)
@@ -24,25 +23,26 @@ export default () => {
   };
 
   return (
-    <box visible={wifi.as(Boolean)}>
-      <With value={bind(network, "wifi")}>
+    <box visible={wifi(Boolean)}>
+      <With value={wifi}>
         {(wifi) =>
           wifi && (
             <menubutton>
-              <image iconName={bind(wifi, "iconName")} />
+              <image iconName={createBinding(wifi, "iconName")} />
               <popover>
                 <box orientation={Gtk.Orientation.VERTICAL}>
-                  <For each={bind(wifi, "accessPoints").as(sorted)}>
-                    {(ap) => (
-                      <button $clicked={() => connect(ap)}>
+                  <For each={createBinding(wifi, "accessPoints")(sorted)}>
+                    {(ap: AstalNetwork.AccessPoint) => (
+                      <button onClicked={() => connect(ap)}>
                         <box spacing={4}>
-                          <image iconName={bind(ap, "iconName")} />
-                          <label label={bind(ap, "ssid")} />
+                          <image iconName={createBinding(ap, "iconName")} />
+                          <label label={createBinding(ap, "ssid")} />
                           <image
                             iconName="object-select-symbolic"
-                            visible={bind(wifi, "activeAccessPoint").as(
-                              (active) => active === ap,
-                            )}
+                            visible={createBinding(
+                              wifi,
+                              "activeAccessPoint",
+                            )((active) => active === ap)}
                           />
                         </box>
                       </button>

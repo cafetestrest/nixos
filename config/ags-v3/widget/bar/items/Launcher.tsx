@@ -6,7 +6,7 @@ export default () => {
 
     return (
         <button
-            $clicked={() => app.toggle_window("launcher")}
+            onClicked={() => app.toggle_window("launcher")}
         >
               <image iconName={icon} />
         </button>
