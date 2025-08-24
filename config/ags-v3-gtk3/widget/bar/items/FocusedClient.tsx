@@ -1,15 +1,13 @@
-import { bind } from "astal";
 import Hyprland from "gi://AstalHyprland";
+import { createBinding } from "ags";
 
 export default () => {
     const hypr = Hyprland.get_default()
-    const focused = bind(hypr, "focusedClient")
+    const focused = createBinding(hypr, "focusedClient")
 
     return <box
-        className={"focused-client"}
+        class={"focused-client"}
         visible={focused.as(Boolean)}>
-        {focused.as(client => (
-            client && <label label={bind(client, "title").as(String)} />
-        ))}
+        <label label={createBinding(focused, "title").as(String)} />
     </box>
 }

@@ -17,7 +17,7 @@ export default () => {
             $={(self) => {
                 const window = App.get_window(namespaceApplauncher);
                 if (window) {
-                    self.hook(window, "notify::visible", () => {
+                    window.connect("notify::visible", () => {
                         self.toggleClassName("active", window.visible);
                     });
                 }

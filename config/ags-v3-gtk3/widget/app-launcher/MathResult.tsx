@@ -14,7 +14,7 @@ export const MathResult = (mathText: string) => {
 
     return (
         <box vertical={true}>
-            <label label={result} className={"math-result"} />
+            <label label={result} class={"math-result"} />
         </box>
     );
 };
