@@ -1,32 +1,23 @@
-import { astalify, Gtk, type ConstructProps } from "astal/gtk3";
-import { property } from "astal/gobject";
-import GObject from "gi://GObject";
+import { property, GType, register } from "gnim/gobject";
+import { Astal } from "ags/gtk3";
 
-interface WorkspaceButtonConstructorProps extends Gtk.Button.ConstructorProps {
-    attribute: number;
+export namespace WorkspaceButton {
+    export interface Props extends Astal.Button.ConstructorProps {
+    attribute: number
+  }
 }
 
-class WorkspaceButtonClass extends astalify(Gtk.Button) {
-    #attribute!: number;
+@register()
+export class WorkspaceButton extends Astal.Button {
+  declare static $gtype: GType<WorkspaceButton>
 
-    @property(Number)
-    set attribute(value: number) {
-        this.#attribute = value;
-    }
-    get attribute() {
-        return this.#attribute;
-    }
+  @property(Number) attribute = 0
 
-    static { GObject.registerClass(this) }
-
-    constructor(props: ConstructProps<
-        WorkspaceButtonClass,
-        WorkspaceButtonConstructorProps
-    >) {
-        super(props as any)
-    }
+  constructor({ attribute, ...props }: WorkspaceButton.Props) {
+    super({
+        ...props,
+    })
+    this.attribute = attribute
+  }
 }
 
-const WorkspaceButton = astalify(WorkspaceButtonClass);
-
-export default WorkspaceButton;

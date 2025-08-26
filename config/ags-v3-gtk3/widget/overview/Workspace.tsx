@@ -1,12 +1,13 @@
-import { Gtk, Gdk } from "astal/gtk3";
-import { Variable, bind } from "astal";
+import { Gtk, Gdk } from "ags/gtk3";
 import AstalHyprland from "gi://AstalHyprland";
 import {
     overviewScale,
 	workspaces,
 } from "../common/Variables";
 import Window from "./Window";
-import WorkspaceBox from "./WorkspaceBox";
+import { WorkspaceBox } from "./WorkspaceBox";
+
+import { createBinding, createComputed, createState } from "ags";
 
 const Hyprland = AstalHyprland.get_default();
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
@@ -36,14 +37,14 @@ export default (id: number) => {
 		})
 	}
 
-	const scaleVar = Variable(overviewScale);
+	const [scaleVar, setScaleVar] = createState(overviewScale);
 	const workspace = (index: number) => Hyprland.dispatch("workspace", `${index}`);
 	const movetoworkspacesilent = (workspace: number, address: string) =>
 		Hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:${address}`);
 
-	const largestWorkspaceId = Variable.derive([
-		bind(Hyprland, "focusedWorkspace"),
-		bind(Hyprland, "clients"),
+	const largestWorkspaceId = createComputed([
+		createBinding(Hyprland, "focusedWorkspace"),
+		createBinding(Hyprland, "clients"),
 	  ], (focused, clients) => {
 		const focusedId = focused.id;
 	
@@ -66,26 +67,29 @@ export default (id: number) => {
     return (
         <WorkspaceBox
 			tooltipText={`${id}`}
-			className={"workspace"}
+			class={"workspace"}
 			css={`
 				min-width: ${focusedMonitor.width * overviewScale}px;
 				min-height: ${focusedMonitor.height * overviewScale}px;
 			`}
 			$={(box) => {
 				update();
-				box.hook(scaleVar, update)
-				box.hook(Hyprland, "client-added", update)
-				box.hook(Hyprland, "client-removed", update)
-				box.hook(Hyprland, "client-moved", update)
+				// box.hook(scaleVar, update)
+				Hyprland.connect("client-added", update);
+				Hyprland.connect("client-removed", update);
+				Hyprland.connect("client-moved", update);
+				// box.hook(Hyprland, "client-added", update)
+				// box.hook(Hyprland, "client-removed", update)
+				// box.hook(Hyprland, "client-moved", update)
 			}}
 			attribute={id}
-			visible={bind(largestWorkspaceId).as(ws => {
+			visible={largestWorkspaceId.as(ws => {
 				if (id > ws + 1) {
 				  return false;
 				}
 				return true;
 			})}
-			onDestroy={() => largestWorkspaceId.drop()}
+			// onDestroy={() => largestWorkspaceId.drop()}
 		>
 			<eventbox
 				class={"eventbox"}

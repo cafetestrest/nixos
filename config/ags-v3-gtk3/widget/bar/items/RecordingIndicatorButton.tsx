@@ -19,11 +19,11 @@ export default () => {
             onClicked={() => ScreenRecordService.stop()}
             onHover={(self) => {
                 setRevealTimer(true);
-                self.toggleClassName("spacing", true);
+                // self.toggleClassName("spacing", true);//todo
             }}
             onHoverLost={(self) => {
                 setRevealTimer(false);
-                self.toggleClassName("spacing", false);
+                // self.toggleClassName("spacing", false);//todo
                 //toggleClassName todo for all?
             }}
             visible={createBinding(ScreenRecordService, "recording")}

@@ -44,9 +44,9 @@ function main() {
   //   NotificationPopupWindow();
   // }
 
-  // if (overviewEnabled) {
-  //   OverviewPopupWindow();
-  // }
+  if (overviewEnabled) {
+    OverviewPopupWindow();
+  }
 
   if (enableDashboard) {
     Dashboard();

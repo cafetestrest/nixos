@@ -52,3 +52,4 @@ export default function NotificationPopups() {
     </For>
   )
 }
+//todo add hovered and revealed check to dismiss them?

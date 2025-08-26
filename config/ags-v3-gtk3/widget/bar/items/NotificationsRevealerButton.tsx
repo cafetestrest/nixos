@@ -24,16 +24,16 @@ export default () => {
         $={(self) => {
         	const notificationsWindow = App.get_window(namespaceNotification);
         	if (notificationsWindow) {
-        		self.hook(
-        			notificationsWindow,
-        			"notify::visible",
-        			() => {
-        				self.toggleClassName(
-        					"active",
-        					notificationsWindow.visible,
-        				);
-        			},
-        		);
+        		// self.hook(
+        		// 	notificationsWindow,
+        		// 	"notify::visible",
+        		// 	() => {
+        		// 		self.toggleClassName(
+        		// 			"active",
+        		// 			notificationsWindow.visible,
+        		// 		);
+        		// 	},
+        		// );//todo
         	}
         }}
     >

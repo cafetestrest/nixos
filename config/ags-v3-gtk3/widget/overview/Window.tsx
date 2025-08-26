@@ -7,7 +7,7 @@ import {
 } from "../common/Variables";
 import AstalHyprland from "gi://AstalHyprland";
 import { hideOverview } from "./OverviewPopupWindow";
-import WorkspaceButton from "./WorkspaceButton";
+import { WorkspaceButton } from "./WorkspaceButton";
 
 const Hyprland = AstalHyprland.get_default();
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
@@ -36,7 +36,7 @@ const close = (address: string) => Hyprland.dispatch("closewindow", `address:${a
 
 export default ({ address, size: [w, h], class: c, title }) => (
 	<WorkspaceButton
-		className={"client"}
+		class={"client"}
 		tooltipText={`${title}`}
 		onButtonPressEvent={(_, event) => {
 			if (!address) {
@@ -57,9 +57,9 @@ export default ({ address, size: [w, h], class: c, title }) => (
 			btn.connect("drag-data-get", (_w, _c, data) => data.set_text(address, address.length));
 			btn.connect("drag-begin", (_, context) => {
 				Gtk.drag_set_icon_surface(context, createSurfaceFromWidget(btn));
-				btn.toggleClassName('hidden', true);
+				// btn.toggleClassName('hidden', true); //todo
 			});
-			btn.connect("drag-end", () => btn.toggleClassName('hidden', false));
+			// btn.connect("drag-end", () => btn.toggleClassName('hidden', false)); //todo
 			btn.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY);
 		}}
         attribute={address}
