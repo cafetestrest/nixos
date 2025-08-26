@@ -4,7 +4,7 @@ import style from "./style/main.scss";
 import Bar from "./widget/bar/Bar";
 import Applauncher from "./widget/app-launcher/Applauncher";
 import OSD from "./widget/osd/OSD";
-import NotificationPopups from "./widget/notifications/NotificationPopups";
+// import NotificationPopups from "./widget/notifications/NotificationPopups";
 import Dashboard from "./widget/dashboard/Dashboard";
 import {
   visibleQSMainPage,
@@ -27,6 +27,7 @@ import NotificationPopupWindow from "./widget/notifications/NotificationPopupWin
 import OverviewPopupWindow from "./widget/overview/OverviewPopupWindow";
 import { initScss } from "./widget/common/Config";
 import { reloadScss } from "./lib/utils";
+import NotificationPopups from "./widget/notifications2/NotificationPopups";
 
 function main() {
   initScss();
@@ -54,9 +55,10 @@ function main() {
   for (const gdkmonitor of App.get_monitors()) {
     Bar(gdkmonitor)
 
-    // if (enableNotificationPopups) {
-    //   NotificationPopups(gdkmonitor);
-    // }
+    if (enableNotificationPopups) {
+    //   NotificationPopups(gdkmonitor); //todo move everything from this to new popups
+    NotificationPopups()
+    }
 
     if (enableOsd) {
       OSD(gdkmonitor);
