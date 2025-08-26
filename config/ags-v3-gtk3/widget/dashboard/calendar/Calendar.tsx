@@ -1,6 +1,7 @@
 import { Gdk, Gtk, Astal } from "ags/gtk3";
 import { getCalendarLayout } from "./Layout";
 import icons from "../../../lib/icons";
+import { createState } from "ags";
 
 type Day = {
 	day: string;
@@ -40,27 +41,31 @@ const weekDays = [
 	{ day: "Su", today: 0 },
 ];
 
-const CalendarDay = (day: string, today: number) =>
-	new Astal.Button({
-		class: `calendar-button ${today == 1 ? "calendar-button-today" : today == -1 ? "calendar-button-other-month" : ""}`,
-		child: new Astal.Box({
-			halign: CENTER,
-			child: new Astal.Label({
-				halign: CENTER,
-				class: "calendar-button_text",
-				label: String(day),
-			}),
-		})
-	});
+const CalendarDay = (day: string, today: number) => {
+	return (
+		<button
+			class={`calendar-button ${today == 1 ? "calendar-button-today" : today == -1 ? "calendar-button-other-month" : ""}`}
+		>
+			<box halign={CENTER}>
+				<label
+					halign={CENTER}
+					class={"calendar-button_text"}
+					label={String(day)}
+				/>
+			</box>
+		</button>
+	);
+};
 
 export default () => {
-	const calendarMonthYear = new Astal.Button({
-		class: "calendar-monthyear",
-		onClicked: () => shiftCalendarXMonths(0),
-		setup: (button) => {
-			button.label = `${new Date().toLocaleString("default", { month: "long" })} ${new Date().getFullYear()}`;
-		},
-	});
+	const [calendarMonthYearButtonLabel, setCalendarMonthYearButtonLabel] = createState(`${new Date().toLocaleString("default", { month: "long" })} ${new Date().getFullYear()}`);
+
+	const calendarMonthYear =
+		<button
+			class={"calendar-monthyear"}
+			onClicked={() => shiftCalendarXMonths(0)}
+			label={calendarMonthYearButtonLabel}
+		/>
 
 	const addCalendarChildren = (box: Astal.Box, calendarJson) => {
 		const children = box.get_children();
@@ -69,13 +74,16 @@ export default () => {
 			child.destroy();
 		}
 		box.children = calendarJson.map(
-			(row: Array<Day>) =>
-				new Astal.Box({
-					spacing: 18,
-					children: row.map((day) =>
-						CalendarDay(day.day, day.today),
-					),
-				}),
+			(row: Array<Day>) => {
+				return (
+					<box
+						spacing={18}
+						children={row.map((day) =>
+							CalendarDay(day.day, day.today),
+						)}
+					/>
+				);
+			}
 		);
 	};
 
@@ -87,88 +95,86 @@ export default () => {
 		else newDate = getDateInXMonthsTime(monthshift);
 
 		calendarJson = getCalendarLayout(newDate, monthshift == 0);
-		calendarMonthYear.label = `${monthshift == 0 ? "" : "• "}${newDate.toLocaleString("default", { month: "long" })} ${newDate.getFullYear()}`;
+		setCalendarMonthYearButtonLabel(`${monthshift == 0 ? "" : "• "}${newDate.toLocaleString("default", { month: "long" })} ${newDate.getFullYear()}`);
 		addCalendarChildren(calendarDays, calendarJson);
 	}
 
-	const calendarHeader = new Astal.Box({
-		class: "calendar-header",
-		spacing: 8,
-		setup: (box) => {
-			box.pack_start(calendarMonthYear, false, false, 0);
-			box.pack_end(
-				new Astal.Box({
-					class: "spacing-h-5",
-                    spacing: 10,
-					children: [
-						new Astal.Button({
-							class: "sidebar-calendar-monthshift-btn",
-							onClicked: () => shiftCalendarXMonths(-1),
-							child: new Astal.Icon({
-								icon: icons.ui.arrow.left,
-							}),
-						}),
-						new Astal.Button({
-							class: "sidebar-calendar-monthshift-btn",
-							onClicked: () => shiftCalendarXMonths(1),
-							child: new Astal.Icon({
-								icon: icons.ui.arrow.right,
-							}),
-						}),
-					],
-				}),
-				false,
-				false,
-				0,
-			);
-		},
-	});
+	const calendarHeader = (
+		<box
+			class={"calendar-header"}
+			spacing={8}
+		>
+			{calendarMonthYear}
+			<box
+				class={"spacing-h-5"}
+				spacing={10}
+			>
+				<box hexpand/>
+				<button
+					class={"sidebar-calendar-monthshift-btn"}
+					onClicked={() => shiftCalendarXMonths(-1)}
+				>
+					<icon icon={icons.ui.arrow.left}/>
+				</button>
+				<button
+					class={"sidebar-calendar-monthshift-btn"}
+					onClicked={() => shiftCalendarXMonths(1)}
+				>
+					<icon icon={icons.ui.arrow.right}/>
+				</button>
+			</box>
+		</box>
+	)
 
-	const calendarDays = new Astal.Box({
-		class: "calendar-days",
-		hexpand: true,
-		vertical: true,
-		setup: (box) => {
-			addCalendarChildren(box, calendarJson);
-		},
-	});
+	const calendarDays = (
+		<box
+			class={"calendar-days"}
+			hexpand={true}
+			vertical={true}
+			$={(box) => {
+				addCalendarChildren(box, calendarJson);
+			}}
+		/>
+	);
 
-	return new Astal.EventBox({
-		class: "calendar block",
-		onScroll: (self, event) =>
-			shiftCalendarXMonths(
-				event.direction === Gdk.ScrollDirection.UP ? 1 : -1,
-			),
-		setup: (self) => {
-			// Connect to the "map" signal to refresh the calendar on visibility
-			self.connect("map", () => {
-				const newDate = new Date();
-				calendarJson = getCalendarLayout(newDate, true); // Recalculate for the current month
-				addCalendarChildren(calendarDays, calendarJson);
-				shiftCalendarXMonths(0);
-			});
-		},
-		child: new Astal.Box({
-			halign: CENTER,
-			children: [
-				new Astal.Box({
-					class: "calendar-box-outline",
-					hexpand: true,
-					vertical: true,
-					children: [
-						calendarHeader,
-						new Astal.Box({
-							class: "calendar-weekdays",
-							homogeneous: true,
-							spacing: 12,
-							children: weekDays.map((day: Day, i) =>
-								CalendarDay(day.day, day.today),
-							),
-						}),
-						calendarDays,
-					],
-				}),
-			],
-		}),
-	});
+	return (
+		<eventbox
+			class={"calendar block"}
+			onScroll={(_, event: Astal.ScrollEvent) => {
+				shiftCalendarXMonths(
+					event.direction === Gdk.ScrollDirection.UP ? 1 : -1,
+				)
+			}}
+			$={(self) => {
+				// Connect to the "map" signal to refresh the calendar on visibility
+				self.connect("map", () => {
+					const newDate = new Date();
+					calendarJson = getCalendarLayout(newDate, true); // Recalculate for the current month
+					addCalendarChildren(calendarDays, calendarJson);
+					shiftCalendarXMonths(0);
+				});
+			}}
+		>
+			<box
+				halign={CENTER}
+			>
+				<box
+					class={"calendar-box-outline"}
+					hexpand={true}
+					vertical={true}
+				>
+					{calendarHeader}
+					<box
+						class={"calendar-weekdays"}
+						homogeneous={true}
+						spacing={12}
+						children={weekDays.map((day: Day, i) =>
+							CalendarDay(day.day, day.today),
+						)}
+					/>
+					{calendarDays}
+				</box>
+			</box>
+		</eventbox>
+	);
 };

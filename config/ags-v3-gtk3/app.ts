@@ -47,9 +47,9 @@ function main() {
   //   OverviewPopupWindow();
   // }
 
-  // if (enableDashboard) {
-  //   Dashboard();
-  // }
+  if (enableDashboard) {
+    Dashboard();
+  }
 
   for (const gdkmonitor of App.get_monitors()) {
     Bar(gdkmonitor)
