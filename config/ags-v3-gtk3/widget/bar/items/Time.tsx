@@ -24,11 +24,11 @@ export default () => {
         label={time}
         $={(self) => {
             const window = App.get_window(namespaceDashboard);
-            if (window) {
-                window.connect("notify::visible", () => {
-                    self.toggleClassName("active", window.visible);
-                });
-            }
+            // if (window) {
+            //     window.connect("notify::visible", () => {
+            //         self.toggleClassName("active", window.visible);
+            //     });
+            // }
         }}
     />
 }
