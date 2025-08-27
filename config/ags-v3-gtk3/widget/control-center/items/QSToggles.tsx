@@ -26,158 +26,158 @@ import ColorPickerToggle from "./ColorPickerToggle";
 import NoteToggle from "./NoteToggle";
 import ColorToggle from "./ColorToggle";
 
-function QSEmptyButton() {
-  return (
-    <box class={"toggles empty"}/>
-  );
-}
-
-const allToggles = [];
-
-for (const toggleKey of qsToggles) {
-  switch (toggleKey) {
-    case "BluetoothToggle":
-      allToggles.push({ toggleKey: BluetoothToggle() });
-      break;
-    case "NightlightToggle":
-      allToggles.push({ toggleKey: NightlightToggle() });
-      break;
-    case "MicrophoneToggle":
-      allToggles.push({ toggleKey: MicrophoneToggle() });
-      break;
-    case "ScreenshotToggle":
-      allToggles.push({ toggleKey: ScreenshotToggle(), "QSScreenshotMenu": QSScreenshotMenu() });
-      break;
-    case "IdleToggle":
-      allToggles.push({ toggleKey: IdleToggle() });
-      break;
-    case "LightstripToggle":
-      allToggles.push({ toggleKey: LightstripToggle(), "QSLightstripMenu": QSLightstripMenu() });
-      break;
-    case "NetworkToggle":
-      allToggles.push({ toggleKey: NetworkToggle() });
-      break;
-    case "ScreenRecordToggle":
-      allToggles.push({ toggleKey: ScreenRecordToggle(), "QSScreenRecordMenu": QSScreenRecordMenu() });
-      break;
-    case "DNDToggle":
-      allToggles.push({ toggleKey: DNDToggle() });
-      break;
-    case "ColorPickerToggle":
-      allToggles.push({ toggleKey: ColorPickerToggle() });
-      break;
-    case "NoteToggle":
-      allToggles.push({ toggleKey: NoteToggle() });
-      break;
-    case "ColorToggle":
-      allToggles.push({ toggleKey: ColorToggle() });
-      break;
-    case "QSEmptyButton":
-      allToggles.push({ toggleKey: QSEmptyButton() });
-      break;
-    default:
-      break;
-  }
-}
-
-// Function to split the array into rows
-const splitIntoRows = (toggles, itemsPerRow) => {
-  const rows = [];
-  for (let i = 0; i < toggles.length; i += itemsPerRow) {
-    rows.push(toggles.slice(i, i + itemsPerRow));
+const QSToggles = () => {
+  function QSEmptyButton() {
+    return (
+      <box class={"toggles empty"}/>
+    );
   }
 
-  return rows;
-};
+  const allToggles = [];
 
-// Function to split the array into pages
-const splitIntoPages = (toggles, itemsPerPage) => {
-  const pages = [];
-  for (let i = 0; i < toggles.length; i += itemsPerPage) {
-    pages.push(toggles.slice(i, i + itemsPerPage));
+  for (const toggleKey of qsToggles) {
+    switch (toggleKey) {
+      case "BluetoothToggle":
+        allToggles.push({ toggleKey: <BluetoothToggle/> });
+        break;
+      case "NightlightToggle":
+        allToggles.push({ toggleKey: <NightlightToggle/> });
+        break;
+      case "MicrophoneToggle":
+        allToggles.push({ toggleKey: <MicrophoneToggle/> });
+        break;
+      case "ScreenshotToggle":
+        allToggles.push({ toggleKey: <ScreenshotToggle/>, "QSScreenshotMenu": <QSScreenshotMenu/> });
+        break;
+      case "IdleToggle":
+        allToggles.push({ toggleKey: <IdleToggle/> });
+        break;
+      case "LightstripToggle":
+        allToggles.push({ toggleKey: <LightstripToggle/>, "QSLightstripMenu": <QSLightstripMenu/> });
+        break;
+      case "NetworkToggle":
+        allToggles.push({ toggleKey: <NetworkToggle/> });
+        break;
+      case "ScreenRecordToggle":
+        allToggles.push({ toggleKey: <ScreenRecordToggle/>, "QSScreenRecordMenu": <QSScreenRecordMenu/> });
+        break;
+      case "DNDToggle":
+        allToggles.push({ toggleKey: <DNDToggle/> });
+        break;
+      case "ColorPickerToggle":
+        allToggles.push({ toggleKey: <ColorPickerToggle/> });
+        break;
+      case "NoteToggle":
+        allToggles.push({ toggleKey: <NoteToggle/> });
+        break;
+      case "ColorToggle":
+        allToggles.push({ toggleKey: <ColorToggle/> });
+        break;
+      case "QSEmptyButton":
+        allToggles.push({ toggleKey: <QSEmptyButton/> });
+        break;
+      default:
+        break;
+    }
   }
 
-  return pages;
-};
+  // Function to split the array into rows
+  const splitIntoRows = (toggles, itemsPerRow) => {
+    const rows = [];
+    for (let i = 0; i < toggles.length; i += itemsPerRow) {
+      rows.push(toggles.slice(i, i + itemsPerRow));
+    }
 
-// Split toggles into rows and pages
-const toggleRows = splitIntoRows(allToggles, maxItemsPerRowQSToggles);
-const togglePages = splitIntoPages(toggleRows, maxItemsPerColumnQSToggles);
+    return rows;
+  };
 
-// Render a single row of toggles
-const renderRow = (rowToggles) => {
-  return (
-    <box
-      spacing={qsTogglesSpacing}
-    >
-      {rowToggles.map((toggle) => {
-        const toggleIdentifier = Object.keys(toggle)[0];
-        return toggle[toggleIdentifier];
-      })}
-    </box>
-  );
-};
+  // Function to split the array into pages
+  const splitIntoPages = (toggles, itemsPerPage) => {
+    const pages = [];
+    for (let i = 0; i < toggles.length; i += itemsPerPage) {
+      pages.push(toggles.slice(i, i + itemsPerPage));
+    }
 
-// menus that are inside pages
-const renderMenu = (rowToggles, rowIndex) => {
-  return (
-    <box vertical={true}>
-      {rowToggles.map((toggle) => {
-        const keys = Object.keys(toggle);
-        if (keys.length > 1 && rowIndex !== maxItemsPerColumnQSToggles - 1) {
-          const toggleIdentifier = Object.keys(toggle)[1];
-          return toggle[toggleIdentifier];
-        }
-      })}
-    </box>
-  );
-};
+    return pages;
+  };
 
-// menus that are outside pages, last item on the page
-const renderMenuOutsideToggles = (pageRows) => {
-  return pageRows.map((rowToggles, rowIndex) => {
+  // Split toggles into rows and pages
+  const toggleRows = splitIntoRows(allToggles, maxItemsPerRowQSToggles);
+  const togglePages = splitIntoPages(toggleRows, maxItemsPerColumnQSToggles);
+
+  // Render a single row of toggles
+  const renderRow = (rowToggles) => {
     return (
       <box
-        vertical={true}
+        spacing={qsTogglesSpacing}
       >
         {rowToggles.map((toggle) => {
+          const toggleIdentifier = Object.keys(toggle)[0];
+          return toggle[toggleIdentifier];
+        })}
+      </box>
+    );
+  };
+
+  // menus that are inside pages
+  const renderMenu = (rowToggles, rowIndex) => {
+    return (
+      <box vertical={true}>
+        {rowToggles.map((toggle) => {
           const keys = Object.keys(toggle);
-          if (keys.length > 1 && rowIndex === maxItemsPerColumnQSToggles - 1) {
+          if (keys.length > 1 && rowIndex !== maxItemsPerColumnQSToggles - 1) {
             const toggleIdentifier = Object.keys(toggle)[1];
             return toggle[toggleIdentifier];
           }
         })}
       </box>
     );
-  });
-};
+  };
 
-// Render a single page of toggles
-const renderPage = (pageRows, pageIndex) => {
-  return (
-    <box
-      class={"qs-toggles-page"}
-      name={`qs-page-${pageIndex}`}
-      vertical={true}
-      spacing={qsRowSpacing}
-      $type="named"
-    >
-      {pageRows.map((row, rowIndex) => {
-        return (
-          <box
-            vertical={true}
-            children={[
-              renderRow(row),
-              renderMenu(row, rowIndex),
-            ]}
-          />
-        );
-      })}
-    </box>
-  );
-};
+  // menus that are outside pages, last item on the page
+  const renderMenuOutsideToggles = (pageRows) => {
+    return pageRows.map((rowToggles, rowIndex) => {
+      return (
+        <box
+          vertical={true}
+        >
+          {rowToggles.map((toggle) => {
+            const keys = Object.keys(toggle);
+            if (keys.length > 1 && rowIndex === maxItemsPerColumnQSToggles - 1) {
+              const toggleIdentifier = Object.keys(toggle)[1];
+              return toggle[toggleIdentifier];
+            }
+          })}
+        </box>
+      );
+    });
+  };
 
-const QSToggles = () => {
+  // Render a single page of toggles
+  const renderPage = (pageRows, pageIndex) => {
+    return (
+      <box
+        class={"qs-toggles-page"}
+        name={`qs-page-${pageIndex}`}
+        vertical={true}
+        spacing={qsRowSpacing}
+        $type="named"
+      >
+        {pageRows.map((row, rowIndex) => {
+          return (
+            <box
+              vertical={true}
+              children={[
+                renderRow(row),
+                renderMenu(row, rowIndex),
+              ]}
+            />
+          );
+        })}
+      </box>
+    );
+  };
+
   if (qsShowToggles === false) {
     return (
         <box visible={false} />
