@@ -36,9 +36,9 @@ function main() {
     Applauncher();
   }
 
-  // if (enableBarWeather) {
-  //   WeatherPopup();
-  // }
+  if (enableBarWeather) {
+    WeatherPopup();
+  }
 
   // if (enableBarNotifications) {
   //   NotificationPopupWindow();
