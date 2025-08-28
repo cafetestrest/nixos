@@ -82,17 +82,14 @@ const ScreenRecordMenu = () => {
 				hexpand={true}
 				halign={Gtk.Align.END}
 			>
-				<MenuButton buttonType="outlined" onClicked={() => setQsRevealScreenRecord(false)}>
-					<label label={"Cancel"}/>
-				</MenuButton>
+				<MenuButton buttonType="outlined" onClicked={() => setQsRevealScreenRecord(false)} text="Cancel"/>
 				<MenuButton
 					onClicked={() => {
 						setQsRevealScreenRecord(false);
 						ScreenRecordService.start();
 					}}
-				>
-					<label label={"Start"}/>
-				</MenuButton>
+					 text="Start"
+				/>
 			</box>
 		</box>
 	);

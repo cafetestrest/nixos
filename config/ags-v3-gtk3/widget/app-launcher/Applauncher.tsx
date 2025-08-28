@@ -91,10 +91,8 @@ export default function Applauncher() {
                             icon={icons.apps.search}
                         />
                         <entry
-                            // $={(ref) => (text = ref)}
                             placeholderText="Search"
                             text={text}
-                            // todo check if onNotifyText is correct
                             onNotifyText={self => {
                                 setText(self.text)
                                 if (!self.text) {

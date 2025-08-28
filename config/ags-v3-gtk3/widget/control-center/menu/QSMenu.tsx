@@ -2,8 +2,9 @@ import { Gtk } from "ags/gtk3";
 
 type ButtonProps = JSX.IntrinsicElements["button"] & {
     buttonType?: "filled" | "tonal" | "outlined" | "text";
-  child: JSX.Element
-  className: string
+    child: Gtk.Widget[];
+    className: string
+    text: string
 }
 
 export default ({
@@ -31,6 +32,7 @@ export const MenuButton = ({
 	buttonType = "filled",
 	child,
 	focusOnClick,
+    text,
 	...props
 }: ButtonProps) => (
 	<button
@@ -38,6 +40,6 @@ export const MenuButton = ({
 		focusOnClick={false}
 		{...props}
 	>
-		{child}
+        <label label={text}/>
 	</button>
 );

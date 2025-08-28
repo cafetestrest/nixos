@@ -41,7 +41,7 @@ export const weather = createPoll(
                   let weatherForecastDataArray: TooltipItem[] = [];
                   totalWeatherForecastDataArray = [];
 
-                  const days = qsWeatherScheduleDays; //todo
+                  const days = qsWeatherScheduleDays;
 
                   let totalWeatherForecastsCounter = days;
                   let forecastWidgetsNumber = 0;
