@@ -13,7 +13,7 @@ export function QSSpaceBetweenToggles() {
 }
 
 export default () => {
-    // const weatherWidget = qsShowWeatherSchedule ? <WeatherSchedule days={qsWeatherScheduleDays} /> : <box visible={false} />
+    const weatherWidget = qsShowWeatherSchedule ? <WeatherSchedule days={qsWeatherScheduleDays} /> : <box visible={false} />
     //todo add weather
 
 	return (
@@ -33,7 +33,7 @@ export default () => {
                 <BrightnessSlider />
             </box>
             <SinkRevealer />
-            {/* {weatherWidget} */}
+            {weatherWidget}
             {/* todo add weather */}
             <MprisPlayers />
         </box>

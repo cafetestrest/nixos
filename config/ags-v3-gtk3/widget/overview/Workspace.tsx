@@ -5,17 +5,16 @@ import {
 	workspaces,
 } from "../common/Variables";
 import Window from "./Window";
-import { WorkspaceBox } from "./WorkspaceBox";
-
-import { createBinding, createComputed, createState } from "ags";
-
-const Hyprland = AstalHyprland.get_default();
-const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
+import { createBinding, createComputed, createState, onCleanup, For } from "ags";
 
 export default (id: number) => {
+	const Hyprland = AstalHyprland.get_default();
+	const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
     const fixed = Gtk.Fixed.new();
 
 	const focusedMonitor = Hyprland.get_focused_monitor();
+
+	const [clientsList, setClientsList] = createState<any[]>([]);
 
 	async function update() {
 		Hyprland.message_async("j/clients", (_, res) => {
@@ -25,14 +24,10 @@ export default (id: number) => {
 				return;
 			}
 
-			fixed.get_children().forEach(ch => ch.destroy())
-			JSON.parse(clients)
-				.filter(({ workspace }) => workspace.id === id)
-				.forEach(c => {
-					c.at[0] -= Hyprland.get_monitor(c.monitor)?.x || 0;
-					c.at[1] -= Hyprland.get_monitor(c.monitor)?.y || 0;
-					c.mapped && fixed.put(Window(c), c.at[0] * overviewScale, c.at[1] * overviewScale);
-				})
+			fixed.get_children().forEach(ch => ch.destroy());
+
+			setClientsList(JSON.parse(clients).filter(({ workspace }) => workspace.id === id));
+
 			fixed.show_all();
 		})
 	}
@@ -65,7 +60,7 @@ export default (id: number) => {
 	});
 
     return (
-        <WorkspaceBox
+        <box
 			tooltipText={`${id}`}
 			class={"workspace"}
 			css={`
@@ -75,14 +70,20 @@ export default (id: number) => {
 			$={(box) => {
 				update();
 				// box.hook(scaleVar, update)
-				Hyprland.connect("client-added", update);
-				Hyprland.connect("client-removed", update);
-				Hyprland.connect("client-moved", update);
-				// box.hook(Hyprland, "client-added", update)
-				// box.hook(Hyprland, "client-removed", update)
-				// box.hook(Hyprland, "client-moved", update)
+				
+				// Connect signals
+				const addedId = Hyprland.connect("client-added", update);
+				const removedId = Hyprland.connect("client-removed", update);
+				const movedId = Hyprland.connect("client-moved", update);
+
+				// Cleanup connections when the box is destroyed
+				onCleanup(() => {
+					Hyprland.disconnect(addedId);
+					Hyprland.disconnect(removedId);
+					Hyprland.disconnect(movedId);
+				});
 			}}
-			attribute={id}
+			// attribute={id}
 			visible={largestWorkspaceId.as(ws => {
 				if (id > ws + 1) {
 				  return false;
@@ -99,15 +100,33 @@ export default (id: number) => {
 				}}
 				$={(eventbox) => {
 					eventbox.drag_dest_set(Gtk.DestDefaults.ALL, TARGET, Gdk.DragAction.COPY);
-					eventbox.connect('drag-data-received', (_w, _c, _x, _y, data) => {
+					const dragDataReceived = eventbox.connect('drag-data-received', (_w, _c, _x, _y, data) => {
 						const address = new TextDecoder().decode(data.get_data())
 
 						movetoworkspacesilent(id, `${address}`);
 					});
+
+					// Cleanup connections when the box is destroyed
+					onCleanup(() => {
+						eventbox.disconnect(dragDataReceived);
+					});
 				}}
 			>
-				{fixed}
+				<box>
+					<For each={clientsList}>
+						{(c) => {
+							// adjust positions
+							c.at[0] -= Hyprland.get_monitor(c.monitor)?.x || 0;
+							c.at[1] -= Hyprland.get_monitor(c.monitor)?.y || 0;
+
+							c.mapped && fixed.put(Window(c), c.at[0] * overviewScale, c.at[1] * overviewScale);
+
+							return <box visible={false}/>
+						}}
+					</For>
+					{fixed}
+				</box>
 			</eventbox>
-		</WorkspaceBox>
+		</box>
     );
 }

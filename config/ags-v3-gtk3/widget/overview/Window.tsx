@@ -7,38 +7,41 @@ import {
 } from "../common/Variables";
 import AstalHyprland from "gi://AstalHyprland";
 import { hideOverview } from "./OverviewPopupWindow";
-import { WorkspaceButton } from "./WorkspaceButton";
+import { onCleanup } from "ags";
 
-const Hyprland = AstalHyprland.get_default();
-const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
+export default ({ address, size: [w, h], class: c, title }) => {
+	const Hyprland = AstalHyprland.get_default();
+	const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 
-/**
-  * @param {import('gi://Gtk?version=3.0').default.Widget} widget
-  * @returns {any} - missing cairo type
-  */
-function createSurfaceFromWidget(widget) {
-    const alloc = widget.get_allocation()
-    const surface = new cairo.ImageSurface(
-        cairo.Format.ARGB32,
-        alloc.width,
-        alloc.height,
-    )
-    const cr = new cairo.Context(surface)
-    cr.setSourceRGBA(255, 255, 255, 0)
-    cr.rectangle(0, 0, alloc.width, alloc.height)
-    cr.fill()
-    widget.draw(cr)
-    return surface
-}
+	/**
+	 * @param {import('gi://Gtk?version=3.0').default.Widget} widget
+	 * @returns {any} - missing cairo type
+	 */
+	function createSurfaceFromWidget(widget) {
+		const alloc = widget.get_allocation()
+		const surface = new cairo.ImageSurface(
+			cairo.Format.ARGB32,
+			alloc.width,
+			alloc.height,
+		)
+		const cr = new cairo.Context(surface)
+		cr.setSourceRGBA(255, 255, 255, 0)
+		cr.rectangle(0, 0, alloc.width, alloc.height)
+		cr.fill()
+		widget.draw(cr)
+		return surface
+	}
 
-const focus = (address: string) => Hyprland.dispatch("focuswindow", `address:${address}`);
-const close = (address: string) => Hyprland.dispatch("closewindow", `address:${address}`);
+	const focus = (address: string) => Hyprland.dispatch("focuswindow", `address:${address}`);
+	const close = (address: string) => Hyprland.dispatch("closewindow", `address:${address}`);
 
-export default ({ address, size: [w, h], class: c, title }) => (
-	<WorkspaceButton
+	return (
+	<button
 		class={"client"}
 		tooltipText={`${title}`}
-		onButtonPressEvent={(_, event) => {
+		onButtonPressEvent={(_, e) => {
+            const event = e as unknown as Gdk.Event;
+
 			if (!address) {
 				return;
 			}
@@ -54,15 +57,22 @@ export default ({ address, size: [w, h], class: c, title }) => (
 			}
 		}}
 		$={(btn) => {
-			btn.connect("drag-data-get", (_w, _c, data) => data.set_text(address, address.length));
-			btn.connect("drag-begin", (_, context) => {
+			const id1 = btn.connect("drag-data-get", (_w, _c, data) => data.set_text(address, address.length));
+			const id2 = btn.connect("drag-begin", (_, context) => {
 				Gtk.drag_set_icon_surface(context, createSurfaceFromWidget(btn));
 				// btn.toggleClassName('hidden', true); //todo
 			});
 			// btn.connect("drag-end", () => btn.toggleClassName('hidden', false)); //todo
+
 			btn.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY);
+
+			// Cleanup connections when the box is destroyed
+			onCleanup(() => {
+				btn.disconnect(id1);
+				btn.disconnect(id2);
+			});
 		}}
-        attribute={address}
+        // attribute={address}
 	>
 		<icon
 			css={`
@@ -80,5 +90,5 @@ export default ({ address, size: [w, h], class: c, title }) => (
 				self.set_icon(getHyprlandClientIcon(c, icon));
 			}}
 		/>
-	</WorkspaceButton>
-);
+	</button>
+)};

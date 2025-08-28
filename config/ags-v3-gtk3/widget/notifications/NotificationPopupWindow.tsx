@@ -1,178 +1,129 @@
-import { Astal, Gtk, Gdk, App } from "ags/gtk3";
-import Notifd from "gi://AstalNotifd";
-import Notification from "./Notification";
-import { type Subscribable } from "astal/binding";
-import { Variable, bind, timeout } from "astal";
+import app from "ags/gtk3/app"
+import { Astal, Gtk, Gdk } from "ags/gtk3"
+import AstalNotifd from "gi://AstalNotifd"
+import Notification from "./Notification"
+import { createBinding, For, createState, onCleanup } from "ags"
 import {
-    namespaceNotification,
-    notificationWidth,
-    notificationBoxTopMargin,
-    notificationContentWidth,
-    notificationSpacing,
-    notificationScrollableMaxHeight,
-    notificationHeight,
-    removeAllPreviousNotificationOnStart
+  namespaceNotification,
+  notificationWidth,
+  setNotificationWidth,
+  notificationBoxTopMargin,
+  notificationContentWidth,
+  notificationSpacing,
+  notificationHeight,
+  notificationScrollableMaxHeight,
+  removeAllPreviousNotificationOnStart
 } from "../common/Variables";
-
-// The purpose if this class is to replace Variable<Array<Widget>>
-// with a Map<number, Widget> type in order to track notification widgets
-// by their id, while making it conviniently bindable as an array
-class NotifiationMap implements Subscribable {
-    // the underlying map to keep track of id widget pairs
-    private map: Map<number, Gtk.Widget> = new Map()
-
-    // it makes sense to use a Variable under the hood and use its
-    // reactivity implementation instead of keeping track of subscribers ourselves
-    private var: Variable<Array<Gtk.Widget>> = Variable([])
-
-    // notify subscribers to rerender when state changes
-    private notifiy() {
-        this.var.set([...this.map.values()].reverse())
-    }
-
-    constructor() {
-        const notifd = Notifd.get_default()
-
-        /**
-         * uncomment this if you want to
-         * ignore timeout by senders and enforce our own timeout
-         * note that if the notification has any actions
-         * they might not work, since the sender already treats them as resolved
-         */
-        notifd.ignoreTimeout = true
-
-        notifd.connect("notified", (_, id) => {
-            this.set(id, Notification({
-                notification: notifd.get_notification(id)!,
-
-                // once hovering over the notification is done
-                // destroy the widget without calling notification.dismiss()
-                // so that it acts as a "popup" and we can still display it
-                // in a notification center like widget
-                // but clicking on the close button will close it
-                onHoverLost: () => {},
-
-                // notifd by default does not close notifications
-                // until user input or the timeout specified by sender
-                // which we set to ignore above
-                setup: () => {}
-            }))
-        })
-
-        // notifications can be closed by the outside before
-        // any user input, which have to be handled too
-        notifd.connect("resolved", (_, id) => {
-            this.delete(id)
-        })
-    }
-
-    private set(key: number, value: Gtk.Widget) {
-        // in case of replacecment destroy previous widget
-        this.map.get(key)?.destroy()
-        this.map.set(key, value)
-        this.notifiy()
-    }
-
-    private delete(key: number) {
-        this.map.get(key)?.destroy()
-        this.map.delete(key)
-        this.notifiy()
-    }
-
-    // needed by the Subscribable interface
-    get() {
-        return this.var.get()
-    }
-
-    // needed by the Subscribable interface
-    subscribe(callback: (list: Array<Gtk.Widget>) => void) {
-        return this.var.subscribe(callback)
-    }
-}
-
-function hide() {
-    App.get_window(namespaceNotification)!.hide()
-}
-
-const NotificationsWindow = ({notifications, notifs}: {notifications: Notifd.Notifd, notifs: NotifiationMap}) => (
-	<box vertical={true} class={"notifications-window"} spacing={notificationSpacing}>
-		<box class={"notification-scroll-box"}>
-			<scrollable
-                class={"notifications-scrollable"}
-                heightRequest={bind(notifications, "notifications").as(n => {
-                    return Math.min(n.length * notificationHeight, notificationScrollableMaxHeight);
-                })}
-            >
-				<box
-					class={"notifications-window-list"}
-					visible={true}
-					orientation={Gtk.Orientation.VERTICAL}
-					spacing={6}
-					hexpand={true}
-					noImplicitDestroy={true}
-				>
-					{bind(notifs)}
-				</box>
-			</scrollable>
-		</box>
-		<button
-			halign={Gtk.Align.END}
-			hexpand={false}
-			class={"notifications-window-clear"}
-			onClicked={() => {
-				notifications.get_notifications().forEach((n) => {
-					timeout(150, () => n.dismiss());
-				});
-                hide();
-			}}
-			>
-			<label
-				class={"notifications-window-clear-label"}
-				label={"Clear all"}
-			></label>
-		</button>
-	</box>
-);
-
-export const AllNotifications = () => {
-	const notifs = new NotifiationMap();
-	const notifications = Notifd.get_default();
-
-    if (removeAllPreviousNotificationOnStart) {
-        // This will remove all existing notifications on startup
-        notifications.get_notifications().forEach((n) => n.dismiss());
-    }
-
-	return(<NotificationsWindow notifs={notifs} notifications={notifications} />)
-};
+import { timeout } from "ags/time"
 
 export default function NotificationPopupWindow() {
-    return <window
-        name={namespaceNotification}
-        namespace={namespaceNotification}
-        anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
-        exclusivity={Astal.Exclusivity.IGNORE}
-        keymode={Astal.Keymode.ON_DEMAND}
-        application={App}
-        visible={false}
-        onShow={(self) => {
-            notificationWidth.set(self.get_current_monitor().workarea.width)
-        }}
-        onKeyPressEvent={function (self, e) {
-            const event = e as unknown as Gdk.Event;
-            if (event.get_keyval()[1] === Gdk.KEY_Escape)
-                self.hide()
-        }}>
-        <box class={"popover"}>
-            <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
-            <box hexpand={false} vertical={true}>
-                <eventbox heightRequest={notificationBoxTopMargin} onClick={hide} />
-                <box widthRequest={notificationContentWidth} class={"popup-box"} vertical={true}>
-                    <AllNotifications />
-                </box>
-                <eventbox expand={true} onClick={hide} />
-            </box>
-            <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
-        </box>
-    </window>
+  function hide() {
+    app.get_window(namespaceNotification)!.hide()
+  }
+
+  const monitors = createBinding(app, "monitors")
+
+  const notifd = AstalNotifd.get_default()
+
+  if (removeAllPreviousNotificationOnStart) {
+    // This will remove all existing notifications on startup
+    notifd.get_notifications().forEach((n) => n.dismiss());
+  }
+
+  const [notifications, setNotifications] = createState(
+    new Array<AstalNotifd.Notification>(),
+  )
+
+  const notifiedHandler = notifd.connect("notified", (_, id, replaced) => {
+    const notification = notifd.get_notification(id)
+
+    if (replaced && notifications.get().some((n) => n.id === id)) {
+      setNotifications((ns) => ns.map((n) => (n.id === id ? notification : n)))
+    } else {
+      setNotifications((ns) => [notification, ...ns])
+    }
+  })
+
+  const resolvedHandler = notifd.connect("resolved", (_, id) => {
+    setNotifications((ns) => ns.filter((n) => n.id !== id))
+  })
+
+  onCleanup(() => {
+    notifd.disconnect(notifiedHandler)
+    notifd.disconnect(resolvedHandler)
+  })
+
+  return (
+    <For each={monitors}>
+      {(monitor) => (
+        <window
+          $={(self) => onCleanup(() => self.destroy())}
+          namespace={namespaceNotification}
+          name={namespaceNotification}
+          gdkmonitor={monitor}
+          visible={false}
+          anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
+          exclusivity={Astal.Exclusivity.IGNORE}
+          keymode={Astal.Keymode.ON_DEMAND}
+          application={app}
+          onShow={(self) => {
+            setNotificationWidth(self.get_current_monitor().workarea.width)
+          }}
+          onKeyPressEvent={function (self, e) {
+              const event = e as unknown as Gdk.Event;
+              if (event.get_keyval()[1] === Gdk.KEY_Escape)
+                  self.hide()
+          }}
+          >
+            <box class={"popover"}>
+              <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
+              <box hexpand={false} vertical={true}>
+                  <eventbox heightRequest={notificationBoxTopMargin} onClick={hide} />
+                  <box widthRequest={notificationContentWidth} class={"popup-box"} vertical={true}>
+                    <box vertical={true} class={"notifications-window"} spacing={notificationSpacing}>
+                      <box class={"notification-scroll-box"}>
+                        <scrollable
+                          class={"notifications-scrollable"}
+                          heightRequest={notifications((n) => {
+                            return Math.min(n.length * notificationHeight, notificationScrollableMaxHeight);
+                          })}
+                        >
+                          <box
+                            class={"notifications-window-list"}
+                            visible={true}
+                            orientation={Gtk.Orientation.VERTICAL}
+                            spacing={6}
+                            hexpand={true}
+                          >
+                            <For each={notifications}>
+                              {(notifs) => <Notification notification={notifs} />}
+                            </For>
+                          </box>
+                        </scrollable>
+                      </box>
+                      <button
+                        halign={Gtk.Align.END}
+                        hexpand={false}
+                        class={"notifications-window-clear"}
+                        onClicked={() => {
+                          notifd.get_notifications().forEach(n => timeout(150, () => n.dismiss()));
+                          hide();
+                        }}
+                        >
+                        <label
+                          class={"notifications-window-clear-label"}
+                          label={"Clear all"}
+                        ></label>
+                      </button>
+                    </box>
+                  </box>
+                  <eventbox expand={true} onClick={hide} />
+              </box>
+              <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
+          </box>
+          
+        </window>
+      )}
+    </For>
+  )
 }

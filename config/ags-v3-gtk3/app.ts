@@ -4,8 +4,7 @@ import style from "./style/main.scss";
 import Bar from "./widget/bar/Bar";
 import Applauncher from "./widget/app-launcher/Applauncher";
 import OSD from "./widget/osd/OSD";
-// import NotificationPopups from "./widget/notifications/NotificationPopups"; // todo
-import NotificationPopups from "./widget/notifications2/NotificationPopups";
+import NotificationPopups from "./widget/notifications/NotificationPopups";
 import Dashboard from "./widget/dashboard/Dashboard";
 import {
   visibleQSMainPage,
@@ -40,9 +39,9 @@ function main() {
     WeatherPopup();
   }
 
-  // if (enableBarNotifications) {
-  //   NotificationPopupWindow();
-  // }
+  if (enableBarNotifications) {
+    NotificationPopupWindow();
+  }
 
   if (overviewEnabled) {
     OverviewPopupWindow();
@@ -56,7 +55,6 @@ function main() {
     Bar(gdkmonitor)
 
     if (enableNotificationPopups) {
-      //   NotificationPopups(gdkmonitor); //todo move everything from this to new popups
       NotificationPopups()
     }
 

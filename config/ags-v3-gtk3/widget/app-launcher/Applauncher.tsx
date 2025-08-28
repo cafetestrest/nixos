@@ -12,7 +12,7 @@ import {
 import icons from "../../lib/icons";
 import { containsMathOperation } from "./Math";
 import { MathResult } from "./MathResult";
-import { createState, For } from "ags";
+import { createState, For, With } from "ags";
 import App from "ags/gtk3/app";
 
 function hide() {
@@ -48,7 +48,6 @@ export default function Applauncher() {
 
     const [text, setText] = createState("")
     const list = text(text => apps.fuzzy_query(text).sort((a, b) => a.name.localeCompare(b.name)));
-    const listMath = text(text => text);
 
     const onEnter = () => {
         if (containsMathOperation(text.get())) {
@@ -121,16 +120,16 @@ export default function Applauncher() {
                     </scrollable>
                     <box
                         halign={Gtk.Align.CENTER}
-                        visible={text.as(text => {
+                        visible={text(text => {
                             if (containsMathOperation(text)) {
                                 return true;
                             }
                             return false;
                         })}
                     >
-                        <For each={listMath}>
-                            {(text) => MathResult(text)}
-                        </For>
+                        <With value={text}>
+                            {(text) => text && MathResult(text)}
+                        </With>
                     </box>
                 </box>
                 <eventbox expand={true} onClick={hide} />

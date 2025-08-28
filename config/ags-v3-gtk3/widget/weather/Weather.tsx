@@ -1,4 +1,3 @@
-import { Astal } from "ags/gtk3";
 import { weather, TooltipItem, temperatureDataPerDay, totalWeatherForecastDataArray } from "../../service/WeatherService";
 import { For } from "ags";
 
@@ -295,69 +294,76 @@ let widgetIcon = "";
 let widgetDate = "";
 let counter = 0;
 
-export const WeatherSchedule = ({ days }: { days: number | null }) => (
-	<box class="weather">
-		<For each={weather}>
-			{(w: TooltipItem) => {
-				counter++;
-				if (w.indicator) {
-					return <box visible={false} />
-				}
+export const WeatherSchedule = ({ days }: { days: number | null }) => {
+    return (
+        <box class="weather">
+            <For each={weather}>
+                {(w: TooltipItem) => {
+                    counter++;
 
-				// used to limit forecast to specified amount (if total variable is provided, it will display that amount of forecast widgets on a main one)
-				if (days && days >= 0) {
+                    if (w.indicator) {
+                        return <box visible={false} />
+                    }
 
-					if (!widgetIcon) {
-						widgetIcon = w.icon;
-					}
+                    // used to limit forecast to specified amount (if total variable is provided, it will display that amount of forecast widgets on a main one)
+                    if (days && days >= 0) {
+                        if (counter > 99) {
+                        	return <box visible={false} />
+                        }
 
-					if (!widgetDate) {
-						widgetDate = w.date;
-					}
+                        if (!widgetIcon) {
+                            widgetIcon = w.icon;
+                        }
 
-					const rain = temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].rain;
+                        if (!widgetDate) {
+                            widgetDate = w.date;
+                        }
 
-					return WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, totalWeatherForecastDataArray);
-				}
+                        const rain = temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].rain;
+                        counter = 100;
 
-				// logic that determines if the widget contains just 1 forecast widget, if so it will display it in a smaller widget - like the one for the forecast days
-				if (temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].widgetsNumber === 1) {
-					prevDayName = w.date;
+                        return WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, totalWeatherForecastDataArray);
+                    }
 
-					return (<box>
-						<label label={" "} class={"weather-spacing"}/>
-						{WeatherInfo(w)}
-					</box>);
-				}
+                    // logic that determines if the widget contains just 1 forecast widget, if so it will display it in a smaller widget - like the one for the forecast days
+                    if (temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].widgetsNumber === 1) {
+                        prevDayName = w.date;
 
-				// this one creates main one - wide weather widget that contains smaller forecast widgets
-				if (w.date !== prevDayName) {
-					const rain = temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].rain;
-					let icon = getMostCommon(temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].icons);
-					widgetDate = w.date;
+                        return (<box>
+                            <label label={" "} class={"weather-spacing"}/>
+                            {WeatherInfo(w)}
+                        </box>);
+                    }
 
-					if (!icon) {
-						icon = w.icon;
-					}
+                    // this one creates main one - wide weather widget that contains smaller forecast widgets
+                    if (w.date !== prevDayName) {
+                        const rain = temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].rain;
+                        let icon = getMostCommon(temperatureDataPerDay[w.date.substring(0, 3).toUpperCase()].icons);
+                        widgetDate = w.date;
 
-					widgetIcon = icon;
+                        if (!icon) {
+                            icon = w.icon;
+                        }
 
-					prevDayName = w.date;
+                        widgetIcon = icon;
 
-					const mainWidget = WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, []);
+                        prevDayName = w.date;
 
-					if (counter <= 1) {
-						return mainWidget;
-					}
+                        const mainWidget = WeatherMainWidget(widgetIcon, widgetDate, rain, temperatureDataPerDay, w, []);
 
-					return (<box>
-						<label label={" "} class={"weather-spacing"}/>
-						{mainWidget}
-					</box>);
-				}
+                        if (counter <= 1) {
+                            return mainWidget;
+                        }
 
-				return <box visible={false} />
-			}}
-		</For>
-	</box>
-);
+                        return (<box>
+                            <label label={" "} class={"weather-spacing"}/>
+                            {mainWidget}
+                        </box>);
+                    }
+
+                    return <box visible={false} />
+                }}
+            </For>
+        </box>
+    )
+};

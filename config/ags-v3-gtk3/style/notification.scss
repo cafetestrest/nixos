@@ -10,7 +10,7 @@ window.notification-popups {
     all: unset;
 }
 
-eventbox.notification {
+.notification {
     .notification-icon,
     .notification-image {
         margin: $notificationIconMargin;

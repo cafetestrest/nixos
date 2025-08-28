@@ -9,8 +9,8 @@ const LIGHT = "light";
 export type ThemeMode = typeof DARK | typeof LIGHT;
 
 const tmp = GLib.get_tmp_dir();
-const pathSuffix = "/ags/style/";
-const scss = `${tmp}${pathSuffix}main.scss`;
+const pathSuffix = "/style/";
+const scss = `${tmp}/ags${pathSuffix}main.scss`;
 const variablesFileName = "variables.scss";
 
 export function getThemeColor(themeMode?: ThemeMode) {
@@ -30,7 +30,7 @@ export async function ensureTmpScssFilesExist() {
 
 	for (const file of files) {
 		const fileName = file.split(pathSuffix)[1];
-		const targetDir = `${tmp}${pathSuffix}${fileName}`;
+		const targetDir = `${tmp}/ags${pathSuffix}${fileName}`;
 		const styleContent = await readFileAsync(file).catch(console.error);
 
 		if (styleContent) {
@@ -40,8 +40,8 @@ export async function ensureTmpScssFilesExist() {
 }
 
 export async function syncVariablesToTmp(scssColorVariables: string[]) {
-	ensureDirectory(`${tmp}${pathSuffix}`);
-	const targetDir = `${tmp}${pathSuffix}${variablesFileName}`;
+	ensureDirectory(`${tmp}/ags${pathSuffix}`);
+	const targetDir = `${tmp}/ags${pathSuffix}${variablesFileName}`;
 
 	await ensureTmpScssFilesExist();
 
