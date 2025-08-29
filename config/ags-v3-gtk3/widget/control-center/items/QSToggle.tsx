@@ -1,18 +1,16 @@
 import { Gtk, Gdk, Astal } from "ags/gtk3";
-// import { Subscribable} from "astal/binding";
-// import { Binding } from "astal";
 import icons from "../../../lib/icons";
 import { qsRevertRevealerStatus, qsToggleRevealer } from "../../common/Variables";
+import { Accessor } from "ags";
 
-// type QSToggleProps = {
-// 	icon: Widget.IconProps["icon"] | Binding<string>;
-// 	label?: Widget.LabelProps["label"] | [Subscribable<unknown>, () => string];
-// 	onPrimaryClick?: () => void;
-// 	className?: [Subscribable<unknown>, () => string] | Binding<string> | string;
-//     hasArrow?: boolean;
-//     arrowIcon?: Widget.IconProps["icon"] | Binding<string>;
-//     revelaer?: string;
-// } & Widget.ButtonProps; // todo add types
+type QSToggleProps = JSX.IntrinsicElements["button"] & {
+    icon: string | Accessor<string> | undefined;
+    className?: Accessor<any> | string;
+    onPrimaryClick?: () => void;
+    hasArrow?: boolean;
+    arrowIcon?: string | Accessor<string> | undefined;
+    revelaer?: string;
+}
 
 export default ({
 	className,
@@ -23,7 +21,7 @@ export default ({
     arrowIcon,
     revelaer,
 	...props
-}) => {
+}: QSToggleProps) => {
     if (arrowIcon === undefined) {
         arrowIcon = icons.ui.arrow.right;
     }

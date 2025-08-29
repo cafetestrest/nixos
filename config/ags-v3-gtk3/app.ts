@@ -74,6 +74,7 @@ function main() {
 
 App.start({
   css: style,
+  instanceName: "astal",
   requestHandler(request: string, res: (response: any) => void) {
 		const args = request.split(" ");
 		if (args[0] == "toggle" && args[1]) {

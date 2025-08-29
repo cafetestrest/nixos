@@ -3,7 +3,7 @@ import AudioSlider from "../items/AudioSlider";
 import MprisPlayers from "../../media-player/MediaPlayer";
 import { SinkButton, SinkRevealer } from "../menu/QSSinksMenu";
 import { WeatherSchedule } from "../../weather/Weather";
-import { qsWeatherScheduleDays, qsShowWeatherSchedule } from "../../common/Variables";
+import { qsWeatherScheduleDays } from "../../common/Variables";
 import BrightnessSlider from "../items/BrightnessSlider";
 
 export function QSSpaceBetweenToggles() {
@@ -13,14 +13,12 @@ export function QSSpaceBetweenToggles() {
 }
 
 export default () => {
-    const weatherWidget = qsShowWeatherSchedule ? <WeatherSchedule days={qsWeatherScheduleDays} /> : <box visible={false} />
 
 	return (
 		<box
 			name="main"
 			class={"qs-main-page"}
             vertical={true}
-            $type="named"
 		>
             <QSToggles />
             <box>
@@ -32,7 +30,7 @@ export default () => {
                 <BrightnessSlider />
             </box>
             <SinkRevealer />
-            {weatherWidget}
+            <WeatherSchedule days={qsWeatherScheduleDays} />
             <MprisPlayers />
         </box>
     );

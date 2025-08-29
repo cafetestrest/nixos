@@ -349,13 +349,13 @@ let configDefaults: Config = {
             "ScreenshotToggle",
             "IdleToggle",
             // "LightstripToggle",
-            "NetworkToggle",
+            // "NetworkToggle",
             "ScreenRecordToggle",
             "DNDToggle",
             "ColorPickerToggle",
             "NoteToggle",
             "ColorToggle",
-            "QSEmptyButton"
+            // "QSEmptyButton"
         ],
     },
     weather: {

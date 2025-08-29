@@ -1,5 +1,6 @@
 import { weather, TooltipItem, temperatureDataPerDay, totalWeatherForecastDataArray } from "../../service/WeatherService";
 import { For } from "ags";
+import { qsShowWeatherSchedule } from "../common/Variables";
 
 type TemperatureData = {
 	minTemp: number;
@@ -205,14 +206,12 @@ const WeatherBoxChild = (w: TooltipItem) => (
 		class={"qs-weather-box-child"}
 		vertical={true}
 		hexpand={true}
-		children={[
-			<label label={w.hour + "h"} class={"weather-hour"} />,
-			<label label={w.icon} class={"weather-icon"} />,
-			<label label={w.temperature} class={"weather-temperature"} />,
-			w.rain != '0 mm' ? <label label={w.rain} class={"weather-rain"} /> : <label />,
-			<label label={"  " + Math.round(Number(w.wind.replace(/kph$/, ''))) + ' kph'} class={"weather-wind"} />,
-		]}
 	>
+        <label label={w.hour + "h"} class={"weather-hour"} />
+        <label label={w.icon} class={"weather-icon"} />
+        <label label={w.temperature} class={"weather-temperature"} />
+        {w.rain != '0 mm' ? <label label={w.rain} class={"weather-rain"} /> : <label />}
+        <label label={"  " + Math.round(Number(w.wind.replace(/kph$/, ''))) + ' kph'} class={"weather-wind"} />
 	</box>
 );
 
@@ -251,22 +250,18 @@ const WeatherMainWidget = (widgetIcon: string, widgetDate: string, rain:number, 
 		vertical={true}
 		hexpand={true}
 		css={weatherBackgroundStyle(widgetIcon)}
-		children={[
-			<box
-				class={"qs-weather-box-main"}
-				children={[
-					<label label={widgetIcon} class={"weather-icon"} />,
-					rain != 0 ? <label label={rain + 'mm'} class={"weather-rain"} /> : <label />,
-					<box hexpand={true} />,
-					<label label={'↑ ' + temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].maxTemp + '  '} class={"weather-max"} />,
-					<label label={'↓ ' + temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].minTemp + '  '} class={"weather-min"} />,
-					<label label={widgetDate.substring(0, 3).toUpperCase()} class={"weather-hour"} />,
-				]}
-			>
-			</box>,
-			WeatherBoxChildWrapper(w, temperatureDataPerDay, totalWeatherForecastDataArray)
-		]}
 	>
+        <box
+            class={"qs-weather-box-main"}
+        >
+            <label label={widgetIcon} class={"weather-icon"} />
+            {rain != 0 ? <label label={rain + 'mm'} class={"weather-rain"} /> : <label />}
+            <box hexpand={true} />
+            <label label={'↑ ' + temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].maxTemp + '  '} class={"weather-max"} />
+            <label label={'↓ ' + temperatureDataPerDay[widgetDate.substring(0, 3).toUpperCase()].minTemp + '  '} class={"weather-min"} />
+            <label label={widgetDate.substring(0, 3).toUpperCase()} class={"weather-hour"} />
+        </box>
+        {WeatherBoxChildWrapper(w, temperatureDataPerDay, totalWeatherForecastDataArray)}
 	</box>
 )
 
@@ -275,17 +270,15 @@ const WeatherInfo = (weatherData: TooltipItem) => (
 		class={"weather-info"}
 		vertical={true}
 		css={weatherBackgroundStyle(weatherData.icon)}
-		children={[
-			<label label={weatherData.date.substring(0, 3).toUpperCase()}/>,
-			<label label={weatherData.hour + 'h'}/>,
-			<label />,
-			<label label={weatherData.icon} class={"weather-icon"}/>,
-			<label label={weatherData.temperature} class={"weather-temperature"}/>,
-			weatherData.rain != '0 mm' ? <label label={weatherData.rain} /> : <label />,
-			<label label={'↑ ' + weatherData.maxTemp} class={"weather-max"}/>,
-			<label label={'↓ ' + weatherData.minTemp} class={"weather-min"}/>,
-		]}
 	>
+        <label label={weatherData.date.substring(0, 3).toUpperCase()}/>
+        <label label={weatherData.hour + 'h'}/>
+        <label />
+        <label label={weatherData.icon} class={"weather-icon"}/>
+        <label label={weatherData.temperature} class={"weather-temperature"}/>
+        {weatherData.rain != '0 mm' ? <label label={weatherData.rain} /> : <label />}
+        <label label={'↑ ' + weatherData.maxTemp} class={"weather-max"}/>
+        <label label={'↓ ' + weatherData.minTemp} class={"weather-min"}/>
 	</box>
 );
 
@@ -295,6 +288,12 @@ let widgetDate = "";
 let counter = 0;
 
 export const WeatherSchedule = ({ days }: { days: number | null }) => {
+    if (!qsShowWeatherSchedule) {
+        return (
+            <box visible={false} />
+        );
+    }
+
     return (
         <box class="weather">
             <For each={weather}>

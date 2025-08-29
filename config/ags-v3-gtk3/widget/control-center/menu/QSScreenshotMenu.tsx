@@ -6,8 +6,8 @@ import {
     commandScreenshotWholeDisplay
 } from "../../common/Variables";
 import icons from "../../../lib/icons";
-import QSMenu from "./QSMenu";
 import { bash } from "../../../lib/utils";
+import { Gtk } from "ags/gtk3";
 
 const ScreenShotMenu = () => {
     return (
@@ -74,13 +74,14 @@ const ScreenShotMenu = () => {
 };
 
 export default () => {
-	return (
-		<QSMenu
-			classname={"screenshot"}
-			bindVariable={qsRevealScreenshot}
-			content={[
+    return (
+        <revealer
+            transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+            revealChild={qsRevealScreenshot}
+        >
+            <box class={`menu screenshot`} vertical={true} >
 				<ScreenShotMenu />
-			]}
-		/>
-	);
+            </box>
+        </revealer>
+    );
 }

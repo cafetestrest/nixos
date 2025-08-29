@@ -16,9 +16,9 @@ export default () => {
             switch (event.button) {
                 case Gdk.BUTTON_SECONDARY:
                 case Gdk.BUTTON_MIDDLE:
-                    weather.stopWatch(); // this kills the subprocess
-                    weather.stopPoll();
-                    weather.startPoll(); // todo?
+                    // weather.stopWatch(); // this kills the subprocess
+                    // weather.stopPoll();
+                    // weather.startPoll(); // todo?
             }
         }}
         class={"weather bar-button"}

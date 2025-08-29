@@ -1,6 +1,5 @@
 import { Gtk } from "ags/gtk3";
 import icons from "../../../lib/icons";
-import QSMenu, { MenuButton } from "./QSMenu";
 import {
 	qsRevealScreenRecord,
 	setQsRevealScreenRecord,
@@ -12,13 +11,14 @@ import ScreenRecordService from "../../../service/ScreenRecordService";
 
 export default () => {
 	return (
-		<QSMenu
-			classname={"screen-record"}
-			bindVariable={qsRevealScreenRecord}
-			content={[
+		<revealer
+			transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+			revealChild={qsRevealScreenRecord}
+		>
+			<box class={`menu screen-record`} vertical={true} >
 				<ScreenRecordMenu />
-			]}
-		/>
+			</box>
+		</revealer>
 	);
 }
 
@@ -82,14 +82,23 @@ const ScreenRecordMenu = () => {
 				hexpand={true}
 				halign={Gtk.Align.END}
 			>
-				<MenuButton buttonType="outlined" onClicked={() => setQsRevealScreenRecord(false)} text="Cancel"/>
-				<MenuButton
+				<button
+					class={`menu-button outlined`}
+					focusOnClick={false}
+					onClicked={() => setQsRevealScreenRecord(false)}
+				>
+					<label label={"Cancel"}/>
+				</button>
+				<button
+					class={`menu-button filled`}
+					focusOnClick={false}
 					onClicked={() => {
 						setQsRevealScreenRecord(false);
 						ScreenRecordService.start();
 					}}
-					 text="Start"
-				/>
+				>
+					<label label={"Start"}/>
+				</button>
 			</box>
 		</box>
 	);

@@ -7,7 +7,6 @@ import {
     commandTurnOffLightstrip
 } from "../../common/Variables";
 import icons from "../../../lib/icons";
-import QSMenu from "./QSMenu";
 import { bash } from "../../../lib/utils";
 
 const LightstripMenu = () => {
@@ -81,13 +80,14 @@ const LightstripMenu = () => {
 };
 
 export default () => {
-	return (
-		<QSMenu
-			classname={"screenshot"}
-			bindVariable={qsRevealLightstrip}
-			content={[
+    return (
+        <revealer
+            transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+            revealChild={qsRevealLightstrip}
+        >
+            <box class={`menu lightstrip`} vertical={true} >
 				<LightstripMenu />
-			]}
-		/>
-	);
+            </box>
+        </revealer>
+    );
 }

@@ -14,10 +14,9 @@ export default () => {
 
     return (
         <box class={"usage-box"} spacing={barUsageSpacing}>
-            {/* <CpuUsage />
+            <CpuUsage />
             <RamUsage />
-            <DiskUsage /> */}
-            {/* todo add gtop and uncomment */}
+            <DiskUsage />
             <BluetoothPowerUsage />
         </box>
     );

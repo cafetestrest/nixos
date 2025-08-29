@@ -38,43 +38,43 @@ const QSToggles = () => {
   for (const toggleKey of qsToggles) {
     switch (toggleKey) {
       case "BluetoothToggle":
-        allToggles.push({ toggleKey: <BluetoothToggle/> });
+        allToggles.push({ toggleKey: BluetoothToggle() });
         break;
       case "NightlightToggle":
-        allToggles.push({ toggleKey: <NightlightToggle/> });
+        allToggles.push({ toggleKey: NightlightToggle() });
         break;
       case "MicrophoneToggle":
-        allToggles.push({ toggleKey: <MicrophoneToggle/> });
+        allToggles.push({ toggleKey: MicrophoneToggle() });
         break;
       case "ScreenshotToggle":
-        allToggles.push({ toggleKey: <ScreenshotToggle/>, "QSScreenshotMenu": <QSScreenshotMenu/> });
+        allToggles.push({ toggleKey: ScreenshotToggle(), "QSScreenshotMenu": QSScreenshotMenu() });
         break;
       case "IdleToggle":
-        allToggles.push({ toggleKey: <IdleToggle/> });
+        allToggles.push({ toggleKey: IdleToggle() });
         break;
       case "LightstripToggle":
-        allToggles.push({ toggleKey: <LightstripToggle/>, "QSLightstripMenu": <QSLightstripMenu/> });
+        allToggles.push({ toggleKey: LightstripToggle(), "QSLightstripMenu": QSLightstripMenu() });
         break;
       case "NetworkToggle":
-        allToggles.push({ toggleKey: <NetworkToggle/> });
+        allToggles.push({ toggleKey: NetworkToggle() });
         break;
       case "ScreenRecordToggle":
-        allToggles.push({ toggleKey: <ScreenRecordToggle/>, "QSScreenRecordMenu": <QSScreenRecordMenu/> });
+        allToggles.push({ toggleKey: ScreenRecordToggle(), "QSScreenRecordMenu": QSScreenRecordMenu() });
         break;
       case "DNDToggle":
-        allToggles.push({ toggleKey: <DNDToggle/> });
+        allToggles.push({ toggleKey: DNDToggle() });
         break;
       case "ColorPickerToggle":
-        allToggles.push({ toggleKey: <ColorPickerToggle/> });
+        allToggles.push({ toggleKey: ColorPickerToggle() });
         break;
       case "NoteToggle":
-        allToggles.push({ toggleKey: <NoteToggle/> });
+        allToggles.push({ toggleKey: NoteToggle() });
         break;
       case "ColorToggle":
-        allToggles.push({ toggleKey: <ColorToggle/> });
+        allToggles.push({ toggleKey: ColorToggle() });
         break;
       case "QSEmptyButton":
-        allToggles.push({ toggleKey: <QSEmptyButton/> });
+        allToggles.push({ toggleKey: QSEmptyButton() });
         break;
       default:
         break;

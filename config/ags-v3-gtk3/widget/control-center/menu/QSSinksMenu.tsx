@@ -1,9 +1,9 @@
 import { qsRevealSinksButton, setQsRevealSinksButton, qsRevealSinksSpacing, qsRevertRevealerStatus, qsShowSinksRevealerButton } from "../../common/Variables";
 import icons from "../../../lib/icons";
-import QSMenu from "./QSMenu";
 import AstalWp from "gi://AstalWp";
 import { createBinding } from "ags";
 import { For } from "ags";
+import { Gtk } from "ags/gtk3";
 
 let WireplumberService: AstalWp.Wp | null;
 try {
@@ -100,19 +100,20 @@ const SinkMenu = () => {
 };
 
 export const SinkRevealer = () => {
-    if (qsShowSinksRevealerButton === false) {
+    if (qsShowSinksRevealerButton === false || !Audio) {
         return (
             <box visible={false} />
         );
     }
 
-    return Audio && (
-        <QSMenu
-            classname={"sink-selector"}
-            bindVariable={qsRevealSinksButton}
-            content={[
-                <SinkMenu />
-            ]}
-        />
+    return (
+        <revealer
+            transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+            revealChild={qsRevealSinksButton}
+        >
+            <box class={`menu sink-selector`} vertical={true} >
+				<SinkMenu />
+            </box>
+        </revealer>
     );
 };

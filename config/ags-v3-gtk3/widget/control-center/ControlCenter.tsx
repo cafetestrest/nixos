@@ -7,14 +7,14 @@ import QSNetworkPage from "./pages/QSNetworkPage";
 export default () => {
     return (
         <box class={"control-center"} vertical={true}>
-            <stack
+            {/* <stack
                 visibleChildName={qsPage}
                 transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
-            >
+            > */}
                 <QSMainPage />
-                <QSBluetoothPage />
-                <QSNetworkPage />
-            </stack>
+                {/* <QSBluetoothPage /> */}
+                {/* <QSNetworkPage /> */}
+            {/* </stack> */}
         </box>
     );
 };
