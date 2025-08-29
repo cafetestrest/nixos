@@ -19,7 +19,7 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
             <label label={device.name} />
 
             <label
-                class={"bluetooth-device-percentage"}
+                // class={"bluetooth-device-percentage"}
                 // label={upower.as((arr) => {
                 //     const upowerData = arr.find(item => item.model === device.name) || false
                 //     if (upowerData && upowerData?.batteryPercentage) {

@@ -13,12 +13,12 @@ export function QSSpaceBetweenToggles() {
 }
 
 export default () => {
-
 	return (
 		<box
 			name="main"
 			class={"qs-main-page"}
             vertical={true}
+			$type="named"
 		>
             <QSToggles />
             <box>
