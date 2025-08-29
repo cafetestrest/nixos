@@ -330,7 +330,7 @@ export const WeatherSchedule = ({ days }: { days: number | null }) => {
                         prevDayName = w.date;
 
                         return (<box>
-                            <label label={" "} class={"weather-spacing"}/>
+                            {counter !== 1 && <label label={" "} class={"weather-spacing"}/>}
                             {WeatherInfo(w)}
                         </box>);
                     }
