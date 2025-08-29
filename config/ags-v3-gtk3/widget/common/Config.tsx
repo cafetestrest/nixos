@@ -539,6 +539,7 @@ let configDefaults: Config = {
     },
 };
 
+//todo types
 // Override config defaults with user's options
 function overrideConfigRecursive(target: Config, source: {}) {
     for (const key of Object.keys(source)) {

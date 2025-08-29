@@ -6,7 +6,7 @@ import icons from "../../../lib/icons";
 import AstalNotifd from "gi://AstalNotifd";
 import NightlightModeService from "../../../service/NightLightService";
 import IdleModeService from "../../../service/IdleService";
-import { createBinding, createComputed } from "ags";
+import { createBinding, createComputed, Accessor } from "ags";
 
 const NightlightIndicator = () => {
 	if (NightlightModeService) {
@@ -112,7 +112,7 @@ const NetworkIndicator = () => {
 	);
 };
 
-const AudioIndicator = ({ speaker }) => {
+const AudioIndicator = ({ speaker }: {speaker: Wp.Endpoint}) => {
     const volumePercentage = createBinding(speaker, "volume").as(
         (v) => Math.round(v * 100).toString() + "%",
     );
@@ -145,7 +145,12 @@ const AudioIndicator = ({ speaker }) => {
 	);
 };
 
-export default ({className, onClicked}) => {
+type SystemIndicatorsType = {
+	className: string | Accessor<string>;
+	onClicked: () => void;
+}
+
+export default ({className, onClicked}: SystemIndicatorsType) => {
     const defaultSpeaker = Wp.get_default()?.audio.defaultSpeaker;
 
     return (

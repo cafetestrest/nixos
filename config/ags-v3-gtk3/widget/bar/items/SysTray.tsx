@@ -1,6 +1,7 @@
-import Tray from "gi://AstalTray";
+import AstalTray from "gi://AstalTray";
 import { enableBarSysTray } from "../../common/Variables";
 import { createBinding, For } from "ags";
+import { Gtk } from "ags/gtk3";
 
 export default () => {
     if (enableBarSysTray === false) {
@@ -9,23 +10,31 @@ export default () => {
         );
     }
 
-    const tray = Tray.get_default();
+    const tray = AstalTray.get_default();
     const items = createBinding(tray, "items");
 
+    const init = (btn: Gtk.MenuButton, item: AstalTray.TrayItem) => {
+        btn.menuModel = item.menuModel
+        btn.insert_action_group("dbusmenu", item.actionGroup)
+        item.connect("notify::action-group", () => {
+            btn.insert_action_group("dbusmenu", item.actionGroup)
+        })
+    }
+
     return (
-        <box class={"systray"}>
+        <box>
             <For each={items}>
-                {(item) => 
+                {(item) => (
                     <menubutton
+                        $={(self) => init(self, item)}
                         class={"bar-button"}
-                        tooltipMarkup={createBinding(item, "tooltipMarkup")}
                         usePopover={false}
-                        // actionGroup={createBinding(item, "actionGroup").as(ag => ["dbusmenu", ag])} //todo
-                        menuModel={createBinding(item, "menuModel")}>
+                    >
                         <icon gicon={createBinding(item, "gicon")} />
                     </menubutton>
-                }
+                )}
             </For>
         </box>
     );
 }
+//todo does not update

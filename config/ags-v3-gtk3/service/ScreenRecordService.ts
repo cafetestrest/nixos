@@ -6,6 +6,8 @@ import {
   recordScreenrecordsDir,
   commandSelectRegion,
   commandStartScreenRecord,
+  setRecordOnlySelectedScreenToggle,
+  setRecordInternalAudioToggle,
   // recordScreenshotsDir
 } from "../widget/common/Variables";
 import GObject from "gi://GObject?version=2.0";
@@ -101,8 +103,8 @@ const ScreenRecorderService = GObject.registerClass(
         cmd += ` -a`;
       }
 
-      recordOnlySelectedScreenToggle.set(!recordOnlySelectedScreenToggle.get())
-      recordInternalAudioToggle.set(!recordInternalAudioToggle.get())
+      setRecordOnlySelectedScreenToggle(!recordOnlySelectedScreenToggle.get())
+      setRecordInternalAudioToggle(!recordInternalAudioToggle.get())
 
       this.#recorder = AstalIO.Process.subprocess(cmd);
       this.notify("recording");

@@ -112,8 +112,6 @@ export default () => {
     const name = "Network";
 
 	return (
-        <QSPage label={name} refresh={() => wifi.scan()}>
-            <NetworkPageContent network={network} wifi={wifi} />
-        </QSPage>
+        <QSPage label={name} refresh={() => wifi.scan()} child={<NetworkPageContent network={network} wifi={wifi} />}/>
     );
 }

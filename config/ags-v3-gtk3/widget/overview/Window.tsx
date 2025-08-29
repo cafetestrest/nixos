@@ -9,6 +9,7 @@ import AstalHyprland from "gi://AstalHyprland";
 import { hideOverview } from "./OverviewPopupWindow";
 import { onCleanup } from "ags";
 
+//todo types
 export default ({ address, size: [w, h], class: c, title }) => {
 	const Hyprland = AstalHyprland.get_default();
 	const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]

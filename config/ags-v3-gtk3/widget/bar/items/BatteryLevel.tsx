@@ -13,28 +13,27 @@ export default () => {
             visible={createBinding(battery, "isPresent")}
         >
             <overlay
-                overlay={
-                    <label
-                        class={"battery-percentage-label"}
-                        label={batteryLevel.as(p =>
-                            `${Math.floor(p * 100)}`
-                        )}
-                        css={batteryLevel.as((p) => {
-                            const percentage = Math.floor(p * 100);
-
-                            switch (true) {
-                                case percentage <= 40:
-                                    return `color: white; text-shadow: 1px 1px 1px black;`;
-                                case percentage <= 60:
-                                    return `color: white; text-shadow: 1px 1px 1px black;`;
-                                case percentage > 60:
-                                default:
-                                    return `color: black; text-shadow: 1px 1px 1px white;`;
-                            }
-                        })}
-                    />
-                }
             >
+                <label
+                    class={"battery-percentage-label"}
+                    $type="overlay"
+                    label={batteryLevel.as(p =>
+                        `${Math.floor(p * 100)}`
+                    )}
+                    css={batteryLevel.as((p) => {
+                        const percentage = Math.floor(p * 100);
+
+                        switch (true) {
+                            case percentage <= 40:
+                                return `color: white; text-shadow: 1px 1px 1px black;`;
+                            case percentage <= 60:
+                                return `color: white; text-shadow: 1px 1px 1px black;`;
+                            case percentage > 60:
+                            default:
+                                return `color: black; text-shadow: 1px 1px 1px white;`;
+                        }
+                    })}
+                />
                 <levelbar
                     class={"battery-levelbar"}
                     css={batteryLevel.as((p) => {

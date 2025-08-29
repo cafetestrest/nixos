@@ -40,25 +40,23 @@ export default () => {
         brightness = Brightness.get_default()
     }
 
-    if (hasBrightness) {
+    if (hasBrightness && brightness) {
         return (
             <box class={"brightness-slider"}>
                 <overlay
                     class={"brightness-slider-overlay"}
-                    overlay={
-                        <icon
-                            class={"slider-brightness-icon"}
-                            icon={icons.brightness.screen}
-                            halign={Gtk.Align.START}
-                            hexpand={false}
-                        />
-                    }
-                    child={
-                        <box>
-                            <VolumeSlider device={brightness}/>
-                        </box>
-                    }
-                />
+                >
+                    <icon
+                        class={"slider-brightness-icon"}
+                        icon={icons.brightness.screen}
+                        halign={Gtk.Align.START}
+                        hexpand={false}
+                        $type="overlay"
+                    />
+                    <box>
+                        <VolumeSlider device={brightness}/>
+                    </box>
+                </overlay>
                 {/* <slider
                     hexpand={true}
                     onDragged={({ value }) => speaker.volume = value}

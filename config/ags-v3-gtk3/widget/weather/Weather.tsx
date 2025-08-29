@@ -215,6 +215,7 @@ const WeatherBoxChild = (w: TooltipItem) => (
 	</box>
 );
 
+//todo add types
 const WeatherBoxChildWrapper = (w: TooltipItem, temperatureDataPerDay: Record<string, TemperatureData>, totalWeatherForecastDataArray: TooltipItem[]) => (
 	<box
 		class={"qs-weather-box-child-wrapper"}

@@ -81,6 +81,7 @@ const QSToggles = () => {
     }
   }
 
+  //todo types
   // Function to split the array into rows
   const splitIntoRows = (toggles, itemsPerRow) => {
     const rows = [];

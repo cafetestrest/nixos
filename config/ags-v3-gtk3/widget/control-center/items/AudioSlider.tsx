@@ -50,20 +50,18 @@ export default () => {
         <box class={"audio-slider"}>
 			<overlay
                 class={"volume-slider-overlay"}
-                overlay={
-                    <icon
-                        class={"slider-volume-icon"}
-                        icon={createBinding(speaker, "volumeIcon")}
-						halign={Gtk.Align.START}
-                        hexpand={false}
-                    />
-                }
-                child={
-                    <box>
-                        <VolumeSlider device={speaker} />
-                    </box>
-                }
-            />
+            >
+                <icon
+                    class={"slider-volume-icon"}
+                    icon={createBinding(speaker, "volumeIcon")}
+                    halign={Gtk.Align.START}
+                    hexpand={false}
+                    $type="overlay"
+                />
+                <box>
+                    <VolumeSlider device={speaker} />
+                </box>
+            </overlay>
             {/* <slider
                 hexpand={true}
                 onDragged={({ value }) => speaker.volume = value}
@@ -72,3 +70,4 @@ export default () => {
         </box>
     );
 }
+//todo move to slider?

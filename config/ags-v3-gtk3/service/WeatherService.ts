@@ -1,6 +1,6 @@
 import { createPoll } from "ags/time";
-import { createState } from "ags";
 import { qsWeatherScheduleDays } from "../widget/common/Variables";
+import { Accessor } from "ags";
 
 export type TooltipItem = {
       date: string;
@@ -27,7 +27,7 @@ type IconTemperatureData = {
 export let temperatureDataPerDay: Record<string, IconTemperatureData> = {};
 export let totalWeatherForecastDataArray: TooltipItem[] = [];
 
-export const weather = createPoll(
+export const weather: Accessor<TooltipItem[]> = createPoll(
       [],
 	600_000,
 	"openweathermap",

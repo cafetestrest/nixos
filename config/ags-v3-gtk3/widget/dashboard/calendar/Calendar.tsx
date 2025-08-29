@@ -67,6 +67,7 @@ export default () => {
 			label={calendarMonthYearButtonLabel}
 		/>
 
+		//todo add types
 	const addCalendarChildren = (box: Astal.Box, calendarJson) => {
 		const children = box.get_children();
 		for (let i = 0; i < children.length; i++) {

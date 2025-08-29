@@ -27,7 +27,8 @@ import {
 	barLayoutEndRight,
 } from "../common/Variables";
 
-const widgetMap: Record<string, () => Gtk.Widget> = {
+//todo
+const widgetMap: Record<string, () => any> = {
     AppLauncher,
     Taskbar,
     Workspaces,
@@ -68,7 +69,13 @@ const Center = () => {
 	);
 };
 
-const End = ({powermenu, systemIndicators}) => {
+type EndWidgetType = {
+	powermenu: any
+	systemIndicators: any
+	//todo
+}
+
+const End = ({powermenu, systemIndicators}: EndWidgetType) => {
 	widgetMap.powermenu = () => powermenu;
     widgetMap.systemIndicators = () => systemIndicators;
 

@@ -150,7 +150,7 @@ function BluetoothPageContent() {
             </box>
             <box vertical={true} spacing={4} visible={isPowered}>
                 <For each={createBinding(bluetooth, "devices")}>
-                    {(device) => <box><DeviceItem device={device} /></box>}
+                    {(device: Bluetooth.Device) => <box><DeviceItem device={device} /></box>}
                 </For>
             </box>
         </box>
@@ -161,8 +161,6 @@ export default () => {
     const name = "Bluetooth";
 
 	return (
-        <QSPage label={name}>
-            <BluetoothPageContent />
-        </QSPage>
+        <QSPage label={name} child={<BluetoothPageContent />}/>
     );
 }

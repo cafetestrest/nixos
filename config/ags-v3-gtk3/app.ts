@@ -1,4 +1,3 @@
-import { Gdk, Gtk } from "ags/gtk3";
 import App from "ags/gtk3/app"
 import style from "./style/main.scss";
 import Bar from "./widget/bar/Bar";

@@ -19,7 +19,7 @@ const PowermenuButton = ({ action, iconName, onClicked }: PowermenuButtonProps) 
 	</button>
 );
 
-export default ({ onClicked }) => {
+export default ({ onClicked }: {onClicked: () => void}) => {
     return (
         <box
             class={"powermenu"}

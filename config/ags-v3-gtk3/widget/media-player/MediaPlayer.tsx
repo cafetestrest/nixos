@@ -115,7 +115,7 @@ export default function MprisPlayers() {
     return (
         <box vertical={true}>
             <For each={createBinding(mpris, "players")}>
-                {(pla) => <MediaPlayer player={pla} />}
+                {(pla: Mpris.Player) => <MediaPlayer player={pla} />}
             </For>
         </box>
     );

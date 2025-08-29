@@ -39,6 +39,10 @@ export const SinkButton = () => {
 const SinkMenu = () => {
 	const speaker = AstalWp.get_default()?.audio.defaultSpeaker!;
 
+    if (!Audio) {
+        return <box visible={false}/>
+    }
+
     return (
         <box
             vertical={true}
