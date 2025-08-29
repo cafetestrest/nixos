@@ -157,6 +157,11 @@ in
           hotspot_padding = 1;  #fixes issue that power menu toggle in ags is not far right
         };
 
+        ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+        };
+
         windowrule = let
           f = regex: "float, ^(${regex})$";
         in [

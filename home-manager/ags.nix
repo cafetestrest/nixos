@@ -31,7 +31,7 @@ in
 
     programs.ags = {
       enable = true;
-      configDir = ../config/ags;
+      configDir = ../config/ags-v3-gtk3;
       extraPackages = [
         inputs.ags.packages.${pkgs.system}.apps
         # inputs.ags.packages.${pkgs.system}.battery
