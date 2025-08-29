@@ -67,6 +67,7 @@ export default () => {
                                         case Gdk.BUTTON_MIDDLE:
                                             return close(address);
                                 }}}
+                                tooltipText={client.get_title()}
                             >
                                 <icon
                                     $={(self) => {
