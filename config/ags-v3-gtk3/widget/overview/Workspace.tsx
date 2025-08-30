@@ -7,7 +7,6 @@ import {
 import Window from "./Window";
 import { createBinding, createComputed, createState, onCleanup, For } from "ags";
 
-//todo types
 export default (id: number) => {
 	const Hyprland = AstalHyprland.get_default();
 	const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]

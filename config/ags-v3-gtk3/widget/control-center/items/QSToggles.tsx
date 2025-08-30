@@ -81,13 +81,8 @@ const QSToggles = () => {
     }
   }
 
-  type TogglesType = ({
-    toggleKey?: JSX.Element;
-    QSScreenshotMenu?: JSX.Element;
-    QSLightstripMenu?: JSX.Element;
-  });
+type TogglesType = Record<string, JSX.Element>;
 
-  //todo types
   // Function to split the array into rows
   const splitIntoRows = (toggles: TogglesType[], itemsPerRow: number) => {
     const rows = [];
@@ -200,9 +195,9 @@ const QSToggles = () => {
         visibleChildName={qsTogglesPage}
         transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
         children={
-          togglePages.map((page, pageIndex) => {
-            return renderPage(page, pageIndex);
-          })
+          togglePages.map((page, pageIndex) =>
+            renderPage(page, pageIndex) as unknown as Gtk.Widget
+          )
         }
       />
 

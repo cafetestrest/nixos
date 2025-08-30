@@ -12,15 +12,15 @@ export default () => {
 
     return <button
         onClicked={() => App.toggle_window(namespaceWeather)}
-        onClickRelease={(self, event) => {
-            switch (event.button) {
-                case Gdk.BUTTON_SECONDARY:
-                case Gdk.BUTTON_MIDDLE:
-                    // weather.stopWatch(); // this kills the subprocess
-                    // weather.stopPoll();
-                    // weather.startPoll(); // todo?
-            }
-        }}
+        // onClickRelease={(self, event) => {
+        //     switch (event.button) {
+        //         case Gdk.BUTTON_SECONDARY:
+        //         case Gdk.BUTTON_MIDDLE:
+        //             // weather.stopWatch(); // this kills the subprocess
+        //             // weather.stopPoll();
+        //             // weather.startPoll();
+        //     }
+        // }}
         class={"weather bar-button"}
         label={weather((w) => {
             let tooltip = w;

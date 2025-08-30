@@ -18,24 +18,6 @@ const DeviceItem = ({ device }: DeviceItemProps) => {
             <icon icon={device.icon === null ? icons.bluetooth.enabled : device.icon + "-symbolic"} class={"device-icon"}/>
             <label label={device.name} />
 
-            <label
-                // class={"bluetooth-device-percentage"}
-                // label={upower.as((arr) => {
-                //     const upowerData = arr.find(item => item.model === device.name) || false
-                //     if (upowerData && upowerData?.batteryPercentage) {
-                //         return upowerData.batteryPercentage + "%";
-                //     }
-                //     return "";
-                // })}
-                // visible={upower.as((arr) => {
-                //     const upowerData = arr.find(item => item.model === device.name) || false
-                //     if (upowerData && upowerData?.batteryPercentage) {
-                //         return true;
-                //     }
-                //     return false;
-                // })}
-                //todo check how to resolve errors with "has been already disposed — impossible to access it" in console
-            />
             <box hexpand={true} />
             <icon
                 icon={icons.ui.tick}

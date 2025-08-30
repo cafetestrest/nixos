@@ -70,4 +70,3 @@ export default () => {
         </box>
     );
 }
-//todo move to slider?

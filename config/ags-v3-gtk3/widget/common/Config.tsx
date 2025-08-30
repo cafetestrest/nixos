@@ -539,14 +539,20 @@ let configDefaults: Config = {
     },
 };
 
-//todo types
+type DeepPartial<T> = {
+    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
+};
+
 // Override config defaults with user's options
-function overrideConfigRecursive(target: Config, source: {}) {
-    for (const key of Object.keys(source)) {
+function overrideConfigRecursive<T extends object>(
+    target: T,
+    source: DeepPartial<T>
+): void {
+    for (const key of Object.keys(source) as (keyof T)[]) {
         if (source[key] instanceof Object && key in target) {
-            overrideConfigRecursive(target[key], source[key]);
+            overrideConfigRecursive(target[key] as any, source[key]);
         } else {
-            target[key] = source[key];
+            target[key] = source[key] as T[typeof key];
         }
     }
 }
@@ -570,7 +576,7 @@ try {
 }
 
 export async function initScss(themeMode?: ThemeMode) {
-	const color = getThemeColor(themeMode);
+	const color = getThemeColor(themeMode) || "dark";
 
 	const theme = config[`theme_${color}`];
 
