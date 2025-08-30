@@ -27,8 +27,7 @@ import {
 	barLayoutEndRight,
 } from "../common/Variables";
 
-//todo
-const widgetMap: Record<string, () => any> = {
+const widgetMap: Record<string, () => JSX.Element> = {
     AppLauncher,
     Taskbar,
     Workspaces,
@@ -70,9 +69,8 @@ const Center = () => {
 };
 
 type EndWidgetType = {
-	powermenu: any
-	systemIndicators: any
-	//todo
+	powermenu: JSX.Element
+	systemIndicators: JSX.Element
 }
 
 const End = ({powermenu, systemIndicators}: EndWidgetType) => {
