@@ -17,6 +17,7 @@ export default () => {
         btn.menuModel = item.menuModel
         btn.insert_action_group("dbusmenu", item.actionGroup)
         item.connect("notify::action-group", () => {
+            item.about_to_show(); // fixes copyq items not showing up when copied
             btn.insert_action_group("dbusmenu", item.actionGroup)
         })
     }
@@ -37,4 +38,3 @@ export default () => {
         </box>
     );
 }
-//todo does not update
