@@ -52,9 +52,7 @@ const ScreenRecordMenu = () => {
 								ScreenRecordService.setAudioRecord(self.active)
 							});
 
-							// self.hook(recordInternalAudioToggle, () => {
-							// 	self.active = false;
-							// })//todo
+							recordInternalAudioToggle(v => self.active = false);
 						}}
 					/>
 				</box>
@@ -70,9 +68,7 @@ const ScreenRecordMenu = () => {
 								ScreenRecordService.setRecordSelected(self.active)
 							});
 
-							// self.hook(recordOnlySelectedScreenToggle, () => {
-							// 	self.active = false;
-							// })//todo
+							recordOnlySelectedScreenToggle(v => self.active = false);
 						}}
 					/>
 				</box>

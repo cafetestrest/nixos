@@ -2,6 +2,7 @@ import GLib from "gi://GLib?version=2.0";
 import App from "ags/gtk3/app";
 import { dateTimeFormat, enableBarDateTime, namespaceDashboard } from "../../common/Variables";
 import { createPoll } from "ags/time";
+import { Astal } from "ags/gtk3";
 
 export default () => {
     if (enableBarDateTime === false) {
@@ -24,12 +25,11 @@ export default () => {
         label={time}
         $={(self) => {
             const window = App.get_window(namespaceDashboard);
-            // if (window) {
-            //     window.connect("notify::visible", () => {
-            //         self.toggleClassName("active", window.visible);
-            //     });
-            // }
-            //todo
+            if (window) {
+                window.connect("notify::visible", () => {
+                    Astal.widget_toggle_class_name(self, "active", window.visible);
+                });
+            }
         }}
     />
 }

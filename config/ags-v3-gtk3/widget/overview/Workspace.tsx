@@ -33,7 +33,6 @@ export default (id: number) => {
 		})
 	}
 
-	const [scaleVar, setScaleVar] = createState(overviewScale);
 	const workspace = (index: number) => Hyprland.dispatch("workspace", `${index}`);
 	const movetoworkspacesilent = (workspace: number, address: string) =>
 		Hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:${address}`);
@@ -70,8 +69,6 @@ export default (id: number) => {
 			`}
 			$={(box) => {
 				update();
-				// box.hook(scaleVar, update)
-				
 				// Connect signals
 				const addedId = Hyprland.connect("client-added", update);
 				const removedId = Hyprland.connect("client-removed", update);
@@ -84,14 +81,12 @@ export default (id: number) => {
 					Hyprland.disconnect(movedId);
 				});
 			}}
-			// attribute={id}
 			visible={largestWorkspaceId.as(ws => {
 				if (id > ws + 1) {
 				  return false;
 				}
 				return true;
 			})}
-			// onDestroy={() => largestWorkspaceId.drop()}
 		>
 			<eventbox
 				class={"eventbox"}

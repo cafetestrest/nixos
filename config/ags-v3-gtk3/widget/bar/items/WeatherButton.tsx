@@ -1,4 +1,4 @@
-import { Gdk } from "ags/gtk3";
+import { Astal, Gdk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import { enableBarWeather, namespaceWeather } from "../../common/Variables";
 import { weather } from "../../../service/WeatherService";
@@ -37,14 +37,13 @@ export default () => {
             return indicator;
         })}
         visible={weather((w) => w !== null && w.length > 0)}
-        // $={(self) => {
-        //     const window = App.get_window(namespaceWeather);
-        //     if (window) {
-        //         self.hook(window, "notify::visible", () => {
-        //             self.toggleClassName("active", window.visible);
-        //         });
-        //     }
-        // }}
-        //todo
+        $={(self) => {
+            const window = App.get_window(namespaceWeather);
+            if (window) {
+                window.connect("notify::visible", () => {
+                    Astal.widget_toggle_class_name(self, "active", window.visible);
+                });
+            }
+        }}
     />
 }

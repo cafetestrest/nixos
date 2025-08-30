@@ -1,4 +1,4 @@
-import { Gtk } from "ags/gtk3";
+import { Astal, Gtk } from "ags/gtk3";
 import icons from "../../../lib/icons";
 import ScreenRecordService from "../../../service/ScreenRecordService";
 import { enableBarRecordingIndicator } from "../../common/Variables";
@@ -19,12 +19,11 @@ export default () => {
             onClicked={() => ScreenRecordService.stop()}
             onHover={(self) => {
                 setRevealTimer(true);
-                // self.toggleClassName("spacing", true);//todo
+                Astal.widget_toggle_class_name(self, "spacing", true);
             }}
             onHoverLost={(self) => {
                 setRevealTimer(false);
-                // self.toggleClassName("spacing", false);//todo
-                //toggleClassName todo for all?
+                Astal.widget_toggle_class_name(self, "spacing", false);
             }}
             visible={createBinding(ScreenRecordService, "recording")}
         >

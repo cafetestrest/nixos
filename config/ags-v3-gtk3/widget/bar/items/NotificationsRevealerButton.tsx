@@ -1,4 +1,4 @@
-import { Gtk } from "ags/gtk3";
+import { Astal, Gtk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import icons from "../../../lib/icons";
 import Notifications from "gi://AstalNotifd";
@@ -24,16 +24,9 @@ export default () => {
         $={(self) => {
         	const notificationsWindow = App.get_window(namespaceNotification);
         	if (notificationsWindow) {
-        		// self.hook(
-        		// 	notificationsWindow,
-        		// 	"notify::visible",
-        		// 	() => {
-        		// 		self.toggleClassName(
-        		// 			"active",
-        		// 			notificationsWindow.visible,
-        		// 		);
-        		// 	},
-        		// );//todo
+                notificationsWindow.connect("notify::visible", () => {
+                    Astal.widget_toggle_class_name(self, "active", notificationsWindow.visible);
+                });
         	}
         }}
     >

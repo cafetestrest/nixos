@@ -1,4 +1,4 @@
-import { Gtk } from "ags/gtk3";
+import { Astal, Gtk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import { enableBarApplauncher, namespaceApplauncher, applauncherIcon } from "../../common/Variables";
 
@@ -18,7 +18,7 @@ export default () => {
                 const window = App.get_window(namespaceApplauncher);
                 if (window) {
                     window.connect("notify::visible", () => {
-                        // self.toggleClassName("active", window.visible);//todo
+                        Astal.widget_toggle_class_name(self, "active", window.visible);
                     });
                 }
             }}

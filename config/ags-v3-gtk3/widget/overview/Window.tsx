@@ -67,9 +67,9 @@ export default ({ address, size: [w, h], class: c, title }: WindowType) => {
 			const id1 = btn.connect("drag-data-get", (_w, _c, data) => data.set_text(address, address.length));
 			const id2 = btn.connect("drag-begin", (_, context) => {
 				Gtk.drag_set_icon_surface(context, createSurfaceFromWidget(btn));
-				// btn.toggleClassName('hidden', true); //todo
+				Astal.widget_toggle_class_name(btn, "hidden", true);
 			});
-			// btn.connect("drag-end", () => btn.toggleClassName('hidden', false)); //todo
+			btn.connect("drag-end", () => Astal.widget_toggle_class_name(btn, "hidden", false));
 
 			btn.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY);
 
