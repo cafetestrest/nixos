@@ -9,8 +9,14 @@ import AstalHyprland from "gi://AstalHyprland";
 import { hideOverview } from "./OverviewPopupWindow";
 import { onCleanup } from "ags";
 
-//todo types
-export default ({ address, size: [w, h], class: c, title }) => {
+type WindowType = {
+	address: string,
+	size:[w:number, h:number],
+	class:string,
+	title:string
+}
+
+export default ({ address, size: [w, h], class: c, title }: WindowType) => {
 	const Hyprland = AstalHyprland.get_default();
 	const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 
@@ -18,7 +24,7 @@ export default ({ address, size: [w, h], class: c, title }) => {
 	 * @param {import('gi://Gtk?version=3.0').default.Widget} widget
 	 * @returns {any} - missing cairo type
 	 */
-	function createSurfaceFromWidget(widget) {
+	function createSurfaceFromWidget(widget: Astal.Button) {
 		const alloc = widget.get_allocation()
 		const surface = new cairo.ImageSurface(
 			cairo.Format.ARGB32,

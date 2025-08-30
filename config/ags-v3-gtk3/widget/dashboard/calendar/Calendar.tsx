@@ -8,7 +8,7 @@ type Day = {
 	today: number;
 };
 
-let calendarJson = getCalendarLayout(undefined, true);
+let calendarJson: Array<Day>[] = getCalendarLayout(undefined, true);
 let monthshift = 0;
 
 const { CENTER } = Gtk.Align;
@@ -67,8 +67,7 @@ export default () => {
 			label={calendarMonthYearButtonLabel}
 		/>
 
-		//todo add types
-	const addCalendarChildren = (box: Astal.Box, calendarJson) => {
+	const addCalendarChildren = (box: any, calendarJson: any) => {
 		const children = box.get_children();
 		for (let i = 0; i < children.length; i++) {
 			const child = children[i];

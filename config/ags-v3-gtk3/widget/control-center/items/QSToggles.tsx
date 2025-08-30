@@ -81,9 +81,15 @@ const QSToggles = () => {
     }
   }
 
+  type TogglesType = ({
+    toggleKey?: JSX.Element;
+    QSScreenshotMenu?: JSX.Element;
+    QSLightstripMenu?: JSX.Element;
+  });
+
   //todo types
   // Function to split the array into rows
-  const splitIntoRows = (toggles, itemsPerRow) => {
+  const splitIntoRows = (toggles: TogglesType[], itemsPerRow: number) => {
     const rows = [];
     for (let i = 0; i < toggles.length; i += itemsPerRow) {
       rows.push(toggles.slice(i, i + itemsPerRow));
@@ -93,7 +99,7 @@ const QSToggles = () => {
   };
 
   // Function to split the array into pages
-  const splitIntoPages = (toggles, itemsPerPage) => {
+  const splitIntoPages = (toggles: TogglesType[][], itemsPerPage: number) => {
     const pages = [];
     for (let i = 0; i < toggles.length; i += itemsPerPage) {
       pages.push(toggles.slice(i, i + itemsPerPage));
@@ -107,7 +113,7 @@ const QSToggles = () => {
   const togglePages = splitIntoPages(toggleRows, maxItemsPerColumnQSToggles);
 
   // Render a single row of toggles
-  const renderRow = (rowToggles) => {
+  const renderRow = (rowToggles: TogglesType[]) => {
     return (
       <box
         spacing={qsTogglesSpacing}
@@ -121,7 +127,7 @@ const QSToggles = () => {
   };
 
   // menus that are inside pages
-  const renderMenu = (rowToggles, rowIndex) => {
+  const renderMenu = (rowToggles: TogglesType[], rowIndex: number) => {
     return (
       <box vertical={true}>
         {rowToggles.map((toggle) => {
@@ -136,7 +142,7 @@ const QSToggles = () => {
   };
 
   // menus that are outside pages, last item on the page
-  const renderMenuOutsideToggles = (pageRows) => {
+  const renderMenuOutsideToggles = (pageRows: TogglesType[][]) => {
     return pageRows.map((rowToggles, rowIndex) => {
       return (
         <box
@@ -155,7 +161,7 @@ const QSToggles = () => {
   };
 
   // Render a single page of toggles
-  const renderPage = (pageRows, pageIndex) => {
+  const renderPage = (pageRows: TogglesType[][], pageIndex: number) => {
     return (
       <box
         class={"qs-toggles-page"}

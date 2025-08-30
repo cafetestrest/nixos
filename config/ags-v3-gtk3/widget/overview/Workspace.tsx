@@ -15,7 +15,7 @@ export default (id: number) => {
 
 	const focusedMonitor = Hyprland.get_focused_monitor();
 
-	const [clientsList, setClientsList] = createState<any[]>([]);
+	const [clientsList, setClientsList] = createState<AstalHyprland.Client[]>([]);
 
 	async function update() {
 		Hyprland.message_async("j/clients", (_, res) => {
@@ -27,7 +27,7 @@ export default (id: number) => {
 
 			fixed.get_children().forEach(ch => ch.destroy());
 
-			setClientsList(JSON.parse(clients).filter(({ workspace }) => workspace.id === id));
+			setClientsList(JSON.parse(clients).filter(({ workspace }: { workspace: AstalHyprland.Workspace }) => workspace.id === id));
 
 			fixed.show_all();
 		})
