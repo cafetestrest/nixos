@@ -1,7 +1,7 @@
 import { Astal, Gdk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import { enableBarWeather, namespaceWeather } from "../../common/Variables";
-import { fetchWeather, weather } from "../../../service/WeatherService";
+import { fetchWeather, updatedAt, weather } from "../../../service/WeatherService";
 
 export default () => {
     if (enableBarWeather === false) {
@@ -34,6 +34,7 @@ export default () => {
 
             return indicator;
         })}
+        tooltipText={updatedAt}
         visible={weather((w) => w !== null && w.length > 0)}
         $={(self) => {
             const window = App.get_window(namespaceWeather);

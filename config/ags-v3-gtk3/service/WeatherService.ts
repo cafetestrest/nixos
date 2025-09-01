@@ -2,6 +2,7 @@ import { qsWeatherScheduleDays } from "../widget/common/Variables";
 import { createState } from "ags";
 import { interval } from "ags/time";
 import { execAsync } from "ags/process";
+import GLib from "gi://GLib?version=2.0";
 
 export type TooltipItem = {
       date: string;
@@ -27,11 +28,16 @@ type IconTemperatureData = {
 
 export let temperatureDataPerDay: Record<string, IconTemperatureData> = {};
 export let totalWeatherForecastDataArray: TooltipItem[] = [];
-
+export const [updatedAt, setUpdatedAt] = createState("");
 export const [weather, setWeather] = createState<TooltipItem[]>([]);
 
 export async function fetchWeather() {
       try {
+            const format = "Last updated: %H:%M:%S";
+            const time = GLib.DateTime.new_now_local().format(format);
+            if (time) {
+                  setUpdatedAt(time);
+            }
             const out = await execAsync("openweathermap");
             const tooltip = JSON.parse(out);
 
@@ -106,10 +112,9 @@ export async function fetchWeather() {
                         if (Number(w.hour) >= startHour && Number(w.hour) <= endHour) {
                               weatherStatusIconArray.push(w.icon);
                         }
-                  });  
+                  });
+                  setWeather(tooltip)
             }
-            // return tooltip;
-            setWeather(tooltip)
       } catch (error) {
             console.log(`Weather fetch failed: ${error}`)
       }
