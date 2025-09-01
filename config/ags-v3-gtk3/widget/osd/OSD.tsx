@@ -15,7 +15,7 @@ function OnScreenProgress({ visible, setVisible }: { visible:Accessor<boolean>, 
 
     const speaker = Wp.get_default()!.get_default_speaker()
 
-    const [iconName, setIconName] = createState("")
+    const [iconName, setIconName] = createState("audio-volume-overamplified-symbolic")
     const [value, setValue] = createState(0)
 
     let firstStart = true;
