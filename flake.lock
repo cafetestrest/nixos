@@ -8,11 +8,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1755864602,
-        "narHash": "sha256-/r1llrce4yG7aoKwedeehNDRYJMdkTlbT55v+5bBHIQ=",
+        "lastModified": 1756679577,
+        "narHash": "sha256-pkfftqE2CxVN6nKDZvlNdBxIkb/x5ch4wVfwZMYNGCM=",
         "owner": "Aylur",
         "repo": "ags",
-        "rev": "0603f8242f054127eb49ed3f7d9eee5c1d4b5559",
+        "rev": "04d51ac4082af3ec47e8a803417a1a55b75151d7",
         "type": "github"
       },
       "original": {
@@ -96,11 +96,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1754893912,
-        "narHash": "sha256-kzU/3A4k+d3PsgMLohzSh4KJybTqvzqibUVqV2yXCGY=",
+        "lastModified": 1756474652,
+        "narHash": "sha256-iiBU6itpEqE0spXeNJ3uJTfioSyKYjt5bNepykpDXTE=",
         "owner": "Aylur",
         "repo": "astal",
-        "rev": "5d4eef66392b0dff99a63a4f39ff886624bd69dd",
+        "rev": "20bd8318e4136fbd3d4eb2d64dbabc3acbc915dd",
         "type": "github"
       },
       "original": {
@@ -836,39 +836,13 @@
         "type": "github"
       }
     },
-    "kompass": {
-      "inputs": {
-        "astal": [
-          "astal"
-        ],
-        "nixpkgs": [
-          "kompass",
-          "astal",
-          "nixpkgs"
-        ],
-        "systems": "systems_4"
-      },
-      "locked": {
-        "lastModified": 1750406092,
-        "narHash": "sha256-pxta6O8THjL59+B6aNjL7wM24/7hJcu7Lep7AUF7Q+o=",
-        "owner": "kotontrion",
-        "repo": "kompass",
-        "rev": "a9f75f16eb726579aba28110f9221fa046217762",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kotontrion",
-        "repo": "kompass",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1754214453,
-        "narHash": "sha256-Q/I2xJn/j1wpkGhWkQnm20nShYnG7TI99foDBpXm1SY=",
+        "lastModified": 1756542300,
+        "narHash": "sha256-tlOn88coG5fzdyqz6R93SQL5Gpq+m/DsWpekNFhqPQk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5b09dc45f24cf32316283e62aec81ffee3c3e376",
+        "rev": "d7600c775f877cd87b4f5a831c28aa94137377aa",
         "type": "github"
       },
       "original": {
@@ -1055,7 +1029,6 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
-        "kompass": "kompass",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
@@ -1131,21 +1104,6 @@
     },
     "systems_4": {
       "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "systems_5": {
-      "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
@@ -1161,7 +1119,7 @@
     },
     "utils": {
       "inputs": {
-        "systems": "systems_5"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1710146030,

@@ -1,7 +1,7 @@
 import { Astal, Gdk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import { enableBarWeather, namespaceWeather } from "../../common/Variables";
-import { weather } from "../../../service/WeatherService";
+import { fetchWeather, weather } from "../../../service/WeatherService";
 
 export default () => {
     if (enableBarWeather === false) {
@@ -12,15 +12,13 @@ export default () => {
 
     return <button
         onClicked={() => App.toggle_window(namespaceWeather)}
-        // onClickRelease={(self, event) => {
-        //     switch (event.button) {
-        //         case Gdk.BUTTON_SECONDARY:
-        //         case Gdk.BUTTON_MIDDLE:
-        //             // weather.stopWatch(); // this kills the subprocess
-        //             // weather.stopPoll();
-        //             // weather.startPoll();
-        //     }
-        // }}
+        onClickRelease={(self, event) => {
+            switch (event.button) {
+                case Gdk.BUTTON_SECONDARY:
+                case Gdk.BUTTON_MIDDLE:
+                    fetchWeather();
+            }
+        }}
         class={"weather bar-button"}
         label={weather((w) => {
             let tooltip = w;

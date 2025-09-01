@@ -1,6 +1,7 @@
-import { createPoll } from "ags/time";
 import { qsWeatherScheduleDays } from "../widget/common/Variables";
-import { Accessor } from "ags";
+import { createState } from "ags";
+import { interval } from "ags/time";
+import { execAsync } from "ags/process";
 
 export type TooltipItem = {
       date: string;
@@ -27,12 +28,12 @@ type IconTemperatureData = {
 export let temperatureDataPerDay: Record<string, IconTemperatureData> = {};
 export let totalWeatherForecastDataArray: TooltipItem[] = [];
 
-export const weather: Accessor<TooltipItem[]> = createPoll(
-      [],
-	600_000,
-	"openweathermap",
-	(out, _) => {
-		const tooltip = JSON.parse(out);
+export const [weather, setWeather] = createState<TooltipItem[]>([]);
+
+export async function fetchWeather() {
+      try {
+            const out = await execAsync("openweathermap");
+            const tooltip = JSON.parse(out);
 
             if (tooltip) {
                   let prevDayName: string|null = null;
@@ -46,7 +47,7 @@ export const weather: Accessor<TooltipItem[]> = createPoll(
                   let totalWeatherForecastsCounter = days;
                   let forecastWidgetsNumber = 0;
 
-                  tooltip.forEach(w => {
+                  tooltip.forEach((w: TooltipItem) => {
                         if (w.indicator) {
                               return;
                         }
@@ -107,6 +108,12 @@ export const weather: Accessor<TooltipItem[]> = createPoll(
                         }
                   });  
             }
-            return tooltip;
-	},
-);
+            // return tooltip;
+            setWeather(tooltip)
+      } catch (error) {
+            console.log(`Weather fetch failed: ${error}`)
+      }
+}
+
+// repeat every 10 minutes (600000 ms)
+interval(600000, () => fetchWeather());

@@ -18,10 +18,10 @@
       inputs.astal.follows = "astal";
     };
 
-    kompass = {
-      url = "github:kotontrion/kompass";
-      inputs.astal.follows = "astal";
-    };
+    # kompass = {
+    #   url = "github:kotontrion/kompass";
+    #   inputs.astal.follows = "astal";
+    # };
 
     rooter = {
       url = "github:run-as-root/rooter";

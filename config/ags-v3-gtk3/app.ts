@@ -62,48 +62,49 @@ function main() {
     }
   }
 
-  App.connect("monitor-added", (_, gdkmonitor) => {
-    console.log("monitor added");
-	});
+  // App.connect("monitor-added", (_, gdkmonitor) => {
+  //   console.log("monitor added");
+	// });
 
-	App.connect("monitor-removed", (_, gdkmonitor) => {
-    console.log("monitor removed");
-	});
+	// App.connect("monitor-removed", (_, gdkmonitor) => {
+  //   console.log("monitor removed");
+	// });
 }
 
 App.start({
   css: style,
-  instanceName: "astal",
-  requestHandler(request: string, res: (response: any) => void) {
-		const args = request.split(" ");
-		if (args[0] == "toggle" && args[1]) {
-      switch (args[1]) {
-          case "app-launcher":
-          case "launcher":
-              App.toggle_window(namespaceApplauncher);
-              break;
-          case "control-center":
-          case "quicksettings":
-              setVisibleQSMainPage(!visibleQSMainPage.get());
-              break;
-          case "notifications":
-          case "notification":
-              App.toggle_window(namespaceNotification);
-              break;
-          case "powermenu":
-              setVisiblePowermenu(!visiblePowermenu.get());
-              break;
-          case "weather":
-              App.toggle_window(namespaceWeather);
-              break;
-          default:
-              print("Unknown request:", request);
-              return res("Unknown request")
+  requestHandler(argv: string[], res: (response: any) => void) {
+    argv.forEach((request) => {
+      const args = request.split(" ");
+      if (args[0] == "toggle" && args[1]) {
+        switch (args[1]) {
+            case "app-launcher":
+            case "launcher":
+                App.toggle_window(namespaceApplauncher);
+                break;
+            case "control-center":
+            case "quicksettings":
+                setVisibleQSMainPage(!visibleQSMainPage.get());
+                break;
+            case "notifications":
+            case "notification":
+                App.toggle_window(namespaceNotification);
+                break;
+            case "powermenu":
+                setVisiblePowermenu(!visiblePowermenu.get());
+                break;
+            case "weather":
+                App.toggle_window(namespaceWeather);
+                break;
+            default:
+                print("Unknown request:", request);
+                return res("Unknown request")
+        }
+        return res("ok");
+      } else {
+        return res("Unknown request");
       }
-      return res("ok");
-    } else {
-      return res("Unknown request");
-    }
+    })
   },
   main: main,
 })
