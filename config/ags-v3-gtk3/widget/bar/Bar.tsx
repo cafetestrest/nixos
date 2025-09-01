@@ -1,4 +1,5 @@
 import { Astal, Gtk, Gdk } from "ags/gtk3";
+import { onCleanup } from "ags";
 import Taskbar from "./items/Taskbar";
 import Workspaces from "./items/Workspaces";
 import Time from "./items/Time";
@@ -90,7 +91,15 @@ const End = ({powermenu, systemIndicators}: EndWidgetType) => {
 };
 
 export default function Bar(monitor: Gdk.Monitor) {
-    const { TOP, LEFT, RIGHT } = Astal.WindowAnchor
+	let win: Astal.Window;
+    const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
+
+	onCleanup(() => {
+		// Root components (windows) are not automatically destroyed.
+		// When the monitor is disconnected from the system, this callback
+		// is run from the parent <For> which allows us to destroy the window
+		win.destroy()
+	});
 
     const _qsPagePopover = (<QuickSettingsPopover/>);
     const _powermenuPopover = (<PowermenuPopover/>);
@@ -98,9 +107,10 @@ export default function Bar(monitor: Gdk.Monitor) {
     const sysIndicatorsButton = (<SystemIndicatorsButton/>);
 
     return <window
+		$={(self) => (win = self)}
         class={"bar"}
         namespace={"bar"}
-        name={"bar"}
+		name={`bar-${monitor.connector}`}
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}

@@ -1,4 +1,5 @@
-import App from "ags/gtk3/app"
+import { createBinding, For, This } from "ags"
+import app from "ags/gtk3/app"
 import style from "./style/main.scss";
 import Bar from "./widget/bar/Bar";
 import Applauncher from "./widget/app-launcher/Applauncher";
@@ -50,28 +51,23 @@ function main() {
     Dashboard();
   }
 
-  for (const gdkmonitor of App.get_monitors()) {
-    Bar(gdkmonitor)
+  const monitors = createBinding(app, "monitors")
 
-    if (enableNotificationPopups) {
-      NotificationPopups()
-    }
-
-    if (enableOsd) {
-      OSD(gdkmonitor);
-    }
-  }
-
-  // App.connect("monitor-added", (_, gdkmonitor) => {
-  //   console.log("monitor added");
-	// });
-
-	// App.connect("monitor-removed", (_, gdkmonitor) => {
-  //   console.log("monitor removed");
-	// });
+  return (
+    <For each={monitors}>
+      {(monitor) => {
+        return (
+        <This this={app}>
+          {Bar(monitor)}
+          {enableNotificationPopups ? NotificationPopups() : null}
+          {enableOsd ? OSD(monitor) : null}
+        </This>
+      )}}
+    </For>
+  );
 }
 
-App.start({
+app.start({
   css: style,
   requestHandler(argv: string[], res: (response: any) => void) {
     argv.forEach((request) => {
@@ -80,7 +76,7 @@ App.start({
         switch (args[1]) {
             case "app-launcher":
             case "launcher":
-                App.toggle_window(namespaceApplauncher);
+                app.toggle_window(namespaceApplauncher);
                 break;
             case "control-center":
             case "quicksettings":
@@ -88,13 +84,13 @@ App.start({
                 break;
             case "notifications":
             case "notification":
-                App.toggle_window(namespaceNotification);
+                app.toggle_window(namespaceNotification);
                 break;
             case "powermenu":
                 setVisiblePowermenu(!visiblePowermenu.get());
                 break;
             case "weather":
-                App.toggle_window(namespaceWeather);
+                app.toggle_window(namespaceWeather);
                 break;
             default:
                 print("Unknown request:", request);
