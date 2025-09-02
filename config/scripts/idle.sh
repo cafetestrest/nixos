@@ -6,7 +6,9 @@ function lock() {
 }
 
 function lock_with_hyprlock() {
-    pidof hyprlock || hyprlock > /dev/null 2>&1 &
+    if ! tty | grep -q '^/dev/tty[0-9]\+'; then
+        pidof hyprlock || hyprlock > /dev/null 2>&1 &
+    fi
 }
 
 function sespend() {
