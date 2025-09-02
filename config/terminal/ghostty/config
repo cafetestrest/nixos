@@ -7,6 +7,7 @@ window-decoration = false
 confirm-close-surface = false
 copy-on-select = clipboard
 clipboard-paste-protection = false
+right-click-action = paste
 
 #keybind = ctrl+w=close_surface
 #keybind = ctrl+q=close_surface

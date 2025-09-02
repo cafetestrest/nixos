@@ -49,13 +49,13 @@ in
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Control><Alt>t";
-        command = "kitty";
-        name = "kitty (ctrl + alt + t)";
+        command = "ghostty";
+        name = "ghostty (ctrl + alt + t)";
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         binding = "<Super>t";
-        command = "kitty";
-        name = "kitty (win + t)";
+        command = "ghostty";
+        name = "ghostty (win + t)";
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
         binding = "<Super>f";

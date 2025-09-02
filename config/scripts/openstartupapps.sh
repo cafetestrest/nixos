@@ -4,8 +4,8 @@ sleep_time() {
 
 # apps to open on startup
 function open_startup_apps() {
-    program="kitty"
-    flags="-e fish -c 'cd ~/nixos && fastfetch; exec fish'"
+    program="ghostty"
+    flags="--working-directory='$HOME/nixos' -e fish -c 'fastfetch; exec fish'"
     if ! pgrep "$program" >/dev/null; then
         hyprctl dispatch exec "[workspace 1 silent]" "$program $flags"
         sleep 2.2
@@ -28,7 +28,7 @@ function open_startup_apps() {
 
     # startup_app_class_names (1st class)     (2nd class)     (3rd class) -> hyprctl clients (class: ***) up to 3 running apps
     # startup_app_class_names (left)          (right-upper)   (right-lower)
-    startup_app_class_names=("brave-browser" "codium" "kitty")
+    startup_app_class_names=("brave-browser" "codium" "com.mitchellh.ghostty")
     # startup_app_class_names=("Chromium-browser" "terminator")
     sleep_time
     sleep_time

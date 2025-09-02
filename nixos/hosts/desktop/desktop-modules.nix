@@ -11,7 +11,7 @@ rec {
   nixExtraOptions = "experimental-features = nix-command flakes";
   efiSysMountPoint = "/boot/efi";
   grubDevice = "nodev";
-  configurationLimit = 20;
+  configurationLimit = 10;
   gtk = {
     cursorSize = 24;
     cursorTheme = "macOS";
