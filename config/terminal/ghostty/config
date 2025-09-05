@@ -22,3 +22,8 @@ keybind = ctrl+up=goto_split:top
 keybind = ctrl+left=goto_split:left
 keybind = ctrl+down=goto_split:bottom
 keybind = ctrl+right=goto_split:right
+
+keybind = ctrl+left=esc:b
+keybind = ctrl+right=esc:f
+keybind = ctrl+home=esc:<
+keybind = ctrl+end=esc:>
