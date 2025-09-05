@@ -1,127 +1,184 @@
-import { Gtk, Gdk } from "ags/gtk3";
+import { Gtk, Astal, Gdk } from "ags/gtk3";
 import AstalHyprland from "gi://AstalHyprland";
 import {
-    overviewScale,
+  overviewScale,
 	workspaces,
 } from "../common/Variables";
-import Window from "./Window";
-import { createBinding, createComputed, createState, onCleanup, For } from "ags";
+import { createBinding, For, createConnection, With, createComputed } from "ags";
+import icons, { substitutions } from "../../lib/icons";
+import cairo from 'cairo';
+import { hideOverview } from "./OverviewPopupWindow";
 
-export default (id: number) => {
-	const Hyprland = AstalHyprland.get_default();
-	const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
-    const fixed = Gtk.Fixed.new();
+type WorkspaceType = {
+  workspace: AstalHyprland.Workspace;
+  hyprland: AstalHyprland.Hyprland;
+}
 
-	const focusedMonitor = Hyprland.get_focused_monitor();
+const FALLBACK_HEIGHT = 1080;
+const FALLBACK_WIDTH = 1920;
+const scale = (n: number) => Math.max(0, n * overviewScale);
+const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 
-	const [clientsList, setClientsList] = createState<AstalHyprland.Client[]>([]);
+/**
+ * @param {import('gi://Gtk?version=3.0').default.Widget} widget
+ * @returns {any} - missing cairo type
+ */
+function createSurfaceFromWidget(widget: Gtk.Button) {
+	const alloc = widget.get_allocation()
+	const surface = new cairo.ImageSurface(
+		cairo.Format.ARGB32,
+		alloc.width,
+		alloc.height,
+	)
+	const cr = new cairo.Context(surface)
+	cr.setSourceRGBA(255, 255, 255, 0)
+	cr.rectangle(0, 0, alloc.width, alloc.height)
+	cr.fill()
+	widget.draw(cr)
+	return surface
+}
 
-	async function update() {
-		Hyprland.message_async("j/clients", (_, res) => {
-			const clients = Hyprland.message_finish(res);
-	
-			if (!clients) {
-				return;
-			}
+function Client({ client }: { client: AstalHyprland.Client }) {
+  const icon = createBinding(client, "class").as((c) => {
+    return substitutions.icons[c]
+      ? substitutions.icons[c]
+      : Astal.Icon.lookup_icon(c)
+        ? c
+        : icons.fallback.executable; //todo move snippet to be re-used
+  });
 
-			fixed.get_children().forEach(ch => ch.destroy());
+  return (
+    <Gtk.Button
+      halign={Gtk.Align.START}
+      valign={Gtk.Align.START}
+	    class={"client"}
+      marginTop={createBinding(client, "y").as(scale)}
+      marginStart={createBinding(client, "x").as(scale)}
+      widthRequest={createBinding(client, "width").as(scale)}
+      heightRequest={createBinding(client, "height").as(scale)}
+      onButtonPressEvent={(_, e) => {
+        const event = e as unknown as Gdk.Event;
+  
+        switch (event.get_button()[1]) {
+          case Gdk.BUTTON_PRIMARY:
+            client.focus();
+            return hideOverview();
+          case Gdk.BUTTON_SECONDARY:
+            return client.kill();
+          case Gdk.BUTTON_MIDDLE:
+            return client.kill();
+        }
+      }}
+	    onDragDataGet={(source: Gtk.Button, arg0: Gdk.DragContext, arg1: Gtk.SelectionData, arg2: number, arg3: number) => {
+		    arg1.set_text(client.address, client.address.length);
+	    }}
+	    onDragBegin={(source: Gtk.Button, arg0: Gdk.DragContext) => {
+        Gtk.drag_set_icon_surface(arg0, createSurfaceFromWidget(source))
+        Astal.widget_toggle_class_name(source, "hidden", true);
+      }}
+      onDragEnd={(source: Gtk.Button, arg0: Gdk.DragContext) => {
+        Astal.widget_toggle_class_name(source, "hidden", false);
+      }}
+      $={(self) => {
+        self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.COPY)
+      }}
+    >
+      <Gtk.Image iconName={icon} />
+    </Gtk.Button>
+  );
+}
 
-			setClientsList(JSON.parse(clients).filter(({ workspace }: { workspace: AstalHyprland.Workspace }) => workspace.id === id));
+function Workspace({ workspace, hyprland }: WorkspaceType) {
+  const monitor = createBinding(workspace, "monitor");
+  const clients = createBinding(workspace, "clients");
 
-			fixed.show_all();
-		})
-	}
+  const movetoworkspacesilent = (workspace: number, address: string) =>
+    hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:0x${address}`);
 
-	const workspace = (index: number) => Hyprland.dispatch("workspace", `${index}`);
-	const movetoworkspacesilent = (workspace: number, address: string) =>
-		Hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:${address}`);
+  return (
+    <Gtk.Box
+      onDragDataReceived={(source: Gtk.Box, arg0: Gdk.DragContext, arg1: number, arg2: number, arg3: Gtk.SelectionData, arg4: number, arg5: number) => {
+        const address = new TextDecoder().decode(arg3.get_data())
+        movetoworkspacesilent(workspace.id, address);
+      }}
+      $={(self) => {
+        self.drag_dest_set(Gtk.DestDefaults.ALL, TARGET, Gdk.DragAction.COPY)
+      }}
+	  >
+      <Gtk.Overlay>
+        <Gtk.Box
+          heightRequest={monitor((m) => scale(m?.height || FALLBACK_HEIGHT))}
+          widthRequest={monitor((m) => scale(m?.width || FALLBACK_WIDTH))}
+  				class={"eventbox"}
+        />
+        <For each={clients}>
+          {(client) => <Client $type="overlay" client={client} />}
+        </For>
+      </Gtk.Overlay>
+    </Gtk.Box>
+  );
+}
 
-	const largestWorkspaceId = createComputed([
-		createBinding(Hyprland, "focusedWorkspace"),
-		createBinding(Hyprland, "clients"),
-	  ], (focused, clients) => {
-		const focusedId = focused.id;
-	
-		if (focusedId >= workspaces) {
-		  return workspaces;
-		}
-	
-		const maxClientWorkspaceId = clients.reduce((maxId, client) => {
-		  return client.workspace.id > maxId ? client.workspace.id : maxId;
-		}, 0);
-	
-		const max = Math.max(focusedId, maxClientWorkspaceId);
-	
-		if (max > workspaces) {
-		  return workspaces;
-		}
-		return max;
-	});
+export default function Overview() {
+  const hyprland = AstalHyprland.get_default();
 
-    return (
-        <box
-			tooltipText={`${id}`}
-			class={"workspace"}
-			css={`
-				min-width: ${focusedMonitor.width * overviewScale}px;
-				min-height: ${focusedMonitor.height * overviewScale}px;
-			`}
-			$={(box) => {
-				update();
-				// Connect signals
-				const addedId = Hyprland.connect("client-added", update);
-				const removedId = Hyprland.connect("client-removed", update);
-				const movedId = Hyprland.connect("client-moved", update);
+  const workspace = (id: number) => {
+    const get = () =>
+      hyprland.get_workspace(id + 1) ||
+      AstalHyprland.Workspace.dummy(id + 1, null);
 
-				// Cleanup connections when the box is destroyed
-				onCleanup(() => {
-					Hyprland.disconnect(addedId);
-					Hyprland.disconnect(removedId);
-					Hyprland.disconnect(movedId);
-				});
-			}}
-			visible={largestWorkspaceId.as(ws => {
-				if (id > ws + 1) {
-				  return false;
-				}
-				return true;
-			})}
-		>
-			<eventbox
-				class={"eventbox"}
-				hexpand={true}
-				onClick={() => {
-					workspace(id)
-				}}
-				$={(eventbox) => {
-					eventbox.drag_dest_set(Gtk.DestDefaults.ALL, TARGET, Gdk.DragAction.COPY);
-					const dragDataReceived = eventbox.connect('drag-data-received', (_w, _c, _x, _y, data) => {
-						const address = new TextDecoder().decode(data.get_data())
-
-						movetoworkspacesilent(id, `${address}`);
-					});
-
-					// Cleanup connections when the box is destroyed
-					onCleanup(() => {
-						eventbox.disconnect(dragDataReceived);
-					});
-				}}
-			>
-				<box>
-					<For each={clientsList}>
-						{(c) => {
-							// adjust positions
-							c.at[0] -= Hyprland.get_monitor(c.monitor)?.x || 0;
-							c.at[1] -= Hyprland.get_monitor(c.monitor)?.y || 0;
-
-							c.mapped && fixed.put(Window(c), c.at[0] * overviewScale, c.at[1] * overviewScale);
-
-							return <box visible={false}/>
-						}}
-					</For>
-					{fixed}
-				</box>
-			</eventbox>
-		</box>
+    return createConnection(
+      get(),
+      [hyprland, "workspace-added", get],
+      [hyprland, "workspace-removed", get],
     );
+  };
+
+	const focusedMonitor = hyprland.get_focused_monitor();
+
+  const largestWorkspaceId = createComputed([
+    createBinding(hyprland, "focusedWorkspace"),
+    createBinding(hyprland, "clients"),
+    ], (focused, clients) => {
+    const focusedId = focused.id;
+  
+    if (focusedId >= workspaces) {
+      return workspaces;
+    }
+  
+    const maxClientWorkspaceId = clients.reduce((maxId, client) => {
+      return client.workspace.id > maxId ? client.workspace.id : maxId;
+    }, 0);
+  
+    const max = Math.max(focusedId, maxClientWorkspaceId);
+  
+    if (max > workspaces) {
+      return workspaces;
+    }
+    return max;
+  });
+
+  return (
+    <Gtk.Box>
+      {Array.from({ length: workspaces }, (_, id) => (
+        <Gtk.Box
+          class={"workspace"}
+          css={`
+            min-width: ${scale(focusedMonitor.width || FALLBACK_WIDTH)}px;
+            min-height: ${scale(focusedMonitor.height || FALLBACK_HEIGHT)}px;
+          `}
+          visible={largestWorkspaceId.as(ws => {
+            if (id > ws) {
+              return false;
+            }
+            return true;
+          })}
+        >
+          <With value={workspace(id)}>
+            {(ws) => <Workspace workspace={ws} hyprland={hyprland} />}
+          </With>
+        </Gtk.Box>
+      ))}
+    </Gtk.Box>
+  );
 }
