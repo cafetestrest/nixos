@@ -1,9 +1,10 @@
-import { Gdk, Astal } from "ags/gtk3";
+import { Gdk } from "ags/gtk3";
 import { createBinding, For } from "ags";
 import icons, { substitutions } from "../../../lib/icons";
 import AstalHyprland from "gi://AstalHyprland";
 import AstalApps from "gi://AstalApps";
 import { enableBarTaskbar } from "../../common/Variables";
+import { getClassIcon, isIcon } from "../../../lib/utils";
 
 const hyprland = AstalHyprland.get_default();
 const Applications = new AstalApps.Apps();
@@ -11,18 +12,25 @@ const Applications = new AstalApps.Apps();
 export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: string) {
 	if (!client) return icons.fallback.executable;
 
-	let icon = "";
+    let icon = getClassIcon(client.initialClass, "");
+
+    if (icon !== "") {
+        return icon;
+    }
+
 	if (iconName)
-		icon = iconName;
+        icon = getClassIcon(iconName, "");
+
+    if (icon !== "") {
+        return icon;
+    }
 
 	if ((!icon || icon === "") && client.initialClass !== "")
 	  icon = Applications.exact_query(client.initialClass)[0]?.iconName;
 	if ((!icon || icon === "") && client.initialTitle !== "")
 	  icon = Applications.exact_query(client.initialTitle)[0]?.iconName;
 
-	icon = substitutions.icons[client.initialClass] || icon;
-
-	return Astal.Icon.lookup_icon(icon) ? icon : icons.fallback.executable;
+    return getClassIcon(icon);
 };
 
 export default () => {
@@ -44,7 +52,7 @@ export default () => {
                     const cls = client.class;
                     const icon = substitutions.icons[cls]
                         ? substitutions.icons[cls]
-                        : Astal.Icon.lookup_icon(cls)
+                        : isIcon(cls)
                             ? cls
                             : icons.fallback.executable;
 
@@ -70,9 +78,7 @@ export default () => {
                                 tooltipText={client.get_title()}
                             >
                                 <icon
-                                    $={(self) => {
-                                        self.set_icon(getHyprlandClientIcon(client, icon));
-                                    }}
+                                    icon={getHyprlandClientIcon(client, icon)}
                                 />
                             </button>
                         </box>

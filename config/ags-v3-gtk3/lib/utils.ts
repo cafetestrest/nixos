@@ -3,6 +3,8 @@ import GLib from "gi://GLib?version=2.0";
 import { monitorFile, readFileAsync, writeFileAsync } from "ags/file";
 import Gio from "gi://Gio?version=2.0";
 import { exec, execAsync } from "ags/process";
+import { Astal } from "ags/gtk3";
+import { substitutions } from "./icons";
 
 const DARK = "dark";
 const LIGHT = "light";
@@ -126,4 +128,16 @@ export async function bash(
 		console.error(cmd, err);
 		return "";
 	});
+}
+
+export function isIcon(icon?: string | null) {
+	return icon && !!Astal.Icon.lookup_icon(icon);
+}
+
+export function getClassIcon(clientClass: string, fallbackIcon: string = "application-x-executable") {
+	return substitutions.icons[clientClass]
+		? substitutions.icons[clientClass]
+		: isIcon(clientClass)
+		? clientClass
+		: fallbackIcon;
 }

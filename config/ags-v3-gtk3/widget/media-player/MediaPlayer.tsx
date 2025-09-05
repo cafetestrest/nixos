@@ -2,6 +2,7 @@ import { Gtk } from "ags/gtk3";
 import Mpris from "gi://AstalMpris";
 import { qsShowMediaPlayer } from "../common/Variables";
 import { createBinding, For } from "ags";
+// import { isIcon } from "../../lib/utils";
 
 function lengthStr(length: number) {
     const hours = Math.floor(length / 3600);
@@ -29,8 +30,8 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
     const coverArt = createBinding(player, "coverArt").as(c =>
         `background-image: radial-gradient(circle, rgba(0,0,0, 0.75) 10%, rgba(0,0,0, 0.75)), url("${c}");`)
 
-    // const playerIcon = createBinding(player, "entry").as(e =>
-    //     Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic")
+    // const playerIcon = createBinding(player, "entry").as(e => 
+    //     isIcon(e) ? e : "audio-x-generic-symbolic")
 
     const playerIcon = "audio-x-generic-symbolic";
 

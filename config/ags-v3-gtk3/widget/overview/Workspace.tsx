@@ -5,9 +5,9 @@ import {
 	workspaces,
 } from "../common/Variables";
 import { createBinding, For, createConnection, With, createComputed } from "ags";
-import icons, { substitutions } from "../../lib/icons";
 import cairo from 'cairo';
 import { hideOverview } from "./OverviewPopupWindow";
+import { getClassIcon } from "../../lib/utils";
 
 type WorkspaceType = {
   workspace: AstalHyprland.Workspace;
@@ -40,11 +40,7 @@ function createSurfaceFromWidget(widget: Gtk.Button) {
 
 function Client({ client }: { client: AstalHyprland.Client }) {
   const icon = createBinding(client, "class").as((c) => {
-    return substitutions.icons[c]
-      ? substitutions.icons[c]
-      : Astal.Icon.lookup_icon(c)
-        ? c
-        : icons.fallback.executable; //todo move snippet to be re-used
+    return getClassIcon(c);
   });
 
   return (

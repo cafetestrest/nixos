@@ -1,14 +1,11 @@
 import GLib from "gi://GLib"
 import AstalNotifd from "gi://AstalNotifd"
 import Pango from "gi://Pango"
-import { Astal, Gtk } from "ags/gtk3"
+import { Gtk } from "ags/gtk3"
 import { notificationContentHeight } from "../common/Variables"
 import icons from "../../lib/icons"
 import { timeout } from "ags/time"
-
-function isIcon(icon?: string | null) {
-    return icon && !!Astal.Icon.lookup_icon(icon);
-}
+import { isIcon } from "../../lib/utils"
 
 function fileExists(path: string) {
   return GLib.file_test(path, GLib.FileTest.EXISTS)
