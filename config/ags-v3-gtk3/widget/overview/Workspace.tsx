@@ -6,7 +6,6 @@ import {
 } from "../common/Variables";
 import { createBinding, For, createConnection, With, createComputed } from "ags";
 import cairo from 'cairo';
-import { hideOverview } from "./OverviewPopupWindow";
 import { getClassIcon } from "../../lib/utils";
 
 type WorkspaceType = {
@@ -52,27 +51,16 @@ function Client({ client }: { client: AstalHyprland.Client }) {
       marginStart={createBinding(client, "x").as(scale)}
       widthRequest={createBinding(client, "width").as(scale)}
       heightRequest={createBinding(client, "height").as(scale)}
-      onButtonPressEvent={(_, e) => {
-        const event = e as unknown as Gdk.Event;
-  
-        switch (event.get_button()[1]) {
-          case Gdk.BUTTON_PRIMARY:
-            client.focus();
-            return hideOverview();
-          case Gdk.BUTTON_SECONDARY:
-            return client.kill();
-          case Gdk.BUTTON_MIDDLE:
-            return client.kill();
-        }
-      }}
-	    onDragDataGet={(source: Gtk.Button, arg0: Gdk.DragContext, arg1: Gtk.SelectionData, arg2: number, arg3: number) => {
-		    arg1.set_text(client.address, client.address.length);
+      onClicked={() => client.focus()}
+	    onDragDataGet={(source: Gtk.Button, context: Gdk.DragContext, selection: Gtk.SelectionData, arg2: number, arg3: number) => {
+        const data = client.address + `;${client.workspace.id}`;
+		    selection.set_text(data, data.length);
 	    }}
-	    onDragBegin={(source: Gtk.Button, arg0: Gdk.DragContext) => {
-        Gtk.drag_set_icon_surface(arg0, createSurfaceFromWidget(source))
+	    onDragBegin={(source: Gtk.Button, context: Gdk.DragContext) => {
+        Gtk.drag_set_icon_surface(context, createSurfaceFromWidget(source))
         Astal.widget_toggle_class_name(source, "hidden", true);
       }}
-      onDragEnd={(source: Gtk.Button, arg0: Gdk.DragContext) => {
+      onDragEnd={(source: Gtk.Button, context: Gdk.DragContext) => {
         Astal.widget_toggle_class_name(source, "hidden", false);
       }}
       $={(self) => {
@@ -88,14 +76,59 @@ function Workspace({ workspace, hyprland }: WorkspaceType) {
   const monitor = createBinding(workspace, "monitor");
   const clients = createBinding(workspace, "clients");
 
-  const movetoworkspacesilent = (workspace: number, address: string) =>
-    hyprland.dispatch("movetoworkspacesilent", `${workspace}, address:0x${address}`);
-
   return (
     <Gtk.Box
-      onDragDataReceived={(source: Gtk.Box, arg0: Gdk.DragContext, arg1: number, arg2: number, arg3: Gtk.SelectionData, arg4: number, arg5: number) => {
-        const address = new TextDecoder().decode(arg3.get_data())
-        movetoworkspacesilent(workspace.id, address);
+      onDragDataReceived={(source: Gtk.Box, context: Gdk.DragContext, x: number, y: number, selection: Gtk.SelectionData, info: number, time: number) => {
+        const data = new TextDecoder().decode(selection.get_data());
+        if (!data.includes(";")) {
+          print("Data in wrong format:", data);
+          return;
+        }
+
+        const [address, workspaceId] = data.split(";");
+
+        if (workspaceId == workspace.id.toString()) {
+          // Find dragged client
+          const draggedClient = workspace.clients.find(c => c.address === address);
+          if (!draggedClient) {
+            print("Dragged client not found:", address);
+            return;
+          }
+
+          // Hit-test for a target client at drop location
+          const clientAtDrop = workspace.clients.find(c => {
+            const cx = scale(c.x);
+            const cy = scale(c.y);
+            const cw = scale(c.width);
+            const ch = scale(c.height);
+            return x >= cx && x <= cx + cw && y >= cy && y <= cy + ch;
+          });
+
+          if (draggedClient.floating) {
+            // Floating client: move freely to drop point
+            hyprland.dispatch("focuswindow", `address:0x${address}`);
+            // Move to relative coordinates inside workspace
+            const dx = x - scale(draggedClient.x);
+            const dy = y - scale(draggedClient.y);
+            hyprland.dispatch("movewindowpixel", `${dx} ${dy}, address:0x${address}`);
+          } else if (clientAtDrop && clientAtDrop.address !== draggedClient.address) {
+            // Tiled client: swap with target
+            let direction: "l" | "r" | "u" | "d" = "r";
+            if (clientAtDrop.x < draggedClient.x) direction = "l";
+            else if (clientAtDrop.x > draggedClient.x) direction = "r";
+            else if (clientAtDrop.y < draggedClient.y) direction = "u";
+            else direction = "d";
+
+            hyprland.dispatch("focuswindow", `address:0x${address}`);
+            hyprland.dispatch("swapwindow", direction);
+          } else {
+            // Drop into empty area (do nothing for tiled)
+            print("No swap target under drop location.");
+          }
+        } else {
+          // Move to a different workspace
+          hyprland.dispatch("movetoworkspacesilent", `${workspace.id}, address:0x${address}`);
+        }
       }}
       $={(self) => {
         self.drag_dest_set(Gtk.DestDefaults.ALL, TARGET, Gdk.DragAction.COPY)
@@ -119,9 +152,12 @@ export default function Overview() {
   const hyprland = AstalHyprland.get_default();
 
   const workspace = (id: number) => {
-    const get = () =>
-      hyprland.get_workspace(id + 1) ||
+    const get = () => {
+
+      return hyprland.get_workspace(id + 1) ||
       AstalHyprland.Workspace.dummy(id + 1, null);
+    }
+      
 
     return createConnection(
       get(),
