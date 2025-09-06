@@ -1,5 +1,4 @@
 import { createPoll } from "ags/time";
-import { enableBarUsageBluetooth } from "../common/Variables";
 import { For } from "ags";
 
 type UpowerProps = {
@@ -65,12 +64,6 @@ export const upower = createPoll(
 });
 
 export default () => {
-    if (enableBarUsageBluetooth === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
 	return (
         <box class={"btwrapper"} spacing={5}>
             <For each={upower}>

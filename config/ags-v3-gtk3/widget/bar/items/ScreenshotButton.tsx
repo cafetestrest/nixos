@@ -1,24 +1,20 @@
 import { Astal, Gdk } from "ags/gtk3";
 import { bash } from "../../../lib/utils";
 import icons from "../../../lib/icons";
-import {
-    commandScreenshotSelectRegion,
-    commandScreenshotWholeDisplay,
-    commandScreenshotSelectWindow
-} from "../../common/Variables";
+import { config } from "../../../lib/config";
 
 export default () => {
     return <button
         onClickRelease={(_, event: Astal.ClickEvent) => {
             switch (event.button) {
                 case Gdk.BUTTON_PRIMARY:
-                    bash(commandScreenshotSelectRegion)
+                    bash(config.common.commandScreenshotSelectRegion)
                     break;
                 case Gdk.BUTTON_SECONDARY:
-                    bash(commandScreenshotWholeDisplay)
+                    bash(config.common.commandScreenshotWholeDisplay)
                     break;
                 case Gdk.BUTTON_MIDDLE:
-                    bash(commandScreenshotSelectWindow)
+                    bash(config.common.commandScreenshotSelectWindow)
                     break;
             }
         }}

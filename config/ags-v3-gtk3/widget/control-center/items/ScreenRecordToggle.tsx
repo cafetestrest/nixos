@@ -1,6 +1,6 @@
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";
-import { qsRevealScreenRecord, setQsRevealScreenRecord } from "../../common/Variables";
+import { qsRevealScreenRecord, setQsRevealScreenRecord } from "../../../lib/config";
 
 export default () => {
     return (

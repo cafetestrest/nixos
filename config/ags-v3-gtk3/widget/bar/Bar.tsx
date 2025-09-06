@@ -16,17 +16,7 @@ import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
 import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
-import {
-	barMarginTop,
-	barMarginBottom,
-	barMarginLeft,
-	barMarginRight,
-	barLayoutStartLeft,
-	barLayoutStartRight,
-	barLayoutCenter,
-	barLayoutEndLeft,
-	barLayoutEndRight,
-} from "../common/Variables";
+import { config } from "../../lib/config";
 
 const widgetMap: Record<string, () => JSX.Element> = {
     AppLauncher,
@@ -52,10 +42,10 @@ const Start = () => {
 	return (
 		<box $type="start">
 			<box halign={Gtk.Align.START}>
-				{renderWidgets(barLayoutStartLeft)}
+				{renderWidgets(config.barLayout.startLeft)}
 			</box>
 			<box halign={Gtk.Align.END} hexpand={true}>
-				{renderWidgets(barLayoutStartRight)}
+				{renderWidgets(config.barLayout.startRight)}
 			</box>
 		</box>
 	);
@@ -64,7 +54,7 @@ const Start = () => {
 const Center = () => {
 	return (
 		<box $type="center">
-			{renderWidgets(barLayoutCenter)}
+			{renderWidgets(config.barLayout.center)}
 		</box>
 	);
 };
@@ -81,10 +71,10 @@ const End = ({powermenu, systemIndicators}: EndWidgetType) => {
 	return (
 		<box $type="end">
 			<box halign={Gtk.Align.START}>
-				{renderWidgets(barLayoutEndLeft)}
+				{renderWidgets(config.barLayout.endLeft)}
 			</box>
 			<box halign={Gtk.Align.END} hexpand={true}>
-				{renderWidgets(barLayoutEndRight)}
+				{renderWidgets(config.barLayout.endRight)}
 			</box>
 		</box>
 	);
@@ -114,10 +104,10 @@ export default function Bar(monitor: Gdk.Monitor) {
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}
-		marginTop={barMarginTop}
-		marginBottom={barMarginBottom}
-		marginLeft={barMarginLeft}
-		marginRight={barMarginRight}
+		marginTop={config.bar.barMarginTop}
+		marginBottom={config.bar.barMarginBottom}
+		marginLeft={config.bar.barMarginLeft}
+		marginRight={config.bar.barMarginRight}
 	>
         <centerbox>
             <Start />

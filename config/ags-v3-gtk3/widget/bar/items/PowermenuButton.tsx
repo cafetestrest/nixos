@@ -1,15 +1,9 @@
 import { Astal, Gdk } from "ags/gtk3";
-import { visiblePowermenu, setVisiblePowermenu, commandOpenStartupApps, enableBarPowermenu, enableCommandOpenStartupApps } from "../../common/Variables";
+import { visiblePowermenu, setVisiblePowermenu, config } from "../../../lib/config";
 import icons from "../../../lib/icons";
 import { bash } from "../../../lib/utils";
 
 export default () => {
-    if (enableBarPowermenu === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <button
     		class={visiblePowermenu.as((v) => {
@@ -24,14 +18,14 @@ export default () => {
                         setVisiblePowermenu(true);
                         break;
                     case Gdk.BUTTON_SECONDARY: {
-                        if (enableCommandOpenStartupApps) {
-                            bash(commandOpenStartupApps);
+                        if (config.bar.enableCommandOpenStartupApps) {
+                            bash(config.common.commandOpenStartupApps);
                         }
                         break;
                     }
                     case Gdk.BUTTON_MIDDLE: {
-                        if (enableCommandOpenStartupApps) {
-                            bash(commandOpenStartupApps);
+                        if (config.bar.enableCommandOpenStartupApps) {
+                            bash(config.common.commandOpenStartupApps);
                         }
                         break;
                     }

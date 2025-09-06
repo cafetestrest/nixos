@@ -1,6 +1,6 @@
 import { Gtk } from "ags/gtk3";
 import Popover from "../../popovers/Popover";
-import { visibleQSMainPage, setVisibleQSMainPage, qsRevertRevealerStatus } from "../../common/Variables";
+import { visibleQSMainPage, setVisibleQSMainPage, qsRevertRevealerStatus } from "../../../lib/config";
 import ControlCenter from "../../control-center/ControlCenter";
 
 export default () => {

@@ -1,5 +1,5 @@
 import PopoverCenter from "../../popovers/PopoverCenter";
-import { visiblePowermenu, setVisiblePowermenu } from "../../common/Variables";
+import { visiblePowermenu, setVisiblePowermenu } from "../../../lib/config";
 import Powermenu from "../../powermenu/Powermenu";
 
 export default () => {

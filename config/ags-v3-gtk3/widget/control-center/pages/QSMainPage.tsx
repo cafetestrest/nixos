@@ -3,7 +3,7 @@ import AudioSlider from "../items/AudioSlider";
 import MprisPlayers from "../../media-player/MediaPlayer";
 import { SinkButton, SinkRevealer } from "../menu/QSSinksMenu";
 import { WeatherSchedule } from "../../weather/Weather";
-import { qsWeatherScheduleDays } from "../../common/Variables";
+import { config } from "../../../lib/config";
 import BrightnessSlider from "../items/BrightnessSlider";
 
 export function QSSpaceBetweenToggles() {
@@ -30,7 +30,7 @@ export default () => {
                 <BrightnessSlider />
             </box>
             <SinkRevealer />
-            <WeatherSchedule days={qsWeatherScheduleDays} />
+            <WeatherSchedule days={config.weather.qsWeatherScheduleDays} />
             <MprisPlayers />
         </box>
     );

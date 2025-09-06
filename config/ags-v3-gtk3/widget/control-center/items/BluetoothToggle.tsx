@@ -1,6 +1,6 @@
 import icons from "../../../lib/icons";
 import Bluetooth from "gi://AstalBluetooth";
-import { setQsPage } from "../../common/Variables";
+import { setQsPage } from "../../../lib/config";
 import QSToggle from "./QSToggle";
 import { createBinding } from "ags";
 

@@ -1,11 +1,11 @@
 import { bash } from "../../../lib/utils";
 import icons from "../../../lib/icons";
-import { commandColorPicker } from "../../common/Variables";
+import { config } from "../../../lib/config";
 
 export default () => {
     return <button
         onClicked={() => {
-            bash(commandColorPicker)
+            bash(config.common.commandColorPicker)
         }}
         class={"color-picker-button bar-button"}
     >

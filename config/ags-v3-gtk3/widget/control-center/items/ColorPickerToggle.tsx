@@ -1,7 +1,7 @@
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";
 import { bash } from "../../../lib/utils";
-import { setVisibleQSMainPage, commandColorPicker } from "../../common/Variables";
+import { setVisibleQSMainPage, config } from "../../../lib/config";
 import { timeout } from "ags/time";
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
                 setVisibleQSMainPage(false);
 
                 timeout(500, () => {
-                    bash(commandColorPicker)
+                    bash(config.common.commandColorPicker)
                 });
             }}
             icon={icons.ui.colorpicker}

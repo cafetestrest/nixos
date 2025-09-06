@@ -2,12 +2,15 @@ import { monitorFile, readFileAsync } from "ags/file";
 import { exec, execAsync } from "ags/process";
 import GObject from "gi://GObject?version=2.0";
 import { getter, register } from "ags/gobject";
+import { dependencies } from "../lib/utils";
 
 const get = (args: string) => Number(exec(`brightnessctl ${args}`))
 const screen = exec(`bash -c "ls -w1 /sys/class/backlight | head -1"`)
 
+const available = dependencies(["brightnessctl"]);
+
 @register({ GTypeName: "Brightness" })
-export default class Brightness extends GObject.Object {
+class Brightness extends GObject.Object {
     static instance: Brightness
     static get_default() {
         if (!this.instance)
@@ -44,3 +47,11 @@ export default class Brightness extends GObject.Object {
         })
     }
 }
+
+let service: Brightness | null = null;
+
+if (available) {
+    service = new Brightness();
+}
+
+export default service;

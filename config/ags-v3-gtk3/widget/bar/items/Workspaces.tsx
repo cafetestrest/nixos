@@ -2,8 +2,8 @@ import { Astal, Gdk, Gtk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import Hyprland from "gi://AstalHyprland";
 import { range } from "../../../lib/utils";
-import { enableBarWorkspaces, namespaceOverview, workspaces, overviewEnabled } from "../../common/Variables";
 import { createBinding, createComputed, createState } from "ags";
+import { config } from "../../../lib/config";
 
 const hyprland = Hyprland.get_default();
 const dispatch = (command: string) => hyprland.dispatch("workspace", command);
@@ -47,8 +47,8 @@ function Workspace({ id }: { id: number }) {
   ], (focused, clients) => {
     const focusedId = focused.id;
 
-    if (focusedId >= workspaces) {
-      return workspaces;
+    if (focusedId >= config.overview.workspaces) {
+      return config.overview.workspaces;
     }
 
     const maxClientWorkspaceId = clients.reduce((maxId, client) => {
@@ -57,8 +57,8 @@ function Workspace({ id }: { id: number }) {
 
     const max = Math.max(focusedId, maxClientWorkspaceId);
 
-    if (max > workspaces) {
-      return workspaces;
+    if (max > config.overview.workspaces) {
+      return config.overview.workspaces;
     }
     return max;
   });
@@ -79,31 +79,25 @@ function Workspace({ id }: { id: number }) {
 }
 
 export default () => {
-  if (enableBarWorkspaces === false) {
-    return (
-        <box visible={false} />
-    );
-  }
-
   return (
     <eventbox
       class={"workspaces"}
       onClickRelease={(_, event) => {
-        if (!overviewEnabled) {
+        if (!config.overview.overviewEnabled) {
           return false;
         }
 
         switch (event.button) {
           case Gdk.BUTTON_SECONDARY:
           case Gdk.BUTTON_MIDDLE:
-            return App.toggle_window(namespaceOverview);
+            return App.toggle_window(config.overview.namespaceOverview);
       }}}
       onScroll={(_, event: Astal.ScrollEvent) => {
         event.delta_y < 0 ? dispatch('+1') : dispatch('-1');
       }}
     >
       <box class={"workspaces-box"}>
-        {range(workspaces).map(ws => (
+        {range(config.overview.workspaces).map(ws => (
           <Workspace
             id={ws}
           />

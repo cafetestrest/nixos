@@ -1,6 +1,5 @@
 import { weather, TooltipItem, temperatureDataPerDay, totalWeatherForecastDataArray } from "../../service/WeatherService";
 import { For } from "ags";
-import { qsShowWeatherSchedule } from "../common/Variables";
 import { Gtk } from "ags/gtk3";
 
 type TemperatureData = {
@@ -256,12 +255,6 @@ let widgetDate = "";
 let counter = 0;
 
 export const WeatherSchedule = ({ days }: { days: number | null }) => {
-    if (!qsShowWeatherSchedule) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <box class="weather">
             <For each={weather}>

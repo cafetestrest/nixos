@@ -2,7 +2,7 @@ import { Gdk, Gtk } from "ags/gtk3";
 import { execAsync } from "ags/process";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
-import { hasWifi } from "../../common/Variables";
+import { config } from "../../../lib/config";
 import AstalNetwork from "gi://AstalNetwork";
 import { createBinding, For } from "ags";
 
@@ -96,7 +96,7 @@ function NetworkPageContent({ network, wifi }: NetworkPageProps) {
 }
 
 export default () => {
-    if (hasWifi === false) {
+    if (config.wifi.hasWifi === false) {
         return (
             <box visible={false} />
         );

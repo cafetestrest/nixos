@@ -3,10 +3,10 @@ import icons from "../../../lib/icons";
 import {
 	qsRevealScreenRecord,
 	setQsRevealScreenRecord,
-	qsRevealScreenRecordSpacing,
 	recordInternalAudioToggle,
-	recordOnlySelectedScreenToggle
-} from "../../common/Variables";
+	recordOnlySelectedScreenToggle,
+	config
+} from "../../../lib/config";
 import ScreenRecordService from "../../../service/ScreenRecordService";
 
 export default () => {
@@ -26,7 +26,7 @@ const ScreenRecordMenu = () => {
 	return (
 		<box
             vertical={true}
-			spacing={qsRevealScreenRecordSpacing}
+			spacing={config.qs.qsRevealScreenRecordSpacing}
 		>
 			<icon
 				icon={icons.record}
@@ -74,7 +74,7 @@ const ScreenRecordMenu = () => {
 				</box>
 			</box>
 			<box
-				spacing={qsRevealScreenRecordSpacing * 0.5}
+				spacing={config.qs.qsRevealScreenRecordSpacing * 0.5}
 				hexpand={true}
 				halign={Gtk.Align.END}
 			>

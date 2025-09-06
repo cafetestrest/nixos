@@ -1,9 +1,6 @@
 import { Gtk, Astal, Gdk } from "ags/gtk3";
 import AstalHyprland from "gi://AstalHyprland";
-import {
-  overviewScale,
-	workspaces,
-} from "../common/Variables";
+import { config } from "../../lib/config";
 import { createBinding, For, createConnection, With, createComputed } from "ags";
 import cairo from 'cairo';
 import { getClassIcon } from "../../lib/utils";
@@ -15,7 +12,7 @@ type WorkspaceType = {
 
 const FALLBACK_HEIGHT = 1080;
 const FALLBACK_WIDTH = 1920;
-const scale = (n: number) => Math.max(0, n * overviewScale);
+const scale = (n: number) => Math.max(0, n * config.overview.overviewScale);
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 
 /**
@@ -173,8 +170,8 @@ export default function Overview() {
     ], (focused, clients) => {
     const focusedId = focused.id;
   
-    if (focusedId >= workspaces) {
-      return workspaces;
+    if (focusedId >= config.overview.workspaces) {
+      return config.overview.workspaces;
     }
   
     const maxClientWorkspaceId = clients.reduce((maxId, client) => {
@@ -183,15 +180,15 @@ export default function Overview() {
   
     const max = Math.max(focusedId, maxClientWorkspaceId);
   
-    if (max > workspaces) {
-      return workspaces;
+    if (max > config.overview.workspaces) {
+      return config.overview.workspaces;
     }
     return max;
   });
 
   return (
     <Gtk.Box>
-      {Array.from({ length: workspaces }, (_, id) => (
+      {Array.from({ length: config.overview.workspaces }, (_, id) => (
         <Gtk.Box
           class={"workspace"}
           css={`

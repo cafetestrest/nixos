@@ -2,21 +2,19 @@ import { Astal, Gdk } from "ags/gtk3";
 import App from "ags/gtk3/app";
 import Calendar from "./calendar/Calendar";
 import {
-    dashboardBoxTopMargin,
-    dashboardContentWidth,
     dashboardWidth,
     setDashboardWidth,
-    namespaceDashboard
-} from "../common/Variables";
+    config
+} from "../../lib/config";
 
 function hide() {
-    App.get_window(namespaceDashboard)!.hide()
+    App.get_window(config.dashboard.namespaceDashboard)!.hide()
 }
 
 export default function Dashboard() {
     return <window
-        name={namespaceDashboard}
-        namespace={namespaceDashboard}
+        name={config.dashboard.namespaceDashboard}
+        namespace={config.dashboard.namespaceDashboard}
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.IGNORE}
         keymode={Astal.Keymode.ON_DEMAND}
@@ -33,8 +31,8 @@ export default function Dashboard() {
         <box class={"popover"}>
             <eventbox widthRequest={dashboardWidth(w => w / 2)} expand={true} onClick={hide} />
             <box hexpand={false} vertical={true}>
-                <eventbox heightRequest={dashboardBoxTopMargin} onClick={hide} />
-                <box widthRequest={dashboardContentWidth} class={"popup-box"} vertical={true}>
+                <eventbox heightRequest={config.dashboard.dashboardBoxTopMargin} onClick={hide} />
+                <box widthRequest={config.dashboard.dashboardContentWidth} class={"popup-box"} vertical={true}>
                     <Calendar />
                 </box>
                 <eventbox expand={true} onClick={hide} />

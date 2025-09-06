@@ -1,6 +1,6 @@
 import { Gtk } from "ags/gtk3";
 import Mpris from "gi://AstalMpris";
-import { qsShowMediaPlayer } from "../common/Variables";
+import { config } from "../../lib/config";
 import { createBinding, For } from "ags";
 // import { isIcon } from "../../lib/utils";
 
@@ -105,7 +105,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 }
 
 export default function MprisPlayers() {
-    if (qsShowMediaPlayer === false) {
+    if (config.qs.qsShowMediaPlayer === false) {
         return (
             <box visible={false}/>
         );

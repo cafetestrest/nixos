@@ -1,4 +1,4 @@
-import { qsRevealSinksButton, setQsRevealSinksButton, qsRevealSinksSpacing, qsRevertRevealerStatus, qsShowSinksRevealerButton } from "../../common/Variables";
+import { qsRevealSinksButton, setQsRevealSinksButton, qsRevertRevealerStatus, config } from "../../../lib/config";
 import icons from "../../../lib/icons";
 import AstalWp from "gi://AstalWp";
 import { createBinding } from "ags";
@@ -15,12 +15,6 @@ try {
 const Audio = WireplumberService && WireplumberService.audio;
 
 export const SinkButton = () => {
-    if (qsShowSinksRevealerButton === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <button
             class={"qs-sink-button"}
@@ -46,7 +40,7 @@ const SinkMenu = () => {
     return (
         <box
             vertical={true}
-            spacing={qsRevealSinksSpacing}
+            spacing={config.qs.qsRevealSinksSpacing}
         >
             <label
                 label={"Audio source"}
@@ -104,12 +98,6 @@ const SinkMenu = () => {
 };
 
 export const SinkRevealer = () => {
-    if (qsShowSinksRevealerButton === false || !Audio) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <revealer
             transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}

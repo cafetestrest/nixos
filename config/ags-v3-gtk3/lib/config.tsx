@@ -1,6 +1,7 @@
 import GLib from "gi://GLib?version=2.0";
 import { readFileAsync } from "ags/file";
-import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorScheme } from "../../lib/utils";
+import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorScheme } from "./utils";
+import { createState } from "ags";
 
 interface Config {
     bar: Bar;
@@ -27,7 +28,6 @@ interface Bar {
     visibleQSMainPage: boolean; // qs main page visible by default (used to control qs main page state)
     enableBarButtons: boolean; // enables buttons in bar
     enableBarUsage: boolean; // enables usage (cpu, ram, disk, bt %) all widgets
-    enableBarApplauncher: boolean; // enables Applauncher widget
     applauncherIcon: string; // Applauncher widget icon (string)
     enableBarTaskbar: boolean; // enables Taskbar widget
     enableBarWorkspaces: boolean; // enables Workspaces widget
@@ -120,6 +120,7 @@ interface Dashboard {
 }
 
 interface Applauncher {
+    enabled: boolean; // enables Applauncher window
     namespaceApplauncher: string; // Applauncher namespace
     applauncherWidth: number; // width for popup
     applauncherBoxTopMargin: number; // top margin between topbar
@@ -261,7 +262,6 @@ let configDefaults: Config = {
         visibleQSMainPage: false,
         enableBarButtons: false,
         enableBarUsage: true,
-        enableBarApplauncher: true,
         applauncherIcon: "",
         enableBarTaskbar: true,
         enableBarWorkspaces: true,
@@ -380,6 +380,7 @@ let configDefaults: Config = {
         dashboardContentWidth: 200,
     },
     applauncher: {
+        enabled: true,
         namespaceApplauncher: "launcher",
         applauncherWidth: 1000,
         applauncherBoxTopMargin: 800,
@@ -615,4 +616,90 @@ export async function initScss(themeMode?: ThemeMode) {
 export async function toggleColorMode() {
     toggleColorScheme();
     await initScss();
+}
+
+// bar
+export const [visiblePowermenu,setVisiblePowermenu] = createState(config.bar.visiblePowermenu);
+export const [visibleQSMainPage,setVisibleQSMainPage] = createState(config.bar.visibleQSMainPage);
+
+// qs
+export const [qsTogglesPage,setQsTogglesPage] = createState(config.qs.qsTogglesPage);
+export const [qsPage,setQsPage] = createState(config.qs.qsPage);
+export const [qsRevealSinksButton,setQsRevealSinksButton] = createState(config.qs.qsRevealSinksButton);
+export const [qsRevealScreenRecord,setQsRevealScreenRecord] = createState(config.qs.qsRevealScreenRecord);
+export const [qsRevealScreenshot,setQsRevealScreenshot] = createState(config.qs.qsRevealScreenshot);
+export const [qsRevealLightstrip,setQsRevealLightstrip] = createState(config.qs.qsRevealLightstrip);
+
+// weather
+export const [weatherWidth,setWeatherWidth] = createState(config.weather.weatherWidth);
+
+// screen record
+export const [recordInternalAudioToggle,setRecordInternalAudioToggle] = createState(config.screenRecord.recordInternalAudioToggle);
+export const [recordOnlySelectedScreenToggle,setRecordOnlySelectedScreenToggle] = createState(config.screenRecord.recordOnlySelectedScreenToggle);
+
+// dashboard
+export const [dashboardWidth,setDashboardWidth] = createState(config.dashboard.dashboardWidth);
+
+// applauncher
+export const [applauncherWidth,setApplauncherWidth] = createState(config.applauncher.applauncherWidth);
+
+// notification popup window
+export const [notificationWidth,setNotificationWidth] = createState(config.notificationPopupWindow.notificationWidth);
+
+// overview
+export const [overviewWidth,setOverviewWidth] = createState(config.overview.overviewWidth);
+
+// function to close all revealers when hitting any button in qs
+export function qsRevertRevealerStatus(str: string) {
+    if (str !== "screen-record") {
+        setQsRevealScreenRecord(false);
+    }
+
+    if (str !== "screenshot") {
+        setQsRevealScreenshot(false);
+    }
+
+    if (str !== "lightstrip") {
+        setQsRevealLightstrip(false);
+    }
+
+    if (str !== "sinks") {
+        setQsRevealSinksButton(false);
+    }
+}
+
+export function qsToggleRevealer(str: string) {
+    switch (str) {
+        case "screen-record":
+            setQsRevealScreenRecord(!qsRevealScreenRecord.get());
+            break;
+        case "screenshot":
+            setQsRevealScreenshot(!qsRevealScreenshot.get());
+            break;
+        case "lightstrip":
+            setQsRevealLightstrip(!qsRevealLightstrip.get());
+            break;
+        case "sinks":
+            setQsRevealSinksButton(!qsRevealSinksButton.get());
+            break;
+    }
+}
+
+export function isQSRevealerOpen(): boolean {
+    if (qsRevealScreenRecord.get()) {
+        return true;
+    }
+
+    if (qsRevealScreenshot.get()) {
+        return true;
+    }
+
+    if (qsRevealLightstrip.get()) {
+        return true;
+    }
+
+    if (qsRevealSinksButton.get()) {
+        return true;
+    }
+    return false;
 }

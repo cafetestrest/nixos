@@ -1,11 +1,8 @@
 import { Gtk } from "ags/gtk3";
 import {
     qsRevealLightstrip,
-    qsRevealLightstripSpacing,
-    commandGetLightstripIp,
-    commandTurnOnLightstrip,
-    commandTurnOffLightstrip
-} from "../../common/Variables";
+    config
+} from "../../../lib/config";
 import icons from "../../../lib/icons";
 import { bash } from "../../../lib/utils";
 
@@ -13,7 +10,7 @@ const LightstripMenu = () => {
     return (
         <box
             vertical={true}
-            spacing={qsRevealLightstripSpacing}
+            spacing={config.qs.qsRevealLightstripSpacing}
         >
             <box>
                 <label
@@ -25,7 +22,7 @@ const LightstripMenu = () => {
                 <button
                     class={"fetch-new-ip-button"}
                     onClicked={() => {
-    					bash(commandGetLightstripIp)
+    					bash(config.common.commandGetLightstripIp)
                     }}
 					halign={Gtk.Align.END}
                 >
@@ -38,12 +35,12 @@ const LightstripMenu = () => {
             </box>
             <box
                 vertical={true}
-                spacing={qsRevealLightstripSpacing}
+                spacing={config.qs.qsRevealLightstripSpacing}
                 class={"qs-menu-content"}
             >
                 <button
                     onClicked={() => {
-    					bash(commandTurnOnLightstrip)
+    					bash(config.common.commandTurnOnLightstrip)
                     }}
                 >
                     <box
@@ -60,7 +57,7 @@ const LightstripMenu = () => {
 
                 <button
                     onClicked={() => {
-                        bash(commandTurnOffLightstrip)
+                        bash(config.common.commandTurnOffLightstrip)
                     }}
                 >
                     <box

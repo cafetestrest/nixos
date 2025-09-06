@@ -1,7 +1,7 @@
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";
 import { bash } from "../../../lib/utils";
-import { setVisibleQSMainPage, commandOpenNote } from "../../common/Variables";
+import { setVisibleQSMainPage, config } from "../../../lib/config";
 
 export default () => {
     return (
@@ -10,7 +10,7 @@ export default () => {
             onPrimaryClick={() => {
                 setVisibleQSMainPage(false);
 
-                bash(commandOpenNote)
+                bash(config.common.commandOpenNote)
             }}
             icon={icons.note}
             label={"Open Note"}

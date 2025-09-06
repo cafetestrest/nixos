@@ -1,8 +1,7 @@
 import icons from "../../../lib/icons";
-import { qsPage, setQsPage } from "../../common/Variables";
+import { setQsPage, config } from "../../../lib/config";
 import QSToggle from "./QSToggle";
 import Network from "gi://AstalNetwork";
-import { hasWifi } from "../../common/Variables";
 import { createBinding, createComputed } from "ags";
 
 export default () => {
@@ -12,7 +11,7 @@ export default () => {
 	const wiredIcon = createBinding(wired, "iconName");
 	const wiredState = createBinding(wired, "state");
 
-    if (hasWifi === false || wifi === null) {
+    if (config.wifi.hasWifi === false || wifi === null) {
         return (
             <QSToggle
                 name={"network"}

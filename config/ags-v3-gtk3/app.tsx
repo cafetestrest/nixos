@@ -7,47 +7,38 @@ import OSD from "./widget/osd/OSD";
 import NotificationPopups from "./widget/notifications/NotificationPopups";
 import Dashboard from "./widget/dashboard/Dashboard";
 import {
-  visibleQSMainPage,
-  setVisibleQSMainPage,
-  visiblePowermenu,
+  config,
   setVisiblePowermenu,
-  namespaceApplauncher,
-  namespaceNotification,
-  namespaceWeather,
-  overviewEnabled,
-  enableBarApplauncher,
-  enableBarWeather,
-  enableBarNotifications,
-  enableDashboard,
-  enableNotificationPopups,
-  enableOsd,
-} from "./widget/common/Variables";
+  visiblePowermenu,
+  setVisibleQSMainPage,
+  visibleQSMainPage,
+} from "./lib/config";
 import WeatherPopup from "./widget/weather/WeatherPopup";
 import NotificationPopupWindow from "./widget/notifications/NotificationPopupWindow";
 import OverviewPopupWindow from "./widget/overview/OverviewPopupWindow";
-import { initScss } from "./widget/common/Config";
+import { initScss } from "./lib/config";
 import { reloadScss } from "./lib/utils";
 
 function main() {
   initScss();
 
-  if (enableBarApplauncher) {
+  if (config.applauncher.enabled) {
     Applauncher();
   }
 
-  if (enableBarWeather) {
+  if (config.bar.enableBarWeather) {
     WeatherPopup();
   }
 
-  if (enableBarNotifications) {
+  if (config.bar.enableBarNotifications) {
     NotificationPopupWindow();
   }
 
-  if (overviewEnabled) {
+  if (config.overview.overviewEnabled) {
     OverviewPopupWindow();
   }
 
-  if (enableDashboard) {
+  if (config.dashboard.enableDashboard) {
     Dashboard();
   }
 
@@ -59,8 +50,8 @@ function main() {
         return (
         <This this={app}>
           {Bar(monitor)}
-          {enableNotificationPopups ? NotificationPopups() : null}
-          {enableOsd ? OSD(monitor) : null}
+          {config.notificationPopupWindow.enableNotificationPopups ? NotificationPopups() : null}
+          {config.osd.enableOsd ? OSD(monitor) : null}
         </This>
       )}}
     </For>
@@ -72,35 +63,38 @@ app.start({
   requestHandler(argv: string[], res: (response: any) => void) {
     argv.forEach((request) => {
       const args = request.split(" ");
-      if (args[0] == "toggle" && args[1]) {
-        switch (args[1]) {
-            case "app-launcher":
-            case "launcher":
-                app.toggle_window(namespaceApplauncher);
-                break;
-            case "control-center":
-            case "quicksettings":
-                setVisibleQSMainPage(!visibleQSMainPage.get());
-                break;
-            case "notifications":
-            case "notification":
-                app.toggle_window(namespaceNotification);
-                break;
-            case "powermenu":
-                setVisiblePowermenu(!visiblePowermenu.get());
-                break;
-            case "weather":
-                app.toggle_window(namespaceWeather);
-                break;
-            default:
-                print("Unknown request:", request);
-                return res("Unknown request")
-        }
-        return res("ok");
-      } else {
-        return res("Unknown request");
+      if (!args) return res("args parse error")
+
+      if (args[0] != "toggle" || !args[1]) {
+          return res("unknown command")
       }
+
+      switch (args[1]) {
+          case "app-launcher":
+          case "launcher":
+              app.toggle_window(config.applauncher.namespaceApplauncher);
+              break;
+          case "control-center":
+          case "quicksettings":
+              setVisibleQSMainPage(!visibleQSMainPage.get());
+              break;
+          case "notifications":
+          case "notification":
+              app.toggle_window(config.notificationPopupWindow.namespaceNotification);
+              break;
+          case "powermenu":
+              setVisiblePowermenu(!visiblePowermenu.get());
+              break;
+          case "weather":
+              app.toggle_window(config.weather.namespaceWeather);
+              break;
+          default:
+              print("Unknown request:", request);
+              return res("Unknown request")
+      }
+      return res("ok");
     })
   },
   main: main,
+  // gtkTheme: "Adwaita",
 })

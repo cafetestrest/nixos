@@ -1,9 +1,9 @@
 import { createPoll } from "ags/time";
-import { diskUsageSpacing, diskUsagePoolRate, enableBarUsageDisk } from "../common/Variables";
+import { config } from "../../lib/config";
 
 const disk = createPoll(
 	"",
-	diskUsagePoolRate,
+	config.usage.diskUsagePoolRate,
 	"df -h /",
 	(out) => {
 	const lines = out.split('\n');
@@ -13,14 +13,8 @@ const disk = createPoll(
 });
 
 export default () => {
-    if (enableBarUsageDisk === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
 	return (
-		<box class={"disk usage"} spacing={diskUsageSpacing}>
+		<box class={"disk usage"} spacing={config.usage.diskUsageSpacing}>
 			<label label={""} class={"disk icon"}/>
 			<label
 				label={disk}

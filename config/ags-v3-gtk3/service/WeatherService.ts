@@ -1,8 +1,8 @@
-import { qsWeatherScheduleDays } from "../widget/common/Variables";
 import { createState } from "ags";
 import { interval } from "ags/time";
 import { execAsync } from "ags/process";
 import GLib from "gi://GLib?version=2.0";
+import { config } from "../lib/config";
 
 export type TooltipItem = {
       date: string;
@@ -48,7 +48,7 @@ export async function fetchWeather() {
                   let weatherForecastDataArray: TooltipItem[] = [];
                   totalWeatherForecastDataArray = [];
 
-                  const days = qsWeatherScheduleDays;
+                  const days = config.weather.qsWeatherScheduleDays;
 
                   let totalWeatherForecastsCounter = days;
                   let forecastWidgetsNumber = 0;

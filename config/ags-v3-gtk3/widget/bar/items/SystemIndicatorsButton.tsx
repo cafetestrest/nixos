@@ -1,13 +1,7 @@
-import { enableBarSystemIndicators, visibleQSMainPage, setVisibleQSMainPage } from "../../common/Variables";
+import { visibleQSMainPage, setVisibleQSMainPage } from "../../../lib/config";
 import SystemIndicators from "./SystemIndicators";
 
 export default () => {
-    if (enableBarSystemIndicators === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <SystemIndicators className={visibleQSMainPage.as((v) => {
             if (v) {

@@ -1,9 +1,8 @@
 import { Gtk } from "ags/gtk3";
 import Brightness from "../../../service/BrightnessService";
 import icons from "../../../lib/icons";
-import { hasBrightness, qsShowBrightnessSlider } from "../../common/Variables";
 
-const VolumeSlider = ({ device }: { device: Brightness }) => {
+const VolumeSlider = ({ device }: { device: typeof Brightness }) => {
     const adjustment = new Gtk.Adjustment({
         lower: 0,
         upper: 1,
@@ -28,43 +27,33 @@ const VolumeSlider = ({ device }: { device: Brightness }) => {
 };
 
 export default () => {
-    if (qsShowBrightnessSlider === false) {
+    if (Brightness === null) {
         return (
             <box visible={false} />
         );
     }
 
-    let brightness = null;
-
-    if (hasBrightness) {
-        brightness = Brightness.get_default()
-    }
-
-    if (hasBrightness && brightness) {
-        return (
-            <box class={"brightness-slider"}>
-                <overlay
-                    class={"brightness-slider-overlay"}
-                >
-                    <icon
-                        class={"slider-brightness-icon"}
-                        icon={icons.brightness.screen}
-                        halign={Gtk.Align.START}
-                        hexpand={false}
-                        $type="overlay"
-                    />
-                    <box>
-                        <VolumeSlider device={brightness}/>
-                    </box>
-                </overlay>
-                {/* <slider
-                    hexpand={true}
-                    onDragged={({ value }) => speaker.volume = value}
-                    value={bind(speaker, "volume")}
-                /> */}
-            </box>
-        );
-    } else {
-        return (<box visible={false}/>);
-    }
+    return (
+        <box class={"brightness-slider"}>
+            <overlay
+                class={"brightness-slider-overlay"}
+            >
+                <icon
+                    class={"slider-brightness-icon"}
+                    icon={icons.brightness.screen}
+                    halign={Gtk.Align.START}
+                    hexpand={false}
+                    $type="overlay"
+                />
+                <box>
+                    <VolumeSlider device={Brightness}/>
+                </box>
+            </overlay>
+            {/* <slider
+                hexpand={true}
+                onDragged={({ value }) => speaker.volume = value}
+                value={bind(speaker, "volume")}
+            /> */}
+        </box>
+    );
 }

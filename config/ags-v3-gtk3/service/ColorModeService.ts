@@ -1,5 +1,5 @@
 import { gsettings, applyColorMode } from "../lib/utils";
-import { toggleColorMode } from "../widget/common/Config";
+import { toggleColorMode } from "../lib/config";
 import GObject from "gi://GObject?version=2.0";
 
 export enum ColorMode {

@@ -2,18 +2,11 @@ import CpuUsage from "../../usage/CpuUsage";
 import RamUsage from "../../usage/RamUsage";
 import DiskUsage from "../../usage/DiskUsage";
 import BluetoothPowerUsage from "../../usage/BluetoothPowerUsage";
-import {
-    barUsageSpacing,
-    enableBarUsage
-} from "../../common/Variables";
+import { config } from "../../../lib/config";
 
 export default () => {
-    if (!enableBarUsage) {
-        return (<box visible={false} />);
-    }
-
     return (
-        <box class={"usage-box"} spacing={barUsageSpacing}>
+        <box class={"usage-box"} spacing={config.usage.barUsageSpacing}>
             <CpuUsage />
             <RamUsage />
             <DiskUsage />

@@ -1,6 +1,6 @@
 import { Gtk, Gdk, Astal } from "ags/gtk3";
 import icons from "../../../lib/icons";
-import { qsRevertRevealerStatus, qsToggleRevealer } from "../../common/Variables";
+import { qsRevertRevealerStatus, qsToggleRevealer } from "../../../lib/config";
 import { Accessor } from "ags";
 
 type QSToggleProps = JSX.IntrinsicElements["button"] & {

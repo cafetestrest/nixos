@@ -1,16 +1,9 @@
 import { Astal, Gtk } from "ags/gtk3";
 import icons from "../../../lib/icons";
 import ScreenRecordService from "../../../service/ScreenRecordService";
-import { enableBarRecordingIndicator } from "../../common/Variables";
 import { createBinding, createState } from "ags";
 
 export default () => {
-    if (enableBarRecordingIndicator === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
 	const [revealTimer, setRevealTimer] = createState(false);
 
     return <box class={"recording-box"}>

@@ -1,21 +1,20 @@
 import { Astal, Gtk } from "ags/gtk3";
 import App from "ags/gtk3/app";
-import { enableBarApplauncher, namespaceApplauncher, applauncherIcon } from "../../common/Variables";
+import { config } from "../../../lib/config";
+import GLib from "gi://GLib?version=2.0";
 
 export default () => {
-    if (enableBarApplauncher === false) {
-        return (
-            <box visible={false} />
-        );
-    }
+    const defaultIcon = GLib.get_os_info("LOGO") || "system-search-symbolic";
+    const configIcon = config.bar.applauncherIcon;
+    const icon = configIcon !== "" ? configIcon : defaultIcon;
 
     return (
         <button
             class={"app-launcher-button bar-button"}
-            onClicked={() => App.toggle_window(namespaceApplauncher)}
+            onClicked={() => App.toggle_window(config.applauncher.namespaceApplauncher)}
             halign={Gtk.Align.CENTER}
             $={(self) => {
-                const window = App.get_window(namespaceApplauncher);
+                const window = App.get_window(config.applauncher.namespaceApplauncher);
                 if (window) {
                     window.connect("notify::visible", () => {
                         Astal.widget_toggle_class_name(self, "active", window.visible);
@@ -23,7 +22,7 @@ export default () => {
                 }
             }}
         >
-            <label label={applauncherIcon}/>
+            <label label={icon}/>
         </button>
     );
 }

@@ -3,7 +3,6 @@ import { createBinding, For } from "ags";
 import icons, { substitutions } from "../../../lib/icons";
 import AstalHyprland from "gi://AstalHyprland";
 import AstalApps from "gi://AstalApps";
-import { enableBarTaskbar } from "../../common/Variables";
 import { getClassIcon, isIcon } from "../../../lib/utils";
 
 const hyprland = AstalHyprland.get_default();
@@ -34,12 +33,6 @@ export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: st
 };
 
 export default () => {
-    if (enableBarTaskbar === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     const focus = (address: string) => hyprland.dispatch("focuswindow", `address:0x${address}`);
 	const close = (address: string) => hyprland.dispatch("closewindow", `address:0x${address}`);
 

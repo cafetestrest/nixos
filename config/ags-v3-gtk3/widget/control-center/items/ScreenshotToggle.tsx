@@ -1,7 +1,6 @@
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";
-import { qsRevealScreenshot, setQsRevealScreenshot } from "../../common/Variables";
-import { createBinding } from "ags";
+import { qsRevealScreenshot, setQsRevealScreenshot } from "../../../lib/config";
 
 export default () => {
     return (

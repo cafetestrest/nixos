@@ -1,15 +1,8 @@
 import AstalTray from "gi://AstalTray";
-import { enableBarSysTray } from "../../common/Variables";
 import { createBinding, For } from "ags";
 import { Gtk } from "ags/gtk3";
 
 export default () => {
-    if (enableBarSysTray === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     const tray = AstalTray.get_default();
     const items = createBinding(tray, "items");
 

@@ -1,5 +1,5 @@
 import { Gtk } from "ags/gtk3";
-import { setQsPage } from "../../common/Variables";
+import { setQsPage } from "../../../lib/config";
 import icons from "../../../lib/icons";
 
 type PageProps = {

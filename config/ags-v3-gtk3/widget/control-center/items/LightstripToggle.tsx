@@ -1,6 +1,6 @@
 import icons from "../../../lib/icons";
 import QSToggle from "./QSToggle";
-import { qsRevealLightstrip, setQsRevealLightstrip } from "../../common/Variables";
+import { qsRevealLightstrip, setQsRevealLightstrip } from "../../../lib/config";
 
 export default () => {
     return (

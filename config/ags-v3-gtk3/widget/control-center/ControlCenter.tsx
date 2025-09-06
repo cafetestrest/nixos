@@ -1,14 +1,14 @@
 import { Gtk } from "ags/gtk3";
 import QSMainPage from "./pages/QSMainPage";
 import QSBluetoothPage from "./pages/QSBluetoothPage";
-import { qsPage } from "../common/Variables";
 import QSNetworkPage from "./pages/QSNetworkPage";
+import { config } from "../../lib/config";
 
 export default () => {
     return (
         <box class={"control-center"} vertical={true}>
             <stack
-                visibleChildName={qsPage}
+                visibleChildName={config.qs.qsPage}
                 transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
             >
                 <QSMainPage />

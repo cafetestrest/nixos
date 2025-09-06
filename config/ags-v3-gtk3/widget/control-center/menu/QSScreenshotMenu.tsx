@@ -1,10 +1,7 @@
 import {
     qsRevealScreenshot,
-    qsRevealScreenshotSpacing,
-    commandScreenshotSelectRegion,
-    commandScreenshotSelectWindow,
-    commandScreenshotWholeDisplay
-} from "../../common/Variables";
+    config
+} from "../../../lib/config";
 import icons from "../../../lib/icons";
 import { bash } from "../../../lib/utils";
 import { Gtk } from "ags/gtk3";
@@ -13,7 +10,7 @@ const ScreenShotMenu = () => {
     return (
         <box
             vertical={true}
-            spacing={qsRevealScreenshotSpacing}
+            spacing={config.qs.qsRevealScreenshotSpacing}
         >
             <label
                 label={"Screenshot Menu"}
@@ -21,12 +18,12 @@ const ScreenShotMenu = () => {
             />
             <box
                 vertical={true}
-                spacing={qsRevealScreenshotSpacing}
+                spacing={config.qs.qsRevealScreenshotSpacing}
                 class={"qs-menu-content"}
             >
                 <button
                     onClicked={() => {
-    					bash(commandScreenshotWholeDisplay)
+    					bash(config.common.commandScreenshotWholeDisplay)
                     }}
                 >
                     <box>
@@ -41,7 +38,7 @@ const ScreenShotMenu = () => {
 
                 <button
                     onClicked={() => {
-    					bash(commandScreenshotSelectRegion)
+    					bash(config.common.commandScreenshotSelectRegion)
                     }}
                 >
                     <box>
@@ -56,7 +53,7 @@ const ScreenShotMenu = () => {
 
                 <button
                     onClicked={() => {
-    					bash(commandScreenshotSelectWindow)
+    					bash(config.common.commandScreenshotSelectWindow)
                     }}
                 >
                     <box>

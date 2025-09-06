@@ -3,16 +3,10 @@ import App from "ags/gtk3/app";
 import { timeout } from "ags/time";
 import Brightness from "../../service/BrightnessService";
 import Wp from "gi://AstalWp";
-import { osdLevelbarWidth, hasBrightness } from "../common/Variables";
 import { createState, Setter, Accessor } from "ags";
+import { config } from "../../lib/config";
 
 function OnScreenProgress({ visible, setVisible }: { visible:Accessor<boolean>, setVisible: Setter<boolean> }) {
-    let brightness = null;
-
-    if (hasBrightness) {
-        brightness = Brightness.get_default()
-    }
-
     const speaker = Wp.get_default()!.get_default_speaker()
 
     const [iconName, setIconName] = createState("audio-volume-overamplified-symbolic")
@@ -34,9 +28,9 @@ function OnScreenProgress({ visible, setVisible }: { visible:Accessor<boolean>, 
     return (
         <revealer
             $={(self) => {
-                if (brightness) {
-                    brightness.connect("notify::screen", () =>
-                        show(brightness.screen, "display-brightness-symbolic"),
+                if (Brightness) {
+                    Brightness.connect("notify::screen", () =>
+                        Brightness && show(Brightness.screen, "display-brightness-symbolic"),
                     )
                 }
 
@@ -61,7 +55,7 @@ function OnScreenProgress({ visible, setVisible }: { visible:Accessor<boolean>, 
                     }
                     return "osd-icon";
                 })} valign={Gtk.Align.CENTER} vexpand={true}/>
-                <levelbar valign={Gtk.Align.CENTER} widthRequest={osdLevelbarWidth} value={value}/>
+                <levelbar valign={Gtk.Align.CENTER} widthRequest={config.osd.osdLevelbarWidth} value={value}/>
             </box>
         </revealer>
     )

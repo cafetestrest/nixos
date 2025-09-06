@@ -1,30 +1,24 @@
 import GLib from "gi://GLib?version=2.0";
 import App from "ags/gtk3/app";
-import { dateTimeFormat, enableBarDateTime, namespaceDashboard } from "../../common/Variables";
 import { createPoll } from "ags/time";
 import { Astal } from "ags/gtk3";
+import { config } from "../../../lib/config";
 
 export default () => {
-    if (enableBarDateTime === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     let format = "%a %b %e   %H:%M:%S";
-    if (dateTimeFormat) {
-        format = dateTimeFormat;
+    if (config.bar.dateTimeFormat) {
+        format = config.bar.dateTimeFormat;
     }
 
     const time = createPoll("", 1000, () =>
         GLib.DateTime.new_now_local().format(format)!)
 
     return <button
-        onClicked={() => App.toggle_window(namespaceDashboard)}
+        onClicked={() => App.toggle_window(config.dashboard.namespaceDashboard)}
         class={"bar-button"}
         label={time}
         $={(self) => {
-            const window = App.get_window(namespaceDashboard);
+            const window = App.get_window(config.dashboard.namespaceDashboard);
             if (window) {
                 window.connect("notify::visible", () => {
                     Astal.widget_toggle_class_name(self, "active", window.visible);

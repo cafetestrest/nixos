@@ -1,22 +1,18 @@
 import { ensureDirectory, bash } from "../lib/utils";
 import {
-  recordInternalAudioToggle,
+  config,
   recordOnlySelectedScreenToggle,
-  recordSaveDateFormat,
-  recordScreenrecordsDir,
-  commandSelectRegion,
-  commandStartScreenRecord,
   setRecordOnlySelectedScreenToggle,
-  setRecordInternalAudioToggle,
-  // recordScreenshotsDir
-} from "../widget/common/Variables";
+  recordInternalAudioToggle,
+  setRecordInternalAudioToggle
+} from "../lib/config";
 import GObject from "gi://GObject?version=2.0";
 import { execAsync } from "ags/process";
 import GLib from "gi://GLib?version=2.0";
 import AstalIO from "gi://AstalIO?version=0.1";
 import { interval } from "ags/time";
 
-const now = () => GLib.DateTime.new_now_local().format(recordSaveDateFormat);
+const now = () => GLib.DateTime.new_now_local().format(config.screenRecord.recordSaveDateFormat);
 
 const ScreenRecorderService = GObject.registerClass(
   {
@@ -55,7 +51,7 @@ const ScreenRecorderService = GObject.registerClass(
   },
   class Recorder extends GObject.Object {
     #recorder: AstalIO.Process | null = null;
-    #recordings = GLib.getenv("HOME") + recordScreenrecordsDir;
+    #recordings = GLib.getenv("HOME") + config.screenRecord.recordScreenrecordsDir;
     // #screenshots = GLib.getenv("HOME") + recordScreenshotsDir;
     #file = "";
     #interval: AstalIO.Time | null = null;
@@ -93,10 +89,10 @@ const ScreenRecorderService = GObject.registerClass(
       ensureDirectory(this.#recordings);
       this.#file = `${this.#recordings}/${now()}.mp4`;
 
-      let cmd = `${commandStartScreenRecord} ${this.#file}`;
+      let cmd = `${config.common.commandStartScreenRecord} ${this.#file}`;
 
       if (this.#recordSelectRegion) {
-        cmd += ` -g "${await bash(commandSelectRegion)}"`;
+        cmd += ` -g "${await bash(config.common.commandSelectRegion)}"`;
       }
 
       if (this.#recordAudio) {

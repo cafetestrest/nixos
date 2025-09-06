@@ -1,17 +1,10 @@
 import { Gtk } from "ags/gtk3";
 import Mpris from "gi://AstalMpris";
 import icons from "../../../lib/icons";
-import { enableBarMediaIndicator } from "../../common/Variables";
 import { createBinding, createState, For } from "ags";
 import AstalMpris from "gi://AstalMpris?version=0.1";
 
 export default () => {
-    if (enableBarMediaIndicator === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     const mpris = Mpris.get_default()
     const [revealMedia, setRevealMedia] = createState(true);
 

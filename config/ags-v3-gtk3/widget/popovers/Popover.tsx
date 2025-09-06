@@ -1,5 +1,5 @@
 import { Astal, Gdk, Gtk } from "ags/gtk3";
-import { isQSRevealerOpen, qsRevertRevealerStatus, qsPage, setQsPage } from "../common/Variables";
+import { isQSRevealerOpen, qsRevertRevealerStatus, qsPage, setQsPage } from "../../lib/config";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
 

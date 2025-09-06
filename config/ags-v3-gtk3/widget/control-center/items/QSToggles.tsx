@@ -5,13 +5,8 @@ import {
   qsTogglesPage,
   setQsTogglesPage,
   qsRevertRevealerStatus,
-  qsTogglesSpacing,
-  qsRowSpacing,
-  maxItemsPerRowQSToggles,
-  maxItemsPerColumnQSToggles,
-  qsShowToggles,
-  qsToggles
-} from "../../common/Variables";
+  config
+} from "../../../lib/config";
 import MicrophoneToggle from "./MicrophoneToggle";
 import DNDToggle from "./DNDToggle";
 import BluetoothToggle from "./BluetoothToggle";
@@ -35,7 +30,7 @@ const QSToggles = () => {
 
   const allToggles = [];
 
-  for (const toggleKey of qsToggles) {
+  for (const toggleKey of config.qs.qsToggles) {
     switch (toggleKey) {
       case "BluetoothToggle":
         allToggles.push({ toggleKey: BluetoothToggle() });
@@ -104,14 +99,14 @@ type TogglesType = Record<string, JSX.Element>;
   };
 
   // Split toggles into rows and pages
-  const toggleRows = splitIntoRows(allToggles, maxItemsPerRowQSToggles);
-  const togglePages = splitIntoPages(toggleRows, maxItemsPerColumnQSToggles);
+  const toggleRows = splitIntoRows(allToggles, config.qs.maxItemsPerRowQSToggles);
+  const togglePages = splitIntoPages(toggleRows, config.qs.maxItemsPerColumnQSToggles);
 
   // Render a single row of toggles
   const renderRow = (rowToggles: TogglesType[]) => {
     return (
       <box
-        spacing={qsTogglesSpacing}
+        spacing={config.qs.qsTogglesSpacing}
       >
         {rowToggles.map((toggle) => {
           const toggleIdentifier = Object.keys(toggle)[0];
@@ -127,7 +122,7 @@ type TogglesType = Record<string, JSX.Element>;
       <box vertical={true}>
         {rowToggles.map((toggle) => {
           const keys = Object.keys(toggle);
-          if (keys.length > 1 && rowIndex !== maxItemsPerColumnQSToggles - 1) {
+          if (keys.length > 1 && rowIndex !== config.qs.maxItemsPerColumnQSToggles - 1) {
             const toggleIdentifier = Object.keys(toggle)[1];
             return toggle[toggleIdentifier];
           }
@@ -145,7 +140,7 @@ type TogglesType = Record<string, JSX.Element>;
         >
           {rowToggles.map((toggle) => {
             const keys = Object.keys(toggle);
-            if (keys.length > 1 && rowIndex === maxItemsPerColumnQSToggles - 1) {
+            if (keys.length > 1 && rowIndex === config.qs.maxItemsPerColumnQSToggles - 1) {
               const toggleIdentifier = Object.keys(toggle)[1];
               return toggle[toggleIdentifier];
             }
@@ -162,7 +157,7 @@ type TogglesType = Record<string, JSX.Element>;
         class={"qs-toggles-page"}
         name={`qs-page-${pageIndex}`}
         vertical={true}
-        spacing={qsRowSpacing}
+        spacing={config.qs.qsRowSpacing}
         $type="named"
       >
         {pageRows.map((row, rowIndex) => {
@@ -180,7 +175,7 @@ type TogglesType = Record<string, JSX.Element>;
     );
   };
 
-  if (qsShowToggles === false) {
+  if (config.qs.qsShowToggles === false) {
     return (
         <box visible={false} />
     );

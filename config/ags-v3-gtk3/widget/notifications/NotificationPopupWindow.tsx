@@ -4,28 +4,22 @@ import AstalNotifd from "gi://AstalNotifd"
 import Notification from "./Notification"
 import { createBinding, For, createState, onCleanup } from "ags"
 import {
-  namespaceNotification,
   notificationWidth,
   setNotificationWidth,
-  notificationBoxTopMargin,
-  notificationContentWidth,
-  notificationSpacing,
-  notificationHeight,
-  notificationScrollableMaxHeight,
-  removeAllPreviousNotificationOnStart
-} from "../common/Variables";
+  config
+} from "../../lib/config";
 import { timeout } from "ags/time"
 
 export default function NotificationPopupWindow() {
   function hide() {
-    app.get_window(namespaceNotification)!.hide()
+    app.get_window(config.notificationPopupWindow.namespaceNotification)!.hide()
   }
 
   const monitors = createBinding(app, "monitors")
 
   const notifd = AstalNotifd.get_default()
 
-  if (removeAllPreviousNotificationOnStart) {
+  if (config.notificationPopupWindow.removeAllPreviousNotificationOnStart) {
     // This will remove all existing notifications on startup
     notifd.get_notifications().forEach((n) => n.dismiss());
   }
@@ -58,8 +52,8 @@ export default function NotificationPopupWindow() {
       {(monitor) => (
         <window
           $={(self) => onCleanup(() => self.destroy())}
-          namespace={namespaceNotification}
-          name={namespaceNotification}
+          namespace={config.notificationPopupWindow.namespaceNotification}
+          name={config.notificationPopupWindow.namespaceNotification}
           gdkmonitor={monitor}
           visible={false}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
@@ -78,14 +72,14 @@ export default function NotificationPopupWindow() {
             <box class={"popover"}>
               <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
               <box hexpand={false} vertical={true}>
-                  <eventbox heightRequest={notificationBoxTopMargin} onClick={hide} />
-                  <box widthRequest={notificationContentWidth} class={"popup-box"} vertical={true}>
-                    <box vertical={true} class={"notifications-window"} spacing={notificationSpacing}>
+                  <eventbox heightRequest={config.notificationPopupWindow.notificationBoxTopMargin} onClick={hide} />
+                  <box widthRequest={config.notificationPopupWindow.notificationContentWidth} class={"popup-box"} vertical={true}>
+                    <box vertical={true} class={"notifications-window"} spacing={config.notificationPopupWindow.notificationSpacing}>
                       <box class={"notification-scroll-box"}>
                         <scrollable
                           class={"notifications-scrollable"}
                           heightRequest={notifications((n) => {
-                            return Math.min(n.length * notificationHeight, notificationScrollableMaxHeight);
+                            return Math.min(n.length * config.notificationPopupWindow.notificationHeight, config.notificationPopupWindow.notificationScrollableMaxHeight);
                           })}
                         >
                           <box

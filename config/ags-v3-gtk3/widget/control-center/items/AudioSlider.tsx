@@ -1,6 +1,5 @@
 import { Gtk } from "ags/gtk3";
 import Wp from "gi://AstalWp";
-import { qsShowAudioSlider } from "../../common/Variables";
 import { createBinding } from "ags";
 
 const VolumeSlider = ({ device }: { device: Wp.Endpoint }) => {
@@ -38,12 +37,6 @@ const VolumeSlider = ({ device }: { device: Wp.Endpoint }) => {
 };
 
 export default () => {
-    if (qsShowAudioSlider === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     const speaker = Wp.get_default()?.audio.defaultSpeaker!
 
     return (

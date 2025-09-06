@@ -2,7 +2,7 @@ import GLib from "gi://GLib"
 import AstalNotifd from "gi://AstalNotifd"
 import Pango from "gi://Pango"
 import { Gtk } from "ags/gtk3"
-import { notificationContentHeight } from "../common/Variables"
+import { config } from "../../lib/config";
 import icons from "../../lib/icons"
 import { timeout } from "ags/time"
 import { isIcon } from "../../lib/utils"
@@ -116,7 +116,7 @@ export default function Notification({ notification: n }: NotificationProps) {
         <box>
           <NotificationIcon notification={n} />
 
-          <box vertical={true} heightRequest={notificationContentHeight}>
+          <box vertical={true} heightRequest={config.notificationPopupWindow.notificationContentHeight}>
             <box class="header">
               {n.image && (n.appIcon || isIcon(n.desktopEntry)) && (
                 <icon
