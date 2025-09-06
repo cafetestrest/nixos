@@ -20,12 +20,6 @@ export function formatSize(bytes: number) {
 
 // cpu and ram usage from: https://github.com/coffeeispower/ags-desktop
 export default () => {
-    if (config.bar.enableBarUsageRam === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <box class={"ram usage"} spacing={config.usage.ramUsageSpacing}>
             <label class={"ram icon"} label="" />

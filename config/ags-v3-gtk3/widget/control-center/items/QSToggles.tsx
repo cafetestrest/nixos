@@ -175,12 +175,6 @@ type TogglesType = Record<string, JSX.Element>;
     );
   };
 
-  if (config.qs.qsShowToggles === false) {
-    return (
-        <box visible={false} />
-    );
-  }
-
   return (
     <box
       class={"qs-toggles"}

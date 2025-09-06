@@ -24,12 +24,6 @@ const cpu = createPoll(
 );
 
 export default () => {
-    if (config.bar.enableBarUsageCpu === false) {
-        return (
-            <box visible={false} />
-        );
-    }
-
     return (
         <box class={"cpu usage"} spacing={config.usage.cpuUsageSpacing}>
             <label class={"cpu icon"} label="" />

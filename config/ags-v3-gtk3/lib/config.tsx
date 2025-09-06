@@ -3,47 +3,71 @@ import { readFileAsync } from "ags/file";
 import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorScheme } from "./utils";
 import { createState } from "ags";
 
+export type PowermenuWidgets =
+    | "lock"
+    | "sleep"
+    | "logout"
+    | "reboot"
+    | "shutdown"
+
+export type SysIndicatorWidgets =
+    | "dndIndicator"
+    | "idleIndicator"
+    | "nightlightIndicator"
+    | "powerProfileIndicator"
+    | "bluetoothIndicator"
+    | "wifiIndicator"
+    | "wiredIndicator"
+    | "micMuteIndicator"
+    | "audioIndicator"
+
+export type QuickSettingsWidgets =
+    | "QSToggles"
+    | "AudioSliderBox"
+    | "BrightnessSliderBox"
+    | "SinkMenu"
+    | "WeatherSchedule"
+    | "MediaPlayer"
+
 interface Config {
+    applauncher: Applauncher;
     bar: Bar;
     barLayout: BarLayout;
-    usage: Usage;
-    qs: QS;
-    weather: Weather;
-    screenRecord: ScreenRecord;
-    dashboard: Dashboard;
-    applauncher: Applauncher;
-    notificationPopupWindow: NotificationPopupWindow;
-    overview: Overview;
-    osd: OSD;
-    wifi: Wifi;
     brightness: Brightness;
     common: Common;
+    dashboard: Dashboard;
+    hyprland: Hyprland;
+    notificationPopupWindow: NotificationPopupWindow;
+    osd: OSD;
+    overview: Overview;
+    powermenu: Powermenu;
+    qs: QS;
+    screenRecord: ScreenRecord;
+    substitutions: Substitutions;
+    systemIndicators: SystemIndicators;
     themeVariables: ThemeVariables;
     theme_dark: ThemeColors;
     theme_light: ThemeColors;
+    usage: Usage;
+    weather: Weather;
+    wifi: Wifi;
+}
+
+interface Applauncher {
+    enabled: boolean; // enables Applauncher window
+    namespaceApplauncher: string; // Applauncher namespace
+    applauncherWidth: number; // width for popup
+    applauncherBoxTopMargin: number; // top margin between topbar
+    applauncherContentWidth: number; // content (widget) width
+    applauncherScrollableHeight: number; // scrollable max heightRequest, used for calculation
+    applauncherSingleItemHeight: number; // height of single item, used to calculate scrollable heightRequest
 }
 
 interface Bar {
     visiblePowermenu: boolean; // powermenu visible by default (used to control powermenu state)
     visibleQSMainPage: boolean; // qs main page visible by default (used to control qs main page state)
-    enableBarButtons: boolean; // enables buttons in bar
-    enableBarUsage: boolean; // enables usage (cpu, ram, disk, bt %) all widgets
     applauncherIcon: string; // Applauncher widget icon (string)
-    enableBarTaskbar: boolean; // enables Taskbar widget
-    enableBarWorkspaces: boolean; // enables Workspaces widget
-    enableBarMediaIndicator: boolean; // enables Media Indicator widget
-    enableBarDateTime: boolean; // enables Date and Time widget
     dateTimeFormat: string; // date and time format
-    enableBarWeather: boolean; // enables Weather widget
-    enableBarNotifications: boolean; // enables Notifications Revealer widget
-    enableBarRecordingIndicator: boolean; // enables Recording Indicator widget
-    enableBarUsageCpu: boolean; // enables CPU % usage widget
-    enableBarUsageRam: boolean; // enables RAM GB usage widget
-    enableBarUsageDisk: boolean; // enables DISK % usage widget
-    enableBarUsageBluetooth: boolean; // enables Bluetooth % usage widget
-    enableBarSysTray: boolean; // enables SysTray widget
-    enableBarSystemIndicators: boolean; // enables System Indicators widget
-    enableBarPowermenu: boolean; // enables Powermenu widget
     enableCommandOpenStartupApps: boolean; // enables command to open startup apps
     barMarginTop: number; // to make topbar floating, margin-top
     barMarginBottom: number; // to make topbar floating, margin-bottom
@@ -57,108 +81,6 @@ interface BarLayout {
     center: string[]; // bar widgets in center
     endLeft: string[]; // bar widgets end-left (left after center)
     endRight: string[]; // bar widgets end-right (most right)
-}
-
-interface Usage {
-    barUsageSpacing: number; // usage-box, for all usage widgets spacing={}
-    diskUsageSpacing: number; // disk usage spacing={}
-    diskUsagePoolRate: number; // pool rate to fetch disk usage
-    ramUsageSpacing: number; // ram usage spacing={}
-    ramUsageDecimals: number; // decimals to show for ram usage %
-    ramUsagePoolRate: number; // pool rate to fetch ram usage
-    cpuUsageSpacing: number; // cpu usage spacing={}
-    cpuUsagePoolRate: number; // pool rate to fetch cpu usage
-    cpuUsageDecimals: number; // decimals to show for cpu usage %
-}
-
-interface QS {
-    qsTogglesSpacing: number; // QS toggles row spacing={}
-    qsRowSpacing: number; // QS toggles page spacing={}
-    maxItemsPerRowQSToggles: number; // max items per row in QS toggles (ex. 2)
-    maxItemsPerColumnQSToggles: number; // max items per column in QS toggles (ex. 3)
-    qsTogglesPage: string; // used to control QS Toggles Page state
-    qsPage: string; // used to control QS Page state
-    qsRevealSinksButton: boolean; // used to control Sinks button state
-    qsRevealSinksSpacing: number; // QS reveal Sinks spacing={}
-    qsRevealScreenRecord: boolean; // used to control Screenrecord button state
-    qsRevealScreenRecordSpacing: number; // QS reveal Screenrecord spacing={}
-    qsRevealScreenshot: boolean; // used to control Screenshot button state
-    qsRevealScreenshotSpacing: number; // QS reveal Screenshot spacing={}
-    qsRevealLightstrip: boolean; // used to control Lightstrip button state
-    qsRevealLightstripSpacing: number; // QS reveal Lightstrip spacing={}
-    qsShowMediaPlayer: boolean; // show / hide media player in QS
-    qsShowWeatherSchedule: boolean; // show / hide weather schedule widget in QS
-    qsShowSinksRevealerButton: boolean; // show / hide sinks revealer button in QS
-    qsShowAudioSlider: boolean; // show / hide volume widget (Audio Slider) in QS
-    qsShowBrightnessSlider: boolean; // show / hide brightness widget (Brightness Slider) in QS
-    qsShowToggles: boolean; // show / hide toggles in QS
-    qsToggles: string[]; // qs toggles keys (order to be created in)
-}
-
-interface Weather {
-    namespaceWeather: string; // Weather namespace
-    qsWeatherScheduleDays: number; // number of days to render for QS widget
-    weatherWidth: number; // width for popup
-    weatherBoxTopMargin: number; // top margin between topbar
-    weatherContentWidth: number; // content (widget) width
-}
-
-interface ScreenRecord {
-    recordInternalAudioToggle: boolean; // used to control internal audio toggle state
-    recordOnlySelectedScreenToggle: boolean; // used to control record selected area toggle state
-    recordSaveDateFormat: string; // file name to make it unique (date format)
-    recordScreenrecordsDir: string; // screenrecord save directory
-    recordScreenshotsDir: string; // screenshot save directory
-}
-
-interface Dashboard {
-    enableDashboard: boolean; // enable Dashboard
-    namespaceDashboard: string; // Dashboard namespace
-    dashboardWidth: number; // width for popup
-    dashboardBoxTopMargin: number; // top margin between topbar
-    dashboardContentWidth: number; // content (widget) width
-}
-
-interface Applauncher {
-    enabled: boolean; // enables Applauncher window
-    namespaceApplauncher: string; // Applauncher namespace
-    applauncherWidth: number; // width for popup
-    applauncherBoxTopMargin: number; // top margin between topbar
-    applauncherContentWidth: number; // content (widget) width
-    applauncherScrollableHeight: number; // scrollable max heightRequest, used for calculation
-    applauncherSingleItemHeight: number; // height of single item, used to calculate scrollable heightRequest
-}
-
-interface NotificationPopupWindow {
-    enableNotificationPopups: boolean; // enable notifications popups
-    removeAllPreviousNotificationOnStart: boolean; // enable to remove all previous notification on ags start (unread)
-    namespaceNotification: string; // Notification namespace
-    notificationWidth: number; // width for popup
-    notificationBoxTopMargin: number; // top margin between topbar
-    notificationContentWidth: number; // content (widget) width
-    notificationScrollableMaxHeight: number; // scrollable max heightRequest, Math.min(n.length * notificationHeight, notificationScrollableMaxHeight)
-    notificationHeight: number; // height of single notification, used to calculate scrollable heightRequest
-    notificationContentHeight: number; // height of Notification area (not including NotificationIcon or Actions), not just popup
-    notificationSpacing: number; // NotificationsWindow spacing={} for AllNotifications
-}
-
-interface Overview {
-    overviewEnabled: boolean; // enable Overview widget
-    namespaceOverview: string; // Overview namespace
-    workspaces: number; // overview in topbar total workspaces to render (ex. 10)
-    overviewWidth: number; // width for popup
-    overviewBoxTopMargin: number; // top margin between topbar
-    overviewContentWidth: number; // content (widget) width
-    overviewScale: number; // scale factor for overview icons and boxes
-}
-
-interface OSD {
-    enableOsd: boolean; // enables osd
-    osdLevelbarWidth: number; // width of OSD levelbar
-}
-
-interface Wifi {
-    hasWifi: boolean; // enable if device has wifi for qs tile and qs page
 }
 
 interface Brightness {
@@ -177,6 +99,93 @@ interface Common {
     commandGetLightstripIp: string; // command to retrieve new ip for lightstrip
     commandTurnOnLightstrip: string; // command to turn on lightstrip
     commandTurnOffLightstrip: string; // command to turn off lightstrip
+}
+
+interface Dashboard {
+    enabled: boolean; // enable Dashboard
+    namespaceDashboard: string; // Dashboard namespace
+    dashboardWidth: number; // width for popup
+    dashboardBoxTopMargin: number; // top margin between topbar
+    dashboardContentWidth: number; // content (widget) width
+}
+
+interface Hyprland {
+    enabled: boolean, // enable / disable hyprland widgets
+    workspaceNumber: number, // number of workspaces to be rendered
+}
+
+interface NotificationPopupWindow {
+    enabled: boolean; // enable popup window
+    enableNotificationPopups: boolean; // enable notifications popups
+    removeAllPreviousNotificationOnStart: boolean; // enable to remove all previous notification on ags start (unread)
+    namespaceNotification: string; // Notification namespace
+    notificationWidth: number; // width for popup
+    notificationBoxTopMargin: number; // top margin between topbar
+    notificationContentWidth: number; // content (widget) width
+    notificationScrollableMaxHeight: number; // scrollable max heightRequest, Math.min(n.length * notificationHeight, notificationScrollableMaxHeight)
+    notificationHeight: number; // height of single notification, used to calculate scrollable heightRequest
+    notificationContentHeight: number; // height of Notification area (not including NotificationIcon or Actions), not just popup
+    notificationSpacing: number; // NotificationsWindow spacing={} for AllNotifications
+}
+
+interface OSD {
+    enabled: boolean; // enables osd
+    osdLevelbarWidth: number; // width of OSD levelbar
+}
+
+interface Overview {
+    enabled: boolean; // enable Overview widget
+    namespaceOverview: string; // Overview namespace
+    workspaces: number; // overview in topbar total workspaces to render (ex. 10)
+    overviewWidth: number; // width for popup
+    overviewBoxTopMargin: number; // top margin between topbar
+    overviewContentWidth: number; // content (widget) width
+    overviewScale: number; // scale factor for overview icons and boxes
+}
+
+interface Powermenu {
+    layout: PowermenuWidgets[], // layout of icons and commands that will appear on powermenu popup
+    lockCommand: string, // command used to lock PC
+    sleepCommand: string, // command used to put PC to sleep
+    logoutCommand: string, // command used to log-out current account from PC
+    rebootCommand: string, // command used to restart PC
+    shutdownCommand: string, // command used to power off PC
+}
+
+interface QS {
+    qsTogglesSpacing: number; // QS toggles row spacing={}
+    qsRowSpacing: number; // QS toggles page spacing={}
+    maxItemsPerRowQSToggles: number; // max items per row in QS toggles (ex. 2)
+    maxItemsPerColumnQSToggles: number; // max items per column in QS toggles (ex. 3)
+    qsTogglesPage: string; // used to control QS Toggles Page state
+    qsPage: string; // used to control QS Page state
+    qsRevealSinksButton: boolean; // used to control Sinks button state
+    qsRevealSinksSpacing: number; // QS reveal Sinks spacing={}
+    qsRevealScreenRecord: boolean; // used to control Screenrecord button state
+    qsRevealScreenRecordSpacing: number; // QS reveal Screenrecord spacing={}
+    qsRevealScreenshot: boolean; // used to control Screenshot button state
+    qsRevealScreenshotSpacing: number; // QS reveal Screenshot spacing={}
+    qsRevealLightstrip: boolean; // used to control Lightstrip button state
+    qsRevealLightstripSpacing: number; // QS reveal Lightstrip spacing={}
+    qsToggles: string[]; // qs toggles keys (order to be created in)
+    layout: QuickSettingsWidgets[], // qs widget layout
+}
+
+interface ScreenRecord {
+    recordInternalAudioToggle: boolean; // used to control internal audio toggle state
+    recordOnlySelectedScreenToggle: boolean; // used to control record selected area toggle state
+    recordSaveDateFormat: string; // file name to make it unique (date format)
+    recordScreenrecordsDir: string; // screenrecord save directory
+    recordScreenshotsDir: string; // screenshot save directory
+}
+
+interface Substitutions {
+    icons: Record<string, string>; // icons used to substitute strings if they cannot be found from hyprland classname
+    titles: Record<string, string>; // titles used to substitute strings if they cannot be found
+}
+
+interface SystemIndicators {
+    layout: SysIndicatorWidgets[], // layout of system indicators icons in bar
 }
 
 interface ThemeVariables {
@@ -256,28 +265,46 @@ interface ThemeColors {
     focusShadowTransparent: string; // qs-main-page button :focus color, transparent version of focusShadow
 }
 
+interface Usage {
+    barUsageSpacing: number; // usage-box, for all usage widgets spacing={}
+    diskUsageSpacing: number; // disk usage spacing={}
+    diskUsagePoolRate: number; // pool rate to fetch disk usage
+    ramUsageSpacing: number; // ram usage spacing={}
+    ramUsageDecimals: number; // decimals to show for ram usage %
+    ramUsagePoolRate: number; // pool rate to fetch ram usage
+    cpuUsageSpacing: number; // cpu usage spacing={}
+    cpuUsagePoolRate: number; // pool rate to fetch cpu usage
+    cpuUsageDecimals: number; // decimals to show for cpu usage %
+}
+
+interface Weather {
+    enabled: boolean; // enables Weather
+    namespaceWeather: string; // Weather namespace
+    qsWeatherScheduleDays: number; // number of days to render for QS widget
+    weatherWidth: number; // width for popup
+    weatherBoxTopMargin: number; // top margin between topbar
+    weatherContentWidth: number; // content (widget) width
+}
+
+interface Wifi {
+    hasWifi: boolean; // enable if device has wifi for qs tile and qs page
+}
+
 let configDefaults: Config = {
+    applauncher: {
+        enabled: true,
+        namespaceApplauncher: "launcher",
+        applauncherWidth: 1000,
+        applauncherBoxTopMargin: 800,
+        applauncherContentWidth: 500,
+        applauncherScrollableHeight: 370,
+        applauncherSingleItemHeight: 50,
+    },
     bar: {
         visiblePowermenu: false,
         visibleQSMainPage: false,
-        enableBarButtons: false,
-        enableBarUsage: true,
-        applauncherIcon: "",
-        enableBarTaskbar: true,
-        enableBarWorkspaces: true,
-        enableBarMediaIndicator: true,
-        enableBarDateTime: true,
+        applauncherIcon: "",
         dateTimeFormat: "%a %b %e   %H:%M:%S",
-        enableBarWeather: true,
-        enableBarNotifications: true,
-        enableBarRecordingIndicator: true,
-        enableBarUsageCpu: true,
-        enableBarUsageRam: true,
-        enableBarUsageDisk: true,
-        enableBarUsageBluetooth: true,
-        enableBarSysTray: true,
-        enableBarSystemIndicators: true,
-        enableBarPowermenu: true,
         enableCommandOpenStartupApps: true,
         barMarginTop: 0,
         barMarginBottom: 0,
@@ -310,16 +337,72 @@ let configDefaults: Config = {
             "powermenu",
         ],
     },
-    usage: {
-        barUsageSpacing: 10,
-        diskUsageSpacing: 12,
-        diskUsagePoolRate: 600000,
-        ramUsageSpacing: 12,
-        ramUsageDecimals: 1,
-        ramUsagePoolRate: 2000,
-        cpuUsageSpacing: 12,
-        cpuUsagePoolRate: 2000,
-        cpuUsageDecimals: 1,
+    brightness: {
+        hasBrightness: false, //todo implement
+    },
+    common: {
+        commandOpenNote: "codium ~/Documents/note.md",
+        commandSelectRegion: "slurp",
+        commandStartScreenRecord: "wf-recorder -c h264_vaapi -f",
+        commandColorPicker: "hyprpicker -a",
+        commandOpenStartupApps: "openstartupapps",
+        commandScreenshotWholeDisplay: "screenshot",
+        commandScreenshotSelectRegion: "screenshot 1",
+        commandScreenshotSelectWindow: "screenshot 2",
+        commandGetLightstripIp: "getyeelightip",
+        commandTurnOnLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 On`,
+        commandTurnOffLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 Off`,
+    },
+    dashboard: {
+        enabled: true,
+        namespaceDashboard: "dashboard",
+        dashboardWidth: 1000,
+        dashboardBoxTopMargin: 35,
+        dashboardContentWidth: 200,
+    },
+    hyprland: {
+        enabled: true, //todo
+        workspaceNumber: 10, //todo replace with overview
+    },
+    notificationPopupWindow: {
+        enabled: true,
+        enableNotificationPopups: true,
+        removeAllPreviousNotificationOnStart: true,
+        namespaceNotification: "notification",
+        notificationWidth: 1000,
+        notificationBoxTopMargin: 35,
+        notificationContentWidth: 450,
+        notificationScrollableMaxHeight: 500,
+        notificationHeight: 400,
+        notificationContentHeight: 60,
+        notificationSpacing: 10,
+    },
+    osd: {
+        enabled: true,
+        osdLevelbarWidth: 100,
+    },
+    overview: {
+        enabled: true,
+        namespaceOverview: "overview",
+        workspaces: 10,
+        overviewWidth: 1000,
+        overviewBoxTopMargin: 35,
+        overviewContentWidth: 200,
+        overviewScale: 0.06,
+    },
+    powermenu: { //todo
+        layout: [
+            "lock",
+            "sleep",
+            "logout",
+            "reboot",
+            "shutdown",
+        ],
+        lockCommand: "idle l",
+        sleepCommand: "idle s",
+        logoutCommand: "hyprctl dispatch exit",
+        rebootCommand: "systemctl reboot",
+        shutdownCommand: "shutdown now",
     },
     qs: {
         qsTogglesSpacing: 4,
@@ -336,12 +419,14 @@ let configDefaults: Config = {
         qsRevealScreenshotSpacing: 16,
         qsRevealLightstrip: false,
         qsRevealLightstripSpacing: 16,
-        qsShowMediaPlayer: true,
-        qsShowWeatherSchedule: true,
-        qsShowSinksRevealerButton: true,
-        qsShowAudioSlider: true,
-        qsShowBrightnessSlider: true,
-        qsShowToggles: true,
+        layout: [ //todo
+            "QSToggles",
+            "AudioSliderBox",
+            "BrightnessSliderBox",
+            "SinkMenu",
+            "WeatherSchedule",
+            "MediaPlayer",
+        ],
         qsToggles: [
             "BluetoothToggle",
             "NightlightToggle",
@@ -358,13 +443,6 @@ let configDefaults: Config = {
             // "QSEmptyButton"
         ],
     },
-    weather: {
-        namespaceWeather: "weather",
-        qsWeatherScheduleDays: 5,
-        weatherWidth: 1000,
-        weatherBoxTopMargin: 35,
-        weatherContentWidth: 200,
-    },
     screenRecord: {
         recordInternalAudioToggle: false,
         recordOnlySelectedScreenToggle: false,
@@ -372,65 +450,22 @@ let configDefaults: Config = {
         recordScreenrecordsDir: "/Videos/Screenrecords",
         recordScreenshotsDir: "/Pictures/Screenshots",
     },
-    dashboard: {
-        enableDashboard: true,
-        namespaceDashboard: "dashboard",
-        dashboardWidth: 1000,
-        dashboardBoxTopMargin: 35,
-        dashboardContentWidth: 200,
+    substitutions: {
+        icons: {}, //todo
+        titles: {},//todo
     },
-    applauncher: {
-        enabled: true,
-        namespaceApplauncher: "launcher",
-        applauncherWidth: 1000,
-        applauncherBoxTopMargin: 800,
-        applauncherContentWidth: 500,
-        applauncherScrollableHeight: 370,
-        applauncherSingleItemHeight: 50,
-    },
-    notificationPopupWindow: {
-        enableNotificationPopups: true,
-        removeAllPreviousNotificationOnStart: true,
-        namespaceNotification: "notification",
-        notificationWidth: 1000,
-        notificationBoxTopMargin: 35,
-        notificationContentWidth: 450,
-        notificationScrollableMaxHeight: 500,
-        notificationHeight: 400,
-        notificationContentHeight: 60,
-        notificationSpacing: 10,
-    },
-    overview: {
-        overviewEnabled: true,
-        namespaceOverview: "overview",
-        workspaces: 10,
-        overviewWidth: 1000,
-        overviewBoxTopMargin: 35,
-        overviewContentWidth: 200,
-        overviewScale: 0.06,
-    },
-    osd: {
-        enableOsd: true,
-        osdLevelbarWidth: 100,
-    },
-    wifi: {
-        hasWifi: true,
-    },
-    brightness: {
-        hasBrightness: false,
-    },
-    common: {
-        commandOpenNote: "codium ~/Documents/note.md",
-        commandSelectRegion: "slurp",
-        commandStartScreenRecord: "wf-recorder -c h264_vaapi -f",
-        commandColorPicker: "hyprpicker -a",
-        commandOpenStartupApps: "openstartupapps",
-        commandScreenshotWholeDisplay: "screenshot",
-        commandScreenshotSelectRegion: "screenshot 1",
-        commandScreenshotSelectWindow: "screenshot 2",
-        commandGetLightstripIp: "getyeelightip",
-        commandTurnOnLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 On`,
-        commandTurnOffLightstrip: `~/.config/scripts/yeelight/yeelight-scene.sh 0 Off`,
+    systemIndicators: {//todo
+        layout: [
+            "dndIndicator",
+            "idleIndicator",
+            "nightlightIndicator",
+            "powerProfileIndicator",
+            "bluetoothIndicator",
+            "wifiIndicator",
+            "wiredIndicator",
+            "micMuteIndicator",
+            "audioIndicator",
+        ],
     },
     themeVariables: {
         radius: "1.5rem",
@@ -537,6 +572,28 @@ let configDefaults: Config = {
         hoverShadow: "inset 0 0 0 9999px rgba(0, 0, 0, 0.2)",
         focusShadow: "inset 0 0 0 2px rgba(0, 0, 0, 0.4)",
         focusShadowTransparent: "inset 0 0 0 2px rgba(0, 0, 0, 0.2)",
+    },
+    usage: {
+        barUsageSpacing: 10,
+        diskUsageSpacing: 12,
+        diskUsagePoolRate: 600000,
+        ramUsageSpacing: 12,
+        ramUsageDecimals: 1,
+        ramUsagePoolRate: 2000,
+        cpuUsageSpacing: 12,
+        cpuUsagePoolRate: 2000,
+        cpuUsageDecimals: 1,
+    },
+    weather: {
+        enabled: true,
+        namespaceWeather: "weather",
+        qsWeatherScheduleDays: 5,
+        weatherWidth: 1000,
+        weatherBoxTopMargin: 35,
+        weatherContentWidth: 200,
+    },
+    wifi: {
+        hasWifi: false,
     },
 };
 

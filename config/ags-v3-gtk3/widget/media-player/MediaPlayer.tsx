@@ -105,12 +105,6 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
 }
 
 export default function MprisPlayers() {
-    if (config.qs.qsShowMediaPlayer === false) {
-        return (
-            <box visible={false}/>
-        );
-    }
-
     const mpris = Mpris.get_default();
 
     return (

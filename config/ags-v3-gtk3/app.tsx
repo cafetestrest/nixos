@@ -26,19 +26,19 @@ function main() {
     Applauncher();
   }
 
-  if (config.bar.enableBarWeather) {
+  if (config.weather.enabled) {
     WeatherPopup();
   }
 
-  if (config.bar.enableBarNotifications) {
+  if (config.notificationPopupWindow.enabled) {
     NotificationPopupWindow();
   }
 
-  if (config.overview.overviewEnabled) {
+  if (config.overview.enabled) {
     OverviewPopupWindow();
   }
 
-  if (config.dashboard.enableDashboard) {
+  if (config.dashboard.enabled) {
     Dashboard();
   }
 
@@ -51,7 +51,7 @@ function main() {
         <This this={app}>
           {Bar(monitor)}
           {config.notificationPopupWindow.enableNotificationPopups ? NotificationPopups() : null}
-          {config.osd.enableOsd ? OSD(monitor) : null}
+          {config.osd.enabled ? OSD(monitor) : null}
         </This>
       )}}
     </For>

@@ -83,7 +83,7 @@ export default () => {
     <eventbox
       class={"workspaces"}
       onClickRelease={(_, event) => {
-        if (!config.overview.overviewEnabled) {
+        if (!config.overview.enabled) {
           return false;
         }
 

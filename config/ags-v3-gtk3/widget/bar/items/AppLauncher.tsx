@@ -5,8 +5,6 @@ import GLib from "gi://GLib?version=2.0";
 
 export default () => {
     const defaultIcon = GLib.get_os_info("LOGO") || "system-search-symbolic";
-    const configIcon = config.bar.applauncherIcon;
-    const icon = configIcon !== "" ? configIcon : defaultIcon;
 
     return (
         <button
@@ -22,7 +20,7 @@ export default () => {
                 }
             }}
         >
-            <label label={icon}/>
+            {config.bar.applauncherIcon !== "" ? <label label={config.bar.applauncherIcon}/> : <icon icon={defaultIcon}/>}
         </button>
     );
 }
