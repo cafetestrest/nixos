@@ -158,7 +158,6 @@ export default function Overview() {
       AstalHyprland.Workspace.dummy(id + 1, null);
     }
       
-
     return createConnection(
       get(),
       [hyprland, "workspace-added", get],

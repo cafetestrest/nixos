@@ -27,3 +27,5 @@ keybind = ctrl+left=esc:b
 keybind = ctrl+right=esc:f
 keybind = ctrl+home=esc:<
 keybind = ctrl+end=esc:>
+
+app-notifications = no-clipboard-copy
