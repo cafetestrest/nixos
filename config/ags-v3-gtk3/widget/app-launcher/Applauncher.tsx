@@ -12,7 +12,7 @@ import { createState, For, With } from "ags";
 import App from "ags/gtk3/app";
 
 function hide() {
-    App.get_window(config.applauncher.namespaceApplauncher)!.hide()
+    App.get_window(config.applauncher.namespace)!.hide()
 }
 
 function AppButton({ app }: { app: Apps.Application }) {
@@ -61,7 +61,7 @@ export default function Applauncher() {
 
 
     return <window
-        name={config.applauncher.namespaceApplauncher}
+        name={config.applauncher.namespace}
         namespace={"app-launcher"}
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.IGNORE}
@@ -80,8 +80,8 @@ export default function Applauncher() {
         <box>
             <eventbox widthRequest={applauncherWidth(w => w / 2)} expand={true} onClick={hide} />
             <box hexpand={false} vertical={true}>
-                <eventbox heightRequest={config.applauncher.applauncherBoxTopMargin} onClick={hide} />
-                <box widthRequest={config.applauncher.applauncherContentWidth} class={"app-launcher"} vertical={true}>
+                <eventbox heightRequest={config.applauncher.boxTopMargin} onClick={hide} />
+                <box widthRequest={config.applauncher.contentWidth} class={"app-launcher"} vertical={true}>
                     <box class={"app-launcher-header"}>
                         <icon
                             icon={icons.apps.search}
@@ -101,7 +101,7 @@ export default function Applauncher() {
                     </box>
                     <scrollable
                         heightRequest={list.as((l) => {
-                            return Math.min(l.length * config.applauncher.applauncherSingleItemHeight, config.applauncher.applauncherScrollableHeight);
+                            return Math.min(l.length * config.applauncher.singleItemHeight, config.applauncher.scrollableHeight);
                         })}
                         visible={list.as((l) => l.length > 0 ? true : false)}
                         class={"app-launcher-scrollable"}

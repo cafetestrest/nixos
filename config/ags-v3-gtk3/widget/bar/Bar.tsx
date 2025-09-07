@@ -16,9 +16,9 @@ import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
 import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
-import { config } from "../../lib/config";
+import { config, BarWidgets } from "../../lib/config";
 
-const widgetMap: Record<string, () => JSX.Element> = {
+const widgetMap: Record<BarWidgets, () => JSX.Element> = {
     AppLauncher,
     Taskbar,
     Workspaces,
@@ -32,7 +32,7 @@ const widgetMap: Record<string, () => JSX.Element> = {
     SysTray,
 };
 
-const renderWidgets = (widgetKeys: string[]) =>
+const renderWidgets = (widgetKeys: BarWidgets[]) =>
     widgetKeys.map(key => {
         const widget = widgetMap[key];
         return widget ? widget() : null;
@@ -104,10 +104,10 @@ export default function Bar(monitor: Gdk.Monitor) {
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}
-		marginTop={config.bar.barMarginTop}
-		marginBottom={config.bar.barMarginBottom}
-		marginLeft={config.bar.barMarginLeft}
-		marginRight={config.bar.barMarginRight}
+		marginTop={config.bar.marginTop}
+		marginBottom={config.bar.marginBottom}
+		marginLeft={config.bar.marginLeft}
+		marginRight={config.bar.marginRight}
 	>
         <centerbox>
             <Start />

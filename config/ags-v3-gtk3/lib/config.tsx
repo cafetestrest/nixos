@@ -3,6 +3,19 @@ import { readFileAsync } from "ags/file";
 import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorScheme } from "./utils";
 import { createState } from "ags";
 
+export type BarWidgets =
+    | "AppLauncher"
+    | "Taskbar"
+    | "Workspaces"
+    | "Media"
+    | "Time"
+    | "WeatherButton"
+    | "NotificationsRevealerButton"
+    | "RecordingIndicatorButton"
+    | "UsageBox"
+    | "BarButtons"
+    | "SysTray"
+
 export type PowermenuWidgets =
     | "lock"
     | "sleep"
@@ -55,12 +68,12 @@ interface Config {
 
 interface Applauncher {
     enabled: boolean; // enables Applauncher window
-    namespaceApplauncher: string; // Applauncher namespace
-    applauncherWidth: number; // width for popup
-    applauncherBoxTopMargin: number; // top margin between topbar
-    applauncherContentWidth: number; // content (widget) width
-    applauncherScrollableHeight: number; // scrollable max heightRequest, used for calculation
-    applauncherSingleItemHeight: number; // height of single item, used to calculate scrollable heightRequest
+    namespace: string; // Applauncher namespace
+    width: number; // width for popup
+    boxTopMargin: number; // top margin between topbar
+    contentWidth: number; // content (widget) width
+    scrollableHeight: number; // scrollable max heightRequest, used for calculation
+    singleItemHeight: number; // height of single item, used to calculate scrollable heightRequest
 }
 
 interface Bar {
@@ -69,18 +82,18 @@ interface Bar {
     applauncherIcon: string; // Applauncher widget icon (string)
     dateTimeFormat: string; // date and time format
     enableCommandOpenStartupApps: boolean; // enables command to open startup apps
-    barMarginTop: number; // to make topbar floating, margin-top
-    barMarginBottom: number; // to make topbar floating, margin-bottom
-    barMarginLeft: number; // to make topbar floating, margin-left
-    barMarginRight: number; // to make topbar floating, margin-right
+    marginTop: number; // to make topbar floating, margin-top
+    marginBottom: number; // to make topbar floating, margin-bottom
+    marginLeft: number; // to make topbar floating, margin-left
+    marginRight: number; // to make topbar floating, margin-right
 }
 
 interface BarLayout {
-    startLeft: string[]; // bar widgets start-left (most left)
-    startRight: string[]; // bar widgets start-right (left before center)
-    center: string[]; // bar widgets in center
-    endLeft: string[]; // bar widgets end-left (left after center)
-    endRight: string[]; // bar widgets end-right (most right)
+    startLeft: BarWidgets[]; // bar widgets start-left (most left)
+    startRight: BarWidgets[]; // bar widgets start-right (left before center)
+    center: BarWidgets[]; // bar widgets in center
+    endLeft: BarWidgets[]; // bar widgets end-left (left after center)
+    endRight: BarWidgets[]; // bar widgets end-right (most right)
 }
 
 interface Brightness {
@@ -293,12 +306,12 @@ interface Wifi {
 let configDefaults: Config = {
     applauncher: {
         enabled: true,
-        namespaceApplauncher: "launcher",
-        applauncherWidth: 1000,
-        applauncherBoxTopMargin: 800,
-        applauncherContentWidth: 500,
-        applauncherScrollableHeight: 370,
-        applauncherSingleItemHeight: 50,
+        namespace: "launcher",
+        width: 1000,
+        boxTopMargin: 800,
+        contentWidth: 500,
+        scrollableHeight: 370,
+        singleItemHeight: 50,
     },
     bar: {
         visiblePowermenu: false,
@@ -306,10 +319,10 @@ let configDefaults: Config = {
         applauncherIcon: "",
         dateTimeFormat: "%a %b %e   %H:%M:%S",
         enableCommandOpenStartupApps: true,
-        barMarginTop: 0,
-        barMarginBottom: 0,
-        barMarginLeft: 0,
-        barMarginRight: 0,
+        marginTop: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+        marginRight: 0,
     },
     barLayout: {
         startLeft: [
@@ -698,7 +711,7 @@ export const [recordOnlySelectedScreenToggle,setRecordOnlySelectedScreenToggle] 
 export const [dashboardWidth,setDashboardWidth] = createState(config.dashboard.dashboardWidth);
 
 // applauncher
-export const [applauncherWidth,setApplauncherWidth] = createState(config.applauncher.applauncherWidth);
+export const [applauncherWidth,setApplauncherWidth] = createState(config.applauncher.width);
 
 // notification popup window
 export const [notificationWidth,setNotificationWidth] = createState(config.notificationPopupWindow.notificationWidth);

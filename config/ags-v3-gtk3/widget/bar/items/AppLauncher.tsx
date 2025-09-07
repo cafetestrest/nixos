@@ -9,10 +9,10 @@ export default () => {
     return (
         <button
             class={"app-launcher-button bar-button"}
-            onClicked={() => App.toggle_window(config.applauncher.namespaceApplauncher)}
+            onClicked={() => App.toggle_window(config.applauncher.namespace)}
             halign={Gtk.Align.CENTER}
             $={(self) => {
-                const window = App.get_window(config.applauncher.namespaceApplauncher);
+                const window = App.get_window(config.applauncher.namespace);
                 if (window) {
                     window.connect("notify::visible", () => {
                         Astal.widget_toggle_class_name(self, "active", window.visible);

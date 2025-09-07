@@ -72,7 +72,7 @@ app.start({
       switch (args[1]) {
           case "app-launcher":
           case "launcher":
-              app.toggle_window(config.applauncher.namespaceApplauncher);
+              app.toggle_window(config.applauncher.namespace);
               break;
           case "control-center":
           case "quicksettings":
