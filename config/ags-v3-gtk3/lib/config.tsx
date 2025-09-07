@@ -433,10 +433,10 @@ let configDefaults: Config = {
         revealScreenshotSpacing: 16,
         revealLightstripState: false,
         revealLightstripSpacing: 16,
-        layout: [ //todo
+        layout: [
             "QSToggles",
             "AudioSliderBox",
-            "BrightnessSliderBox",
+            // "BrightnessSliderBox",
             "SinkMenu",
             "WeatherSchedule",
             "MediaPlayer",

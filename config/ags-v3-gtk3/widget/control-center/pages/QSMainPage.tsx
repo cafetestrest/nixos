@@ -3,7 +3,7 @@ import AudioSlider from "../items/AudioSlider";
 import MprisPlayers from "../../media-player/MediaPlayer";
 import { SinkButton, SinkRevealer } from "../menu/QSSinksMenu";
 import { WeatherSchedule } from "../../weather/Weather";
-import { config } from "../../../lib/config";
+import { config, QuickSettingsWidgets } from "../../../lib/config";
 import BrightnessSlider from "../items/BrightnessSlider";
 
 export function QSSpaceBetweenToggles() {
@@ -13,6 +13,32 @@ export function QSSpaceBetweenToggles() {
 }
 
 export default () => {
+    const widgetMap: Record<QuickSettingsWidgets, JSX.Element> = {
+        QSToggles: QSToggles(),
+        AudioSliderBox: (
+            <box>
+                <AudioSlider />
+                <QSSpaceBetweenToggles />
+                <SinkButton />
+            </box>
+        ),
+        BrightnessSliderBox: (
+            <box>
+                <BrightnessSlider />
+            </box>
+        ),
+          SinkMenu: SinkRevealer(),
+          WeatherSchedule: WeatherSchedule({ days: config.weather.qsWeatherScheduleDays }),
+          MediaPlayer: MprisPlayers(),
+    };
+
+    const renderWidgets = (widgetKeys: QuickSettingsWidgets[]) => {
+        return widgetKeys.map((key, index) => {
+            const widget = widgetMap[key];
+            return widget ? widget : null;
+        });
+    };
+
 	return (
 		<box
 			name="main"
@@ -20,18 +46,7 @@ export default () => {
             vertical={true}
 			$type="named"
 		>
-            <QSToggles />
-            <box>
-                <AudioSlider />
-                <QSSpaceBetweenToggles />
-                <SinkButton />
-            </box>
-            <box>
-                <BrightnessSlider />
-            </box>
-            <SinkRevealer />
-            <WeatherSchedule days={config.weather.qsWeatherScheduleDays} />
-            <MprisPlayers />
+            {renderWidgets(config.qs.layout)}
         </box>
     );
 }
