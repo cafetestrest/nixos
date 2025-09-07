@@ -14,11 +14,11 @@ export default () => {
         GLib.DateTime.new_now_local().format(format)!)
 
     return <button
-        onClicked={() => App.toggle_window(config.dashboard.namespaceDashboard)}
+        onClicked={() => App.toggle_window(config.dashboard.namespace)}
         class={"bar-button"}
         label={time}
         $={(self) => {
-            const window = App.get_window(config.dashboard.namespaceDashboard);
+            const window = App.get_window(config.dashboard.namespace);
             if (window) {
                 window.connect("notify::visible", () => {
                     Astal.widget_toggle_class_name(self, "active", window.visible);

@@ -30,7 +30,7 @@ const QSToggles = () => {
 
   const allToggles = [];
 
-  for (const toggleKey of config.qs.qsToggles) {
+  for (const toggleKey of config.qs.togglesLayout) {
     switch (toggleKey) {
       case "BluetoothToggle":
         allToggles.push({ toggleKey: BluetoothToggle() });
@@ -99,14 +99,14 @@ type TogglesType = Record<string, JSX.Element>;
   };
 
   // Split toggles into rows and pages
-  const toggleRows = splitIntoRows(allToggles, config.qs.maxItemsPerRowQSToggles);
-  const togglePages = splitIntoPages(toggleRows, config.qs.maxItemsPerColumnQSToggles);
+  const toggleRows = splitIntoRows(allToggles, config.qs.rowsPerPage);
+  const togglePages = splitIntoPages(toggleRows, config.qs.columnsPerPage);
 
   // Render a single row of toggles
   const renderRow = (rowToggles: TogglesType[]) => {
     return (
       <box
-        spacing={config.qs.qsTogglesSpacing}
+        spacing={config.qs.togglesSpacing}
       >
         {rowToggles.map((toggle) => {
           const toggleIdentifier = Object.keys(toggle)[0];
@@ -122,7 +122,7 @@ type TogglesType = Record<string, JSX.Element>;
       <box vertical={true}>
         {rowToggles.map((toggle) => {
           const keys = Object.keys(toggle);
-          if (keys.length > 1 && rowIndex !== config.qs.maxItemsPerColumnQSToggles - 1) {
+          if (keys.length > 1 && rowIndex !== config.qs.columnsPerPage - 1) {
             const toggleIdentifier = Object.keys(toggle)[1];
             return toggle[toggleIdentifier];
           }
@@ -140,7 +140,7 @@ type TogglesType = Record<string, JSX.Element>;
         >
           {rowToggles.map((toggle) => {
             const keys = Object.keys(toggle);
-            if (keys.length > 1 && rowIndex === config.qs.maxItemsPerColumnQSToggles - 1) {
+            if (keys.length > 1 && rowIndex === config.qs.columnsPerPage - 1) {
               const toggleIdentifier = Object.keys(toggle)[1];
               return toggle[toggleIdentifier];
             }
@@ -157,7 +157,7 @@ type TogglesType = Record<string, JSX.Element>;
         class={"qs-toggles-page"}
         name={`qs-page-${pageIndex}`}
         vertical={true}
-        spacing={config.qs.qsRowSpacing}
+        spacing={config.qs.rowSpacing}
         $type="named"
       >
         {pageRows.map((row, rowIndex) => {

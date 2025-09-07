@@ -12,7 +12,7 @@ import { timeout } from "ags/time"
 
 export default function NotificationPopupWindow() {
   function hide() {
-    app.get_window(config.notificationPopupWindow.namespaceNotification)!.hide()
+    app.get_window(config.notificationPopupWindow.namespace)!.hide()
   }
 
   const monitors = createBinding(app, "monitors")
@@ -52,8 +52,8 @@ export default function NotificationPopupWindow() {
       {(monitor) => (
         <window
           $={(self) => onCleanup(() => self.destroy())}
-          namespace={config.notificationPopupWindow.namespaceNotification}
-          name={config.notificationPopupWindow.namespaceNotification}
+          namespace={config.notificationPopupWindow.namespace}
+          name={config.notificationPopupWindow.namespace}
           gdkmonitor={monitor}
           visible={false}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
@@ -72,14 +72,14 @@ export default function NotificationPopupWindow() {
             <box class={"popover"}>
               <eventbox widthRequest={notificationWidth(w => w / 2)} expand={true} onClick={hide} />
               <box hexpand={false} vertical={true}>
-                  <eventbox heightRequest={config.notificationPopupWindow.notificationBoxTopMargin} onClick={hide} />
-                  <box widthRequest={config.notificationPopupWindow.notificationContentWidth} class={"popup-box"} vertical={true}>
-                    <box vertical={true} class={"notifications-window"} spacing={config.notificationPopupWindow.notificationSpacing}>
+                  <eventbox heightRequest={config.notificationPopupWindow.boxTopMargin} onClick={hide} />
+                  <box widthRequest={config.notificationPopupWindow.contentWidth} class={"popup-box"} vertical={true}>
+                    <box vertical={true} class={"notifications-window"} spacing={config.notificationPopupWindow.spacing}>
                       <box class={"notification-scroll-box"}>
                         <scrollable
                           class={"notifications-scrollable"}
                           heightRequest={notifications((n) => {
-                            return Math.min(n.length * config.notificationPopupWindow.notificationHeight, config.notificationPopupWindow.notificationScrollableMaxHeight);
+                            return Math.min(n.length * config.notificationPopupWindow.height, config.notificationPopupWindow.scrollableMaxHeight);
                           })}
                         >
                           <box

@@ -55,7 +55,7 @@ function OnScreenProgress({ visible, setVisible }: { visible:Accessor<boolean>, 
                     }
                     return "osd-icon";
                 })} valign={Gtk.Align.CENTER} vexpand={true}/>
-                <levelbar valign={Gtk.Align.CENTER} widthRequest={config.osd.osdLevelbarWidth} value={value}/>
+                <levelbar valign={Gtk.Align.CENTER} widthRequest={config.osd.levelbarWidth} value={value}/>
             </box>
         </revealer>
     )

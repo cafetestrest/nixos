@@ -12,11 +12,11 @@ export default () => {
 
     return (
         <button
-        onClicked={() => App.toggle_window(config.notificationPopupWindow.namespaceNotification)}
+        onClicked={() => App.toggle_window(config.notificationPopupWindow.namespace)}
         class={"bar-button"}
         visible={notifs.as(n => n.length > 0)}
         $={(self) => {
-        	const notificationsWindow = App.get_window(config.notificationPopupWindow.namespaceNotification);
+        	const notificationsWindow = App.get_window(config.notificationPopupWindow.namespace);
         	if (notificationsWindow) {
                 notificationsWindow.connect("notify::visible", () => {
                     Astal.widget_toggle_class_name(self, "active", notificationsWindow.visible);

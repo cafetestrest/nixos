@@ -15,6 +15,9 @@ export type BarWidgets =
     | "UsageBox"
     | "BarButtons"
     | "SysTray"
+    | "systemIndicators"
+    | "powermenu"
+    | "BatteryLevel"
 
 export type PowermenuWidgets =
     | "lock"
@@ -89,11 +92,11 @@ interface Bar {
 }
 
 interface BarLayout {
-    startLeft: BarWidgets[]; // bar widgets start-left (most left)
-    startRight: BarWidgets[]; // bar widgets start-right (left before center)
-    center: BarWidgets[]; // bar widgets in center
-    endLeft: BarWidgets[]; // bar widgets end-left (left after center)
-    endRight: BarWidgets[]; // bar widgets end-right (most right)
+    startLeft: AllowedBarWidgets[]; // bar widgets start-left (most left)
+    startRight: AllowedBarWidgets[]; // bar widgets start-right (left before center)
+    center: AllowedBarWidgets[]; // bar widgets in center
+    endLeft: AllowedBarWidgets[]; // bar widgets end-left (left after center)
+    endRight: AllowedBarWidgets[]; // bar widgets end-right (most right)
 }
 
 interface Brightness {
@@ -116,44 +119,43 @@ interface Common {
 
 interface Dashboard {
     enabled: boolean; // enable Dashboard
-    namespaceDashboard: string; // Dashboard namespace
-    dashboardWidth: number; // width for popup
-    dashboardBoxTopMargin: number; // top margin between topbar
-    dashboardContentWidth: number; // content (widget) width
+    namespace: string; // Dashboard namespace
+    width: number; // width for popup
+    boxTopMargin: number; // top margin between topbar
+    contentWidth: number; // content (widget) width
 }
 
 interface Hyprland {
-    enabled: boolean, // enable / disable hyprland widgets
-    workspaceNumber: number, // number of workspaces to be rendered
+    enabled: boolean, // enable / disable hyprland widgets (overview and taskbar)
+    workspaceNumber: number, // number of workspaces to be rendered (overview)
 }
 
 interface NotificationPopupWindow {
     enabled: boolean; // enable popup window
     enableNotificationPopups: boolean; // enable notifications popups
     removeAllPreviousNotificationOnStart: boolean; // enable to remove all previous notification on ags start (unread)
-    namespaceNotification: string; // Notification namespace
-    notificationWidth: number; // width for popup
-    notificationBoxTopMargin: number; // top margin between topbar
-    notificationContentWidth: number; // content (widget) width
-    notificationScrollableMaxHeight: number; // scrollable max heightRequest, Math.min(n.length * notificationHeight, notificationScrollableMaxHeight)
-    notificationHeight: number; // height of single notification, used to calculate scrollable heightRequest
-    notificationContentHeight: number; // height of Notification area (not including NotificationIcon or Actions), not just popup
-    notificationSpacing: number; // NotificationsWindow spacing={} for AllNotifications
+    namespace: string; // Notification namespace
+    width: number; // width for popup
+    boxTopMargin: number; // top margin between topbar
+    contentWidth: number; // content (widget) width
+    scrollableMaxHeight: number; // scrollable max heightRequest, Math.min(n.length * height, scrollableMaxHeight)
+    height: number; // height of single notification, used to calculate scrollable heightRequest
+    contentHeight: number; // height of Notification area (not including NotificationIcon or Actions), not just popup
+    spacing: number; // NotificationsWindow spacing={} for AllNotifications
 }
 
 interface OSD {
     enabled: boolean; // enables osd
-    osdLevelbarWidth: number; // width of OSD levelbar
+    levelbarWidth: number; // width of OSD levelbar
 }
 
 interface Overview {
     enabled: boolean; // enable Overview widget
-    namespaceOverview: string; // Overview namespace
-    workspaces: number; // overview in topbar total workspaces to render (ex. 10)
-    overviewWidth: number; // width for popup
-    overviewBoxTopMargin: number; // top margin between topbar
-    overviewContentWidth: number; // content (widget) width
-    overviewScale: number; // scale factor for overview icons and boxes
+    namespace: string; // Overview namespace
+    width: number; // width for popup
+    boxTopMargin: number; // top margin between topbar
+    contentWidth: number; // content (widget) width
+    scaleFactor: number; // scale factor for overview icons and boxes
 }
 
 interface Powermenu {
@@ -166,21 +168,21 @@ interface Powermenu {
 }
 
 interface QS {
-    qsTogglesSpacing: number; // QS toggles row spacing={}
-    qsRowSpacing: number; // QS toggles page spacing={}
-    maxItemsPerRowQSToggles: number; // max items per row in QS toggles (ex. 2)
-    maxItemsPerColumnQSToggles: number; // max items per column in QS toggles (ex. 3)
-    qsTogglesPage: string; // used to control QS Toggles Page state
-    qsPage: string; // used to control QS Page state
-    qsRevealSinksButton: boolean; // used to control Sinks button state
-    qsRevealSinksSpacing: number; // QS reveal Sinks spacing={}
-    qsRevealScreenRecord: boolean; // used to control Screenrecord button state
-    qsRevealScreenRecordSpacing: number; // QS reveal Screenrecord spacing={}
-    qsRevealScreenshot: boolean; // used to control Screenshot button state
-    qsRevealScreenshotSpacing: number; // QS reveal Screenshot spacing={}
-    qsRevealLightstrip: boolean; // used to control Lightstrip button state
-    qsRevealLightstripSpacing: number; // QS reveal Lightstrip spacing={}
-    qsToggles: string[]; // qs toggles keys (order to be created in)
+    togglesSpacing: number; // QS toggles row spacing={}
+    rowSpacing: number; // QS toggles page spacing={}
+    rowsPerPage: number; // max items per row in QS toggles (ex. 2)
+    columnsPerPage: number; // max items per column in QS toggles (ex. 3)
+    currentTogglesPage: string; // used to control QS Toggles Page state
+    currentPage: string; // used to control QS Page state
+    revealSinksButtonState: boolean; // used to control Sinks button state
+    revealSinksSpacing: number; // QS reveal Sinks spacing={}
+    revealScreenRecordState: boolean; // used to control Screenrecord button state
+    revealScreenRecordSpacing: number; // QS reveal Screenrecord spacing={}
+    revealScreenshotState: boolean; // used to control Screenshot button state
+    revealScreenshotSpacing: number; // QS reveal Screenshot spacing={}
+    revealLightstripState: boolean; // used to control Lightstrip button state
+    revealLightstripSpacing: number; // QS reveal Lightstrip spacing={}
+    togglesLayout: string[]; // qs toggles keys (order to be created in)
     layout: QuickSettingsWidgets[], // qs widget layout
 }
 
@@ -368,42 +370,41 @@ let configDefaults: Config = {
     },
     dashboard: {
         enabled: true,
-        namespaceDashboard: "dashboard",
-        dashboardWidth: 1000,
-        dashboardBoxTopMargin: 35,
-        dashboardContentWidth: 200,
+        namespace: "dashboard",
+        width: 1000,
+        boxTopMargin: 35,
+        contentWidth: 200,
     },
     hyprland: {
-        enabled: true, //todo
-        workspaceNumber: 10, //todo replace with overview
+        enabled: true,
+        workspaceNumber: 10,
     },
     notificationPopupWindow: {
         enabled: true,
         enableNotificationPopups: true,
         removeAllPreviousNotificationOnStart: true,
-        namespaceNotification: "notification",
-        notificationWidth: 1000,
-        notificationBoxTopMargin: 35,
-        notificationContentWidth: 450,
-        notificationScrollableMaxHeight: 500,
-        notificationHeight: 400,
-        notificationContentHeight: 60,
-        notificationSpacing: 10,
+        namespace: "notification",
+        width: 1000,
+        boxTopMargin: 35,
+        contentWidth: 450,
+        scrollableMaxHeight: 500,
+        height: 400,
+        contentHeight: 60,
+        spacing: 10,
     },
     osd: {
         enabled: true,
-        osdLevelbarWidth: 100,
+        levelbarWidth: 100,
     },
     overview: {
         enabled: true,
-        namespaceOverview: "overview",
-        workspaces: 10,
-        overviewWidth: 1000,
-        overviewBoxTopMargin: 35,
-        overviewContentWidth: 200,
-        overviewScale: 0.06,
+        namespace: "overview",
+        width: 1000,
+        boxTopMargin: 35,
+        contentWidth: 200,
+        scaleFactor: 0.06,
     },
-    powermenu: { //todo
+    powermenu: {
         layout: [
             "lock",
             "sleep",
@@ -418,20 +419,20 @@ let configDefaults: Config = {
         shutdownCommand: "shutdown now",
     },
     qs: {
-        qsTogglesSpacing: 4,
-        qsRowSpacing: 5,
-        maxItemsPerRowQSToggles: 2,
-        maxItemsPerColumnQSToggles: 3,
-        qsTogglesPage: "qs-page-0",
-        qsPage: "main",
-        qsRevealSinksButton: false,
-        qsRevealSinksSpacing: 16,
-        qsRevealScreenRecord: false,
-        qsRevealScreenRecordSpacing: 16,
-        qsRevealScreenshot: false,
-        qsRevealScreenshotSpacing: 16,
-        qsRevealLightstrip: false,
-        qsRevealLightstripSpacing: 16,
+        togglesSpacing: 4,
+        rowSpacing: 5,
+        rowsPerPage: 2,
+        columnsPerPage: 3,
+        currentTogglesPage: "qs-page-0",
+        currentPage: "main",
+        revealSinksButtonState: false,
+        revealSinksSpacing: 16,
+        revealScreenRecordState: false,
+        revealScreenRecordSpacing: 16,
+        revealScreenshotState: false,
+        revealScreenshotSpacing: 16,
+        revealLightstripState: false,
+        revealLightstripSpacing: 16,
         layout: [ //todo
             "QSToggles",
             "AudioSliderBox",
@@ -440,7 +441,7 @@ let configDefaults: Config = {
             "WeatherSchedule",
             "MediaPlayer",
         ],
-        qsToggles: [
+        togglesLayout: [
             "BluetoothToggle",
             "NightlightToggle",
             "MicrophoneToggle",
@@ -693,12 +694,12 @@ export const [visiblePowermenu,setVisiblePowermenu] = createState(config.bar.vis
 export const [visibleQSMainPage,setVisibleQSMainPage] = createState(config.bar.visibleQSMainPage);
 
 // qs
-export const [qsTogglesPage,setQsTogglesPage] = createState(config.qs.qsTogglesPage);
-export const [qsPage,setQsPage] = createState(config.qs.qsPage);
-export const [qsRevealSinksButton,setQsRevealSinksButton] = createState(config.qs.qsRevealSinksButton);
-export const [qsRevealScreenRecord,setQsRevealScreenRecord] = createState(config.qs.qsRevealScreenRecord);
-export const [qsRevealScreenshot,setQsRevealScreenshot] = createState(config.qs.qsRevealScreenshot);
-export const [qsRevealLightstrip,setQsRevealLightstrip] = createState(config.qs.qsRevealLightstrip);
+export const [qsTogglesPage,setQsTogglesPage] = createState(config.qs.currentTogglesPage);
+export const [qsPage,setQsPage] = createState(config.qs.currentPage);
+export const [qsRevealSinksButton,setQsRevealSinksButton] = createState(config.qs.revealSinksButtonState);
+export const [qsRevealScreenRecord,setQsRevealScreenRecord] = createState(config.qs.revealScreenRecordState);
+export const [qsRevealScreenshot,setQsRevealScreenshot] = createState(config.qs.revealScreenshotState);
+export const [qsRevealLightstrip,setQsRevealLightstrip] = createState(config.qs.revealLightstripState);
 
 // weather
 export const [weatherWidth,setWeatherWidth] = createState(config.weather.weatherWidth);
@@ -708,16 +709,16 @@ export const [recordInternalAudioToggle,setRecordInternalAudioToggle] = createSt
 export const [recordOnlySelectedScreenToggle,setRecordOnlySelectedScreenToggle] = createState(config.screenRecord.recordOnlySelectedScreenToggle);
 
 // dashboard
-export const [dashboardWidth,setDashboardWidth] = createState(config.dashboard.dashboardWidth);
+export const [dashboardWidth,setDashboardWidth] = createState(config.dashboard.width);
 
 // applauncher
 export const [applauncherWidth,setApplauncherWidth] = createState(config.applauncher.width);
 
 // notification popup window
-export const [notificationWidth,setNotificationWidth] = createState(config.notificationPopupWindow.notificationWidth);
+export const [notificationWidth,setNotificationWidth] = createState(config.notificationPopupWindow.width);
 
 // overview
-export const [overviewWidth,setOverviewWidth] = createState(config.overview.overviewWidth);
+export const [overviewWidth,setOverviewWidth] = createState(config.overview.width);
 
 // function to close all revealers when hitting any button in qs
 export function qsRevertRevealerStatus(str: string) {

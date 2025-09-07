@@ -8,7 +8,7 @@ export default () => {
     return (
         <box class={"control-center"} vertical={true}>
             <stack
-                visibleChildName={config.qs.qsPage}
+                visibleChildName={config.qs.currentPage}
                 transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
             >
                 <QSMainPage />

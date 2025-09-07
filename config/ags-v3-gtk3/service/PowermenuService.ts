@@ -2,6 +2,7 @@ import { exec } from "ags/process";
 import { timeout } from "ags/time";
 import Idle from "./IdleService";
 import GObject from "gi://GObject?version=2.0";
+import { config } from "../lib/config";
 
 export type PowerMenuAction = "lock" | "sleep" | "logout" | "reboot" | "shutdown";
 
@@ -37,11 +38,11 @@ const PowerMenuSerivce = GObject.registerClass(
 
 		action(action: PowerMenuAction) {
 			[this.#cmd, this.#title] = {
-				lock: ["idle l", "Lock"],
-				sleep: ["idle s", "Sleep"],
-				logout: ["hyprctl dispatch exit", "Log Out"],
-				reboot: ["systemctl reboot", "Reboot"],
-				shutdown: ["shutdown now", "Shutdown"],
+				lock: [config.powermenu.lockCommand, "Lock"],
+				sleep: [config.powermenu.sleepCommand, "Sleep"],
+				logout: [config.powermenu.logoutCommand, "Log Out"],
+				reboot: [config.powermenu.rebootCommand, "Reboot"],
+				shutdown: [config.powermenu.shutdownCommand, "Shutdown"],
 			}[action];
 
 			if (action === "lock") {

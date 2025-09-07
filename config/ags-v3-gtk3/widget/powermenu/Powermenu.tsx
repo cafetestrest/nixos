@@ -1,5 +1,10 @@
 import PowermenuService, { PowerMenuAction } from "../../service/PowermenuService";
 import icons from "../../lib/icons";
+import {
+    config,
+    PowermenuWidgets,
+    setVisiblePowermenu
+} from "../../lib/config";
 
 type PowermenuButtonProps = JSX.IntrinsicElements["button"] & {
     action: PowerMenuAction;
@@ -7,50 +12,40 @@ type PowermenuButtonProps = JSX.IntrinsicElements["button"] & {
 	onClicked?(): void;
 }
 
-const PowermenuButton = ({ action, iconName, onClicked }: PowermenuButtonProps) => (
-	<button
-		class={`powermenu-button`}
-		onClicked={() => {
-            PowermenuService.action(action);
-            if (onClicked) onClicked();
-        }}
-	>
-		<icon icon={iconName} class={"powermenu-icon"} />
-	</button>
-);
+export default () => {
+    const PowermenuButton = ({ action, iconName, onClicked }: PowermenuButtonProps) => (
+        <button
+            class={`powermenu-button`}
+            onClicked={() => {
+                PowermenuService.action(action);
+                setVisiblePowermenu(false);
+            }}
+        >
+            <icon icon={iconName} class={"powermenu-icon"} />
+        </button>
+    );
 
-export default ({ onClicked }: {onClicked: () => void}) => {
+    const powermenuButtons: Record<PowermenuWidgets, JSX.Element> = {
+        lock: PowermenuButton({action: "lock", iconName: icons.powermenu.lock}),
+        sleep: PowermenuButton({action: "sleep", iconName: icons.powermenu.sleep}),
+        logout: PowermenuButton({action: "logout", iconName: icons.powermenu.logout}),
+        reboot: PowermenuButton({action: "reboot", iconName: icons.powermenu.reboot}),
+        shutdown: PowermenuButton({action: "shutdown", iconName: icons.powermenu.shutdown}),
+    };
+
+    const renderWidgets = (widgetKeys: PowermenuWidgets[]) =>
+        widgetKeys.map(key => {
+            const widget = powermenuButtons[key];
+            return widget ? widget : null;
+    });
+
     return (
         <box
             class={"powermenu"}
             homogeneous
             hexpand={true}
         >
-            <PowermenuButton
-                action="lock"
-                iconName={icons.powermenu.lock}
-                onClicked={onClicked}
-            />
-            <PowermenuButton
-                action="sleep"
-                iconName={icons.powermenu.sleep}
-                onClicked={onClicked}
-            />
-            <PowermenuButton
-                action="logout"
-                iconName={icons.powermenu.logout}
-                onClicked={onClicked}
-            />
-            <PowermenuButton
-                action="reboot"
-                iconName={icons.powermenu.reboot}
-                onClicked={onClicked}
-            />
-            <PowermenuButton
-                action="shutdown"
-                iconName={icons.powermenu.shutdown}
-                onClicked={onClicked}
-            />
+            {renderWidgets(config.powermenu.layout)}
         </box>
     )
 };

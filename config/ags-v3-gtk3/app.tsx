@@ -34,7 +34,7 @@ function main() {
     NotificationPopupWindow();
   }
 
-  if (config.overview.enabled) {
+  if (config.hyprland.enabled && config.overview.enabled) {
     OverviewPopupWindow();
   }
 
@@ -80,7 +80,7 @@ app.start({
               break;
           case "notifications":
           case "notification":
-              app.toggle_window(config.notificationPopupWindow.namespaceNotification);
+              app.toggle_window(config.notificationPopupWindow.namespace);
               break;
           case "powermenu":
               setVisiblePowermenu(!visiblePowermenu.get());

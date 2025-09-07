@@ -4,6 +4,7 @@ import icons, { substitutions } from "../../../lib/icons";
 import AstalHyprland from "gi://AstalHyprland";
 import AstalApps from "gi://AstalApps";
 import { getClassIcon, isIcon } from "../../../lib/utils";
+import { config } from "../../../lib/config";
 
 const hyprland = AstalHyprland.get_default();
 const Applications = new AstalApps.Apps();
@@ -33,6 +34,10 @@ export function getHyprlandClientIcon(client: AstalHyprland.Client, iconName: st
 };
 
 export default () => {
+    if (!config.hyprland.enabled) {
+        return <box visible={false} />
+    };
+
     const focus = (address: string) => hyprland.dispatch("focuswindow", `address:0x${address}`);
 	const close = (address: string) => hyprland.dispatch("closewindow", `address:0x${address}`);
 

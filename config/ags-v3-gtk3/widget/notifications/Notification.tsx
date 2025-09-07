@@ -116,7 +116,7 @@ export default function Notification({ notification: n }: NotificationProps) {
         <box>
           <NotificationIcon notification={n} />
 
-          <box vertical={true} heightRequest={config.notificationPopupWindow.notificationContentHeight}>
+          <box vertical={true} heightRequest={config.notificationPopupWindow.contentHeight}>
             <box class="header">
               {n.image && (n.appIcon || isIcon(n.desktopEntry)) && (
                 <icon

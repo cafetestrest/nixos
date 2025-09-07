@@ -12,7 +12,7 @@ export default () => {
             child={
                 <box class={"popup"} vertical={true}>
                     {/* maxWidthChars is needed, wrap will work as intended */}
-                    <Powermenu onClicked={() => setVisiblePowermenu(false)} />
+                    <Powermenu />
                 </box>
             }
         />

@@ -10,9 +10,10 @@ type WorkspaceType = {
   hyprland: AstalHyprland.Hyprland;
 }
 
+const numberOfWorkspaces = config.hyprland.workspaceNumber;
 const FALLBACK_HEIGHT = 1080;
 const FALLBACK_WIDTH = 1920;
-const scale = (n: number) => Math.max(0, n * config.overview.overviewScale);
+const scale = (n: number) => Math.max(0, n * config.overview.scaleFactor);
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 
 /**
@@ -170,8 +171,8 @@ export default function Overview() {
     ], (focused, clients) => {
     const focusedId = focused.id;
   
-    if (focusedId >= config.overview.workspaces) {
-      return config.overview.workspaces;
+    if (focusedId >= numberOfWorkspaces) {
+      return numberOfWorkspaces;
     }
   
     const maxClientWorkspaceId = clients.reduce((maxId, client) => {
@@ -180,15 +181,15 @@ export default function Overview() {
   
     const max = Math.max(focusedId, maxClientWorkspaceId);
   
-    if (max > config.overview.workspaces) {
-      return config.overview.workspaces;
+    if (max > numberOfWorkspaces) {
+      return numberOfWorkspaces;
     }
     return max;
   });
 
   return (
     <Gtk.Box>
-      {Array.from({ length: config.overview.workspaces }, (_, id) => (
+      {Array.from({ length: numberOfWorkspaces }, (_, id) => (
         <Gtk.Box
           class={"workspace"}
           css={`

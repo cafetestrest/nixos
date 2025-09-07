@@ -7,6 +7,7 @@ import { config } from "../../../lib/config";
 
 const hyprland = Hyprland.get_default();
 const dispatch = (command: string) => hyprland.dispatch("workspace", command);
+const numberOfWorkspaces = config.hyprland.workspaceNumber;
 
 function workspace(id: number) {
   const hyprland = Hyprland.get_default()
@@ -47,8 +48,8 @@ function Workspace({ id }: { id: number }) {
   ], (focused, clients) => {
     const focusedId = focused.id;
 
-    if (focusedId >= config.overview.workspaces) {
-      return config.overview.workspaces;
+    if (focusedId >= numberOfWorkspaces) {
+      return numberOfWorkspaces;
     }
 
     const maxClientWorkspaceId = clients.reduce((maxId, client) => {
@@ -57,8 +58,8 @@ function Workspace({ id }: { id: number }) {
 
     const max = Math.max(focusedId, maxClientWorkspaceId);
 
-    if (max > config.overview.workspaces) {
-      return config.overview.workspaces;
+    if (max > numberOfWorkspaces) {
+      return numberOfWorkspaces;
     }
     return max;
   });
@@ -79,6 +80,10 @@ function Workspace({ id }: { id: number }) {
 }
 
 export default () => {
+  if (!config.hyprland.enabled) {
+      return <box visible={false} />
+  };
+
   return (
     <eventbox
       class={"workspaces"}
@@ -90,14 +95,14 @@ export default () => {
         switch (event.button) {
           case Gdk.BUTTON_SECONDARY:
           case Gdk.BUTTON_MIDDLE:
-            return App.toggle_window(config.overview.namespaceOverview);
+            return App.toggle_window(config.overview.namespace);
       }}}
       onScroll={(_, event: Astal.ScrollEvent) => {
         event.delta_y < 0 ? dispatch('+1') : dispatch('-1');
       }}
     >
       <box class={"workspaces-box"}>
-        {range(config.overview.workspaces).map(ws => (
+        {range(numberOfWorkspaces).map(ws => (
           <Workspace
             id={ws}
           />
