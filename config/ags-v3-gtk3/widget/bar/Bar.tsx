@@ -18,7 +18,7 @@ import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
 import { config, BarWidgets } from "../../lib/config";
 
-export default function Bar(monitor: Gdk.Monitor) {
+export default function Bar(monitor: Gdk.Monitor, index: number) {
 	const widgetMap: Record<BarWidgets, () => JSX.Element> = {
 		AppLauncher,
 		Taskbar,
@@ -58,7 +58,7 @@ export default function Bar(monitor: Gdk.Monitor) {
 		$={(self) => (win = self)}
         class={"bar"}
         namespace={"bar"}
-		name={`bar-${monitor.connector}`}
+		name={`bar-${index}`}
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         anchor={TOP | LEFT | RIGHT}

@@ -53,13 +53,23 @@ export default () => {
                 />
                 <box>
                     <VolumeSlider device={speaker} />
+                    {/* <slider
+                        hexpand={true}
+                        onValueChanged={({ value }) => {
+                            speaker.volume = value
+
+                            console.log("volume", speaker.volume);
+                            if (speaker.volume === 0) {
+                                speaker.mute = true;
+                            } else if (speaker.mute) {
+                                speaker.mute = false;
+                            }
+                        }}
+                        value={createBinding(speaker, "volume")}
+                    /> */}
                 </box>
             </overlay>
-            {/* <slider
-                hexpand={true}
-                onDragged={({ value }) => speaker.volume = value}
-                value={bind(speaker, "volume")}
-            /> */}
+            
         </box>
     );
 }

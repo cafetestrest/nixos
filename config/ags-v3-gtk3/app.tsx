@@ -44,16 +44,19 @@ function main() {
 
   const monitors = createBinding(app, "monitors")
 
+  let counter = 0;
   return (
     <For each={monitors}>
       {(monitor) => {
+        counter++;
         return (
-        <This this={app}>
-          {Bar(monitor)}
-          {config.notificationPopupWindow.enableNotificationPopups ? NotificationPopups() : null}
-          {config.osd.enabled ? OSD(monitor) : null}
-        </This>
-      )}}
+          <This this={app}>
+            {Bar(monitor, counter)}
+            {config.notificationPopupWindow.enableNotificationPopups ? NotificationPopups() : null}
+            {config.osd.enabled ? OSD(monitor) : null}
+          </This>
+        )
+      }}
     </For>
   );
 }
