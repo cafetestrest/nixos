@@ -5,7 +5,7 @@ import { config } from "../../../lib/config";
 
 export default () => {
     return <button
-        onClicked={() => App.toggle_window(config.weather.namespaceWeather)}
+        onClicked={() => App.toggle_window(config.weather.namespace)}
         onClickRelease={(self, event) => {
             switch (event.button) {
                 case Gdk.BUTTON_SECONDARY:
@@ -31,7 +31,7 @@ export default () => {
         tooltipText={updatedAt}
         visible={weather((w) => w !== null && w.length > 0)}
         $={(self) => {
-            const window = App.get_window(config.weather.namespaceWeather);
+            const window = App.get_window(config.weather.namespace);
             if (window) {
                 window.connect("notify::visible", () => {
                     Astal.widget_toggle_class_name(self, "active", window.visible);

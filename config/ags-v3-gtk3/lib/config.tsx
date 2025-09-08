@@ -15,9 +15,9 @@ export type BarWidgets =
     | "UsageBox"
     | "BarButtons"
     | "SysTray"
-    | "systemIndicators"
-    | "powermenu"
-    | "BatteryLevel"
+    | "SystemIndicatorsButton"
+    | "PowermenuButton"
+    // | "BatteryLevel"
 
 export type PowermenuWidgets =
     | "lock"
@@ -97,11 +97,11 @@ interface Bar {
 }
 
 interface BarLayout {
-    startLeft: AllowedBarWidgets[]; // bar widgets start-left (most left)
-    startRight: AllowedBarWidgets[]; // bar widgets start-right (left before center)
-    center: AllowedBarWidgets[]; // bar widgets in center
-    endLeft: AllowedBarWidgets[]; // bar widgets end-left (left after center)
-    endRight: AllowedBarWidgets[]; // bar widgets end-right (most right)
+    startLeft: BarWidgets[]; // bar widgets start-left (most left)
+    startRight: BarWidgets[]; // bar widgets start-right (left before center)
+    center: BarWidgets[]; // bar widgets in center
+    endLeft: BarWidgets[]; // bar widgets end-left (left after center)
+    endRight: BarWidgets[]; // bar widgets end-right (most right)
 }
 
 interface Brightness {
@@ -300,11 +300,11 @@ interface Usage {
 
 interface Weather {
     enabled: boolean; // enables Weather
-    namespaceWeather: string; // Weather namespace
-    qsWeatherScheduleDays: number; // number of days to render for QS widget
-    weatherWidth: number; // width for popup
-    weatherBoxTopMargin: number; // top margin between topbar
-    weatherContentWidth: number; // content (widget) width
+    namespace: string; // Weather namespace
+    days: number; // number of days to render for QS widget
+    width: number; // width for popup
+    boxTopMargin: number; // top margin between topbar
+    contentWidth: number; // content (widget) width
 }
 
 interface Wifi {
@@ -354,8 +354,8 @@ let configDefaults: Config = {
             "BarButtons",
             "SysTray",
             // "BatteryLevel",
-            "systemIndicators",
-            "powermenu",
+            "SystemIndicatorsButton",
+            "PowermenuButton",
         ],
     },
     brightness: {
@@ -669,11 +669,11 @@ let configDefaults: Config = {
     },
     weather: {
         enabled: true,
-        namespaceWeather: "weather",
-        qsWeatherScheduleDays: 5,
-        weatherWidth: 1000,
-        weatherBoxTopMargin: 35,
-        weatherContentWidth: 200,
+        namespace: "weather",
+        days: 5,
+        width: 1000,
+        boxTopMargin: 35,
+        contentWidth: 200,
     },
     wifi: {
         hasWifi: false,
@@ -771,7 +771,7 @@ export const [qsRevealScreenshot,setQsRevealScreenshot] = createState(config.qs.
 export const [qsRevealLightstrip,setQsRevealLightstrip] = createState(config.qs.revealLightstripState);
 
 // weather
-export const [weatherWidth,setWeatherWidth] = createState(config.weather.weatherWidth);
+export const [weatherWidth,setWeatherWidth] = createState(config.weather.width);
 
 // screen record
 export const [recordInternalAudioToggle,setRecordInternalAudioToggle] = createState(config.screenRecord.recordInternalAudioToggle);

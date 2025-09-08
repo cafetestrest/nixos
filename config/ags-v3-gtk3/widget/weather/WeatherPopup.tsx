@@ -8,13 +8,13 @@ import {
 import { WeatherSchedule } from "./Weather";
 
 function hide() {
-    App.get_window(config.weather.namespaceWeather)!.hide()
+    App.get_window(config.weather.namespace)!.hide()
 }
 
 export default function WeatherPopup() {
     return <window
-        name={config.weather.namespaceWeather}
-        namespace={config.weather.namespaceWeather}
+        name={config.weather.namespace}
+        namespace={config.weather.namespace}
         anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
         exclusivity={Astal.Exclusivity.IGNORE}
         keymode={Astal.Keymode.ON_DEMAND}
@@ -31,8 +31,8 @@ export default function WeatherPopup() {
         <box class={"popover"}>
             <eventbox widthRequest={weatherWidth(w => w / 2)} expand={true} onClick={hide} />
             <box hexpand={false} vertical={true}>
-                <eventbox heightRequest={config.weather.weatherBoxTopMargin} onClick={hide} />
-                <box widthRequest={config.weather.weatherContentWidth} class={"popup-box"} vertical={true}>
+                <eventbox heightRequest={config.weather.boxTopMargin} onClick={hide} />
+                <box widthRequest={config.weather.contentWidth} class={"popup-box"} vertical={true}>
                     <box class={"weather-popup-box"}>
                         <WeatherSchedule days={null} />
                     </box>

@@ -48,7 +48,7 @@ export async function fetchWeather() {
                   let weatherForecastDataArray: TooltipItem[] = [];
                   totalWeatherForecastDataArray = [];
 
-                  const days = config.weather.qsWeatherScheduleDays;
+                  const days = config.weather.days;
 
                   let totalWeatherForecastsCounter = days;
                   let forecastWidgetsNumber = 0;

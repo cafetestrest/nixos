@@ -28,7 +28,7 @@ export default () => {
             </box>
         ),
           SinkMenu: SinkRevealer(),
-          WeatherSchedule: WeatherSchedule({ days: config.weather.qsWeatherScheduleDays }),
+          WeatherSchedule: WeatherSchedule({ days: config.weather.days }),
           MediaPlayer: MprisPlayers(),
     };
 

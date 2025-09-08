@@ -18,69 +18,29 @@ import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
 import { config, BarWidgets } from "../../lib/config";
 
-const widgetMap: Record<BarWidgets, () => JSX.Element> = {
-    AppLauncher,
-    Taskbar,
-    Workspaces,
-    Media,
-    Time,
-    WeatherButton,
-    NotificationsRevealerButton,
-    RecordingIndicatorButton,
-    UsageBox,
-    BarButtons,
-    SysTray,
-};
-
-const renderWidgets = (widgetKeys: BarWidgets[]) =>
-    widgetKeys.map(key => {
-        const widget = widgetMap[key];
-        return widget ? widget() : null;
-});
-
-const Start = () => {
-	return (
-		<box $type="start">
-			<box halign={Gtk.Align.START}>
-				{renderWidgets(config.barLayout.startLeft)}
-			</box>
-			<box halign={Gtk.Align.END} hexpand={true}>
-				{renderWidgets(config.barLayout.startRight)}
-			</box>
-		</box>
-	);
-};
-
-const Center = () => {
-	return (
-		<box $type="center">
-			{renderWidgets(config.barLayout.center)}
-		</box>
-	);
-};
-
-type EndWidgetType = {
-	powermenu: JSX.Element
-	systemIndicators: JSX.Element
-}
-
-const End = ({powermenu, systemIndicators}: EndWidgetType) => {
-	widgetMap.powermenu = () => powermenu;
-    widgetMap.systemIndicators = () => systemIndicators;
-
-	return (
-		<box $type="end">
-			<box halign={Gtk.Align.START}>
-				{renderWidgets(config.barLayout.endLeft)}
-			</box>
-			<box halign={Gtk.Align.END} hexpand={true}>
-				{renderWidgets(config.barLayout.endRight)}
-			</box>
-		</box>
-	);
-};
-
 export default function Bar(monitor: Gdk.Monitor) {
+	const widgetMap: Record<BarWidgets, () => JSX.Element> = {
+		AppLauncher,
+		Taskbar,
+		Workspaces,
+		Media,
+		Time,
+		WeatherButton,
+		NotificationsRevealerButton,
+		RecordingIndicatorButton,
+		UsageBox,
+		BarButtons,
+		SysTray,
+		PowermenuButton,
+		SystemIndicatorsButton,
+	};
+
+	const renderWidgets = (widgetKeys: BarWidgets[]) =>
+		widgetKeys.map(key => {
+			const widget = widgetMap[key];
+			return widget ? widget() : null;
+	});
+
 	let win: Astal.Window;
     const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -93,8 +53,6 @@ export default function Bar(monitor: Gdk.Monitor) {
 
     const _qsPagePopover = (<QuickSettingsPopover/>);
     const _powermenuPopover = (<PowermenuPopover/>);
-    const powermenuButton = (<PowermenuButton/>);
-    const sysIndicatorsButton = (<SystemIndicatorsButton/>);
 
     return <window
 		$={(self) => (win = self)}
@@ -110,12 +68,25 @@ export default function Bar(monitor: Gdk.Monitor) {
 		marginRight={config.bar.marginRight}
 	>
         <centerbox>
-            <Start />
-            <Center/>
-            <End
-                powermenu={powermenuButton}
-                systemIndicators={sysIndicatorsButton}
-            />
+			<box $type="start">
+				<box halign={Gtk.Align.START}>
+					{renderWidgets(config.barLayout.startLeft)}
+				</box>
+				<box halign={Gtk.Align.END} hexpand={true}>
+					{renderWidgets(config.barLayout.startRight)}
+				</box>
+			</box>
+			<box $type="center">
+				{renderWidgets(config.barLayout.center)}
+			</box>
+			<box $type="end">
+				<box halign={Gtk.Align.START}>
+					{renderWidgets(config.barLayout.endLeft)}
+				</box>
+				<box halign={Gtk.Align.END} hexpand={true}>
+					{renderWidgets(config.barLayout.endRight)}
+				</box>
+			</box>
         </centerbox>
     </window>
 }

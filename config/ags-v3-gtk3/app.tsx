@@ -86,7 +86,7 @@ app.start({
               setVisiblePowermenu(!visiblePowermenu.get());
               break;
           case "weather":
-              app.toggle_window(config.weather.namespaceWeather);
+              app.toggle_window(config.weather.namespace);
               break;
           default:
               print("Unknown request:", request);
