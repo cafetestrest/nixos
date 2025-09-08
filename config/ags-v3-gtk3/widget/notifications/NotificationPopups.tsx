@@ -1,8 +1,8 @@
-import app from "ags/gtk3/app"
-import { Astal, Gtk } from "ags/gtk3"
-import AstalNotifd from "gi://AstalNotifd"
-import Notification from "./Notification"
-import { createBinding, For, createState, onCleanup } from "ags"
+import app from "ags/gtk3/app";
+import { Astal, Gtk } from "ags/gtk3";
+import AstalNotifd from "gi://AstalNotifd";
+import Notification from "./Notification";
+import { createBinding, For, createState, onCleanup } from "ags";
 
 export default function NotificationPopups() {
   const monitors = createBinding(app, "monitors")

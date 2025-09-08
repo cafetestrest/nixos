@@ -1,5 +1,5 @@
-import { createBinding, For, This } from "ags"
-import app from "ags/gtk3/app"
+import { createBinding, For, This } from "ags";
+import app from "ags/gtk3/app";
 import style from "./style/main.scss";
 import Bar from "./widget/bar/Bar";
 import Applauncher from "./widget/app-launcher/Applauncher";

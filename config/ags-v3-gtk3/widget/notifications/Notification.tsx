@@ -1,15 +1,11 @@
-import GLib from "gi://GLib"
-import AstalNotifd from "gi://AstalNotifd"
-import Pango from "gi://Pango"
-import { Gtk } from "ags/gtk3"
+import GLib from "gi://GLib";
+import AstalNotifd from "gi://AstalNotifd";
+import Pango from "gi://Pango";
+import { Gtk } from "ags/gtk3";
 import { config } from "../../lib/config";
-import icons from "../../lib/icons"
-import { timeout } from "ags/time"
-import { isIcon } from "../../lib/utils"
-
-function fileExists(path: string) {
-  return GLib.file_test(path, GLib.FileTest.EXISTS)
-}
+import icons from "../../lib/icons";
+import { timeout } from "ags/time";
+import { isIcon, fileExists } from "../../lib/utils";
 
 function time(time: number, format = "%H:%M") {
   return GLib.DateTime.new_from_unix_local(time).format(format)!

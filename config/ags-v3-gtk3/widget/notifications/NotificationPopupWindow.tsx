@@ -1,14 +1,14 @@
-import app from "ags/gtk3/app"
-import { Astal, Gtk, Gdk } from "ags/gtk3"
-import AstalNotifd from "gi://AstalNotifd"
-import Notification from "./Notification"
-import { createBinding, For, createState, onCleanup } from "ags"
+import app from "ags/gtk3/app";
+import { Astal, Gtk, Gdk } from "ags/gtk3";
+import AstalNotifd from "gi://AstalNotifd";
+import Notification from "./Notification";
+import { createBinding, For, createState, onCleanup } from "ags";
 import {
   notificationWidth,
   setNotificationWidth,
   config
 } from "../../lib/config";
-import { timeout } from "ags/time"
+import { timeout } from "ags/time";
 
 export default function NotificationPopupWindow() {
   function hide() {
