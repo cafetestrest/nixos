@@ -1,10 +1,11 @@
 import { Gtk } from "ags/gtk3";
 import QSMainPage from "./pages/QSMainPage";
 import QSBluetoothPage from "./pages/QSBluetoothPage";
-import QSNetworkPage from "./pages/QSNetworkPage";
+// import QSNetworkPage from "./pages/QSNetworkPage";
 import { config } from "../../lib/config";
 
 export default () => {
+    //todo stack
     return (
         <box class={"control-center"} vertical={true}>
             <stack

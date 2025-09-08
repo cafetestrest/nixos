@@ -5,15 +5,11 @@ import QSPage from "./QSPage";
 import { config } from "../../../lib/config";
 import AstalNetwork from "gi://AstalNetwork";
 import { createBinding, For } from "ags";
-
-type NetworkPageProps = {
-	network: AstalNetwork.Network;
-    wifi: AstalNetwork.Wifi;
-};
+import { NetworkPageProps } from "../../../lib/types";
 
 function NetworkPageContent({ network, wifi }: NetworkPageProps) {
     const wifiEnabled = createBinding(wifi, "enabled");
-	const nmClient = network.get_client();
+	// const nmClient = network.get_client();
 
     const sorted = (arr: Array<AstalNetwork.AccessPoint>) => {
         return arr.filter((ap) => !!ap.ssid).sort((a, b) => b.strength - a.strength)

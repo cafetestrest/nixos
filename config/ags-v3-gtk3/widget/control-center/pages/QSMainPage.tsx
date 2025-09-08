@@ -3,8 +3,9 @@ import AudioSlider from "../items/AudioSlider";
 import MprisPlayers from "../../media-player/MediaPlayer";
 import { SinkButton, SinkRevealer } from "../menu/QSSinksMenu";
 import { WeatherSchedule } from "../../weather/Weather";
-import { config, QuickSettingsWidgets } from "../../../lib/config";
+import { config } from "../../../lib/config";
 import BrightnessSlider from "../items/BrightnessSlider";
+import { QuickSettingsWidgets } from "../../../lib/types";
 
 export function QSSpaceBetweenToggles() {
     return (

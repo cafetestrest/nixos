@@ -5,10 +5,7 @@ import Gio from "gi://Gio?version=2.0";
 import { exec, execAsync } from "ags/process";
 import { Astal } from "ags/gtk3";
 import { config } from "./config";
-
-const DARK = "dark";
-const LIGHT = "light";
-export type ThemeMode = typeof DARK | typeof LIGHT;
+import { ThemeMode, DARK, LIGHT } from "./types";
 
 const tmp = GLib.get_tmp_dir();
 const pathSuffix = "/style/";

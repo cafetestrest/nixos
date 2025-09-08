@@ -3,28 +3,7 @@ import { interval } from "ags/time";
 import { execAsync } from "ags/process";
 import GLib from "gi://GLib?version=2.0";
 import { config } from "../lib/config";
-
-export type TooltipItem = {
-      date: string;
-      hour: string;
-      temperature: string;
-      icon: string;
-      wind: string;
-      rain: string;
-      humidity: string;
-      minTemp: string;
-      maxTemp: string;
-      indicator: string;
-};
-
-type IconTemperatureData = {
-	minTemp: number;
-	maxTemp: number;
-	rain: number;
-	icons: string[];
-	widgetsNumber: number;
-	data: TooltipItem[];
-};
+import { TooltipItem, IconTemperatureData } from "../lib/types";
 
 export let temperatureDataPerDay: Record<string, IconTemperatureData> = {};
 export let totalWeatherForecastDataArray: TooltipItem[] = [];

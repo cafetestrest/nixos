@@ -8,7 +8,8 @@ import AstalNotifd from "gi://AstalNotifd";
 import NightlightModeService from "../../../service/NightLightService";
 import IdleModeService from "../../../service/IdleService";
 import { createBinding, createComputed, Accessor } from "ags";
-import { BarSystemIndicators, config } from "../../../lib/config";
+import { config } from "../../../lib/config";
+import { SystemIndicatorsType, BarSystemIndicators } from "../../../lib/types";
 
 const NightlightIndicator = () => {
 	if (NightlightModeService) {
@@ -159,10 +160,7 @@ const AudioIndicator = ({ speaker }: {speaker: Wp.Endpoint}) => {
 	);
 };
 
-type SystemIndicatorsType = {
-	className: string | Accessor<string>;
-	onClicked: () => void;
-}
+
 
 export default ({className, onClicked}: SystemIndicatorsType) => {
     const defaultSpeaker = Wp.get_default()?.audio.defaultSpeaker;

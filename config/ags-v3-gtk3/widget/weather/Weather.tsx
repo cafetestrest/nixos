@@ -1,15 +1,7 @@
-import { weather, TooltipItem, temperatureDataPerDay, totalWeatherForecastDataArray } from "../../service/WeatherService";
+import { weather, temperatureDataPerDay, totalWeatherForecastDataArray } from "../../service/WeatherService";
 import { For } from "ags";
 import { Gtk } from "ags/gtk3";
-
-type TemperatureData = {
-	minTemp: number;
-	maxTemp: number;
-	rain: number;
-	icons: string[];
-	widgetsNumber: number;
-	data: TooltipItem[];
-};
+import { TemperatureData, TooltipItem } from "../../lib/types";
 
 function getMostCommon<T>(arr: T[]): T | undefined {
     return arr.sort((a,b) =>

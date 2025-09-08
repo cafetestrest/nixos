@@ -3,8 +3,7 @@ import { timeout } from "ags/time";
 import Idle from "./IdleService";
 import GObject from "gi://GObject?version=2.0";
 import { config } from "../lib/config";
-
-export type PowerMenuAction = "lock" | "sleep" | "logout" | "reboot" | "shutdown";
+import { PowerMenuAction } from "../lib/types";
 
 const PowerMenuSerivce = GObject.registerClass(
 	{

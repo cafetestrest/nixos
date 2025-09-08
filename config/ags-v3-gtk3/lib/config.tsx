@@ -1,54 +1,16 @@
 import GLib from "gi://GLib?version=2.0";
 import { readFileAsync } from "ags/file";
-import { fileExists, getThemeColor, ThemeMode, syncVariablesToTmp, toggleColorScheme } from "./utils";
+import { fileExists, getThemeColor, syncVariablesToTmp, toggleColorScheme } from "./utils";
 import { createState } from "ags";
-
-export type BarWidgets =
-    | "AppLauncher"
-    | "Taskbar"
-    | "Workspaces"
-    | "Media"
-    | "Time"
-    | "WeatherButton"
-    | "NotificationsRevealerButton"
-    | "RecordingIndicatorButton"
-    | "UsageBox"
-    | "BarButtons"
-    | "SysTray"
-    | "SystemIndicatorsButton"
-    | "PowermenuButton"
-    // | "BatteryLevel"
-
-export type PowermenuWidgets =
-    | "lock"
-    | "sleep"
-    | "logout"
-    | "reboot"
-    | "shutdown"
-
-export type QuickSettingsWidgets =
-    | "QSToggles"
-    | "AudioSliderBox"
-    | "BrightnessSliderBox"
-    | "SinkMenu"
-    | "WeatherSchedule"
-    | "MediaPlayer"
-
-export type BarUsageWidgets =
-    | "Cpu"
-    | "Ram"
-    | "Disk"
-    | "BluetoothPower"
-
-export type BarSystemIndicators =
-    | "DND"
-    | "Idle"
-    | "Nightlight"
-    // | "PowerProfile"
-    | "Bluetooth"
-    | "Network"
-    | "MicMute"
-    | "Audio"
+import {
+    BarWidgets,
+    PowermenuWidgets,
+    BarUsageWidgets,
+    BarSystemIndicators,
+    ConfigSourceDeepPartial,
+    QuickSettingsWidgets,
+    ThemeMode,
+} from "./types";
 
 interface Config {
     applauncher: Applauncher;
@@ -680,14 +642,12 @@ let configDefaults: Config = {
     },
 };
 
-type DeepPartial<T> = {
-    [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
-};
+
 
 // Override config defaults with user's options
 function overrideConfigRecursive<T extends object>(
     target: T,
-    source: DeepPartial<T>
+    source: ConfigSourceDeepPartial<T>
 ): void {
     for (const key of Object.keys(source) as (keyof T)[]) {
         if (source[key] instanceof Object && key in target) {

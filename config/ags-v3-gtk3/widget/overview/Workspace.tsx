@@ -4,11 +4,7 @@ import { config } from "../../lib/config";
 import { createBinding, For, createConnection, With, createComputed } from "ags";
 import cairo from 'cairo';
 import { getClassIcon } from "../../lib/utils";
-
-type WorkspaceType = {
-  workspace: AstalHyprland.Workspace;
-  hyprland: AstalHyprland.Hyprland;
-}
+import { WorkspaceType } from "../../lib/types";
 
 const numberOfWorkspaces = config.hyprland.workspaceNumber;
 const FALLBACK_HEIGHT = 1080;

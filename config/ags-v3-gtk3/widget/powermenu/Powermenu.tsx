@@ -1,16 +1,10 @@
-import PowermenuService, { PowerMenuAction } from "../../service/PowermenuService";
+import PowermenuService from "../../service/PowermenuService";
 import icons from "../../lib/icons";
 import {
     config,
-    PowermenuWidgets,
     setVisiblePowermenu
 } from "../../lib/config";
-
-type PowermenuButtonProps = JSX.IntrinsicElements["button"] & {
-    action: PowerMenuAction;
-	iconName: string;
-	onClicked?(): void;
-}
+import { PowermenuButtonProps, PowermenuWidgets } from "../../lib/types";
 
 export default () => {
     const PowermenuButton = ({ action, iconName, onClicked }: PowermenuButtonProps) => (

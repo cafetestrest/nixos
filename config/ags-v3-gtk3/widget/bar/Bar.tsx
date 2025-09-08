@@ -16,7 +16,8 @@ import PowermenuButton from "./items/PowermenuButton";
 import SystemIndicatorsButton from "./items/SystemIndicatorsButton";
 import BarButtons from "./items/BarButtons";
 import UsageBox from "./items/UsageBox";
-import { config, BarWidgets } from "../../lib/config";
+import { config } from "../../lib/config";
+import { BarWidgets } from "../../lib/types";
 
 export default function Bar(monitor: Gdk.Monitor, index: number) {
 	const widgetMap: Record<BarWidgets, () => JSX.Element> = {

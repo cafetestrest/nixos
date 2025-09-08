@@ -2,15 +2,7 @@ import { Gtk, Gdk, Astal } from "ags/gtk3";
 import icons from "../../../lib/icons";
 import { qsRevertRevealerStatus, qsToggleRevealer } from "../../../lib/config";
 import { Accessor } from "ags";
-
-type QSToggleProps = JSX.IntrinsicElements["button"] & {
-    icon: string | Accessor<string> | undefined;
-    className?: Accessor<any> | string;
-    onPrimaryClick?: () => void;
-    hasArrow?: boolean;
-    arrowIcon?: string | Accessor<string> | undefined;
-    revelaer?: string;
-}
+import { QSToggleProps } from "../../../lib/types";
 
 export default ({
 	className,

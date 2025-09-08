@@ -8,6 +8,6 @@ export default () => {
     return <box
         class={"focused-client"}
         visible={focused.as(Boolean)}>
-        <label label={createBinding(focused, "title").as(String)} />
+        <label label={focused.as(f => f.title)} />
     </box>
 }

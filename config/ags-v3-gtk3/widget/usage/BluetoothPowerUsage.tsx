@@ -1,12 +1,6 @@
 import { createPoll } from "ags/time";
 import { For } from "ags";
 
-type UpowerProps = {
-	model: string;
-	iconName: string;
-	batteryPercentage: number;
-};
-
 export const upower = createPoll(
 	[],
 	5000,

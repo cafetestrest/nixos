@@ -1,12 +1,7 @@
 import { Gtk } from "ags/gtk3";
 import { setQsPage } from "../../../lib/config";
 import icons from "../../../lib/icons";
-
-type PageProps = {
-	label: string;
-	child?: JSX.Element;
-	refresh?: () => void;
-};
+import { PageProps } from "../../../lib/types";
 
 export default ({ label, child, refresh = undefined }: PageProps) => {
 	return (

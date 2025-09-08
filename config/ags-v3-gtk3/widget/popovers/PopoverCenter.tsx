@@ -1,13 +1,6 @@
 import { Astal, Gdk } from "ags/gtk3";
 import { createState } from "ags";
-
-type PopoverProps = Pick<
-  JSX.IntrinsicElements["window"],
-  "name" | "namespace" | "class" | "visible"
-> & {
-  onClose?(self: Astal.Window): void
-  child?: JSX.Element
-}
+import { PopoverCenterProps } from "../../lib/types";
 
 /**
  * Full screen window where the child is positioned to center.
@@ -19,7 +12,7 @@ export default function Popover({
     child,
     onClose,
     ...props
-}: PopoverProps) {
+}: PopoverCenterProps) {
     let win: Astal.Window
 
     const [width, setWidth] = createState(1000)

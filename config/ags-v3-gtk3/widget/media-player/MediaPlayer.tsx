@@ -1,6 +1,5 @@
 import { Gtk } from "ags/gtk3";
 import Mpris from "gi://AstalMpris";
-import { config } from "../../lib/config";
 import { createBinding, For } from "ags";
 // import { isIcon } from "../../lib/utils";
 

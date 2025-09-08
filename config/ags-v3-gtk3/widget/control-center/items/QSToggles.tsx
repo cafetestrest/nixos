@@ -20,6 +20,7 @@ import QSLightstripMenu from "../menu/QSLightstripMenu";
 import ColorPickerToggle from "./ColorPickerToggle";
 import NoteToggle from "./NoteToggle";
 import ColorToggle from "./ColorToggle";
+import { TogglesType } from "../../../lib/types";
 
 const QSToggles = () => {
   function QSEmptyButton() {
@@ -75,8 +76,6 @@ const QSToggles = () => {
         break;
     }
   }
-
-type TogglesType = Record<string, JSX.Element>;
 
   // Function to split the array into rows
   const splitIntoRows = (toggles: TogglesType[], itemsPerRow: number) => {

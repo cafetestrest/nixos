@@ -1,25 +1,8 @@
 import { Astal, Gdk, Gtk } from "ags/gtk3";
 import { isQSRevealerOpen, qsRevertRevealerStatus, qsPage, setQsPage } from "../../lib/config";
+import { PopoverProps } from "../../lib/types";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
-
-type PopoverProps = Pick<
-  JSX.IntrinsicElements["window"],
-  | "class"
-  | "name"
-  | "namespace"
-  | "visible"
-  | "marginBottom"
-  | "marginTop"
-  | "marginLeft"
-  | "marginRight"
-  | "halign"
-  | "valign"
-> & {
-  onClose?(self: Astal.Window): void
-  child: JSX.Element
-  className: string;
-}
 
 /**
  * Full screen window widget where you can space the child widget

@@ -3,12 +3,9 @@ import { timeout } from "ags/time";
 import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import QSPage from "./QSPage";
-import { upower } from "../../usage/BluetoothPowerUsage";
+// import { upower } from "../../usage/BluetoothPowerUsage";
 import { createBinding, createState, For } from "ags";
-
-type DeviceItemProps = {
-	device: Bluetooth.Device;
-};
+import { DeviceItemProps } from "../../../lib/types";
 
 const DeviceItem = ({ device }: DeviceItemProps) => {
     const isConnected = createBinding(device, "connected");

@@ -2,7 +2,8 @@ import CpuUsage from "../../usage/CpuUsage";
 import RamUsage from "../../usage/RamUsage";
 import DiskUsage from "../../usage/DiskUsage";
 import BluetoothPowerUsage from "../../usage/BluetoothPowerUsage";
-import { BarUsageWidgets, config } from "../../../lib/config";
+import { config } from "../../../lib/config";
+import { BarUsageWidgets } from "../../../lib/types";
 
 export default () => {
     const widgetMap: Record<BarUsageWidgets, JSX.Element> = {

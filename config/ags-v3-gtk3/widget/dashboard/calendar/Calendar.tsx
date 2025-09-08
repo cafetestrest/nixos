@@ -2,11 +2,7 @@ import { Gdk, Gtk, Astal } from "ags/gtk3";
 import { getCalendarLayout } from "./Layout";
 import icons from "../../../lib/icons";
 import { createState } from "ags";
-
-type Day = {
-	day: string;
-	today: number;
-};
+import { Day } from "../../../lib/types";
 
 let calendarJson: Array<Day>[] = getCalendarLayout(undefined, true);
 let monthshift = 0;
