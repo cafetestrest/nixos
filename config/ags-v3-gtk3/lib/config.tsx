@@ -26,17 +26,6 @@ export type PowermenuWidgets =
     | "reboot"
     | "shutdown"
 
-export type SysIndicatorWidgets =
-    | "dndIndicator"
-    | "idleIndicator"
-    | "nightlightIndicator"
-    | "powerProfileIndicator"
-    | "bluetoothIndicator"
-    | "wifiIndicator"
-    | "wiredIndicator"
-    | "micMuteIndicator"
-    | "audioIndicator"
-
 export type QuickSettingsWidgets =
     | "QSToggles"
     | "AudioSliderBox"
@@ -50,6 +39,16 @@ export type BarUsageWidgets =
     | "Ram"
     | "Disk"
     | "BluetoothPower"
+
+export type BarSystemIndicators =
+    | "DND"
+    | "Idle"
+    | "Nightlight"
+    // | "PowerProfile"
+    | "Bluetooth"
+    | "Network"
+    | "MicMute"
+    | "Audio"
 
 interface Config {
     applauncher: Applauncher;
@@ -206,7 +205,7 @@ interface Substitutions {
 }
 
 interface SystemIndicators {
-    layout: SysIndicatorWidgets[], // layout of system indicators icons in bar
+    layout: BarSystemIndicators[], // layout of system indicators icons in bar
 }
 
 interface ThemeVariables {
@@ -475,17 +474,16 @@ let configDefaults: Config = {
         icons: {}, //todo
         titles: {},//todo
     },
-    systemIndicators: {//todo
+    systemIndicators: {
         layout: [
-            "dndIndicator",
-            "idleIndicator",
-            "nightlightIndicator",
-            "powerProfileIndicator",
-            "bluetoothIndicator",
-            "wifiIndicator",
-            "wiredIndicator",
-            "micMuteIndicator",
-            "audioIndicator",
+            "DND",
+            "Idle",
+            "Nightlight",
+            // "PowerProfile",
+            "Bluetooth",
+            "Network",
+            "MicMute",
+            "Audio",
         ],
     },
     themeVariables: {

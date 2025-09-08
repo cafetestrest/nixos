@@ -4,9 +4,11 @@ import Network from "gi://AstalNetwork";
 import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import AstalNotifd from "gi://AstalNotifd";
+// import AstalPowerProfiles from "gi://AstalPowerProfiles";
 import NightlightModeService from "../../../service/NightLightService";
 import IdleModeService from "../../../service/IdleService";
 import { createBinding, createComputed, Accessor } from "ags";
+import { BarSystemIndicators, config } from "../../../lib/config";
 
 const NightlightIndicator = () => {
 	if (NightlightModeService) {
@@ -75,6 +77,18 @@ const MicMuteIndicator = () => {
 		/>
 	);
 };
+
+// const PowerProfileIndicator = () => {
+// 	const power = AstalPowerProfiles.get_default()
+
+// 	return (
+// 		<icon
+// 			class={"bt-indicator-icon system-indicator"}
+// 			visible={createBinding(power, "activeProfile").as(p => p !== "balanced")}
+// 			icon={createBinding(power, "iconName")}
+// 		/>
+// 	);
+// };
 
 const NetworkIndicator = () => {
 	const network = Network.get_default();
@@ -153,6 +167,24 @@ type SystemIndicatorsType = {
 export default ({className, onClicked}: SystemIndicatorsType) => {
     const defaultSpeaker = Wp.get_default()?.audio.defaultSpeaker;
 
+	const widgetMap: Record<BarSystemIndicators, JSX.Element> = {
+		DND: DNDIndicator(),
+		Idle: IdleIndicator(),
+		Nightlight: NightlightIndicator(),
+		// PowerProfile: PowerProfileIndicator(),
+		Bluetooth: BluetoothIndicator(),
+		Network: NetworkIndicator(),
+		MicMute: MicMuteIndicator(),
+		Audio: AudioIndicator({speaker: defaultSpeaker}),
+	};
+
+	const renderWidgets = (widgetKeys: BarSystemIndicators[]) => {
+		return widgetKeys.map(key => {
+			const widget = widgetMap[key];
+			return widget ? widget : null;
+		});
+	};
+
     return (
         <button
             class={className}
@@ -177,13 +209,7 @@ export default ({className, onClicked}: SystemIndicatorsType) => {
                 class={"system-indicators-box"}
 				spacing={5}
             >
-                <DNDIndicator />
-                <IdleIndicator />
-                <NightlightIndicator />
-                <BluetoothIndicator />
-                <NetworkIndicator />
-                <MicMuteIndicator />
-                <AudioIndicator speaker={defaultSpeaker}/>
+				{renderWidgets(config.systemIndicators.layout)}
             </box>
         </button>
     );
