@@ -28,7 +28,7 @@ function OnScreenProgress({ visible, setVisible }: { visible:Accessor<boolean>, 
     return (
         <revealer
             $={(self) => {
-                if (Brightness) {
+                if (config.brightness.hasBrightness && Brightness) {
                     Brightness.connect("notify::screen", () =>
                         Brightness && show(Brightness.screen, "display-brightness-symbolic"),
                     )

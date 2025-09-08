@@ -3,10 +3,10 @@ import { exec, execAsync } from "ags/process";
 import GObject from "gi://GObject?version=2.0";
 import { getter, register } from "ags/gobject";
 import { dependencies } from "../lib/utils";
+import { config } from "../lib/config";
 
 const get = (args: string) => Number(exec(`brightnessctl ${args}`))
 const screen = exec(`bash -c "ls -w1 /sys/class/backlight | head -1"`)
-
 const available = dependencies(["brightnessctl"]);
 
 @register({ GTypeName: "Brightness" })
@@ -50,7 +50,7 @@ class Brightness extends GObject.Object {
 
 let service: Brightness | null = null;
 
-if (available) {
+if (config.brightness.hasBrightness && available) {
     service = new Brightness();
 }
 

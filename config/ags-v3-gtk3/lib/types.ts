@@ -51,6 +51,11 @@ export type BarSystemIndicators =
     | "MicMute"
     | "Audio"
 
+export type BarButtons =
+    | "NoteButton"
+    | "ScreenshotButton"
+    | "ColorPickerButton"
+
 export type ConfigSourceDeepPartial<T> = {
     [K in keyof T]?: T[K] extends object ? ConfigSourceDeepPartial<T[K]> : T[K];
 };

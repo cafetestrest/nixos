@@ -25,7 +25,7 @@ export default () => {
         ),
         BrightnessSliderBox: (
             <box>
-                <BrightnessSlider />
+                {config.brightness.hasBrightness ? BrightnessSlider() : <box visible={false}/>}
             </box>
         ),
           SinkMenu: SinkRevealer(),

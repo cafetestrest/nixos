@@ -2,19 +2,22 @@ import { Gtk } from "ags/gtk3";
 import QSMainPage from "./pages/QSMainPage";
 import QSBluetoothPage from "./pages/QSBluetoothPage";
 // import QSNetworkPage from "./pages/QSNetworkPage";
-import { config } from "../../lib/config";
+import { qsPage } from "../../lib/config";
 
 export default () => {
-    //todo stack
+    const controlCenterPages = [
+        <QSMainPage />,
+        <QSBluetoothPage />,
+        {/* <QSNetworkPage /> */}
+    ];
+
     return (
         <box class={"control-center"} vertical={true}>
             <stack
-                visibleChildName={config.qs.currentPage}
+                visibleChildName={qsPage}
                 transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}
+                children={controlCenterPages as Gtk.Widget[]}
             >
-                <QSMainPage />
-                <QSBluetoothPage />
-                {/* <QSNetworkPage /> */}
             </stack>
         </box>
     );

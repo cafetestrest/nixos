@@ -10,6 +10,7 @@ import {
     ConfigSourceDeepPartial,
     QuickSettingsWidgets,
     ThemeMode,
+    BarButtons,
 } from "./types";
 
 interface Config {
@@ -64,6 +65,7 @@ interface BarLayout {
     center: BarWidgets[]; // bar widgets in center
     endLeft: BarWidgets[]; // bar widgets end-left (left after center)
     endRight: BarWidgets[]; // bar widgets end-right (most right)
+    buttonsLayout: BarButtons[]; // bar buttons widget layout
 }
 
 interface Brightness {
@@ -313,15 +315,20 @@ let configDefaults: Config = {
         endRight: [
             "RecordingIndicatorButton",
             "UsageBox",
-            "BarButtons",
+            // "BarButtons",
             "SysTray",
             // "BatteryLevel",
             "SystemIndicatorsButton",
             "PowermenuButton",
         ],
+        buttonsLayout: [
+            "NoteButton",
+            "ScreenshotButton",
+            "ColorPickerButton",
+        ],
     },
     brightness: {
-        hasBrightness: false, //todo implement
+        hasBrightness: false,
     },
     common: {
         commandOpenNote: "codium ~/Documents/note.md",
