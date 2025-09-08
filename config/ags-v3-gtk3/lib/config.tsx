@@ -45,6 +45,12 @@ export type QuickSettingsWidgets =
     | "WeatherSchedule"
     | "MediaPlayer"
 
+export type BarUsageWidgets =
+    | "Cpu"
+    | "Ram"
+    | "Disk"
+    | "BluetoothPower"
+
 interface Config {
     applauncher: Applauncher;
     bar: Bar;
@@ -281,6 +287,7 @@ interface ThemeColors {
 }
 
 interface Usage {
+    layout: BarUsageWidgets[]; // layout of usage box widgets in bar
     barUsageSpacing: number; // usage-box, for all usage widgets spacing={}
     diskUsageSpacing: number; // disk usage spacing={}
     diskUsagePoolRate: number; // pool rate to fetch disk usage
@@ -588,6 +595,12 @@ let configDefaults: Config = {
         focusShadowTransparent: "inset 0 0 0 2px rgba(0, 0, 0, 0.2)",
     },
     usage: {
+        layout: [
+            "Cpu",
+            "Ram",
+            "Disk",
+            "BluetoothPower",
+        ],
         barUsageSpacing: 10,
         diskUsageSpacing: 12,
         diskUsagePoolRate: 600000,
