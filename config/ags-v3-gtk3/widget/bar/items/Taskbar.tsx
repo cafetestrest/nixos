@@ -1,6 +1,6 @@
 import { Gdk } from "ags/gtk3";
 import { createBinding, For } from "ags";
-import icons, { substitutions } from "../../../lib/icons";
+import icons from "../../../lib/icons";
 import AstalHyprland from "gi://AstalHyprland";
 import AstalApps from "gi://AstalApps";
 import { getClassIcon, isIcon } from "../../../lib/utils";
@@ -48,11 +48,10 @@ export default () => {
             <For each={clients}>
                 {(client) => {
                     const cls = client.class;
-                    const icon = substitutions.icons[cls]
-                        ? substitutions.icons[cls]
-                        : isIcon(cls)
-                            ? cls
-                            : icons.fallback.executable;
+                    const classIcon = config.substitutions.icons[cls];
+                    const icon = classIcon ? classIcon : isIcon(cls)
+                        ? cls
+                        : icons.fallback.executable;
 
                     return (
                         <box>

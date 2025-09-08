@@ -4,7 +4,7 @@ import { monitorFile, readFileAsync, writeFileAsync } from "ags/file";
 import Gio from "gi://Gio?version=2.0";
 import { exec, execAsync } from "ags/process";
 import { Astal } from "ags/gtk3";
-import { substitutions } from "./icons";
+import { config } from "./config";
 
 const DARK = "dark";
 const LIGHT = "light";
@@ -112,8 +112,9 @@ export function ensureDirectory(path: string) {
 		Gio.File.new_for_path(path).make_directory_with_parents(null);
 }
 
-export const fileExists = (path: string) =>
-    GLib.file_test(path, GLib.FileTest.EXISTS);
+export function fileExists(path: string) {
+    return GLib.file_test(path, GLib.FileTest.EXISTS);
+}
 
 export async function bash(
 	strings: TemplateStringsArray | string,
@@ -135,9 +136,8 @@ export function isIcon(icon?: string | null) {
 }
 
 export function getClassIcon(clientClass: string, fallbackIcon: string = "application-x-executable") {
-	return substitutions.icons[clientClass]
-		? substitutions.icons[clientClass]
-		: isIcon(clientClass)
+	const classIcon = config.substitutions.icons[clientClass];
+	return classIcon ? classIcon : isIcon(clientClass)
 		? clientClass
 		: fallbackIcon;
 }
