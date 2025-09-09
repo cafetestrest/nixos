@@ -248,7 +248,10 @@ let counter = 0;
 
 export const WeatherSchedule = ({ days }: { days: number | null }) => {
     return (
-        <box class="weather">
+        <box class="weather" visible={weather(w => {
+            counter = 0; // fix to reset counter to 0 in order for widget to be visible when re-fetched data
+            return w.length > 0
+        })}>
             <For each={weather}>
                 {(w: TooltipItem) => {
                     counter++;
