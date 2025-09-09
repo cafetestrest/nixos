@@ -22,18 +22,20 @@ in
     programs.bash.bashrcExtra = lib.mkIf (cfgBash.enable && cfgBashrc.enable) ''
       # Function to search through history and run the selected command
       peco_select_history() {
-          # Get the selected command from history
-          local selected_command=$(history | tac | cut -c 8- | ${pkgs.peco}/bin/peco --query "$READLINE_LINE")
+        # Get the selected command from history
+        local selected_command=$(history | tac | cut -c 8- | ${pkgs.peco}/bin/peco --query "$READLINE_LINE")
 
-          # If a command was selected, insert it into the current line
-          if [ -n "$selected_command" ]; then
-              READLINE_LINE="$selected_command"
-              READLINE_POINT=$"{#READLINE_LINE}"
-          fi
+        # If a command was selected, insert it into the current line
+        if [ -n "$selected_command" ]; then
+            READLINE_LINE="$selected_command"
+            READLINE_POINT=$"{#READLINE_LINE}"
+        fi
       }
 
-      # Bind the function to a key (Ctrl-R in this example)
-      bind -x '"\C-r": peco_select_history'
+      # Bind the function to a key (Ctrl-R in this example) -> only if bind exists
+      if type bind &>/dev/null; then
+        bind -x '"\C-r": peco_select_history'
+      fi
     '';
 
     programs.fish.interactiveShellInit = lib.mkIf cfgFish.enable ''
