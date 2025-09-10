@@ -12,6 +12,7 @@ right-click-action = paste
 #keybind = ctrl+w=close_surface
 #keybind = ctrl+q=close_surface
 keybind = ctrl+shift+q=close_surface
+keybind = ctrl+shift+w=close_surface
 keybind = ctrl+shift+p=toggle_window_decorations
 keybind = ctrl+d=new_split:right
 #keybind = ctrl+t=new_tab
@@ -27,5 +28,8 @@ keybind = ctrl+left=esc:b
 keybind = ctrl+right=esc:f
 keybind = ctrl+home=esc:<
 keybind = ctrl+end=esc:>
+
+keybind = ctrl+shift+e=new_split:right
+keybind = ctrl+shift+o=new_split:down
 
 app-notifications = no-clipboard-copy
