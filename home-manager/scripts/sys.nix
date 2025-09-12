@@ -27,6 +27,8 @@ let
         fi
 
         get_flake_location "$@"
+
+        ~/sync check &>/dev/null
     }
 
     function cmd_rebuild() {

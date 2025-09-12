@@ -17,7 +17,7 @@ in
           firstArgLetter=
 
           function symlink() {
-            if [[ "$firstArgLetter" != "r" ]]; then
+            if [[ ! "$firstArgLetter" =~ ^[ur]$ ]]; then
               echo "ln -s $LOCATION $PROGRAM_LOCATION"
               ln -s $LOCATION $PROGRAM_LOCATION
             fi
@@ -29,10 +29,27 @@ in
               firstArgLetter="$(echo "$1" | head -c 1)"
             fi
 
+            # first arg = (u)pdate / upgrade, check if already symlinked and remove it for rebuild
+            if [[ "$firstArgLetter" == "u" ]]; then
+              # Something exists (file, dir, or symlink)
+              if [ -e "$PROGRAM_LOCATION" ] || [ -L "$PROGRAM_LOCATION" ]; then
+                # symlinked program is pointing to correct location
+                if [ "$(readlink -f "$PROGRAM_LOCATION")" = "$(readlink -f "$LOCATION")" ]; then
+                  echo "Symlink exist, $PROGRAM_LOCATION -> $LOCATION"
+                else
+                  echo "Symlinked properly $PROGRAM_LOCATION. Exiting."
+                  return
+                fi
+              else
+                echo "Nothing here: $PROGRAM_LOCATION. Skipping."
+                return
+              fi
+            fi
+
             echo "rm -rf $PROGRAM_LOCATION"
             rm -rf $PROGRAM_LOCATION
 
-            if [[ "$firstArgLetter" == "r" ]]; then
+            if [[ "$firstArgLetter" =~ ^[ur]$ ]]; then
               echo "Removing: $PROGRAM_LOCATION"
             fi
           }
@@ -84,6 +101,16 @@ in
             symlink
           }
 
+          function cmd_check_rebuild() {
+              firstArgLetter="u"
+              cmd_ags
+              cmd_kitty
+              cmd_ghostty
+              cmd_waybar
+              cmd_hyprland
+              echo "Everything is prepared for rebuild."
+          }
+
           function cmd_usage() {
               cat <<-_EOF
             Usage:
@@ -113,11 +140,11 @@ in
               ghostty) shift;                                 cmd_ghostty "$@" ;;
               waybar) shift;                                  cmd_waybar "$@" ;;
               hyprland) shift;                                cmd_hyprland "$@" ;;
+              check) shift;                                   cmd_check_rebuild "$@" ;;
               help|--help) shift;                             cmd_usage "$@" ;;
               *)  echo "Unknown command $@, syncing ags: " && cmd_ags "$@" ;;
           esac
           exit 0
-
         '';
         executable = true;
       };
