@@ -32,4 +32,9 @@ keybind = ctrl+end=esc:>
 keybind = ctrl+shift+e=new_split:right
 keybind = ctrl+shift+o=new_split:down
 
+keybind = alt+arrow_up=goto_split:up
+keybind = alt+arrow_down=goto_split:down
+keybind = alt+arrow_left=goto_split:left
+keybind = alt+arrow_right=goto_split:right
+
 app-notifications = no-clipboard-copy
