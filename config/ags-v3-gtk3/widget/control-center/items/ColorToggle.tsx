@@ -10,7 +10,7 @@ export default () => {
         return (
             <QSToggle
                 className={profile.as((p) => {
-                    if (p !== 0) {
+                    if (p !== 1) {
                         return "toggles control-center-button active";
                     }
                     return "toggles control-center-button";

@@ -424,10 +424,10 @@ let configDefaults: Config = {
             "IdleToggle",
             // "LightstripToggle",
             // "NetworkToggle",
-            "ScreenRecordToggle",
+            "NoteToggle",
             "DNDToggle",
             "ColorPickerToggle",
-            "NoteToggle",
+            "ScreenRecordToggle",
             "ColorToggle",
             // "QSEmptyButton"
         ],
