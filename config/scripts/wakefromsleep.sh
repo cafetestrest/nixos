@@ -47,7 +47,7 @@ fi
 function refresh_ags_weather_info() {
   if [[ "$RUN_WEATHER" == "0" ]]; then
     if pgrep ags; then
-      openweathermap ags
+      ags request "refresh-weather"
       RUN_WEATHER=1
     fi
   fi
