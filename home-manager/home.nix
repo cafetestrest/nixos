@@ -17,6 +17,7 @@
     ./shell/fish/plugins/tide.nix
     ./shell/fish/omf/commands.nix
     ./shell/bashrc.nix
+    ./shell/blesh.nix                     # ble.sh (blesh) package for bash shell
     ./xdg/xdg.nix                         # xdg
     ./hypr/hyprland.nix
     ./ags.nix                             # top bar + shell https://github.com/Aylur/ags
@@ -174,6 +175,7 @@
       bash = {
         enable = (vars.modules.home-manager.shell.bash.enable or false);
         bashrc.enable = (vars.modules.home-manager.shell.bash.bashrc.enable or false);
+        blesh.enable = (vars.modules.home-manager.shell.bash.blesh.enable or false);
       };
       docker.enable = (vars.modules.home-manager.shell.docker.enable or false);
       warden = {

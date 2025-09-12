@@ -202,6 +202,7 @@ rec {
         bash = {
           enable = true;
           bashrc.enable = true;
+          blesh.enable = true;
         };
         docker.enable = modules.virtualisation.docker.enable;
         warden = {
