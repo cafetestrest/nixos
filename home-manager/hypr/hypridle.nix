@@ -19,6 +19,7 @@ in
           lock_cmd = pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock       # avoid starting multiple hyprlock instances.
           before_sleep_cmd = loginctl lock-session    # lock before suspend.
           after_sleep_cmd = ${if cfgWake.enable then "hyprctl dispatch dpms on && wakefromsleep" else "hyprctl dispatch dpms on"}
+          on_unlock_cmd = wakefromsleep
 
           # to avoid having to press a key twice to turn on the display. (https://github.com/hyprwm/hyprlock/issues/371#issuecomment-2288214526)
       }

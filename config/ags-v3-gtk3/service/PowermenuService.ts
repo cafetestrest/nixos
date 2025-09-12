@@ -44,7 +44,7 @@ const PowerMenuSerivce = GObject.registerClass(
 				shutdown: [config.powermenu.shutdownCommand, "Shutdown"],
 			}[action];
 
-			if (action === "lock") {
+			if (action === "lock" || action === "sleep") {
 				const current = Idle?.currentProfile();
 				if (current === 0) {
 					Idle?.nextProfile();

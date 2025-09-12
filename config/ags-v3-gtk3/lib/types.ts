@@ -167,5 +167,4 @@ export type PopoverCenterProps = Pick<
 export type PowermenuButtonProps = JSX.IntrinsicElements["button"] & {
     action: PowerMenuAction;
 	iconName: string;
-	onClicked?(): void;
 }

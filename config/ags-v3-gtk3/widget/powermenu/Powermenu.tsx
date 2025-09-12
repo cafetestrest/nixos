@@ -7,7 +7,7 @@ import {
 import { PowermenuButtonProps, PowermenuWidgets } from "../../lib/types";
 
 export default () => {
-    const PowermenuButton = ({ action, iconName, onClicked }: PowermenuButtonProps) => (
+    const PowermenuButton = ({ action, iconName }: PowermenuButtonProps) => (
         <button
             class={`powermenu-button`}
             onClicked={() => {
