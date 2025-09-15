@@ -26,7 +26,7 @@ const ScreenRecordMenu = () => {
 	return (
 		<box
             vertical={true}
-			spacing={config.qs.revealScreenRecordSpacing}
+			spacing={config.quicksettings.revealScreenRecordSpacing}
 		>
 			<icon
 				icon={icons.record}
@@ -74,7 +74,7 @@ const ScreenRecordMenu = () => {
 				</box>
 			</box>
 			<box
-				spacing={config.qs.revealScreenRecordSpacing * 0.5}
+				spacing={config.quicksettings.revealScreenRecordSpacing * 0.5}
 				hexpand={true}
 				halign={Gtk.Align.END}
 			>

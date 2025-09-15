@@ -40,7 +40,7 @@ const SinkMenu = () => {
     return (
         <box
             vertical={true}
-            spacing={config.qs.revealSinksSpacing}
+            spacing={config.quicksettings.revealSinksSpacing}
         >
             <label
                 label={"Audio source"}

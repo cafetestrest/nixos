@@ -10,13 +10,16 @@ export let totalWeatherForecastDataArray: TooltipItem[] = [];
 export const [updatedAt, setUpdatedAt] = createState("");
 export const [weather, setWeather] = createState<TooltipItem[]>([]);
 
+function setTime() {
+      const format = "Last updated: %H:%M:%S";
+      const time = GLib.DateTime.new_now_local().format(format);
+      if (time) {
+            setUpdatedAt(time);
+      }
+}
+
 export async function fetchWeather() {
       try {
-            const format = "Last updated: %H:%M:%S";
-            const time = GLib.DateTime.new_now_local().format(format);
-            if (time) {
-                  setUpdatedAt(time);
-            }
             const out = await execAsync("openweathermap");
             const tooltip = JSON.parse(out);
 
@@ -93,6 +96,7 @@ export async function fetchWeather() {
                         }
                   });
                   setWeather(tooltip)
+                  setTime()
             }
       } catch (error) {
             console.log(`Weather fetch failed: ${error}`)

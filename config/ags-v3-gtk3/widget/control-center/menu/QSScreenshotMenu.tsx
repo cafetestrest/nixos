@@ -10,7 +10,7 @@ const ScreenShotMenu = () => {
     return (
         <box
             vertical={true}
-            spacing={config.qs.revealScreenshotSpacing}
+            spacing={config.quicksettings.revealScreenshotSpacing}
         >
             <label
                 label={"Screenshot Menu"}
@@ -18,7 +18,7 @@ const ScreenShotMenu = () => {
             />
             <box
                 vertical={true}
-                spacing={config.qs.revealScreenshotSpacing}
+                spacing={config.quicksettings.revealScreenshotSpacing}
                 class={"qs-menu-content"}
             >
                 <button

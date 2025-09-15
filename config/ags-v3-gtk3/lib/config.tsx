@@ -25,7 +25,7 @@ interface Config {
     osd: OSD;
     overview: Overview;
     powermenu: Powermenu;
-    qs: QS;
+    quicksettings: QuickSettings;
     screenRecord: ScreenRecord;
     substitutions: Substitutions;
     systemIndicators: SystemIndicators;
@@ -136,7 +136,7 @@ interface Powermenu {
     shutdownCommand: string, // command used to power off PC
 }
 
-interface QS {
+interface QuickSettings {
     togglesSpacing: number; // QS toggles row spacing={}
     rowSpacing: number; // QS toggles page spacing={}
     rowsPerPage: number; // max items per row in QS toggles (ex. 2)
@@ -393,7 +393,7 @@ let configDefaults: Config = {
         rebootCommand: "systemctl reboot",
         shutdownCommand: "shutdown now",
     },
-    qs: {
+    quicksettings: {
         togglesSpacing: 4,
         rowSpacing: 5,
         rowsPerPage: 2,
@@ -730,12 +730,12 @@ export const [visiblePowermenu,setVisiblePowermenu] = createState(config.bar.vis
 export const [visibleQSMainPage,setVisibleQSMainPage] = createState(config.bar.visibleQSMainPage);
 
 // qs
-export const [qsTogglesPage,setQsTogglesPage] = createState(config.qs.currentTogglesPage);
-export const [qsPage,setQsPage] = createState(config.qs.currentPage);
-export const [qsRevealSinksButton,setQsRevealSinksButton] = createState(config.qs.revealSinksButtonState);
-export const [qsRevealScreenRecord,setQsRevealScreenRecord] = createState(config.qs.revealScreenRecordState);
-export const [qsRevealScreenshot,setQsRevealScreenshot] = createState(config.qs.revealScreenshotState);
-export const [qsRevealLightstrip,setQsRevealLightstrip] = createState(config.qs.revealLightstripState);
+export const [qsTogglesPage,setQsTogglesPage] = createState(config.quicksettings.currentTogglesPage);
+export const [qsPage,setQsPage] = createState(config.quicksettings.currentPage);
+export const [qsRevealSinksButton,setQsRevealSinksButton] = createState(config.quicksettings.revealSinksButtonState);
+export const [qsRevealScreenRecord,setQsRevealScreenRecord] = createState(config.quicksettings.revealScreenRecordState);
+export const [qsRevealScreenshot,setQsRevealScreenshot] = createState(config.quicksettings.revealScreenshotState);
+export const [qsRevealLightstrip,setQsRevealLightstrip] = createState(config.quicksettings.revealLightstripState);
 
 // weather
 export const [weatherWidth,setWeatherWidth] = createState(config.weather.width);

@@ -31,7 +31,7 @@ const QSToggles = () => {
 
   const allToggles = [];
 
-  for (const toggleKey of config.qs.togglesLayout) {
+  for (const toggleKey of config.quicksettings.togglesLayout) {
     switch (toggleKey) {
       case "BluetoothToggle":
         allToggles.push({ toggleKey: BluetoothToggle() });
@@ -98,14 +98,14 @@ const QSToggles = () => {
   };
 
   // Split toggles into rows and pages
-  const toggleRows = splitIntoRows(allToggles, config.qs.rowsPerPage);
-  const togglePages = splitIntoPages(toggleRows, config.qs.columnsPerPage);
+  const toggleRows = splitIntoRows(allToggles, config.quicksettings.rowsPerPage);
+  const togglePages = splitIntoPages(toggleRows, config.quicksettings.columnsPerPage);
 
   // Render a single row of toggles
   const renderRow = (rowToggles: TogglesType[]) => {
     return (
       <box
-        spacing={config.qs.togglesSpacing}
+        spacing={config.quicksettings.togglesSpacing}
       >
         {rowToggles.map((toggle) => {
           const toggleIdentifier = Object.keys(toggle)[0];
@@ -121,7 +121,7 @@ const QSToggles = () => {
       <box vertical={true}>
         {rowToggles.map((toggle) => {
           const keys = Object.keys(toggle);
-          if (keys.length > 1 && rowIndex !== config.qs.columnsPerPage - 1) {
+          if (keys.length > 1 && rowIndex !== config.quicksettings.columnsPerPage - 1) {
             const toggleIdentifier = Object.keys(toggle)[1];
             return toggle[toggleIdentifier];
           }
@@ -139,7 +139,7 @@ const QSToggles = () => {
         >
           {rowToggles.map((toggle) => {
             const keys = Object.keys(toggle);
-            if (keys.length > 1 && rowIndex === config.qs.columnsPerPage - 1) {
+            if (keys.length > 1 && rowIndex === config.quicksettings.columnsPerPage - 1) {
               const toggleIdentifier = Object.keys(toggle)[1];
               return toggle[toggleIdentifier];
             }
@@ -156,7 +156,7 @@ const QSToggles = () => {
         class={"qs-toggles-page"}
         name={`qs-page-${pageIndex}`}
         vertical={true}
-        spacing={config.qs.rowSpacing}
+        spacing={config.quicksettings.rowSpacing}
         $type="named"
       >
         {pageRows.map((row, rowIndex) => {

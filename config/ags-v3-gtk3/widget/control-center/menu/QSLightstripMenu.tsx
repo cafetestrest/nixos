@@ -10,7 +10,7 @@ const LightstripMenu = () => {
     return (
         <box
             vertical={true}
-            spacing={config.qs.revealLightstripSpacing}
+            spacing={config.quicksettings.revealLightstripSpacing}
         >
             <box>
                 <label
@@ -35,7 +35,7 @@ const LightstripMenu = () => {
             </box>
             <box
                 vertical={true}
-                spacing={config.qs.revealLightstripSpacing}
+                spacing={config.quicksettings.revealLightstripSpacing}
                 class={"qs-menu-content"}
             >
                 <button

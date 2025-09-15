@@ -47,7 +47,7 @@ export default () => {
             vertical={true}
 			$type="named"
 		>
-            {renderWidgets(config.qs.layout)}
+            {renderWidgets(config.quicksettings.layout)}
         </box>
     );
 }
