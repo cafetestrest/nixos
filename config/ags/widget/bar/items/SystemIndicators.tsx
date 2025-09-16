@@ -4,7 +4,7 @@ import Network from "gi://AstalNetwork";
 import Bluetooth from "gi://AstalBluetooth";
 import icons from "../../../lib/icons";
 import AstalNotifd from "gi://AstalNotifd";
-// import AstalPowerProfiles from "gi://AstalPowerProfiles";
+import AstalPowerProfiles from "gi://AstalPowerProfiles";
 import NightlightModeService from "../../../service/NightLightService";
 import IdleModeService from "../../../service/IdleService";
 import { createBinding, createComputed, Accessor } from "ags";
@@ -79,17 +79,17 @@ const MicMuteIndicator = () => {
 	);
 };
 
-// const PowerProfileIndicator = () => {
-// 	const power = AstalPowerProfiles.get_default()
+const PowerProfileIndicator = () => {
+	const power = AstalPowerProfiles.get_default()
 
-// 	return (
-// 		<icon
-// 			class={"bt-indicator-icon system-indicator"}
-// 			visible={createBinding(power, "activeProfile").as(p => p !== "balanced")}
-// 			icon={createBinding(power, "iconName")}
-// 		/>
-// 	);
-// };
+	return (
+		<icon
+			class={"bt-indicator-icon system-indicator"}
+			visible={createBinding(power, "activeProfile").as(p => p !== "balanced")}
+			icon={createBinding(power, "iconName")}
+		/>
+	);
+};
 
 const NetworkIndicator = () => {
 	const network = Network.get_default();
@@ -169,7 +169,7 @@ export default ({className, onClicked}: SystemIndicatorsType) => {
 		DND: DNDIndicator(),
 		Idle: IdleIndicator(),
 		Nightlight: NightlightIndicator(),
-		// PowerProfile: PowerProfileIndicator(),
+		PowerProfile: PowerProfileIndicator(),
 		Bluetooth: BluetoothIndicator(),
 		Network: NetworkIndicator(),
 		MicMute: MicMuteIndicator(),

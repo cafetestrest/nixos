@@ -57,6 +57,7 @@ interface Bar {
     marginBottom: number; // to make topbar floating, margin-bottom
     marginLeft: number; // to make topbar floating, margin-left
     marginRight: number; // to make topbar floating, margin-right
+    batteryBlocks: number; // block to segment battery widget colors
 }
 
 interface BarLayout {
@@ -295,6 +296,7 @@ let configDefaults: Config = {
         marginBottom: 0,
         marginLeft: 0,
         marginRight: 0,
+        batteryBlocks: 8,
     },
     barLayout: {
         startLeft: [
@@ -317,7 +319,7 @@ let configDefaults: Config = {
             "UsageBox",
             // "BarButtons",
             "SysTray",
-            // "BatteryLevel",
+            "BatteryLevel",
             "SystemIndicatorsButton",
             "PowermenuButton",
         ],
@@ -506,7 +508,7 @@ let configDefaults: Config = {
             "DND",
             "Idle",
             "Nightlight",
-            // "PowerProfile",
+            "PowerProfile",
             "Bluetooth",
             "Network",
             "MicMute",

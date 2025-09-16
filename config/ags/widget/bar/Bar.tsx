@@ -3,7 +3,7 @@ import { onCleanup } from "ags";
 import Taskbar from "./items/Taskbar";
 import Workspaces from "./items/Workspaces";
 import Time from "./items/Time";
-// import BatteryLevel from "./items/BatteryLevel";
+import BatteryLevel from "./items/BatteryLevel";
 import SysTray from "./items/SysTray";
 import Media from "./items/Media";
 import AppLauncher from "./items/AppLauncher";
@@ -34,6 +34,7 @@ export default function Bar(monitor: Gdk.Monitor, index: number) {
 		SysTray,
 		PowermenuButton,
 		SystemIndicatorsButton,
+		BatteryLevel,
 	};
 
 	const renderWidgets = (widgetKeys: BarWidgets[]) =>

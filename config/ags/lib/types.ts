@@ -18,7 +18,7 @@ export type BarWidgets =
     | "SysTray"
     | "SystemIndicatorsButton"
     | "PowermenuButton"
-    // | "BatteryLevel"
+    | "BatteryLevel"
 
 export type PowermenuWidgets =
     | "lock"
@@ -45,7 +45,7 @@ export type BarSystemIndicators =
     | "DND"
     | "Idle"
     | "Nightlight"
-    // | "PowerProfile"
+    | "PowerProfile"
     | "Bluetooth"
     | "Network"
     | "MicMute"

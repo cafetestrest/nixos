@@ -1,11 +1,18 @@
 import { Gtk } from "ags/gtk3";
 import Battery from "gi://AstalBattery";
 import { createBinding } from "ags";
+import { config } from "../../../lib/config";
 
 export default () => {
     const battery = Battery.get_default()
-    let BLOCKS = 8;
 
+    if (!battery.isPresent) {
+        return (
+            <box visible={false}/>
+        );
+    }
+
+    const BLOCKS = config.bar.batteryBlocks;
     const batteryLevel = createBinding(battery, "percentage");
 
     return (

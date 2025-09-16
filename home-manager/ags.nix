@@ -21,10 +21,6 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      inputs.ags.packages.${pkgs.system}.notifd
-      inputs.ags.packages.${pkgs.system}.mpris
-      # inputs.ags.packages.${pkgs.system}.auth
-      # inputs.matugen.packages.${pkgs.system}.default
       material-symbols
       wf-recorder #screen recorder
     ];
@@ -32,23 +28,24 @@ in
     programs.ags = {
       enable = true;
       configDir = ../config/ags;
-      extraPackages = [
-        inputs.ags.packages.${pkgs.system}.apps
-        # inputs.ags.packages.${pkgs.system}.battery
-        inputs.ags.packages.${pkgs.system}.hyprland
-        inputs.ags.packages.${pkgs.system}.wireplumber
-        inputs.ags.packages.${pkgs.system}.network
-        inputs.ags.packages.${pkgs.system}.tray
-        inputs.ags.packages.${pkgs.system}.notifd
-        inputs.ags.packages.${pkgs.system}.mpris
-        inputs.ags.packages.${pkgs.system}.bluetooth
-        # inputs.ags.packages.${pkgs.system}.cava
-        # inputs.ags.packages.${pkgs.system}.auth
+      extraPackages = with inputs.ags.packages.${pkgs.system}; [
+        apps
+        battery
+        hyprland
+        wireplumber
+        network
+        tray
+        notifd
+        mpris
+        bluetooth
+        powerprofiles
+        # cava
+        # auth
         pkgs.libgtop
       ] ++ lib.optionals cfgLibKompass.enable [
         inputs.kompass.packages.${pkgs.system}.libkompass
-        inputs.ags.packages.${pkgs.system}.river
-        inputs.ags.packages.${pkgs.system}.astal4
+        river
+        astal4
         pkgs.libadwaita
       ];
     };
