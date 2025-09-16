@@ -81,17 +81,6 @@ window.bar {
         }
     }
 
-    // first button, it is not centered otherwise
-    .app-launcher-button {
-        padding-left: 0.2rem;
-        padding-right: 0.6rem;
-
-        // fix as it does not work with background-color: transparent;
-        &:hover {
-            background-color: color.adjust($bgColor, $alpha: -0.8);
-        }
-    }
-
     .bar-buttons {
         margin-left: 0.5rem;
     }
