@@ -57,7 +57,7 @@ in
           function cmd_ags() {
             PROGRAM_LOCATION=$XDG_CONFIG_HOME/ags
             # LOCATION="$FLAKE_LOCATION/config/ags"
-            LOCATION="$FLAKE_LOCATION/config/ags-v3-gtk3"
+            LOCATION="$FLAKE_LOCATION/config/ags"
 
             remove "$@"
             symlink
