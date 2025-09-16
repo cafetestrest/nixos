@@ -34,7 +34,7 @@ export default () => {
     };
 
     const renderWidgets = (widgetKeys: QuickSettingsWidgets[]) => {
-        return widgetKeys.map((key, index) => {
+        return widgetKeys.map(key => {
             const widget = widgetMap[key];
             return widget ? widget : null;
         });

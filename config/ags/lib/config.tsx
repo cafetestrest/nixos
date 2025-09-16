@@ -431,7 +431,8 @@ let configDefaults: Config = {
             "ColorPickerToggle",
             "ScreenRecordToggle",
             "ColorToggle",
-            // "QSEmptyButton"
+            "PowerProfileToggle",
+            "QSEmptyButton"
         ],
     },
     screenRecord: {

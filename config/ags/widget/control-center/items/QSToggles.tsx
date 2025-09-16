@@ -20,6 +20,7 @@ import QSLightstripMenu from "../menu/QSLightstripMenu";
 import ColorPickerToggle from "./ColorPickerToggle";
 import NoteToggle from "./NoteToggle";
 import ColorToggle from "./ColorToggle";
+import PowerProfileToggle from "./PowerProfileToggle";
 import { TogglesType } from "../../../lib/types";
 
 const QSToggles = () => {
@@ -68,6 +69,9 @@ const QSToggles = () => {
         break;
       case "ColorToggle":
         allToggles.push({ toggleKey: ColorToggle() });
+        break;
+      case "PowerProfileToggle":
+        allToggles.push({ toggleKey: PowerProfileToggle() });
         break;
       case "QSEmptyButton":
         allToggles.push({ toggleKey: QSEmptyButton() });
