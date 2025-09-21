@@ -11,9 +11,9 @@ export default () => {
         <QSToggle
             className={mute.as((muted) => {
                 if (!muted) {
-                    return "toggles control-center-button active";
+                    return "toggles quick-settings-button active";
                 }
-                return "toggles control-center-button";
+                return "toggles quick-settings-button";
             })}
             onPrimaryClick={() => mic.mute = !mic.mute}
             icon={mute.as((muted) => icons.audio.mic[muted ? "muted" : "high"])}

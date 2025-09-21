@@ -12,9 +12,9 @@ export default () => {
         <QSToggle
             className={isPowered.as((p) => {
                 if (p) {
-                    return "toggles control-center-button active";
+                    return "toggles quick-settings-button active";
                 }
-                return "toggles control-center-button";
+                return "toggles quick-settings-button";
             })}
             onPrimaryClick={() => setQsPage("bluetooth")}
             icon={isPowered.as((p) => icons.bluetooth[p ? "enabled" : "disabled"])}

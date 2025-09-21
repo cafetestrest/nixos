@@ -11,9 +11,9 @@ export default () => {
         <QSToggle
             className={dnd.as(() => {
                 if (notifications.dontDisturb) {
-                    return "toggles control-center-button active";
+                    return "toggles quick-settings-button active";
                 }
-                return "toggles control-center-button";
+                return "toggles quick-settings-button";
             })}
             onPrimaryClick={() => notifications.dontDisturb = !notifications.dontDisturb}
             icon={dnd.as((dnd) => icons.notifications[dnd ? "silent" : "noisy"])}

@@ -20,9 +20,9 @@ export default () => {
                 hasArrow={false}
                 className={wiredState.as((state) => {
                     if (state === Network.DeviceState.ACTIVATED) {
-                        return "toggles control-center-button active";
+                        return "toggles quick-settings-button active";
                     }
-                    return "toggles control-center-button";
+                    return "toggles quick-settings-button";
                 })}
             />
         );
@@ -55,9 +55,9 @@ export default () => {
         <QSToggle
             className={createBinding(wifi, "enabled").as(() => {
                 if (wifi.enabled) {
-                    return "toggles control-center-button active";
+                    return "toggles quick-settings-button active";
                 }
-                return "toggles control-center-button";
+                return "toggles quick-settings-button";
             })}
             onPrimaryClick={() => setQsPage("network")}
             icon={icon}

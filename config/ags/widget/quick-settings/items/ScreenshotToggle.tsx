@@ -7,9 +7,9 @@ export default () => {
         <QSToggle
             className={qsRevealScreenshot.as((p) => {
                 if (p) {
-                    return "toggles control-center-button active";
+                    return "toggles quick-settings-button active";
                 }
-                return "toggles control-center-button";
+                return "toggles quick-settings-button";
             })}
             onPrimaryClick={() => setQsRevealScreenshot(!qsRevealScreenshot.get())}
             icon={icons.screenshot}

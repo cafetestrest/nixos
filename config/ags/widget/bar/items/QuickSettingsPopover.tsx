@@ -1,13 +1,13 @@
 import { Gtk } from "ags/gtk3";
 import Popover from "../../popovers/Popover";
 import { visibleQSMainPage, setVisibleQSMainPage, qsRevertRevealerStatus } from "../../../lib/config";
-import ControlCenter from "../../control-center/ControlCenter";
+import QuickSettings from "../../quick-settings/QuickSettings";
 
 export default () => {
     return (
         <Popover
             name={"quicksettings"}
-            namespace={"control-center"}
+            namespace={"quick-settings"}
             className={"popover"}
             onClose={() => {
                 setVisibleQSMainPage(false);
@@ -20,7 +20,7 @@ export default () => {
             halign={Gtk.Align.END}
             child={
                 <box class={"popup"} vertical={true}>
-                    <ControlCenter/>
+                    <QuickSettings/>
                 </box>
             }
         />

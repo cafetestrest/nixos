@@ -27,9 +27,9 @@ export default () => {
         <QSToggle
             className={profile.as((p) => {
                 if (p === "performance") {
-                    return "toggles control-center-button active";
+                    return "toggles quick-settings-button active";
                 }
-                return "toggles control-center-button";
+                return "toggles quick-settings-button";
             })}
             onPrimaryClick={nextProfile}
             icon={createBinding(powerprofiles, "iconName")}

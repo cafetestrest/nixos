@@ -11,9 +11,9 @@ export default () => {
             <QSToggle
                 className={profile.as((p) => {
                     if (p !== 1) {
-                        return "toggles control-center-button active";
+                        return "toggles quick-settings-button active";
                     }
-                    return "toggles control-center-button";
+                    return "toggles quick-settings-button";
                 })}
                 onPrimaryClick={() => ColorModeService && ColorModeService.nextProfile()}
                 icon={profile.as((p) => icons.colormode[p])}

@@ -1,7 +1,7 @@
 @use "./variables.scss" as *;
 @use "./scrollable.scss" as scrollable;
 
-.control-center {
+.quick-settings {
     button {
         border-radius: $radius;
         color: $fgColor;

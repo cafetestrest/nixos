@@ -6,7 +6,7 @@ import { setVisibleQSMainPage, config } from "../../../lib/config";
 export default () => {
     return (
         <QSToggle
-            className={"toggles control-center-button"}
+            className={"toggles quick-settings-button"}
             onPrimaryClick={() => {
                 setVisibleQSMainPage(false);
 

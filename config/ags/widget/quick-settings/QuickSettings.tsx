@@ -12,7 +12,7 @@ export default () => {
     ];
 
     return (
-        <box class={"control-center"} vertical={true}>
+        <box class={"quick-settings"} vertical={true}>
             <stack
                 visibleChildName={qsPage}
                 transitionType={Gtk.StackTransitionType.SLIDE_LEFT_RIGHT}

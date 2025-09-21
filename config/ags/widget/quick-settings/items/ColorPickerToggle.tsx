@@ -7,7 +7,7 @@ import { timeout } from "ags/time";
 export default () => {
     return (
         <QSToggle
-            className={"toggles control-center-button"}
+            className={"toggles quick-settings-button"}
             onPrimaryClick={() => {
                 setVisibleQSMainPage(false);
 
