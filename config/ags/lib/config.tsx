@@ -189,6 +189,10 @@ interface ThemeVariables {
     qsSliderHighlightWidth: string; // qs volume slider min-width
     qsSliderIconMarginLeft: string; // qs volume/brightness Icon margin-left
     qsMenuPadding: string; // qs menu padding
+    qsToggleIconRadius: string; // qs toggle icon box border-radius
+    qsToggleIconPadding: string; // qs toggle icon box padding
+    qsToggleIconShadowInactive: string; // qs toggle icon box shadow for inactive toggles
+    qsToggleIconShadowActive: string; // qs toggle icon box shadow for active toggles
     osdMinWidth: string; // osd min-width
     osdLevelbarHeight: string; // osd levelbar min-height
     osdLevelbarLowWidth: string; // osd levelbar when Low (ex. low volume) min-width
@@ -532,6 +536,10 @@ let configDefaults: Config = {
         qsSliderHighlightWidth: "2.2rem",
         qsSliderIconMarginLeft: "0.6rem",
         qsMenuPadding: "1.5rem",
+        qsToggleIconRadius: "$radius * 0.5",
+        qsToggleIconPadding: "0.6rem",
+        qsToggleIconShadowInactive: "inset 0 0 0 9999px rgba(255, 255, 255, 0.1)",
+        qsToggleIconShadowActive: "inset 0 0 0 9999px rgba(255, 255, 255, 0.4)",
         osdMinWidth: "12rem",
         osdLevelbarHeight: "0.8rem",
         osdLevelbarLowWidth: "0.8rem",

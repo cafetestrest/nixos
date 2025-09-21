@@ -160,8 +160,14 @@
                     min-width: $qsTogglesWidth;
                     min-height: $qsTogglesHeight;
 
-                    icon {
+                    .qs-icon-arrow {
                         margin-left: $qsTogglesIconMarginLeft;
+                    }
+
+                    .qs-icon-box {
+                        border-radius: $qsToggleIconRadius;
+                        padding: $qsToggleIconPadding;
+                        box-shadow: $qsToggleIconShadowInactive;
                     }
 
                     label {
@@ -178,6 +184,10 @@
 
                         &:focus {
                             box-shadow: $focusShadow;
+                        }
+
+                        .qs-icon-box {
+                            box-shadow: $qsToggleIconShadowActive;
                         }
                     }
                 }

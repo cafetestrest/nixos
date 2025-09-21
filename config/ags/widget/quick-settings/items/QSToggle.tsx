@@ -49,9 +49,13 @@ export default ({
             <box
 				halign={!label ? Gtk.Align.CENTER : Gtk.Align.FILL}
             >
-                <icon
-                    icon={icon}
-                />
+                <box
+                    class={"qs-icon-box"}
+                >
+                    <icon
+                        icon={icon}
+                    />
+                </box>
                 {label && (
                     <label
                         halign={Gtk.Align.START}
@@ -63,6 +67,7 @@ export default ({
                     <icon
                         halign={Gtk.Align.END}
                         icon={arrowIcon}
+                        class={"qs-icon-arrow"}
                     />
                 )}
             </box>
